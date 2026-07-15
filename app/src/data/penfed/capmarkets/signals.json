@@ -1,0 +1,61 @@
+[
+  {
+    "id": "SIG-CAPM-001",
+    "type": "abs_collateral_migration",
+    "title": "ABS Collateral Delinquency Migration — PNFED 2024-A",
+    "description": "60+ day delinquencies in the PNFED 2024-A collateral pool increased 42 bps month-over-month, crossing the 1.80% early-amortization trigger threshold. If the trend holds for one more reporting period (two consecutive at threshold), early amortization activates. Projected breach by August 2026. S&P surveillance review scheduled Q3 2026.",
+    "impact": "critical",
+    "severity": "critical",
+    "affected_count": 1993,
+    "sources": ["Snowflake", "Internal Risk Models", "Salesforce Data Cloud"],
+    "timestamp": "2026-05-28T05:55:00",
+    "trend": "worsening",
+    "related_trust": "PNFED 2024-A",
+    "metrics": {
+      "current_60plus_dq": 0.0178,
+      "trigger_threshold": 0.0180,
+      "mom_change_bps": 42,
+      "projected_breach_month": "August 2026",
+      "consecutive_periods_required": 2
+    }
+  },
+  {
+    "id": "SIG-CAPM-002",
+    "type": "hedge_effectiveness_drift",
+    "title": "Interest Rate Hedge Effectiveness Drift",
+    "description": "Swap portfolio effectiveness declined from 96.2% to 89.7% over the last 90 days. Three positions are driving the drift, correlated with the yield curve steepening since March. One position is already below the FASB ASC 815 80% minimum. Losing hedge accounting on at-risk positions would require $4.8M unrealized losses through earnings.",
+    "impact": "high",
+    "severity": "warning",
+    "affected_count": 3,
+    "sources": ["Bloomberg Terminal", "Internal Risk Models"],
+    "timestamp": "2026-05-28T05:58:00",
+    "trend": "worsening",
+    "metrics": {
+      "current_effectiveness": 0.897,
+      "prior_effectiveness": 0.962,
+      "fasb_minimum": 0.80,
+      "positions_at_risk": 3,
+      "yield_curve_steepening_bps": 47,
+      "at_risk_pnl_usd": 4800000
+    }
+  },
+  {
+    "id": "SIG-CAPM-003",
+    "type": "counterparty_concentration",
+    "title": "Counterparty Exposure Concentration — Auto Dealer Network",
+    "description": "Top 5 auto dealer partners now represent 38% of new auto loan origination volume (up from 27% twelve months ago). Two of those dealers show declining financial health scores. Concentration risk impacts future ABS collateral quality and rating agency pool diversity requirements.",
+    "impact": "critical",
+    "severity": "critical",
+    "affected_count": 1993,
+    "sources": ["Salesforce Data Cloud", "Credit Monitoring Feed", "Snowflake"],
+    "timestamp": "2026-05-28T06:02:00",
+    "trend": "worsening",
+    "metrics": {
+      "top5_concentration_now": 0.38,
+      "top5_concentration_prior_year": 0.27,
+      "dealers_with_declining_health": 2,
+      "pool_balance_pct_from_top3": 0.22,
+      "dq_volume_pct_from_top3": 0.61
+    }
+  }
+]

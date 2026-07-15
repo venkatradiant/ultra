@@ -1,0 +1,30 @@
+{
+  "summary": {
+    "total_at_risk": 1769,
+    "total_ltv_at_risk": "$82.8M",
+    "avg_churn_probability": 0.64,
+    "model": "Salesforce Einstein Churn Predictor v3.2",
+    "last_run": "2026-04-07T05:00:00Z"
+  },
+  "weekly_trend": [
+    { "week": "W01", "week_start": "2026-01-12", "high_risk_count": 142, "avg_probability": 0.58 },
+    { "week": "W02", "week_start": "2026-01-19", "high_risk_count": 148, "avg_probability": 0.58 },
+    { "week": "W03", "week_start": "2026-01-26", "high_risk_count": 156, "avg_probability": 0.59 },
+    { "week": "W04", "week_start": "2026-02-02", "high_risk_count": 167, "avg_probability": 0.60 },
+    { "week": "W05", "week_start": "2026-02-09", "high_risk_count": 178, "avg_probability": 0.61 },
+    { "week": "W06", "week_start": "2026-02-16", "high_risk_count": 189, "avg_probability": 0.61 },
+    { "week": "W07", "week_start": "2026-02-23", "high_risk_count": 198, "avg_probability": 0.62 },
+    { "week": "W08", "week_start": "2026-03-02", "high_risk_count": 212, "avg_probability": 0.63 },
+    { "week": "W09", "week_start": "2026-03-09", "high_risk_count": 231, "avg_probability": 0.63 },
+    { "week": "W10", "week_start": "2026-03-16", "high_risk_count": 254, "avg_probability": 0.64 },
+    { "week": "W11", "week_start": "2026-03-23", "high_risk_count": 278, "avg_probability": 0.65 },
+    { "week": "W12", "week_start": "2026-03-30", "high_risk_count": 312, "avg_probability": 0.66 }
+  ],
+  "by_segment": [
+    { "segment": "Military Retirees", "count": 214, "avg_probability": 0.71, "primary_driver": "CD rate dissatisfaction", "ltv_at_risk": "$36.8M" },
+    { "segment": "Single-Product Holders", "count": 487, "avg_probability": 0.62, "primary_driver": "Low engagement", "ltv_at_risk": "$18.2M" },
+    { "segment": "First-Time Applicants (Stalled)", "count": 312, "avg_probability": 0.64, "primary_driver": "Application friction", "ltv_at_risk": "$11.9M" },
+    { "segment": "Digital Dormant", "count": 1243, "avg_probability": 0.58, "primary_driver": "No digital activity 90+ days", "ltv_at_risk": "$34.1M" },
+    { "segment": "Young Professionals (<30)", "count": 198, "avg_probability": 0.55, "primary_driver": "Rate comparison shopping", "ltv_at_risk": "$6.3M" }
+  ]
+}

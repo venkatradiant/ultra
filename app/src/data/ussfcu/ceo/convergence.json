@@ -1,0 +1,41 @@
+{
+  "governed_metric": {
+    "label": "Loan-to-Share Ratio",
+    "value_pct": 84,
+    "delta_pts": 6,
+    "confidence": 94,
+    "note": "One governed number, reconciled across three systems — not three that disagree."
+  },
+  "inputs": [
+    {
+      "id": "loans",
+      "label": "Net Loans",
+      "source": "Symitar",
+      "value_usd": 1293000000,
+      "growth_ytd_pct": 11.4,
+      "role": "Numerator — loan balances from the core"
+    },
+    {
+      "id": "shares",
+      "label": "Total Shares",
+      "source": "General Ledger",
+      "value_usd": 1539000000,
+      "growth_ytd_pct": 4.1,
+      "role": "Denominator — share balances from the GL"
+    },
+    {
+      "id": "pipeline",
+      "label": "90-Day Origination Pipeline",
+      "source": "MeridianLink",
+      "value_usd": 312000000,
+      "role": "Forward pressure — funded-but-unbooked demand"
+    }
+  ],
+  "trend_5yr": [
+    { "year": "2022", "loan_to_share_pct": 72 },
+    { "year": "2023", "loan_to_share_pct": 75 },
+    { "year": "2024", "loan_to_share_pct": 78 },
+    { "year": "2025", "loan_to_share_pct": 81 },
+    { "year": "2026", "loan_to_share_pct": 84 }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "model": {
+    "name": "Quality & Sentiment Classifier",
+    "version": "qa-classifier-v4.0",
+    "domain": "Quality Management — Sentiment + Script Adherence",
+    "owner": "Janelle Moreau",
+    "last_validated": "2026-04-23T08:59:06Z"
+  },
+  "accuracy": {
+    "score_24h": 96.2,
+    "delta_7d_pp": 0.4,
+    "target": 95.0,
+    "spark_24h": [95.9, 96.0, 96.1, 96.0, 95.9, 95.8, 95.9, 96.0, 96.1, 96.2, 96.3, 96.2, 96.1, 96.0, 95.9, 96.0, 96.1, 96.2, 96.3, 96.4, 96.3, 96.2, 96.1, 96.2]
+  },
+  "confidence_distribution": {
+    "buckets": { "high": 82, "mid": 14, "low": 4 },
+    "total_turns_7d": 412
+  },
+  "drift": {
+    "score": 0.09,
+    "status": "stable",
+    "baseline": "Q1 2026 floor-wide transcript distribution",
+    "delta_7d": -0.01,
+    "note": "Stable. Deterministic transcript matching dominates outputs."
+  },
+  "bias_checks": [
+    { "dimension": "Agent tenure", "status": "pass", "delta_pp": 0.5 },
+    { "dimension": "Channel (voice / chat / email)", "status": "pass", "delta_pp": 0.8 },
+    { "dimension": "Member language (English / Spanish)", "status": "warn", "delta_pp": 6.4, "note": "Spanish minority class — sentiment classifier accuracy 91.2% vs. 96.8% English" }
+  ],
+  "escalation_rate": {
+    "rate_pct_24h": 2.4,
+    "target_pct": 5.0,
+    "events_24h": 1
+  },
+  "reviewer": {
+    "name": "Finance Partner",
+    "role": "FP&A · Contact Center Finance Partner",
+    "sla": "Acknowledges within 1 hr · Resolves within 1 business day",
+    "queue": "Finance Cost-Model Review Queue",
+    "coverage": "Mon–Fri 8 AM–5 PM ET · Backup: Director of Member Experience"
+  },
+  "accuracy_timeline_14d": [
+    { "day": "Apr 10", "accuracy": 95.7, "avg_confidence": 90 },
+    { "day": "Apr 11", "accuracy": 95.8, "avg_confidence": 90 },
+    { "day": "Apr 12", "accuracy": 95.9, "avg_confidence": 91 },
+    { "day": "Apr 13", "accuracy": 96.0, "avg_confidence": 91 },
+    { "day": "Apr 14", "accuracy": 96.1, "avg_confidence": 91 },
+    { "day": "Apr 15", "accuracy": 96.2, "avg_confidence": 92 },
+    { "day": "Apr 16", "accuracy": 96.0, "avg_confidence": 91 },
+    { "day": "Apr 17", "accuracy": 96.0, "avg_confidence": 90 },
+    { "day": "Apr 18", "accuracy": 96.1, "avg_confidence": 91 },
+    { "day": "Apr 19", "accuracy": 96.0, "avg_confidence": 91 },
+    { "day": "Apr 20", "accuracy": 96.1, "avg_confidence": 91 },
+    { "day": "Apr 21", "accuracy": 96.2, "avg_confidence": 92 },
+    { "day": "Apr 22", "accuracy": 96.1, "avg_confidence": 91 },
+    { "day": "Apr 23", "accuracy": 96.2, "avg_confidence": 91 }
+  ],
+  "audit_trail": [
+    {
+      "auditId": "AUD-NFCU-2026-04-23-029",
+      "timestamp": "2026-04-23T10:11:08Z",
+      "persona": "nfcu_workforce",
+      "personaName": "Janelle Moreau",
+      "flowKey": "nfcu_wf_spanish_classifier_recheck",
+      "score": 67,
+      "threshold": 70,
+      "reason": "Spanish-language classifier accuracy below English baseline by 5.6 pp — minority-class fairness review.",
+      "route_to": "Finance Partner",
+      "review_queue": "Finance Cost-Model Review Queue",
+      "kind": "auto-escalation",
+      "model_version": "qa-classifier-v4.0"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-23-021",
+      "timestamp": "2026-04-23T09:01:18Z",
+      "persona": "nfcu_workforce",
+      "personaName": "Janelle Moreau",
+      "flowKey": "nfcu_wf_cost_impact",
+      "score": 66,
+      "threshold": 70,
+      "reason": "Cost model uses partial Q1 data; attrition coefficient unvalidated against current cohort.",
+      "route_to": "Finance Partner",
+      "review_queue": "Finance Cost-Model Review Queue",
+      "kind": "auto-escalation",
+      "outcome": "Finance refreshed Q1 closed inputs + FY26 attrition coefficient — re-modeled at 84% confidence.",
+      "model_version": "qa-classifier-v4.0"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-20-014",
+      "timestamp": "2026-04-20T13:22:00Z",
+      "persona": "nfcu_workforce",
+      "personaName": "Janelle Moreau",
+      "flowKey": "nfcu_wf_agent_coaching",
+      "score": 79,
+      "threshold": 70,
+      "reason": "Mid-band confidence — coaching effectiveness depends on rollout adherence.",
+      "route_to": null,
+      "review_queue": null,
+      "kind": "watch-list",
+      "outcome": "Outcome tracked; 41% callback reduction achieved (within projected band).",
+      "model_version": "qa-classifier-v4.0"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-18-005",
+      "timestamp": "2026-04-18T09:00:00Z",
+      "persona": "nfcu_workforce",
+      "personaName": "Janelle Moreau",
+      "flowKey": "weekly-validation",
+      "score": 100,
+      "threshold": 70,
+      "reason": "Scheduled weekly QA pass — 412 turns scored, 4 in low band (1.0%).",
+      "route_to": "Quality Assurance",
+      "review_queue": "QA Queue",
+      "kind": "scheduled-validation",
+      "outcome": "Pass; Spanish-language minority-class warning re-logged (open mitigation).",
+      "model_version": "qa-classifier-v4.0"
+    }
+  ]
+}

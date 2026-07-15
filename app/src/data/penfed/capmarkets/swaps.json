@@ -1,0 +1,24 @@
+{
+  "as_of": "2026-05-28",
+  "portfolio_effectiveness_current": 0.897,
+  "portfolio_effectiveness_prior": 0.962,
+  "fasb_minimum": 0.80,
+  "yield_curve_2_10_steepening_bps_since_march": 47,
+  "positions": [
+    { "id": "SWP-001", "tenor": "5Y", "entered": "2025-Q1", "notional_usd": 75000000, "effectiveness": 0.784, "status": "fails_80", "underlying": "Fixed-rate MBS book" },
+    { "id": "SWP-002", "tenor": "5Y", "entered": "2025-Q1", "notional_usd": 50000000, "effectiveness": 0.812, "status": "near_threshold", "underlying": "Investment securities" },
+    { "id": "SWP-003", "tenor": "5Y", "entered": "2025-Q1", "notional_usd": 60000000, "effectiveness": 0.836, "status": "near_threshold", "underlying": "Investment securities" },
+    { "id": "SWP-004", "tenor": "3Y", "entered": "2024-Q2", "notional_usd": 40000000, "effectiveness": 0.941, "status": "ok", "underlying": "Investment securities" },
+    { "id": "SWP-005", "tenor": "3Y", "entered": "2024-Q2", "notional_usd": 35000000, "effectiveness": 0.952, "status": "ok", "underlying": "Investment securities" },
+    { "id": "SWP-006", "tenor": "7Y", "entered": "2023-Q4", "notional_usd": 80000000, "effectiveness": 0.928, "status": "ok", "underlying": "Fixed-rate MBS book" },
+    { "id": "SWP-007", "tenor": "5Y", "entered": "2024-Q3", "notional_usd": 45000000, "effectiveness": 0.917, "status": "ok", "underlying": "Investment securities" },
+    { "id": "SWP-008", "tenor": "10Y", "entered": "2023-Q2", "notional_usd": 100000000, "effectiveness": 0.964, "status": "ok", "underlying": "Long-duration investments" },
+    { "id": "SWP-009", "tenor": "5Y", "entered": "2024-Q1", "notional_usd": 55000000, "effectiveness": 0.946, "status": "ok", "underlying": "Investment securities" },
+    { "id": "SWP-010", "tenor": "3Y", "entered": "2025-Q3", "notional_usd": 30000000, "effectiveness": 0.972, "status": "ok", "underlying": "Investment securities" },
+    { "id": "SWP-011", "tenor": "5Y", "entered": "2024-Q4", "notional_usd": 65000000, "effectiveness": 0.938, "status": "ok", "underlying": "Investment securities" },
+    { "id": "SWP-012", "tenor": "7Y", "entered": "2024-Q1", "notional_usd": 70000000, "effectiveness": 0.921, "status": "ok", "underlying": "Long-duration investments" }
+  ],
+  "at_risk_pnl_if_dedesignated_usd": 4800000,
+  "restructure_breakage_estimate_usd": 340000,
+  "next_curve_shift_to_breach_005_bps": 15
+}

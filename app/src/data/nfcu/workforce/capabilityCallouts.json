@@ -1,0 +1,26 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI evaluates 100% of interactions using Dynamics 365 Quality Management — surfacing BSA/AML compliance gaps, repeat contact drivers, and top-performer burnout signals before they become regulatory or retention issues.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and receive a sourced answer drawn simultaneously from Dynamics 365 Quality Management, Process Adherence, Sentiment Analysis, CRM member records, and IT incident logs.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Automated Action",
+    "description": "From the same conversation, push script updates to Dynamics 365 agent desktops, auto-resolve compliance backlogs against CRM records, file incident reports, and send agent coaching notifications — all without leaving the AI interface.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Anomaly Detection",
+    "description": "The AI flags unusual patterns that Dynamics 365 cannot surface alone — BSA/AML skip rates correlated with script version changes, repeat contact spikes correlated with IT outages, top-performer decline correlated with call complexity load.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

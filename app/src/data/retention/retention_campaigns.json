@@ -1,0 +1,46 @@
+{
+  "active_campaigns": [
+    {
+      "id": "RC-001",
+      "name": "CD Rate Loyalty Offer",
+      "target_segment": "Military Retirees — CD Dissatisfied",
+      "target_size": 214,
+      "channel": "Phone + Email",
+      "start_date": "2026-03-15",
+      "status": "active",
+      "response_rate": 28.5,
+      "retention_lift": 12.3,
+      "performance": "on-track"
+    },
+    {
+      "id": "RC-002",
+      "name": "Digital Re-Engagement Push",
+      "target_segment": "Digital Dormant 90+ Days",
+      "target_size": 500,
+      "channel": "Email + SMS",
+      "start_date": "2026-03-20",
+      "status": "active",
+      "response_rate": 11.2,
+      "retention_lift": 4.8,
+      "performance": "underperforming"
+    },
+    {
+      "id": "RC-003",
+      "name": "Cross-Sell to Single-Product",
+      "target_segment": "Single-Product High-Risk",
+      "target_size": 300,
+      "channel": "In-App + Email",
+      "start_date": "2026-03-25",
+      "status": "active",
+      "response_rate": 19.7,
+      "retention_lift": 8.9,
+      "performance": "on-track"
+    }
+  ],
+  "historical_performance": {
+    "avg_retention_lift_with_outreach": 15.2,
+    "avg_retention_lift_without": 3.1,
+    "best_channel": "Phone outreach (30% reactivation rate)",
+    "best_offer_type": "Personalized rate match (40% reactivation rate)"
+  }
+}

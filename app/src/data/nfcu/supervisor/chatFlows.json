@@ -1,0 +1,845 @@
+{
+  "nfcu_sup_brief_dual_incident": {
+    "ai_message": "Two events are compounding into one queue spike. The east-region SIP fiber cut took ~30% of voice capacity offline; the Marketing Cloud rate promo drove auto-loan volume to 3.2x baseline. Combined effect: 214 in queue, 18.4% abandonment, retry-loop feedback as dropped callers redial. Service level on auto loans is at 54% and falling. Live queue snapshot is below.",
+    "suggested_chips": [
+      "Show root cause correlation",
+      "What are my options?",
+      "How does this compare to last rate promo?"
+    ],
+    "data_sources_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "Dynamics 365 Contact Center", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Both upstream causes are dual-source confirmed: carrier feed + SIP monitor for fiber; Marketing Cloud send-time + CCAS volume for the promo.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_brief_pindrop_failures": {
+    "ai_message": "PinDrop is timing out on 34% of inbound calls routed through the degraded SIP path. Agents fall back to manual KBA, adding ~2:30 to AHT per affected call. Voice Bio enrollment verification is also impacted. Members on the working SIP path are authenticating normally — the failure is localized to the degraded route. AHT impact view is below.",
+    "suggested_chips": [
+      "What can we do to reduce AHT impact?",
+      "Show me agent utilization right now",
+      "Show root cause correlation"
+    ],
+    "data_sources_used": ["PinDrop", "SIP Monitoring", "Voice Bio", "Dynamics 365 Contact Center"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 91,
+      "rationale": "PinDrop SDK reports per-leg timeout rates; degraded-route mapping joins against SIP monitor at ±2 min precision.",
+      "signals_used": ["PinDrop", "SIP Monitoring", "Voice Bio"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_brief_ivr_containment": {
+    "ai_message": "IVR is capturing 22% of rate-promo intents, down from a 41% baseline. The self-service flow doesn't support side-by-side rate comparison, but 67% of promo callers want exactly that. Top unresolved intent: 'compare my current rate'. Containment drop is what's pushing volume to live agents — fixing the IVR flow would relieve the queue. Live queue table is below.",
+    "suggested_chips": [
+      "Can we update the IVR for rate queries?",
+      "Show me the rate promo comparison data",
+      "What should we do?"
+    ],
+    "data_sources_used": ["Dynamics 365 IVR", "AI Intent Capture", "Dynamics 365 CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 88,
+      "rationale": "Intent capture telemetry + CCAS transcripts give direct evidence; containment delta vs baseline is a precise count.",
+      "signals_used": ["Dynamics 365 IVR", "AI Intent Capture", "CCAS Transcripts"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_brief_sentiment_trend": {
+    "ai_message": "Post-call sentiment on auto-loan calls drifted from +0.38 to +0.29 over 14 days. The slope is gradual — not alarming on its own, but if it continues another two weeks, it'll show up in NPS next month. The quality scorecard breakdown is below — note that the dip lines up with the longer AHTs during this morning's rate-promo period.",
+    "suggested_chips": [
+      "What's driving the sentiment dip?",
+      "Show me quality scores by team this week",
+      "Schedule a 1:1 with the team lead"
+    ],
+    "data_sources_used": ["Sentiment Analysis", "Dynamics 365 CRM", "Quality Monitoring"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 83,
+      "rationale": "Two-week rolling average; intent-filtered to auto-loan calls only. Causal link to AHT is inferred via timeline correlation.",
+      "signals_used": ["Sentiment Analysis", "CCAS Transcripts"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_brief_repeat_contact": {
+    "ai_message": "Repeat-contact rate on rate-comparison questions doubled in three weeks: 11% → 23% of callers come back within 48 hours. The IVR can't handle side-by-side comparisons, so they call again. This is a candidate for an IVR enhancement next sprint — not an emergency, but worth queuing. Quality scorecard is below for context.",
+    "suggested_chips": [
+      "What would the IVR enhancement cost?",
+      "Show me the IVR containment data",
+      "Add to next sprint backlog"
+    ],
+    "data_sources_used": ["Dynamics 365 IVR", "CCAS Transcripts", "Dynamics 365 CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 86,
+      "rationale": "Repeat-contact joins on member ID + intent classifier; clean signal across three weeks.",
+      "signals_used": ["Dynamics 365 IVR", "CCAS Transcripts", "Dynamics 365 CRM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_brief_agent_fatigue": {
+    "ai_message": "Variant WFM is watching 4 agents on your team for fatigue indicators: rising overtime hours, back-to-back high-AHT shifts, and dropping schedule adherence. None of them are in trouble today, but the trajectory says someone will burn out in the next pay period if we don't adjust schedules. The overtime breakdown is below — Torres and Chen are the two to address first.",
+    "suggested_chips": [
+      "Adjust their schedules next week",
+      "Who is available for overtime?",
+      "Show me overtime by agent"
+    ],
+    "data_sources_used": ["Variant WFM", "HR System", "Agent Telemetry"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 79,
+      "rationale": "Composite score: overtime hours + AHT trend + consecutive-shift count, calibrated on prior attrition cohorts.",
+      "signals_used": ["Variant WFM", "HR System"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_root_cause_correlation": {
+    "ai_message": "Here's the cross-source root-cause tree on the right. Two upstream causes are compounding into one queue impact: the SIP fiber cut on the east-region carrier path took ~30% of voice capacity offline, and the unannounced Marketing Cloud rate promo drove auto-loan volume to 3.2x baseline. They meet at the **Volume vs. Capacity** node — that's why service level dropped to 54% and abandonment hit 18.4%. PinDrop auth failures and IVR containment loss are downstream effects, not independent causes. Hover any node to see which KPIs it pulls.",
+    "suggested_chips": [
+      "What are my options?",
+      "What should I tell leadership right now?",
+      "Show me staffing for Friday"
+    ],
+    "data_sources_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "Dynamics 365 Contact Center", "PinDrop"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["root_cause_tree"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Dual-source confirmation for each upstream cause: carrier feed + SIP monitor for the fiber cut; Marketing Cloud send-time + CCAS volume spike for the promo. Downstream attribution validated against the last 9 cross-team events.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time", "Variant WFM", "PinDrop"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_greeting": {
+    "ai_message": "Good morning, Priya. 3 signals need your attention before your 9 AM leadership sync. The auto loans queue is in critical state: wait times spiked 340% after this morning's rate promotion email. Want me to walk you through them?",
+    "suggested_chips": [
+      "Yes, walk me through them",
+      "What caused the auto loan spike?",
+      "Show me staffing for Friday",
+      "Show root cause correlation"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Marketing Cloud", "HR/Workforce Management"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Signal counts and severities pulled directly from live Dynamics 365 + Marketing Cloud queues. No inference required.",
+      "signals_used": ["Dynamics 365 Contact Center", "Marketing Cloud", "HR/Workforce Management"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:58:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_signal_1_queue_spike": {
+    "ai_message": "The root cause is a coordination gap — Marketing launched the promotion without a staffing alert to Contact Center. The spike was predictable, but we had no lead time. I've already identified three recovery levers: reroute cross-trained agents from general banking, enable callback mode for waits over 5 minutes, and create an automated Marketing coordination rule to prevent this from recurring. The live queue snapshot is below — what do you want to activate first?",
+    "suggested_chips": [
+      "What should we do?",
+      "Who are these callers?",
+      "How does this compare to last rate promo?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Marketing Cloud"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [
+      {
+        "type": "bar_chart",
+        "title": "Auto Loan Queue Volume — Last 4 Hours",
+        "dataset_key": "segments.queue_volume_4h"
+      }
+    ],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Two grounding sources confirm the causal link: Marketing Cloud campaign send-time aligns within 8 minutes of Dynamics 365 queue spike. Historical pattern match 0.94.",
+      "signals_used": ["Dynamics 365 Contact Center", "Marketing Cloud Campaign History"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:59:42Z",
+      "feature_contributions": [
+        {
+          "feature": "marketing_cloud.send_time_alignment",
+          "value": "8 min lag vs. queue spike onset",
+          "weight": 0.31,
+          "source": "Marketing Cloud"
+        },
+        {
+          "feature": "dynamics365.queue_volume_4h_delta",
+          "value": "+340% vs. trailing 4h baseline",
+          "weight": 0.27,
+          "source": "Dynamics 365 Contact Center"
+        },
+        {
+          "feature": "historical.rate_promo_pattern_match",
+          "value": "0.94 similarity (Jan 15 promo)",
+          "weight": 0.21,
+          "source": "Dynamics 365 Historical Analytics"
+        },
+        {
+          "feature": "wfm.cross_trained_agent_pool",
+          "value": "8 agents auto-loan certified, available",
+          "weight": 0.15,
+          "source": "Workforce Management"
+        }
+      ],
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_signal_2_staffing": {
+    "ai_message": "The gap is structural — Friday evenings are uniquely exposed because West Coast members call after work, and this shift has the thinnest supervisor coverage. I've already ranked the three highest-quality certified agents eligible for OT: Torres, Williams, and Chen. Based on their history, there's a 78% probability at least one accepts. If none do, I have a flex-slot secondary plan ready. Want me to send the OT offers now?",
+    "suggested_chips": [
+      "What are my options?",
+      "Who is available for overtime?",
+      "Show me the sentiment signal",
+      "Which agents have mortgage certification?"
+    ],
+    "data_sources_used": ["Dynamics 365 Workforce Management", "HR System"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 88,
+      "rationale": "Agent availability and certification pulled from authoritative HR + Dynamics 365 sources. Acceptance probability is a 60-day historical estimate with moderate variance.",
+      "signals_used": ["Dynamics 365 Workforce Management", "HR System", "Agent OT Acceptance History (60d)"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:57:03Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_signal_3_sentiment": {
+    "ai_message": "Here's what Dynamics 365 cannot see on its own: the sentiment drop correlates exactly with an IT-logged payment portal outage from 48 hours ago. This isn't a coaching problem — it's a system problem with a known ETA. Agents are fielding frustrated calls they can't resolve. I'd recommend deploying a portal holding-statement script immediately so calls don't keep eroding CSAT while IT works the fix.",
+    "suggested_chips": [
+      "What should we do?",
+      "Show me today's queue health",
+      "Show me staffing for Friday"
+    ],
+    "data_sources_used": ["Dynamics 365 Sentiment Analysis", "IT Incident Management"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "confidence": {
+      "score": 90,
+      "rationale": "Sentiment timeline and IT incident timeline align within 14 minutes. Cross-system root-cause linkage is high-confidence.",
+      "signals_used": ["Dynamics 365 Sentiment Analysis", "IT Incident Management"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:55:17Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_rate_promo_comparison": {
+    "ai_message": "Last rate promotion (January 15) generated a 2.1x volume increase, but Marketing notified the contact center 24 hours in advance — staffing was pre-adjusted. This time, no advance notice was given. Historical pattern shows rate promo calls average 11:20 handle time vs. your normal 8:42, because members ask comparison questions that require calculator tools. Your current auto loan team is staffed for normal volume, not promotion volume.",
+    "suggested_chips": [
+      "What should we do?",
+      "Show me agent utilization right now",
+      "Can we reroute?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Historical Analytics", "Marketing Cloud Campaign History", "Workforce Management"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 82,
+      "rationale": "Single historical analog (Jan 15 promo). Promotional context differs (24-hr advance notice vs. none today) — directional pattern is clear but volume multiplier may shift ±15%.",
+      "signals_used": ["Dynamics 365 Historical Analytics", "Marketing Cloud Campaign History"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:58:44Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_turn_1_queue_health": {
+    "ai_message": "Here's your real-time contact center snapshot:\n\n**Active Calls in Queue:** 47\n**Service Level (80/20):** 71.3% — below 80% target\n**Average Handle Time:** 8:42\n**Abandonment Rate:** 14.2% (blended Dynamics 365 + Genesys)\n**Agent Occupancy:** 91%\n**CSAT (trailing 7 days):** 3.8/5.0\n**Channels Active:** 4 (voice, chat, email, callback)\n\nThe auto loans queue is the active crisis. 127 members waiting. Your other queues are at or above service level. Mortgage servicing is holding at 78% — below target but not critical yet. The sentiment issue there is the bigger risk if the IT portal fix doesn't land soon.",
+    "suggested_chips": [
+      "What should we do?",
+      "Who is available for overtime?",
+      "Which agents are idle?"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Dynamics 365 Workforce Management"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [
+      {
+        "type": "table",
+        "title": "Queue Health — Live Snapshot",
+        "dataset_key": "segments"
+      }
+    ],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 92,
+      "rationale": "All metrics are direct telemetry reads from Dynamics 365 and Workforce Management. No inference; numbers reflect the last 60-second window.",
+      "signals_used": ["Dynamics 365 Contact Center", "Dynamics 365 Workforce Management"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:59:51Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_turn_2_recommendations": {
+    "ai_message": "Based on historical promotion patterns, this volume will sustain for 4–6 hours and taper by 2 PM. I recommend three actions:\n\n**(1) Activate 8 cross-trained agents** from general banking to auto loans — projected to reduce wait time to under 4 minutes within 30 minutes.\n\n**(2) Enable callback option** for members waiting over 5 minutes — historically reduces abandonment by 34%.\n\n**(3) Flag Marketing Cloud** to require 48-hour Contact Center notification for future promotions above 20,000 recipients.\n\nThese three actions together recover service level to 83% within 45 minutes based on historical intervention data.",
+    "suggested_chips": [
+      "Activate the cross-trained agents",
+      "Enable callback now",
+      "Draft the Marketing notification rule",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Workforce Management", "Dynamics 365 Historical Analytics", "Routing Engine"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [
+      {
+        "type": "action_cards",
+        "title": "Recommended Actions",
+        "actions": [
+          {
+            "id": "ACT-NFCU-SUP-001",
+            "title": "Activate 8 Cross-Trained Agents",
+            "description": "Reroute 8 general banking agents with auto loan certification to the auto loans queue.",
+            "system": "Dynamics 365 Routing Engine",
+            "impact": "Reduces wait time from 12:47 to under 4 minutes within 30 minutes",
+            "status": "ready",
+            "confidence": {
+              "score": 92,
+              "rationale": "Routing-engine action with deterministic propagation. Wait-time reduction modeled on 14 prior reroute events with 87% precision.",
+              "threshold": 70,
+              "model_version": "wfm-rec-v3.2",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          },
+          {
+            "id": "ACT-NFCU-SUP-002",
+            "title": "Enable Callback for 5+ Minute Waits",
+            "description": "Activate callback option for members waiting over 5 minutes in auto loans queue.",
+            "system": "Dynamics 365 Contact Center",
+            "impact": "Historically reduces abandonment rate by 34%",
+            "status": "ready",
+            "confidence": {
+              "score": 78,
+              "rationale": "Callback enrollment depends on member opt-in rate; the 34% abandonment reduction is the median across 9 events with ±11% variance.",
+              "threshold": 70,
+              "model_version": "wfm-rec-v3.2",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          },
+          {
+            "id": "ACT-NFCU-SUP-003",
+            "title": "Draft Marketing Notification Rule",
+            "description": "Require 48-hour advance notice to Contact Center for promotions above 20,000 recipients.",
+            "system": "Marketing Cloud + Dynamics 365",
+            "impact": "Prevents recurrence — root cause fix",
+            "status": "ready",
+            "confidence": {
+              "score": 89,
+              "rationale": "Process-rule generation with no probabilistic component. Pending only Marketing leadership review.",
+              "threshold": 70,
+              "model_version": "wfm-rec-v3.2",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          }
+        ]
+      }
+    ],
+    "post_confirm_response": {
+      "ACT-NFCU-SUP-001": "Done. 8 agents with auto loan certification rerouted from general banking in Dynamics 365. Routing propagated to all 8 desktops — confirmed. Estimated time to impact: 12 minutes. Auto loans wait time projected to drop from 12:47 to under 4 minutes by 9:22 AM. I'm monitoring live and will alert you if service level doesn't recover to 80% within 30 minutes. Should I also enable callback for members still in queue?",
+      "ACT-NFCU-SUP-002": "Done. Callback mode live in Dynamics 365 for members waiting over 5 minutes in the auto loans queue. 43 of the 127 waiting members have already selected callback — live queue dropped from 127 to 84. Combined with the 8-agent rerouting, overall service level is projected to recover to 82% within 20 minutes. Auto loans abandonment rate is already dropping.",
+      "ACT-NFCU-SUP-003": "Marketing notification rule drafted and submitted for leadership review in Marketing Cloud. All campaigns targeting 20,000+ recipients will now require 48-hour advance notice to Contact Center Operations, routed directly to your Dynamics 365 queue. Flagged as urgent with today's auto loan spike as context. Marketing leadership will see it in their review queue by 10 AM. A permanent process change — not just a one-time alert."
+    },
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Volume-taper forecast and 83% recovery target both grounded in 14 prior promotion events. All three actions are reversible.",
+      "signals_used": ["Dynamics 365 Historical Analytics", "Workforce Management", "Routing Engine"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:59:33Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_act_agents_confirm": {
+    "ai_message": "Done. I have rerouted 8 agents with auto loan certification from general banking to the auto loans queue. Estimated time to impact: 12 minutes. I will monitor wait times and alert you if service level does not recover to 80% within 30 minutes. Should I also enable the callback option as a safety net?",
+    "suggested_chips": [
+      "Yes, enable callback too",
+      "Show me the after-hours sibling recommendation",
+      "Show me the second signal",
+      "Monitor and report back in 30 min"
+    ],
+    "data_sources_used": ["Dynamics 365 Routing Engine", "Workforce Management", "Agent Skill Profiles"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Routing change is logged and propagated; this turn confirms a deterministic system action.",
+      "signals_used": ["Dynamics 365 Routing Engine"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:00:08Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_act_callback_confirm": {
+    "ai_message": "Callback enabled for members waiting over 5 minutes in the auto loans queue. Members already in queue have been offered the callback option — 43 of 127 selected it, immediately reducing live queue to 84 members. Combined with the agent rerouting, projected service level recovery to 82% within 20 minutes.",
+    "suggested_chips": [
+      "Show me the second signal",
+      "Show me today's queue health"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 93,
+      "rationale": "Live opt-in counts are direct telemetry. Recovery projection uses the same intervention model that landed within ±2 pp on the last 8 events.",
+      "signals_used": ["Dynamics 365 Contact Center"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:00:21Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_overtime_agents": {
+    "ai_message": "Cross-referencing Dynamics 365 agent profiles with HR availability:\n\n5 agents have mortgage servicing certification and are not scheduled Friday evening. 3 of those 5 accepted overtime in the last 60 days.\n\n**Agent Torres** — Quality score 94% | AHT 7:12 | Accepted OT: 3x last 60 days | Available Friday\n**Agent Williams** — Quality score 91% | AHT 7:48 | Accepted OT: 2x last 60 days | Available Friday\n**Agent Chen** — Quality score 89% | AHT 8:05 | Accepted OT: 1x last 60 days | Available Friday\n**Agent Davis** — Quality score 87% | AHT 8:22 | OT: 0x last 60 days | Available Friday\n**Agent Martinez** — Quality score 85% | AHT 8:41 | OT: 0x last 60 days | Available Friday\n\nI can draft overtime offers ranked by fit — Torres, Williams, and Chen first.",
+    "suggested_chips": [
+      "Send overtime offers to top 3",
+      "Show me the third signal",
+      "What if nobody accepts?"
+    ],
+    "data_sources_used": ["Dynamics 365 Agent Profiles", "HR System", "Quality Management"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [
+      {
+        "type": "table",
+        "title": "Available Agents — Mortgage Certification + Overtime History",
+        "dataset_key": "segments"
+      }
+    ],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 78,
+      "rationale": "Agent ranking uses recent (60-day) OT acceptance history; behavioral patterns can shift week-to-week. Top-3 acceptance is a forecast, not a guarantee.",
+      "signals_used": ["Dynamics 365 Agent Profiles", "HR System", "Agent OT Acceptance History (60d)"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:58:29Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_act_overtime_confirm": {
+    "ai_message": "Overtime offers sent via Dynamics 365 to Torres, Williams, and Chen. Each received a Teams notification and a Dynamics 365 scheduling request. Based on their history, I estimate a 78% acceptance probability for at least 2 of the 3. Friday evening coverage will be confirmed by EOD today. I'll alert you by 4 PM with the response status.",
+    "suggested_chips": [
+      "Show me the third signal",
+      "Generate my daily ops report"
+    ],
+    "data_sources_used": ["Dynamics 365 Scheduling", "HR System", "Microsoft Teams"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 86,
+      "rationale": "Send-action is deterministic; 78% acceptance probability is the model output, with ±9% variance.",
+      "signals_used": ["Dynamics 365 Scheduling", "Agent OT Acceptance History (60d)"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:00:34Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_act_marketing_rule": {
+    "ai_message": "Draft notification rule created in Marketing Cloud: all campaigns targeting over 20,000 recipients now require a 48-hour advance flag to Contact Center Operations — routed to your queue in Dynamics 365. I've also linked this rule to the incident documentation from today's auto loan spike so there's an audit trail. The rule goes into review with Marketing leadership today; I've flagged it as urgent with context from this morning's queue impact.",
+    "suggested_chips": [
+      "Show me today's queue health",
+      "Generate my daily ops report"
+    ],
+    "data_sources_used": ["Marketing Cloud", "Dynamics 365"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 89,
+      "rationale": "Rule creation is deterministic; pending only Marketing leadership review.",
+      "signals_used": ["Marketing Cloud", "Dynamics 365"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:00:41Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_service_level_now": {
+    "ai_message": "Current service level: 71.3% across all channels. Breakdown by queue:\n\n• Auto Loans: 54% — critical, intervention active\n• Mortgage Servicing: 78% — below target, sentiment risk\n• General Banking: 87% — on target\n• Member Onboarding: 91% — on target\n• Digital Support: 83% — on target\n\nWith the 8-agent rerouting active and callback enabled, auto loans is projected to recover to 82% within 20 minutes. Overall floor service level projects to 79% within 30 minutes and above 80% within 45.",
+    "suggested_chips": [
+      "What should we do?",
+      "Which agents are idle?"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Per-queue service level is direct telemetry; recovery projection is a model output with ±2 pp variance against last 8 events.",
+      "signals_used": ["Dynamics 365 Contact Center"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:59:46Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_migration_status": {
+    "ai_message": "Genesys-to-Dynamics 365 migration status:\n\n**Phase:** 2 of 4 complete\n**Migrated queues:** General Banking, Member Onboarding (fully on Dynamics 365)\n**In progress:** Auto Loans, Digital Support (blended Genesys + Dynamics 365)\n**Remaining:** Mortgage Servicing, Escalations (Genesys-only, Q3 target)\n\nThe abandonment rate metric you're seeing (14.2%) is a blended view because auto loans spans both platforms during migration. Dynamics-only queues are at 11.8%. This gap will close as migration completes. The cross-platform visibility is exactly where Radiant's intelligence layer adds value — Dynamics 365 alone can't see the Genesys side.",
+    "suggested_chips": [
+      "Show me today's queue health",
+      "Generate my daily ops report"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Genesys"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 91,
+      "rationale": "Migration status is read directly from the cross-platform mapping registry. Phase boundaries and queue assignments are authoritative.",
+      "signals_used": ["Dynamics 365 Contact Center", "Genesys"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:59:01Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_daily_report": {
+    "ai_message": "**Daily Ops Report — April 23, 2026 | 9:00 AM**\n\n**Service Level:** 71.3% overall (target 80%) — recovering\n**Auto Loans Queue:** 340% wait spike resolved via agent rerouting + callback activation\n**Active Interventions:** 8 agents rerouted, callback live, Marketing rule drafted\n**Staffing Risk:** Friday evening mortgage shift — OT offers sent to 3 agents (response by 4 PM)\n**Sentiment Alert:** Mortgage servicing +28% negative sentiment — linked to portal outage 48 hrs ago, IT fix ETA pending\n**Migration:** 2/4 phases complete, Genesys/Dynamics blended view active for auto loans\n\nReport formatted for leadership sync. Want me to add the projected service level recovery timeline?",
+    "suggested_chips": [
+      "Yes, add the recovery timeline",
+      "Show me today's queue health"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Workforce Management", "HR System"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Aggregation of pre-validated signals; no inference beyond formatting.",
+      "signals_used": ["Dynamics 365 Contact Center", "Workforce Management", "HR System"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_no_accept_plan": {
+    "ai_message": "If none of the 3 agents accept overtime, I have a three-part contingency:\n\n**(1) Expand to the secondary roster.** 4 additional agents hold mortgage servicing certification but have not accepted OT in the last 60 days. I can send them flexible-shift offers — 2-hour or 4-hour slots instead of a full evening. Historical response rate for flexible offers is 64% vs. 34% for full-shift requests.\n\n**(2) Reduce the coverage requirement with routing.** If I enable extended callback mode starting at 2 PM Friday and shift general banking overflow to auto loans agents already rostered, Friday evening mortgage call load drops from an estimated 340 to ~265. That reduces the agent requirement from 12 to 9 — closeable with 1 OT acceptance from the secondary roster.\n\n**(3) Mandatory coverage as last resort.** NFCU policy allows mandatory assignment to the 2 most junior eligible agents on a critical-coverage shift when 3+ agents decline. This guarantees coverage but typically generates PTO requests the following week. Use only if options 1 and 2 both fail.\n\n**Recommendation:** Start with flexible-slot offers to the 4 secondary agents now. Responses typically come in within 2–3 hours, leaving enough time to confirm coverage before end of day.",
+    "suggested_chips": [
+      "Send flexible-slot offers to secondary agents",
+      "Show me the third signal",
+      "Generate my daily ops report"
+    ],
+    "data_sources_used": ["HR System", "Dynamics 365 Scheduling", "Workforce Policy Engine", "Agent Skill Profiles"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 58,
+      "rationale": "Secondary-coverage scenario has no recent comparable in last 18 months. Flexible-offer 64% rate is from a 4-event sample — too sparse for high confidence. Mandatory-coverage path has policy-compliance variance.",
+      "signals_used": ["HR System (sparse history)", "Workforce Policy Engine"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:58:55Z",
+      "escalation": {
+        "triggered": true,
+        "reason": "no recent comparable in last 18 months; flexible-offer sample size below threshold",
+        "route_to": "Marcus Tillman (Director, Contact Center Operations)",
+        "review_queue": "Dynamics 365 Supervisor Queue"
+      }
+    }
+  },
+
+  "nfcu_sup_caller_profile": {
+    "ai_message": "Profiling the auto loan callers from this morning's surge:\n\n**Total volume:** 127 currently waiting + 84 already handled (43 via callback, 41 completed)\n**Member type:** 68% are existing NFCU auto loan holders — calling about refinancing into the 2.9% promotional rate. 32% are new inquiries with no existing auto loan.\n**Geography:** Heavily Pacific Time. The 7:15 AM Eastern email landed at 4:15 AM on the West Coast. Members are calling during their morning commute (11 AM–1 PM Eastern).\n**Call themes (AI topic modeling from Dynamics 365):**\n• 'Can I refinance my current rate?' — 51%\n• 'What are the exact terms and eligibility?' — 29%\n• 'How long does the process take?' — 20%\n\n**Why handle time is elevated:** Rate comparison questions require agents to use the loan calculator tool — adding ~2:38 to average handle time vs. standard auto loan calls. These are warm, interested callers — not complaints. They're conversion opportunities.\n\n**Recommendation:** Agents should lead with the rate calculator tool immediately and have the promotional FAQ open. This recovers ~90 seconds of AHT per call.",
+    "suggested_chips": [
+      "What should we do?",
+      "Show me today's queue health",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Marketing Cloud Campaign Data", "CRM", "Dynamics 365 Topic Modeling"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 87,
+      "rationale": "Call-theme percentages from Dynamics 365 topic modeling have 0.91 precision on this volume; member-type split from CRM is authoritative.",
+      "signals_used": ["Dynamics 365 Contact Center", "CRM", "Dynamics 365 Topic Modeling"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:59:14Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_recovery_t1_initial_rec": {
+    "ai_message": "After-hours sibling recommendation:\n\n**Extend cross-trained-agent activation 4 hours into evening shift (5 PM – 9 PM)** to absorb continued promo volume. Historical pattern says rate-promotion call traffic re-spikes when West Coast members open the email after work.\n\n**Projected service level:** 79% sustained through 9 PM\n**Cost:** ~$1,800 OT\n**Risk:** low — same agent pool already on the queue\n\nApprove the extension?",
+    "suggested_chips": [
+      "Approve extension",
+      "Show me today's queue health",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Routing Engine", "Dynamics 365 Historical Analytics"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 91,
+      "rationale": "Sibling-extension model anchored to 11 prior promotion-day evening surges. Cost is deterministic.",
+      "signals_used": ["Dynamics 365 Routing Engine", "Dynamics 365 Historical Analytics"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:38:02Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_recovery_t2_telemetry": {
+    "ai_message": "Telemetry update — 90 minutes after extension approval:\n\n**Auto loans evening volume tapered 41% faster than morning** (vs. 18% historical median). The taper acceleration looks linked to early-evening rate-confirmation emails Marketing pushed at 6 PM, not the original 7:15 AM blast.\n\n**Re-evaluating sibling recommendations.** This may change the call on the Saturday OT auto-extension I queued behind today's actions. One moment.",
+    "suggested_chips": [
+      "See the re-evaluation"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Marketing Cloud", "Dynamics 365 Historical Analytics"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 86,
+      "rationale": "Live taper rate is direct telemetry; 41% delta vs. baseline is significant enough to re-score downstream recommendations.",
+      "signals_used": ["Dynamics 365 Contact Center", "Marketing Cloud"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:39:48Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_recovery_t3_drop": {
+    "ai_message": "**Re-evaluation done — and I want to flag this proactively.**\n\nThe Saturday OT auto-extension recommendation I had queued (blanket OT for 7 mortgage-certified agents) just dropped to **58% confidence**, below the 70% threshold.\n\nWhy: the morning-promo volume signal that justified blanket OT is now contradicted by today's accelerated taper. Historical density for this specific pattern is too sparse to trust without human review. I'm not going to ship the blanket OT recommendation while it sits below threshold.\n\nThe escalation banner below shows the route. You can still override and run with the original plan, or wait for Marcus's call.",
+    "suggested_chips": [
+      "Wait for Marcus's call",
+      "Override and continue",
+      "Show me today's queue health"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Dynamics 365 Historical Analytics", "Workforce Management"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 58,
+      "rationale": "Today's accelerated evening taper invalidates the morning-promo signal that anchored the original Saturday OT recommendation. Sparse historical density (n=2 comparable patterns in last 18 months) for this specific reversal scenario.",
+      "signals_used": ["Dynamics 365 Contact Center (live)", "Dynamics 365 Historical Analytics (sparse n=2)"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:42:11Z",
+      "feature_contributions": [
+        {
+          "feature": "dynamics365.evening_taper_delta",
+          "value": "+41% acceleration vs. morning baseline (live)",
+          "weight": 0.38,
+          "source": "Dynamics 365 Contact Center"
+        },
+        {
+          "feature": "marketing_cloud.followup_email_signal",
+          "value": "6 PM rate-confirmation push — not in original model",
+          "weight": 0.30,
+          "source": "Marketing Cloud"
+        },
+        {
+          "feature": "wfm.recommendation_reversibility",
+          "value": "blanket OT auto-extends — high cost if wrong",
+          "weight": 0.20,
+          "source": "Workforce Management"
+        },
+        {
+          "feature": "historical.reversal_pattern_density",
+          "value": "n=2 comparables in 18 months — below trust threshold",
+          "weight": 0.06,
+          "source": "Dynamics 365 Historical Analytics"
+        }
+      ],
+      "escalation": {
+        "triggered": true,
+        "reason": "morning-promo signal contradicted by accelerated evening taper; reversal pattern has only n=2 historical comparables",
+        "route_to": "Marcus Tillman (Director, Contact Center Operations)",
+        "review_queue": "Dynamics 365 Supervisor Queue",
+        "auditId": "AUD-NFCU-2026-04-23-014"
+      }
+    }
+  },
+
+  "nfcu_sup_recovery_t4_human_override": {
+    "ai_message": "Marcus reviewed the re-evaluation and authorized a **targeted approach** instead of blanket OT — flexible 4-hour slots only, top 3 mortgage-certified agents, contingent on the taper holding past 9 PM.\n\nI've captured his override and reweighted the model accordingly.",
+    "suggested_chips": [
+      "Show the corrected recommendation"
+    ],
+    "data_sources_used": ["Dynamics 365 Supervisor Queue", "Workforce Management"],
+    "capability": "Human-in-the-loop",
+    "ui_components_to_render": [
+      {
+        "type": "model_adjust",
+        "title": "Model Adjusted — Reweighted from Marcus's Override",
+        "description": "Override captured at 09:51. Future after-hours recommendations will weight today's signals more strongly than morning-promo defaults.",
+        "trigger": "Director override on AUD-NFCU-2026-04-23-014",
+        "model_version": "wfm-rec-v3.2",
+        "weights": [
+          { "feature": "morning_promo_volume", "from": 0.42, "to": 0.27 },
+          { "feature": "eod_taper_rate", "from": 0.11, "to": 0.24 },
+          { "feature": "marketing_followup_email_signal", "from": 0.08, "to": 0.18 }
+        ]
+      }
+    ],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Override capture is deterministic. Reweighting recorded with audit ID.",
+      "signals_used": ["Dynamics 365 Supervisor Queue"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:51:00Z",
+      "review": {
+        "status": "overridden",
+        "reviewer": "Marcus Tillman",
+        "reviewer_role": "Director, Contact Center Operations",
+        "reviewed_at": "2026-04-23T09:51:00Z",
+        "audit_id": "AUD-NFCU-2026-04-23-014",
+        "note": "Authorized targeted flexible-slot OT for top 3 mortgage-certified agents instead of blanket Saturday OT. Reweighting captured."
+      },
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_recovery_t5_corrected": {
+    "ai_message": "**Corrected recommendation — confidence 88%** (recovered from 58%, +30 pts since reweight):\n\n**Skip the blanket Saturday OT.** Offer 4-hour flexible-slot OT to the top 3 mortgage-certified agents (Torres, Williams, Chen) only. Activate only if Friday-evening taper holds past 9 PM. If the taper reverses, escalate back here for re-evaluation.\n\n**Projected service level:** 81% sustained through Saturday EOD\n**Cost:** ~$720 OT (was $4,200 for blanket)\n**Saving vs. original plan:** $3,480\n\nThis is what 'model adjusted' looks like in practice — Marcus's input fed back into how the next recommendation was scored.",
+    "suggested_chips": [
+      "Approve the corrected plan",
+      "Open Model Governance"
+    ],
+    "data_sources_used": ["Dynamics 365 Routing Engine", "Workforce Management", "Reweighted Recommender"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 88,
+      "rationale": "Reweighted recommender with director-validated feature emphasis. Conditional activation reduces downside variance.",
+      "signals_used": ["Dynamics 365 Routing Engine", "Reweighted Recommender (v3.2 + 09:51 override)"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:53:12Z",
+      "review": {
+        "status": "approved",
+        "reviewer": "Marcus Tillman",
+        "reviewer_role": "Director, Contact Center Operations",
+        "reviewed_at": "2026-04-23T09:53:12Z",
+        "audit_id": "AUD-NFCU-2026-04-23-014",
+        "note": "Corrected recommendation approved post-reweighting. Conditional activation gating attached."
+      },
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_recovery_t6_audit_link": {
+    "ai_message": "Logged. **Audit entry `AUD-NFCU-2026-04-23-014`** is now visible on Model Governance — the full path is on record: original 91% recommendation → re-evaluation → 58% drop → escalation to Marcus → human override → reweighting → 88% corrected recommendation. Marcus sees the same audit ID in his cross-team rollup.\n\nYou can open Model Governance from the chip below.",
+    "suggested_chips": [
+      "Open Model Governance",
+      "Show me today's queue health"
+    ],
+    "data_sources_used": ["Model Governance Audit Log"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [
+      {
+        "type": "governance_nav_button",
+        "label": "Open Model Governance",
+        "description": "View AUD-NFCU-2026-04-23-014 in the audit trail and live model metrics."
+      }
+    ],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Audit-log write is deterministic.",
+      "signals_used": ["Model Governance Audit Log"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:53:30Z",
+      "review": {
+        "status": "audited",
+        "reviewer": "Marcus Tillman",
+        "reviewer_role": "Director, Contact Center Operations",
+        "reviewed_at": "2026-04-23T09:53:30Z",
+        "audit_id": "AUD-NFCU-2026-04-23-014",
+        "note": "Full review path logged: 91% → 58% drop → escalation → override → reweight → 88% corrected. Visible cross-team in Marcus's rollup."
+      },
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_sup_recovery_timeline": {
+    "ai_message": "**Service Level Recovery Timeline — April 23, 2026**\n\n| Time | Event | Service Level |\n|---|---|---|\n| **9:00 AM** | Current state — 127 waiting in auto loans | 71.3% |\n| **9:12 AM** | 8 rerouted agents active — wait time drops below 8 min | 74% |\n| **9:22 AM** | Callback-selected members resolved — queue drops to ~41 active waits | 76% |\n| **9:45 AM** | Auto loans projected at 81% SL — full stabilization | 79% |\n| **10:00 AM** | Promo volume taper begins (historical pattern) | 82% |\n| **11:30 AM** | Full normalization — auto loans at 86%, all queues above target | 85% |\n\n**Secondary risk to monitor:** Pacific Time members peak 12–1 PM Eastern. A second smaller surge (historically 30–40% of morning volume) is possible if West Coast members open email during lunch. Pre-positioning 2 additional agents on standby for that window is recommended.\n\n**Mortgage servicing note:** Still at 78% — portal sentiment issue is unresolved. IT fix ETA pending. This is the next risk to address after auto loans stabilizes.\n\nReport ready for your 9 AM leadership sync.",
+    "suggested_chips": [
+      "Show me today's queue health",
+      "Show me staffing for Friday"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Dynamics 365 Historical Analytics", "Dynamics 365 Workforce Management"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 85,
+      "rationale": "Timeline anchored to historical taper patterns (n=14 prior promotions); secondary surge is a hedge based on a 6-event West Coast pattern.",
+      "signals_used": ["Dynamics 365 Historical Analytics", "Workforce Management"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:59:38Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

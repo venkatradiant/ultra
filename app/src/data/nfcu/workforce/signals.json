@@ -1,0 +1,90 @@
+[
+  {
+    "id": "SIG-NFCU-WF-001",
+    "type": "compliance_gap",
+    "title": "BSA/AML Verification Skipped in 23% of New Account Calls",
+    "description": "Agents are skipping the BSA/AML identity verification step in 23% of new account calls this week, up from a 4% baseline — a 5.75x spike. Pattern started April 17, correlating with a script update that moved verification from step 3 to step 7. Concentration on the evening shift where supervisor coverage is thinnest. 142 new accounts may have incomplete verification.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 142,
+    "sources": ["Dynamics 365 Process Adherence", "Dynamics 365 Quality Management"],
+    "timestamp": "2026-04-23T06:30:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-WF-001",
+    "metrics": {
+      "skip_rate_this_week": "23%",
+      "skip_rate_baseline": "4%",
+      "accounts_at_risk": 142,
+      "accounts_auto_resolvable": 134,
+      "accounts_needing_callback": 8,
+      "script_change_date": "April 17, 2026"
+    },
+    "confidence": {
+      "score": 95,
+      "rationale": "Skip rate is a direct read from process-adherence audit log. Account counts are deterministic CRM joins.",
+      "signals_used": ["Dynamics 365 Process Adherence", "Dynamics 365 Quality Management", "CRM"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T06:30:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-WF-002",
+    "type": "repeat_contact",
+    "title": "Repeat Contact Spike — 31% Increase for Bill Pay Issues",
+    "description": "Members calling back within 48 hours increased 31% for bill pay issues. First-call resolution for bill pay dropped from 81% to 54%. Root cause: agents providing workaround instructions for a digital banking sync latency issue logged by IT on April 14. Workarounds fail, members call back. IT fix estimated April 25.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 0,
+    "sources": ["Dynamics 365 Contact Center", "IT Incident Management", "CRM"],
+    "timestamp": "2026-04-23T06:00:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-WF-002",
+    "metrics": {
+      "repeat_contact_increase": "31%",
+      "fcr_bill_pay_now": "54%",
+      "fcr_bill_pay_before": "81%",
+      "it_issue_date": "April 14, 2026",
+      "it_fix_eta": "April 25, 2026",
+      "pct_repeat_callers_citing_sync": "78%"
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "FCR drop and repeat-rate are direct telemetry; IT root-cause linkage anchored to Pearson 0.87 correlation across 9 days.",
+      "signals_used": ["Dynamics 365 Contact Center", "IT Incident Management", "CRM"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T06:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-WF-003",
+    "type": "agent_burnout",
+    "title": "Top Performer Burnout Risk — 3 of Top 10 Agents Declining",
+    "description": "3 of your top 10 rated agents show declining quality scores over the last 30 days. Average handle time is increasing and positive sentiment ratio is decreasing. These 3 agents handle the highest-complexity calls in mortgage servicing. Loss of any of these agents would significantly impact quality metrics.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 3,
+    "sources": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis"],
+    "timestamp": "2026-04-23T05:45:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-WF-003",
+    "metrics": {
+      "agents_declining": 3,
+      "avg_quality_score_drop": "8.4 points (30 days)",
+      "queue": "Mortgage Servicing",
+      "complexity": "Highest"
+    },
+    "confidence": {
+      "score": 83,
+      "rationale": "Burnout-pattern model has 0.79 precision against 24 prior cases; 60–90 day pre-resignation window is well-validated but agent-specific outcomes vary.",
+      "signals_used": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T05:45:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

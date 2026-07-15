@@ -1,0 +1,127 @@
+[
+  {
+    "segment_id": "SEG-001",
+    "segment_name": "Mortgage Step-4 Affected",
+    "description": "First-time mortgage applicants who stalled at income verification (Step 4) due to document upload failures",
+    "size": 847,
+    "avg_churn_risk": 0.64,
+    "defining_rules": [
+      "Application status = 'In Progress' AND current_step = 4",
+      "Document upload attempts >= 3",
+      "Applied via mobile channel",
+      "Age between 28 and 42",
+      "First mortgage application with PenFed"
+    ],
+    "member_ids": [
+      "MBR-10000",
+      "MBR-10001",
+      "MBR-10002",
+      "MBR-10003",
+      "MBR-10004",
+      "MBR-10005",
+      "MBR-10006",
+      "MBR-10007",
+      "MBR-10008",
+      "MBR-10009",
+      "MBR-10010",
+      "MBR-10011",
+      "MBR-10012",
+      "MBR-10013",
+      "MBR-10014",
+      "MBR-10015",
+      "MBR-10016",
+      "MBR-10017",
+      "MBR-10018",
+      "MBR-10019",
+      "MBR-10020",
+      "MBR-10021",
+      "MBR-10022",
+      "MBR-10023",
+      "MBR-10024"
+    ],
+    "key_characteristics": {
+      "avg_age": 34,
+      "primary_channel": "mobile",
+      "pct_existing_members": 0.61,
+      "avg_products_held": 1.8,
+      "avg_tenure_years": 2.7
+    }
+  },
+  {
+    "segment_id": "SEG-002",
+    "segment_name": "Military Retirees \u2014 CD Dissatisfied",
+    "description": "Military retirees expressing dissatisfaction with CD rate transparency, highest-tenure and strongest NPS segment at risk",
+    "size": 214,
+    "avg_churn_risk": 0.71,
+    "defining_rules": [
+      "Segment tag = 'Military Retiree'",
+      "Holds at least one CD product",
+      "Genesys interaction with CD-related complaint in last 30 days",
+      "Tenure >= 10 years"
+    ],
+    "member_ids": [
+      "MBR-10025",
+      "MBR-10026",
+      "MBR-10027",
+      "MBR-10028",
+      "MBR-10029",
+      "MBR-10030",
+      "MBR-10031",
+      "MBR-10032",
+      "MBR-10033",
+      "MBR-10034",
+      "MBR-10035",
+      "MBR-10036",
+      "MBR-10037",
+      "MBR-10038",
+      "MBR-10039",
+      "MBR-10040",
+      "MBR-10041",
+      "MBR-10042",
+      "MBR-10043",
+      "MBR-10044"
+    ],
+    "key_characteristics": {
+      "avg_age": 63,
+      "primary_channel": "phone",
+      "avg_cd_balance": 147500,
+      "avg_tenure_years": 19.4,
+      "avg_products_held": 3.6
+    }
+  },
+  {
+    "segment_id": "SEG-003",
+    "segment_name": "Low Engagement \u2014 No Digital Login 90+ Days",
+    "description": "Members with no digital banking login in 90 or more days, showing early disengagement signals",
+    "size": 1243,
+    "avg_churn_risk": 0.58,
+    "defining_rules": [
+      "Last digital login > 90 days ago",
+      "No mobile app session in 90 days",
+      "No inbound contact center interaction in 60 days"
+    ],
+    "member_ids": [
+      "MBR-10045",
+      "MBR-10046",
+      "MBR-10047",
+      "MBR-10048",
+      "MBR-10049",
+      "MBR-10050",
+      "MBR-10051",
+      "MBR-10052",
+      "MBR-10053",
+      "MBR-10054",
+      "MBR-10055",
+      "MBR-10056",
+      "MBR-10057",
+      "MBR-10058",
+      "MBR-10059"
+    ],
+    "key_characteristics": {
+      "avg_age": 47,
+      "primary_channel": "branch",
+      "avg_products_held": 1.4,
+      "avg_tenure_years": 7.2
+    }
+  }
+]

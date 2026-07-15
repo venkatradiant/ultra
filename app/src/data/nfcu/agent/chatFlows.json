@@ -1,0 +1,407 @@
+{
+  "nfcu_agent_greeting": {
+    "ai_message": "David, your incoming call is Elena Ruiz. She is calling about an auto loan payment of $412.00 that was declined on June 27. I have already looked across her accounts and pre-diagnosed the cause: an early salary credit that is not being applied because direct deposit routing is missing. Her sentiment is trending negative, so I recommend leading with a clear explanation. Want the full breakdown?",
+    "suggested_chips": [
+      "Give me the full breakdown",
+      "What do I tell her first?",
+      "Show her account summary"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "Payments Engine", "Core Banking", "Dynamics 365 Sentiment Analysis"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 96,
+      "rationale": "Call context is authoritative from Dynamics 365; the root cause is pre-correlated across the Payments Engine and Core Banking before you pick up.",
+      "signals_used": ["Dynamics 365 Contact Center", "Payments Engine", "Core Banking"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_step2_breakdown": {
+    "ai_message": "Here it is, correlated across four systems in real time. The $412.00 auto loan payment drew on June 27 when her available balance was $208.14, so it declined for insufficient funds. But a $3,140.00 early salary credit from her employer is sitting unapplied because her checking account has an early-credit flag with no matching direct deposit routing.\n\nCore banking, the payments log, the employer deposit file, and the deposit-handling SOP all point to the same fix: add the routing, apply the credit, retry the payment inside the grace window.",
+    "suggested_chips": [
+      "How do I explain this simply?",
+      "Is there a late fee risk?",
+      "Walk me through the fix"
+    ],
+    "data_sources_used": ["Core Banking", "Payments Engine", "Employer Direct Deposit File", "SOP/MOP Repository"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "One answer synthesized from four authoritative reads — core banking, payments log, employer deposit file, and the deposit-handling SOP — that all converge on the same root cause.",
+      "signals_used": ["Core Banking", "Payments Engine", "Employer Direct Deposit File", "SOP/MOP Repository"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_step3_explain": {
+    "ai_message": "Suggested member-friendly script: \"Elena, your payment didn't go through because the funds from your early paycheck haven't been applied yet. That's because direct deposit routing wasn't set up on your account. It's a quick fix on my end, and once it's done your payment will go through with no late fee.\"\n\nThis avoids jargon like \"NSF\" or \"early-credit flag\" that historically increases call length and frustration. Members who receive a plain-language explanation here resolve in one call 40% more often.",
+    "suggested_chips": [
+      "Good, I'll say that",
+      "Now walk me through the fix",
+      "Verify her identity first"
+    ],
+    "data_sources_used": ["SOP/MOP Repository", "Dynamics 365 Historical Analytics"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 89,
+      "rationale": "Script is grounded in the deposit-handling SOP; the 40% one-call-resolution lift is drawn from historical resolution patterns on comparable plain-language explanations.",
+      "signals_used": ["SOP/MOP Repository", "Dynamics 365 Historical Analytics"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_step4_verify": {
+    "ai_message": "Correct call, this account change requires BSA/AML identity verification before I proceed. I have surfaced the verification prompt now, at the right step in the flow, rather than letting it be skipped.\n\nPlease confirm the two identity elements on your screen with Elena. Once you check them off, I will record that verification was completed by you, the agent, and unlock the account change.",
+    "suggested_chips": [
+      "Identity confirmed",
+      "Why is this required here?",
+      "Continue to the fix"
+    ],
+    "data_sources_used": ["CRM Member Records", "Compliance Engine", "Dynamics 365 Process Adherence"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 94,
+      "rationale": "The verification requirement is a deterministic compliance rule for account changes; surfacing it at the correct step prevents the process-adherence gap seen elsewhere on the floor.",
+      "signals_used": ["Compliance Engine", "Dynamics 365 Process Adherence"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_step5_identity": {
+    "ai_message": "Verification logged. Now the resolution outlook: if I add direct deposit routing and retry the payment, the $3,140.00 credit posts within one business day, her balance recovers to $4,987.20, and the $412.00 payment clears before the 5-day grace period ends on June 30. Late fee avoided.\n\nIf instead you only retry against the current balance, it declines again and she is likely to call back within 48 hours, which hurts first-call resolution. The routing fix is the durable path.",
+    "suggested_chips": [
+      "Do the routing fix and retry",
+      "Just retry for now",
+      "Show me the callback risk detail"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking", "Loan Servicing", "Historical Callback Patterns"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 91,
+      "rationale": "Balance-recovery math is deterministic; the one-business-day posting and the 48-hour callback likelihood are anchored to historical settlement and callback patterns with ±1 day variance.",
+      "signals_used": ["Payments Engine", "Core Banking", "Loan Servicing", "Historical Callback Patterns"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_step6_execute": {
+    "ai_message": "Executing, with a full audit trail.\n\n(1) Added direct deposit routing to Elena's checking account.\n(2) Scheduled the $3,140.00 early salary credit to apply within one business day.\n(3) Queued the $412.00 auto loan payment to retry automatically once funds post, before the grace window closes.\n\nFor compliance, I have logged this as: identity verified by agent David Torres, account change executed by agent with AI assistance, payment retry automated by Agent-Assist. Elena will receive confirmations. You can tell her she is all set.",
+    "suggested_chips": [
+      "Confirm to the member",
+      "Add a note to her CRM record",
+      "Wrap up the call"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking", "Loan Servicing", "Direct Deposit Configuration", "Compliance Engine"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 97,
+      "rationale": "All actions are deterministic system writes captured with an AI-vs-human audit trail for compliance review.",
+      "signals_used": ["Payments Engine", "Core Banking", "Direct Deposit Configuration", "Compliance Engine"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_step7_wrapup": {
+    "ai_message": "Call summary drafted for your after-call work: reason (declined auto loan payment), root cause (early salary credit unapplied, direct deposit routing missing), resolution (routing added, credit applied, payment retried, no late fee), compliance (identity verified and logged). First-call resolution: yes.\n\nI have pre-filled the disposition and CRM note; review and save. Handle time on this call: 6:12, under your daily average.",
+    "suggested_chips": [
+      "Save and close",
+      "Edit the note",
+      "Next call"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "CRM", "Dynamics 365 Quality Management"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "After-call summary is an aggregation of the completed, logged actions and the measured handle time. Deterministic.",
+      "signals_used": ["Dynamics 365 Contact Center", "CRM", "Dynamics 365 Quality Management"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_what_first": {
+    "ai_message": "Lead with acknowledgment, then reassurance. Something like: \"Thanks for calling, Elena — I can see the payment that didn't go through, and I already know why. Give me one moment and I'll walk you through it and fix it on this call.\" Her sentiment is trending negative, so naming that you already understand the problem defuses the frustration before you get into detail.",
+    "suggested_chips": [
+      "Give me the full breakdown",
+      "How do I explain this simply?"
+    ],
+    "data_sources_used": ["Dynamics 365 Sentiment Analysis", "Dynamics 365 Historical Analytics"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 88,
+      "rationale": "Opener guidance is anchored to live sentiment and historical de-escalation patterns for rising-frustration calls.",
+      "signals_used": ["Dynamics 365 Sentiment Analysis", "Dynamics 365 Historical Analytics"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_account_summary": {
+    "ai_message": "Elena Ruiz — 9-year member. Holdings: checking, savings, an auto loan, and a credit card. Available checking balance $1,847.20 with 2 pending items. Auto loan next payment $412.00 due July 1; the June 27 draw declined. A $3,140.00 early salary credit is held pending direct deposit routing. Credit card statement balance $1,203.55. No prior complaints on file — this is her first contact about the decline.",
+    "suggested_chips": [
+      "Give me the full breakdown",
+      "Walk me through the fix"
+    ],
+    "data_sources_used": ["Core Banking", "Loan Servicing", "CRM Member Records"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 98,
+      "rationale": "Account snapshot is a direct read from Core Banking, Loan Servicing, and CRM.",
+      "signals_used": ["Core Banking", "Loan Servicing", "CRM Member Records"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_late_fee_risk": {
+    "ai_message": "There is a fee at stake, but it hasn't triggered. The auto loan has a 5-day grace period, so the $25 late fee applies only if the $412.00 payment isn't completed in time. If you do the routing fix now, the salary credit posts within one business day and the payment clears inside the window — no fee. A plain retry-only path risks a second decline and pushes you toward the deadline. Fixing the routing is the safe call.",
+    "suggested_chips": [
+      "Walk me through the fix",
+      "How do I explain this simply?"
+    ],
+    "data_sources_used": ["Loan Servicing", "Payments Engine"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 92,
+      "rationale": "Grace-period terms are authoritative; the resolution timing reflects standard early-credit settlement.",
+      "signals_used": ["Loan Servicing", "Payments Engine"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_why_required": {
+    "ai_message": "Adding or changing direct deposit routing is an account change, and BSA/AML rules require verified identity before any account change is made. Surfacing the prompt here — at the exact step, not after the fact — is what keeps this call compliant. It also protects you: once you confirm the two identity elements, the system records that verification was completed by you before the change, so there's a clean audit trail if it's ever reviewed.",
+    "suggested_chips": [
+      "Identity confirmed",
+      "Continue to the fix"
+    ],
+    "data_sources_used": ["Compliance Engine", "Dynamics 365 Process Adherence"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 93,
+      "rationale": "Requirement is a deterministic compliance rule; the audit-trail behavior is a documented system control.",
+      "signals_used": ["Compliance Engine", "Dynamics 365 Process Adherence"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_callback_risk": {
+    "ai_message": "Here's the callback picture. On a retry-only path, the payment declines a second time in roughly 8 of 10 comparable cases, and about 62% of those members call back within 48 hours — usually more frustrated, and the repeat contact counts against first-call resolution. The routing fix removes the cause entirely, so the callback risk drops to near zero. It also protects your FCR and her sentiment in one move.",
+    "suggested_chips": [
+      "Do the routing fix and retry",
+      "Just retry for now"
+    ],
+    "data_sources_used": ["Historical Callback Patterns", "Dynamics 365 Contact Center"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 86,
+      "rationale": "Callback likelihood is anchored to historical repeat-contact patterns for insufficient-funds re-declines, with modest sample variance.",
+      "signals_used": ["Historical Callback Patterns", "Dynamics 365 Contact Center"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_retry_only": {
+    "ai_message": "I can retry against her current $1,847.20 balance and it would clear today — but I'd flag it. The held $3,140.00 credit is still unrouted, so the same exception recurs next cycle and she's likely to call back. If you'd rather not make an account change on this call, retry-only is defensible; just set expectations that we'll follow up on the routing. Otherwise, the fix-and-retry closes it permanently in one call.",
+    "suggested_chips": [
+      "Do the routing fix and retry",
+      "Show me the callback risk detail"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 90,
+      "rationale": "Balance and payment amounts are authoritative; recurrence risk is a deterministic consequence of leaving the routing unresolved.",
+      "signals_used": ["Payments Engine", "Core Banking"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_compliant_resolution": {
+    "ai_message": "The compliant resolution has a fixed order: (1) complete BSA/AML identity verification before any account change, (2) add the direct deposit routing, (3) apply the held salary credit, (4) retry the $412.00 payment inside the grace window. Every step is logged with who performed it — you for the verified change, Agent-Assist for the automated retry. That order is what keeps the fix both effective and audit-clean.",
+    "suggested_chips": [
+      "Verify her identity first",
+      "Do the routing fix and retry"
+    ],
+    "data_sources_used": ["Compliance Engine", "SOP/MOP Repository", "Payments Engine"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 94,
+      "rationale": "Resolution sequence follows the compliance rule set and deposit-handling SOP exactly.",
+      "signals_used": ["Compliance Engine", "SOP/MOP Repository", "Payments Engine"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_confirm_member": {
+    "ai_message": "Suggested closing line: \"Elena, you're all set. I've fixed the direct deposit so your early paycheck applies, and your $412 payment will go through automatically once it posts — no late fee. You'll get a confirmation from us as each step completes.\" That leaves her with a clear outcome and nothing to do on her end.",
+    "suggested_chips": [
+      "Add a note to her CRM record",
+      "Wrap up the call"
+    ],
+    "data_sources_used": ["SOP/MOP Repository", "Payments Engine"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 93,
+      "rationale": "Closing script mirrors the executed actions in plain language.",
+      "signals_used": ["SOP/MOP Repository", "Payments Engine"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_crm_note": {
+    "ai_message": "Added to Elena's CRM record: \"Inbound call re: $412 auto loan payment declined 6/27. Root cause — early salary credit unapplied, direct deposit routing missing. Resolved on call: identity verified (agent), routing added, credit scheduled, payment queued to retry within grace window. No late fee. FCR: yes.\" The note is timestamped and linked to the compliance log. Anything you'd like to add before we wrap?",
+    "suggested_chips": [
+      "Wrap up the call",
+      "Confirm to the member"
+    ],
+    "data_sources_used": ["CRM", "Compliance Engine"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 96,
+      "rationale": "CRM note is a deterministic write linked to the compliance log.",
+      "signals_used": ["CRM", "Compliance Engine"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_action_log": {
+    "ai_message": "Here is the AI-vs-human action log for this call, ready for compliance review:\n\n• Identity verification — performed by agent David Torres (human)\n• Direct deposit routing added — executed by agent with AI assistance\n• Salary credit applied — automated by Agent-Assist\n• Payment retry queued — automated by Agent-Assist\n• CRM note + disposition — drafted by Agent-Assist, saved by agent\n\nEach entry is timestamped and attributed, so quality and compliance can see exactly what the AI did versus what you decided.",
+    "suggested_chips": [
+      "Wrap up the call",
+      "Save and close"
+    ],
+    "data_sources_used": ["Compliance Engine", "Dynamics 365 Quality Management"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 97,
+      "rationale": "Action log is a deterministic, attributed record of the executed steps.",
+      "signals_used": ["Compliance Engine", "Dynamics 365 Quality Management"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_save_close": {
+    "ai_message": "Saved. Disposition and CRM note are filed, the compliance log is linked, and the call is closed as first-call resolution. Handle time 6:12. Nice work — you can take the next one whenever you're ready.",
+    "suggested_chips": [
+      "Next call"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "CRM", "Dynamics 365 Quality Management"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 98,
+      "rationale": "Disposition save and closure are deterministic system writes.",
+      "signals_used": ["Dynamics 365 Contact Center", "CRM"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_edit_note": {
+    "ai_message": "The disposition note is open for editing on your screen. The pre-filled draft covers reason, root cause, resolution, and compliance — adjust any wording you like and I'll keep the compliance-log link intact. Let me know when you're ready to save.",
+    "suggested_chips": [
+      "Save and close",
+      "Wrap up the call"
+    ],
+    "data_sources_used": ["CRM", "Dynamics 365 Contact Center"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Editable draft is a deterministic UI state; the compliance link is preserved by design.",
+      "signals_used": ["CRM", "Dynamics 365 Contact Center"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_agent_next_call": {
+    "ai_message": "Ready. I'll surface the next member's context, sentiment, and any pre-diagnosed issues the moment the call connects — same as I did for Elena. Standing by.",
+    "suggested_chips": [
+      "Give me the full breakdown",
+      "Show her account summary"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 97,
+      "rationale": "Next-call readiness reflects the standing Agent-Assist pipeline that pre-loads call context on connect.",
+      "signals_used": ["Dynamics 365 Contact Center"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ds-capm-01",
+    "name": "Bloomberg Terminal",
+    "status": "connected",
+    "description": "Market data, yield curves, ABS spreads, rate scenarios, surveillance feed",
+    "icon": "trending-up",
+    "lastSync": "2026-05-28T06:00:00",
+    "recordCount": 5420000
+  },
+  {
+    "id": "ds-capm-02",
+    "name": "Snowflake Data Warehouse",
+    "status": "connected",
+    "description": "Loan-level collateral data across PNFED 2022-A, 2024-A, 2025-A trusts; historical performance and projection",
+    "icon": "database",
+    "lastSync": "2026-05-28T05:45:00",
+    "recordCount": 4120000
+  },
+  {
+    "id": "ds-capm-03",
+    "name": "Salesforce Data Cloud",
+    "status": "connected",
+    "description": "Origination attributes, dealer partner profiles, member-level loan metadata",
+    "icon": "database",
+    "lastSync": "2026-05-28T05:50:00",
+    "recordCount": 2847000
+  },
+  {
+    "id": "ds-capm-04",
+    "name": "Internal Risk Models",
+    "status": "connected",
+    "description": "Scenario engine, hedge effectiveness calculations, capital sensitivity, deal structure analytics",
+    "icon": "cpu",
+    "lastSync": "2026-05-28T06:05:00",
+    "recordCount": 84000
+  },
+  {
+    "id": "ds-capm-05",
+    "name": "NCUA Reporting System",
+    "status": "connected",
+    "description": "Regulatory capital ratio calculations, call report data, net worth ratio",
+    "icon": "shield",
+    "lastSync": "2026-05-28T05:30:00",
+    "recordCount": 36000
+  },
+  {
+    "id": "ds-capm-06",
+    "name": "S&P / Fitch Rating Agency Portals",
+    "status": "connected",
+    "description": "Surveillance schedules, tranche ratings, outlook actions on PNFED outstanding deals",
+    "icon": "star",
+    "lastSync": "2026-05-28T05:00:00",
+    "recordCount": 14000
+  },
+  {
+    "id": "ds-capm-07",
+    "name": "Credit Monitoring Feed",
+    "status": "connected",
+    "description": "Dealer financial health scores, floor plan performance, counterparty risk signals",
+    "icon": "alert-triangle",
+    "lastSync": "2026-05-28T06:08:00",
+    "recordCount": 9200
+  }
+]

@@ -1,0 +1,407 @@
+{
+  "global": {
+    "greeting": "Good morning, Tim. Ask me anything about this briefing — the liquidity picture, the numbers behind it, how far you can trust them, or the recommendation. You can also click any figure, chart, or card to ask about it.",
+    "default": {
+      "a": "I can speak to anything in this briefing — the liquidity watch, the evidence and trend, the trajectory, data trust, the members, or the recommended plan. Try one of these:",
+      "followups": ["Walk me through the liquidity issue", "Can I trust these numbers?", "What do you recommend?"]
+    },
+    "questions": [
+      {
+        "id": "g_summary",
+        "q": "Where does the business stand?",
+        "aliases": ["state of the business", "overall", "summary", "how are we doing", "bottom line"],
+        "keywords": ["stand", "overall", "summary", "bottom", "state", "business"],
+        "a": "A strong, well-run institution with one thing to manage. Assets are $1.53B, up 8.2% year over year; net income is $9.4M and 6.8% ahead of plan; capital is healthy at a 7.50% net worth ratio; and membership is up 3.1% to 52,488. The one item that needs a decision is liquidity — loan demand is outpacing deposits and loan-to-share has reached 84%.",
+        "sources": ["Symitar", "General Ledger", "Radiant Trust Layer"],
+        "confidence": 96,
+        "followups": ["Walk me through the liquidity issue", "Can I trust these numbers?", "What do you recommend?"]
+      },
+      {
+        "id": "g_liquidity",
+        "q": "Walk me through the liquidity issue",
+        "aliases": ["liquidity", "the liquidity picture", "what's the issue", "the watch", "walk me through it"],
+        "keywords": ["liquidity", "watch", "issue", "picture", "loan-to-share", "deposit"],
+        "a": "Net loans grew 11.4% year to date while shares grew just 4.1%. That gap has pushed loan-to-share to 84%, the highest in five years, and on the current path it crosses the 85% board ceiling in September and dips below your internal liquidity target by late Q4. It's board-level and forward-looking, but manageable with the recommended moves.",
+        "sources": ["Symitar", "MeridianLink", "General Ledger"],
+        "confidence": 94,
+        "followups": ["What happens if we don't act?", "What do you recommend?", "How is the 84% reconciled?"]
+      },
+      {
+        "id": "g_trust",
+        "q": "Can I trust these numbers?",
+        "aliases": ["can i trust this", "is this validated", "are these numbers right", "how reliable", "trustworthy"],
+        "keywords": ["trust", "reliable", "validated", "accurate", "right", "confidence"],
+        "a": "Yes. Every figure was validated overnight and reconciled at 6:04 AM ET — 6 of 6 sources loaded. One exception was caught: the Barafin fraud feed loaded 41 minutes late, so one dependent figure was held for reconciliation and kept out of your headline numbers. NCUA exam readiness sits at 88, and any figure can be traced to source on demand.",
+        "sources": ["Radiant Trust Layer"],
+        "confidence": 98,
+        "followups": ["What was the Barafin exception?", "Trace it to source", "What's the NCUA readiness?"]
+      },
+      {
+        "id": "g_recommend",
+        "q": "What do you recommend?",
+        "aliases": ["what should we do", "recommendation", "the plan", "what's the plan", "next move"],
+        "keywords": ["recommend", "plan", "should", "action", "move", "advice"],
+        "a": "Pair a targeted deposit campaign to the DMV core and Senate-alumni segments with a standby funding-line review. The campaign lifts shares quickly — about +$85M — and closes most of the gap by year end; the funding line holds a buffer through Q1. Both are sized for the September board.",
+        "sources": ["Predictive Model"],
+        "confidence": 88,
+        "followups": ["Compare the three options", "What are the next steps?", "Why is Option 1 recommended?"]
+      },
+      {
+        "id": "g_barafin",
+        "q": "What was the Barafin exception?",
+        "aliases": ["barafin", "the exception", "late feed", "data exception"],
+        "keywords": ["barafin", "exception", "late", "feed", "held"],
+        "a": "The Barafin third-party fraud feed loaded 41 minutes past its window overnight. The trust layer caught it, held the single dependent figure for reconciliation, and kept it out of your headline numbers — so nothing reached the board unvalidated. This is exactly the kind of silent failure that used to surface only at month-end.",
+        "sources": ["Barafin", "Radiant Trust Layer"],
+        "confidence": 98,
+        "followups": ["Can I trust these numbers?", "What's the NCUA readiness?", "Trace it to source"]
+      },
+      {
+        "id": "trace_it",
+        "q": "Trace it to source",
+        "aliases": ["trace it", "trace this", "show me the lineage", "trace to source", "show the lineage", "trace this figure"],
+        "keywords": ["trace", "lineage", "source", "path"],
+        "a": "Opening the source-to-screen trace — follow any figure from the Symitar core through ETL and the warehouse to this brief.",
+        "action": "lineage",
+        "followups": []
+      }
+    ]
+  },
+  "slides": {
+    "situational": {
+      "suggested": ["Why is this a watch, not critical?", "What's the $312M pipeline?", "What do you recommend?"],
+      "questions": [
+        {
+          "id": "sit_l2s",
+          "q": "Why is loan-to-share at 84%?",
+          "aliases": ["loan-to-share", "84%", "the ratio", "why 84"],
+          "keywords": ["loan-to-share", "84", "ratio", "share"],
+          "a": "Loan-to-share is net loans divided by member shares. Net loans grew 11.4% this year while shares grew only 4.1%, so the ratio climbed to 84% — its highest in five years. It's the single number that captures the liquidity pressure.",
+          "sources": ["Symitar", "General Ledger"],
+          "confidence": 94,
+          "followups": ["What's driving the loan growth?", "What happens if we don't act?", "Trace it to source"]
+        },
+        {
+          "id": "sit_growth",
+          "q": "What's driving the loan growth?",
+          "aliases": ["loan growth", "+11.4%", "why are loans growing", "11.4"],
+          "keywords": ["growth", "loans", "11.4", "driving", "demand"],
+          "a": "Loan demand is running nearly three times faster than deposit growth — up 11.4% year to date against 4.1% share growth. Consumer lending through MeridianLink is the largest contributor, with a $312M 90-day pipeline still incoming.",
+          "sources": ["Symitar", "MeridianLink"],
+          "confidence": 94,
+          "followups": ["What's the $312M pipeline?", "What do you recommend?", "Why is this a watch, not critical?"]
+        },
+        {
+          "id": "sit_pipeline",
+          "q": "What's the $312M pipeline?",
+          "aliases": ["pipeline", "312", "90-day pipeline", "what pipeline"],
+          "keywords": ["pipeline", "312", "90-day", "incoming"],
+          "a": "It's the 90-day loan origination pipeline from MeridianLink — $312M of demand already in motion. It matters because that incoming volume keeps pushing loan-to-share higher before any deposit response can catch up.",
+          "sources": ["MeridianLink"],
+          "confidence": 94,
+          "followups": ["Why is loan-to-share at 84%?", "What do you recommend?", "What happens if we don't act?"]
+        },
+        {
+          "id": "sit_why",
+          "q": "Why is this a watch, not critical?",
+          "aliases": ["why a watch", "urgency", "is this critical", "how serious", "how urgent"],
+          "keywords": ["urgent", "watch", "critical", "serious", "urgency"],
+          "a": "It's a Watch, not a crisis — capital is healthy and the trend is manageable if addressed now. But it's genuinely board-level: on the current path liquidity tightens below your internal target by late Q4, so the decision belongs on the September board agenda, not later.",
+          "sources": ["Symitar", "Predictive Model"],
+          "confidence": 94,
+          "followups": ["What happens if we don't act?", "What do you recommend?", "Where does the business stand?"]
+        }
+      ]
+    },
+    "evidence": {
+      "suggested": ["How is the 84% reconciled?", "Is this traceable?", "Show me the 5-year trend"],
+      "questions": [
+        {
+          "id": "ev_l2s",
+          "q": "How is the 84% reconciled?",
+          "aliases": ["reconciled", "governed number", "how do you get 84", "one number", "the 84%"],
+          "keywords": ["reconciled", "governed", "84", "reconcile", "three"],
+          "a": "One governed number from three systems: net loans of $1.29B from Symitar, member shares of $1.54B from the General Ledger, and the $312M pipeline from MeridianLink. Reconciled overnight, they resolve to a single loan-to-share ratio of 84% — not three figures that disagree. Confidence is 94%.",
+          "sources": ["Symitar", "General Ledger", "MeridianLink"],
+          "confidence": 94,
+          "followups": ["Is this traceable?", "What's in net loans?", "Show me the 5-year trend"]
+        },
+        {
+          "id": "ev_loans",
+          "q": "What's in net loans?",
+          "aliases": ["net loans", "the loans", "1.29b", "symitar loans"],
+          "keywords": ["loans", "net", "1.29", "symitar"],
+          "a": "$1.29B of net loans from the Symitar core, up 11.4% year to date. That's the numerator of the loan-to-share ratio and the side that's been growing fastest.",
+          "sources": ["Symitar"],
+          "confidence": 94,
+          "followups": ["What about shares?", "How is the 84% reconciled?", "Trace it to source"]
+        },
+        {
+          "id": "ev_shares",
+          "q": "What about shares?",
+          "aliases": ["shares", "deposits", "1.54b", "member shares"],
+          "keywords": ["shares", "deposits", "1.54", "member"],
+          "a": "$1.54B of member shares from the General Ledger, up only 4.1% year to date. Deposits simply haven't kept pace with lending — that's the gap the recommended deposit campaign is designed to close.",
+          "sources": ["General Ledger"],
+          "confidence": 94,
+          "followups": ["What's in net loans?", "What do you recommend?", "How is the 84% reconciled?"]
+        },
+        {
+          "id": "ev_trend",
+          "q": "Show me the 5-year trend",
+          "aliases": ["trend", "5-year", "five year", "history", "over time"],
+          "keywords": ["trend", "5-year", "five", "history", "2022"],
+          "a": "Loan-to-share has climbed steadily from 72% in 2022 to 84% today — the highest in five years. It's a structural drift, not a one-month spike, which is why it warrants a deliberate deposit strategy rather than wait-and-see.",
+          "sources": ["Symitar", "General Ledger"],
+          "confidence": 94,
+          "followups": ["What happens if this continues?", "How is the 84% reconciled?", "Is this traceable?"]
+        },
+        {
+          "id": "ev_trace",
+          "q": "Is this traceable?",
+          "aliases": ["traceable", "lineage", "can you prove it", "audit"],
+          "keywords": ["traceable", "prove", "audit", "documented"],
+          "a": "Yes — every figure carries a documented path: Symitar to ETL to Greenplum to Brief. You can show that chain to the board or an NCUA examiner on demand.",
+          "sources": ["Radiant Trust Layer"],
+          "confidence": 94,
+          "followups": ["Trace it to source", "Can I trust these numbers?", "What's the NCUA readiness?"]
+        }
+      ]
+    },
+    "trajectory": {
+      "suggested": ["When does it cross the ceiling?", "What happens if we don't act?", "How confident is this projection?"],
+      "questions": [
+        {
+          "id": "traj_project",
+          "q": "What happens if we don't act?",
+          "aliases": ["do nothing", "no action", "unmanaged", "if this continues", "base case", "what happens if"],
+          "keywords": ["nothing", "act", "unmanaged", "continues", "base", "projection"],
+          "a": "Left unmanaged, loan-to-share rises above the 85% board ceiling in September and reaches about 89% by December — and liquidity dips below your internal target by late Q4. This is the base case with no intervention; it's why the recommendation is sized for the September board.",
+          "sources": ["Symitar", "MeridianLink", "Predictive Model"],
+          "confidence": 91,
+          "followups": ["When does it cross the ceiling?", "What do you recommend?", "How confident is this projection?"]
+        },
+        {
+          "id": "traj_ceiling",
+          "q": "When does it cross the 85% ceiling?",
+          "aliases": ["ceiling", "85%", "board ceiling", "when cross"],
+          "keywords": ["ceiling", "85", "cross", "september"],
+          "a": "In September, on the current trajectory. That's the board's internal ceiling, which is why the decision needs to reach the September board meeting rather than waiting for year-end.",
+          "sources": ["Predictive Model"],
+          "confidence": 91,
+          "followups": ["What happens if we don't act?", "What do you recommend?", "What are the next steps?"]
+        },
+        {
+          "id": "traj_conf",
+          "q": "How confident is this projection?",
+          "aliases": ["confidence", "how sure", "reliable projection", "91"],
+          "keywords": ["confident", "confidence", "sure", "projection", "91"],
+          "a": "91% confidence. It's a base-case model built on Symitar balances, the MeridianLink pipeline, and current growth rates, with no intervention assumed. The interventions on the recommendation slide are modeled against this same baseline.",
+          "sources": ["Predictive Model"],
+          "confidence": 91,
+          "followups": ["What do you recommend?", "What happens if we don't act?", "Trace it to source"]
+        }
+      ]
+    },
+    "assurance": {
+      "suggested": ["What was the Barafin exception?", "Is the data fully loaded?", "What's the NCUA readiness?"],
+      "questions": [
+        {
+          "id": "assur_pipeline",
+          "q": "Is the data fully loaded?",
+          "aliases": ["pipeline health", "data loaded", "6 of 6", "all sources", "reconciled"],
+          "keywords": ["loaded", "pipeline", "sources", "reconciled", "health"],
+          "a": "Yes — 6 of 6 sources loaded and reconciled at 6:04 AM ET, including Symitar, MeridianLink, and Greenplum. The overnight load completed cleanly aside from one caught exception.",
+          "sources": ["Radiant Trust Layer"],
+          "confidence": 98,
+          "followups": ["What was the Barafin exception?", "What's the NCUA readiness?", "Can I trust these numbers?"]
+        },
+        {
+          "id": "assur_exception",
+          "q": "What was the Barafin exception?",
+          "aliases": ["barafin", "exception", "late feed", "1 caught"],
+          "keywords": ["barafin", "exception", "late", "caught", "held"],
+          "a": "The Barafin fraud feed loaded 41 minutes late. The trust layer caught it, held the one dependent figure for reconciliation, and kept it out of your headline numbers — nothing reached the board unvalidated. This is the silent failure that used to surface only when a month-end number looked off.",
+          "sources": ["Barafin", "Radiant Trust Layer"],
+          "confidence": 98,
+          "followups": ["Is the data fully loaded?", "What's the NCUA readiness?", "Trace it to source"]
+        },
+        {
+          "id": "assur_ncua",
+          "q": "What's the NCUA readiness?",
+          "aliases": ["ncua", "exam readiness", "88", "exam"],
+          "keywords": ["ncua", "exam", "readiness", "88", "posture"],
+          "a": "NCUA exam readiness is 88 out of 100 — a strong posture, with the next exam window in Q3 2026. Because every figure is traceable to source, you can answer an examiner's request on demand rather than reconstructing it by hand.",
+          "sources": ["Radiant Trust Layer"],
+          "confidence": 95,
+          "followups": ["Can I trust these numbers?", "Trace it to source", "Where does the business stand?"]
+        }
+      ]
+    },
+    "members": {
+      "suggested": ["How does the deposit plan help members?", "What are the mission marks?", "Where does the business stand?"],
+      "questions": [
+        {
+          "id": "mem_mission",
+          "q": "How does the deposit plan help members?",
+          "aliases": ["members", "mission", "deposits help members", "member first", "the people"],
+          "keywords": ["members", "mission", "help", "serve", "people"],
+          "a": "Deposits aren't abstractions — they're the members' savings. The recommended campaign targets the DMV core and the growing national base of Senate alumni, so the liquidity fix is also a membership-deepening move: it grows the very relationships USSFCU was built to serve.",
+          "sources": ["Voice of Member"],
+          "confidence": 90,
+          "followups": ["What are the mission marks?", "What do you recommend?", "Where does the business stand?"]
+        },
+        {
+          "id": "mem_awards",
+          "q": "What are the mission marks?",
+          "aliases": ["awards", "marks", "recognition", "ceo of the year", "top workplaces", "bauer"],
+          "keywords": ["awards", "marks", "recognition", "workplaces", "bauer"],
+          "a": "Three: 2025 CEO of the Year from the MD|DC Credit Union Association, a Top Workplaces recognition, and a Bauer 5-Star rating. Together they signal a member-first institution that's also financially sound — the credibility behind the plan you'll take to the board.",
+          "sources": ["Voice of Member"],
+          "confidence": 90,
+          "followups": ["How does the deposit plan help members?", "Where does the business stand?", "What do you recommend?"]
+        }
+      ]
+    },
+    "resolution": {
+      "suggested": ["Why is Option 1 recommended?", "Compare the three options", "What's the combined plan?"],
+      "questions": [
+        {
+          "id": "res_opt1",
+          "q": "Tell me about the deposit campaign",
+          "aliases": ["option 1", "deposit campaign", "recommended option", "targeted deposit"],
+          "keywords": ["option", "deposit", "campaign", "recommended", "first"],
+          "a": "Option 1, the recommended path: a promotional certificate to the DMV core and Senate-alumni segments to lift shares quickly. Timeline 2 to 4 weeks, low cost, high impact — about +$85M in shares. It's the fastest, cheapest way to close most of the gap.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["Why is Option 1 recommended?", "Compare the three options", "What's the combined plan?"]
+        },
+        {
+          "id": "res_opt2",
+          "q": "Tell me about the standby funding line",
+          "aliases": ["option 2", "funding line", "standby", "fhlb"],
+          "keywords": ["funding", "standby", "fhlb", "line", "second"],
+          "a": "Option 2: establish a contingent FHLB or corporate line for standby liquidity through Q1. Timeline 4 to 6 weeks, low standby fee, medium impact — it's a buffer rather than a cure, which is why it pairs so well with the deposit campaign.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["Compare the three options", "What's the combined plan?", "Tell me about loan pacing"]
+        },
+        {
+          "id": "res_opt3",
+          "q": "Tell me about loan pacing",
+          "aliases": ["option 3", "loan pacing", "participations", "slow lending"],
+          "keywords": ["pacing", "participations", "slow", "yield", "third"],
+          "a": "Option 3: slow select loan categories or sell participations to rebalance the ratio. Timeline 6 to 8 weeks, medium cost, and it carries a real trade-off — foregone yield. It works, but it's the least attractive because it constrains the lending franchise that's performing well.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["Compare the three options", "Why is Option 1 recommended?", "What's the combined plan?"]
+        },
+        {
+          "id": "res_why",
+          "q": "Why is Option 1 recommended?",
+          "aliases": ["why recommended", "why option 1", "why the deposit campaign", "why is it recommended"],
+          "keywords": ["why", "recommended", "best", "option"],
+          "a": "It's the fastest, lowest-cost, highest-impact move — about +$85M in shares in 2 to 4 weeks — and it grows member deposits rather than constraining lending. It closes most of the gap on its own; pairing it with the standby line just adds a buffer.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["What's the combined plan?", "Compare the three options", "What are the next steps?"]
+        },
+        {
+          "id": "res_combo",
+          "q": "What's the combined plan?",
+          "aliases": ["combined", "both", "not mutually exclusive", "the recommendation", "pair"],
+          "keywords": ["combined", "both", "pair", "exclusive"],
+          "a": "The options aren't mutually exclusive. The recommended plan pairs the deposit campaign with the standby funding line — close the gap now with deposits, hold a buffer through Q1 with the line. That's the two-move recommendation you'd take to the board.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["What are the next steps?", "Why is Option 1 recommended?", "Where does the business stand?"]
+        },
+        {
+          "id": "res_compare",
+          "q": "Compare the three options",
+          "aliases": ["compare", "compare options", "the three options", "side by side"],
+          "keywords": ["compare", "three", "versus", "side"],
+          "a": "Option 1 (deposit campaign) is fast, cheap, high impact — the recommended core. Option 2 (standby funding line) is a low-cost buffer, medium impact. Option 3 (loan pacing and participations) is slower, costlier, and gives up yield. The plan uses 1 and 2, and holds 3 in reserve.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["What's the combined plan?", "Why is Option 1 recommended?", "What are the next steps?"]
+        }
+      ]
+    },
+    "nextSteps": {
+      "suggested": ["Who owns each action?", "What's the timeline?", "What if the board doesn't approve?"],
+      "questions": [
+        {
+          "id": "ns_step1",
+          "q": "Tell me about the deposit campaign approval",
+          "aliases": ["step 1", "approve the campaign", "first step", "approve deposit"],
+          "keywords": ["approve", "campaign", "marketing", "first"],
+          "a": "Step 1: approve the targeted deposit campaign to the DMV core and Senate-alumni segments. Owners are the CFO (Ricardo Pineres), Marketing, and Lending, with a timeframe of before month-end. It's the move that closes most of the liquidity gap.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["Who owns each action?", "What's the timeline?", "Draft the memo"]
+        },
+        {
+          "id": "ns_step2",
+          "q": "Tell me about the funding-line review",
+          "aliases": ["step 2", "funding line review", "second step", "commission"],
+          "keywords": ["funding", "review", "treasury", "commission", "second"],
+          "a": "Step 2: commission the funding-line review and size a standby FHLB or corporate line. Owners are the CFO (Ricardo Pineres) and Treasury, within 5 business days. It secures the contingent buffer behind the deposit campaign.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["What's the board step?", "What's the timeline?", "Draft the memo"]
+        },
+        {
+          "id": "ns_step3",
+          "q": "Tell me about the board briefing",
+          "aliases": ["step 3", "brief the board", "third step", "board meeting", "the board step"],
+          "keywords": ["board", "brief", "september", "third"],
+          "a": "Step 3: brief the Board on the liquidity plan and the two-move recommendation for approval. Owners are the CEO (you) and the CFO, at the September board meeting. That's where the plan gets the mandate to execute.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["What if the board doesn't approve?", "Who owns each action?", "Draft the memo"]
+        },
+        {
+          "id": "ns_owners",
+          "q": "Who owns each action?",
+          "aliases": ["owners", "who owns", "ownership", "responsible", "who's responsible"],
+          "keywords": ["owns", "owners", "responsible", "ownership"],
+          "a": "The CFO (Ricardo Pineres) anchors all three: he leads the deposit campaign with Marketing and Lending, the funding-line review with Treasury, and co-presents to the board with you. Clear single-threaded ownership, with the board decision resting with the two of you.",
+          "sources": [],
+          "confidence": 88,
+          "followups": ["What's the timeline?", "What if the board doesn't approve?", "Draft the memo"]
+        },
+        {
+          "id": "ns_timeline",
+          "q": "What's the timeline?",
+          "aliases": ["timeline", "when", "how long", "timeframe", "schedule"],
+          "keywords": ["timeline", "long", "timeframe", "schedule"],
+          "a": "Deposit campaign approval before month-end; funding-line review within 5 business days; board briefing at the September meeting. Sequenced so the two operational moves are underway before the board formally approves the plan.",
+          "sources": [],
+          "confidence": 88,
+          "followups": ["Who owns each action?", "What if the board doesn't approve?", "Draft the memo"]
+        },
+        {
+          "id": "ns_draft",
+          "q": "Draft the memo",
+          "aliases": ["draft memo", "write the memo", "prepare a memo", "draft the brief"],
+          "keywords": ["draft", "memo", "write", "prepare"],
+          "a": "I can assemble the board memo from this briefing — the liquidity watch, the evidence and trajectory, the two-move recommendation, and the lineage appendix behind every figure. In the full build this generates the document; here it's staged and ready to present.",
+          "sources": ["Radiant Trust Layer"],
+          "confidence": 88,
+          "followups": ["What are the next steps?", "What's the combined plan?", "Where does the business stand?"]
+        },
+        {
+          "id": "ns_approve",
+          "q": "What if the board doesn't approve?",
+          "aliases": ["board doesn't approve", "not approved", "rejected", "if they say no", "fallback"],
+          "keywords": ["approve", "reject", "fallback", "hold"],
+          "a": "If the board holds, Option 3 — loan pacing and participations — is the fallback: it rebalances the ratio without new deposits, at the cost of some yield. But the deposit campaign and standby line are low-risk enough that a hold mainly costs time, and time is the one thing the late-Q4 trajectory doesn't give you.",
+          "sources": ["Predictive Model"],
+          "confidence": 88,
+          "followups": ["Compare the three options", "What's the combined plan?", "What happens if we don't act?"]
+        }
+      ]
+    }
+  }
+}

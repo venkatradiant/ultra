@@ -1,0 +1,78 @@
+[
+  {
+    "id": "SIG-NFCU-MEM-001",
+    "type": "payment_declined",
+    "title": "Auto Loan Payment Declined — $412.00 on June 27",
+    "description": "Your scheduled auto loan payment of $412.00 on June 27 did not go through. The assistant has already identified the cause and a one-tap fix. Tap to see why and resolve it.",
+    "impact": "high",
+    "severity": "critical",
+    "metric_text": "$412.00 declined · one-tap fix ready",
+    "sources": ["Payments Engine", "Core Banking", "Loan Servicing"],
+    "timestamp": "2026-06-27T09:00:00Z",
+    "metrics": {
+      "payment_amount": "$412.00",
+      "declined_date": "June 27",
+      "balance_at_draw": "$208.14",
+      "grace_days_remaining": 3
+    },
+    "confidence": {
+      "score": 98,
+      "rationale": "Declined-transaction record and balance-at-draw are authoritative reads from the Payments Engine and Core Banking. No inference required.",
+      "signals_used": ["Payments Engine", "Core Banking", "Loan Servicing"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-MEM-002",
+    "type": "deposit_exception",
+    "title": "Direct Deposit Not Configured — $3,140.00 Held",
+    "description": "Your employer sent an early salary credit, but direct deposit routing is not set up on your primary checking account, so the funds are not yet applied. This is the root cause of the declined payment.",
+    "impact": "medium",
+    "severity": "warning",
+    "metric_text": "$3,140.00 salary credit held",
+    "sources": ["Payments Engine", "Employer Direct Deposit File", "Core Banking"],
+    "timestamp": "2026-06-27T07:15:00Z",
+    "metrics": {
+      "held_amount": "$3,140.00",
+      "condition": "early-credit flag, no routing on file",
+      "root_cause_of": "SIG-NFCU-MEM-001"
+    },
+    "confidence": {
+      "score": 95,
+      "rationale": "Account flags and the employer deposit file are direct reads. The unmatched early-credit / missing-routing condition is a deterministic exception check.",
+      "signals_used": ["Payments Engine", "Employer Direct Deposit File", "SOP/MOP Repository"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-MEM-003",
+    "type": "late_fee_window",
+    "title": "Late Fee Window — 3 Days Remaining",
+    "description": "A $25 late fee applies if the auto loan payment is not completed within the 5-day grace period. You have 3 days remaining. Resolving now avoids the fee.",
+    "impact": "low",
+    "severity": "info",
+    "metric_text": "$25 fee · 3 days to resolve",
+    "sources": ["Loan Servicing"],
+    "timestamp": "2026-07-01T06:00:00Z",
+    "metrics": {
+      "late_fee": "$25.00",
+      "grace_period_days": 5,
+      "days_remaining": 3
+    },
+    "confidence": {
+      "score": 96,
+      "rationale": "Grace-period terms and elapsed days are authoritative from Loan Servicing. The fee is not yet triggered.",
+      "signals_used": ["Loan Servicing"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

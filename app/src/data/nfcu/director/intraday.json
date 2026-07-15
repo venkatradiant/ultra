@@ -1,0 +1,574 @@
+{
+  "baseline_timestamp": "2026-05-12T14:32:00Z",
+  "incident": {
+    "started_at": "2026-05-12T13:47:00Z",
+    "headline": "SIP Fiber Cut + Unplanned Rate Promo",
+    "eta": "45–90 min",
+    "severity": "critical",
+    "state_label": "INCIDENT ACTIVE"
+  },
+  "kpi_to_tree": {
+    "queue":           { "nodes": ["vol"],            "ask": "Why is the queue so deep right now?" },
+    "service_level":   { "nodes": ["sl"],             "ask": "Why is service level at 54%?" },
+    "wait_time":       { "nodes": ["cap", "vol"],     "ask": "What's driving the 12:47 wait time?" },
+    "handle_time":     { "nodes": ["auth", "vol"],    "ask": "What's inflating average handle time?" },
+    "abandonment":     { "nodes": ["abandon"],        "ask": "Why is abandonment at 18.4%?" },
+    "occupancy":       { "nodes": ["cap", "vol"],     "ask": "Why is agent occupancy near ceiling?" },
+    "ivr_containment": { "nodes": ["ivr"],            "ask": "Why did IVR containment drop to 22%?" },
+    "top_intent":      { "nodes": ["promo", "ivr"],   "ask": "Why is rate comparison the top intent today?" },
+    "agg_sl":          { "nodes": ["sl"],             "ask": "Why is aggregate service level at 68%?" },
+    "active_incidents":{ "nodes": ["fiber", "promo"], "ask": "Walk me through both active incidents" },
+    "lobs_impacted":   { "nodes": ["sl", "abandon"],  "ask": "Which lines of business are impacted and why?" },
+    "queue_total":     { "nodes": ["vol"],            "ask": "Why is total queue volume up 180%?" },
+    "member_impact":   { "nodes": ["abandon", "auth"],"ask": "Why is member impact rated HIGH?" },
+    "root_cause":      { "nodes": ["fiber", "promo"], "ask": "Explain the dual root cause" },
+    "eta_recovery":    { "nodes": ["fiber"],          "ask": "How confident is the 45–90 min recovery ETA?" },
+    "wfm_response":    { "nodes": ["cap"],            "ask": "What WFM response actions are running?" },
+    "agent_pool_oncall":        { "nodes": ["vol", "cap"],        "ask": "Why are 142 agents on call right now?" },
+    "agent_pool_idle_routing":  { "nodes": ["fiber", "cap"],      "ask": "Why are 12 agents idle on routing failure?" },
+    "agent_pool_aht":           { "nodes": ["auth", "vol"],       "ask": "Why is floor AHT at 10.8 minutes?" },
+    "agent_pool_adherence":     { "nodes": ["cap"],               "ask": "Why is floor adherence slipping to 91%?" },
+    "agent_pool_cross_trained": { "nodes": ["cap", "vol"],        "ask": "How many cross-trained agents do I still have available?" },
+    "agent_pool_overtime":      { "nodes": ["cap"],               "ask": "How much overtime have we burned today?" }
+  },
+  "priority_signals_inline": [
+    {
+      "id": "SIG-INTRA-DIR-001",
+      "type": "sip_degradation",
+      "title": "SIP Degradation — East Region",
+      "metric_text": "214 in queue · 12 agents idle",
+      "description": "Fiber cut on primary carrier path dropped SIP connectivity for East region AZ-1 at 10:23 AM. Auto loans, mortgage servicing, and general banking queues impacted. Variant WFM confirms 12 agents idle due to routing failure.",
+      "severity": "critical",
+      "affected_count": 214,
+      "trend": "worsening",
+      "sources": ["Carrier Intelligence", "SIP Monitoring", "Variant WFM", "PinDrop"],
+      "confidence": {
+        "score": 96,
+        "rationale": "Root cause confirmed via carrier intelligence feed correlated with SIP monitoring within 12 minutes of incident.",
+        "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Variant WFM", "PinDrop"],
+        "threshold": 70,
+        "model_version": "intra-corr-v1.0",
+        "validated_at": "2026-05-12T14:32:00Z",
+        "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+      }
+    },
+    {
+      "id": "SIG-INTRA-DIR-002",
+      "type": "promo_volume_surge",
+      "title": "Rate Promo Volume Surge — Auto Loans",
+      "metric_text": "3.2x baseline · 1,407 affected",
+      "description": "Marketing Cloud sent 2.9% rate promotion to 45,000 members at 7:15 AM without Contact Center pre-notification. Auto loans call volume at 3.2x baseline. Compounding with SIP degradation. IVR self-service capturing only 22% of intents.",
+      "severity": "critical",
+      "affected_count": 1407,
+      "trend": "worsening",
+      "sources": ["Marketing Cloud", "Dynamics 365 CRM", "Dynamics 365 IVR", "CCAS Real-time"],
+      "confidence": {
+        "score": 93,
+        "rationale": "Marketing Cloud send-time + CCAS volume timeline give direct causal evidence; CRM caller-type split is a count.",
+        "signals_used": ["Marketing Cloud", "CCAS Real-time", "Dynamics 365 CRM", "Dynamics 365 IVR"],
+        "threshold": 70,
+        "model_version": "intra-corr-v1.0",
+        "validated_at": "2026-05-12T14:32:00Z",
+        "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+      }
+    },
+    {
+      "id": "SIG-INTRA-DIR-003",
+      "type": "cascade_risk",
+      "title": "Cross-Team Cascade Risk",
+      "metric_text": "3-team cascade in 35 min",
+      "description": "Agent reallocation from general banking to auto loans dropped general banking service level to 71%. If SIP recovery exceeds 60 minutes, mortgage servicing will also breach target. Variant WFM projects 3-team simultaneous degradation within 35 min.",
+      "severity": "warning",
+      "affected_count": 0,
+      "trend": "worsening",
+      "sources": ["Variant WFM", "CCAS Real-time", "Carrier Intelligence"],
+      "confidence": {
+        "score": 86,
+        "rationale": "Cascade projection uses last-9-cross-team-events recovery curves; ±6 pp variance band on the 3-team threshold time.",
+        "signals_used": ["Variant WFM", "CCAS Real-time", "Carrier Intelligence", "Historical Incident Patterns"],
+        "threshold": 70,
+        "model_version": "intra-corr-v1.0",
+        "validated_at": "2026-05-12T14:32:00Z",
+        "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+      }
+    }
+  ],
+  "trend_signals_inline": [
+    {
+      "id": "TREND-DIR-001",
+      "type": "sentiment_drift",
+      "title": "Member Sentiment — 30-Day Drift",
+      "metric_text": "+0.41 → +0.27 (30 days)",
+      "description": "Aggregate post-call sentiment has drifted from +0.41 to +0.27 over the last 30 days, with the sharpest decline in mortgage servicing (-22%). Likely correlated to extended hold times during the Phase 2 migration window.",
+      "horizon": "30-day trend",
+      "trend": "watch",
+      "sources": ["Sentiment Analysis", "Dynamics 365 CRM", "Voice Bio"],
+      "confidence": { "score": 84, "rationale": "30-day rolling average is stable; sentiment-to-LOB attribution from CRM joins." }
+    },
+    {
+      "id": "TREND-DIR-002",
+      "type": "mortgage_servicing_pattern",
+      "title": "Mortgage Servicing — Repeat-Contact Pattern",
+      "metric_text": "14% → 21% repeat (6 wks)",
+      "description": "Repeat-contact rate on mortgage payoff inquiries climbed from 14% to 21% over six weeks. Pattern aligns with the Q1 escrow-statement reformat. Worth a journey audit next sprint.",
+      "horizon": "6-week trend",
+      "trend": "watch",
+      "sources": ["Dynamics 365 CRM", "CCAS Transcripts", "Journey Analytics"],
+      "confidence": { "score": 81, "rationale": "Repeat-contact joins on member ID; root-cause attribution to escrow reformat is inferred, not confirmed." }
+    },
+    {
+      "id": "TREND-DIR-003",
+      "type": "staffing_availability",
+      "title": "Staffing Availability — 8-Week Outlook",
+      "metric_text": "<92% for 5 of next 8 weeks",
+      "description": "Variant WFM forecasts cross-team agent availability dropping below 92% target for 5 of the next 8 weeks, driven by PTO, training cohorts, and 3 mortgage agents on extended leave. Plan now.",
+      "horizon": "8-week outlook",
+      "trend": "watch",
+      "sources": ["Variant WFM", "HR System", "Training Calendar"],
+      "confidence": { "score": 88, "rationale": "PTO + training calendar are authoritative; forecast variance ±3 pp on prior 8-week windows." }
+    }
+  ],
+  "tiers": {
+    "executive": {
+      "kpis": [
+        {
+          "id": "agg_sl",
+          "label": "Aggregate SL",
+          "value": 68,
+          "unit": "%",
+          "baseline": 82,
+          "delta": "Declining (2hr)",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time", "Variant WFM", "Microsoft Fabric"],
+          "confidence": {
+            "score": 94,
+            "rationale": "Blended across CCAS + Variant + Fabric historical baseline.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        },
+        {
+          "id": "active_incidents",
+          "label": "Active Incidents",
+          "value": 2,
+          "unit": "",
+          "baseline": 0,
+          "delta": "New in last 45 min",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time", "IT Ops", "Carrier Intelligence"],
+          "confidence": {
+            "score": 98,
+            "rationale": "Incident registry, direct count.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        },
+        {
+          "id": "lobs_impacted",
+          "label": "LoBs Impacted",
+          "value": "3 of 7",
+          "unit": "",
+          "baseline": "0 of 7",
+          "delta": "Expanding",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time", "Dynamics 365 CRM", "Dynamics 365 IVR"],
+          "confidence": {
+            "score": 96,
+            "rationale": "Queue-to-LOB mapping is direct telemetry.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        },
+        {
+          "id": "queue_total",
+          "label": "Total Queue",
+          "value": 214,
+          "unit": "calls",
+          "baseline": 76,
+          "delta": "+180% vs base",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time", "Variant WFM"],
+          "confidence": {
+            "score": 99,
+            "rationale": "Direct CCAS telemetry across all queues.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        },
+        {
+          "id": "member_impact",
+          "label": "Member Impact",
+          "value": "HIGH",
+          "unit": "",
+          "baseline": "LOW",
+          "delta": "Escalating",
+          "deltaDirection": "negative",
+          "sources": ["Dynamics 365 CRM", "Sentiment Analysis", "Voice Bio"],
+          "confidence": {
+            "score": 87,
+            "rationale": "Composite score: queue wait + abandonment + sentiment delta + auth-degraded call %.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        },
+        {
+          "id": "root_cause",
+          "label": "Root Cause",
+          "value": "Fiber+Promo",
+          "unit": "",
+          "baseline": "—",
+          "delta": "Confirmed T+12",
+          "deltaDirection": "neutral",
+          "sources": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud"],
+          "confidence": {
+            "score": 96,
+            "rationale": "Dual-source confirmation: carrier feed + SIP monitor for fiber; Marketing send + CCAS spike for promo.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        },
+        {
+          "id": "eta_recovery",
+          "label": "Recovery ETA",
+          "value": "45-90 min",
+          "unit": "",
+          "baseline": "—",
+          "delta": "Carrier ETA",
+          "deltaDirection": "neutral",
+          "sources": ["IT Ops", "Carrier Intelligence", "Historical Incident Patterns"],
+          "confidence": {
+            "score": 78,
+            "rationale": "Carrier ETA band ± historical fiber-cut recovery variance.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        },
+        {
+          "id": "wfm_response",
+          "label": "WFM Response",
+          "value": "In Progress",
+          "unit": "",
+          "baseline": "Idle",
+          "delta": "8 agents rerouted",
+          "deltaDirection": "positive",
+          "sources": ["Variant WFM", "CCAS Routing"],
+          "confidence": {
+            "score": 95,
+            "rationale": "Direct rerouting event log from Variant + CCAS Routing Engine.",
+            "threshold": 70,
+            "model_version": "intra-corr-v1.0",
+            "validated_at": "2026-05-12T14:32:00Z",
+            "escalation": { "triggered": false }
+          }
+        }
+      ]
+    },
+    "supervisor": {
+      "kpis": [
+        {
+          "id": "queue",
+          "label": "Calls in Queue",
+          "value": 47,
+          "unit": "calls",
+          "baseline": 14,
+          "delta": "+340%",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time"],
+          "confidence": { "score": 99, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "service_level",
+          "label": "Service Level",
+          "value": 54,
+          "unit": "%",
+          "baseline": 82,
+          "delta": "from 82%",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time", "Variant WFM"],
+          "confidence": { "score": 95, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "wait_time",
+          "label": "Avg Wait Time",
+          "value": "12:47",
+          "unit": "mm:ss",
+          "baseline": "2:10",
+          "delta": "from 2:10",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time"],
+          "confidence": { "score": 99, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "handle_time",
+          "label": "Avg Handle Time",
+          "value": "11:20",
+          "unit": "mm:ss",
+          "baseline": "8:42",
+          "delta": "from 8:42",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time", "Dynamics 365 CRM"],
+          "confidence": { "score": 92, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "abandonment",
+          "label": "Abandonment Rate",
+          "value": 18.4,
+          "unit": "%",
+          "baseline": 6.2,
+          "delta": "from 6.2%",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time", "Dynamics 365 IVR"],
+          "confidence": { "score": 94, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "occupancy",
+          "label": "Agent Occupancy",
+          "value": 97,
+          "unit": "%",
+          "baseline": 78,
+          "delta": "Near ceiling",
+          "deltaDirection": "negative",
+          "sources": ["Variant WFM", "CCAS Real-time"],
+          "confidence": { "score": 96, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "ivr_containment",
+          "label": "IVR Containment",
+          "value": 22,
+          "unit": "%",
+          "baseline": 41,
+          "delta": "from 41%",
+          "deltaDirection": "negative",
+          "sources": ["Dynamics 365 IVR", "AI Intent Capture"],
+          "confidence": { "score": 89, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "top_intent",
+          "label": "Top Intent",
+          "value": "Rate Compare",
+          "unit": "",
+          "baseline": "Application Status",
+          "delta": "New #1 today",
+          "deltaDirection": "neutral",
+          "sources": ["Dynamics 365 IVR", "CCAS Transcripts", "Dynamics 365 CRM"],
+          "confidence": { "score": 93, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        }
+      ]
+    },
+    "agent": {
+      "kpis": [
+        {
+          "id": "agent_pool_oncall",
+          "label": "Agents On Call",
+          "value": 142,
+          "unit": "",
+          "baseline": 118,
+          "delta": "+24 vs base",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time"],
+          "confidence": { "score": 99, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "agent_pool_idle_routing",
+          "label": "Idle (Routing)",
+          "value": 12,
+          "unit": "",
+          "baseline": 0,
+          "delta": "SIP-path agents",
+          "deltaDirection": "negative",
+          "sources": ["Variant WFM", "SIP Monitoring"],
+          "confidence": { "score": 97, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "agent_pool_aht",
+          "label": "Floor Avg AHT",
+          "value": 10.8,
+          "unit": "min",
+          "baseline": 8.2,
+          "delta": "+31% vs base",
+          "deltaDirection": "negative",
+          "sources": ["CCAS Real-time"],
+          "confidence": { "score": 96, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "agent_pool_adherence",
+          "label": "Floor Adherence",
+          "value": 91,
+          "unit": "%",
+          "baseline": 94,
+          "delta": "Slipping",
+          "deltaDirection": "negative",
+          "sources": ["Variant WFM"],
+          "confidence": { "score": 94, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "agent_pool_cross_trained",
+          "label": "Cross-Trained Avail",
+          "value": 8,
+          "unit": "",
+          "baseline": 22,
+          "delta": "Most deployed",
+          "deltaDirection": "negative",
+          "sources": ["Variant WFM"],
+          "confidence": { "score": 95, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        },
+        {
+          "id": "agent_pool_overtime",
+          "label": "OT Hours Today",
+          "value": 64,
+          "unit": "hr",
+          "baseline": 8,
+          "delta": "Surge response",
+          "deltaDirection": "negative",
+          "sources": ["Variant WFM", "HR System"],
+          "confidence": { "score": 93, "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:32:00Z", "escalation": { "triggered": false } }
+        }
+      ]
+    }
+  },
+  "root_cause_tree": {
+    "nodes": [
+      { "id": "fiber",   "kind": "root",    "label": "SIP Fiber Cut — Carrier B",         "sources": ["Carrier Intelligence", "SIP Monitoring"], "x": 60,  "y": 40 },
+      { "id": "promo",   "kind": "root",    "label": "Unplanned Rate Promo (45K send)",   "sources": ["Marketing Cloud"],                          "x": 360, "y": 40 },
+      { "id": "cap",     "kind": "impact",  "label": "Voice capacity -30%",  "metric": "-30%", "sources": ["SIP Monitoring"],         "x": 60,  "y": 170 },
+      { "id": "auth",    "kind": "impact",  "label": "PinDrop timeout 34%",  "metric": "34%",  "sources": ["PinDrop", "Voice Bio"],    "x": 210, "y": 170 },
+      { "id": "vol",     "kind": "impact",  "label": "Volume 3.2x baseline", "metric": "3.2x", "sources": ["CCAS Real-time"],          "x": 360, "y": 170 },
+      { "id": "ivr",     "kind": "impact",  "label": "IVR containment 22%",  "metric": "22%",  "sources": ["Dynamics 365 IVR"],        "x": 510, "y": 170 },
+      { "id": "sl",      "kind": "outcome", "label": "Agg Service Level 68%","metric": "68%",  "sources": ["CCAS", "Variant WFM"],     "x": 210, "y": 310 },
+      { "id": "abandon", "kind": "outcome", "label": "Abandonment 18.4%",    "metric": "18.4%","sources": ["CCAS", "Dynamics 365 IVR"], "x": 360, "y": 310 }
+    ],
+    "edges": [
+      { "from": "fiber", "to": "cap",     "weight": 0.9 },
+      { "from": "fiber", "to": "auth",    "weight": 0.7 },
+      { "from": "promo", "to": "vol",     "weight": 0.9 },
+      { "from": "promo", "to": "ivr",     "weight": 0.6 },
+      { "from": "cap",   "to": "sl",      "weight": 0.7 },
+      { "from": "auth",  "to": "sl",      "weight": 0.4 },
+      { "from": "vol",   "to": "sl",      "weight": 0.7 },
+      { "from": "vol",   "to": "abandon", "weight": 0.6 },
+      { "from": "ivr",   "to": "abandon", "weight": 0.4 },
+      { "from": "sl",    "to": "abandon", "weight": 0.3 }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "PLAN-A",
+      "title": "Reroute idle agents + enable callback",
+      "summary": "Move 12 idle agents to working SIP paths. Enable callback for waits > 5 min. Zero cross-team risk.",
+      "projection": { "service_level": 71, "ahandle": "9:50", "abandonment": 11.0 },
+      "costDelta": "$0",
+      "timeToImpact": "25 min",
+      "risk": "Low; no impact to other teams"
+    },
+    {
+      "id": "PLAN-B",
+      "title": "Plan A + activate 6 cross-trained agents",
+      "summary": "All of Plan A, plus pull 6 cross-trained agents from general banking to auto loans.",
+      "projection": { "service_level": 78, "ahandle": "9:30", "abandonment": 8.4 },
+      "costDelta": "$0",
+      "timeToImpact": "20 min",
+      "risk": "General banking SL drops to 74%; recoverable if SIP < 60 min"
+    },
+    {
+      "id": "PLAN-C",
+      "title": "Plan B + deploy IVR rate-comparison flow",
+      "summary": "All of Plan B, plus deploy the pre-built IVR rate-comparison template to lift containment 12-16 pp.",
+      "projection": { "service_level": 82, "ahandle": "9:05", "abandonment": 6.8 },
+      "costDelta": "$0",
+      "timeToImpact": "18 min",
+      "risk": "Minimal; template parity-tested in March"
+    }
+  ],
+  "execution_steps": [
+    { "id": "e1", "label": "Reroute 12 idle agents to working SIP paths" },
+    { "id": "e2", "label": "Activate 6 cross-trained agents from general banking" },
+    { "id": "e3", "label": "Enable callback for wait > 5 min" },
+    { "id": "e4", "label": "Deploy IVR rate-comparison flow" }
+  ],
+  "per_step_snapshots": {
+    "intraday_dir_t1_greeting": {
+      "label": "Step 1 · Proactive Intelligence",
+      "kpiOverrides": {
+        "agg_sl": 74, "active_incidents": 2, "lobs_impacted": "2 of 7", "queue_total": 142, "member_impact": "ELEVATED", "root_cause": "Fiber+Promo", "eta_recovery": "45-90 min", "wfm_response": "Initiated",
+        "queue": 47, "service_level": 68, "wait_time": "8:30", "handle_time": "10:20", "abandonment": 12.4, "occupancy": 94, "ivr_containment": 28
+      },
+      "treeHighlight": ["fiber", "promo"],
+      "signalIds": ["SIG-INTRA-DIR-001"]
+    },
+    "intraday_dir_t2_walkthrough": {
+      "label": "Step 2 · Converged Conversation",
+      "kpiOverrides": {
+        "agg_sl": 70, "lobs_impacted": "3 of 7", "queue_total": 178, "member_impact": "HIGH", "wfm_response": "In Progress",
+        "queue": 62, "service_level": 62, "wait_time": "10:10", "handle_time": "10:50", "abandonment": 14.8, "occupancy": 96, "ivr_containment": 26
+      },
+      "treeHighlight": ["fiber", "cap", "auth"],
+      "signalIds": ["SIG-INTRA-DIR-001", "SIG-INTRA-DIR-003"]
+    },
+    "intraday_dir_t3_correlate": {
+      "label": "Step 3 · Friction Observability",
+      "kpiOverrides": {
+        "agg_sl": 68, "lobs_impacted": "3 of 7", "queue_total": 214, "member_impact": "HIGH",
+        "queue": 74, "service_level": 54, "wait_time": "12:47", "handle_time": "11:20", "abandonment": 18.4, "occupancy": 97, "ivr_containment": 22
+      },
+      "treeHighlight": ["fiber", "promo", "cap", "auth", "vol", "ivr", "sl", "abandon"],
+      "signalIds": ["SIG-INTRA-DIR-001", "SIG-INTRA-DIR-002", "SIG-INTRA-DIR-003"]
+    },
+    "intraday_dir_t4_options": {
+      "label": "Step 4 · Predictive Intelligence",
+      "kpiOverrides": {
+        "agg_sl": 68, "queue_total": 214, "member_impact": "HIGH",
+        "queue": 74, "service_level": 54, "wait_time": "12:47", "handle_time": "11:20", "abandonment": 18.4, "occupancy": 97, "ivr_containment": 22
+      },
+      "treeHighlight": ["fiber", "promo", "cap", "auth", "vol", "ivr", "sl", "abandon"],
+      "signalIds": ["SIG-INTRA-DIR-001", "SIG-INTRA-DIR-002", "SIG-INTRA-DIR-003"],
+      "scenarioReveal": true
+    },
+    "intraday_dir_t5_execute": {
+      "label": "Step 5 · Automated Action",
+      "kpiOverrides": {
+        "agg_sl": 73, "lobs_impacted": "3 of 7", "queue_total": 168, "member_impact": "ELEVATED", "wfm_response": "Executing Plan C",
+        "queue": 58, "service_level": 64, "wait_time": "9:20", "handle_time": "10:30", "abandonment": 14.0, "occupancy": 92, "ivr_containment": 32
+      },
+      "treeHighlight": ["fiber", "promo", "cap", "vol"],
+      "signalIds": ["SIG-INTRA-DIR-001", "SIG-INTRA-DIR-003"],
+      "scenarioReveal": true,
+      "executionStep": 1
+    },
+    "intraday_dir_t6_brief": {
+      "label": "Step 6 · Anomaly Detection",
+      "kpiOverrides": {
+        "agg_sl": 78, "lobs_impacted": "2 of 7", "queue_total": 112, "member_impact": "MODERATE", "wfm_response": "Recovery on track",
+        "queue": 42, "service_level": 74, "wait_time": "5:30", "handle_time": "9:50", "abandonment": 9.4, "occupancy": 86, "ivr_containment": 36
+      },
+      "treeHighlight": ["fiber", "cap"],
+      "signalIds": ["SIG-INTRA-DIR-001"],
+      "scenarioReveal": true,
+      "executionStep": 3
+    },
+    "intraday_dir_t7_historical": {
+      "label": "Step 7 · Converged Conversation",
+      "kpiOverrides": {
+        "agg_sl": 82, "lobs_impacted": "0 of 7", "queue_total": 78, "member_impact": "LOW", "active_incidents": 0, "wfm_response": "Resolved",
+        "queue": 28, "service_level": 81, "wait_time": "2:50", "handle_time": "9:10", "abandonment": 6.8, "occupancy": 81, "ivr_containment": 38
+      },
+      "treeHighlight": [],
+      "signalIds": [],
+      "scenarioReveal": true,
+      "executionStep": 4
+    }
+  }
+}

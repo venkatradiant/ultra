@@ -1,0 +1,799 @@
+{
+  "nfcu_shared_schedule_1on1": {
+    "ai_message": "Drafted a 30-minute 1:1 with the team lead for Friday at 2:00 PM, with the sentiment trend snapshot and three suggested coaching topics: AHT pressure conversations, side-by-side rate comparison handling, and de-escalation phrasing. The invite is in your draft queue — review before it sends.",
+    "suggested_chips": ["Send the invite now", "Show me quality scores by team this week", "Show me sentiment by team"],
+    "data_sources_used": ["Microsoft 365 Calendar", "Quality Monitoring", "Sentiment Analysis"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 96, "rationale": "Calendar slot availability is direct; coaching topics derived from QM + sentiment data.", "signals_used": ["Microsoft 365 Calendar", "Quality Monitoring"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_recognition_note": {
+    "ai_message": "Drafted a recognition note highlighting the +3 point quality lift, the compliance-script adherence improvement on BSA disclosure, and the de-escalation phrasing during this morning's AHT pressure. Tone is warm but specific — not generic. Ready in your draft queue.",
+    "suggested_chips": ["Send the note", "Show me quality scores by team this week", "Schedule a 1:1 with the team lead"],
+    "data_sources_used": ["Quality Monitoring", "Sentiment Analysis"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 92, "rationale": "Recognition content grounded in QM sub-dimension lift + sentiment delta.", "signals_used": ["Quality Monitoring", "Sentiment Analysis"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_schedule_adjust": {
+    "ai_message": "Proposed schedule for next week: Torres swaps Tuesday OT to Thursday (lower-volume day); Chen takes a paid wellness half-day Wednesday; Williams's back-to-back high-AHT shifts get a 30-min buffer break between them. Variant has modeled service-level impact at -0.4 pts — within tolerance. Adjustments are in the draft schedule, ready for your approval.",
+    "suggested_chips": ["Approve the schedule", "Show me overtime by agent", "Show me adherence by team this shift"],
+    "data_sources_used": ["Variant WFM", "HR System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 89, "rationale": "Schedule swap impact modeled against last 30 days of same-DOW patterns; ±0.6 pp variance.", "signals_used": ["Variant WFM", "HR System"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_sprint_backlog": {
+    "ai_message": "Created a backlog item in the IVR enhancements project: 'Side-by-side rate comparison flow' — priority P2, estimated 3 dev-weeks, owner unassigned. Linked to the 23% repeat-contact pattern as supporting evidence. The item is in your sprint planning queue for next Wednesday's review.",
+    "suggested_chips": ["Set priority to P1", "Show the repeat-contact pattern", "What would the IVR enhancement cost?"],
+    "data_sources_used": ["Azure DevOps", "Dynamics 365 IVR", "CCAS Transcripts"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 94, "rationale": "Backlog item creation is deterministic; effort estimate calibrated against last 3 similar IVR flows.", "signals_used": ["Azure DevOps", "Engineering Estimates"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_ivr_enhancement_cost": {
+    "ai_message": "The side-by-side rate comparison IVR enhancement: ~3 dev-weeks at $4,800/week loaded = ~$14,400 in engineering. Add QA + ops change-control: ~$3,600. Total: ~$18K. Payback comes from absorbing the 23% repeat-contact volume at $7.42/contact average cost — break-even at ~2,400 deflected contacts, which the current pattern produces in ~5 weeks.",
+    "suggested_chips": ["Add to next sprint backlog", "What's the deflection assumption?", "Show the repeat-contact pattern"],
+    "data_sources_used": ["Engineering Estimates", "Finance System", "Dynamics 365 IVR"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 87, "rationale": "Dev effort calibrated against 3 prior IVR flows; deflection assumption uses observed repeat-contact rate.", "signals_used": ["Engineering Estimates", "Finance System"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_aht_options": {
+    "ai_message": "Three levers to reduce AHT impact today: (1) Re-route the 12 SIP-pinned idle agents to working paths — recovers ~30% of voice capacity and removes the PinDrop manual-KBA fallback for affected calls. (2) Push a temporary IVR rate-comparison template — absorbs ~25% of rate-promo intent, removes longest-call segment. (3) Enable callback mode for waits > 5 min — flattens queue surge, holds member experience. Plan A is fastest (~6 min); Plan B requires a deploy approval. I can model the combined impact.",
+    "suggested_chips": ["Model the combined impact", "Reroute the 12 idle agents now", "Deploy the IVR rate-comparison template"],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Dynamics 365 IVR", "PinDrop"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 92, "rationale": "Each lever's impact is modeled against last 9 similar incidents; combined effects validated against trailing 30-day patterns.", "signals_used": ["CCAS Real-time", "Variant WFM", "Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_pindrop_fallback": {
+    "ai_message": "PinDrop is timing out on 34% of inbound calls on the degraded SIP path because its anti-fraud voice analysis needs a clean call leg, and the SIP fiber cut is introducing packet loss above its tolerance threshold (4%). When PinDrop times out, the call drops into manual KBA — agents ask 3–5 challenge questions, which adds ~2:30 to AHT. The failure is path-specific; calls on the working SIP path authenticate normally.",
+    "suggested_chips": ["What can we do to reduce AHT impact?", "Show me PinDrop recovery status", "Show me the SIP path health map"],
+    "data_sources_used": ["PinDrop", "SIP Monitoring", "Carrier Intelligence"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 94, "rationale": "PinDrop SDK telemetry + SIP packet-loss measurements give direct evidence.", "signals_used": ["PinDrop", "SIP Monitoring"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_ot_cost_projection": {
+    "ai_message": "Today's surge-response OT is at 64 hours, ~$2,180 at $34/hour blended rate. If the incident resolves at the 45-min mark, total day-OT lands at ~$2,650 (within Q2 plan). If it extends to 90 min (upper ETA), OT goes to ~$3,920. Today's incident adds 0.5–0.9 points to the Q2 trajectory of 138% — non-material unless this is the third such event this month.",
+    "suggested_chips": ["What is my budget exposure?", "Compare to last quarter's OT-heavy events", "Show staffing by week"],
+    "data_sources_used": ["Variant WFM", "HR System", "Finance System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 91, "rationale": "OT hours from Variant; blended rate from HR; budget impact from Finance roll-up. ±5% on ETA-dependent projections.", "signals_used": ["Variant WFM", "HR System", "Finance System"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_after_action": {
+    "ai_message": "Drafted an after-action report covering: (1) timeline of both events (SIP fiber cut + Marketing rate promo) with timestamps, (2) impact metrics — peak queue, abandonment, AHT, members affected, (3) response actions taken and their measured effect, (4) recoverable signals we should have caught earlier, (5) three recommendations for prevention (Marketing pre-notification rule, SIP path redundancy, PinDrop fallback acceleration). Length: 2 pages. Ready in your draft queue.",
+    "suggested_chips": ["Send to leadership", "What did we learn?", "Generate the full after-action report"],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Marketing Cloud", "Carrier Intelligence", "PinDrop"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 93, "rationale": "All factual sections grounded in source telemetry; recommendations derived from prior post-incident reviews.", "signals_used": ["CCAS Real-time", "Variant WFM", "Marketing Cloud", "Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_escalation_si": {
+    "ai_message": "Drafted an escalation to the SI partner about the migration Phase 2 IVR parity gap — specifically that three flows (mortgage payment, fraud escalation, Spanish-language routing) have failed parity testing and are now at risk of slipping past the May 15 Genesys license window. The draft asks for a revised ETA, a written remediation plan, and an escalation contact at the partner. Ready in your outbox.",
+    "suggested_chips": ["Send the escalation now", "Show me the migration risk", "What if we miss May 15?"],
+    "data_sources_used": ["Migration PMO Tracker", "Genesys Cloud", "Dynamics 365 Routing", "SI Partner Status Reports"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 90, "rationale": "Migration slip status is deterministic; license deadline is contractual; remediation tone calibrated against prior partner escalations.", "signals_used": ["Migration PMO Tracker", "SI Partner Status Reports"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_escalation_cmo": {
+    "ai_message": "Drafted an escalation to the CMO covering the Marketing-Contact Center coordination gap: Marketing Cloud sent the 2.9% rate promo to 45,000 members at 7:15 AM with no Contact Center pre-notification. Result: 3.2x auto-loan volume against an unprepared workforce. Draft proposes a 72-hour-ahead notification rule for any promo touching ≥5,000 members. Tone is collaborative, focused on prevention. Ready in your draft queue.",
+    "suggested_chips": ["Send the escalation now", "Draft a Marketing coordination rule", "Who should I escalate the pre-notification gap to?"],
+    "data_sources_used": ["Marketing Cloud", "CCAS Real-time", "Dynamics 365 CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 89, "rationale": "Causal chain verified via Marketing send-time + CCAS volume alignment; proposed rule based on industry pre-notification practice.", "signals_used": ["Marketing Cloud", "CCAS Real-time"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_marketing_rule": {
+    "ai_message": "Drafted a Marketing coordination rule: any campaign sent to ≥5,000 members touching rate, fee, or product-change content requires a Contact Center notification ≥72 hours ahead with an estimated volume forecast. The rule lives in the Marketing Cloud campaign approval workflow as a required checkbox. Variant ingests the forecast for staffing models. Draft is in your governance queue for sign-off.",
+    "suggested_chips": ["Approve the rule", "How do we prevent the Marketing notification gap?", "Send to the CMO"],
+    "data_sources_used": ["Marketing Cloud", "Variant WFM", "Governance Workflow"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 88, "rationale": "Rule design based on 4 prior coordination-gap incidents; ≥5,000 threshold calibrated to staffing model sensitivity.", "signals_used": ["Marketing Cloud", "Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_marketing_gap_explain": {
+    "ai_message": "The Marketing notification gap exists because Marketing Cloud sends campaigns through an automation pipeline that doesn't currently emit signals to Contact Center planning systems. Each team optimizes locally — Marketing for response rate, Contact Center for service level — but the volume hand-off is informal (Slack messages, occasional emails). The 72-hour rule formalizes the hand-off and gives Variant time to model staffing.",
+    "suggested_chips": ["Draft a Marketing coordination rule", "Who should I escalate the pre-notification gap to?", "Show me the Marketing pre-notification gap"],
+    "data_sources_used": ["Marketing Cloud", "Variant WFM", "Operational Knowledge Base"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 91, "rationale": "Process gap is documented in 4 prior incident reviews; rule design is industry-standard.", "signals_used": ["Marketing Cloud", "Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_marketing_gap_show": {
+    "ai_message": "Marketing Cloud's campaign log shows the 7:15 AM rate promo send: 45,000 members, segmented by refinance eligibility (predicted high-intent). No corresponding entry in Contact Center planning systems before 10:23 AM when the queue surge alerted Variant. That's a 3-hour, 8-minute information gap during which the incident was preventable from a staffing standpoint. Marketing's intent log is below for context.",
+    "suggested_chips": ["Draft a Marketing coordination rule", "Who should I escalate the pre-notification gap to?", "Escalate the Marketing pre-notification gap"],
+    "data_sources_used": ["Marketing Cloud", "Variant WFM", "CCAS Real-time"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 95, "rationale": "Direct timestamp comparison between Marketing send log + Variant planning log.", "signals_used": ["Marketing Cloud", "Variant WFM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_who_to_escalate": {
+    "ai_message": "Escalation chain for the pre-notification gap: (1) Sarah Chen, VP Marketing Operations — owns the campaign send approval workflow. (2) Marcus Tillman (you, if Priya is asking) or the COO if cross-org. (3) Risk & Compliance — if recurring, the gap touches member-experience SLA commitments. Recommend starting with Sarah at the working level; she's responsive and has the authority to add the notification step.",
+    "suggested_chips": ["Send the escalation to Sarah", "Draft the escalation to the CMO", "How do we prevent the Marketing notification gap?"],
+    "data_sources_used": ["HR System", "Operational Knowledge Base", "Organization Chart"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 94, "rationale": "Escalation chain is organizational; authority delineation from owner-mapping table.", "signals_used": ["HR System", "Organization Chart"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_member_impact": {
+    "ai_message": "Member experience impact today: 214 in queue with 12:47 average wait (3x normal), 18.4% abandonment, and 34% of inbound calls hit manual KBA which adds 2:30 to authentication. CSAT sample for the last 60 calls is at 3.6/5 against a 4.2 baseline — sentiment dipped sharpest for members who got dropped and called back. Mortgage-servicing members are the most affected segment by sentiment delta (-22%).",
+    "suggested_chips": ["Draft a member-impact briefing", "Show me sentiment by team", "What are my options?"],
+    "data_sources_used": ["CCAS Real-time", "Sentiment Analysis", "Voice Bio", "Dynamics 365 CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 90, "rationale": "Queue + abandonment direct telemetry; sentiment delta from rolling sample; segment attribution from CRM joins.", "signals_used": ["CCAS Real-time", "Sentiment Analysis"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_member_impact_brief": {
+    "ai_message": "Drafted a 1-page member-impact briefing covering: incident summary, peak queue + abandonment, affected segments, sentiment delta, and 24/48-hour follow-up plan for the highest-impact members (190 mortgage-servicing members with callback queue position). Includes the standard executive-summary language for board reporting. Ready in your draft queue.",
+    "suggested_chips": ["Send to leadership", "Show me member impact", "Draft an after-action report when this resolves"],
+    "data_sources_used": ["CCAS Real-time", "Sentiment Analysis", "Dynamics 365 CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 92, "rationale": "Member impact data is direct telemetry; follow-up plan calibrated against post-incident outreach templates.", "signals_used": ["CCAS Real-time", "Sentiment Analysis", "Dynamics 365 CRM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_send_to_marcus": {
+    "ai_message": "Sent — Marcus has the full incident snapshot, your active response actions, your projected ETA, and the cascade-risk window. He'll see it in his briefing within the next minute. I've flagged it as 'priority — read now' rather than queued.",
+    "suggested_chips": ["What should I tell leadership right now?", "Show me historical incidents like this", "Monitor and report back in 20 min"],
+    "data_sources_used": ["Microsoft Teams", "CCAS Real-time", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 98, "rationale": "Delivery confirmed via Teams API; content auto-assembled from current snapshot.", "signals_used": ["Microsoft Teams"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_send_to_coo": {
+    "ai_message": "Sent — the COO has the cross-team rollup, incident timeline, response actions, projected recovery window, and member-impact summary. Flagged as 'priority — read now'. I've also pre-staged the 1-line update you'll want for the 11 AM exec sync.",
+    "suggested_chips": ["Show me the pre-staged exec line", "What should I tell the COO right now?", "Monitor and report back in 20 min"],
+    "data_sources_used": ["Microsoft Teams", "CCAS Real-time", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 98, "rationale": "Delivery confirmed via Teams API; pre-staged line uses standard exec-sync format.", "signals_used": ["Microsoft Teams"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_monitor_20min": {
+    "ai_message": "Acknowledged — I'll re-check the queue health, abandonment, SIP path status, and PinDrop fallback rate in 20 minutes and surface anything that's moved more than 10%. If service level dips below 50% or abandonment crosses 22% before then, I'll page you immediately.",
+    "suggested_chips": ["What should I monitor?", "Show me the current snapshot", "Show me PinDrop recovery status"],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "PinDrop", "SIP Monitoring"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 99, "rationale": "Monitoring task is deterministic; threshold values from standard incident playbook.", "signals_used": ["CCAS Real-time", "Variant WFM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_export_analysis": {
+    "ai_message": "Exported the current analysis as a PDF: incident timeline, KPI snapshot, root-cause tree, response actions, and supporting data sources. File is in your secured downloads folder, retention-tagged for 90 days. Also saved to the incident archive at Incidents > 2026-05-12 > SIP+Promo.",
+    "suggested_chips": ["Share with the team", "Open the file", "Draft an after-action report"],
+    "data_sources_used": ["Document Service", "CCAS Real-time", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 97, "rationale": "Export operation deterministic; archive path standard.", "signals_used": ["Document Service"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_volume_breakdown": {
+    "ai_message": "Volume breakdown for the last hour: auto loans 3.2x baseline (1,407 calls vs ~440), general banking 1.4x (cross-trained reroute), mortgage servicing 1.1x (normal), digital banking 0.9x (normal). 67% of auto-loan callers are existing members checking refinance eligibility; 23% are new applications; 10% are payment/servicing. IVR captured only 22% of intents — typical for this hour is 41%.",
+    "suggested_chips": ["Show me the IVR funnel", "Show me the caller profile", "What are my options?"],
+    "data_sources_used": ["CCAS Real-time", "Dynamics 365 IVR", "Dynamics 365 CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 96, "rationale": "Volume per LoB direct from CCAS; caller-type split direct from CRM joins.", "signals_used": ["CCAS Real-time", "Dynamics 365 CRM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_sip_path_map": {
+    "ai_message": "SIP path status: East AZ-1 (Carrier B) — down since 10:23 AM. East AZ-2 (Carrier A) — operational, handling fail-over but at 88% utilization. Central — operational, normal load. West — operational, available for additional routing. The 12 idle agents are assigned to East AZ-1 primary routing; rerouting them to Central absorbs the load with ~6 pp utilization increase.",
+    "suggested_chips": ["Approve the manual reroute", "Show me PinDrop recovery status", "What is the geographic constraint?"],
+    "data_sources_used": ["SIP Monitoring", "Carrier Intelligence", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 96, "rationale": "SIP path health is direct telemetry; reroute utilization modeled on real-time capacity.", "signals_used": ["SIP Monitoring", "Carrier Intelligence", "Variant WFM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_ivr_funnel": {
+    "ai_message": "IVR funnel for the last hour: 1,847 inbound → 1,440 entered the rate-promo decision branch → 320 self-served (rate quote only) → 1,120 zeroed out to agent. The drop-off concentrates at the side-by-side comparison step — the flow can't show 'your current rate vs promo rate' in audio without a 12-second read that members hang up on. The proposed enhancement (visual SMS link + rate comparison page) would re-capture an estimated 720 of the 1,120 zero-outs.",
+    "suggested_chips": ["What would the IVR enhancement cost?", "Add to next sprint backlog", "Deploy the IVR rate-comparison template"],
+    "data_sources_used": ["Dynamics 365 IVR", "CCAS Real-time", "AI Intent Capture"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 92, "rationale": "Funnel counts are direct telemetry; deflection estimate uses observed completion rates on visual SMS flows in 2 prior pilots.", "signals_used": ["Dynamics 365 IVR", "CCAS Real-time"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_pindrop_status": {
+    "ai_message": "PinDrop recovery status: timeout rate on degraded SIP path is at 34% (peaked at 41% an hour ago). PinDrop ops team is aware — their internal alert fired at 10:31. They've raised the packet-loss tolerance threshold from 4% to 6% on the affected path; effect should ramp in the next 10 minutes. ETA for full service: 25 min, or sooner if the SIP path recovers.",
+    "suggested_chips": ["Why is the PinDrop fallback being triggered?", "Show me the SIP path health map", "What can we do to reduce AHT impact?"],
+    "data_sources_used": ["PinDrop", "SIP Monitoring", "Carrier Intelligence"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 89, "rationale": "Timeout rate direct from PinDrop SDK; ETA based on PinDrop ops change-control telemetry.", "signals_used": ["PinDrop", "SIP Monitoring"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_historical_compare": {
+    "ai_message": "Closest historical comparisons: (1) Jan 15 2026 — single rate promo, no SIP issue, peak queue 132, recovery 50 min. (2) Sep 8 2025 — SIP carrier B outage, no promo, peak queue 89, recovery 70 min. (3) Jul 22 2024 — dual promo + auth degradation, peak queue 187, recovery 95 min, lessons captured in the AAR. Today's incident is most similar to Jul 22 in pattern but worse in volume. Today's projected recovery (45–90 min) lines up with the cohort average.",
+    "suggested_chips": ["What did we learn from Jul 22?", "Show me the Jul 22 AAR", "Draft an after-action report when this resolves"],
+    "data_sources_used": ["Historical Incident Patterns", "CCAS Real-time", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 88, "rationale": "Cohort matched on event-type fingerprint (volume + capacity + cause); pattern similarity 0.91 against Jul 22.", "signals_used": ["Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_what_if_sip_30min": {
+    "ai_message": "If the SIP fiber cut recovers in 30 minutes (favorable scenario): queue clears within 50 min total, abandonment lands at ~14% (down from 18.4%), no cascade to mortgage servicing, OT spend ~$2,300 (within plan), member-experience impact contained. Recommended action: hold current response, don't add the IVR template yet, save cross-trained capacity. If SIP doesn't recover by 30-min mark, escalate to Plan B.",
+    "suggested_chips": ["What if we enable callback?", "Show me historical incidents like this", "Monitor and report back in 20 min"],
+    "data_sources_used": ["Variant WFM", "Historical Incident Patterns", "Carrier Intelligence"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 90, "rationale": "Recovery model uses last 9 SIP-recovery events; cascade prevention threshold from cross-team data.", "signals_used": ["Variant WFM", "Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_what_if_callback": {
+    "ai_message": "If we enable callback for waits > 5 minutes: queue 'effective' surface drops from 214 to ~130 (callback members exit the live queue), perceived wait drops to 3:40, abandonment expected to drop to 11–13%. Members get a callback within 25–40 min. Risk: if recovery slips past 90 min, callback queue compounds. Recommend enabling for 60 min initially, then reassessing.",
+    "suggested_chips": ["Enable callback now", "Show me the rate promo comparison data", "What are my options?"],
+    "data_sources_used": ["Variant WFM", "CCAS Real-time", "Historical Incident Patterns"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 91, "rationale": "Callback impact modeled against 6 prior callback-deployment events; deflection variance ±4%.", "signals_used": ["Variant WFM", "Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_geographic_constraint": {
+    "ai_message": "Four of the 12 idle agents are routed through East AZ-1 because their assigned PSAP locality (for emergency-call routing) is in the East region. Federal credit-union compliance requires their primary path to terminate in-region for E911 location lookup. Cross-region failover requires a supervisor override and a 30-min compliance window. Variant has the override draft pre-staged.",
+    "suggested_chips": ["Approve the manual reroute", "Show me the SIP path health map", "What did we learn?"],
+    "data_sources_used": ["Variant WFM", "Compliance Knowledge Base", "SIP Monitoring"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 94, "rationale": "PSAP routing constraint is a contractual / regulatory rule; documented in compliance KB.", "signals_used": ["Compliance Knowledge Base", "Variant WFM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_what_we_learned": {
+    "ai_message": "Three durable lessons from today: (1) The Marketing pre-notification gap is a recurring failure mode — formalize the 72-hour rule. (2) PinDrop's packet-loss tolerance is a hidden coupling — get the tolerance threshold raised by default. (3) The cross-source correlation that surfaced the dual root cause within 12 min would have taken 45+ min in the old single-source view — without it, you'd be looking at a 3-team cascade right now. The reasoning chain itself is the headline lesson.",
+    "suggested_chips": ["Draft an after-action report", "Generate the full after-action report", "How do we prevent the Marketing notification gap?"],
+    "data_sources_used": ["CCAS Real-time", "Historical Incident Patterns", "Marketing Cloud", "PinDrop"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 92, "rationale": "Lessons synthesized from 9 prior dual-root-cause incidents; cross-source correlation impact measured against same.", "signals_used": ["Historical Incident Patterns", "CCAS Real-time"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_general_banking_impact": {
+    "ai_message": "General banking has dropped from 86% service level to 71% over the last 25 minutes, driven by Priya's reroute of 8 cross-trained agents to auto loans. The team is currently at 12 agents covering normal-baseline volume — under-staffed by ~4 effective agents. Abandonment is at 7% (up from 3%). If the reroute continues another 30 minutes, expected SL ~63% which crosses the LoB-impact threshold.",
+    "suggested_chips": ["Model the impact on general banking", "What are my options to stabilize both teams?", "Show me the team-level breakdown"],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 93, "rationale": "General banking SL + reroute cause direct telemetry; trajectory model uses last 30 days same-DOW.", "signals_used": ["CCAS Real-time", "Variant WFM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_journey_audit": {
+    "ai_message": "Queued a journey audit for mortgage payoff inquiries — scope: trace the 21% repeat-contact members across 4 weeks, compare their statement experience pre- and post-Q1 reformat, identify the friction step. Assigned to the CX research team; ETA 3 weeks. Anchored to the trend signal so the audit reports against a known baseline.",
+    "suggested_chips": ["Show me the mortgage repeat-contact pattern", "What is the member experience impact?", "Show me escrow statement complaints"],
+    "data_sources_used": ["Dynamics 365 CRM", "Journey Analytics", "CCAS Transcripts"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 88, "rationale": "Audit scoping is standard CX research workflow; sample size sufficient for cause-attribution.", "signals_used": ["Journey Analytics", "Dynamics 365 CRM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_escrow_complaints": {
+    "ai_message": "Escrow-statement complaints over the last 90 days: 312 total, up from 214 in the prior 90 days. The top three themes from CCAS transcript analysis: 'I can't find my payment in the new format' (38%), 'the new layout is confusing' (24%), 'my taxes/insurance section looks wrong' (18%). Concentrated in mortgage-servicing payoff and refinance inquiries. The pattern aligns with the Q1 reformat date.",
+    "suggested_chips": ["Queue a journey audit", "Show me the mortgage repeat-contact pattern", "What is the member experience impact?"],
+    "data_sources_used": ["CCAS Transcripts", "Dynamics 365 CRM", "Journey Analytics"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 89, "rationale": "Complaint counts direct from CRM; theme extraction from transcript NLP at precision 0.86.", "signals_used": ["CCAS Transcripts", "Dynamics 365 CRM"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_what_without_correlation": {
+    "ai_message": "Without cross-source correlation, you'd be looking at the SIP carrier B fiber cut as your primary cause and chasing the volume spike as a separate phenomenon. Mean time to root-cause identification in single-source mode for a dual-cause incident like this is ~45 minutes — by then, the 3-team cascade would have triggered. Today's 12-minute identification kept the cascade from firing. That's the headline operational value of the correlation layer.",
+    "suggested_chips": ["What did we learn?", "Show me historical incidents like this", "Generate the full after-action report"],
+    "data_sources_used": ["Historical Incident Patterns", "CCAS Real-time", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 91, "rationale": "Comparison anchored to 9 single-source-era similar incidents; mean MTTR 45 min ±8.", "signals_used": ["Historical Incident Patterns"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "nfcu_shared_action_confirmed": {
+    "ai_message": "Action confirmed — the system has dispatched the change request, logged it in the audit trail, and notified the relevant downstream teams. Variant will measure impact in the next 10 minutes and surface the delta against expectations. If actual impact deviates from model by >15%, I'll page you.",
+    "suggested_chips": ["Show me the impact measurement", "Monitor and report back in 20 min", "What's next?"],
+    "data_sources_used": ["Variant WFM", "CCAS Real-time", "Change Management System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": { "score": 97, "rationale": "Action dispatch is deterministic; impact-measurement window standard.", "signals_used": ["Change Management System"], "threshold": 70, "model_version": "intra-corr-v1.0", "validated_at": "2026-05-12T14:38:24Z", "escalation": { "triggered": false } }
+  },
+
+  "intraday_sup_explain_agent_state": {
+    "ai_message": "The agent's current state is 'On Call' — assigned to the auto loans queue on a degraded SIP path. They've been in-call for 8:42, which is above today's floor average of 11:20 because they took a longer rate-comparison conversation with a 12-year member. No reassignment needed; routing is correct. Once they wrap, Variant will re-evaluate routing priority since the SIP working-path agents are saturated.",
+    "suggested_chips": [
+      "Show me agent utilization right now",
+      "Why is agent AHT at 11.3 min today?",
+      "Show me which agents are idle right now"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Direct CCAS state + assignment telemetry.",
+      "signals_used": ["CCAS Real-time", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_agent_aht_today": {
+    "ai_message": "AHT is at 11.3 min against an 8.4 baseline — a +35% inflation. The drivers split roughly: rate-promotion calls take ~2:00 longer because IVR can't pre-resolve the side-by-side comparison (67% of inbound intent today), and PinDrop fallback to manual KBA on the degraded SIP path adds another ~2:30 per affected call (34% of inbound). Both effects are floor-wide on the impacted routing paths — not an individual-agent issue.",
+    "suggested_chips": [
+      "Why is agent wrap-up time longer today?",
+      "What can we do to reduce AHT impact?",
+      "Show me handle-time detail by intent"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Dynamics 365 IVR", "PinDrop"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 93,
+      "rationale": "AHT delta decomposed against intent-tagged transcripts + PinDrop fallback flag.",
+      "signals_used": ["CCAS Real-time", "Dynamics 365 IVR", "PinDrop"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_agent_calls_handled": {
+    "ai_message": "The agent has handled 27 calls so far against a typical 32 by this hour — that's 5 below pace. The shortfall lines up with the AHT inflation (+35% per call), not an agent productivity issue. At today's call mix and AHT, expected throughput is 26–29 calls; the agent is operating in the upper part of that band. Don't read this as a performance signal — it's a system-load signal.",
+    "suggested_chips": [
+      "Why is agent AHT at 11.3 min today?",
+      "Show me agent utilization right now",
+      "What can we do to reduce AHT impact?"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Throughput model with AHT covariate; matched against trailing 30-day same-hour distributions.",
+      "signals_used": ["CCAS Real-time", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_agent_adherence": {
+    "ai_message": "Schedule adherence is at 94% against a 96% target — within tolerance and not a flag. The 2-point gap is from a 12-minute unscheduled break earlier in the shift, logged in Variant. No coaching needed. If you want, I can show the adherence trend across the team — Torres and Chen are the two to keep an eye on this pay period.",
+    "suggested_chips": [
+      "Show me adherence by team this shift",
+      "Show me overtime by agent",
+      "Show me which agents are idle right now"
+    ],
+    "data_sources_used": ["Variant WFM"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Direct Variant adherence telemetry.",
+      "signals_used": ["Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_agent_quality": {
+    "ai_message": "The quality score is 88/100 over the trailing 7 days — up 3 points from baseline. The lift is from two areas: compliance script adherence (+5 on the BSA disclosure step) and member-effort phrasing on rate-comparison calls. Sentiment dipped this week due to AHT pressure, but the agent's de-escalation handling held the score up. Worth flagging in their next 1:1 as a strength.",
+    "suggested_chips": [
+      "Show me quality scores by team this week",
+      "Show me sentiment by team",
+      "Schedule a recognition note"
+    ],
+    "data_sources_used": ["Quality Monitoring", "Sentiment Analysis", "CCAS Transcripts"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 90,
+      "rationale": "Composite QM score with 3 sub-dimension lift; sample-weighted across 14 monitored calls.",
+      "signals_used": ["Quality Monitoring", "Sentiment Analysis"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_agent_wrap_up": {
+    "ai_message": "Wrap-up is averaging 38 seconds today against a 30-second baseline — an 8-second inflation per call. The drivers: PinDrop manual-KBA fallback requires a longer authentication note (~5s), and rate-promo calls require an extra CRM disposition tag for the campaign (~4s). Both are mechanical, not productivity issues. Net impact across the shift: about 4 minutes of total wrap time.",
+    "suggested_chips": [
+      "Show me handle-time detail by intent",
+      "Why is agent AHT at 11.3 min today?",
+      "Show me agent utilization right now"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Dynamics 365 CRM", "PinDrop"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Wrap timestamps + disposition-code distribution split across PinDrop fallback flag.",
+      "signals_used": ["CCAS Real-time", "Dynamics 365 CRM", "PinDrop"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_t1_greeting": {
+    "ai_message": "Good morning, Priya. Your intraday dashboard is showing two active incidents. A fiber cut on the primary East carrier path dropped SIP connectivity at 10:23 AM, and a rate promotion email hit 45,000 members at 7:15 AM without Contact Center pre-notification. These events are compounding: your auto loans queue is at 3.2x volume with 30% reduced voice capacity. Want me to walk you through the correlated impact?",
+    "suggested_chips": [
+      "Walk me through the SIP impact",
+      "Show me the volume breakdown",
+      "What is the member experience impact?",
+      "What are my options?"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Marketing Cloud", "Carrier Intelligence", "SIP Monitoring", "Dynamics 365 IVR"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Two grounding sources confirm each incident root. Carrier Intelligence reports the fiber cut event; Marketing Cloud send-time aligns with CCAS volume spike within 8 minutes.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_t2_walkthrough": {
+    "ai_message": "The fiber cut at 10:23 AM affected your primary carrier path serving East region AZ-1. SIP connectivity dropped for ~30% of inbound voice capacity. Calls on the degraded path are experiencing intermittent drops and audio quality issues. PinDrop authentication is timing out for 34% of calls on this route, forcing agents into manual KBA, which adds 2:30 to handle time. Variant WFM shows 12 agents idle because their assigned routing paths are down. The working paths are overloaded because the rate promotion volume is funneling through 70% of normal capacity.",
+    "suggested_chips": [
+      "What about the rate promotion impact?",
+      "Can we reroute agents from the down paths?",
+      "What is PinDrop fallback doing to handle time?",
+      "Show me member impact"
+    ],
+    "data_sources_used": ["CCAS Routing", "Carrier Intelligence", "SIP Monitoring", "PinDrop", "Variant WFM"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 92,
+      "rationale": "SIP path health map is direct telemetry; PinDrop timeout rate is per-call-leg SDK metric; agent idle count is authoritative from Variant WFM.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "PinDrop", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:34:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_t3_correlate": {
+    "ai_message": "Marketing Cloud sent a 2.9% auto loan rate promotion to 45,000 members at 7:15 AM. No advance notification to Contact Center. Call volume hit 3.2x normal within 90 minutes. CRM cross-reference shows 67% of callers are existing members checking refinance eligibility, not new applicants. The IVR cannot support side-by-side rate comparison, so only 22% of rate intents are contained — the other 78% transfer to agents, where AHT runs 11:20 versus your normal 8:42. Combined with the SIP degradation, you are running 3.2x volume through 70% capacity.",
+    "suggested_chips": [
+      "What are my options?",
+      "Can we update the IVR for rate queries?",
+      "Who should I escalate the pre-notification gap to?",
+      "Show me the combined impact"
+    ],
+    "data_sources_used": ["CCAS Real-time", "CCAS Transcripts", "Marketing Cloud", "Dynamics 365 CRM", "Dynamics 365 IVR", "Variant WFM"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 90,
+      "rationale": "Marketing Cloud campaign metadata + CCAS volume timeline give direct causal evidence. CRM caller-type split is a count, not an inference. IVR containment rate is direct telemetry.",
+      "signals_used": ["Marketing Cloud", "CCAS Real-time", "Dynamics 365 CRM", "Dynamics 365 IVR", "AI Intent Capture"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:02Z",
+      "feature_contributions": [
+        { "feature": "marketing_cloud.send_time_alignment", "value": "8 min lag vs. volume spike", "weight": 0.30, "source": "Marketing Cloud" },
+        { "feature": "ccas.volume_delta_4h", "value": "+320% vs. trailing baseline", "weight": 0.28, "source": "CCAS Real-time" },
+        { "feature": "crm.caller_type_split", "value": "67% existing members, refinance eligibility", "weight": 0.22, "source": "Dynamics 365 CRM" },
+        { "feature": "ivr.containment_drop", "value": "41% → 22% on rate intent", "weight": 0.20, "source": "Dynamics 365 IVR" }
+      ],
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_t4_options": {
+    "ai_message": "I modeled three scenarios based on the dual incident. Plan A: reroute the 12 idle agents from down SIP paths to working paths, enable callback for waits over 5 minutes — service level recovers to 71% within 25 minutes, zero incremental cost. Plan B: Plan A plus activate 6 cross-trained agents from general banking — projects to 78%, but drops general banking SL to 74%. Plan C: Plan B plus deploy the pre-built IVR rate-comparison template — projects to 82% and reduces agent volume ~16%. Carrier recovery ETA is 45–90 minutes. If SIP recovers in the lower range, Plan A may be sufficient.",
+    "suggested_chips": [
+      "Execute Plan C",
+      "Show me the general banking impact",
+      "What if SIP recovers in 30 minutes?",
+      "Model a fourth scenario"
+    ],
+    "data_sources_used": ["CCAS Forecasting", "Variant WFM", "Dynamics 365 IVR Template Library", "Historical Incident Patterns", "Carrier Intelligence"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 88,
+      "rationale": "Scenario projections use last-12-incidents recovery curves with WFM-specific agent skill matrix. ±4 pp variance band on SL projection.",
+      "signals_used": ["CCAS Forecasting", "Variant WFM", "Historical Incident Patterns"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:41:55Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_t5_execute": {
+    "ai_message": "Executing Plan C. (1) 12 idle agents rerouted to working SIP paths and assigned to auto loans — impact in ~8 minutes. (2) 6 cross-trained agents activated from general banking; monitoring general banking SL with alert threshold 72%. (3) Callback enabled for waits over 5 minutes; historically reduces abandonment 34%. (4) Temporary IVR rate-comparison flow deployed; members hear current rate and promo rate before transfer. I will alert you if SL does not cross 78% within 25 minutes or if general banking breaches threshold.",
+    "suggested_chips": [
+      "Monitor and report back in 20 min",
+      "Show me PinDrop recovery status",
+      "Draft an after-action report when this resolves",
+      "What should I tell leadership right now?"
+    ],
+    "data_sources_used": ["CCAS Routing Engine", "Variant WFM", "Dynamics 365 IVR Flow Manager", "Agent Skill Profiles", "Dynamics 365 CRM"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 93,
+      "rationale": "All four actions execute against authoritative routing and WFM endpoints with deterministic outcomes; impact ETAs are historical means with low variance.",
+      "signals_used": ["CCAS Routing", "Variant WFM", "Dynamics 365 IVR Flow Manager"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:46:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_t6_brief": {
+    "ai_message": "Here is a real-time executive briefing for Marcus. Two concurrent incidents: infrastructure (SIP fiber cut, carrier-side, ETA 45–90 min) and volume (unplanned rate promotion, 3.2x). Combined impact: auto loans 54% SL at the worst point, three lines of business affected, 214 members in queue at peak. Response: agent rerouting, cross-training activation, callback enablement, IVR enhancement. Projected recovery to 78% within 25 min; full recovery to 82%+ depends on SIP restoration. Member impact: PinDrop degraded on 34% of calls, extended handle times. No data loss; Fabric feed intact via secondary path. Recommendation: no director-level escalation required unless SIP recovery exceeds 90-minute estimate.",
+    "suggested_chips": [
+      "Send this to Marcus",
+      "Generate the full after-action report",
+      "Show me historical incidents like this",
+      "What did we learn?"
+    ],
+    "data_sources_used": ["CCAS", "Variant WFM", "Dynamics 365 CRM", "Dynamics 365 IVR", "PinDrop", "Voice Bio", "Carrier Intelligence", "IT Ops", "Marketing Cloud", "Microsoft Fabric"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Briefing aggregates source-of-truth telemetry across all 10 systems with no inference; recovery projection has ±4 pp band.",
+      "signals_used": ["CCAS", "Variant WFM", "Dynamics 365 CRM", "Dynamics 365 IVR", "PinDrop", "Voice Bio", "Carrier Intelligence", "IT Ops", "Marketing Cloud", "Microsoft Fabric"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:50:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_t7_historical": {
+    "ai_message": "I found 3 comparable dual incidents in the last 18 months from your Genesys historical data and Fabric archives. (1) August 2025: carrier outage + back-to-school lending promotion. Duration 2.5 h. SL low 61%. Recovery took 45 min — WFM had no real-time integration with carrier status. (2) March 2025: Azure AZ maintenance + payroll spike. Duration 4 h. SL low 58%. Root cause ID took 90 min — SIP monitoring and CCAS metrics in separate portals. (3) November 2024: Genesys patch + Black Friday volume. Duration 6 h. SL low 52%. No automated recovery available. Pattern: cross-source root causes take 3–5x longer without correlated intelligence. Today, root cause was identified in 12 minutes and recovery deployed in 18.",
+    "suggested_chips": [
+      "What would have happened today without cross-source correlation?",
+      "Generate an ROI estimate",
+      "Export this analysis",
+      "How do we prevent the marketing notification gap?"
+    ],
+    "data_sources_used": ["Genesys Historical (Fabric archive)", "CCAS Historical", "Carrier Intelligence (historical)", "IT Ops Incident Logs"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Historical match query against Fabric archive; pattern similarity scored 0.86–0.94 on incident features.",
+      "signals_used": ["Genesys Historical", "CCAS Historical", "Carrier Intelligence", "IT Ops Incident Logs"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:53:09Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_queue": {
+    "ai_message": "Your queue is 3.2x normal baseline — 74 calls against a typical 14 for this hour. Two compounding drivers: the SIP fiber cut on Carrier B at 10:23 AM dropped 30% of inbound voice capacity, while Marketing Cloud's 7:15 AM rate promo to 45,000 members drove a volume surge that CRM cross-references as 67% existing-member refinance inquiries. PinDrop is also timing out on 34% of degraded-route calls, forcing KBA fallback and slowing dequeue rate. Variant WFM staffed for a 78% baseline — neither driver was forecasted.",
+    "suggested_chips": [
+      "Show me which agents are idle right now",
+      "What's inflating average handle time?",
+      "What are my options?",
+      "Walk me through the SIP impact"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Carrier Intelligence", "Marketing Cloud", "PinDrop", "Variant WFM", "Dynamics 365 CRM"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 94,
+      "rationale": "All five contributing factors verified against authoritative telemetry; CRM caller-type split is a direct count.",
+      "signals_used": ["CCAS Real-time", "Carrier Intelligence", "Marketing Cloud", "PinDrop", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_service_level": {
+    "ai_message": "Service level is at 54% against your 80/20 target — a 28-point gap. The mechanics: voice capacity is down 30% from the SIP cut, while volume is up 3.2x from the unscheduled rate promo. That ratio alone takes you below target. The compounding factor is PinDrop timing out on 34% of degraded-route calls, adding 2:30 to AHT through manual KBA — slower dequeue rate at higher arrival rate. 12 of your agents are idle because their assigned routing paths are dropped; they're not contributing to throughput.",
+    "suggested_chips": [
+      "Can we reroute the idle agents?",
+      "What's inflating average handle time?",
+      "What are my options?",
+      "Show me the SIP path health map"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Carrier Intelligence", "SIP Monitoring", "PinDrop"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Service level math is direct CCAS+Variant telemetry; capacity loss and authentication-fallback contributions are verified against SIP monitor and PinDrop SDK.",
+      "signals_used": ["CCAS Real-time", "Variant WFM", "SIP Monitoring", "PinDrop"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:39:12Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_wait_time": {
+    "ai_message": "Average wait time is 12:47 — about 5.9x your 2:10 baseline. The arithmetic: 70% of normal voice capacity carrying 3.2x normal arrival rate. Compounding the queue depth, abandonment is at 18.4%, and CCAS plus IVR re-attempt tracking confirms 34% of today's volume is duplicate-contact retries from members who abandoned earlier — each retry re-enters the queue and waits again. The IVR can't deflect the rate-comparison intent (its current top intent at 67% of inbound), so almost everything is funneling to a live agent.",
+    "suggested_chips": [
+      "Why is abandonment at 18.4%?",
+      "Why did IVR containment drop to 22%?",
+      "Can we update the IVR for rate queries?",
+      "What are my options?"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Carrier Intelligence", "Dynamics 365 IVR", "AI Intent Capture"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 92,
+      "rationale": "Wait-time arithmetic falls out directly from queue depth + service rate. Retry loop percentage is conservative — ANI-dedup confirms duplicate-contact share.",
+      "signals_used": ["CCAS Real-time", "Dynamics 365 IVR", "AI Intent Capture"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:39:48Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_handle_time": {
+    "ai_message": "Average handle time is 11:20 — about 2:38 above your 8:42 baseline. Two clean drivers: (1) PinDrop authentication is timing out on 34% of calls on the degraded SIP route. Agents fall back to manual KBA, which adds about 2:30 per call. (2) 67% of today's callers are asking for rate comparisons — the IVR template doesn't render current rate next to promo rate, so agents are doing it conversationally with calculator-assisted math. CRM cross-reference confirms these are existing members in refinance-eligibility mode, not new applicants.",
+    "suggested_chips": [
+      "Why is the PinDrop fallback being triggered?",
+      "Can we update the IVR for rate queries?",
+      "What are my options?",
+      "Show me member impact"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Dynamics 365 CRM", "PinDrop", "Voice Bio", "Dynamics 365 IVR"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Both drivers measurable: PinDrop SDK reports per-call timeout state; CRM has the caller-type split.",
+      "signals_used": ["PinDrop", "Voice Bio", "Dynamics 365 CRM", "CCAS Real-time"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:40:21Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_abandonment": {
+    "ai_message": "Abandonment is at 18.4% versus your 6.2% baseline — nearly tripled. The mechanics: 12:47 average wait is past most members' tolerance, especially for what most callers experience as a quotable, member-self-serve question. Worse, abandoners are retrying. CCAS plus IVR ANI-dedup confirms 34% of today's volume is duplicate contacts from the same numbers — each retry re-enters the queue and re-waits, feeding queue depth in a loop that Variant WFM did not model.",
+    "suggested_chips": [
+      "Can we enable callback mode?",
+      "What's driving the 12:47 wait time?",
+      "Why did IVR containment drop to 22%?",
+      "What are my options?"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Dynamics 365 IVR", "AI Intent Capture"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Abandonment rate is direct CCAS telemetry. The retry-loop percentage is ANI-dedup against the inbound stream — conservative.",
+      "signals_used": ["CCAS Real-time", "Dynamics 365 IVR"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:40:54Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_occupancy": {
+    "ai_message": "Agent occupancy is at 97% — past the 95% operational ceiling. At this level coaches can't pull agents for after-call work or scheduled breaks, and adherence starts slipping. The cause is straightforward: Variant WFM forecasted for a 78% baseline, but the schedule is now absorbing 3.2x volume through 70% of voice capacity. 12 agents are idle on the down SIP paths — rerouting them to working paths would relieve about 8 points of occupancy and is approved for one-click activation under Plan A.",
+    "suggested_chips": [
+      "Reroute the 12 idle agents now",
+      "What are my options?",
+      "Show me the cross-trained agents",
+      "What if we enable callback?"
+    ],
+    "data_sources_used": ["Variant WFM", "CCAS Real-time", "CCAS Routing"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 93,
+      "rationale": "Occupancy is direct telemetry blend; relief projection draws on the WFM agent-skill matrix and historical reroute outcomes.",
+      "signals_used": ["Variant WFM", "CCAS Real-time"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:41:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_ivr_containment": {
+    "ai_message": "IVR containment is at 22% — down from your 41% baseline. The drop is concentrated in rate-comparison intent. The current IVR flow can quote a promo rate but can't show the member's current rate alongside it, which is what 67% of today's callers actually want. The AI intent classifier confirms 'compare my current rate' is today's top unresolved self-service intent at 0.91 precision. There's a pre-built template in your IVR Flow Manager library that handles side-by-side comparison — deploying it would lift containment an estimated 12-16 percentage points.",
+    "suggested_chips": [
+      "Deploy the IVR rate-comparison template",
+      "Why is rate comparison the top intent today?",
+      "What are my options?",
+      "Show me the IVR funnel"
+    ],
+    "data_sources_used": ["Dynamics 365 IVR", "AI Intent Capture", "Dynamics 365 IVR Flow Manager"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 89,
+      "rationale": "Containment delta is direct telemetry; uplift projection from January promo precedent at ±3 pp variance.",
+      "signals_used": ["Dynamics 365 IVR", "AI Intent Capture", "Historical Incident Patterns"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:41:42Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_sup_explain_top_intent": {
+    "ai_message": "Rate Comparison is today's #1 intent, displacing 'Application Status' as the usual top intent. Direct attribution: Marketing Cloud sent a 2.9% auto loan rate promo to 45,000 members at 7:15 AM. CRM cross-reference shows 67% of inbound callers are existing members checking refinance eligibility against the promo rate — not new applicants. The AI intent classifier is reading 'compare my current rate' as the dominant unresolved self-service intent, and the IVR can't handle it natively. That's the structural reason the queue isn't draining: the dominant question isn't IVR-deflectable.",
+    "suggested_chips": [
+      "Deploy the IVR rate-comparison template",
+      "What about the rate promotion impact?",
+      "Show me the caller profile",
+      "Who should I escalate the pre-notification gap to?"
+    ],
+    "data_sources_used": ["Marketing Cloud", "Dynamics 365 CRM", "CCAS Transcripts", "AI Intent Capture", "Dynamics 365 IVR"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 93,
+      "rationale": "Intent classifier precision 0.93 on rate-related intents; Marketing Cloud send time and volume spike align within 8 minutes.",
+      "signals_used": ["Marketing Cloud", "Dynamics 365 CRM", "AI Intent Capture", "CCAS Transcripts"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:42:08Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

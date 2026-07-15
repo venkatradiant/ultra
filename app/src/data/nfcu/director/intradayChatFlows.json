@@ -1,0 +1,478 @@
+{
+  "intraday_dir_explain_agent_pool_oncall": {
+    "ai_message": "142 agents are actively on call against a 118 baseline — +24 above normal. Auto loans absorbed 18 of the increase (cross-trained reroute from general banking), mortgage servicing absorbed 4 (planned overflow), and digital banking absorbed 2 (callback overflow). The pool is operating at 97% occupancy floor-wide, which is the ceiling — any further volume goes straight to queue, not to agents.",
+    "suggested_chips": [
+      "Why are 12 agents idle on routing failure?",
+      "How many cross-trained agents do I still have available?",
+      "What are my options to stabilize both teams?"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM"],
+    "capability": "Cross-Team Telemetry",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Direct CCAS state telemetry + Variant routing assignments.",
+      "signals_used": ["CCAS Real-time", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_agent_pool_idle_routing": {
+    "ai_message": "12 agents are idle because their assigned routing paths are down — they're SIP-pinned to the failed East carrier path and Variant hasn't re-pathed them yet. Each of them is fully available, just unreachable from inbound. If you approve a manual re-route, we can get 8 of the 12 on alternate paths within ~6 minutes; the other 4 require a supervisor override (geographic compliance constraint). This is the single biggest recoverable lever right now.",
+    "suggested_chips": [
+      "Approve the manual reroute",
+      "What is the geographic constraint?",
+      "Show root cause correlation"
+    ],
+    "data_sources_used": ["Variant WFM", "SIP Monitoring", "Carrier Intelligence"],
+    "capability": "Cross-Team Telemetry",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 97,
+      "rationale": "Variant routing state + SIP path mapping; manual reroute path tested against last 9 similar incidents.",
+      "signals_used": ["Variant WFM", "SIP Monitoring", "Carrier Intelligence"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_agent_pool_aht": {
+    "ai_message": "Floor AHT is 10.8 minutes against an 8.2 baseline — +31% inflation across the contact center. Two drivers stacked: rate-promo calls take ~2:00 longer because IVR can't pre-resolve side-by-side comparison (67% of inbound intent), and PinDrop manual-KBA fallback on the degraded SIP path adds ~2:30 per affected call (34% of inbound). On a 142-agent floor, that's ~85 minutes of inflated handle time per minute of wall clock — equivalent to 9 effective agents lost.",
+    "suggested_chips": [
+      "What are my options to reduce AHT impact?",
+      "Why is the floor adherence slipping?",
+      "Show me historical incidents like this"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Dynamics 365 IVR", "PinDrop"],
+    "capability": "Cross-Team Telemetry",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "AHT delta decomposed via intent-tagged transcripts + PinDrop fallback flag; agent-equivalent translation uses average throughput.",
+      "signals_used": ["CCAS Real-time", "Dynamics 365 IVR", "PinDrop"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_agent_pool_adherence": {
+    "ai_message": "Floor adherence is at 91% against a 94% target. The drop is concentrated in agents pulled from general banking to auto loans during the cascade response — they ran longer between scheduled breaks than Variant expected. Not a process violation; it's a side effect of the manual reroute. Variant will absorb the schedule drift on the next plan iteration in 15 minutes.",
+    "suggested_chips": [
+      "Show me overtime by team",
+      "Why are 12 agents idle on routing failure?",
+      "What are my options?"
+    ],
+    "data_sources_used": ["Variant WFM"],
+    "capability": "Cross-Team Telemetry",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 93,
+      "rationale": "Direct Variant adherence telemetry; reroute attribution from manual-override audit log.",
+      "signals_used": ["Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_agent_pool_cross_trained": {
+    "ai_message": "8 cross-trained agents remain available against a 22 baseline. 14 of the original 22 are already deployed: 8 to auto loans (Priya's reroute), 4 to mortgage servicing (planned overflow), 2 holding callback queue overflow. The remaining 8 are your last lever for an additional surge response without breaching general banking SL further. If you want them deployed, I can model the impact on general banking before activation.",
+    "suggested_chips": [
+      "Model the impact on general banking",
+      "Deploy 4 of the remaining 8",
+      "What are my options to stabilize both teams?"
+    ],
+    "data_sources_used": ["Variant WFM", "HR System"],
+    "capability": "Cross-Team Telemetry",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Direct Variant availability + cross-skill matrix; deployment counts from routing audit log.",
+      "signals_used": ["Variant WFM", "HR System"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_agent_pool_overtime": {
+    "ai_message": "OT today is at 64 hours against a typical 8 — a surge-response number, not a planning miss. Cost-to-date for today's OT is ~$2,180 against a Q2 budget of $412K (current quarter trajectory: 138%, this incident adds ~0.5 pts). The OT is largely concentrated in auto loans cross-trained agents covering the volume spike. If recovery ETA holds at 45–90 min, today's OT contribution to the quarter is non-material — but if the incident extends past 4 hours, we'd want to revisit.",
+    "suggested_chips": [
+      "Show me OT cost projection",
+      "What is my budget exposure?",
+      "Compare to last quarter's OT-heavy events"
+    ],
+    "data_sources_used": ["Variant WFM", "HR System", "Finance System"],
+    "capability": "Cross-Team Telemetry",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 92,
+      "rationale": "Hours from Variant; cost rate from HR; budget context from Finance roll-up. Trajectory ±2 pp on prior windows.",
+      "signals_used": ["Variant WFM", "HR System", "Finance System"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_t1_greeting": {
+    "ai_message": "Morning, Marcus. Your intraday dashboard is showing two active incidents impacting three lines of business. A fiber cut on the primary East carrier path dropped SIP connectivity at 10:23 AM, compounded by a Marketing-led rate promo that hit 45,000 members at 7:15 AM with no Contact Center pre-notification. Aggregate service level is 74% and declining. Priya has WFM response underway. Want me to walk you through the cross-team impact?",
+    "suggested_chips": [
+      "Walk me through the SIP impact",
+      "Show me the volume breakdown",
+      "What is the cross-team cascade risk?",
+      "What are my options?"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Marketing Cloud", "Carrier Intelligence", "SIP Monitoring", "Microsoft Fabric"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Aggregate SL is direct CCAS+Variant+Fabric telemetry; incident detection is dual-sourced via Carrier Intel and Marketing Cloud send-time alignment.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time", "Microsoft Fabric"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_t2_walkthrough": {
+    "ai_message": "The fiber cut affected East region AZ-1 and dropped ~30% of inbound voice capacity. Auto loans, mortgage servicing, and general banking are all on the degraded path. PinDrop is timing out on 34% of those calls — agents fall back to manual KBA, adding 2:30 to handle time across teams. Variant WFM shows 12 agents idle. Without intervention, the cascade reaches a 3-team simultaneous degradation within 35 minutes. Priya has rerouting in progress on her side.",
+    "suggested_chips": [
+      "What about the rate promotion impact?",
+      "Show me the team-level breakdown",
+      "What is the cross-team cascade risk?",
+      "Show me member impact"
+    ],
+    "data_sources_used": ["CCAS Routing", "Carrier Intelligence", "SIP Monitoring", "PinDrop", "Variant WFM"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 92,
+      "rationale": "SIP path health is direct telemetry; cascade projection uses historical 3-team incident curves with ±6 pp threshold variance.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "PinDrop", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:34:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_t3_correlate": {
+    "ai_message": "Marketing Cloud sent a 2.9% auto loan rate promo to 45,000 members at 7:15 AM. No pre-notification to Contact Center — the second time this quarter. Volume hit 3.2x in 90 minutes. CRM cross-reference: 67% are existing members checking refinance eligibility. IVR self-service can't handle side-by-side rate comparison, so containment dropped from 41% to 22%; the rest cascade to live agents. Combined with the SIP degradation, you are running 3.2x volume through 70% capacity. That's the root of the queue spike across all three lines of business.",
+    "suggested_chips": [
+      "What are my options?",
+      "Show me the Marketing pre-notification gap",
+      "Who should I escalate the pre-notification gap to?",
+      "Show me the combined impact"
+    ],
+    "data_sources_used": ["CCAS Real-time", "CCAS Transcripts", "Marketing Cloud", "Dynamics 365 CRM", "Dynamics 365 IVR", "Variant WFM"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 90,
+      "rationale": "Marketing Cloud send-time + CCAS volume timeline give direct causal evidence; CRM caller-type split is a count; IVR containment delta is direct telemetry.",
+      "signals_used": ["Marketing Cloud", "CCAS Real-time", "Dynamics 365 CRM", "Dynamics 365 IVR", "AI Intent Capture"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:02Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_t4_options": {
+    "ai_message": "Three options modeled against the dual incident. Plan A: reroute the 12 idle agents to working paths, enable callback for waits over 5 min — aggregate SL recovers to 71% within 25 min, zero incremental cost, no cross-team risk. Plan B: Plan A plus 6 cross-trained agents from general banking — projects to 78%, but general banking SL drops to 74%; recoverable if SIP restores within 60 min. Plan C: Plan B plus deploy the pre-built IVR rate-comparison template — projects to 82% aggregate and reduces agent volume ~16%. If SIP restores at the lower end of the 45-90 min carrier ETA, Plan A is sufficient. Priya is ready to execute on your call.",
+    "suggested_chips": [
+      "Execute Plan C",
+      "Show me the general banking risk in detail",
+      "What if SIP recovers in 30 minutes?",
+      "Escalate the Marketing pre-notification gap"
+    ],
+    "data_sources_used": ["CCAS Forecasting", "Variant WFM", "Dynamics 365 IVR Template Library", "Historical Incident Patterns", "Carrier Intelligence"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 88,
+      "rationale": "Scenario projections use last-12-incidents recovery curves with WFM-specific agent skill matrix. ±4 pp variance on SL projections.",
+      "signals_used": ["CCAS Forecasting", "Variant WFM", "Historical Incident Patterns"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:41:55Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_t5_execute": {
+    "ai_message": "Plan C approved and executing. Priya has the four actions in flight on her end: 12 agents rerouted, 6 cross-trained agents activated, callback enabled, IVR rate-comparison flow deployed. I'm monitoring general banking SL with alert threshold 72% and will alert you if aggregate SL doesn't cross 78% within 25 minutes. Recovery projection looks on track.",
+    "suggested_chips": [
+      "Monitor and report back in 20 min",
+      "Show me PinDrop recovery status",
+      "Draft an after-action report",
+      "What should I tell the COO right now?"
+    ],
+    "data_sources_used": ["CCAS Routing Engine", "Variant WFM", "Dynamics 365 IVR Flow Manager", "Agent Skill Profiles", "Dynamics 365 CRM"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 93,
+      "rationale": "All four actions execute against authoritative routing and WFM endpoints with deterministic outcomes; impact ETAs are historical means with low variance.",
+      "signals_used": ["CCAS Routing", "Variant WFM", "Dynamics 365 IVR Flow Manager"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:46:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_t6_brief": {
+    "ai_message": "Here is the COO-ready briefing. Two concurrent incidents: infrastructure (SIP fiber cut, carrier-side, ETA 45-90 min) and volume (unplanned Marketing-led rate promotion, 3.2x). Combined impact: three lines of business at degraded service level, 214 members in queue at peak, aggregate SL down to 68%. Response: agent rerouting, cross-team activation, callback enablement, IVR enhancement — all in flight. Projected aggregate SL recovery to 78% within 25 minutes; full recovery to 82%+ depends on SIP restoration. Member impact: PinDrop degraded on 34% of calls. No data loss; Fabric feed intact via secondary path. Process gap to fix: Marketing pre-notification rule — second occurrence this quarter, recommend escalating to CMO.",
+    "suggested_chips": [
+      "Send this to the COO",
+      "Generate the full after-action report",
+      "Show me historical incidents like this",
+      "Draft the escalation to the CMO"
+    ],
+    "data_sources_used": ["CCAS", "Variant WFM", "Dynamics 365 CRM", "Dynamics 365 IVR", "PinDrop", "Voice Bio", "Carrier Intelligence", "IT Ops", "Marketing Cloud", "Microsoft Fabric"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Briefing aggregates source-of-truth telemetry across all 10 systems with no inference; recovery projection has ±4 pp band.",
+      "signals_used": ["CCAS", "Variant WFM", "Dynamics 365 CRM", "Dynamics 365 IVR", "PinDrop", "Voice Bio", "Carrier Intelligence", "IT Ops", "Marketing Cloud", "Microsoft Fabric"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:50:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_t7_historical": {
+    "ai_message": "Three comparable dual incidents in the last 18 months from your Genesys archives and Fabric data lake. (1) August 2025: carrier outage + back-to-school promo. Duration 2.5 h. SL low 61%. Recovery took 45 min because WFM had no real-time integration with carrier status. (2) March 2025: Azure AZ maintenance + payroll spike. Duration 4 h. SL low 58%. Root cause ID took 90 min — SIP monitoring and CCAS were in separate portals. (3) November 2024: Genesys patch + Black Friday. Duration 6 h. SL low 52%. No automated recovery available. Pattern: cross-source root causes historically take 3-5x longer without correlated intelligence. Today: root cause identified in 12 minutes, recovery deployed in 18. ROI on the Radiant intelligence layer is in the recovery delta.",
+    "suggested_chips": [
+      "Generate an ROI estimate",
+      "Export this analysis",
+      "How do we prevent the Marketing notification gap?",
+      "What did we learn for next time?"
+    ],
+    "data_sources_used": ["Genesys Historical (Fabric archive)", "CCAS Historical", "Carrier Intelligence (historical)", "IT Ops Incident Logs", "Microsoft Fabric"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Historical match query against Fabric archive; pattern similarity scored 0.86–0.94 on incident features.",
+      "signals_used": ["Genesys Historical", "CCAS Historical", "Carrier Intelligence", "IT Ops Incident Logs", "Microsoft Fabric"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:53:09Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_agg_sl": {
+    "ai_message": "Aggregate service level is at 68% — 14 points below your 82% Fabric-historical baseline for this hour. The breakdown across your four teams: auto loans at 54% (Priya's team, bearing both incidents); general banking at 71% and declining (drained by her 6-agent cross-training pull); mortgage servicing at 76% and approaching threshold; member onboarding holding at 88%. Variant WFM projects 3-team simultaneous degradation within 35 minutes at current trajectory unless we change posture. Plan C projects a 14-point aggregate recovery within 25 minutes.",
+    "suggested_chips": [
+      "Which lines of business are impacted and why?",
+      "What WFM response actions are running?",
+      "What are my options?",
+      "Show me the cross-team cascade risk"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Microsoft Fabric", "Historical Incident Patterns"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Aggregate SL is direct CCAS+Variant blend; the 14-point gap against Fabric baseline is a precise difference, not a model output.",
+      "signals_used": ["CCAS Real-time", "Variant WFM", "Microsoft Fabric"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:38:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_active_incidents": {
+    "ai_message": "Two concurrent incidents, both detected within the last 45 minutes. Incident 1 — SIP fiber cut on the primary East carrier path, confirmed via Carrier Intelligence at 10:23 AM, 45–90 minute carrier ETA. Incident 2 — Marketing Cloud sent a 2.9% auto loan rate promotion to 45,000 members at 7:15 AM without Contact Center pre-notification, the second pre-notification gap this quarter. Neither incident alone would breach service targets; combined they're producing 18.4% abandonment in auto loans and starting a cross-team cascade.",
+    "suggested_chips": [
+      "Explain the dual root cause",
+      "Which lines of business are impacted and why?",
+      "Who should I escalate the pre-notification gap to?",
+      "What are my options?"
+    ],
+    "data_sources_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time", "IT Ops"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Both incidents have dual-source confirmation; pre-notification gap is verifiable against Marketing Cloud campaign metadata.",
+      "signals_used": ["Carrier Intelligence", "Marketing Cloud", "CCAS Real-time", "IT Ops"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:39:12Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_lobs_impacted": {
+    "ai_message": "Three of seven lines of business are currently impacted. Auto loans (Priya's team) is the primary impact site at 54% SL — bearing both the SIP capacity loss and the rate-promo volume surge. General banking is at 71% and declining because Priya pulled 6 cross-trained agents over to auto loans. Mortgage servicing is at 76% from an unrelated extended-leave staffing gap, now approaching threshold under the cascading pressure. Member onboarding, digital banking, wealth management, and small business are healthy — they weren't on the degraded SIP path and aren't being drained for agent reallocation.",
+    "suggested_chips": [
+      "Show me the cross-team cascade risk",
+      "What WFM response actions are running?",
+      "What are my options?",
+      "Walk me through both active incidents"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Dynamics 365 CRM", "Dynamics 365 IVR"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Queue-to-LOB mapping is direct CCAS routing telemetry; cross-team reallocation event is in the Variant WFM event log.",
+      "signals_used": ["CCAS Real-time", "Variant WFM", "CCAS Routing"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:39:48Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_queue_total": {
+    "ai_message": "Total queue is at 213 across all teams — 180% above your hour-of-day Fabric baseline of 76. Auto loans accounts for 74 calls (3.2x its own baseline), general banking has 52 (up from a normal 18 after the cross-training pull), mortgage servicing at 41 from the staffing gap, the rest distributed across the four healthy teams. Variant WFM did not forecast either the fiber cut or the rate promo, so the enterprise schedule is undermatched against the actual arrival rate.",
+    "suggested_chips": [
+      "Why is the queue so deep right now?",
+      "What WFM response actions are running?",
+      "Show me the cross-team cascade risk",
+      "What are my options?"
+    ],
+    "data_sources_used": ["CCAS Real-time", "Variant WFM", "Microsoft Fabric"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Queue depth per team is direct CCAS telemetry; baseline pull is from Fabric historical for matching hour-of-week.",
+      "signals_used": ["CCAS Real-time", "Variant WFM", "Microsoft Fabric"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:40:21Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_member_impact": {
+    "ai_message": "Member impact score is HIGH — composite of queue wait duration, abandonment delta, sentiment shift, and authentication-degraded call percentage. CRM identifies 67% of impacted callers as existing members (high-LTV refinance candidates), not new applicants — which makes the experience cost disproportionate to the call volume. PinDrop fallback is putting 34% of calls into manual KBA, which historically correlates with a 0.4-point CSAT drop on this caller segment. Voice Bio enrollment verification is also impacted on the affected route.",
+    "suggested_chips": [
+      "Walk me through both active incidents",
+      "Why is abandonment at 18.4%?",
+      "What are my options?",
+      "Draft a member-impact briefing"
+    ],
+    "data_sources_used": ["Dynamics 365 CRM", "Sentiment Analysis", "PinDrop", "Voice Bio", "CCAS Real-time"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 87,
+      "rationale": "Composite metric uses four direct telemetry inputs; CSAT-drop correlation is a 60-day historical estimate with moderate variance.",
+      "signals_used": ["Dynamics 365 CRM", "Sentiment Analysis", "PinDrop", "Voice Bio"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:40:54Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_root_cause": {
+    "ai_message": "Dual root cause, both confirmed within 12 minutes of detection. Cause 1 — SIP fiber cut on Carrier B's primary East path. Carrier Intelligence feed plus our SIP monitor reconciled within 4 minutes, both indicate physical fiber damage, ETA 45–90 minutes carrier-side. Cause 2 — Marketing Cloud's 7:15 AM rate promo to 45,000 members. Send-time aligns with our CCAS volume spike within 8 minutes; historical pattern match against the January promo at 0.94 similarity. Neither cause alone would breach service targets; the combination is producing 18.4% abandonment in auto loans and a cross-team cascade.",
+    "suggested_chips": [
+      "Walk me through both active incidents",
+      "How confident is the 45–90 min recovery ETA?",
+      "Who should I escalate the pre-notification gap to?",
+      "What are my options?"
+    ],
+    "data_sources_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time", "Historical Incident Patterns"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Both root causes are dual-source confirmed; historical pattern match precision 0.94 on the January promo analog.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:41:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_eta_recovery": {
+    "ai_message": "Recovery ETA is 45–90 minutes — that's the carrier's own estimate, not ours. Our internal patterns library shows the August 2025 fiber event resolved in 65 minutes, the March 2025 in 110 — historical ±15 minute variance on fiber cuts at this scope. If you approve Plan C now, projected SL recovery to 78% in 25 minutes is independent of SIP restoration. Full 82%+ recovery is gated on the carrier. The 78% confidence on the band itself reflects an external dependency we don't control — the carrier could refine the estimate, in either direction.",
+    "suggested_chips": [
+      "What if SIP recovers in 30 minutes?",
+      "What are my options?",
+      "Show me the historical incident comparison",
+      "Walk me through both active incidents"
+    ],
+    "data_sources_used": ["Carrier Intelligence", "IT Ops", "Historical Incident Patterns"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 78,
+      "rationale": "Carrier ETA is an external estimate; historical fiber-cut recovery times provide a ±15-minute calibration band.",
+      "signals_used": ["Carrier Intelligence", "Historical Incident Patterns"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:41:42Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "intraday_dir_explain_wfm_response": {
+    "ai_message": "WFM response is in progress. Priya rerouted 8 of her 12 idle agents from down-SIP paths to working paths at T+18 — direct event log entry in Variant WFM. She has 6 cross-trained agents activated from general banking pending your decision on Plan B/C scope. Callback enablement and the IVR rate-comparison template deployment are 1-click ready in CCAS Routing and IVR Flow Manager respectively. Variant WFM is monitoring general banking's service level with an alert threshold at 72%. No actions taken so far require executive approval; Plan C does.",
+    "suggested_chips": [
+      "Approve Plan C",
+      "Show me the general banking risk in detail",
+      "What are my options?",
+      "Draft an escalation to the SI partner"
+    ],
+    "data_sources_used": ["Variant WFM", "CCAS Routing", "Dynamics 365 IVR Flow Manager", "Agent Skill Profiles"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["intraday"],
+    "confidence": {
+      "score": 95,
+      "rationale": "All response actions and their status come from authoritative event logs; threshold monitor is an active Variant WFM rule.",
+      "signals_used": ["Variant WFM", "CCAS Routing", "Dynamics 365 IVR Flow Manager"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:42:08Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

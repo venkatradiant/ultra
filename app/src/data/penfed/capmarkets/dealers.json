@@ -1,0 +1,50 @@
+{
+  "as_of": "2026-05-28",
+  "trust": "PNFED 2024-A",
+  "concentration": {
+    "share_of_pool_balance": 0.22,
+    "share_of_delinquency_volume": 0.61
+  },
+  "dealers": [
+    {
+      "id": "DLR-001",
+      "name": "Metro Auto Group",
+      "loans_in_pool": 847,
+      "delinquency_rate": 0.047,
+      "financial_health_score": 58,
+      "prior_health_score": 72,
+      "health_trend": "declining",
+      "geographic_concentration": "Mid-Atlantic",
+      "flagged_by_credit_feed": true,
+      "in_2025b_pipeline": true
+    },
+    {
+      "id": "DLR-002",
+      "name": "National Auto Finance",
+      "loans_in_pool": 612,
+      "delinquency_rate": 0.039,
+      "financial_health_score": 61,
+      "prior_health_score": 70,
+      "health_trend": "declining",
+      "geographic_concentration": "Southeast",
+      "flagged_by_credit_feed": true,
+      "floor_plan_status": "declining",
+      "in_2025b_pipeline": true
+    },
+    {
+      "id": "DLR-003",
+      "name": "Premier Motors Network",
+      "loans_in_pool": 534,
+      "delinquency_rate": 0.038,
+      "financial_health_score": 69,
+      "prior_health_score": 70,
+      "health_trend": "stable",
+      "geographic_concentration": "Rust Belt (rising unemployment)",
+      "flagged_by_credit_feed": false,
+      "in_2025b_pipeline": true
+    }
+  ],
+  "pool_baseline": {
+    "non_flagged_dealer_dq_rate": 0.011
+  }
+}

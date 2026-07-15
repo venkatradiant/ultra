@@ -1,0 +1,20 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Navy Federal globe mark: circle with latitude + longitude grid, center dot -->
+  <circle cx="32" cy="32" r="30" fill="#003087"/>
+  <!-- Outer ring border -->
+  <circle cx="32" cy="32" r="27" fill="none" stroke="white" stroke-width="1.8"/>
+  <!-- Equator (horizontal center line) -->
+  <line x1="5" y1="32" x2="59" y2="32" stroke="white" stroke-width="1.8"/>
+  <!-- Latitude line upper -->
+  <path d="M11 20 Q32 17 53 20" stroke="white" stroke-width="1.4" fill="none"/>
+  <!-- Latitude line lower -->
+  <path d="M11 44 Q32 47 53 44" stroke="white" stroke-width="1.4" fill="none"/>
+  <!-- Prime meridian (vertical center) -->
+  <line x1="32" y1="5" x2="32" y2="59" stroke="white" stroke-width="1.8"/>
+  <!-- Longitude curve left -->
+  <path d="M32 5 Q20 18 20 32 Q20 46 32 59" stroke="white" stroke-width="1.4" fill="none"/>
+  <!-- Longitude curve right -->
+  <path d="M32 5 Q44 18 44 32 Q44 46 32 59" stroke="white" stroke-width="1.4" fill="none"/>
+  <!-- Center dot -->
+  <circle cx="32" cy="32" r="3.5" fill="white"/>
+</svg>

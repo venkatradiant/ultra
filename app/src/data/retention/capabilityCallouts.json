@@ -1,0 +1,26 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI monitors churn signals, engagement decay, and NPS trends overnight — surfacing retention risks before they escalate.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and receive a sourced answer drawn simultaneously from Einstein, Data Cloud, Snowflake, and Genesys.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Predictive Intelligence",
+    "description": "The AI forecasts churn probability by segment, scores risk, and models the impact of targeted retention outreach — so you can act before members leave.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Automated Action",
+    "description": "From the same conversation, the AI generates retention briefs, builds targeted outreach lists in AgentForce, and schedules re-engagement campaigns.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

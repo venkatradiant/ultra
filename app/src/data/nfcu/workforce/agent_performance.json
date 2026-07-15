@@ -1,0 +1,70 @@
+{
+  "compliance_timeline": [
+    {"date": "Apr 10", "verification_completion_rate": 96, "baseline": 96},
+    {"date": "Apr 11", "verification_completion_rate": 97, "baseline": 96},
+    {"date": "Apr 12", "verification_completion_rate": 95, "baseline": 96},
+    {"date": "Apr 13", "verification_completion_rate": 96, "baseline": 96},
+    {"date": "Apr 14", "verification_completion_rate": 95, "baseline": 96},
+    {"date": "Apr 15", "verification_completion_rate": 96, "baseline": 96},
+    {"date": "Apr 16", "verification_completion_rate": 97, "baseline": 96},
+    {"date": "Apr 17 (script change)", "verification_completion_rate": 81, "baseline": 96},
+    {"date": "Apr 18", "verification_completion_rate": 78, "baseline": 96},
+    {"date": "Apr 19", "verification_completion_rate": 76, "baseline": 96},
+    {"date": "Apr 20", "verification_completion_rate": 74, "baseline": 96},
+    {"date": "Apr 21", "verification_completion_rate": 77, "baseline": 96},
+    {"date": "Apr 22", "verification_completion_rate": 75, "baseline": 96},
+    {"date": "Apr 23", "verification_completion_rate": 77, "baseline": 96}
+  ],
+  "quality_scores_by_queue": [
+    {"queue": "Digital Support", "score": 89, "target": 85, "trend": "stable"},
+    {"queue": "Member Onboarding", "score": 86, "target": 85, "trend": "stable"},
+    {"queue": "General Banking", "score": 84, "target": 85, "trend": "declining"},
+    {"queue": "Mortgage Servicing", "score": 79, "target": 85, "trend": "declining"},
+    {"queue": "Auto Loans", "score": 76, "target": 85, "trend": "declining"}
+  ],
+  "top_performers_at_risk": [
+    {
+      "name": "Agent Torres",
+      "queue": "Mortgage Servicing",
+      "quality_30d_ago": 94,
+      "quality_now": 86,
+      "aht_30d_ago": "7:12",
+      "aht_now": "9:45",
+      "positive_sentiment_30d_ago": "84%",
+      "positive_sentiment_now": "71%",
+      "risk": "high"
+    },
+    {
+      "name": "Agent Williams",
+      "queue": "Mortgage Servicing",
+      "quality_30d_ago": 91,
+      "quality_now": 83,
+      "aht_30d_ago": "7:48",
+      "aht_now": "9:12",
+      "positive_sentiment_30d_ago": "81%",
+      "positive_sentiment_now": "68%",
+      "risk": "medium"
+    },
+    {
+      "name": "Agent Chen",
+      "queue": "Mortgage Servicing",
+      "quality_30d_ago": 89,
+      "quality_now": 82,
+      "aht_30d_ago": "8:05",
+      "aht_now": "9:30",
+      "positive_sentiment_30d_ago": "79%",
+      "positive_sentiment_now": "67%",
+      "risk": "medium"
+    }
+  ],
+  "fcr_trend": [
+    {"week": "W1 Mar", "bill_pay_fcr": 82, "overall_fcr": 71},
+    {"week": "W2 Mar", "bill_pay_fcr": 81, "overall_fcr": 70},
+    {"week": "W3 Mar", "bill_pay_fcr": 80, "overall_fcr": 70},
+    {"week": "W4 Mar", "bill_pay_fcr": 81, "overall_fcr": 71},
+    {"week": "W1 Apr", "bill_pay_fcr": 79, "overall_fcr": 70},
+    {"week": "W2 Apr (IT issue Apr 14)", "bill_pay_fcr": 67, "overall_fcr": 68},
+    {"week": "W3 Apr", "bill_pay_fcr": 58, "overall_fcr": 68},
+    {"week": "W4 Apr (now)", "bill_pay_fcr": 54, "overall_fcr": 68}
+  ]
+}

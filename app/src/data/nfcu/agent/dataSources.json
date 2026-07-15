@@ -1,0 +1,56 @@
+[
+  {
+    "id": "ds-agt-01",
+    "name": "Dynamics 365 Contact Center",
+    "status": "connected",
+    "description": "Agent desktop and live-call context: member identity, reason for contact, routing, and interaction history. The surface Agent-Assist augments in real time during the call.",
+    "icon": "headphones",
+    "lastSync": "2026-07-01T08:00:00",
+    "recordCount": 1800000
+  },
+  {
+    "id": "ds-agt-02",
+    "name": "Radiant Agent-Assist",
+    "status": "connected",
+    "description": "The copilot layer that reads across systems on the live call, pre-diagnoses the issue, drafts compliant resolutions, and keeps an AI-vs-human action log so quality and compliance are protected.",
+    "icon": "brain",
+    "lastSync": "2026-07-01T08:00:00",
+    "recordCount": 46000
+  },
+  {
+    "id": "ds-agt-03",
+    "name": "Core Banking",
+    "status": "connected",
+    "description": "Real-time balances, account flags, and posted history. Supplies the balance-at-draw and account-state facts behind the root-cause explanation.",
+    "icon": "database",
+    "lastSync": "2026-07-01T08:00:00",
+    "recordCount": 1200000
+  },
+  {
+    "id": "ds-agt-04",
+    "name": "Payments Engine",
+    "status": "connected",
+    "description": "Declined payments, early salary credits, hold states, and retry queues. Powers the decline diagnosis and the automated payment retry after the routing fix.",
+    "icon": "cog",
+    "lastSync": "2026-07-01T07:45:00",
+    "recordCount": 340000
+  },
+  {
+    "id": "ds-agt-05",
+    "name": "SOP/MOP Knowledge Base",
+    "status": "connected",
+    "description": "Standard and method procedures for deposits and account changes, plus plain-language script guidance. Grounds both the explanation and the compliant resolution sequence.",
+    "icon": "shield",
+    "lastSync": "2026-06-30T22:00:00",
+    "recordCount": 12400
+  },
+  {
+    "id": "ds-agt-06",
+    "name": "CRM / Member Records",
+    "status": "connected",
+    "description": "Member profile, product holdings, prior contacts, and the disposition note. Links this call to Elena's broader relationship and captures the compliance-linked after-call record.",
+    "icon": "users",
+    "lastSync": "2026-07-01T06:30:00",
+    "recordCount": 1200000
+  }
+]

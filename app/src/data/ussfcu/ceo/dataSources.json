@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ds-ceo-01",
+    "name": "Jack Henry Symitar (Core Banking)",
+    "status": "connected",
+    "description": "System of record for members, deposits, and loan servicing. Historical data is snapshot-based; the intelligence layer sits over it rather than replacing it.",
+    "icon": "database",
+    "lastSync": "2026-07-08T05:58:00",
+    "recordCount": 2600000
+  },
+  {
+    "id": "ds-ceo-02",
+    "name": "Thought Machine (Core, migration)",
+    "status": "partial",
+    "description": "The target core. Migration underway. The trust layer bridges Symitar and Thought Machine during cutover so reporting continuity holds.",
+    "icon": "cpu",
+    "lastSync": "2026-07-08T05:55:00",
+    "recordCount": null
+  },
+  {
+    "id": "ds-ceo-03",
+    "name": "MeridianLink",
+    "status": "connected",
+    "description": "Loan origination and consumer lending pipeline. Source of the 90-day pipeline that frames the liquidity signal.",
+    "icon": "users",
+    "lastSync": "2026-07-08T06:01:00",
+    "recordCount": 412000
+  },
+  {
+    "id": "ds-ceo-04",
+    "name": "Greenplum on Tanzu",
+    "status": "connected",
+    "description": "Analytics data warehouse. Where transformations occur between source systems and Tableau, and where ETL integrity is monitored.",
+    "icon": "database",
+    "lastSync": "2026-07-08T06:02:00",
+    "recordCount": 12400000
+  },
+  {
+    "id": "ds-ceo-05",
+    "name": "Tableau",
+    "status": "connected",
+    "description": "Current BI and reporting layer. Visualizes figures but carries no native lineage back to source — the gap the trust layer closes.",
+    "icon": "monitor",
+    "lastSync": "2026-07-08T06:03:00",
+    "recordCount": 1900
+  },
+  {
+    "id": "ds-ceo-06",
+    "name": "Barafin",
+    "status": "connected",
+    "description": "Third-party fraud analytics. The feed whose late load the trust layer flagged this morning, holding one dependent figure for reconciliation.",
+    "icon": "shield",
+    "lastSync": "2026-07-08T06:04:00",
+    "recordCount": 34000
+  },
+  {
+    "id": "ds-ceo-07",
+    "name": "General Ledger & Board Reporting",
+    "status": "connected",
+    "description": "Aggregated financials, capital and net worth, and the figures that reach the board and the NCUA 5300 Call Report.",
+    "icon": "trending-up",
+    "lastSync": "2026-07-08T05:57:00",
+    "recordCount": 740000
+  }
+]

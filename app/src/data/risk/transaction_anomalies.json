@@ -1,0 +1,83 @@
+{
+  "summary": {
+    "total_anomalies": 14,
+    "total_accounts_involved": 23,
+    "total_suspicious_amount": "$2.4M",
+    "sars_filed": 3,
+    "sars_pending": 2,
+    "scan_timestamp": "2026-04-07T05:00:00Z"
+  },
+  "anomalies": [
+    {
+      "id": "ANM-001",
+      "pattern": "BSA Structuring — Cash Deposits",
+      "description": "Repeated cash deposits $9,000–$9,900 across multiple branches within 7-day windows",
+      "accounts_involved": 4,
+      "amount_range": "$9,000–$9,900 per transaction",
+      "total_amount": "$187,400",
+      "risk_score": 92,
+      "status": "SAR filed",
+      "detection_source": "Transaction Monitor + UiPath"
+    },
+    {
+      "id": "ANM-002",
+      "pattern": "Dormant Account Wire — High-Risk Jurisdiction",
+      "description": "Outbound wires from 18+ month dormant accounts to Cayman Islands and Cyprus",
+      "accounts_involved": 2,
+      "amount_range": "$42,100–$52,100",
+      "total_amount": "$94,200",
+      "risk_score": 88,
+      "status": "Under investigation",
+      "detection_source": "Transaction Monitor + Fraud Feed"
+    },
+    {
+      "id": "ANM-003",
+      "pattern": "Velocity Spike — ACH + Wire Mix",
+      "description": "Transaction velocity 3–5x normal across 8 accounts in 48-hour window",
+      "accounts_involved": 8,
+      "amount_range": "$80K–$220K per account",
+      "total_amount": "$1,200,000",
+      "risk_score": 74,
+      "status": "Monitoring",
+      "detection_source": "Transaction Monitor"
+    },
+    {
+      "id": "ANM-004",
+      "pattern": "Round-Dollar Wire Transfers",
+      "description": "Series of round-dollar outbound wires ($25,000, $50,000) from 3 accounts opened within 30 days",
+      "accounts_involved": 3,
+      "amount_range": "$25,000–$50,000",
+      "total_amount": "$225,000",
+      "risk_score": 71,
+      "status": "SAR pending",
+      "detection_source": "Transaction Monitor"
+    },
+    {
+      "id": "ANM-005",
+      "pattern": "Cross-Border ACH — Unusual Geography",
+      "description": "ACH credits from international shell company names to 4 member accounts",
+      "accounts_involved": 4,
+      "amount_range": "$15,000–$35,000",
+      "total_amount": "$112,000",
+      "risk_score": 68,
+      "status": "Monitoring",
+      "detection_source": "Fraud Feed"
+    },
+    {
+      "id": "ANM-006",
+      "pattern": "ATM Cash-Out Spike",
+      "description": "2 accounts with daily ATM withdrawals at maximum limit for 5 consecutive days",
+      "accounts_involved": 2,
+      "amount_range": "$500–$1,000 per withdrawal",
+      "total_amount": "$9,800",
+      "risk_score": 62,
+      "status": "Monitoring",
+      "detection_source": "Transaction Monitor"
+    }
+  ],
+  "by_risk_tier": [
+    { "tier": "Critical (85–100)", "count": 2, "accounts": 6, "amount": "$281,600" },
+    { "tier": "High (70–84)", "count": 2, "accounts": 11, "amount": "$1,425,000" },
+    { "tier": "Medium (50–69)", "count": 2, "accounts": 6, "amount": "$121,800" }
+  ]
+}

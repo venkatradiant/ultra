@@ -1,0 +1,378 @@
+{
+  "ussfcu_cfo_greeting": {
+    "ai_message": "Good morning, Sylvia. Before your audit committee sync, 3 governance signals are slowing the audit. The most urgent: your allowance for loan losses does not reconcile across the GL, the Thought Machine ledger, and Lending's origination system. Three systems, three different numbers. Your team has spent 22 hours tracing it by hand this week. Want me to show you where the numbers break?",
+    "suggested_chips": [
+      "Show me where the numbers break",
+      "Why don't the CFO and Lending figures match?",
+      "How long until the audit closes?"
+    ],
+    "data_sources_used": ["General Ledger", "Thought Machine Ledger", "Lending Origination", "Audit / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_cfo_signal_1_loanloss": {
+    "ai_message": "Signal 1 — Loan-Loss Reconciliation Break. The allowance for loan losses on your board report is sourced from the GL at $14.62M. The Thought Machine ledger shows $14.41M, and Lending's origination system shows $14.88M. Three sources, three numbers, no lineage connecting them. Your audit team has spent 22 hours this week tracing the $460K spread by hand.",
+    "suggested_chips": [
+      "Show me where the numbers break",
+      "Show me the data flow that produced this",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Thought Machine Ledger", "Lending Origination"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "reconciliation"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_cfo_signal_2_parity": {
+    "ai_message": "Signal 2 — CFO-Lending Parity Gap. The portfolio balance you present to the board is $1.42B from the GL. Lending reports $1.40B from origination. The 1.4% gap is a timing and definition mismatch, and it has recurred in 7 of the last 9 months. Because no governed number reconciles them, leadership has been deciding from two versions of the truth.",
+    "suggested_chips": [
+      "Show me the CFO and Lending parity gap",
+      "Reconcile this to one governed number",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Lending Origination", "Thought Machine Ledger", "Snowflake"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "reconciliation"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_cfo_signal_3_lineage": {
+    "ai_message": "Signal 3 — Lineage Gap to Tableau. 47 figures on your board and regulatory dashboards have no documented lineage back to the core or ledger. Auditors flagged this as a BCBS 239-style traceability gap. There are 4 undocumented transformation points between the Jack Henry core and Tableau, and your team spends an average of 3.5 hours reconstructing each figure when an auditor asks.",
+    "suggested_chips": [
+      "Show me the data flow that produced this",
+      "Which board figures have no lineage?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Tableau", "Snowflake", "General Ledger", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "dataFlowLineage"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_cfo_turn_show_break": {
+    "user_query": "Show me where the numbers break",
+    "ai_response": "Here is the single reconciliation you have been doing by hand. Your board report shows an allowance of $14.62M, sourced from the GL. The Thought Machine ledger shows $14.41M because two charge-offs posted after the GL extract. Lending's origination system shows $14.88M because it still counts three loans that were sold last week. The governed number, reconciled across all three, is $14.49M. The $460K spread is the difference your auditors have been chasing for two weeks.",
+    "suggested_chips": [
+      "Why are these systems out of sync?",
+      "Show me the data flow that produced this",
+      "How much time is this costing us?",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Thought Machine Ledger", "Lending Origination"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_cfo_systems_out_of_sync": {
+    "user_query": "Why are these systems out of sync?",
+    "ai_response": "It is not a calculation error in any one system — it is timing and definition. The GL extract is a point-in-time snapshot, so the two charge-offs that posted to the Thought Machine ledger after the extract never made it into the board figure. Lending's origination system has its own refresh cadence and still carries three loans that were sold last week. Each system is internally correct; what is missing is a governed layer that reconciles them to one number on one schedule.",
+    "suggested_chips": [
+      "Show me the data flow that produced this",
+      "Reconcile the loan-loss figure now",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Thought Machine Ledger", "Lending Origination", "Snowflake"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_cfo_time_cost": {
+    "user_query": "How much time is this costing us?",
+    "ai_response": "Month-to-date, your finance team has logged 164 hours of manual reconciliation, and this audit cycle is on track to close in roughly 31 days at the current pace. The cost is not in finding errors — your numbers are correct. It is in proving how they were derived: an average of 3.5 hours per figure every time an auditor asks for lineage, across 47 undocumented figures. Governing the data flow would cut recurring reconciliation from 164 hours a month to an estimated 38.",
+    "suggested_chips": [
+      "What would full lineage do for the audit?",
+      "Show me the data flow that produced this",
+      "Next signal"
+    ],
+    "data_sources_used": ["Finance Close Tracker", "Audit / GRC System", "Snowflake"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_cfo_turn_data_flow": {
+    "user_query": "Show me the data flow that produced this",
+    "ai_response": "This is the flow your audit is missing. A loan-loss figure starts as transactions in the Jack Henry core, posts to the Thought Machine ledger, aggregates into the GL, lands in Snowflake, and renders in Tableau. There are 4 transformation points along that path and none of them are documented. Right now, 47 figures on your board and regulatory dashboards have no lineage back to the core. Your team spends an average of 3.5 hours reconstructing each one when an auditor asks. That is where the audit is bleeding time: not in finding errors, but in proving how correct numbers were derived.",
+    "suggested_chips": [
+      "What would full lineage do for the audit?",
+      "Which figures are highest risk?",
+      "Fix the worst gap first",
+      "Next signal"
+    ],
+    "data_sources_used": ["Jack Henry Core", "Thought Machine Ledger", "General Ledger", "Snowflake", "Tableau", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dataFlowLineage"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_cfo_highest_risk_figures": {
+    "user_query": "Which figures are highest risk?",
+    "ai_response": "Of the 47 untraced figures, six carry the highest audit risk because they feed both the board report and the NCUA 5300: Allowance for Loan Losses, Net Portfolio Balance, and Reserve Coverage Ratio are high-risk; Net Interest Margin, Charge-Off Ratio, and Net Worth Ratio are medium-risk. Each appears on a regulatory dashboard with no documented path back to the Jack Henry core. These are the figures an examiner is most likely to ask you to prove on demand.",
+    "suggested_chips": [
+      "Fix the worst gap first",
+      "What would full lineage do for the audit?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Tableau", "Snowflake", "General Ledger", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dataFlowLineage"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_cfo_fix_worst_gap": {
+    "user_query": "Fix the worst gap first",
+    "ai_response": "The highest-leverage fix is instrumenting the transformation between the GL and Snowflake — it sits on the path of 31 of the 47 untraced figures, including the allowance for loan losses. Documenting that single transformation point closes the lineage gap for the figures most likely to be examined and removes the manual reconstruction your team does every time the loan-loss number is questioned. I can scope this as track one of a remediation plan.",
+    "suggested_chips": [
+      "Draft the data-governance remediation plan",
+      "What would full lineage do for the audit?",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Snowflake", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dataFlowLineage"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_cfo_turn_full_lineage": {
+    "user_query": "What would full lineage do for the audit?",
+    "ai_response": "I modeled it against your audit history. At today's pace, with manual reconstruction, this audit closes in roughly 31 days. If the 47 lineage gaps are closed and the three core reconciliations are governed, projected close drops to 12 days — a 61% reduction — and recurring manual reconciliation falls from 164 hours a month to an estimated 38. The same governed lineage also de-risks your next NCUA 5300 filing, because every reported figure can be traced to source on demand. The budget question clarifying in July becomes easier to defend when the audit cost itself drops.",
+    "suggested_chips": [
+      "Reconcile the loan-loss figure now",
+      "Show me the CFO and Lending parity gap",
+      "What does remediation require?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Finance Close Tracker", "Snowflake", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_cfo_audit_timeline": {
+    "user_query": "How long until the audit closes?",
+    "ai_response": "At today's pace, with figures reconciled by hand, this audit closes in roughly 31 days. The bottleneck is not open findings — it is reconstruction time. If the 47 lineage gaps are closed and the three core reconciliations are governed, projected close drops to 12 days, a 61% reduction. I can show you exactly which gaps drive the timeline, or draft the remediation plan that gets you there.",
+    "suggested_chips": [
+      "What would full lineage do for the audit?",
+      "Draft the data-governance remediation plan",
+      "Show me where the numbers break"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Finance Close Tracker", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_cfo_reconcile_now": {
+    "user_query": "Reconcile the loan-loss figure now",
+    "ai_response": "Done. Reconciling across core, ledger, and origination: the GL's $14.62M, the ledger's $14.41M, and Lending's $14.88M resolve to a single governed allowance of $14.49M once the two post-extract charge-offs and the three sold loans are accounted for. I have logged the reconciliation with its full source trace so it can drop straight into the audit evidence package. Want me to generate that package?",
+    "suggested_chips": [
+      "Generate the audit evidence package",
+      "Show me the CFO and Lending parity gap",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Thought Machine Ledger", "Lending Origination", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_cfo_remediation_requires": {
+    "user_query": "What does remediation require?",
+    "ai_response": "Three tracks. Lineage: instrument the 4 transformation points between the Jack Henry core and Tableau so every reported figure is traceable to source. Parity: establish one governed reconciliation between the GL, the Thought Machine ledger, and Lending origination, refreshed on a single schedule. Access: route the right governed data to the right role so information reaches the people who need it. None of the three requires replacing a system — they add a governed intelligence layer across the systems you already run.",
+    "suggested_chips": [
+      "Draft the data-governance remediation plan",
+      "What would full lineage do for the audit?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Snowflake", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dataFlowLineage"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_cfo_turn_parity_gap": {
+    "user_query": "Show me the CFO and Lending parity gap",
+    "ai_response": "Second signal: you and Lending are presenting different portfolio balances to leadership. Your board figure is $1.42B from the GL. Lending reports $1.40B from origination. The 1.4% gap is not an error in either system — it is a timing and definition mismatch: Lending counts funded-but-unbooked loans that the GL has not yet posted, and the two refresh on different schedules. This has happened in 7 of the last 9 months. Because no governed number reconciles them, leadership has been making capital and pricing decisions from two versions of the truth.",
+    "suggested_chips": [
+      "Reconcile this to one governed number",
+      "Who has been seeing which figure?",
+      "Generate the audit evidence package",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Lending Origination", "Thought Machine Ledger", "Snowflake"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_cfo_reconcile_parity": {
+    "user_query": "Reconcile this to one governed number",
+    "ai_response": "Reconciled. Starting from Lending's $1.40B, adding the funded-but-unbooked loans the GL has not yet posted and aligning both to a single refresh timestamp resolves to a governed portfolio balance of $1.41B. The remaining difference from your $1.42B board figure is the definitional treatment of three loans sold last week. I have documented the timing drivers so the same number flows to you, to Lending, and to the auditors on one schedule going forward.",
+    "suggested_chips": [
+      "Generate the audit evidence package",
+      "Who has been seeing which figure?",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Lending Origination", "Thought Machine Ledger", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_cfo_who_sees_what": {
+    "user_query": "Who has been seeing which figure?",
+    "ai_response": "The board and ALCO have been seeing your $1.42B GL figure in the monthly financials. Lending leadership and the pricing committee have been working from the $1.40B origination figure in their own dashboards. Neither view is labeled with its source or refresh time, so the divergence has been invisible — the same metric, two governed-looking numbers, two audiences. This is the access gap the audit exposed: the right data is not reaching the right role with a shared definition. Role-based routing closes it.",
+    "suggested_chips": [
+      "Reconcile this to one governed number",
+      "Draft the data-governance remediation plan",
+      "Next signal"
+    ],
+    "data_sources_used": ["General Ledger", "Lending Origination", "Audit / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_cfo_turn_evidence_package": {
+    "user_query": "Generate the audit evidence package",
+    "ai_response": "Done. I have assembled a lineage-backed evidence package for the audit team. It includes: (1) the governed loan-loss figure of $14.49M with its full reconciliation across core, ledger, and origination; (2) the resolved CFO-Lending portfolio reconciliation with the timing drivers documented; and (3) source-to-report lineage for all 47 previously undocumented figures, each traceable from Tableau back to the Jack Henry core. This is the artifact your auditors asked for. It is also formatted to support your next NCUA 5300 filing. Should I route it to the audit committee and notify Lending of the governed figures?",
+    "suggested_chips": [
+      "Route it and notify Lending",
+      "Draft the data-governance remediation plan",
+      "Show me what is still open",
+      "Next signal"
+    ],
+    "data_sources_used": ["Audit / GRC System", "General Ledger", "Thought Machine Ledger", "Lending Origination", "Tableau", "Radiant Lineage Map"],
+    "ui_components_to_render": [
+      {
+        "type": "action_cards",
+        "title": "Recommended Actions",
+        "actions": [
+          {
+            "id": "ACT-USSFCU-CFO-001",
+            "title": "Route Evidence Package to Audit Committee",
+            "description": "Send the lineage-backed evidence package — governed loan-loss reconciliation, portfolio parity reconciliation, and source-to-report lineage for all 47 figures — to the audit committee and the external audit team.",
+            "system": "Audit / GRC",
+            "status": "pending_confirmation"
+          },
+          {
+            "id": "ACT-USSFCU-CFO-002",
+            "title": "Notify Lending of Governed Figures",
+            "description": "Push the governed allowance ($14.49M) and governed portfolio balance to Lending leadership so the CFO and Lending present the same numbers on a single refresh schedule.",
+            "system": "Lending Origination",
+            "status": "pending_confirmation"
+          }
+        ]
+      }
+    ],
+    "post_confirm_response": {
+      "ACT-USSFCU-CFO-001": "Routed. The evidence package is in the audit committee's queue in the Audit / GRC system, with the external audit team copied. Traceability coverage on the package reads 100% — every figure carries a source-to-report trace.",
+      "ACT-USSFCU-CFO-002": "Notified. Lending leadership has the governed allowance of $14.49M and the governed portfolio balance, both stamped with a single refresh schedule. The CFO and Lending will now present the same numbers to the board."
+    },
+    "related_dataset_keys": ["reconciliation", "dataFlowLineage"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_cfo_route_and_notify": {
+    "user_query": "Route it and notify Lending",
+    "ai_response": "Both done. The evidence package is routed to the audit committee with the external audit team copied, and Lending leadership has the governed allowance of $14.49M and the governed portfolio balance on a single refresh schedule. Traceability coverage on the package reads 100%. Your auditors now have the show-me-how-you-got-here artifact without your team burning another day of reconstruction. Want me to draft the remediation plan so this does not recur next cycle?",
+    "suggested_chips": [
+      "Draft the data-governance remediation plan",
+      "Show me what is still open",
+      "Next signal"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Lending Origination", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_cfo_whats_open": {
+    "user_query": "Show me what is still open",
+    "ai_response": "After the evidence package, 26 of the original 64 audit items remain open. Of those, 19 are reconciliation breaks now governed and pending sign-off, and 7 are lineage-documentation tasks scoped into the remediation plan. Nothing in the open set requires manual reconstruction anymore — each has a governed figure or a documented transformation behind it. Traceability coverage has moved from 53% to 100% on reported figures. The remaining work is sign-off and instrumentation, not investigation.",
+    "suggested_chips": [
+      "Draft the data-governance remediation plan",
+      "Route it and notify Lending",
+      "Next signal"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Snowflake", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dataFlowLineage"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_cfo_turn_remediation_plan": {
+    "user_query": "Draft the data-governance remediation plan",
+    "ai_response": "Here is a remediation plan scoped for your next set of projects. It has three tracks: (1) Lineage — instrument the 4 transformation points between the Jack Henry core and Tableau so every reported figure is traceable to source. (2) Parity — establish one governed reconciliation between the GL, the Thought Machine ledger, and Lending origination, refreshed on a single schedule, so the CFO and Lending always present the same number. (3) Access — route the right governed data to the right role so information reaches the people who need it, which is the gap the audit exposed. Projected outcome: audit cycle down 61%, monthly reconciliation hours down about 77%, and 5300 traceability at 100%. The plan is sized to firm up once budget clarifies in July, and it is framed for the September leadership agenda.",
+    "suggested_chips": [
+      "Export for the leadership event",
+      "Add a budget estimate",
+      "Show me the access-routing detail",
+      "Compare to peer audit benchmarks"
+    ],
+    "data_sources_used": ["Audit / GRC System", "General Ledger", "Thought Machine Ledger", "Lending Origination", "Snowflake", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation", "dataFlowLineage"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_cfo_export_leadership": {
+    "user_query": "Export for the leadership event",
+    "ai_response": "Exported. I have packaged the remediation plan as a one-page executive summary for the September 18-19 leadership event: the three tracks, the projected audit-cycle and reconciliation-hour deltas, the 5300 traceability target, and a budget-decision marker at July. It is framed at executive altitude for the CEO and CFO agenda, with the IT and governance detail available one level down for Mark's organization. Want me to add a budget estimate before you share it?",
+    "suggested_chips": [
+      "Add a budget estimate",
+      "Show me the access-routing detail",
+      "Compare to peer audit benchmarks"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_cfo_budget_estimate": {
+    "user_query": "Add a budget estimate",
+    "ai_response": "Added. The three tracks are sized as a single Q4 governance project. Lineage instrumentation is the largest line, Parity reconciliation is moderate, and Access routing is the smallest. The plan is built to firm up once budget direction clarifies in July, so the estimate is presented as a defensible range tied to scope rather than a fixed number. The offsetting case is straightforward: the audit cost itself drops as the cycle shortens 61% and recurring reconciliation falls about 77%, which is the argument that makes the budget easier to defend in September.",
+    "suggested_chips": [
+      "Export for the leadership event",
+      "Show me the access-routing detail",
+      "Compare to peer audit benchmarks"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Finance Close Tracker", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_cfo_access_routing": {
+    "user_query": "Show me the access-routing detail",
+    "ai_response": "Track three, Access, is the direct answer to the audit finding that information was not flowing to the right people. Today the board sees the GL figure, Lending sees the origination figure, and the auditors see neither with a documented source. Role-based routing assigns each governed figure an owner and an audience: the CFO and board get the governed board figure, Lending gets the governed origination view with the same definition, and the audit team gets the full lineage trace. Same governed number, routed to each role with the context that role needs — no more two-versions-of-the-truth.",
+    "suggested_chips": [
+      "Export for the leadership event",
+      "Add a budget estimate",
+      "Compare to peer audit benchmarks"
+    ],
+    "data_sources_used": ["Audit / GRC System", "General Ledger", "Lending Origination", "Radiant Lineage Map"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dataFlowLineage"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_cfo_peer_benchmarks": {
+    "user_query": "Compare to peer audit benchmarks",
+    "ai_response": "Against credit unions of comparable asset size, your 31-day projected audit close and 9.5-day month-end close both run above the peer median, and the driver is the same in each: manual reconciliation across disconnected systems with no shared lineage. Peers that have instrumented source-to-report lineage close audits in the low-teens of days and carry traceability coverage near 100%. The remediation plan would move you from above-median cost to in-line with the better-governed quartile — and de-risk the next NCUA 5300 in the process.",
+    "suggested_chips": [
+      "Export for the leadership event",
+      "Add a budget estimate",
+      "Draft the data-governance remediation plan"
+    ],
+    "data_sources_used": ["Audit / GRC System", "Predictive Model", "Snowflake"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["reconciliation"],
+    "capability": "Predictive Intelligence"
+  }
+}

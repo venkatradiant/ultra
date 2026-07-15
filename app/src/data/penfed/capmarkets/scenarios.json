@@ -1,0 +1,63 @@
+{
+  "trust": "PNFED 2024-A",
+  "trigger_threshold": 0.0180,
+  "current_dq_rate": 0.0178,
+  "scenarios": [
+    {
+      "id": "SCN-A",
+      "label": "A — Do Nothing",
+      "recommended": false,
+      "projected_dq_rate": 0.0204,
+      "trigger_status": "BREACH (2 consecutive periods)",
+      "breach_month": "August 2026",
+      "issuance_2025b_impact": "Delayed — rating agencies require seasoning post-trigger",
+      "reinvestment_capacity_locked_usd": 142000000,
+      "estimated_cost_usd": 142000000,
+      "estimated_charge_offs_usd": 0,
+      "timeline_weeks": null,
+      "approval_required": null,
+      "narrative": "Trigger breach activates early amortization; all excess spread redirects to principal paydown; $142M reinvestment capacity locked; 2025-B issuance delayed; potential negative outlook on outstanding tranches."
+    },
+    {
+      "id": "SCN-B",
+      "label": "B — Dealer Remediation",
+      "recommended": true,
+      "projected_dq_rate": 0.0171,
+      "trigger_status": "BELOW THRESHOLD",
+      "breach_month": null,
+      "issuance_2025b_impact": "Preserved on September timeline",
+      "reinvestment_capacity_locked_usd": 0,
+      "estimated_cost_usd": 2100000,
+      "estimated_charge_offs_usd": 2100000,
+      "timeline_weeks": 4,
+      "approval_required": "Lending Committee",
+      "narrative": "Tighten origination for the three flagged dealers; accelerate loss mitigation on 47 loans currently 60-89 DPD. $2.1M in accelerated charge-offs this quarter, absorbed within existing provision. Preserves $142M reinvestment capacity and 2025-B timeline."
+    },
+    {
+      "id": "SCN-C",
+      "label": "C — Portfolio Substitution",
+      "recommended": false,
+      "projected_dq_rate": 0.0152,
+      "trigger_status": "BELOW THRESHOLD",
+      "breach_month": null,
+      "issuance_2025b_impact": "Preserved",
+      "reinvestment_capacity_locked_usd": 0,
+      "estimated_cost_usd": 510000,
+      "estimated_charge_offs_usd": 0,
+      "timeline_weeks": 8,
+      "approval_required": "Trustee + S&P/Fitch Notification",
+      "narrative": "Replace highest-risk dealer-originated loans with performing collateral from the retained portfolio. Structural option under the deal documents; requires trustee approval and rating agency notification."
+    }
+  ],
+  "consolidated_capital_impact": {
+    "current_capital_ratio": 0.1032,
+    "well_capitalized_threshold": 0.07,
+    "current_buffer_usd": 1040000000,
+    "do_nothing_capital_ratio": 0.0994,
+    "do_nothing_buffer_usd": 890000000,
+    "do_nothing_buffer_reduction_bps": 38,
+    "remediate_capital_ratio": 0.1024,
+    "remediate_buffer_reduction_bps": 8,
+    "swap_restructure_breakage_usd": 340000
+  }
+}

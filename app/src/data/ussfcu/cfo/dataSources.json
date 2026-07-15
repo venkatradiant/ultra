@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ds-cfo-01",
+    "name": "Jack Henry / Symitar (Core Banking)",
+    "status": "connected",
+    "description": "System of record for member accounts, deposits, and loan servicing. Originating source for nearly every reported financial figure.",
+    "icon": "database",
+    "lastSync": "2026-06-24T05:30:00",
+    "recordCount": 2600000
+  },
+  {
+    "id": "ds-cfo-02",
+    "name": "Thought Machine (Ledger)",
+    "status": "connected",
+    "description": "Cloud-native ledger and posting engine. Authoritative for transaction-level financial events; reconciliation target for the GL.",
+    "icon": "cpu",
+    "lastSync": "2026-06-24T05:32:00",
+    "recordCount": 3100000
+  },
+  {
+    "id": "ds-cfo-03",
+    "name": "General Ledger",
+    "status": "connected",
+    "description": "Aggregated financial postings, journal entries, allowance and reserve balances, and the figures that feed board and regulatory reports.",
+    "icon": "trending-up",
+    "lastSync": "2026-06-24T05:25:00",
+    "recordCount": 740000
+  },
+  {
+    "id": "ds-cfo-04",
+    "name": "Lending Origination",
+    "status": "connected",
+    "description": "Loan applications, funding, charge-offs, and sales. Source of the portfolio balances that diverge from the CFO's GL figures.",
+    "icon": "users",
+    "lastSync": "2026-06-24T05:20:00",
+    "recordCount": 412000
+  },
+  {
+    "id": "ds-cfo-05",
+    "name": "Snowflake (Data Warehouse)",
+    "status": "connected",
+    "description": "Consolidated analytical store feeding Tableau. Where transformations occur between source systems and reporting.",
+    "icon": "database",
+    "lastSync": "2026-06-24T05:35:00",
+    "recordCount": 12400000
+  },
+  {
+    "id": "ds-cfo-06",
+    "name": "Tableau (BI & Reporting)",
+    "status": "partial",
+    "description": "Board and regulatory dashboards. Visualizes aggregated figures but carries no native lineage back to source — the audit-evidence gap.",
+    "icon": "monitor",
+    "lastSync": "2026-06-24T05:15:00",
+    "recordCount": 1900
+  },
+  {
+    "id": "ds-cfo-07",
+    "name": "Audit / GRC System",
+    "status": "connected",
+    "description": "Audit items, findings, evidence requests, remediation tracking, and control documentation. Where the audit delay is measured.",
+    "icon": "shield",
+    "lastSync": "2026-06-24T05:40:00",
+    "recordCount": 28000
+  }
+]

@@ -1,0 +1,17 @@
+# Dependencies & build output
+node_modules/
+app/node_modules/
+app/dist/
+app/.vercel/
+
+# OS / editor
+.DS_Store
+
+# Local machine-specific config
+*.local
+.claude/settings.local.json
+
+# Secrets — never commit real env files (keep .env.example)
+.env
+.env.*
+!.env.example

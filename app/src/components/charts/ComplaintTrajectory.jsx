@@ -1,0 +1,43 @@
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import riskExtras from '../../data/riskScreenExtras.json';
+
+const data = riskExtras.complaintTrajectory90Days.map((d) => ({
+  date: new Date(d.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+  complaints: d.complaints,
+}));
+
+export default function ComplaintTrajectory() {
+  return (
+    <div className="bg-surface rounded-xl border border-border-subtle p-5">
+      <h3 className="text-sm font-semibold text-text mb-1">90-Day Complaint Trajectory</h3>
+      <p className="text-xs text-text-subtle mb-4">Member complaints trending upward</p>
+      <ResponsiveContainer width="100%" height={200}>
+        <AreaChart data={data} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
+          <defs>
+            <linearGradient id="complaintGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#CC0000" stopOpacity={0.15} />
+              <stop offset="95%" stopColor="#CC0000" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+          <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#999' }} axisLine={false} tickLine={false} interval={2} />
+          <YAxis tick={{ fontSize: 10, fill: '#999' }} axisLine={false} tickLine={false} domain={[30, 90]} />
+          <Tooltip
+            formatter={(value) => [value, 'Complaints']}
+            contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #eee' }}
+          />
+          <Area
+            type="monotone"
+            dataKey="complaints"
+            stroke="#CC0000"
+            strokeWidth={2}
+            fill="url(#complaintGrad)"
+            dot={{ r: 3, fill: '#CC0000', strokeWidth: 2, stroke: '#fff' }}
+            activeDot={{ r: 5, fill: '#CC0000' }}
+            animationDuration={1000}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}

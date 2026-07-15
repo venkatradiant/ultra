@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "eyebrow": "Executive Briefing",
+    "confidenceLine": "Liquidity Watch · 94% confidence",
+    "photoCaption": "USSFCU members · people-first since 1935"
+  },
+  "slides": {
+    "situational": {
+      "eyebrow": "AI Executive Briefing · Situational overview",
+      "severity": "Watch · Balance sheet · 94% confidence",
+      "title": "Liquidity",
+      "titleEm": "Watch",
+      "subtitle": "Loan demand is outpacing deposit growth",
+      "tiles": [
+        { "l": "Loan-to-share", "k": "84%", "s": "5-year high" },
+        { "l": "Loan growth", "k": "+11.4%", "s": "shares +4.1%" },
+        { "l": "Pipeline", "k": "$312M", "s": "90-day" }
+      ],
+      "callout": "Net loans are growing nearly three times faster than deposits. On the current path, liquidity tightens below the board's internal target by late Q4."
+    },
+    "evidence": {
+      "eyebrow": "What is happening",
+      "note": "Loan-to-share, traced to its three sources.",
+      "rows": [
+        { "rs": "Net loans · Symitar", "rv": "$1.29B", "rg": "+11.4%", "tone": "g" },
+        { "rs": "Shares · General Ledger", "rv": "$1.54B", "rg": "+4.1%", "tone": "a" },
+        { "rs": "90-day pipeline · MeridianLink", "rv": "$312M", "rg": "incoming", "tone": "" }
+      ],
+      "result": { "k": "84%", "l": "Loan-to-share ratio", "conf": "94% confidence" },
+      "lineage": ["Symitar", "ETL", "Greenplum", "Brief"],
+      "trendTitle": "Loan-to-share, 5-year trend",
+      "trendPoints": [
+        { "year": "2022", "v": 72 },
+        { "year": "2023", "v": 75 },
+        { "year": "2024", "v": 78 },
+        { "year": "2025", "v": 81 },
+        { "year": "2026", "v": 84 }
+      ],
+      "trendAnnotation": "84%, highest in 5 years",
+      "source": "Source: Symitar · GL · as of Jun 30, 2026"
+    },
+    "trajectory": {
+      "eyebrow": "Where it heads",
+      "note": "The current path, projected to year end.",
+      "chartTitle": "Loan-to-share projection, if unmanaged",
+      "confidence": "91% confidence",
+      "boardCeiling": 85,
+      "series": [
+        { "m": "Jul", "v": 84 },
+        { "m": "Aug", "v": 85 },
+        { "m": "Sep", "v": 86.5 },
+        { "m": "Oct", "v": 87.5 },
+        { "m": "Nov", "v": 88 },
+        { "m": "Dec", "v": 89 }
+      ],
+      "crossAnnotation": "Crosses ceiling in September",
+      "endAnnotation": "89%",
+      "source": "Source: Symitar · MeridianLink · Predictive model · base case, no intervention",
+      "warning": "Below liquidity target by late Q4"
+    },
+    "assurance": {
+      "eyebrow": "Assurance",
+      "title": "Data trust and lineage",
+      "lead": "Trust signals for this briefing, from this morning's validated data load at 6:04 AM ET."
+    },
+    "members": {
+      "eyebrow": "Members and mission",
+      "note": "The people behind the balance sheet.",
+      "photoCaption": "USSFCU members · Washington, DC region",
+      "quote": "The USSFCU behaves as a credit union ought to behave. The staff works with and for the members.",
+      "quoteEm": "ought",
+      "attribution": "Ruth · Takoma Park, MD · member since 1998",
+      "line": "Deposits are not abstractions. They are the savings of the members USSFCU was built to serve, and what the recommended deposit strategy is designed to grow.",
+      "marks": ["2025 CEO of the Year, MD|DC", "Top Workplaces", "Bauer 5-Star Rated"]
+    },
+    "resolution": {
+      "eyebrow": "Resolution options",
+      "note": "Three paths to close the gap, sized for the September board.",
+      "options": [
+        {
+          "num": "Option 1",
+          "recommended": true,
+          "title": "Targeted deposit campaign",
+          "desc": "A promotional certificate to the DMV core and Senate-alumni segments to lift shares quickly.",
+          "attrs": [
+            { "l": "Timeline", "v": "2 to 4 weeks", "tone": "g" },
+            { "l": "Cost", "v": "Low", "tone": "g" },
+            { "l": "Liquidity impact", "v": "High · +$85M", "tone": "g" }
+          ]
+        },
+        {
+          "num": "Option 2",
+          "recommended": false,
+          "title": "Standby funding line",
+          "desc": "Establish a contingent FHLB or corporate line for standby liquidity through Q1.",
+          "attrs": [
+            { "l": "Timeline", "v": "4 to 6 weeks", "tone": "a" },
+            { "l": "Cost", "v": "Low · standby fee", "tone": "g" },
+            { "l": "Liquidity impact", "v": "Medium · buffer", "tone": "a" }
+          ]
+        },
+        {
+          "num": "Option 3",
+          "recommended": false,
+          "title": "Loan pacing and participations",
+          "desc": "Slow select loan categories or sell participations to rebalance the ratio.",
+          "attrs": [
+            { "l": "Timeline", "v": "6 to 8 weeks", "tone": "r" },
+            { "l": "Cost", "v": "Medium", "tone": "a" },
+            { "l": "Trade-off", "v": "Foregone yield", "tone": "r" }
+          ]
+        }
+      ],
+      "note2": "These options are not mutually exclusive. The recommended path pairs the deposit campaign with a standby funding line to close the gap now and hold a buffer through Q1."
+    },
+    "nextSteps": {
+      "eyebrow": "Leadership next steps",
+      "note": "Recommended actions, with owners and timeframes.",
+      "steps": [
+        {
+          "n": "1",
+          "title": "Approve the targeted deposit campaign",
+          "desc": "Launch to the DMV core and Senate-alumni segments.",
+          "owners": ["CFO · Ricardo Pineres", "Marketing", "Lending"],
+          "chip": "Before month-end",
+          "chipIcon": "clock"
+        },
+        {
+          "n": "2",
+          "title": "Commission the funding-line review",
+          "desc": "Size a standby FHLB or corporate line for contingent liquidity.",
+          "owners": ["CFO · Ricardo Pineres", "Treasury"],
+          "chip": "Within 5 business days",
+          "chipIcon": "clock"
+        },
+        {
+          "n": "3",
+          "title": "Brief the Board",
+          "desc": "Present the liquidity plan and the two-move recommendation for approval.",
+          "owners": ["CEO · Timothy Anderson", "CFO"],
+          "chip": "September board",
+          "chipIcon": "calendar"
+        }
+      ]
+    }
+  },
+  "closing": {
+    "signoff": "Prepared by Radiant · Applied Intelligence for Executive Decision-Making",
+    "primaryCta": "Return to briefing home",
+    "secondaryCta": "Download the board pack",
+    "steps": [
+      {
+        "eyebrow": "Recommended action 1",
+        "title": "Approve the targeted deposit campaign",
+        "body": "Authorize a promotional certificate to the DMV core and Senate-alumni segments. It lifts shares quickly — about +$85M — closing most of the liquidity gap by year end, and deepens the member relationships USSFCU was built to serve.",
+        "marks": [
+          { "l": "Owners", "v": "CFO · Ricardo Pineres, Marketing, Lending" },
+          { "l": "Timeframe", "v": "Before month-end" },
+          { "l": "Impact", "v": "High · low cost · 2–4 weeks" }
+        ]
+      },
+      {
+        "eyebrow": "Recommended action 2",
+        "title": "Commission the funding-line review",
+        "body": "Direct Treasury, with the CFO, to size a standby FHLB or corporate line for contingent liquidity through Q1 — the buffer behind the deposit campaign, so you hold a cushion even if deposit growth lags.",
+        "marks": [
+          { "l": "Owners", "v": "CFO · Ricardo Pineres, Treasury" },
+          { "l": "Timeframe", "v": "Within 5 business days" },
+          { "l": "Impact", "v": "Medium · low standby fee · 4–6 weeks" }
+        ]
+      },
+      {
+        "eyebrow": "Recommended action 3",
+        "title": "Brief the Board",
+        "body": "Present the liquidity plan and the two-move recommendation to the Board for approval. Every figure is validated and traceable to source, so the plan carries its own evidence — this is where it gets the mandate to execute.",
+        "marks": [
+          { "l": "Owners", "v": "CEO · Timothy Anderson, CFO" },
+          { "l": "Timeframe", "v": "September board meeting" },
+          { "l": "Assurance", "v": "94% confidence · fully traceable" }
+        ]
+      }
+    ]
+  }
+}

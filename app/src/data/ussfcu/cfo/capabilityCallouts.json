@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI surfaces the governance signals slowing the audit — reconciliation breaks, CFO-versus-Lending parity gaps, and missing lineage — before you ask, correlating across the Jack Henry core, the Thought Machine ledger, the GL, and the Audit / GRC system.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask why your loan-loss number does not match Lending in plain language. The AI pulls from core, the ledger, origination, and the warehouse simultaneously and reconciles them to one governed figure in a single answer.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "Maps where the audit gets stuck: which figures require manual reconciliation, which reports lack lineage, and where information is not reaching the right people — and quantifies the staff hours the disconnect is costing.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Forecasts audit completion and remediation timelines, models the staff-hour and close-cycle impact of fixing the data flow, and projects governed reporting readiness for the next NCUA 5300 examination.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Anomaly Detection",
+    "description": "Flags the parity break itself: where the same metric diverges across systems, where a transformation silently changes a figure between the ledger and Tableau, and which reconciliation exceptions are aging.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "Executes governance actions: generate the lineage-backed audit evidence package, reconcile divergent figures to a single governed number, route the right data to the right role, and draft the data-governance remediation plan.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI monitors staffing forecasts, training cohort performance, and overtime trajectories — surfacing workforce risks 6 days before they impact service levels, not the morning they hit.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and receive a sourced answer drawn simultaneously from Dynamics 365 WFM, 3 years of Snowflake call volume history, HR scheduling data, and the Marketing campaign calendar.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Predictive Intelligence",
+    "description": "The AI models what-if staffing scenarios — 15 OT shifts vs. a hybrid approach — forecasting service level outcomes and budget impact before you commit. Tax season is modeled 6 days out at 15-minute interval resolution.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Friction Observability",
+    "description": "The AI identifies where workforce planning breaks down — training cohorts behind schedule, knowledge gaps slowing handle times, meeting overhead consuming capacity — and surfaces the root cause across Dynamics 365, HR, and training systems.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

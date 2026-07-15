@@ -1,0 +1,26 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI monitors queue health, campaign triggers, and staffing signals overnight — surfacing contact center risks before your 9 AM sync. Correlates Dynamics 365, Marketing Cloud, HR, and IT data that Dynamics 365 alone cannot connect.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and receive a sourced answer drawn simultaneously from Dynamics 365 Contact Center, Marketing Cloud, HR Workforce Management, and the legacy Genesys migration bridge.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "The AI identifies where processes break down — like the advance-notice gap between Marketing and Contact Center that caused today's auto loan spike — and maps the root cause across systems.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Automated Action",
+    "description": "From the same conversation, reroute agents in Dynamics 365, enable callback queuing, draft Marketing notification rules, and send overtime offers — all without leaving the AI interface.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

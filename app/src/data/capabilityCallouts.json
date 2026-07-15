@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI reviews your data environments overnight and surfaces what matters before you ask a single question.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and receive a sourced answer drawn simultaneously from multiple live data systems.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "The AI automatically identifies which members are affected, what they have in common, and where friction is occurring — without manual analysis.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Instead of reporting what happened, the AI tells you what is likely to happen next — so you can act before members disengage or churn.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Anomaly Detection",
+    "description": "Detects unusual patterns across member transactions, contact center volume, and workflow exceptions in real time — and surfaces them as prioritized, actionable signals.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "From the same conversation, the AI executes actions across your existing systems — JIRA, Slack, Salesforce AgentForce — with your confirmation at every step.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

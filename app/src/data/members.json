@@ -1,0 +1,1615 @@
+[
+  {
+    "id": "MBR-10000",
+    "name": "James Smith",
+    "age": 38,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 1,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.71,
+    "last_login_days_ago": 3,
+    "location": "Quantico, VA"
+  },
+  {
+    "id": "MBR-10001",
+    "name": "Maria Johnson",
+    "age": 30,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 1,
+    "products": [
+      "Checking",
+      "IRA",
+      "Auto Loan",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.67,
+    "last_login_days_ago": 0,
+    "location": "Alexandria, VA"
+  },
+  {
+    "id": "MBR-10002",
+    "name": "Robert Williams",
+    "age": 29,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 2,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.64,
+    "last_login_days_ago": 0,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10003",
+    "name": "Linda Brown",
+    "age": 31,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 5,
+    "products": [
+      "Checking",
+      "Credit Card",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.63,
+    "last_login_days_ago": 4,
+    "location": "Alexandria, VA"
+  },
+  {
+    "id": "MBR-10004",
+    "name": "Michael Jones",
+    "age": 40,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 2,
+    "products": [
+      "Checking",
+      "HELOC",
+      "Money Market",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.58,
+    "last_login_days_ago": 3,
+    "location": "Columbia, SC"
+  },
+  {
+    "id": "MBR-10005",
+    "name": "Patricia Garcia",
+    "age": 33,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 1,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.61,
+    "last_login_days_ago": 5,
+    "location": "San Antonio, TX"
+  },
+  {
+    "id": "MBR-10006",
+    "name": "William Miller",
+    "age": 37,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 3,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.7,
+    "last_login_days_ago": 1,
+    "location": "Honolulu, HI"
+  },
+  {
+    "id": "MBR-10007",
+    "name": "Jennifer Davis",
+    "age": 29,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 5,
+    "products": [
+      "Checking",
+      "Money Market",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.66,
+    "last_login_days_ago": 1,
+    "location": "Woodbridge, VA"
+  },
+  {
+    "id": "MBR-10008",
+    "name": "David Rodriguez",
+    "age": 38,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 2,
+    "products": [
+      "Checking",
+      "Auto Loan",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.74,
+    "last_login_days_ago": 1,
+    "location": "Honolulu, HI"
+  },
+  {
+    "id": "MBR-10009",
+    "name": "Elizabeth Martinez",
+    "age": 32,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 4,
+    "products": [
+      "Checking",
+      "Money Market",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.6,
+    "last_login_days_ago": 3,
+    "location": "Killeen, TX"
+  },
+  {
+    "id": "MBR-10010",
+    "name": "Richard Hernandez",
+    "age": 32,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 1,
+    "products": [
+      "Checking",
+      "Mortgage",
+      "Credit Card"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.55,
+    "last_login_days_ago": 6,
+    "location": "Fayetteville, NC"
+  },
+  {
+    "id": "MBR-10011",
+    "name": "Barbara Lopez",
+    "age": 42,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 5,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.69,
+    "last_login_days_ago": 0,
+    "location": "Quantico, VA"
+  },
+  {
+    "id": "MBR-10012",
+    "name": "Joseph Gonzalez",
+    "age": 41,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 1,
+    "products": [
+      "Checking",
+      "HELOC",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.57,
+    "last_login_days_ago": 3,
+    "location": "McLean, VA"
+  },
+  {
+    "id": "MBR-10013",
+    "name": "Susan Wilson",
+    "age": 42,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 3,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.68,
+    "last_login_days_ago": 6,
+    "location": "Fort Worth, TX"
+  },
+  {
+    "id": "MBR-10014",
+    "name": "Thomas Anderson",
+    "age": 35,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 2,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.57,
+    "last_login_days_ago": 4,
+    "location": "El Paso, TX"
+  },
+  {
+    "id": "MBR-10015",
+    "name": "Jessica Thomas",
+    "age": 37,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 4,
+    "products": [
+      "Checking",
+      "HELOC",
+      "Money Market",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.56,
+    "last_login_days_ago": 2,
+    "location": "Silver Spring, MD"
+  },
+  {
+    "id": "MBR-10016",
+    "name": "Charles Taylor",
+    "age": 35,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 1,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.74,
+    "last_login_days_ago": 2,
+    "location": "Fort Worth, TX"
+  },
+  {
+    "id": "MBR-10017",
+    "name": "Sarah Moore",
+    "age": 30,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 4,
+    "products": [
+      "Checking",
+      "Auto Loan",
+      "HELOC",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.61,
+    "last_login_days_ago": 7,
+    "location": "Silver Spring, MD"
+  },
+  {
+    "id": "MBR-10018",
+    "name": "Christopher Jackson",
+    "age": 32,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 5,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.69,
+    "last_login_days_ago": 1,
+    "location": "Killeen, TX"
+  },
+  {
+    "id": "MBR-10019",
+    "name": "Karen Martin",
+    "age": 42,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 5,
+    "products": [
+      "Checking",
+      "Money Market",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.53,
+    "last_login_days_ago": 6,
+    "location": "San Diego, CA"
+  },
+  {
+    "id": "MBR-10020",
+    "name": "Daniel Lee",
+    "age": 35,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 1,
+    "products": [
+      "Checking",
+      "CD",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.64,
+    "last_login_days_ago": 1,
+    "location": "Fort Worth, TX"
+  },
+  {
+    "id": "MBR-10021",
+    "name": "Lisa Perez",
+    "age": 32,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 5,
+    "products": [
+      "Checking",
+      "Credit Card",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.6,
+    "last_login_days_ago": 2,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10022",
+    "name": "Matthew Thompson",
+    "age": 40,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 5,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.67,
+    "last_login_days_ago": 7,
+    "location": "Alexandria, VA"
+  },
+  {
+    "id": "MBR-10023",
+    "name": "Nancy White",
+    "age": 29,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 3,
+    "products": [
+      "Checking",
+      "Credit Card",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.52,
+    "last_login_days_ago": 1,
+    "location": "Fairfax, VA"
+  },
+  {
+    "id": "MBR-10024",
+    "name": "Anthony Harris",
+    "age": 39,
+    "segment": "First-Time Mortgage Applicant",
+    "tenure_years": 4,
+    "products": [
+      "Checking",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.77,
+    "last_login_days_ago": 2,
+    "location": "Tysons, VA"
+  },
+  {
+    "id": "MBR-10025",
+    "name": "Betty Sanchez",
+    "age": 70,
+    "segment": "Military Retiree",
+    "tenure_years": 29,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.69,
+    "last_login_days_ago": 20,
+    "location": "Tampa, FL"
+  },
+  {
+    "id": "MBR-10026",
+    "name": "Mark Clark",
+    "age": 61,
+    "segment": "Military Retiree",
+    "tenure_years": 29,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.63,
+    "last_login_days_ago": 22,
+    "location": "Fort Worth, TX"
+  },
+  {
+    "id": "MBR-10027",
+    "name": "Dorothy Ramirez",
+    "age": 66,
+    "segment": "Military Retiree",
+    "tenure_years": 26,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Auto Loan",
+      "Mortgage"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.57,
+    "last_login_days_ago": 1,
+    "location": "McLean, VA"
+  },
+  {
+    "id": "MBR-10028",
+    "name": "Donald Lewis",
+    "age": 72,
+    "segment": "Military Retiree",
+    "tenure_years": 19,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.57,
+    "last_login_days_ago": 21,
+    "location": "Woodbridge, VA"
+  },
+  {
+    "id": "MBR-10029",
+    "name": "Sandra Robinson",
+    "age": 62,
+    "segment": "Military Retiree",
+    "tenure_years": 14,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.57,
+    "last_login_days_ago": 8,
+    "location": "Fayetteville, NC"
+  },
+  {
+    "id": "MBR-10030",
+    "name": "Steven Walker",
+    "age": 70,
+    "segment": "Military Retiree",
+    "tenure_years": 18,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.8,
+    "last_login_days_ago": 19,
+    "location": "McLean, VA"
+  },
+  {
+    "id": "MBR-10031",
+    "name": "Ashley Young",
+    "age": 70,
+    "segment": "Military Retiree",
+    "tenure_years": 19,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "IRA",
+      "Money Market"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.58,
+    "last_login_days_ago": 22,
+    "location": "Tampa, FL"
+  },
+  {
+    "id": "MBR-10032",
+    "name": "Paul Allen",
+    "age": 66,
+    "segment": "Military Retiree",
+    "tenure_years": 25,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Money Market",
+      "Personal Loan"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.73,
+    "last_login_days_ago": 21,
+    "location": "Arlington, VA"
+  },
+  {
+    "id": "MBR-10033",
+    "name": "Kimberly King",
+    "age": 56,
+    "segment": "Military Retiree",
+    "tenure_years": 24,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "IRA"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.62,
+    "last_login_days_ago": 7,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10034",
+    "name": "Andrew Wright",
+    "age": 69,
+    "segment": "Military Retiree",
+    "tenure_years": 16,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Mortgage",
+      "Credit Card"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.62,
+    "last_login_days_ago": 30,
+    "location": "Fairfax, VA"
+  },
+  {
+    "id": "MBR-10035",
+    "name": "Emily Scott",
+    "age": 69,
+    "segment": "Military Retiree",
+    "tenure_years": 29,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.73,
+    "last_login_days_ago": 18,
+    "location": "Alexandria, VA"
+  },
+  {
+    "id": "MBR-10036",
+    "name": "Joshua Torres",
+    "age": 57,
+    "segment": "Military Retiree",
+    "tenure_years": 19,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.68,
+    "last_login_days_ago": 7,
+    "location": "Honolulu, HI"
+  },
+  {
+    "id": "MBR-10037",
+    "name": "Donna Nguyen",
+    "age": 56,
+    "segment": "Military Retiree",
+    "tenure_years": 17,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Auto Loan",
+      "Money Market"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.8,
+    "last_login_days_ago": 26,
+    "location": "Virginia Beach, VA"
+  },
+  {
+    "id": "MBR-10038",
+    "name": "Kenneth Hill",
+    "age": 64,
+    "segment": "Military Retiree",
+    "tenure_years": 25,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Mortgage",
+      "IRA"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.61,
+    "last_login_days_ago": 2,
+    "location": "McLean, VA"
+  },
+  {
+    "id": "MBR-10039",
+    "name": "Michelle Flores",
+    "age": 72,
+    "segment": "Military Retiree",
+    "tenure_years": 13,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Auto Loan"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.71,
+    "last_login_days_ago": 17,
+    "location": "Silver Spring, MD"
+  },
+  {
+    "id": "MBR-10040",
+    "name": "Kevin Green",
+    "age": 60,
+    "segment": "Military Retiree",
+    "tenure_years": 13,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.57,
+    "last_login_days_ago": 3,
+    "location": "Killeen, TX"
+  },
+  {
+    "id": "MBR-10041",
+    "name": "Carol Adams",
+    "age": 62,
+    "segment": "Military Retiree",
+    "tenure_years": 24,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.62,
+    "last_login_days_ago": 20,
+    "location": "Woodbridge, VA"
+  },
+  {
+    "id": "MBR-10042",
+    "name": "Brian Nelson",
+    "age": 74,
+    "segment": "Military Retiree",
+    "tenure_years": 14,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Personal Loan",
+      "HELOC"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.69,
+    "last_login_days_ago": 30,
+    "location": "Fayetteville, NC"
+  },
+  {
+    "id": "MBR-10043",
+    "name": "Amanda Baker",
+    "age": 61,
+    "segment": "Military Retiree",
+    "tenure_years": 33,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "Mortgage"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.66,
+    "last_login_days_ago": 22,
+    "location": "Fort Worth, TX"
+  },
+  {
+    "id": "MBR-10044",
+    "name": "George Hall",
+    "age": 64,
+    "segment": "Military Retiree",
+    "tenure_years": 26,
+    "products": [
+      "CD",
+      "Checking",
+      "Savings",
+      "IRA"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.55,
+    "last_login_days_ago": 20,
+    "location": "McLean, VA"
+  },
+  {
+    "id": "MBR-10045",
+    "name": "Melissa Rivera",
+    "age": 28,
+    "segment": "Low Engagement",
+    "tenure_years": 3,
+    "products": [
+      "Personal Loan"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.48,
+    "last_login_days_ago": 179,
+    "location": "Fairfax, VA"
+  },
+  {
+    "id": "MBR-10046",
+    "name": "Timothy Campbell",
+    "age": 37,
+    "segment": "Low Engagement",
+    "tenure_years": 7,
+    "products": [
+      "Auto Loan",
+      "HELOC"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.6,
+    "last_login_days_ago": 225,
+    "location": "Alexandria, VA"
+  },
+  {
+    "id": "MBR-10047",
+    "name": "Deborah Mitchell",
+    "age": 64,
+    "segment": "Low Engagement",
+    "tenure_years": 15,
+    "products": [
+      "Savings",
+      "Auto Loan"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.48,
+    "last_login_days_ago": 117,
+    "location": "El Paso, TX"
+  },
+  {
+    "id": "MBR-10048",
+    "name": "Ronald Carter",
+    "age": 57,
+    "segment": "Low Engagement",
+    "tenure_years": 4,
+    "products": [
+      "Credit Card",
+      "Mortgage"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.5,
+    "last_login_days_ago": 157,
+    "location": "Silver Spring, MD"
+  },
+  {
+    "id": "MBR-10049",
+    "name": "Stephanie Roberts",
+    "age": 53,
+    "segment": "Low Engagement",
+    "tenure_years": 6,
+    "products": [
+      "Savings"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.66,
+    "last_login_days_ago": 101,
+    "location": "Alexandria, VA"
+  },
+  {
+    "id": "MBR-10050",
+    "name": "Edward Chen",
+    "age": 43,
+    "segment": "Low Engagement",
+    "tenure_years": 14,
+    "products": [
+      "Credit Card"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.64,
+    "last_login_days_ago": 231,
+    "location": "Clarksville, TN"
+  },
+  {
+    "id": "MBR-10051",
+    "name": "Rebecca Park",
+    "age": 49,
+    "segment": "Low Engagement",
+    "tenure_years": 10,
+    "products": [
+      "Savings"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.69,
+    "last_login_days_ago": 128,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10052",
+    "name": "Jason Kim",
+    "age": 24,
+    "segment": "Low Engagement",
+    "tenure_years": 15,
+    "products": [
+      "IRA",
+      "Personal Loan"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.56,
+    "last_login_days_ago": 100,
+    "location": "Jacksonville, FL"
+  },
+  {
+    "id": "MBR-10053",
+    "name": "Sharon Singh",
+    "age": 45,
+    "segment": "Low Engagement",
+    "tenure_years": 14,
+    "products": [
+      "CD"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.62,
+    "last_login_days_ago": 116,
+    "location": "San Antonio, TX"
+  },
+  {
+    "id": "MBR-10054",
+    "name": "Jeffrey Patel",
+    "age": 57,
+    "segment": "Low Engagement",
+    "tenure_years": 15,
+    "products": [
+      "IRA",
+      "Auto Loan"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.67,
+    "last_login_days_ago": 135,
+    "location": "Tampa, FL"
+  },
+  {
+    "id": "MBR-10055",
+    "name": "Laura Murphy",
+    "age": 23,
+    "segment": "Low Engagement",
+    "tenure_years": 4,
+    "products": [
+      "Money Market",
+      "Mortgage"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.49,
+    "last_login_days_ago": 117,
+    "location": "Honolulu, HI"
+  },
+  {
+    "id": "MBR-10056",
+    "name": "Ryan O'Brien",
+    "age": 24,
+    "segment": "Low Engagement",
+    "tenure_years": 15,
+    "products": [
+      "Mortgage",
+      "IRA"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.54,
+    "last_login_days_ago": 148,
+    "location": "Quantico, VA"
+  },
+  {
+    "id": "MBR-10057",
+    "name": "Cynthia Sullivan",
+    "age": 23,
+    "segment": "Low Engagement",
+    "tenure_years": 12,
+    "products": [
+      "Money Market"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.52,
+    "last_login_days_ago": 107,
+    "location": "Columbia, SC"
+  },
+  {
+    "id": "MBR-10058",
+    "name": "Jacob Walsh",
+    "age": 39,
+    "segment": "Low Engagement",
+    "tenure_years": 7,
+    "products": [
+      "Personal Loan",
+      "CD"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.48,
+    "last_login_days_ago": 156,
+    "location": "San Diego, CA"
+  },
+  {
+    "id": "MBR-10059",
+    "name": "Kathleen Kelly",
+    "age": 59,
+    "segment": "Low Engagement",
+    "tenure_years": 6,
+    "products": [
+      "Savings"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.54,
+    "last_login_days_ago": 170,
+    "location": "Tampa, FL"
+  },
+  {
+    "id": "MBR-10060",
+    "name": "Gary Turner",
+    "age": 61,
+    "segment": "Active Multi-Product",
+    "tenure_years": 13,
+    "products": [
+      "Credit Card",
+      "Checking",
+      "Money Market"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.27,
+    "last_login_days_ago": 25,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10061",
+    "name": "Amy Phillips",
+    "age": 66,
+    "segment": "Young Professional",
+    "tenure_years": 12,
+    "products": [
+      "Savings",
+      "CD",
+      "Personal Loan",
+      "HELOC",
+      "Checking"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.27,
+    "last_login_days_ago": 21,
+    "location": "Tampa, FL"
+  },
+  {
+    "id": "MBR-10062",
+    "name": "Nicholas Parker",
+    "age": 43,
+    "segment": "Digital-First",
+    "tenure_years": 10,
+    "products": [
+      "Mortgage",
+      "Money Market",
+      "Personal Loan"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.31,
+    "last_login_days_ago": 9,
+    "location": "Honolulu, HI"
+  },
+  {
+    "id": "MBR-10063",
+    "name": "Angela Evans",
+    "age": 58,
+    "segment": "Active Multi-Product",
+    "tenure_years": 10,
+    "products": [
+      "Mortgage",
+      "Money Market",
+      "CD",
+      "IRA"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.24,
+    "last_login_days_ago": 6,
+    "location": "Silver Spring, MD"
+  },
+  {
+    "id": "MBR-10064",
+    "name": "Eric Edwards",
+    "age": 53,
+    "segment": "Young Professional",
+    "tenure_years": 3,
+    "products": [
+      "Personal Loan",
+      "CD",
+      "Savings",
+      "Money Market"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.33,
+    "last_login_days_ago": 7,
+    "location": "Norfolk, VA"
+  },
+  {
+    "id": "MBR-10065",
+    "name": "Shirley Collins",
+    "age": 32,
+    "segment": "Active Multi-Product",
+    "tenure_years": 2,
+    "products": [
+      "HELOC",
+      "Savings",
+      "IRA"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.41,
+    "last_login_days_ago": 18,
+    "location": "Norfolk, VA"
+  },
+  {
+    "id": "MBR-10066",
+    "name": "Jonathan Stewart",
+    "age": 68,
+    "segment": "Digital-First",
+    "tenure_years": 16,
+    "products": [
+      "Mortgage",
+      "Auto Loan",
+      "Checking",
+      "Money Market",
+      "HELOC"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.16,
+    "last_login_days_ago": 25,
+    "location": "Clarksville, TN"
+  },
+  {
+    "id": "MBR-10067",
+    "name": "Anna Morris",
+    "age": 56,
+    "segment": "Digital-First",
+    "tenure_years": 2,
+    "products": [
+      "Savings",
+      "HELOC",
+      "Auto Loan"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.33,
+    "last_login_days_ago": 17,
+    "location": "Manassas, VA"
+  },
+  {
+    "id": "MBR-10068",
+    "name": "Stephen Rogers",
+    "age": 43,
+    "segment": "Digital-First",
+    "tenure_years": 20,
+    "products": [
+      "Personal Loan",
+      "HELOC",
+      "Auto Loan",
+      "CD",
+      "Mortgage"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.18,
+    "last_login_days_ago": 7,
+    "location": "Fort Worth, TX"
+  },
+  {
+    "id": "MBR-10069",
+    "name": "Brenda Reed",
+    "age": 40,
+    "segment": "Digital-First",
+    "tenure_years": 8,
+    "products": [
+      "HELOC",
+      "Savings",
+      "Credit Card",
+      "Personal Loan"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.2,
+    "last_login_days_ago": 28,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10070",
+    "name": "Larry Cook",
+    "age": 28,
+    "segment": "Young Professional",
+    "tenure_years": 5,
+    "products": [
+      "Money Market",
+      "Auto Loan",
+      "Mortgage"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.23,
+    "last_login_days_ago": 10,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10071",
+    "name": "Pamela Morgan",
+    "age": 52,
+    "segment": "Digital-First",
+    "tenure_years": 2,
+    "products": [
+      "Money Market",
+      "IRA",
+      "Checking"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.26,
+    "last_login_days_ago": 30,
+    "location": "San Antonio, TX"
+  },
+  {
+    "id": "MBR-10072",
+    "name": "Justin Bell",
+    "age": 42,
+    "segment": "Digital-First",
+    "tenure_years": 14,
+    "products": [
+      "HELOC",
+      "Mortgage",
+      "Credit Card"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.26,
+    "last_login_days_ago": 12,
+    "location": "Colorado Springs, CO"
+  },
+  {
+    "id": "MBR-10073",
+    "name": "Emma Cooper",
+    "age": 65,
+    "segment": "Digital-First",
+    "tenure_years": 6,
+    "products": [
+      "Auto Loan",
+      "Personal Loan",
+      "Checking",
+      "Mortgage",
+      "Credit Card"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.11,
+    "last_login_days_ago": 13,
+    "location": "Tysons, VA"
+  },
+  {
+    "id": "MBR-10074",
+    "name": "Scott Richardson",
+    "age": 52,
+    "segment": "Young Professional",
+    "tenure_years": 2,
+    "products": [
+      "Money Market",
+      "CD",
+      "Mortgage",
+      "HELOC"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.2,
+    "last_login_days_ago": 28,
+    "location": "Honolulu, HI"
+  },
+  {
+    "id": "MBR-10075",
+    "name": "Nicole Cox",
+    "age": 40,
+    "segment": "Digital-First",
+    "tenure_years": 9,
+    "products": [
+      "HELOC",
+      "Checking"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.45,
+    "last_login_days_ago": 11,
+    "location": "Quantico, VA"
+  },
+  {
+    "id": "MBR-10076",
+    "name": "Brandon Howard",
+    "age": 64,
+    "segment": "Active Multi-Product",
+    "tenure_years": 2,
+    "products": [
+      "Mortgage",
+      "IRA"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.31,
+    "last_login_days_ago": 7,
+    "location": "Tysons, VA"
+  },
+  {
+    "id": "MBR-10077",
+    "name": "Helen Ward",
+    "age": 53,
+    "segment": "Active Multi-Product",
+    "tenure_years": 19,
+    "products": [
+      "HELOC",
+      "Credit Card",
+      "CD"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.3,
+    "last_login_days_ago": 30,
+    "location": "El Paso, TX"
+  },
+  {
+    "id": "MBR-10078",
+    "name": "Benjamin Brooks",
+    "age": 68,
+    "segment": "Active Multi-Product",
+    "tenure_years": 6,
+    "products": [
+      "Savings",
+      "Checking",
+      "Credit Card",
+      "HELOC"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.23,
+    "last_login_days_ago": 22,
+    "location": "Norfolk, VA"
+  },
+  {
+    "id": "MBR-10079",
+    "name": "Samantha Bennett",
+    "age": 27,
+    "segment": "Young Professional",
+    "tenure_years": 4,
+    "products": [
+      "IRA",
+      "Savings",
+      "Checking",
+      "Auto Loan"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.32,
+    "last_login_days_ago": 2,
+    "location": "Silver Spring, MD"
+  },
+  {
+    "id": "MBR-10080",
+    "name": "Samuel Gray",
+    "age": 64,
+    "segment": "Established Family",
+    "tenure_years": 1,
+    "products": [
+      "HELOC",
+      "Savings",
+      "Money Market",
+      "Auto Loan",
+      "CD"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.34,
+    "last_login_days_ago": 13,
+    "location": "San Diego, CA"
+  },
+  {
+    "id": "MBR-10081",
+    "name": "Katherine James",
+    "age": 56,
+    "segment": "Established Family",
+    "tenure_years": 20,
+    "products": [
+      "HELOC",
+      "Money Market",
+      "Credit Card",
+      "Auto Loan",
+      "Savings"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.18,
+    "last_login_days_ago": 14,
+    "location": "Quantico, VA"
+  },
+  {
+    "id": "MBR-10082",
+    "name": "Raymond Watson",
+    "age": 52,
+    "segment": "Digital-First",
+    "tenure_years": 11,
+    "products": [
+      "HELOC",
+      "CD"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.26,
+    "last_login_days_ago": 11,
+    "location": "Fayetteville, NC"
+  },
+  {
+    "id": "MBR-10083",
+    "name": "Christine Reyes",
+    "age": 44,
+    "segment": "Established Family",
+    "tenure_years": 20,
+    "products": [
+      "Personal Loan",
+      "Checking",
+      "Mortgage",
+      "IRA"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.35,
+    "last_login_days_ago": 15,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10084",
+    "name": "Gregory Cruz",
+    "age": 38,
+    "segment": "Digital-First",
+    "tenure_years": 16,
+    "products": [
+      "Checking",
+      "Savings",
+      "Credit Card",
+      "Personal Loan",
+      "Mortgage"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.19,
+    "last_login_days_ago": 18,
+    "location": "San Antonio, TX"
+  },
+  {
+    "id": "MBR-10085",
+    "name": "Debra Foster",
+    "age": 53,
+    "segment": "Established Family",
+    "tenure_years": 14,
+    "products": [
+      "CD",
+      "HELOC",
+      "Credit Card",
+      "Auto Loan"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.17,
+    "last_login_days_ago": 23,
+    "location": "Norfolk, VA"
+  },
+  {
+    "id": "MBR-10086",
+    "name": "Frank Powell",
+    "age": 43,
+    "segment": "Active Multi-Product",
+    "tenure_years": 18,
+    "products": [
+      "Mortgage",
+      "IRA",
+      "HELOC"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.35,
+    "last_login_days_ago": 24,
+    "location": "Silver Spring, MD"
+  },
+  {
+    "id": "MBR-10087",
+    "name": "Rachel Henderson",
+    "age": 61,
+    "segment": "Established Family",
+    "tenure_years": 4,
+    "products": [
+      "Credit Card",
+      "Mortgage",
+      "CD"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.19,
+    "last_login_days_ago": 22,
+    "location": "Reston, VA"
+  },
+  {
+    "id": "MBR-10088",
+    "name": "Alexander Coleman",
+    "age": 31,
+    "segment": "Established Family",
+    "tenure_years": 2,
+    "products": [
+      "Personal Loan",
+      "Credit Card"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.32,
+    "last_login_days_ago": 24,
+    "location": "Bethesda, MD"
+  },
+  {
+    "id": "MBR-10089",
+    "name": "Carolyn Barnes",
+    "age": 29,
+    "segment": "Active Multi-Product",
+    "tenure_years": 19,
+    "products": [
+      "HELOC",
+      "IRA",
+      "Personal Loan",
+      "Auto Loan"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.44,
+    "last_login_days_ago": 8,
+    "location": "Bethesda, MD"
+  },
+  {
+    "id": "MBR-10090",
+    "name": "Patrick Simmons",
+    "age": 30,
+    "segment": "Active Multi-Product",
+    "tenure_years": 13,
+    "products": [
+      "Savings",
+      "Checking",
+      "Auto Loan",
+      "IRA",
+      "Credit Card"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.11,
+    "last_login_days_ago": 7,
+    "location": "Arlington, VA"
+  },
+  {
+    "id": "MBR-10091",
+    "name": "Janet Patterson",
+    "age": 58,
+    "segment": "Digital-First",
+    "tenure_years": 20,
+    "products": [
+      "Personal Loan",
+      "Money Market",
+      "HELOC"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.19,
+    "last_login_days_ago": 18,
+    "location": "Tampa, FL"
+  },
+  {
+    "id": "MBR-10092",
+    "name": "Jack Jordan",
+    "age": 42,
+    "segment": "Active Multi-Product",
+    "tenure_years": 20,
+    "products": [
+      "Mortgage",
+      "IRA"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.32,
+    "last_login_days_ago": 5,
+    "location": "Quantico, VA"
+  },
+  {
+    "id": "MBR-10093",
+    "name": "Catherine Reynolds",
+    "age": 34,
+    "segment": "Active Multi-Product",
+    "tenure_years": 6,
+    "products": [
+      "Money Market",
+      "HELOC"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.19,
+    "last_login_days_ago": 7,
+    "location": "Jacksonville, FL"
+  },
+  {
+    "id": "MBR-10094",
+    "name": "Dennis Hamilton",
+    "age": 68,
+    "segment": "Established Family",
+    "tenure_years": 15,
+    "products": [
+      "Mortgage",
+      "Credit Card"
+    ],
+    "primary_channel": "desktop",
+    "churn_risk": 0.24,
+    "last_login_days_ago": 17,
+    "location": "Quantico, VA"
+  },
+  {
+    "id": "MBR-10095",
+    "name": "Maria Graham",
+    "age": 64,
+    "segment": "Young Professional",
+    "tenure_years": 9,
+    "products": [
+      "Savings",
+      "Checking",
+      "Auto Loan"
+    ],
+    "primary_channel": "branch",
+    "churn_risk": 0.3,
+    "last_login_days_ago": 26,
+    "location": "McLean, VA"
+  },
+  {
+    "id": "MBR-10096",
+    "name": "Jerry Kim",
+    "age": 41,
+    "segment": "Digital-First",
+    "tenure_years": 4,
+    "products": [
+      "Credit Card",
+      "Money Market",
+      "IRA",
+      "HELOC",
+      "Personal Loan"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.24,
+    "last_login_days_ago": 19,
+    "location": "Woodbridge, VA"
+  },
+  {
+    "id": "MBR-10097",
+    "name": "Heather Gonzales",
+    "age": 50,
+    "segment": "Established Family",
+    "tenure_years": 20,
+    "products": [
+      "Checking",
+      "Savings",
+      "Mortgage",
+      "CD"
+    ],
+    "primary_channel": "mobile",
+    "churn_risk": 0.45,
+    "last_login_days_ago": 21,
+    "location": "Fayetteville, NC"
+  },
+  {
+    "id": "MBR-10098",
+    "name": "Tyler Alexander",
+    "age": 59,
+    "segment": "Active Multi-Product",
+    "tenure_years": 6,
+    "products": [
+      "Personal Loan",
+      "HELOC",
+      "Credit Card",
+      "Savings",
+      "IRA"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.31,
+    "last_login_days_ago": 15,
+    "location": "Fairfax, VA"
+  },
+  {
+    "id": "MBR-10099",
+    "name": "Diane Wallace",
+    "age": 53,
+    "segment": "Established Family",
+    "tenure_years": 14,
+    "products": [
+      "CD",
+      "Savings",
+      "Auto Loan",
+      "HELOC"
+    ],
+    "primary_channel": "phone",
+    "churn_risk": 0.34,
+    "last_login_days_ago": 9,
+    "location": "Killeen, TX"
+  }
+]

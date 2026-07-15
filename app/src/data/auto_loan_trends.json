@@ -1,0 +1,55 @@
+{
+  "weekly_data": [
+    {
+      "week": "2026-W09",
+      "week_start": "2026-02-23",
+      "inquiries": 1842,
+      "applications": 1214,
+      "completions": 987,
+      "abandonment_rate": 0.12,
+      "avg_rate_offered": 5.89
+    },
+    {
+      "week": "2026-W10",
+      "week_start": "2026-03-02",
+      "inquiries": 1956,
+      "applications": 1108,
+      "completions": 812,
+      "abandonment_rate": 0.19,
+      "avg_rate_offered": 6.12
+    },
+    {
+      "week": "2026-W11",
+      "week_start": "2026-03-09",
+      "inquiries": 2104,
+      "applications": 978,
+      "completions": 601,
+      "abandonment_rate": 0.28,
+      "avg_rate_offered": 6.34
+    },
+    {
+      "week": "2026-W12",
+      "week_start": "2026-03-16",
+      "inquiries": 2287,
+      "applications": 891,
+      "completions": 423,
+      "abandonment_rate": 0.36,
+      "avg_rate_offered": 6.48
+    }
+  ],
+  "abandonment_increase_factor": 3.0,
+  "primary_driver": "Rate perception \u2014 members comparing and leaving",
+  "genesys_keyword_correlation": {
+    "rate_mention_percentage": 0.68,
+    "competitor_mention_percentage": 0.31,
+    "top_keywords": [
+      "rate",
+      "APR",
+      "Navy Federal",
+      "USAA",
+      "better deal",
+      "too high",
+      "shopping around"
+    ]
+  }
+}

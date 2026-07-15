@@ -1,0 +1,40 @@
+{
+  "validated_at": "2026-07-08T06:04:00",
+  "data_trust_score": 98,
+  "widgets": {
+    "pipeline_health": {
+      "state": "warning",
+      "summary": "6 of 6 sources loaded · 1 late",
+      "detail": "All sources loaded and reconciled at 6:04 AM. Barafin loaded 41 minutes late; one dependent figure flagged and held from headline numbers.",
+      "sources": [
+        { "name": "Symitar", "state": "good", "loaded_at": "05:58" },
+        { "name": "MeridianLink", "state": "good", "loaded_at": "06:01" },
+        { "name": "Greenplum on Tanzu", "state": "good", "loaded_at": "06:02" },
+        { "name": "Tableau", "state": "good", "loaded_at": "06:03" },
+        { "name": "Barafin", "state": "warning", "loaded_at": "06:04", "note": "41 min late" },
+        { "name": "Thought Machine sandbox", "state": "good", "loaded_at": "05:55", "note": "migration cutover" }
+      ]
+    },
+    "open_audit_issues": {
+      "state": "good",
+      "summary": "3 open · exam-ready",
+      "detail": "Three open audit items, none aging past threshold. Segregation-of-duties and access-control changes logged with initiator, approver, and validator.",
+      "open_count": 3,
+      "aging_flag": false,
+      "sod_changes_logged": true
+    },
+    "ncua_exam_readiness": {
+      "state": "good",
+      "score": 88,
+      "status_label": "On track",
+      "next_window": "Q3 2026",
+      "detail": "Composite posture score across governed reporting, lineage coverage, and control documentation. Next exam window Q3 2026."
+    },
+    "lineage_on_demand": {
+      "state": "good",
+      "summary": "Trace any figure to source",
+      "detail": "Click any number to trace it from core through ETL to warehouse to brief — the chain the CEO can show the board or NCUA.",
+      "example_path": ["Symitar (core)", "Thought Machine (ledger)", "General Ledger", "Greenplum (warehouse)", "Board Brief"]
+    }
+  }
+}

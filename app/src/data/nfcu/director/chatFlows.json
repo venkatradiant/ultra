@@ -1,0 +1,784 @@
+{
+  "nfcu_dir_brief_sip_degradation": {
+    "ai_message": "The east-region SIP fiber cut at 10:23 AM took ~30% of voice capacity offline across auto loans, mortgage servicing, and general banking. 214 members in queue, 12 agents idle due to routing failure, and PinDrop is timing out on 34% of inbound calls on the degraded path. Recovery ETA from the carrier is 45–90 min. The team rollup is below.",
+    "suggested_chips": [
+      "Show root cause correlation",
+      "What are my options to stabilize both teams?",
+      "Show me historical incidents like this"
+    ],
+    "data_sources_used": ["Carrier Intelligence", "SIP Monitoring", "Variant WFM", "PinDrop", "Dynamics 365 Contact Center"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["root_cause_tree"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Carrier feed + SIP monitor confirmed within 12 min of incident. Idle-agent count direct from Variant WFM.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Variant WFM", "PinDrop"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_brief_promo_surge": {
+    "ai_message": "Marketing Cloud sent a 2.9% rate promo to 45,000 members at 7:15 AM without Contact Center pre-notification. Auto loans call volume is at 3.2x baseline, and the SIP degradation is compounding it — dropped callers redial, creating duplicate volume. CRM shows 67% of callers are existing members checking refinance eligibility. IVR self-service is catching only 22% of intents. Migration timeline is below.",
+    "suggested_chips": [
+      "Draft a Marketing coordination rule",
+      "Show root cause correlation",
+      "What is the cross-team cascade risk?"
+    ],
+    "data_sources_used": ["Marketing Cloud", "Dynamics 365 CRM", "Dynamics 365 IVR", "CCAS Real-time"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 93,
+      "rationale": "Marketing send-time and CCAS volume timeline give direct causal evidence; CRM caller-type split is a count.",
+      "signals_used": ["Marketing Cloud", "CCAS Real-time", "Dynamics 365 CRM", "Dynamics 365 IVR"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_brief_cascade_risk": {
+    "ai_message": "Priya's reroute of cross-trained agents from general banking to auto loans dropped general banking service level to 71%. If the SIP recovery exceeds 60 minutes, mortgage servicing will also breach target. Variant WFM projects a 3-team simultaneous degradation within ~35 minutes at current trajectory. The team rollup is below — note general banking and mortgage servicing.",
+    "suggested_chips": [
+      "What are my options to stabilize both teams?",
+      "Show root cause correlation",
+      "Compare to last quarter's cascade events"
+    ],
+    "data_sources_used": ["Variant WFM", "CCAS Real-time", "Carrier Intelligence", "Historical Incident Patterns"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 86,
+      "rationale": "Cascade projection uses last-9-cross-team-events recovery curves; ±6 pp variance band on the 3-team threshold time.",
+      "signals_used": ["Variant WFM", "CCAS Real-time", "Historical Incident Patterns"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_brief_sentiment_trend": {
+    "ai_message": "Aggregate post-call sentiment drifted from +0.41 to +0.27 over the last 30 days. The sharpest decline is in mortgage servicing (-22%), which lines up with extended hold times during the Phase 2 migration window. Not an operational fire — but worth raising with the CX team this week before it shows up in NPS next month. Team rollup is below.",
+    "suggested_chips": [
+      "Show me sentiment by team",
+      "Schedule a CX review",
+      "Compare to last month's report"
+    ],
+    "data_sources_used": ["Sentiment Analysis", "Dynamics 365 CRM", "Voice Bio", "Migration PMO Tracker"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 84,
+      "rationale": "30-day rolling average is stable; sentiment-to-LOB attribution from CRM joins.",
+      "signals_used": ["Sentiment Analysis", "Dynamics 365 CRM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_brief_mortgage_repeat": {
+    "ai_message": "Repeat-contact rate on mortgage payoff inquiries climbed from 14% to 21% over six weeks. The pattern aligns with the Q1 escrow-statement reformat — members are calling because they can't decipher the new statement. The escrow attribution is inferred, not confirmed, so a journey audit next sprint would close the loop. Not an operational risk today. Migration timeline is below.",
+    "suggested_chips": [
+      "Queue a journey audit",
+      "Show me escrow statement complaints",
+      "What's the volume impact?"
+    ],
+    "data_sources_used": ["Dynamics 365 CRM", "CCAS Transcripts", "Journey Analytics"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 81,
+      "rationale": "Repeat-contact joins on member ID; root-cause attribution to escrow reformat is inferred from timeline correlation, not confirmed.",
+      "signals_used": ["Dynamics 365 CRM", "CCAS Transcripts"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_brief_staffing_outlook": {
+    "ai_message": "Variant WFM forecasts cross-team agent availability dropping below the 92% target for 5 of the next 8 weeks. The drivers are approved PTO, scheduled training cohorts, and 3 mortgage agents on extended leave. Forecast variance is ±3 pp historically, so this is solid. Operational impact is still 3+ weeks out, so there's time to plan. The overtime budget bar is below.",
+    "suggested_chips": [
+      "Show staffing by week",
+      "What is my overtime exposure?",
+      "Plan hiring backfill"
+    ],
+    "data_sources_used": ["Variant WFM", "HR System", "Training Calendar"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["segments"],
+    "confidence": {
+      "score": 88,
+      "rationale": "PTO + training calendar are authoritative; forecast variance ±3 pp on prior 8-week windows.",
+      "signals_used": ["Variant WFM", "HR System", "Training Calendar"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_root_cause_correlation": {
+    "ai_message": "The cross-source correlation is on the right. Two simultaneous upstream events — a SIP fiber cut on the east-region carrier path and an unannounced Marketing Cloud rate promo — are compounding into a single capacity-vs-volume choke point. That node is what's driving aggregate SL down to 68%, expanding impacted lines of business to 3 of 7, and pushing member impact to HIGH. The cross-team cascade you're seeing (Priya's reroute draining general banking) is a downstream effect, not a separate cause. Recovery ETA is anchored to the fiber cut, not the promo.",
+    "suggested_chips": [
+      "What are my options to stabilize both teams?",
+      "What is my budget exposure?",
+      "Draft an escalation to the SI partner"
+    ],
+    "data_sources_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "Dynamics 365 Contact Center (Roll-up)", "Variant WFM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["root_cause_tree"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Dual-source grounding on both upstream causes (carrier + SIP, Marketing + CCAS). Cross-team cascade attribution uses last-9-events recovery curves.",
+      "signals_used": ["Carrier Intelligence", "SIP Monitoring", "Marketing Cloud", "CCAS Real-time", "Variant WFM"],
+      "threshold": 70,
+      "model_version": "intra-corr-v1.0",
+      "validated_at": "2026-05-12T14:32:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_greeting": {
+    "ai_message": "Good morning, Marcus. Your contact center has 3 signals at the director level. The most urgent: aggregate service level dropped to 68%, with two teams in critical state simultaneously for the first time in 90 days. Your Genesys migration Phase 2 is also at risk. Want me to walk you through them?",
+    "suggested_chips": [
+      "Walk me through the service level issue",
+      "Show me the migration risk",
+      "What is my budget exposure?",
+      "Show root cause correlation"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center (Roll-up)", "Migration PMO Tracker", "Finance System", "HR System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Aggregate SL and dual-critical state are direct cross-team telemetry rollups. Migration risk anchored to PMO tracker.",
+      "signals_used": ["Dynamics 365 Contact Center (Roll-up)", "Migration PMO Tracker"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:58:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_signal_1_service": {
+    "ai_message": "Two of your four teams are in critical state simultaneously. **Priya's team (auto loans)** dropped to 54% service level after a marketing promotion drove a 340% volume spike. She has already activated 8 cross-trained agents from general banking. However, that agent reallocation created a secondary problem: **general banking is now at 72% service level and declining**. Meanwhile, **mortgage servicing is at 64%** due to 3 experienced agents on extended leave. Your two healthy teams (member onboarding and digital banking) are holding at **86%** and **91%** respectively.",
+    "suggested_chips": [
+      "What are my options to stabilize both teams?",
+      "Show me the cascade impact",
+      "Which team should I prioritize?",
+      "How does this compare to last quarter?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center (4-team roll-up)", "Workforce Management", "Marketing Cloud"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [
+      {
+        "type": "table",
+        "title": "Manager Roll-up — Service Level by Team",
+        "dataset_key": "team_rollup"
+      }
+    ],
+    "related_dataset_keys": ["team_rollup"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Per-team SL is direct telemetry. Cascade attribution is causal — Priya's reroute and Okafor's drop are time-aligned within 6 minutes.",
+      "signals_used": ["Dynamics 365 Contact Center (4-team roll-up)", "Workforce Management"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:58:34Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_signal_2_migration": {
+    "ai_message": "Phase 2 of your Genesys-to-Dynamics 365 migration is **12 days behind schedule**. The delay is concentrated in 3 of 14 IVR routing flows: **mortgage payment processing, fraud alert escalation, and Spanish-language routing**. These 3 flows handle **31% of your total call volume**. The parity testing failures are caused by differences in how Genesys URS and Dynamics 365 handle conditional routing with multiple skill requirements. Your SI partner flagged the issue on April 15 but has not provided a remediation timeline. If Phase 2 does not complete by **May 15**, Phase 3 (agent desktop migration) compresses into 8 weeks instead of 12 — your workforce planning team has flagged that as high-risk for agent productivity.",
+    "suggested_chips": [
+      "What are my options to accelerate Phase 2?",
+      "Show me the 3 failing IVR flows",
+      "What happens if we miss the May 15 deadline?",
+      "Draft an escalation to the SI partner",
+      "Next signal"
+    ],
+    "data_sources_used": ["Migration PMO Tracker", "Genesys Cloud", "Dynamics 365 Routing Rules", "SI Partner Status Reports"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [
+      {
+        "type": "timeline",
+        "title": "Migration Timeline & Phase Risk",
+        "dataset_key": "migration_phases"
+      }
+    ],
+    "related_dataset_keys": ["migration_phases"],
+    "confidence": {
+      "score": 87,
+      "rationale": "Schedule slip and 31% volume figure are deterministic. Phase 3 compression risk is a model output anchored to 4 prior contact-center migrations.",
+      "signals_used": ["Migration PMO Tracker", "SI Partner Status Reports"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:58:42Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_signal_3_budget": {
+    "ai_message": "Cross-team overtime spend is at **71% of Q2 budget with 10 weeks remaining**. Current trajectory projects **138% of budget by quarter end** — a $97K overrun. Two structural drivers: (1) Priya's team carrying unplanned marketing-driven spikes (auto loans alone consumed $84K in OT this quarter), and (2) mortgage servicing covering for 3 experienced agents on extended leave ($61K). The corrective Marketing notification rule Priya is drafting today should reduce driver #1 going forward, but driver #2 won't resolve until the agents return in late May.",
+    "suggested_chips": [
+      "Show me the overtime budget exposure",
+      "What can I cut to stay in budget?",
+      "Compare to last quarter",
+      "Next signal"
+    ],
+    "data_sources_used": ["Finance System", "HR System", "Workforce Management"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["budget"],
+    "confidence": {
+      "score": 88,
+      "rationale": "MTD spend and budget allocation are authoritative. Quarter-end projection assumes current burn-rate; mitigation savings are model estimates.",
+      "signals_used": ["Finance System", "HR System"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:58:48Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_turn_1_team_rollup": {
+    "ai_message": "Here is your live cross-team operational snapshot:\n\n• **Auto Loans (Priya):** 54% SL — CRITICAL, 14 agents, 127 waiting, intervention active\n• **Mortgage Servicing (Reyes):** 64% SL — CRITICAL, 11 agents, 18 waiting, 3 on extended leave\n• **General Banking (Okafor):** 72% SL — declining (cascade from auto loans), 22 agents\n• **Member Onboarding (Tanaka):** 86% SL — HEALTHY, 8 agents\n• **Digital Banking (Chen):** 91% SL — HEALTHY, 10 agents, has overflow capacity\n\n**Aggregate: 68%** (target 80%). The cross-team correlation matters: every action one manager takes shifts load to another. That is the gap your Dynamics 365 dashboards cannot show you natively.",
+    "suggested_chips": [
+      "What are my options to stabilize both teams?",
+      "Which team should I prioritize?",
+      "Show me the cascade impact"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center (4-team roll-up)", "Workforce Management"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [
+      {
+        "type": "table",
+        "title": "Manager Roll-up — Service Level by Team",
+        "dataset_key": "team_rollup"
+      }
+    ],
+    "related_dataset_keys": ["team_rollup"],
+    "confidence": {
+      "score": 93,
+      "rationale": "All 5 team SLs are direct telemetry reads. Aggregate is a deterministic weighted average.",
+      "signals_used": ["Dynamics 365 Contact Center (4-team roll-up)", "Workforce Management"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:05Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_turn_2_scenarios": {
+    "ai_message": "I modeled three scenarios.\n\n**Scenario A — Reverse the cascade.** Pull 4 agents back from auto loans to general banking; enable callback for auto loans. Auto loans projects to 71% (below target) but general banking recovers to 81%. Net aggregate: 74%. Cost: $0.\n\n**Scenario B — Activate overtime.** 6 OT agents across both teams for the afternoon shift. Both teams above 78%. Cost: $4,200 today, pushes Q2 OT to 74% of budget.\n\n**Scenario C — Skills-based overflow to digital banking.** Route low-complexity auto loan calls to digital banking (currently at 91%). Auto loans projects to 79%, general banking holds at 72%, digital banking drops to 84% but stays healthy. Net aggregate: **79%**. Lowest cost, highest aggregate recovery.\n\nScenario C is the recommendation.",
+    "suggested_chips": [
+      "Execute Scenario C",
+      "Show me the digital banking team's capacity",
+      "What about the migration risk?",
+      "Model a fourth scenario"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM (forecasting)", "Agent Skill Profiles (cross-team)", "Finance System (budget modeling)"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [
+      {
+        "type": "scenario_table",
+        "title": "Cross-Team Stabilization Scenarios",
+        "dataset_key": "scenarios"
+      }
+    ],
+    "related_dataset_keys": ["scenarios"],
+    "confidence": {
+      "score": 84,
+      "rationale": "Three scenarios share the same forecasting model with ±3 pp variance. Scenario C overflow path is the most validated (n=11 prior overflows).",
+      "signals_used": ["Dynamics 365 WFM (forecasting)", "Agent Skill Profiles"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:14Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_turn_3_actions": {
+    "ai_message": "I can execute or draft any of these from this conversation. Which do you want first?",
+    "suggested_chips": [
+      "Execute Scenario C",
+      "Draft an escalation to the SI partner",
+      "Generate my weekly leadership report"
+    ],
+    "data_sources_used": ["Dynamics 365 Routing", "Migration PMO", "Reporting Engine"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [
+      {
+        "type": "action_cards",
+        "title": "Director-Level Actions",
+        "actions": [
+          {
+            "id": "ACT-NFCU-DIR-001",
+            "title": "Execute Scenario C — Skills-Based Overflow",
+            "description": "Route low-complexity auto loan calls to digital banking via skills-based overflow in Dynamics 365. Aggregate SL projects to 79%.",
+            "system": "Dynamics 365 Routing Engine",
+            "impact": "Aggregate service level recovers to 79% within 30 minutes. Cost $0 today. Net most efficient path.",
+            "status": "ready",
+            "confidence": {
+              "score": 91,
+              "rationale": "Skills-based overflow is a deterministic routing config; recovery projection landed within ±2 pp on last 11 events.",
+              "threshold": 70,
+              "model_version": "exec-rollup-v1.6",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          },
+          {
+            "id": "ACT-NFCU-DIR-002",
+            "title": "Draft SI Partner Escalation — IVR Parity Gap",
+            "description": "Generate escalation memo referencing the 3 failing IVR flows, the 12-day delay, and the May 15 hard deadline. Request 48-hour remediation plan.",
+            "system": "Migration PMO + Email",
+            "impact": "Forces SI partner accountability with explicit deadline and downstream Phase 3 risk documented.",
+            "status": "ready",
+            "confidence": {
+              "score": 90,
+              "rationale": "Memo content draws from authoritative PMO + SI test reports. SI response cycle has historical median of 72 hours.",
+              "threshold": 70,
+              "model_version": "exec-rollup-v1.6",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          },
+          {
+            "id": "ACT-NFCU-DIR-003",
+            "title": "Generate Weekly Leadership Report",
+            "description": "One-page executive report for the VP: aggregate SL, migration status, budget trajectory, CSAT, attrition, with month-over-month deltas.",
+            "system": "Reporting Engine + Dynamics 365",
+            "impact": "Replaces 90 minutes of manual roll-up. Includes trend arrows and the recovery timeline for today's incident.",
+            "status": "ready",
+            "confidence": {
+              "score": 95,
+              "rationale": "Aggregation of pre-validated metrics with no inference beyond formatting.",
+              "threshold": 70,
+              "model_version": "exec-rollup-v1.6",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          }
+        ]
+      }
+    ],
+    "post_confirm_response": {
+      "ACT-NFCU-DIR-001": "Done. Skills-based overflow activated in Dynamics 365: low-complexity auto loan calls now routing to digital banking agents with auto loan certification. Live queue impact: auto loans dropped from 127 to 89 waiting members within 12 minutes. Projected aggregate service level at 9:45 AM: **79%**. Digital banking holding at 84% — healthy. I am monitoring and will alert you if any team drops below 75%. Should I also generate the leadership report for your VP sync?",
+      "ACT-NFCU-DIR-002": "SI partner escalation drafted. References the 3 specific failing flows (mortgage payment, fraud escalation, Spanish-language routing), the 12-day delay against the May 15 hard deadline, and the downstream compression risk to Phase 3 agent migration. Includes the side-by-side Genesys URS vs. Dynamics 365 routing-rule comparison sourced from your migration documentation. Requests a remediation plan with specific dates within 48 hours. Ready in your draft folder — review and send when you're ready, or I can send to your SI partner contact directly.",
+      "ACT-NFCU-DIR-003": "Weekly leadership report generated. Five sections: (1) Aggregate performance — SL 68%, recovery to 79% projected, two simultaneous degradations explained; (2) Migration — Phase 2 at 64%, 12 days behind, escalation sent; (3) Budget — Q2 OT at 71%, projected 138% trajectory with mitigation drivers; (4) Member satisfaction — CSAT stable at 3.9 despite SL dip, sentiment concentrated in mortgage portal; (5) Attrition — 16.4% (up from 14.1% last quarter), top driver evening-shift schedule inflexibility. Trend arrows on every KPI. Ready in your reports folder."
+    },
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 89,
+      "rationale": "Three reversible actions; each backed by deterministic systems with strong historical precedent.",
+      "signals_used": ["Dynamics 365 Routing", "Migration PMO", "Reporting Engine"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:22Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_cascade_impact": {
+    "ai_message": "Here is the cascade. The auto loan promo at 7:15 AM drove a 340% queue spike. Priya pulled 8 cross-trained agents from general banking. That move cleared auto loans wait time to manageable, **but it also dropped general banking from 87% to 72% service level**. General banking is now your second-most-exposed queue — a queue that was healthy 90 minutes ago. Mortgage servicing is independent of this cascade — it's running at 64% because of the 3 agents on extended leave, a structural staffing gap.\n\nThis is exactly the kind of cross-team correlation Dynamics 365 alone cannot show you. Each manager sees their own queue. Only the AI roll-up sees that Priya's intervention triggered Okafor's degradation.",
+    "suggested_chips": [
+      "What are my options to stabilize both teams?",
+      "Which team should I prioritize?"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center (4-team roll-up)", "Workforce Management", "Routing Engine"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["team_rollup"],
+    "confidence": {
+      "score": 92,
+      "rationale": "Cascade timeline and SL deltas align within a 6-minute window — high causal confidence.",
+      "signals_used": ["Dynamics 365 Contact Center", "Routing Engine"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_priority_call": {
+    "ai_message": "**Prioritize general banking.** Three reasons:\n\n**(1) Cascade containment.** Auto loans is already in active intervention with a 30-minute recovery path. General banking is in a *worsening* state with no intervention applied yet. Containing the cascade is more valuable than further accelerating an already-recovering queue.\n\n**(2) Member impact.** General banking handles 38% of weekly call volume — the highest of any queue. A 1-point drop in general banking SL affects more members than a 1-point drop in auto loans.\n\n**(3) Cost.** Reversing the cascade with Scenario A is $0. Doubling down on auto loans (Scenario B) costs $4,200 today and pushes Q2 OT toward the projected 138% trajectory.\n\nMortgage servicing is the deeper structural risk, but the 3 agents return in late May — staffing math improves on its own.",
+    "suggested_chips": [
+      "Execute Scenario A",
+      "What are my options to stabilize both teams?",
+      "Show me the migration risk"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center (4-team roll-up)", "CRM Volume Distribution", "Finance System"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["team_rollup", "scenarios"],
+    "confidence": {
+      "score": 86,
+      "rationale": "Decision logic is strong; volume-distribution and cost numbers are authoritative. Trade-offs across the three reasons add modest variance.",
+      "signals_used": ["Dynamics 365 Contact Center (4-team roll-up)", "CRM Volume Distribution"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_quarter_compare": {
+    "ai_message": "**Q1 2026 vs. Q2-to-date (week 7):**\n\n• **Aggregate SL:** Q1 averaged 81% — at target. Q2 trending 76% — pulled down by today's incident and 2 prior single-team degradations.\n• **Dual-team critical events:** Q1 had **0**. Q2 has had **1** (today). 90-day lookback confirms today is the first dual-critical state.\n• **Cost per contact:** Q1 average $6.84. Q2 trending **$7.42** — 8.5% increase, driven by overtime and longer mortgage servicing handle times.\n• **CSAT:** Q1 4.0, Q2 3.9 — minor decline, stable considering SL pressure.\n• **Migration:** Q1 closed Phase 1 on schedule. Q2 has slipped 12 days in Phase 2 — first material schedule risk in the program.\n\nThe pattern: this quarter is structurally tougher. The marketing notification gap, mortgage leave, and SI partner IVR delay have stacked. Each is recoverable; the aggregation is the issue.",
+    "suggested_chips": [
+      "What are my options to stabilize both teams?",
+      "Generate my weekly leadership report"
+    ],
+    "data_sources_used": ["Dynamics 365 Historical Analytics", "Finance System", "Migration PMO"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["team_rollup", "budget"],
+    "confidence": {
+      "score": 90,
+      "rationale": "All comparisons are direct historical reads. Aggregation is deterministic.",
+      "signals_used": ["Dynamics 365 Historical Analytics", "Finance System", "Migration PMO"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_migration_detail": {
+    "ai_message": "Here are the 3 IVR flows currently failing parity testing:\n\n**(1) Mortgage Payment Processing** — Genesys uses URS conditional routing with 4 skill requirements (mortgage, payments, Spanish optional, after-hours fallback). Dynamics 365 implementation routes correctly on 3 of 4 conditions but drops the after-hours fallback when Spanish is selected. Volume: 14% of total calls.\n\n**(2) Fraud Alert Escalation** — Genesys auto-escalates to a tier-2 fraud queue with priority routing. Dynamics 365 implementation correctly escalates but loses the priority flag, so fraud alerts queue behind standard inquiries. Volume: 9% of total calls.\n\n**(3) Spanish-Language Routing** — Genesys has 8 skill-tagged Spanish agents with specialty sub-skills (mortgage, auto, deposits). Dynamics 365 currently routes to a single Spanish queue without sub-skill matching, increasing transfer rate and handle time. Volume: 8% of total calls.\n\nCombined volume at risk: **31%** of all calls. The SI partner has the configuration export from Genesys and the Dynamics 365 destination rules — they have the artifacts to fix this.",
+    "suggested_chips": [
+      "Draft an escalation to the SI partner",
+      "What happens if we miss the May 15 deadline?",
+      "What are my options to accelerate Phase 2?"
+    ],
+    "data_sources_used": ["Migration PMO Tracker", "Genesys Cloud Configuration", "Dynamics 365 Routing Rules", "SI Partner Test Reports"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [
+      {
+        "type": "timeline",
+        "title": "Migration Timeline & Phase Risk",
+        "dataset_key": "migration_phases"
+      }
+    ],
+    "related_dataset_keys": ["migration_phases"],
+    "confidence": {
+      "score": 85,
+      "rationale": "Flow specs and volume shares are deterministic; failure-mode descriptions are sourced from the SI parity test report.",
+      "signals_used": ["Genesys Cloud Configuration", "Dynamics 365 Routing Rules", "SI Partner Test Reports"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:30Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_phase_2_options": {
+    "ai_message": "Three options to accelerate Phase 2:\n\n**Option 1 — Escalate to SI partner with hard deadline.** Send the drafted memo today demanding a 48-hour remediation plan. Historical pattern shows your SI partner moves on documented escalations within 72 hours. Cost: $0. Risk: still depends on SI partner capacity.\n\n**Option 2 — Bring in a secondary integrator.** Engage one of the 2 NFCU-approved backup integrators for parallel work on the 3 failing flows. Cost: ~$45K for 2 weeks of work. Cuts ~7 days from the slip. Requires VP approval.\n\n**Option 3 — Phase 2 partial cutover.** Move the 11 working IVR flows to Dynamics 365 on schedule and keep the 3 failing flows on Genesys until parity passes. Cost: $0 incremental. Risk: violates 'one platform per phase' migration principle and complicates Phase 3.\n\nMy recommendation: **Option 1 today, Option 2 standby if no SI response by April 28.** Option 3 only if Option 1 and 2 both stall.",
+    "suggested_chips": [
+      "Draft an escalation to the SI partner",
+      "What happens if we miss the May 15 deadline?"
+    ],
+    "data_sources_used": ["Migration PMO Tracker", "SI Partner Contracts", "Vendor Management"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["migration_phases"],
+    "confidence": {
+      "score": 76,
+      "rationale": "Vendor-dependent pathways. SI partner response cycle (72-hr median) and secondary-integrator availability are estimates with ±20% variance.",
+      "signals_used": ["Migration PMO Tracker", "SI Partner Status History"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:36Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_deadline_impact": {
+    "ai_message": "If Phase 2 slips past May 15:\n\n• **Phase 3 (agent desktop migration) compresses from 12 weeks to 8.** Workforce planning has flagged this as high-risk for agent productivity — historical migration data shows compressed agent training drives a 4–6 week dip in AHT and quality scores.\n\n• **Genesys license window is at risk.** Current contract expires June 30. A Phase 2 slip past May 15 leaves only 6 weeks for Phase 3 + cutover + parallel-run period. Industry benchmark is 8 weeks minimum.\n\n• **Budget exposure: ~$110K.** Genesys license extension (if needed) is $85K/quarter. SI partner change orders for compressed Phase 3 are estimated at $25K–$40K based on prior migrations.\n\n• **Member impact: medium-low.** Calls continue to route correctly; the issue is operational ergonomics for agents during compressed Phase 3, not member-facing service.\n\nThe avoidable cost is significant. The escalation and Option 2 backup plan together protect against this scenario.",
+    "suggested_chips": [
+      "Confirm SI partner's revised May 15 ETA",
+      "Draft an escalation to the SI partner",
+      "What are my options to accelerate Phase 2?"
+    ],
+    "data_sources_used": ["Migration PMO Tracker", "Vendor Management", "Finance System", "Workforce Planning"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["migration_phases", "budget"],
+    "confidence": {
+      "score": 61,
+      "rationale": "May 15 SI partner ETA not yet confirmed by SI partner — entirely vendor-dependent. License extension cost ($85K/quarter) is from prior contract, not yet negotiated for FY26 renewal. Phase 3 productivity dip range (4–6 weeks) is from 4 prior migrations with high variance across industries.",
+      "signals_used": ["Migration PMO Tracker (unconfirmed)", "FY24 contract terms (stale)"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:42Z",
+      "escalation": {
+        "triggered": true,
+        "reason": "May 15 SI partner ETA unconfirmed; FY26 license-renewal terms unmodeled",
+        "route_to": "SI Partner Account Lead",
+        "review_queue": "Vendor Escalation Queue"
+      }
+    }
+  },
+
+  "nfcu_dir_deadline_impact_resolved": {
+    "ai_message": "**Re-modeled with confirmed inputs.** SI Partner Account Lead confirmed the May 15 ETA in writing this morning, with a documented remediation plan for all 3 IVR flows by May 8. Vendor Management closed the FY26 license terms last week (filed in Vendor Management; I missed the freshness check). Updated picture:\n\n• **Phase 3 compression risk:** still 4–6 weeks if slip occurs, but **probability of slip dropped from 38% to 11%** with the confirmed plan.\n• **License exposure:** Genesys FY26 extension is **$72K/quarter** (down from prior $85K) — lower exposure than originally cited.\n• **Total budget exposure (probability-weighted):** revised from ~$110K to **~$28K**.\n• **Recommended action:** keep Option 2 secondary-integrator on standby through April 28 as a hedge, but scale back active escalation cadence — daily check-ins are no longer warranted.\n\nConfidence has rebounded to 87% because the May 15 ETA is confirmed and the FY26 license terms are no longer stale.",
+    "suggested_chips": [
+      "Generate my weekly leadership report",
+      "What should I prioritize this week?",
+      "Show me the budget exposure"
+    ],
+    "data_sources_used": ["Migration PMO Tracker (confirmed)", "Vendor Management (FY26 terms)", "SI Partner Remediation Plan"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["migration_phases", "budget"],
+    "confidence": {
+      "score": 87,
+      "rationale": "Confirmed SI partner ETA + FY26 license terms; probability-weighted exposure recalculated against fresh inputs.",
+      "signals_used": ["SI Partner Remediation Plan (confirmed)", "Vendor Management (FY26)"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T09:01:22Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_budget_exposure": {
+    "ai_message": "**Q2 Overtime Budget — Exposure Detail**\n\n• **Total Q2 budget:** $412,000\n• **Spent to date (week 7 of 13):** $287,000 — **71%**\n• **Run-rate to quarter end:** $568,000 — **138% of budget**, $156K over\n\n**Top drivers:**\n• Auto loans (Priya): $84K — unplanned marketing-driven spikes. Marketing notification rule (drafted today) projects to reduce this by $32K in remaining Q2.\n• Mortgage servicing (Reyes): $61K — covering 3 experienced agents on extended leave. Agents return late May; estimated $18K residual exposure.\n• General banking (Okafor): $42K — primarily today's cascade and 2 prior smaller events.\n• Other teams + cross-coverage: $100K.\n\n**Exposure if mitigations land:** $156K → ~$98K over budget. Full mitigation requires either VP-approved budget transfer or mid-quarter rate review on cross-trained agent pay.\n\nThis projection assumes today's incident resolves on the Scenario C path. If Scenario B is chosen instead, add ~$4.2K to today and ~$12K to projected quarter-end.",
+    "suggested_chips": [
+      "Compare to last quarter",
+      "What can I cut to stay in budget?",
+      "Generate my weekly leadership report"
+    ],
+    "data_sources_used": ["Finance System", "HR System", "Workforce Management"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["budget"],
+    "confidence": {
+      "score": 92,
+      "rationale": "Spend-to-date is authoritative; projection is a linear run-rate that has landed within ±5% on prior quarters.",
+      "signals_used": ["Finance System", "HR System"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:46Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_budget_cuts": {
+    "ai_message": "Three viable levers to close the projected $98K residual gap (post-mitigations):\n\n**(1) Tighten cross-coverage authorization to manager-approval-only.** Currently any senior agent can approve cross-team coverage at OT rate. Restricting to manager approval projects $28K savings over remaining Q2 with minimal SL impact (historical data suggests <2pt aggregate drop).\n\n**(2) Defer non-critical training cohort to Q3.** The current April–June cohort is on track but not time-critical. Deferring 6 weeks pushes ~$22K of OT-during-training into Q3 budget.\n\n**(3) Accelerate the IT portal fix that is driving mortgage-servicing repeat contacts.** IT estimates a $15K accelerated-fix cost vs. ~$48K of incremental OT this quarter from repeat contacts. Net Q2 saving: $33K.\n\nCombined: $83K — closes most of the $98K residual gap. Each lever has different risk profiles and trade-offs; happy to go deeper on any of them.",
+    "suggested_chips": [
+      "Generate my weekly leadership report",
+      "What about the migration risk?"
+    ],
+    "data_sources_used": ["Finance System", "HR System", "IT Incident Management", "Workforce Planning"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["budget"],
+    "confidence": {
+      "score": 80,
+      "rationale": "Lever savings are model estimates with ±15% range; SL impact assumptions anchored to 6 prior coverage-policy changes.",
+      "signals_used": ["Finance System", "HR System", "Workforce Planning"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:52Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_weekly_report": {
+    "ai_message": "**Weekly Contact Center Operations Report — Week of April 23, 2026**\n\n**(1) Aggregate Performance** — Service level at **68%** (below 80% target), driven by two simultaneous team degradations today. Corrective actions in progress; projected recovery to **79% by EOD**. Trend ↓ vs. last week.\n\n**(2) Migration Status** — Phase 2 at **64%**, **12 days behind**; 3 IVR flows failing parity (31% volume). SI partner escalation sent. Trend ↓.\n\n**(3) Budget** — Q2 overtime at **71% of budget**; today's corrective actions cost $0 (Scenario C); projected year-end trajectory improving if Marketing notification policy lands. Trend → (stable with mitigation).\n\n**(4) Member Satisfaction** — **CSAT stable at 3.9** despite service level dip. Sentiment analysis shows negative sentiment concentrated in mortgage servicing (portal-related). Trend →.\n\n**(5) Agent Attrition** — **16.4%** (up from 14.1% last quarter). Exit interviews cite schedule inflexibility on evening shifts as top factor. Trend ↓.\n\nReport ready for your VP sync. Want me to add a recommendation section or export it as PDF?",
+    "suggested_chips": [
+      "Add a recommendation section",
+      "Export as PDF",
+      "Compare to last month's report",
+      "Show me the attrition detail"
+    ],
+    "data_sources_used": ["Dynamics 365 (all modules)", "Genesys", "HR System", "Finance System", "Migration PMO", "Marketing Cloud", "CRM"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["team_rollup", "budget", "migration_phases"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Aggregation of pre-validated metrics across all 5 sections. No inference beyond formatting.",
+      "signals_used": ["Dynamics 365 (all modules)", "Genesys", "HR System", "Finance System"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T09:00:01Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_month_compare": {
+    "ai_message": "**Month-over-Month Comparison — March vs. April-to-date:**\n\n• **Service Level:** 78% → **68%** (driven by two concurrent incidents this week; March had zero dual-team degradations).\n• **Cost per Contact:** $6.89 → **$7.42** (+7.7%). Primary drivers: higher OT and longer handle times in mortgage servicing.\n• **CSAT:** 3.9 → **3.9** (held steady — members are tolerant when agents resolve issues, suggests SL dip has not yet eroded experience).\n• **Migration:** 48% → **64%** (was on track until the IVR parity issue surfaced April 15).\n• **Attrition:** 14.1% → **16.4%** (+2.3pts). New data point: evening shift agents citing schedule inflexibility.\n• **Positive trend — FCR:** 68% → **71%**, driven by the new knowledge base deployment in general banking.\n\n**Net read:** April is a structurally tougher month than March — three independent pressures (marketing-promo gap, mortgage leave, SI delay) stacked. None alone would have moved aggregate SL meaningfully; together they did.",
+    "suggested_chips": [
+      "What should I prioritize this week?",
+      "Drill into the attrition data",
+      "Show me the FCR improvement driver",
+      "Export the comparison"
+    ],
+    "data_sources_used": ["Dynamics 365 Historical Analytics", "Finance System", "HR System", "Migration PMO"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["team_rollup", "budget"],
+    "confidence": {
+      "score": 92,
+      "rationale": "All deltas are direct historical reads. Causal attribution (three stacked pressures) is anchored to validated signals from Priya, Janelle, and migration tracker.",
+      "signals_used": ["Dynamics 365 Historical Analytics", "Finance System", "HR System"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:57Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_attrition_detail": {
+    "ai_message": "**Attrition Detail — Trailing 90 Days, 16.4% (up from 14.1% last quarter):**\n\n**By shift band:**\n• Day shift (6 AM – 2 PM): 12.1% — at benchmark\n• Mid shift (10 AM – 6 PM): 14.8% — slightly elevated\n• **Evening shift (2 PM – 10 PM): 24.3%** — primary driver\n\n**Top 3 exit-interview themes (evening shift):**\n• 'Schedule inflexibility' — 71% mention\n• 'Lack of advancement clarity' — 38% mention\n• 'Compensation' — 22% mention\n\n**Tenure pattern:** 68% of evening-shift attrition is in the **0–18 month** tenure band — agents leave before reaching peak productivity.\n\n**Cross-correlation:** evening shifts are also where you hold the thinnest supervisor coverage (1 supervisor : 18 agents vs. 1:14 day shift). The schedule-inflexibility complaint correlates with limited supervisor availability for shift-swap approvals.\n\n**Possible interventions:** flexible-shift pilot (already proposed by Workforce Planning), evening supervisor coverage expansion, or a targeted retention bonus for 0–18-month evening agents.",
+    "suggested_chips": [
+      "Generate my weekly leadership report",
+      "Compare to last month's report"
+    ],
+    "data_sources_used": ["HR System", "Workforce Management", "Exit Interview Database"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 89,
+      "rationale": "All breakdowns are direct HR + exit-interview reads. Cross-correlation with supervisor coverage is well-established.",
+      "signals_used": ["HR System", "Exit Interview Database", "Workforce Management"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:33Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_priority_week": {
+    "ai_message": "Three priorities for the rest of this week, ranked:\n\n**(1) Stabilize today's incident through end of day.** Scenario C executes; monitor general banking for cascade reversal; close out auto loans recovery. Estimated owner-time: <1 hour of monitoring.\n\n**(2) Ship the SI partner escalation today.** May 15 deadline is 22 days out; SI response cycle is 72 hours; you need to be inside that loop now. Estimated owner-time: 15-minute review of the drafted memo.\n\n**(3) Prep the VP report Friday.** Aggregate trajectory is the headline; your VP will want the recovery story for today, the migration risk picture, and the budget mitigation plan. Estimated owner-time: 30 minutes if you use the generated report as a base.\n\nDeprioritized for next week: attrition deep-dive, training cohort review, and budget cut deliberations. None are time-critical and all benefit from a calmer week.",
+    "suggested_chips": [
+      "Generate my weekly leadership report",
+      "Drill into the attrition data"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center (Roll-up)", "Migration PMO", "Finance System"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["team_rollup", "migration_phases"],
+    "confidence": {
+      "score": 88,
+      "rationale": "Priority order is informed by impact + reversibility. SI 72-hour response cycle is well-documented.",
+      "signals_used": ["Dynamics 365 Contact Center (Roll-up)", "Migration PMO"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T08:59:48Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_act_scenario_c": {
+    "ai_message": "Scenario C executed. Skills-based overflow live in Dynamics 365 — auto loan low-complexity calls now routing to digital banking agents with auto loan certification. **Live impact:** auto loans queue dropped from 127 to 89 within 12 minutes. Aggregate service level projected at **79% by 9:45 AM**. Digital banking holding at **84%** — healthy. I am monitoring all four teams. Should I generate the leadership report next, or pivot to the migration escalation?",
+    "suggested_chips": [
+      "Draft an escalation to the SI partner",
+      "Generate my weekly leadership report"
+    ],
+    "data_sources_used": ["Dynamics 365 Routing Engine", "Workforce Management"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 94,
+      "rationale": "Live queue impact is direct telemetry. Recovery projection re-confirmed against current model.",
+      "signals_used": ["Dynamics 365 Routing Engine", "Workforce Management"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T09:00:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_act_si_escalation": {
+    "ai_message": "SI partner escalation drafted. Memo includes: (1) the 3 specific IVR flows failing parity (mortgage payment, fraud escalation, Spanish routing), (2) the 12-day delay against the **May 15 hard deadline**, (3) the downstream Phase 3 compression risk (12 weeks → 8 weeks), and (4) the side-by-side Genesys URS vs. Dynamics 365 routing-rule comparison sourced from your migration documentation. Requests a remediation plan with specific dates within 48 hours. Ready in your draft folder. Want me to send it directly to your SI partner contact, or hold for your review?",
+    "suggested_chips": [
+      "Hold for my review",
+      "Send to SI partner contact",
+      "Generate my weekly leadership report"
+    ],
+    "data_sources_used": ["Migration PMO Tracker", "Genesys Cloud Configuration", "Dynamics 365 Routing Rules", "SI Partner Contract"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["migration_phases"],
+    "confidence": {
+      "score": 92,
+      "rationale": "Memo content drawn from authoritative PMO + parity test reports. Send-action is deterministic.",
+      "signals_used": ["Migration PMO Tracker", "SI Partner Test Reports"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T09:00:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_act_weekly_report": {
+    "ai_message": "Weekly leadership report generated. Five sections: aggregate performance with recovery trajectory, migration status with escalation context, Q2 budget with mitigation drivers, CSAT/sentiment summary, and attrition trend with evening-shift breakdown. Trend arrows on every KPI. Month-over-month deltas for the four headline metrics. Ready in your reports folder for the VP sync. Want me to add a recommendation section, or export as PDF?",
+    "suggested_chips": [
+      "Add a recommendation section",
+      "Export as PDF",
+      "Compare to last month's report"
+    ],
+    "data_sources_used": ["Dynamics 365 (all modules)", "Genesys", "HR System", "Finance System", "Migration PMO", "Marketing Cloud", "CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Aggregation across pre-validated systems. Deterministic format.",
+      "signals_used": ["Dynamics 365 (all modules)", "Genesys", "HR System", "Finance System"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T09:00:29Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_act_recommendation_added": {
+    "ai_message": "Recommendation section added to the weekly report:\n\n**Recommended VP Decisions:**\n• **Approve $45K secondary-integrator engagement** (Migration PMO) if SI partner has not delivered a remediation plan by April 28. Protects May 15 deadline and ~$110K downstream exposure.\n• **Endorse Marketing notification rule** drafted by Priya. Single-largest preventable driver of OT spikes ($32K projected savings remaining Q2).\n• **Approve evening-shift flexibility pilot** proposed by Workforce Planning. Targets the 24.3% evening-shift attrition rate — top driver of overall attrition increase.\n\nReport version 2 ready in your reports folder.",
+    "suggested_chips": [
+      "Export as PDF",
+      "Compare to last month's report"
+    ],
+    "data_sources_used": ["Reporting Engine", "Migration PMO", "Workforce Planning"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 88,
+      "rationale": "Each recommendation references a specific upstream signal already validated; cost numbers are modeled estimates.",
+      "signals_used": ["Migration PMO", "Marketing Cloud", "Workforce Planning"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T09:00:36Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_dir_act_pdf_export": {
+    "ai_message": "Weekly leadership report exported as PDF — 4 pages with 1-page executive summary, 3 pages of supporting detail. Saved to your reports folder and a copy attached for your VP sync. Filename: `NFCU_CC_Weekly_Report_2026-04-23.pdf`. Anything else for this week?",
+    "suggested_chips": [
+      "What should I prioritize this week?",
+      "Drill into the attrition data"
+    ],
+    "data_sources_used": ["Reporting Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 96,
+      "rationale": "Deterministic export action.",
+      "signals_used": ["Reporting Engine"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T09:00:42Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

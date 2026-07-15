@@ -1,0 +1,26 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI reviews member experience signals overnight and surfaces friction patterns before you ask a single question.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and receive a sourced answer drawn simultaneously from Genesys, Service Cloud, and Data Cloud.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "The AI pinpoints exactly where and why friction is occurring across member journeys — channel switches, drop-offs, and CSAT declines.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Automated Action",
+    "description": "From the same conversation, the AI creates AgentForce segments, triggers outreach workflows, and escalates cases — with your confirmation at every step.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

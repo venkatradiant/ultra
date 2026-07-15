@@ -1,0 +1,7 @@
+[
+  {"id": "ds-risk-01", "name": "Transaction Monitor", "status": "connected", "description": "Real-time transaction surveillance, structuring detection, velocity analysis", "icon": "shield", "lastSync": "2026-04-07T06:14:00", "recordCount": 1456000},
+  {"id": "ds-risk-02", "name": "UiPath", "status": "connected", "description": "SAR auto-filing workflows, compliance automation logs, exception tracking", "icon": "cog", "lastSync": "2026-04-07T06:08:00", "recordCount": 456000},
+  {"id": "ds-risk-03", "name": "Genesys Cloud", "status": "connected", "description": "Complaint transcripts, escalation logs, consumer complaint patterns", "icon": "headphones", "lastSync": "2026-04-07T06:12:00", "recordCount": 892000},
+  {"id": "ds-risk-04", "name": "Fraud & Risk Feed", "status": "connected", "description": "Cross-border wire anomalies, dormant account reactivation alerts, pattern flags", "icon": "shield", "lastSync": "2026-04-07T06:14:00", "recordCount": 98000},
+  {"id": "ds-risk-05", "name": "Compliance Database", "status": "connected", "description": "NCUA readiness scores, BSA/AML posture, audit trails, regulatory filings", "icon": "database", "lastSync": "2026-04-07T05:30:00", "recordCount": 234000}
+]

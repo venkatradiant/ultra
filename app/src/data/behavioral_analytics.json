@@ -1,0 +1,122 @@
+{
+  "mortgage_application_funnel": [
+    {
+      "page": "Landing / Rate Calculator",
+      "visitors": 12480,
+      "drop_off_rate": 0.04,
+      "avg_time_seconds": 187,
+      "device_split": {
+        "mobile": 0.62,
+        "desktop": 0.34,
+        "tablet": 0.04
+      }
+    },
+    {
+      "page": "Pre-Qualification Form",
+      "visitors": 11981,
+      "drop_off_rate": 0.08,
+      "avg_time_seconds": 312,
+      "device_split": {
+        "mobile": 0.59,
+        "desktop": 0.37,
+        "tablet": 0.04
+      }
+    },
+    {
+      "page": "Product Selection",
+      "visitors": 11022,
+      "drop_off_rate": 0.11,
+      "avg_time_seconds": 245,
+      "device_split": {
+        "mobile": 0.58,
+        "desktop": 0.38,
+        "tablet": 0.04
+      }
+    },
+    {
+      "page": "Personal Information",
+      "visitors": 9810,
+      "drop_off_rate": 0.14,
+      "avg_time_seconds": 478,
+      "device_split": {
+        "mobile": 0.57,
+        "desktop": 0.39,
+        "tablet": 0.04
+      }
+    },
+    {
+      "page": "Income Verification & Upload",
+      "visitors": 8437,
+      "drop_off_rate": 0.41,
+      "avg_time_seconds": 624,
+      "device_split": {
+        "mobile": 0.64,
+        "desktop": 0.33,
+        "tablet": 0.03
+      }
+    },
+    {
+      "page": "Credit Review",
+      "visitors": 4978,
+      "drop_off_rate": 0.09,
+      "avg_time_seconds": 52,
+      "device_split": {
+        "mobile": 0.55,
+        "desktop": 0.41,
+        "tablet": 0.04
+      }
+    },
+    {
+      "page": "Closing & Disbursement",
+      "visitors": 4530,
+      "drop_off_rate": 0.03,
+      "avg_time_seconds": 198,
+      "device_split": {
+        "mobile": 0.48,
+        "desktop": 0.47,
+        "tablet": 0.05
+      }
+    }
+  ],
+  "session_metrics": {
+    "avg_session_duration_seconds": 384,
+    "avg_pages_per_session": 4.2,
+    "bounce_rate": 0.18,
+    "mobile_share": 0.61,
+    "desktop_share": 0.35,
+    "tablet_share": 0.04,
+    "peak_hours": [
+      "09:00-11:00",
+      "19:00-21:00"
+    ],
+    "browser_split": {
+      "Chrome": 0.48,
+      "Safari": 0.31,
+      "Edge": 0.12,
+      "Firefox": 0.06,
+      "Other": 0.03
+    }
+  },
+  "exit_signals": [
+    {
+      "signal": "3+ failed upload attempts",
+      "frequency": 847,
+      "pct_of_exits": 0.62
+    },
+    {
+      "signal": "Session timeout on upload page",
+      "frequency": 312,
+      "pct_of_exits": 0.23
+    },
+    {
+      "signal": "Back-button from Step 4 to Step 3",
+      "frequency": 198,
+      "pct_of_exits": 0.14
+    },
+    {
+      "signal": "Rage clicks on upload button",
+      "frequency": 156,
+      "pct_of_exits": 0.11
+    }
+  ]
+}

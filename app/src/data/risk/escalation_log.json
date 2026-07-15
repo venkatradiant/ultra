@@ -1,0 +1,65 @@
+{
+  "summary": {
+    "total_open": 5,
+    "total_escalated": 2,
+    "total_closed_this_month": 8,
+    "avg_resolution_days": 4.2
+  },
+  "escalations": [
+    {
+      "id": "ESC-001",
+      "title": "BSA Structuring — 4 Accounts",
+      "type": "SAR Filing",
+      "status": "In Progress",
+      "priority": "Critical",
+      "assigned_to": "BSA Officer — M. Chen",
+      "opened": "2026-04-05",
+      "target_resolution": "2026-04-09",
+      "notes": "2 SARs filed automatically. 2 additional accounts under manual review. FinCEN notification pending."
+    },
+    {
+      "id": "ESC-002",
+      "title": "Cross-Border Wire — Dormant Reactivation",
+      "type": "Investigation",
+      "status": "Escalated to Fraud Team",
+      "priority": "Critical",
+      "assigned_to": "Fraud Investigation — J. Park",
+      "opened": "2026-04-06",
+      "target_resolution": "2026-04-12",
+      "notes": "Accounts frozen pending review. Wire recall attempted for $52,100 (Cayman Islands). Enhanced due diligence initiated."
+    },
+    {
+      "id": "ESC-003",
+      "title": "Velocity Spike — 8 Accounts",
+      "type": "Monitoring",
+      "status": "Under Review",
+      "priority": "High",
+      "assigned_to": "Transaction Monitoring — S. Williams",
+      "opened": "2026-04-06",
+      "target_resolution": "2026-04-10",
+      "notes": "48-hour enhanced monitoring in place. No SAR filed yet — awaiting pattern confirmation."
+    },
+    {
+      "id": "ESC-004",
+      "title": "NCUA Consumer Complaint Remediation",
+      "type": "Regulatory",
+      "status": "In Progress",
+      "priority": "High",
+      "assigned_to": "Compliance — R. Thompson",
+      "opened": "2026-03-28",
+      "target_resolution": "2026-04-15",
+      "notes": "CD complaint resolution process under review. Target: reduce resolution time from 14 days to 7 days before Q3 exam."
+    },
+    {
+      "id": "ESC-005",
+      "title": "Round-Dollar Wire SAR Review",
+      "type": "SAR Filing",
+      "status": "Pending Review",
+      "priority": "Medium",
+      "assigned_to": "BSA Officer — M. Chen",
+      "opened": "2026-04-07",
+      "target_resolution": "2026-04-11",
+      "notes": "3 accounts with round-dollar wire patterns. SAR draft prepared, awaiting BSA Officer approval."
+    }
+  ]
+}

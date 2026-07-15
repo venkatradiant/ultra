@@ -1,0 +1,30 @@
+{
+  "title": "Loan-Loss Figure — Source-to-Report Lineage",
+  "stages": [
+    { "id": "core", "name": "Jack Henry Core", "subtitle": "Symitar", "detail": "Originating transactions" },
+    { "id": "ledger", "name": "Thought Machine Ledger", "subtitle": "Posting engine", "detail": "Transaction-level events" },
+    { "id": "gl", "name": "General Ledger", "subtitle": "Aggregation", "detail": "Journal entries & balances" },
+    { "id": "snowflake", "name": "Snowflake", "subtitle": "Data warehouse", "detail": "Analytical store" },
+    { "id": "tableau", "name": "Tableau", "subtitle": "Reporting", "detail": "Board & regulatory dashboards" }
+  ],
+  "transformations": [
+    { "id": "t1", "from": "core", "to": "ledger", "label": "Posting & classification", "documented": false },
+    { "id": "t2", "from": "ledger", "to": "gl", "label": "Aggregation to GL accounts", "documented": false },
+    { "id": "t3", "from": "gl", "to": "snowflake", "label": "ETL load & restatement", "documented": false },
+    { "id": "t4", "from": "snowflake", "to": "tableau", "label": "Dashboard metric calc", "documented": false }
+  ],
+  "summary": {
+    "undocumented_points": 4,
+    "figures_lacking_lineage": 47,
+    "avg_reconstruction_hours": 3.5,
+    "traceability_coverage_pct": 53
+  },
+  "top_gap_figures": [
+    { "figure": "Allowance for Loan Losses", "dashboard": "Board Financials", "risk": "high" },
+    { "figure": "Net Portfolio Balance", "dashboard": "Board Financials", "risk": "high" },
+    { "figure": "Reserve Coverage Ratio", "dashboard": "NCUA 5300", "risk": "high" },
+    { "figure": "Net Interest Margin", "dashboard": "NCUA 5300", "risk": "medium" },
+    { "figure": "Charge-Off Ratio", "dashboard": "Board Financials", "risk": "medium" },
+    { "figure": "Net Worth Ratio", "dashboard": "NCUA 5300", "risk": "medium" }
+  ]
+}

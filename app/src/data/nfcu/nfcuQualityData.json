@@ -1,0 +1,83 @@
+{
+  "qualitySignals": [
+    {
+      "id": "SIG-NFCU-WF-001",
+      "title": "BSA/AML Verification Gap",
+      "description": "23% of new account calls are missing the BSA/AML identity verification step since the April 17 script update moved it from step 3 to step 7. 142 accounts at risk — 134 auto-resolvable, 8 require callbacks.",
+      "severity": "critical",
+      "impact": "high",
+      "category": "Compliance",
+      "affectedCount": 142,
+      "trend": "worsening",
+      "sources": ["Dynamics 365 Process Adherence", "Dynamics 365 QM"]
+    },
+    {
+      "id": "SIG-NFCU-WF-002",
+      "title": "Repeat Contact Spike — Bill Pay (31%)",
+      "description": "Bill pay FCR dropped from 81% to 54% since the digital banking sync latency issue logged April 14. Members calling back within 48 hours increased 31%. IT fix estimated April 25.",
+      "severity": "critical",
+      "impact": "high",
+      "category": "Experience",
+      "affectedCount": 189,
+      "trend": "worsening",
+      "sources": ["Dynamics 365 Contact Center", "IT Incident Management"]
+    },
+    {
+      "id": "SIG-NFCU-WF-003",
+      "title": "Top Performer Burnout Risk — Mortgage Servicing",
+      "description": "3 of top 10 rated agents show declining quality scores (avg −8.4 pts over 30 days), increasing AHT, and lower positive sentiment ratios. Historical attrition risk within 60–90 days.",
+      "severity": "warning",
+      "impact": "medium",
+      "category": "Workforce",
+      "affectedCount": 3,
+      "trend": "worsening",
+      "sources": ["Dynamics 365 QM", "Dynamics 365 Sentiment Analysis"]
+    }
+  ],
+  "qualityPosture": {
+    "title": "Quality Posture Overview",
+    "overallScore": 82,
+    "overallMaxScore": 100,
+    "overallStatus": "amber",
+    "weekLabel": "This Week",
+    "metrics": [
+      { "label": "Overall FCR", "value": "68%", "target": "75%", "status": "below" },
+      { "label": "Bill Pay FCR", "value": "54%", "target": "75%", "status": "critical" },
+      { "label": "Avg CSAT", "value": "4.1/5.0", "target": "4.3", "status": "below" },
+      { "label": "Positive Sentiment", "value": "74%", "target": "80%", "status": "below" }
+    ]
+  },
+  "ncuaCompliance": {
+    "title": "NCUA Compliance Readiness",
+    "score": 78,
+    "maxScore": 100,
+    "status": "amber",
+    "openFindings": 3,
+    "closedFindings": 14,
+    "nextExamWindow": "Q3 2026",
+    "keyRisk": "BSA/AML verification gap — 142 accounts flagged since Apr 17",
+    "areas": [
+      { "area": "BSA/AML Verification", "status": "at_risk", "note": "23% skip rate since Apr 17 script change" },
+      { "area": "Call Recording Compliance", "status": "ok", "note": "100% capture rate — no gaps" },
+      { "area": "Reg CC Disclosures", "status": "ok", "note": "No open findings this quarter" },
+      { "area": "Fair Lending Monitoring", "status": "watch", "note": "Q2 review scheduled May 15" }
+    ]
+  },
+  "fcrTrend": [
+    { "week": "W1 Mar", "bill_pay_fcr": 82, "overall_fcr": 71 },
+    { "week": "W2 Mar", "bill_pay_fcr": 81, "overall_fcr": 70 },
+    { "week": "W3 Mar", "bill_pay_fcr": 80, "overall_fcr": 70 },
+    { "week": "W4 Mar", "bill_pay_fcr": 81, "overall_fcr": 71 },
+    { "week": "W1 Apr", "bill_pay_fcr": 79, "overall_fcr": 70 },
+    { "week": "W2 Apr", "bill_pay_fcr": 67, "overall_fcr": 68 },
+    { "week": "W3 Apr", "bill_pay_fcr": 58, "overall_fcr": 68 },
+    { "week": "W4 Apr", "bill_pay_fcr": 54, "overall_fcr": 68 }
+  ],
+  "agentQualityByQueue": [
+    { "queue": "Digital Support",    "score": 89, "target": 85, "agents": 10, "trend": "stable",   "status": "ok"       },
+    { "queue": "Member Onboarding", "score": 86, "target": 85, "agents": 8,  "trend": "stable",   "status": "ok"       },
+    { "queue": "General Banking",   "score": 84, "target": 85, "agents": 22, "trend": "declining","status": "warning"  },
+    { "queue": "Mortgage Servicing","score": 79, "target": 85, "agents": 11, "trend": "declining","status": "critical" },
+    { "queue": "Auto Loans",        "score": 76, "target": 85, "agents": 14, "trend": "declining","status": "critical" }
+  ]
+}

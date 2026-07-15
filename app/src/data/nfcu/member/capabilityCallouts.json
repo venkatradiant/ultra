@@ -1,0 +1,44 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The assistant surfaces what needs your attention before you ask — a declined payment, a held deposit, an approaching fee — by watching your accounts across Core Banking, the Payments Engine, and Loan Servicing in real time.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and get an instant, secure answer. Simple lookups like your balance come straight from your core banking record — no AI model involved and no account detail leaving Navy Federal's systems.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "The assistant traces a problem past its surface symptom to the real cause — correlating the declined payment, the balance at the moment of the draw, and the unapplied salary credit into one clear explanation.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Anomaly Detection",
+    "description": "The assistant checks your account against Navy Federal's deposit-handling procedures and flags the exception: an early-credit flag with no matching direct deposit routing, which is why the funds are held rather than posted.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Predictive Intelligence",
+    "description": "The assistant forecasts the outcome before you commit — showing that fixing the routing now posts the credit within one business day, funds the payment, and clears it inside the grace window, avoiding the fee.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "With your go-ahead, the assistant executes the fix end to end: it adds the direct deposit routing, applies the held credit, and retries the payment automatically — then confirms each step as it completes.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_6",
+    "capabilityName": "Converged Conversation",
+    "description": "The assistant closes the loop across your accounts — confirming next month draws from a funded account, projecting your posted balance, and reassuring you that nothing further is needed.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

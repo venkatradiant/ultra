@@ -1,0 +1,173 @@
+{
+  "team_rollup": [
+    {
+      "id": "TEAM-AUTO",
+      "name": "Auto Loans",
+      "manager": "Priya Kapoor",
+      "service_level": 54,
+      "target": 80,
+      "agents": 14,
+      "members_waiting": 127,
+      "status": "critical",
+      "note": "340% promo spike — intervention active"
+    },
+    {
+      "id": "TEAM-MORTGAGE",
+      "name": "Mortgage Servicing",
+      "manager": "Reyes",
+      "service_level": 64,
+      "target": 80,
+      "agents": 11,
+      "members_waiting": 18,
+      "status": "critical",
+      "note": "3 agents on extended leave"
+    },
+    {
+      "id": "TEAM-GENERAL",
+      "name": "General Banking",
+      "manager": "Okafor",
+      "service_level": 72,
+      "target": 80,
+      "agents": 22,
+      "members_waiting": 12,
+      "status": "warning",
+      "note": "Cascade from auto loans"
+    },
+    {
+      "id": "TEAM-ONBOARD",
+      "name": "Member Onboarding",
+      "manager": "Tanaka",
+      "service_level": 86,
+      "target": 80,
+      "agents": 8,
+      "members_waiting": 2,
+      "status": "healthy",
+      "note": ""
+    },
+    {
+      "id": "TEAM-DIGITAL",
+      "name": "Digital Banking",
+      "manager": "Chen",
+      "service_level": 91,
+      "target": 80,
+      "agents": 10,
+      "members_waiting": 6,
+      "status": "healthy",
+      "note": "Has overflow capacity"
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "A — Reverse the cascade",
+      "auto_loans_sl": "71%",
+      "general_banking_sl": "81%",
+      "aggregate_sl": "74%",
+      "cost": "$0",
+      "budget_impact": "71%",
+      "notes": "Auto loans dips below target",
+      "highlight": false,
+      "status": "partial"
+    },
+    {
+      "label": "B — Activate overtime",
+      "auto_loans_sl": "78%",
+      "general_banking_sl": "78%",
+      "aggregate_sl": "78%",
+      "cost": "$4,200",
+      "budget_impact": "74%",
+      "notes": "Both teams above 78% — pushes Q2 OT",
+      "highlight": false,
+      "status": "partial"
+    },
+    {
+      "label": "C — Skills-based overflow ✓",
+      "auto_loans_sl": "79%",
+      "general_banking_sl": "72%",
+      "aggregate_sl": "79%",
+      "cost": "$0",
+      "budget_impact": "71%",
+      "notes": "Recommended — best aggregate, $0 cost",
+      "highlight": true,
+      "status": "best"
+    }
+  ],
+  "migration_phases": [
+    {
+      "id": "PHASE-1",
+      "name": "Phase 1 — Discovery & Foundation",
+      "status": "complete",
+      "progress": 100,
+      "start": "2025-11-01",
+      "end": "2026-02-15",
+      "note": "On schedule"
+    },
+    {
+      "id": "PHASE-2",
+      "name": "Phase 2 — IVR Parallel Deployment",
+      "status": "at_risk",
+      "progress": 64,
+      "start": "2026-02-16",
+      "end": "2026-05-15",
+      "note": "12 days behind — 3 of 14 IVR flows failing parity"
+    },
+    {
+      "id": "PHASE-3",
+      "name": "Phase 3 — Agent Desktop Migration",
+      "status": "not_started",
+      "progress": 0,
+      "start": "2026-05-16",
+      "end": "2026-08-08",
+      "note": "Compresses to 8 weeks if Phase 2 slips"
+    },
+    {
+      "id": "PHASE-4",
+      "name": "Phase 4 — Cutover & Genesys Decommission",
+      "status": "not_started",
+      "progress": 0,
+      "start": "2026-08-09",
+      "end": "2026-09-30",
+      "note": "Aligned with Genesys license expiration June 30 (renewal pending)"
+    }
+  ],
+  "ivr_parity_failures": [
+    {
+      "flow": "Mortgage Payment Processing",
+      "volume_pct": 14,
+      "failure_reason": "Drops after-hours fallback when Spanish is selected"
+    },
+    {
+      "flow": "Fraud Alert Escalation",
+      "volume_pct": 9,
+      "failure_reason": "Loses priority flag during escalation"
+    },
+    {
+      "flow": "Spanish-Language Routing",
+      "volume_pct": 8,
+      "failure_reason": "No sub-skill matching for Spanish specialty queues"
+    }
+  ],
+  "budget": {
+    "q2_total": 412000,
+    "spent_to_date": 287000,
+    "weeks_elapsed": 7,
+    "weeks_remaining": 10,
+    "projected_end": 568000,
+    "projected_pct": 138,
+    "drivers": [
+      { "team": "Auto Loans (Priya)", "amount": 84000, "share": 29 },
+      { "team": "Mortgage Servicing (Reyes)", "amount": 61000, "share": 21 },
+      { "team": "General Banking (Okafor)", "amount": 42000, "share": 15 },
+      { "team": "Other / Cross-coverage", "amount": 100000, "share": 35 }
+    ]
+  },
+  "kpis": [
+    { "id": "agg_sl", "label": "Aggregate Service Level", "value": "68%", "target": "80%", "trend": "below", "source": "Dynamics 365 (4-team roll-up)" },
+    { "id": "calls_mtd", "label": "Calls Handled (MTD)", "value": "142,847", "target": null, "trend": "stable", "source": "Dynamics 365 + Genesys (blended)" },
+    { "id": "cost_per_contact", "label": "Cost per Contact", "value": "$7.42", "target": "$6.90", "trend": "up", "source": "Finance + Dynamics 365 volume" },
+    { "id": "csat", "label": "CSAT (trailing 30d)", "value": "3.9/5.0", "target": "4.0", "trend": "stable", "source": "Post-call survey + Dynamics 365 sentiment" },
+    { "id": "attrition", "label": "Agent Attrition (90d)", "value": "16.4%", "target": "12.0%", "trend": "up", "source": "HR System (all teams)" },
+    { "id": "migration", "label": "Migration Phase 2 Progress", "value": "64%", "target": "100% by May 15", "trend": "behind", "source": "Migration PMO" },
+    { "id": "ot_spend", "label": "Q2 Overtime Spend", "value": "$287K of $412K", "target": "≤$412K", "trend": "trajectory 138%", "source": "Finance + HR" },
+    { "id": "fcr", "label": "First Contact Resolution", "value": "71%", "target": "75%", "trend": "improving", "source": "Dynamics 365 + CRM" }
+  ]
+}

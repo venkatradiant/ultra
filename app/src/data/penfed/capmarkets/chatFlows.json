@@ -1,0 +1,577 @@
+{
+  "greeting": {
+    "ai_message": "Good morning, Sowmya. 3 signals need your attention before your capital markets committee meeting. The most urgent: PNFED 2024-A collateral delinquencies crossed the 1.80% trigger threshold. If this trend holds for one more reporting period, it activates early amortization. Want me to walk you through them?",
+    "suggested_chips": [
+      "Yes, walk me through them",
+      "What is driving the delinquency spike?",
+      "Show me hedge positions"
+    ],
+    "data_sources_used": ["Snowflake", "Bloomberg Terminal", "Internal Risk Models", "Salesforce Data Cloud"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"]
+  },
+
+  "signal_1_abs": {
+    "ai_message": "PNFED 2024-A. The collateral pool's 60+ day delinquency rate moved from 1.36% to 1.78% over the latest reporting period. The deal's early amortization trigger is set at 1.80% sustained over two consecutive periods.\n\nI cross-referenced Snowflake loan-level data with Salesforce Data Cloud origination attributes: the delinquency concentration is in loans originated through three specific dealer partners in Q3 2024, which carry a 4.2% delinquency rate versus 1.1% for the rest of the pool. Bloomberg surveillance shows ABS spreads for comparable prime auto deals widened 8 bps this month, signaling the market is already pricing in sector-level credit deterioration.\n\nCurrent trajectory projects breach by August 2026.",
+    "suggested_chips": [
+      "Show me the dealer-level breakdown",
+      "What happens if we breach the trigger?",
+      "How do our other trusts compare?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Snowflake", "Salesforce Data Cloud", "Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [
+      {
+        "type": "line_chart",
+        "title": "PNFED 2024-A: 60+ Day Delinquency vs. Trigger Threshold",
+        "dataset_key": "abs_dq_trend.pnfed_2024a",
+        "config": {
+          "x_axis": "period",
+          "y_axis": "dq_rate",
+          "threshold_line": 0.018,
+          "threshold_label": "Early Amortization Trigger (1.80%)",
+          "highlight_color": "#CC0000"
+        }
+      }
+    ],
+    "related_dataset_keys": ["signals", "scenarios", "dealers"]
+  },
+
+  "signal_2_hedge": {
+    "ai_message": "Interest rate swap portfolio effectiveness declined from 96.2% to 89.7% over the last 90 days. Three positions are driving the drift, correlated with the yield curve steepening 47 bps in the 2-to-10-year spread since March. One position already failed the FASB ASC 815 80% minimum.",
+    "suggested_chips": [
+      "What are my options to fix the hedge?",
+      "Model the P&L impact if we lose hedge accounting",
+      "Next signal"
+    ],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [
+      {
+        "type": "swap_effectiveness_grid",
+        "title": "Swap Portfolio Effectiveness vs. 80% Threshold",
+        "dataset_key": "swaps.positions",
+        "config": { "threshold": 0.80, "highlight_below": true }
+      }
+    ],
+    "related_dataset_keys": ["signals", "swaps"]
+  },
+
+  "signal_3_dealer": {
+    "ai_message": "Top 5 auto dealer partners now represent 38% of new origination volume — up from 27% a year ago. Two dealers show declining financial health scores in the credit monitoring feed. This concentration directly impacts future ABS collateral quality and rating agency pool diversity requirements.",
+    "suggested_chips": [
+      "Show me the dealer-level breakdown",
+      "What should we do about these dealers?",
+      "Are these dealers in our pipeline for 2025-B?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Salesforce Data Cloud", "Credit Monitoring Feed", "Snowflake"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "dealers"]
+  },
+
+  "turn_1_walkthrough": {
+    "user_query": "Yes, walk me through them",
+    "ai_response": "First: PNFED 2024-A. The collateral pool's 60+ day delinquency rate moved from 1.36% to 1.78% over the last reporting period. The deal's early amortization trigger is set at 1.80% sustained over two consecutive periods.\n\nI cross-referenced Snowflake loan-level data with Salesforce Data Cloud origination attributes: the delinquency concentration is in loans originated through three specific dealer partners in Q3 2024, which carry a 4.2% delinquency rate versus 1.1% for the rest of the pool. Bloomberg surveillance shows ABS spreads for comparable prime auto deals widened 8 bps this month, signaling the market is already pricing in sector-level credit deterioration.",
+    "suggested_chips": [
+      "What happens if we breach the trigger?",
+      "Show me the dealer-level breakdown",
+      "How do our other trusts compare?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Snowflake", "Salesforce Data Cloud", "Bloomberg Terminal"],
+    "ui_components_to_render": [
+      {
+        "type": "line_chart",
+        "title": "PNFED 2024-A: 60+ Day Delinquency Rate vs. Trigger Threshold",
+        "dataset_key": "abs_dq_trend.pnfed_2024a",
+        "config": {
+          "x_axis": "period",
+          "y_axis": "dq_rate",
+          "threshold_line": 0.018,
+          "threshold_label": "Trigger (1.80%)"
+        }
+      },
+      {
+        "type": "stacked_bar",
+        "title": "Delinquency Volume by Dealer Origination Source",
+        "dataset_key": "dealers.dealers",
+        "config": { "x_axis": "name", "y_axis": "delinquency_rate" }
+      }
+    ],
+    "related_dataset_keys": ["dealers", "scenarios"]
+  },
+
+  "turn_2_dealer_breakdown": {
+    "user_query": "Show me the dealer-level breakdown",
+    "ai_response": "The delinquency concentration maps to three dealer partners.\n\n• Dealer A (Metro Auto Group): 847 loans in the 2024-A pool, 4.7% delinquency rate, financial health score declined from 72 to 58 in the last six months.\n• Dealer B (National Auto Finance): 612 loans, 3.9% delinquency rate, recently flagged by the credit monitoring feed for declining floor plan performance.\n• Dealer C (Premier Motors Network): 534 loans, 3.8% delinquency rate, stable financial health but geographic concentration in regions with rising unemployment.\n\nThese three dealers represent 22% of the 2024-A pool by balance but 61% of the delinquency volume. The friction point: origination channel quality is degrading the securitization collateral, and it is not visible in aggregate portfolio metrics until it crosses a trigger.",
+    "suggested_chips": [
+      "What should we do about these dealers?",
+      "Are these dealers in our pipeline for 2025-B?",
+      "What happens if we breach the trigger?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Snowflake", "Salesforce Data Cloud", "Credit Monitoring Feed"],
+    "ui_components_to_render": [
+      {
+        "type": "dealer_scorecard_table",
+        "title": "Dealer Scorecard — PNFED 2024-A Pool",
+        "dataset_key": "dealers.dealers",
+        "config": {
+          "columns": ["name", "loans_in_pool", "delinquency_rate", "financial_health_score", "health_trend", "geographic_concentration"]
+        }
+      }
+    ],
+    "related_dataset_keys": ["dealers"]
+  },
+
+  "turn_3_trigger_scenarios": {
+    "user_query": "What happens if we breach the trigger?",
+    "ai_response": "I modeled three scenarios against the PNFED 2024-A deal structure.\n\n• Scenario A (current trajectory): delinquency reaches 2.04% by August 2026, breaching the trigger for two consecutive periods. Early amortization activates, redirecting all excess spread to principal paydown. $142M reinvestment capacity locked. 2025-B issuance delayed because rating agencies require a seasoning period.\n\n• Scenario B (dealer remediation, RECOMMENDED): tighten origination criteria for the three flagged dealers and accelerate loss mitigation on 47 loans currently 60-89 DPD. Projected delinquency stabilizes at 1.71%, below the trigger. Cost: ~$2.1M accelerated charge-offs this quarter, absorbed in existing provision. Preserves $142M reinvestment capacity and the September 2025-B timeline.\n\n• Scenario C (portfolio substitution): replace highest-risk dealer-originated loans with performing collateral from the retained portfolio. Structural option under the deal documents; requires trustee approval and rating agency notification. Timeline: 6-8 weeks.",
+    "suggested_chips": [
+      "Execute Scenario B",
+      "Show me the hedge effectiveness signal",
+      "What does this mean for our capital ratio?",
+      "Draft a trustee notification for Scenario C"
+    ],
+    "data_sources_used": ["Internal Risk Models", "Snowflake", "Bloomberg Terminal"],
+    "ui_components_to_render": [
+      {
+        "type": "scenario_comparison_table",
+        "title": "Trigger Scenario Comparison — PNFED 2024-A",
+        "dataset_key": "scenarios.scenarios",
+        "config": { "recommend_field": "recommended" }
+      },
+      {
+        "type": "line_chart",
+        "title": "Projected Delinquency Curves vs. Trigger",
+        "dataset_key": "scenarios.projection_series",
+        "config": { "threshold_line": 0.018, "threshold_label": "Trigger (1.80%)" }
+      }
+    ],
+    "related_dataset_keys": ["scenarios", "dealers"]
+  },
+
+  "turn_4_hedge_anomaly": {
+    "user_query": "Show me the hedge effectiveness signal",
+    "ai_response": "Your interest rate swap portfolio shows an anomaly. Three of your twelve active swap positions are driving the hedge effectiveness ratio from 96.2% down to 89.7%.\n\nThe common factor: all three are 5-year swaps entered in Q1 2025 when the yield curve was flatter. Since March 2026, the curve has steepened 47 bps in the 2-to-10-year spread, creating a basis mismatch between the swap terms and the underlying fixed-rate securities they hedge.\n\nIndividually, these three positions show effectiveness ratios of 78.4%, 81.2%, and 83.6%. FASB ASC 815 requires 80% minimum for hedge accounting. The 78.4% position already fails. If the curve steepens another 15 bps, the 81.2% position fails as well. Losing hedge accounting on the at-risk positions would require $4.8M unrealized losses to flow through earnings rather than other comprehensive income.",
+    "suggested_chips": [
+      "What are my options to fix the hedge?",
+      "Model the P&L impact if we lose hedge accounting",
+      "Show me the dealer concentration signal",
+      "What does this mean for our capital ratio?"
+    ],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models", "Snowflake"],
+    "ui_components_to_render": [
+      {
+        "type": "swap_effectiveness_grid",
+        "title": "Swap Position Effectiveness — 12 Active Positions",
+        "dataset_key": "swaps.positions",
+        "config": { "threshold": 0.80, "highlight_below": true }
+      },
+      {
+        "type": "yield_curve_compare",
+        "title": "Yield Curve: Q1 2025 Entry vs. Current",
+        "dataset_key": "swaps.yield_curve_compare",
+        "config": { "annotate_steepening_bps": 47 }
+      }
+    ],
+    "related_dataset_keys": ["swaps"]
+  },
+
+  "turn_5_capital_impact": {
+    "user_query": "What does this mean for our capital ratio?",
+    "ai_response": "I ran a consolidated capital impact model across all three signals.\n\nCurrent regulatory capital ratio: 10.32%.\n\n• Do nothing: if the ABS trigger breaches and you lose hedge accounting on two swap positions, combined impact is a 38 bps reduction to 9.94%. Still well-capitalized, but the buffer above the 7% threshold narrows from $1.04B to $890M. Rating agencies will factor the early amortization event into their surveillance review, which could lead to a negative outlook on outstanding tranches.\n\n• Remediate (Scenario B + restructure the three at-risk swaps): capital ratio impact is limited to 8 bps, holding at 10.24%. The $2.1M in accelerated charge-offs is absorbed within existing provision. Swap restructure costs ~$340K in breakage fees but preserves hedge accounting.",
+    "suggested_chips": [
+      "Execute the remediation path",
+      "Generate a board risk summary",
+      "Prepare the S&P surveillance package",
+      "Model additional rate scenarios"
+    ],
+    "data_sources_used": ["Internal Risk Models", "NCUA Reporting System", "Bloomberg Terminal", "Snowflake"],
+    "ui_components_to_render": [
+      {
+        "type": "capital_waterfall",
+        "title": "Capital Ratio Waterfall — Current to Scenario Outcome",
+        "dataset_key": "scenarios.consolidated_capital_impact",
+        "config": {
+          "start": 0.1032,
+          "well_capitalized_line": 0.07,
+          "adequately_capitalized_line": 0.06
+        }
+      }
+    ],
+    "related_dataset_keys": ["scenarios"]
+  },
+
+  "turn_6_actions": {
+    "user_query": "Execute the remediation path",
+    "ai_response": "Three actions queued. I'll confirm each one before I proceed.\n\n[1] Dealer Risk Remediation Brief for the lending committee — drafted with loan-level data, dealer financial health scores, and projected impact on the 2024-A collateral pool. Recommends tightened origination criteria for the three flagged dealers and accelerated loss mitigation on the 47 delinquent loans.\n\n[2] Swap Restructure Analysis with Treasury — three at-risk positions, proposed replacement terms aligned to the current yield curve, breakage cost estimates, and the hedge accounting impact assessment. Meeting invite drafted for Thursday with portfolio analytics attached.\n\n[3] Q3 Rating Agency Surveillance Package for PNFED 2022-A, 2024-A, and 2025-A — pre-populated with collateral performance, prepayment speeds, loss severity, and the remediation actions being taken. This package typically takes your team two weeks to assemble manually.",
+    "suggested_chips": [],
+    "data_sources_used": ["Snowflake", "Salesforce Data Cloud", "Bloomberg Terminal", "Internal Risk Models", "NCUA Reporting System"],
+    "ui_components_to_render": [
+      {
+        "type": "action_cards",
+        "title": "Recommended Actions",
+        "actions": [
+          {
+            "id": "ACT-CAPM-001",
+            "title": "Dealer Risk Remediation Brief",
+            "description": "Loan-level data + dealer financial health scores for lending committee review",
+            "system": "Salesforce AgentForce + Document Generator",
+            "status": "pending_confirmation",
+            "buttons": ["Confirm", "Edit First"]
+          },
+          {
+            "id": "ACT-CAPM-002",
+            "title": "Swap Restructure Analysis Meeting",
+            "description": "Thursday Treasury meeting with replacement terms, breakage estimates, hedge accounting impact",
+            "system": "Calendar + Internal Risk Models",
+            "status": "pending_confirmation",
+            "buttons": ["Confirm", "Edit First"]
+          },
+          {
+            "id": "ACT-CAPM-003",
+            "title": "Q3 Rating Agency Surveillance Package",
+            "description": "Auto-compiled for PNFED 2022-A / 2024-A / 2025-A — typically a 2-week manual lift",
+            "system": "S&P + Fitch portals via Internal Reporting Engine",
+            "status": "pending_confirmation",
+            "buttons": ["Confirm", "Edit First"]
+          }
+        ]
+      }
+    ],
+    "related_dataset_keys": ["dealers", "swaps", "scenarios"]
+  },
+
+  "confirm_all_three": {
+    "user_query": "Confirm all three",
+    "ai_response": "Confirmed. Dealer Risk Remediation Brief is queued for lending committee review tomorrow. Swap Restructure Analysis is on Treasury's calendar for Thursday with all analytics attached. Q3 Rating Agency Surveillance Package is compiled and ready for your sign-off — I'll route it to S&P and Fitch on your approval.",
+    "suggested_chips": [
+      "Generate a board risk summary",
+      "Show me the full portfolio summary",
+      "Add the capital impact analysis to the board package"
+    ],
+    "data_sources_used": ["Salesforce AgentForce", "Calendar", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "review_dealer_brief": {
+    "user_query": "Review the dealer brief first",
+    "ai_response": "Opening the dealer brief draft. It contains: (1) executive summary recommending tighter origination criteria for Metro Auto Group, National Auto Finance, and Premier Motors Network; (2) loan-level performance data for the 1,993 loans across the three dealers; (3) updated dealer financial health scorecards from the credit monitoring feed; (4) projected impact on PNFED 2024-A delinquency curve under the new criteria; (5) recommended treatment for the 47 loans currently 60-89 DPD.",
+    "suggested_chips": ["Confirm all three", "Edit dealer brief"],
+    "data_sources_used": ["Snowflake", "Salesforce Data Cloud", "Credit Monitoring Feed"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dealers"]
+  },
+
+  "delinquency_drivers": {
+    "user_query": "What is driving the delinquency spike?",
+    "ai_response": "The spike is concentrated in loans originated through three dealer partners in Q3 2024 — Metro Auto Group, National Auto Finance, and Premier Motors Network. These loans show a 4.2% delinquency rate versus 1.1% for the rest of the pool. Bloomberg surveillance also shows ABS spreads for comparable prime auto deals widened 8 bps this month, so the market is already pricing in sector-level credit deterioration.",
+    "suggested_chips": ["Show me the dealer-level breakdown", "What happens if we breach the trigger?", "How do our other trusts compare?"],
+    "data_sources_used": ["Snowflake", "Salesforce Data Cloud", "Bloomberg Terminal"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dealers", "signals"]
+  },
+
+  "dealer_remediation_action": {
+    "user_query": "What should we do about these dealers?",
+    "ai_response": "Three actions to consider. (1) Tighten origination criteria for Metro Auto Group, National Auto Finance, and Premier Motors Network — raise FICO floor, cap LTV, and add a watchlist review for any application that doesn't pass underwriting on the first pass. (2) Accelerate loss mitigation on the 47 loans currently 60-89 DPD across these three dealers. (3) Remove the three flagged dealers from the 2025-B pipeline until financial health scores recover. Scenario B in the trigger model assumes you execute (1) and (2).",
+    "suggested_chips": ["Execute Scenario B", "Are these dealers in our pipeline for 2025-B?"],
+    "data_sources_used": ["Snowflake", "Salesforce Data Cloud", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dealers", "scenarios"]
+  },
+
+  "dealers_in_2025b": {
+    "user_query": "Are these dealers in our pipeline for 2025-B?",
+    "ai_response": "Yes — all three. Metro Auto Group, National Auto Finance, and Premier Motors Network are currently active origination partners feeding the 2025-B securitization pipeline. If we hold them at current allocation, the 2025-B pool would carry similar concentration risk to 2024-A. Removing the two declining-health dealers (Metro and National) and capping Premier at 2024 volumes would reduce projected pool 60+ DQ by an estimated 28 bps.",
+    "suggested_chips": ["Execute Scenario B", "Draft 2025-B pipeline change memo"],
+    "data_sources_used": ["Salesforce Data Cloud", "Credit Monitoring Feed", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dealers"]
+  },
+
+  "execute_scenario_b": {
+    "user_query": "Execute Scenario B",
+    "ai_response": "Scenario B initiated. I'll queue the dealer remediation brief, the loss-mitigation acceleration on the 47 affected loans, and the origination-criteria change for the three flagged dealers. You'll see the full action set in Step 7 — say the word and I'll confirm each item.",
+    "suggested_chips": ["Show me the action set", "What does this mean for our capital ratio?"],
+    "data_sources_used": ["Internal Risk Models", "Salesforce AgentForce"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["scenarios"]
+  },
+
+  "trustee_notification_draft": {
+    "user_query": "Draft a trustee notification for Scenario C",
+    "ai_response": "Draft prepared. The notification covers: (1) substitution rationale referencing collateral performance migration; (2) loan-level identification of the substitution candidates; (3) replacement collateral from the retained portfolio with matching credit characteristics; (4) projected impact on pool weighted-average yield, weighted-average maturity, and 60+ DQ; (5) the timeline for trustee review and rating agency notification. Ready for your edits.",
+    "suggested_chips": ["Send to legal for review", "What does this mean for our capital ratio?"],
+    "data_sources_used": ["Snowflake", "Salesforce AgentForce"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["scenarios"]
+  },
+
+  "trust_compare": {
+    "user_query": "How do our other trusts compare?",
+    "ai_response": "PNFED 2022-A: 60+ DQ at 1.21%, well below trigger, prepayment speeds elevated due to refis. PNFED 2024-A: 60+ DQ at 1.78%, the problem deal. PNFED 2025-A: 60+ DQ at 0.74% — too early to be meaningful, but origination quality is materially better because we tightened criteria after the 2024-A pool closed. The dealer concentration issue is isolated to 2024-A origination vintage.",
+    "suggested_chips": ["Show me the full portfolio summary", "Compare prepayment speeds: 2024-A vs. 2025-A"],
+    "data_sources_used": ["Snowflake", "Bloomberg Terminal"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "hedge_fix_options": {
+    "user_query": "What are my options to fix the hedge?",
+    "ai_response": "Three options. (1) Restructure the three at-risk positions — close them and re-enter with terms aligned to the current yield curve. Breakage cost ~$340K, preserves hedge accounting. (2) Layer new offsetting positions on top — cheaper upfront but increases gross notional and adds counterparty exposure. (3) De-designate the failing position and accept the $4.8M earnings impact in the quarter. Option 1 is the cleanest path and is included in the remediation action set.",
+    "suggested_chips": ["Execute the remediation path", "Model the P&L impact if we lose hedge accounting"],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["swaps"]
+  },
+
+  "pnl_no_hedge_accounting": {
+    "user_query": "Model the P&L impact if we lose hedge accounting",
+    "ai_response": "If the 78.4% position de-designates this quarter, $1.6M unrealized loss flows through earnings immediately. If the 81.2% position also fails (15 bps more curve steepening), add $1.7M. If the 83.6% position fails on a further 35 bps move, add $1.5M. Worst-case combined: $4.8M earnings hit. The remediation path avoids this entirely.",
+    "suggested_chips": ["Execute the remediation path", "What does this mean for our capital ratio?"],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["swaps"]
+  },
+
+  "board_risk_summary": {
+    "user_query": "Generate a board risk summary",
+    "ai_response": "Board summary drafted. One-page format covering: (1) PNFED 2024-A trigger threshold status and the remediation path; (2) hedge effectiveness drift and the three at-risk positions; (3) dealer concentration risk and origination-channel actions; (4) consolidated capital ratio impact under do-nothing vs. remediate; (5) implications for the 2025-B issuance timeline and Q3 rating agency reviews. Ready for your edits.",
+    "suggested_chips": ["Add the capital impact analysis to the board package", "Send to board secretary"],
+    "data_sources_used": ["Internal Risk Models", "NCUA Reporting System", "Snowflake", "Bloomberg Terminal"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "scenarios"]
+  },
+
+  "sp_surveillance_package": {
+    "user_query": "Prepare the S&P surveillance package",
+    "ai_response": "Package compiled across all three active trusts (2022-A, 2024-A, 2025-A): collateral performance tables, prepayment speeds (CPR/CDR by vintage), loss severity, recovery rates, dealer-level performance attribution, the remediation actions on 2024-A, and updated cash flow projections. This is the standard format S&P expects for the Q3 surveillance review. Two-week manual assembly compressed to today.",
+    "suggested_chips": ["Submit to S&P", "Also prepare Fitch package", "Show me the rating agency timeline and open items"],
+    "data_sources_used": ["Snowflake", "S&P / Fitch Rating Agency Portals", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "additional_rate_scenarios": {
+    "user_query": "Model additional rate scenarios",
+    "ai_response": "I ran +25, +50, +100, and -50 bps parallel shifts plus a flattening and a steepening scenario against the investment portfolio. +50 bps parallel shift: NIM expands 18 bps, but two more swaps drop below the 80% effectiveness threshold. +100 bps: NIM up 34 bps, four swaps at risk, capital ratio impact -22 bps from hedge dedesignation. -50 bps: NIM compresses 14 bps, hedge effectiveness improves, prepayment speeds accelerate. Detail tables ready.",
+    "suggested_chips": ["Show me the +50 bps detail", "Show me the +100 bps detail", "What does this mean for our capital ratio?"],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["swaps"]
+  },
+
+  "full_portfolio_summary": {
+    "user_query": "Show me the full portfolio summary",
+    "ai_response": "ABS portfolio outstanding: $1.3B across three active trusts. Weighted average 60+ DQ: 1.62%. Weighted CPR: 14.8%. Net interest margin: 2.41%. Hedge effectiveness ratio: 89.7%. Regulatory capital ratio: 10.32%. Next rating agency review: Q3 2026. Seven data sources connected. The full breakdown is on the home dashboard tiles.",
+    "suggested_chips": ["Show me ABS collateral performance across all trusts", "What is our current interest rate exposure?"],
+    "data_sources_used": ["Snowflake", "Bloomberg Terminal", "Internal Risk Models", "NCUA Reporting System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "q_abs_collateral_overview": {
+    "user_query": "Show me ABS collateral performance across all trusts",
+    "ai_response": "PNFED 2022-A: 1.21% 60+ DQ, 16.4% CPR, $342M outstanding, performing in line with deal expectations. PNFED 2024-A: 1.78% 60+ DQ (the trigger watch), 14.2% CPR, $580M outstanding. PNFED 2025-A: 0.74% 60+ DQ, 11.9% CPR, $378M outstanding, new-deal seasoning. Aggregate weighted-average DQ is 1.62%. The dealer concentration friction is isolated to the 2024-A origination vintage.",
+    "suggested_chips": ["Drill into PNFED 2024-A", "Compare prepayment speeds: 2024-A vs. 2025-A", "Which dealer partners are underperforming?"],
+    "data_sources_used": ["Snowflake", "Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "q_interest_rate_exposure": {
+    "user_query": "What is our current interest rate exposure?",
+    "ai_response": "Net interest sensitivity: a +100 bps parallel shift increases NIM by 34 bps over 12 months but creates $4.8M in unrealized losses on the at-risk swap positions if hedge accounting is lost. A -100 bps shift compresses NIM by 28 bps and accelerates prepayment speeds, shortening duration on the ABS retained tranches. Twelve active swaps hedge the fixed-rate investment book, with three currently driving the 89.7% effectiveness ratio.",
+    "suggested_chips": ["Show me the hedge effectiveness signal", "Model a 50 bps rate increase on the investment portfolio"],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["swaps"]
+  },
+
+  "q_cpr_compare": {
+    "user_query": "Compare prepayment speeds: 2024-A vs. 2025-A",
+    "ai_response": "PNFED 2024-A: 14.2% CPR — slower than 2025-A because the pool seasoned during a rising-rate environment. PNFED 2025-A: 11.9% CPR — even slower, partly because the deal is new and partly because higher coupons reduce refi incentive. For comparison, PNFED 2022-A is running at 16.4% CPR, reflecting the rate-cut window in early 2025 that drove a refi wave. Both 2024-A and 2025-A are inside deal-modeled CPR assumptions.",
+    "suggested_chips": ["Show me ABS collateral performance across all trusts", "What is our current interest rate exposure?"],
+    "data_sources_used": ["Snowflake", "Bloomberg Terminal"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "q_underperforming_dealers": {
+    "user_query": "Which dealer partners are underperforming?",
+    "ai_response": "Three dealers concentrate the underperformance — same three driving the PNFED 2024-A trigger watch. Metro Auto Group (4.7% DQ, health score 58, declining), National Auto Finance (3.9% DQ, floor plan flagged), Premier Motors Network (3.8% DQ, geographic risk). Combined: 22% of pool balance, 61% of delinquency volume. All three are currently active in the 2025-B pipeline.",
+    "suggested_chips": ["Show me the dealer-level breakdown", "What should we do about these dealers?", "Are these dealers in our pipeline for 2025-B?"],
+    "data_sources_used": ["Salesforce Data Cloud", "Credit Monitoring Feed", "Snowflake"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dealers"]
+  },
+
+  "q_rate_scenario_50bps": {
+    "user_query": "Model a 50 bps rate increase on the investment portfolio",
+    "ai_response": "A +50 bps parallel shift: NIM expands 18 bps over the next 12 months, and the investment portfolio mark-to-market drops $14.2M in OCI. Two swaps drop below the 80% effectiveness threshold under the shift — adding 47 bps of curve steepening on top of today's level. Earnings impact from any hedge de-designation: ~$3.3M. Net economic impact is positive over the year, but earnings volatility increases meaningfully if hedge accounting is lost.",
+    "suggested_chips": ["Show me the hedge effectiveness signal", "Model additional rate scenarios", "What does this mean for our capital ratio?"],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["swaps"]
+  },
+
+  "q_capital_sensitivity": {
+    "user_query": "What is our capital ratio sensitivity to credit losses?",
+    "ai_response": "Capital ratio is 10.32% today. Each $10M of incremental ABS-related losses (after recovery) drives the ratio down roughly 4 bps. The current buffer above the 7% well-capitalized threshold is $1.04B. Under the do-nothing scenario combining the ABS trigger event and hedge accounting loss, the ratio drops to 9.94% (38 bps reduction, $890M buffer). Under remediation, the impact is 8 bps (10.24%).",
+    "suggested_chips": ["What does this mean for our capital ratio?", "Generate a board risk summary"],
+    "data_sources_used": ["Internal Risk Models", "NCUA Reporting System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["scenarios"]
+  },
+
+  "q_monthly_report": {
+    "user_query": "Prepare the monthly capital markets risk report",
+    "ai_response": "Monthly report drafted. Sections: (1) ABS portfolio performance and trigger status; (2) interest rate risk and hedge effectiveness; (3) counterparty and dealer concentration; (4) investment portfolio mark and NIM; (5) regulatory capital and NCUA reporting; (6) rating agency calendar and open items; (7) executive summary with the three priority signals and recommended actions. Ready for your edits.",
+    "suggested_chips": ["Add the capital impact analysis", "Send to SVP Treasury", "Export as PDF"],
+    "data_sources_used": ["Snowflake", "Bloomberg Terminal", "Internal Risk Models", "NCUA Reporting System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "q_rating_agency_timeline": {
+    "user_query": "Show me the rating agency timeline and open items",
+    "ai_response": "S&P: Q3 2026 surveillance review for all three trusts; my pre-compiled package is ready. April 2026 actions on PNFED 2024-A upgrades (Class B to AAA, Class C to AA+, Class D to A+) closed without follow-up items. Fitch: scheduled review in October 2026. Open items: (1) PNFED 2024-A collateral performance commentary tied to the trigger watch; (2) 2025-B issuance timing memo; (3) dealer concentration disclosure update. All three items can be sourced from the work already underway.",
+    "suggested_chips": ["Prepare the S&P surveillance package", "Draft 2025-B timing memo"],
+    "data_sources_used": ["S&P / Fitch Rating Agency Portals", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "kpi_abs_outstanding": {
+    "user_query": "Show me ABS portfolio outstanding",
+    "ai_response": "ABS outstanding totals $1.3B across three active trusts: PNFED 2022-A ($342M), PNFED 2024-A ($580M, the trigger-watch deal), and PNFED 2025-A ($378M, issued September 2025). Pipeline includes the planned 2025-B for September 2026 — currently dependent on resolving the 2024-A trigger watch.",
+    "suggested_chips": ["Show me ABS collateral performance across all trusts", "Drill into PNFED 2024-A"],
+    "data_sources_used": ["Snowflake", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "kpi_data_sources_overview": {
+    "user_query": "Show me connected data sources",
+    "ai_response": "Seven sources connected: Bloomberg Terminal (market data, yield curves, ABS spreads), Snowflake (loan-level collateral), Salesforce Data Cloud (origination + dealer attributes), Internal Risk Models (scenarios, hedge effectiveness, capital), NCUA Reporting (regulatory capital), S&P/Fitch Portals (surveillance schedules and ratings), and Credit Monitoring Feed (dealer financial health). All are syncing within the last hour.",
+    "suggested_chips": ["Show me ABS collateral performance across all trusts", "Prepare the monthly capital markets risk report"],
+    "data_sources_used": ["Bloomberg Terminal", "Snowflake", "Salesforce Data Cloud", "Internal Risk Models", "NCUA Reporting System", "S&P / Fitch Rating Agency Portals", "Credit Monitoring Feed"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "edit_dealer_brief": {
+    "user_query": "Edit dealer brief",
+    "ai_response": "Opening the dealer brief in edit mode. The editable sections are: (1) recommended origination criteria (FICO floor, LTV cap, dealer watchlist threshold); (2) loss-mitigation acceleration timeline for the 47 60-89 DPD loans; (3) projected 2024-A pool DQ curve under the new criteria; (4) executive summary. Make your edits and I'll regenerate the lending-committee version.",
+    "suggested_chips": ["Save changes", "Confirm all three"],
+    "data_sources_used": ["Salesforce AgentForce"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dealers"]
+  },
+
+  "draft_2025b_pipeline_memo": {
+    "user_query": "Draft 2025-B pipeline change memo",
+    "ai_response": "Memo drafted. Sections: (1) rationale for the dealer-pipeline change (2024-A trigger watch + dealer health scores); (2) proposed allocation — Metro Auto Group and National Auto Finance removed from 2025-B sourcing; Premier Motors capped at 2024 volumes; (3) replacement sourcing plan via current top-quartile dealers; (4) projected 2025-B pool 60+ DQ at issuance (estimated 0.92%, well inside deal expectations); (5) timeline. Ready for SVP Capital Markets review.",
+    "suggested_chips": ["Send to SVP Treasury", "Show me the rating agency timeline and open items"],
+    "data_sources_used": ["Salesforce AgentForce", "Internal Risk Models", "Credit Monitoring Feed"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["dealers"]
+  },
+
+  "draft_2025b_timing_memo": {
+    "user_query": "Draft 2025-B timing memo",
+    "ai_response": "Timing memo drafted. Recommends September 2026 issuance contingent on 2024-A trigger remediation closing by end of Q2. Includes: (1) market-window analysis from Bloomberg comparable ABS spread trends; (2) dependency map — dealer remediation, swap restructure, rating agency surveillance; (3) two backup windows (Nov 2026, Jan 2027) with spread scenarios; (4) NCUA notification timeline. Ready for the capital markets committee.",
+    "suggested_chips": ["Send to SVP Treasury", "Prepare the S&P surveillance package"],
+    "data_sources_used": ["Bloomberg Terminal", "Internal Risk Models", "S&P / Fitch Rating Agency Portals"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "send_to_legal": {
+    "user_query": "Send to legal for review",
+    "ai_response": "Sent to Legal & Compliance for review. Tracking ticket LEGAL-3712 created with target turnaround of 5 business days. I'll notify you when their commentary lands and surface any redlines against the deal documents.",
+    "suggested_chips": ["What does this mean for our capital ratio?", "Show me the full portfolio summary"],
+    "data_sources_used": ["Salesforce AgentForce", "Legal Workflow System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "send_to_board_secretary": {
+    "user_query": "Send to board secretary",
+    "ai_response": "Board risk summary routed to the Board Secretary for the next risk committee packet. Tracking ID BRD-2026-Q2-018. Cover memo references the PNFED 2024-A trigger watch and the remediation path. You'll get a review-window reminder 48 hours before the meeting.",
+    "suggested_chips": ["Add the capital impact analysis to the board package", "Show me the full portfolio summary"],
+    "data_sources_used": ["Salesforce AgentForce", "Calendar"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "submit_to_sp": {
+    "user_query": "Submit to S&P",
+    "ai_response": "Q3 surveillance package submitted to S&P Global Ratings via the rating agency portal. Submission ID SP-PNFED-2026-Q3-001 covering all three trusts (2022-A, 2024-A, 2025-A). Expected acknowledgment within 2 business days. Surveillance committee review scheduled for the third week of Q3.",
+    "suggested_chips": ["Also prepare Fitch package", "Show me the rating agency timeline and open items"],
+    "data_sources_used": ["S&P / Fitch Rating Agency Portals"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "also_prepare_fitch": {
+    "user_query": "Also prepare Fitch package",
+    "ai_response": "Fitch package compiled. It mirrors the S&P submission structure, formatted for Fitch's required disclosures: collateral performance tables, prepayment speed CPR/CDR by vintage, loss severity, recovery rates, dealer-level performance attribution, and the 2024-A remediation actions. Ready to submit ahead of Fitch's October 2026 review.",
+    "suggested_chips": ["Submit to Fitch", "Show me the rating agency timeline and open items"],
+    "data_sources_used": ["S&P / Fitch Rating Agency Portals", "Snowflake", "Internal Risk Models"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "send_to_svp_treasury": {
+    "user_query": "Send to SVP Treasury",
+    "ai_response": "Routed to the SVP, Capital Markets and Treasury. Calendar invite drafted for the next 1:1 with the report attached. Cover note highlights: PNFED 2024-A trigger watch status, the three at-risk swap positions, capital ratio sensitivity, and recommended remediation path.",
+    "suggested_chips": ["Generate a board risk summary", "Show me the full portfolio summary"],
+    "data_sources_used": ["Calendar", "Salesforce AgentForce"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "export_as_pdf": {
+    "user_query": "Export as PDF",
+    "ai_response": "PDF exported. Filename: PenFed_Capital_Markets_Risk_Report_May2026.pdf. The report includes all sections, embedded charts, and an appendix with the underlying data sources. Saved to your secure documents workspace and a copy is in your downloads.",
+    "suggested_chips": ["Send to SVP Treasury", "Generate a board risk summary"],
+    "data_sources_used": ["Document Generator"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "save_changes": {
+    "user_query": "Save changes",
+    "ai_response": "Changes saved to the dealer brief draft. The updated version is tagged v2 with your edits highlighted for the lending committee. Ready to confirm and route.",
+    "suggested_chips": ["Confirm all three", "Review the dealer brief first"],
+    "data_sources_used": ["Salesforce AgentForce"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "submit_to_fitch": {
+    "user_query": "Submit to Fitch",
+    "ai_response": "Fitch surveillance package submitted via the rating agency portal. Submission ID FITCH-PNFED-2026-Q3-001 covering all three trusts. Fitch review window: October 2026. I'll alert you to any analyst questions or data requests as they come in.",
+    "suggested_chips": ["Show me the rating agency timeline and open items", "Generate a board risk summary"],
+    "data_sources_used": ["S&P / Fitch Rating Agency Portals"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  },
+
+  "__default__": {
+    "ai_response": "I can help with that. For capital markets risk topics, I have current data on:\n\n• ABS trigger watch — PNFED 2024-A delinquency migration and the 1.80% threshold\n• Hedge effectiveness — the three at-risk swap positions and yield-curve drift\n• Dealer concentration — Metro Auto Group, National Auto Finance, Premier Motors\n• Capital impact — scenario waterfall under do-nothing vs. remediation paths\n• Rating agency timeline — S&P and Fitch surveillance schedules\n\nWhich would you like to dig into?",
+    "suggested_chips": [
+      "What happens if we breach the trigger?",
+      "Show me the hedge effectiveness signal",
+      "Which dealer partners are underperforming?",
+      "What does this mean for our capital ratio?"
+    ],
+    "data_sources_used": [],
+    "ui_components_to_render": [],
+    "related_dataset_keys": []
+  }
+}

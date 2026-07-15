@@ -1,0 +1,7 @@
+[
+  {"id": "ds-ret-01", "name": "Salesforce Einstein", "status": "connected", "description": "Churn prediction models, propensity scores, engagement decay signals", "icon": "brain", "lastSync": "2026-04-07T06:00:00", "recordCount": 1243000},
+  {"id": "ds-ret-02", "name": "Salesforce Data Cloud", "status": "connected", "description": "Unified member profiles, product holdings, behavioral and transactional data", "icon": "database", "lastSync": "2026-04-07T05:45:00", "recordCount": 2847000},
+  {"id": "ds-ret-03", "name": "Snowflake Data Warehouse", "status": "connected", "description": "Historical engagement trends, login activity, campaign response data", "icon": "database", "lastSync": "2026-04-07T05:30:00", "recordCount": 4120000},
+  {"id": "ds-ret-04", "name": "Genesys Cloud", "status": "connected", "description": "Contact center interactions, sentiment analysis, disengagement-themed calls", "icon": "headphones", "lastSync": "2026-04-07T06:12:00", "recordCount": 892000},
+  {"id": "ds-ret-05", "name": "PenFed Member CRM", "status": "connected", "description": "Member tenure, lifecycle stage, product cross-sell history, segment tags", "icon": "users", "lastSync": "2026-04-07T05:30:00", "recordCount": 1847000}
+]

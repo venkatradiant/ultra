@@ -1,0 +1,395 @@
+{
+  "nfcu_wf_greeting": {
+    "ai_message": "Good morning, Janelle. I have flagged 3 quality signals. The most urgent: BSA/AML verification is being skipped in 23% of new account calls — a compliance risk that started 5 days ago and correlates with a recent script change. Want me to walk you through them?",
+    "suggested_chips": [
+      "Walk me through the compliance issue",
+      "Show me the repeat contact data",
+      "Which agents are at risk?"
+    ],
+    "data_sources_used": ["Dynamics 365 Quality Management", "Dynamics 365 Process Adherence", "Dynamics 365 Sentiment Analysis", "CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "confidence": {
+      "score": 94,
+      "rationale": "All three signals are direct telemetry; the script-change correlation is the only inference and it has a 5-day lookback alignment.",
+      "signals_used": ["Dynamics 365 Quality Management", "Dynamics 365 Process Adherence"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_signal_1_compliance": {
+    "ai_message": "This is a NCUA compliance exposure — not an agent behavior problem. The script change created a structural failure point: by moving verification to step 7, agents are completing calls before they reach it. The immediate fix is a script rollback to put verification back at step 3. Of the 142 affected accounts, 134 can be auto-remediated; 8 need direct callbacks. I can generate the remediation list now.",
+    "suggested_chips": [
+      "Walk me through the compliance issue",
+      "Which accounts need remediation?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Process Adherence", "Dynamics 365 Quality Management"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 92,
+      "rationale": "Process-adherence telemetry directly logs each step. Account count and segmentation between auto-remediable vs. callback are deterministic CRM joins.",
+      "signals_used": ["Dynamics 365 Process Adherence", "CRM"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:24Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_signal_2_repeat_contact": {
+    "ai_message": "Coaching agents won't fix this — the problem is upstream. IT has a known sync latency issue (logged April 14, fix April 25) and agents are being asked to paper over it with workarounds that fail. The right intervention is a holding statement script so members know what's happening and when it will be resolved, rather than triggering a second call. FCR will stay depressed until April 25 regardless of quality coaching.",
+    "suggested_chips": [
+      "Show me the repeat contact data",
+      "Which agents are at risk?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "IT Incident Management", "CRM"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 88,
+      "rationale": "IT incident → repeat-contact correlation is strong (Pearson 0.87 on 9 days of data). Workaround failure rate of 78% is direct telemetry.",
+      "signals_used": ["IT Incident Management", "Dynamics 365 Contact Center"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:32Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_signal_3_burnout": {
+    "ai_message": "Losing any one of these three would materially hurt mortgage servicing quality — they carry your most complex calls and replacing them takes 4–6 months at minimum. The critical insight: this pattern typically shows 60–90 days before they resign. You're inside that window now. A structured intervention — workload rebalancing, a recognition moment, or a direct check-in — has a 68% documented retention rate at this stage. I can flag them for a manager outreach task in Dynamics 365.",
+    "suggested_chips": [
+      "Show me interaction quality scores",
+      "Which agents are at risk?",
+      "Show me the repeat contact data"
+    ],
+    "data_sources_used": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 83,
+      "rationale": "Burnout pattern model has 0.79 precision against 24 prior cases; 68% retention figure is a documented intervention outcome with ±9% variance.",
+      "signals_used": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:39Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_turn_1_compliance_detail": {
+    "ai_message": "Here's the full BSA/AML compliance picture:\n\n**Script change date:** April 17, 2026\n**Verification skip rate before:** 4% (baseline)\n**Verification skip rate now:** 23% (5.75x spike)\n**Steps completed per call (avg):** 6 of 9 required\n**Shift concentration:** Evening shift — 67% of violations\n**Accounts at risk:** 142 new accounts opened since April 17\n\n**Breakdown:**\n• 134 accounts: sufficient identity data in CRM — auto-resolvable\n• 8 accounts: need member callback for retroactive verification\n\n**Regulatory exposure:** NCUA requires immediate remediation when verification gaps are identified. A compliance incident report should be filed within 24 hours. This qualifies as a Tier 2 internal compliance event under NFCU policy.",
+    "suggested_chips": [
+      "Which accounts need remediation?",
+      "Recommend a fix",
+      "Show me the agent breakdown",
+      "How does this affect our compliance posture?"
+    ],
+    "data_sources_used": ["Dynamics 365 Process Adherence", "Dynamics 365 Quality Management", "CRM"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [
+      {
+        "type": "line_chart",
+        "title": "BSA/AML Verification Completion Rate by Day",
+        "dataset_key": "agent_performance.compliance_timeline"
+      }
+    ],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Direct read from process-adherence audit log. Every metric here is deterministic — no inference.",
+      "signals_used": ["Dynamics 365 Process Adherence", "CRM"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:59:06Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_turn_2_remediation": {
+    "ai_message": "Two immediate actions:\n\n**(1) Revert verification step to position 3** in the new account opening script. This eliminates the skip risk immediately — agents reach verification before they can complete the call without it. I can push this change to Dynamics 365 now, pending your approval. Estimated propagation: 15 minutes.\n\n**(2) Generate the remediation list** for the 142 affected accounts:\n• 134 accounts: CRM records have sufficient identity data — auto-resolvable without member contact\n• 8 accounts: member callback required — I have drafted outreach scripts for each case\n\nShould I execute both actions?",
+    "suggested_chips": [
+      "Approve the script revert",
+      "Show me the 8 accounts needing callbacks",
+      "Generate a compliance incident report",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Script Management", "CRM", "Dynamics 365 Quality Management"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [
+      {
+        "type": "action_cards",
+        "title": "Compliance Remediation Actions",
+        "actions": [
+          {
+            "id": "ACT-NFCU-WF-001",
+            "title": "Revert Verification to Step 3 in Dynamics 365",
+            "description": "Push script update reverting BSA/AML identity verification back to step 3. Propagates in 15 minutes across all agent desktops.",
+            "system": "Dynamics 365 Script Management",
+            "impact": "Eliminates ongoing skip risk immediately. 23% skip rate projected to return to 4% baseline.",
+            "status": "ready",
+            "confidence": {
+              "score": 95,
+              "rationale": "Deterministic script-management write; revert path was the previous production version.",
+              "threshold": 70,
+              "model_version": "qa-classifier-v4.0",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          },
+          {
+            "id": "ACT-NFCU-WF-002",
+            "title": "Generate Remediation List & Member Callbacks",
+            "description": "Auto-resolve 134 accounts using CRM identity data. Flag 8 accounts for member callback with drafted outreach scripts.",
+            "system": "CRM + Dynamics 365",
+            "impact": "Clears compliance backlog for 142 accounts. 8 callbacks complete remediation.",
+            "status": "ready",
+            "confidence": {
+              "score": 92,
+              "rationale": "CRM identity sufficiency was checked record-by-record. 134 auto-resolvable count is exact.",
+              "threshold": 70,
+              "model_version": "qa-classifier-v4.0",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          },
+          {
+            "id": "ACT-NFCU-WF-003",
+            "title": "File Compliance Incident Report",
+            "description": "Generate Tier 2 internal compliance incident report with Dynamics 365 evidence attached. Routes to Compliance Risk team.",
+            "system": "Dynamics 365 + Compliance Engine",
+            "impact": "Satisfies NCUA self-reporting requirement. Creates audit trail.",
+            "status": "ready",
+            "confidence": {
+              "score": 94,
+              "rationale": "Tier-2 classification is policy-driven (Tier 2 thresholds met). Report content is direct evidence aggregation.",
+              "threshold": 70,
+              "model_version": "qa-classifier-v4.0",
+              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+            }
+          }
+        ]
+      }
+    ],
+    "post_confirm_response": {
+      "ACT-NFCU-WF-001": "Done. BSA/AML identity verification reverted to step 3 in Dynamics 365 script management. Propagated to all 34 active agent desktops — confirmed. Evening shift supervisors notified via Teams. Agents now reach verification at step 3 and cannot advance past it without completion. Skip risk eliminated for all new accounts from this point forward. The 142 accounts opened since April 17 still need retroactive remediation — I can generate that list now.",
+      "ACT-NFCU-WF-002": "Remediation complete. 134 accounts auto-resolved using existing CRM identity data — no member contact required. 8 accounts flagged for callback: outreach scripts prepared in Dynamics 365, assigned to 2 senior agents for completion by EOD today. All 142 accounts now have a remediation record in the compliance log. Estimated callback completion by 5 PM. You'll receive a status update when all 8 callbacks are closed.",
+      "ACT-NFCU-WF-003": "Compliance incident report generated and filed. Incident ID: NFCU-COMP-2026-0041. Classification: Tier 2 — BSA/AML Process Adherence Gap. Scope: 142 accounts, April 17–23, 2026. Root cause: script version update relocated verification step without Contact Center notification. Remediation status: script reverted, 134 auto-resolved, 8 callbacks in progress. Report routed to Director of Member Experience and Compliance Risk team. Self-reporting to NCUA not required at Tier 2 — documented for audit trail. You'll receive EOD confirmation."
+    },
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Three reversible actions, each with deterministic execution and direct evidence attached.",
+      "signals_used": ["Dynamics 365 Script Management", "CRM", "Compliance Engine"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:59:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_turn_3_repeat_contacts": {
+    "ai_message": "Bill pay repeat contacts are up 31% this week. I correlated Dynamics 365 call transcripts with the IT incident log — something Dynamics 365 cannot do alone:\n\n**Root cause:** A digital banking sync latency issue logged by IT on April 14 causes payment confirmations to appear delayed. Members don't see the payment, call in. Agents provide a manual workaround — 'wait 4 hours and check again.' The workaround fails for 78% of callers, who call back.\n\n**Impact:**\n• First-call resolution for bill pay: 81% → **54%**\n• Repeat contact rate (48hr): up 31%\n• Agent time absorbed by repeat calls: estimated 180 additional agent-hours this week\n\n**IT fix ETA:** April 25. Until then, the workaround is the only option — but agents can be coached to set more accurate expectations and reduce repeat calls by 40–50%.",
+    "suggested_chips": [
+      "What should we tell agents?",
+      "Show me the member impact",
+      "When is the IT fix expected?",
+      "How much is this costing us?",
+      "Generate a quality scorecard"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "IT Incident Management", "Digital Banking Platform", "CRM"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 83,
+      "rationale": "FCR drop and repeat rate are direct reads; 40–50% reduction estimate from coaching is a 5-event historical band.",
+      "signals_used": ["Dynamics 365 Contact Center", "IT Incident Management", "CRM"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:48Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_act_script_revert": {
+    "ai_message": "Script update pushed to Dynamics 365. BSA/AML identity verification reverted to step 3 in the new account opening flow. Propagation complete in all agent desktops — confirmed across 34 active agents. Evening shift supervisors notified via Teams. Going forward, agents will reach verification before they can advance past step 3. Skip risk is eliminated for new accounts created from this point forward.",
+    "suggested_chips": [
+      "Show me the 8 accounts needing callbacks",
+      "Generate a compliance incident report"
+    ],
+    "data_sources_used": ["Dynamics 365 Script Management", "Microsoft Teams"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 96,
+      "rationale": "Deterministic system action. Propagation confirmed across all 34 desktops.",
+      "signals_used": ["Dynamics 365 Script Management"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T09:00:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_act_remediation": {
+    "ai_message": "Remediation complete:\n\n• 134 accounts auto-resolved using existing CRM identity data — no member contact required\n• 8 accounts flagged for callback: outreach drafts prepared in Dynamics 365, assigned to 2 senior agents for completion by EOD\n\nAll 142 accounts now have a remediation record in the compliance log. Estimated completion of all 8 callbacks: by 5 PM today.",
+    "suggested_chips": [
+      "Generate a compliance incident report",
+      "Next signal"
+    ],
+    "data_sources_used": ["CRM", "Dynamics 365"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 92,
+      "rationale": "Auto-resolution path uses authoritative CRM identity records; callbacks are queued and assigned.",
+      "signals_used": ["CRM", "Dynamics 365"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T09:00:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_act_compliance_report": {
+    "ai_message": "Compliance incident report generated and filed:\n\n**Incident ID:** NFCU-COMP-2026-0041\n**Classification:** Tier 2 — BSA/AML Process Adherence Gap\n**Scope:** 142 new accounts, April 17–23, 2026\n**Root cause:** Script version update relocated verification step without Contact Center notification\n**Remediation status:** Script reverted, 134 auto-resolved, 8 callbacks in progress\n**Regulatory posture:** Self-reporting to NCUA not required at Tier 2 — documented for audit trail\n\nReport routed to Director of Member Experience and Compliance Risk team. You'll receive a status update by EOD.",
+    "suggested_chips": [
+      "Next signal",
+      "Show me interaction quality scores"
+    ],
+    "data_sources_used": ["Dynamics 365", "CRM", "Compliance Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 94,
+      "rationale": "Tier-2 classification meets policy thresholds explicitly; report content is deterministic.",
+      "signals_used": ["Compliance Engine", "Dynamics 365"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T09:00:26Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_agent_coaching": {
+    "ai_message": "For bill pay calls until the April 25 IT fix:\n\n**Recommended agent script update:**\n'We are aware of a payment display delay affecting some accounts. Your payment has processed — it will appear in your balance within 2–4 hours due to a current system update. If it does not appear by tomorrow morning, please call us back and we will resolve it immediately.'\n\nThis script:\n• Sets accurate expectations (not just 'wait and check')\n• Reduces callbacks from 78% to a projected 35–40%\n• Avoids member frustration from vague workarounds\n\nI can push this as a script note to all bill pay queue agents in Dynamics 365 now.",
+    "suggested_chips": [
+      "Push the script note to agents",
+      "Generate a quality scorecard"
+    ],
+    "data_sources_used": ["Dynamics 365 Script Management"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 79,
+      "rationale": "35–40% callback reduction is a model estimate from 5 prior coaching rollouts (±7%); script content is human-reviewable.",
+      "signals_used": ["Dynamics 365 Script Management", "Coaching Rollout History"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:55Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_quality_scores": {
+    "ai_message": "Quality score overview — trailing 30 days:\n\n**Overall floor average:** 82/100 (target: 85)\n**Process adherence rate:** 77% (target: 85%)\n**First contact resolution:** 68% (target: 75%)\n**Negative sentiment rate:** 18% (target: <15%)\n**Repeat contact rate (48hr):** 22% (target: <12%)\n**Member complaints MTD:** 47\n\n**Top scoring teams:**\n• Digital Support: 89/100\n• Member Onboarding: 86/100\n\n**Below target teams:**\n• Mortgage Servicing: 79/100 (burnout signal + high complexity)\n• Auto Loans: 76/100 (volume spike impacting quality)\n• General Banking: 84/100 (bill pay FCR dragging score)\n\nThe mortgage servicing and auto loans dips have different root causes — burnout vs. volume surge. Addressing both requires different interventions.",
+    "suggested_chips": [
+      "Which agents need coaching?",
+      "Show me sentiment trends by queue",
+      "Generate a quality scorecard"
+    ],
+    "data_sources_used": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis", "CRM"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 90,
+      "rationale": "Direct quality + sentiment telemetry across the floor. Root-cause attribution is informed by separate signals (burnout / volume spike) already validated.",
+      "signals_used": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:59Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_quality_scorecard": {
+    "ai_message": "**Quality Scorecard — Week of April 21, 2026**\n\n**Quality Score (30-day trailing):** 82/100\n**Process Adherence:** 77% — BSA/AML gap now remediated\n**First Contact Resolution:** 68% — bill pay dragging (IT fix April 25)\n**Negative Sentiment Rate:** 18%\n**Repeat Contact Rate (48hr):** 22%\n**Member Complaints MTD:** 47\n**Interactions Evaluated (AI):** 100% of 14,847 this week\n\n**Actions Completed This Week:**\n• BSA/AML script reverted — 142 accounts remediated\n• Compliance incident NFCU-COMP-2026-0041 filed\n• Bill pay agent script note deployed\n\n**Open Items:**\n• IT sync fix (April 25) — will restore bill pay FCR\n• Mortgage servicing burnout — 3 top performers flagged for check-in",
+    "suggested_chips": [
+      "Which agents need coaching?",
+      "Show me interaction quality scores"
+    ],
+    "data_sources_used": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis", "CRM"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Aggregation of pre-validated metrics. Deterministic format, no inference.",
+      "signals_used": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_wf_cost_impact": {
+    "ai_message": "Here's the cost picture for the bill pay repeat contact spike:\n\n**Agent Time Impact:**\n• 180 additional agent-hours absorbed this week by repeat bill pay calls\n• At an average fully-loaded cost of $28/hour: **$5,040 in wasted agent capacity this week alone**\n• Projected to week 2 (before April 25 IT fix): another ~$4,500\n\n**Member Experience Cost:**\n• 47 member complaints logged MTD — bill pay is the top driver\n• Repeat callers have a 23% higher attrition rate in the 90 days following a failed resolution\n• Estimated member retention risk: ~340 impacted members × 23% = **78 members at elevated churn risk**\n\n**Avoided Cost (with coaching fix):**\n• Improved agent scripting (already deployed) is projected to reduce callbacks by 40–50%\n• That recovers ~72–90 agent-hours/week until the IT fix lands April 25\n• Estimated savings: **$2,000–$2,500 in agent cost per week**\n\n**Total exposure before April 25:** ~$9,500 in agent time + member retention risk. The coaching script note already deployed is the highest-ROI action available before the IT fix.",
+    "suggested_chips": [
+      "Have Finance refresh the Q1 cost model",
+      "What should we tell agents?",
+      "When is the IT fix expected?",
+      "Generate a quality scorecard"
+    ],
+    "data_sources_used": ["Dynamics 365 Contact Center", "HR System", "CRM", "IT Incident Management"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 66,
+      "rationale": "Cost model uses partial Q1 data — fully-loaded $28/hour figure has not been refreshed since January. Member-attrition coefficient (23%) is from a single retrospective study and may not reflect the current member base. Estimates have ±18% range.",
+      "signals_used": ["HR System (partial Q1)", "Single retrospective attrition study"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T08:58:43Z",
+      "escalation": {
+        "triggered": true,
+        "reason": "cost model uses partial Q1 data; attrition coefficient unvalidated against current cohort",
+        "route_to": "Finance Partner",
+        "review_queue": "Finance Cost-Model Review Queue"
+      }
+    }
+  },
+
+  "nfcu_wf_cost_impact_resolved": {
+    "ai_message": "**Re-modeled with refreshed Q1 inputs.** Finance supplied the closed Q1 fully-loaded cost ($30.40/hr, up from $28) and the attrition coefficient was re-estimated against the FY26 member base (now 19%, down from 23%).\n\n**Updated picture:**\n• Agent capacity wasted this week: **$5,472** (was $5,040)\n• Members at elevated churn risk: **65** (was 78)\n• Total exposure before April 25: **~$11,000** (was $9,500)\n\nThe coaching script note remains the highest-ROI action. Confidence is now 84% because both inputs are anchored to validated FY26 data rather than a partial Q1 snapshot.",
+    "suggested_chips": [
+      "Generate a quality scorecard",
+      "What should we tell agents?",
+      "Show me interaction quality scores"
+    ],
+    "data_sources_used": ["Finance Cost-Model (Q1 closed)", "HR System", "CRM (FY26 cohort)", "IT Incident Management"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["agent_performance"],
+    "confidence": {
+      "score": 84,
+      "rationale": "Cost inputs now anchored to closed Q1 data and FY26 attrition cohort. Model variance reduced to ±6%.",
+      "signals_used": ["Finance Cost-Model (Q1 closed)", "HR System", "CRM (FY26 cohort)"],
+      "threshold": 70,
+      "model_version": "qa-classifier-v4.0",
+      "validated_at": "2026-04-23T09:01:18Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

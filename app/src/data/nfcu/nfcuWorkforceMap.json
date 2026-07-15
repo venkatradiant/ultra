@@ -1,0 +1,94 @@
+{
+  "phases": [
+    {
+      "id": "phase-queue",
+      "name": "Queue Operations",
+      "sentiment": "warning",
+      "sentimentScore": 0.71,
+      "frictionHotspots": [
+        {
+          "title": "Auto Loans — 340% Wait Time Spike Active",
+          "description": "Marketing Cloud sent a 2.9% rate promotion to 45,000 members at 7:15 AM without notifying Contact Center ops. Call volume hit 3x normal within 90 minutes. 127 members waiting. Average wait: 12:47. Intervention active: 8 cross-trained agents rerouted from general banking, callback mode enabled for 5+ minute waits. 43 of 127 members already selected callback. Projected service level recovery to 80% by 10:00 AM.",
+          "severity": "critical",
+          "sources": ["Dynamics 365 Contact Center", "Marketing Cloud"]
+        },
+        {
+          "title": "Mortgage Servicing — Sentiment Down 28%, Portal Issue Unresolved",
+          "description": "Negative sentiment in mortgage calls increased 28% this week. Dynamics 365 sentiment analysis flags 'payment portal' and 'escrow' as top negative keywords. Cross-referencing with the IT incident log — something Dynamics 365 cannot do alone — reveals a payment portal outage 48 hours ago. Members calling about portal issues are driving the sentiment drop. Service level holding at 78% but quality risk is escalating. IT fix ETA pending.",
+          "severity": "warning",
+          "sources": ["Dynamics 365 Sentiment Analysis", "IT Incident Management"]
+        }
+      ]
+    },
+    {
+      "id": "phase-staffing",
+      "name": "Shift Coverage",
+      "sentiment": "negative",
+      "sentimentScore": 0.72,
+      "frictionHotspots": [
+        {
+          "title": "Friday Evening Shift — Force-to-Load Drops to 0.72 After 3 PTO Requests",
+          "description": "Three agents submitted PTO for Friday evening — a shift that handles 22% of weekly mortgage servicing volume due to West Coast members calling after work. With 3 agents out, force-to-load drops from 0.94 to 0.72. Dynamics 365 forecasting predicts 340 calls for that window. Need 12 agents staffed — will have 9. Overtime offers sent to agents Torres, Williams, and Chen (top 3 by quality score + certification). 78% estimated acceptance probability.",
+          "severity": "critical",
+          "sources": ["Dynamics 365 Workforce Management", "HR System", "Agent Skill Profiles"]
+        }
+      ]
+    },
+    {
+      "id": "phase-forecast",
+      "name": "Volume Forecast",
+      "sentiment": "negative",
+      "sentimentScore": 0.62,
+      "frictionHotspots": [
+        {
+          "title": "Tax Season Volume Surge — 22-Agent Gap Predicted in 6 Days",
+          "description": "Historical 3-year pattern predicts a 45% call volume increase starting April 12, concentrated in general banking and mortgage servicing queues. Peak impact: April 12–17. Current schedule: 48 agents at peak hours. Required to maintain 80/20 service level: 70. Gap: 22 agents. Without intervention, projected service level: 62%. Hybrid staffing plan activated — 8 OT shifts + 10 cross-trained digital channel agents. Projected service level: 79% at $11,200 cost.",
+          "severity": "critical",
+          "sources": ["Dynamics 365 Historical Analytics", "Snowflake", "Dynamics 365 WFM"]
+        }
+      ]
+    },
+    {
+      "id": "phase-training",
+      "name": "Training & Ramp",
+      "sentiment": "warning",
+      "sentimentScore": 0.62,
+      "frictionHotspots": [
+        {
+          "title": "March Cohort AHT at 14:30 — 3 Weeks Behind Schedule",
+          "description": "The March cohort of 12 agents (started March 1) is averaging 14:30 AHT vs. the 9:00 target at week 6. Historical cohorts reached AHT target by week 5. Root cause: knowledge base adherence is only 62% vs. the 85% benchmark — agents skip the guided resolution flow 38% of the time, going directly to supervisor escalation. This cohort needs 3 additional weeks before handling peak volume independently. Do not assign to mortgage or auto loans queues during tax season.",
+          "severity": "warning",
+          "sources": ["Dynamics 365 Quality Management", "Dynamics 365 Process Adherence", "Training System"]
+        }
+      ]
+    },
+    {
+      "id": "phase-schedule",
+      "name": "Schedule Adherence",
+      "sentiment": "neutral",
+      "sentimentScore": 0.873,
+      "frictionHotspots": [
+        {
+          "title": "Mortgage Servicing Adherence at 83.4% — 3rd Consecutive Week Below 85%",
+          "description": "Overall schedule adherence this week: 87.3% vs. 90% target. Mortgage Servicing is the consistent outlier at 83.4% — 3 consecutive weeks below 85%. Pattern analysis shows Tuesday and Thursday afternoon shifts have the highest unplanned absence rate. Pre-approving flexible shift swaps for those specific windows historically improves adherence by 4–6 points within 2 weeks.",
+          "severity": "warning",
+          "sources": ["Dynamics 365 WFM", "HR System"]
+        }
+      ]
+    },
+    {
+      "id": "phase-retention",
+      "name": "Retention & Wellbeing",
+      "sentiment": "warning",
+      "sentimentScore": 0.70,
+      "frictionHotspots": [
+        {
+          "title": "3 Top Performers Showing Burnout Signals — Mortgage Servicing",
+          "description": "3 of your top 10 rated agents show a declining pattern over 30 days: quality scores dropping (avg 8.4 points), handle times increasing, positive sentiment ratio decreasing. All three handle the highest-complexity calls in mortgage servicing. This pattern historically precedes voluntary attrition within 60–90 days. Agent attrition trailing 90 days: 18%, above the 12% benchmark. Proactive intervention — workload adjustment, recognition, or a structured check-in — has a documented 68% retention rate for high performers showing these early signals.",
+          "severity": "warning",
+          "sources": ["Dynamics 365 Quality Management", "Dynamics 365 Sentiment Analysis", "HR System"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI monitors compliance signals, transaction anomalies, and regulatory readiness overnight — surfacing risk alerts before they become findings.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask a plain-language question and receive a sourced answer drawn simultaneously from transaction systems, UiPath workflows, Genesys, and fraud feeds.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Anomaly Detection",
+    "description": "Detects BSA structuring, volume spikes, wire anomalies, and exception patterns across all connected systems — with risk scoring and typology classification.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Automated Action",
+    "description": "From the same conversation, the AI files SARs, generates audit trails, creates board-level risk summaries, and routes escalations — with your confirmation at every step.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

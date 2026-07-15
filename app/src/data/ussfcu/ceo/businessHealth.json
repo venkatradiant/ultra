@@ -1,0 +1,22 @@
+{
+  "membership": {
+    "value": 52488,
+    "growth_ytd_pct": 3.1,
+    "sparkline": [50900, 51150, 51380, 51610, 51840, 52080, 52290, 52488]
+  },
+  "net_income": {
+    "actual_usd": 9400000,
+    "plan_usd": 8800000,
+    "vs_plan_pct": 6.8
+  },
+  "capital": {
+    "net_worth_ratio_pct": 7.5,
+    "status": "Well capitalized"
+  },
+  "members_by_region": [
+    { "region": "Virginia", "members": 19420 },
+    { "region": "Maryland", "members": 14180 },
+    { "region": "DC", "members": 9060 },
+    { "region": "National (Senate alumni)", "members": 9828 }
+  ]
+}

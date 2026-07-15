@@ -1,0 +1,50 @@
+[
+  {
+    "id": "SEG-RET-001",
+    "name": "High Churn Risk — 70%+ Threshold",
+    "description": "Members whose Einstein churn probability crossed 70% this week",
+    "size": 312,
+    "avg_churn_risk": 0.76,
+    "defining_rules": ["Einstein churn score ≥ 0.70", "Score crossed threshold in last 7 days"],
+    "key_characteristics": {
+      "avg_age": 44,
+      "avg_tenure_years": 6.3,
+      "single_product_pct": "48%",
+      "primary_driver": "Rate dissatisfaction + low engagement",
+      "avg_ltv": "$38,200",
+      "total_ltv_at_risk": "$11.9M"
+    }
+  },
+  {
+    "id": "SEG-RET-002",
+    "name": "Digital Dormant — No Login 90+ Days",
+    "description": "Members with zero digital interactions across all channels in 90+ days",
+    "size": 1243,
+    "avg_churn_risk": 0.58,
+    "defining_rules": ["No web, mobile, or IVR login in 90+ days", "Account still active"],
+    "key_characteristics": {
+      "avg_age": 53,
+      "avg_tenure_years": 11.7,
+      "single_product_pct": "62%",
+      "primary_driver": "Digital disengagement, branch-only behavior",
+      "avg_ltv": "$27,400",
+      "total_ltv_at_risk": "$34.1M"
+    }
+  },
+  {
+    "id": "SEG-RET-003",
+    "name": "Military Retirees — NPS Decline",
+    "description": "Military retiree members with NPS decline of 10+ points in 6 months",
+    "size": 214,
+    "avg_churn_risk": 0.71,
+    "defining_rules": ["Segment: Military Retiree", "Individual NPS decline ≥ 10 points", "CD product holder"],
+    "key_characteristics": {
+      "avg_age": 62,
+      "avg_tenure_years": 19.4,
+      "avg_cd_balance": "$147,500",
+      "primary_driver": "CD rate transparency, loyalty recognition gap",
+      "avg_ltv": "$172,000",
+      "total_ltv_at_risk": "$36.8M"
+    }
+  }
+]

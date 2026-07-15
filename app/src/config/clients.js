@@ -1,0 +1,61 @@
+export const CLIENTS = {
+  financial_services: {
+    id: 'financial_services',
+    name: 'Financial Services',
+    shortName: 'FS',
+    nameLines: ['Financial Services'],
+    tagline: 'AI Platform',
+    logo: '/logos/fs-logo.svg',
+    favicon: '/logos/fs-logo.svg',
+    primaryColor: '#003087',
+    navLabels: { journey: 'Member Journey', risk: 'Risk Signals' },
+  },
+  ussfcu: {
+    id: 'ussfcu',
+    name: 'United States Senate Federal Credit Union',
+    shortName: 'USSFCU',
+    nameLines: ['United States Senate', 'Federal Credit Union'],
+    tagline: 'AI Platform',
+    logo: '/ussfcu-seal.png',
+    favicon: '/ussfcu-seal.png',
+    primaryColor: '#003087',
+    navLabels: { journey: 'Member Journey', risk: 'Risk Signals' },
+  },
+  penfed: {
+    id: 'penfed',
+    name: 'Pentagon Federal Credit Union',
+    shortName: 'PenFed',
+    nameLines: ['Pentagon Federal', 'Credit Union'],
+    tagline: 'AI Platform',
+    logo: '/logos/penfed-logo.svg',
+    favicon: '/logos/penfed-logo.svg',
+    primaryColor: '#003087',
+    navLabels: { journey: 'Member Journey', risk: 'Risk Signals' },
+  },
+  nfcu: {
+    id: 'nfcu',
+    name: 'Navy Federal Credit Union',
+    shortName: 'NFCU',
+    nameLines: ['Navy Federal', 'Credit Union'],
+    tagline: 'Workforce AI Platform',
+    logo: '/logos/nfcu-logo.svg',
+    favicon: '/logos/nfcu-logo.svg',
+    primaryColor: '#003087',
+    navLabels: { journey: 'Workforce Intelligence', risk: 'Quality Signals', governance: 'Model Governance' },
+  },
+  // ─── Healthcare domain (proves the platform is multi-domain) ────
+  riverside_health: {
+    id: 'riverside_health',
+    name: 'Riverside Health System',
+    shortName: 'Riverside',
+    nameLines: ['Riverside', 'Health System'],
+    tagline: 'Care Intelligence Platform',
+    logo: '/logos/fs-logo.svg',
+    favicon: '/logos/fs-logo.svg',
+    primaryColor: '#0F766E',
+    navLabels: { journey: 'Patient Journey', risk: 'Clinical Signals' },
+  },
+};
+
+export const DEFAULT_CLIENT_ID = 'financial_services';
+export const STORAGE_KEY = 'selected_client';

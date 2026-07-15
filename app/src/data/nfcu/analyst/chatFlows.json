@@ -1,0 +1,333 @@
+{
+  "nfcu_ana_greeting": {
+    "ai_message": "Good morning, Derek. Your workforce forecast needs attention. Tax season volume surge is 6 days out and your current staffing plan has a 17-point coverage gap. I also see your new hire cohort is underperforming on AHT. Want me to walk you through the risks?",
+    "suggested_chips": [
+      "Walk me through the tax season risk",
+      "Show me the training cohort data",
+      "What is my overtime trajectory?"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM", "Dynamics 365 Historical Analytics", "HR System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Coverage gap and cohort AHT are direct reads from Dynamics 365 WFM and Quality Management. No inference required.",
+      "signals_used": ["Dynamics 365 WFM", "Dynamics 365 Quality Management", "HR System"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:58:11Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_signal_1_tax_season": {
+    "ai_message": "The pattern is clear and the window is closing — 6 days before impact. Last year you closed a similar gap with a hybrid model: 12 OT shifts plus cross-trained agents from digital channels. That same playbook projected at today's numbers puts you at 79% service level for $11,200 — just under target but recoverable. I've pre-built three staffing scenarios. Want to start with the hybrid plan?",
+    "suggested_chips": [
+      "Walk me through the tax season risk",
+      "Show me the training cohort data",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Historical Analytics", "Snowflake", "Dynamics 365 WFM"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 88,
+      "rationale": "Three-year tax-season pattern (2023–2025) is highly stable. 79% projection is the median outcome; ±3 pp variance against last 3 years.",
+      "signals_used": ["Dynamics 365 Historical Analytics", "Snowflake (3yr)"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:58:32Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_signal_2_training": {
+    "ai_message": "The root cause isn't knowledge — it's workflow adoption. Agents are bypassing the guided resolution flow and escalating to supervisors prematurely, which inflates AHT and loads the supervisor tier unnecessarily. Critical implication for tax season: do not assign this cohort to mortgage or auto loan queues during peak. They need 3 more weeks before they can handle high-complexity volume independently.",
+    "suggested_chips": [
+      "Which agents are furthest behind?",
+      "What is my overtime trajectory?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Dynamics 365 Quality Management", "Dynamics 365 Process Adherence", "Training System"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 85,
+      "rationale": "Process-adherence telemetry is authoritative; cohort-readiness window is anchored to historical n=8 cohort ramps with ±5-day variance.",
+      "signals_used": ["Dynamics 365 Process Adherence", "Training System (8 prior cohorts)"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:58:21Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_signal_3_ot_budget": {
+    "ai_message": "The overage isn't evenly distributed — mortgage servicing is the culprit, consuming 44% of all Q2 overtime hours due to chronic unplanned PTO. The good news: the hybrid tax season plan I modeled stays within 96% of budget. Restructuring how mortgage servicing handles PTO coverage could recover $8,000–$10,000 in Q2 spend. Want to see the breakdown?",
+    "suggested_chips": [
+      "Walk me through the tax season risk",
+      "Show me which queues are most impacted",
+      "What is my overtime trajectory?"
+    ],
+    "data_sources_used": ["HR System", "Dynamics 365 WFM", "Budget System"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 86,
+      "rationale": "OT distribution and budget reads are authoritative; recovery range ($8–10K) reflects PTO-coverage policy variance.",
+      "signals_used": ["HR System", "Dynamics 365 WFM", "Budget System"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:58:38Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_turn_1_tax_season": {
+    "ai_message": "Based on 3 years of historical data, tax season drives a 45% increase in call volume, concentrated in general banking and mortgage servicing queues.\n\nPeak impact: April 12–17.\n\nYour current schedule: 48 agents across those queues during peak hours.\nYou need: 70 agents to maintain 80/20 service level.\nGap: **22 agents**.\n\nWithout intervention, projected service level: 62% — well below the 80% target.\n\nLast year, you closed a 19-agent gap with 12 overtime shifts and 8 cross-trained agents from digital channels. That scenario cost $14,200 and achieved 81% service level.",
+    "suggested_chips": [
+      "What are my options to close the gap?",
+      "Run a what-if with 15 overtime shifts",
+      "Show me which queues are most impacted",
+      "How did we handle it last year?"
+    ],
+    "data_sources_used": ["Dynamics 365 Historical Analytics", "Snowflake", "Dynamics 365 WFM"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [
+      {
+        "type": "line_chart",
+        "title": "Tax Season Call Volume: 2024 vs. 2025 vs. 2026 (Projected)",
+        "dataset_key": "workforce_metrics.tax_season_volume"
+      }
+    ],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 90,
+      "rationale": "Three years of clean tax-season data; 45% volume lift is consistent (±4% YoY). Gap math is deterministic.",
+      "signals_used": ["Dynamics 365 Historical Analytics (3yr)", "Snowflake", "Dynamics 365 WFM"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:58:47Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_turn_2_what_if": {
+    "ai_message": "Scenario modeled — 15 overtime shifts distributed across April 12–17:\n\n**Projected service level:** 62% → **76%** (still 4 points below target)\n**Overtime cost:** ~$18,400 → puts Q2 budget at **96%**\n\nAdding callback option for waits over 3 minutes closes the remaining gap → **81% service level**.\n\n**Alternative — Hybrid Option (recommended):**\n8 overtime shifts + 10 cross-trained agents from digital channels.\n• Service level projection: **79%** (within 1 point of target)\n• Cost: **$11,200** (puts Q2 budget at **85%**)\n• Frees $7,200 buffer for unplanned PTO\n\nThe hybrid option gives you 79% service level at 73% of the cost of 15 OT shifts.",
+    "suggested_chips": [
+      "Go with the hybrid option",
+      "Show me cross-trainable agents",
+      "What about the new hire cohort?",
+      "Model a fourth scenario"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM Forecasting", "Budget System", "Agent Skill Profiles"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [
+      {
+        "type": "table",
+        "title": "Staffing Scenarios vs. Service Level Impact",
+        "dataset_key": "workforce_metrics.scenario_comparison"
+      }
+    ],
+    "post_confirm_response": {
+      "ACT-NFCU-ANA-001": "Hybrid staffing plan activated in Dynamics 365 WFM for April 12–17. 8 overtime shifts submitted — distributed across general banking (5 shifts) and mortgage servicing (3 shifts). 10 cross-trained digital channel agents flagged for redeployment with routing profiles updated in Dynamics 365. Callback mode pre-staged for any queue exceeding 3-minute wait during April 12–17. Projected service level: 79%. Q2 overtime budget: 85% utilized ($11,200 cost). You'll receive a daily staffing report each morning April 11–17 with real-time adjustments. The $7,200 budget buffer is preserved for unplanned absences."
+    },
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 81,
+      "rationale": "Service-level projections are model outputs with ±3 pp variance. Cost numbers are deterministic.",
+      "signals_used": ["Dynamics 365 WFM Forecasting", "Budget System"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:59:12Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_turn_3_cohort": {
+    "ai_message": "The March cohort of 12 agents is behind schedule. At week 6, their AHT is 14:30 vs. the 9:00 target.\n\n**Root cause:** Knowledge base adherence is only 62%. Dynamics 365 process adherence reports show these agents skip the guided resolution flow 38% of the time — going directly to supervisor escalation instead.\n\nHistorically, cohorts that hit 85% KB adherence by week 4 reach AHT targets by week 6. This cohort may need **3 additional weeks** before they can handle peak volume independently.\n\n**For tax season:** These agents should not be assigned to high-complexity queues (mortgage, auto loans). They can support digital support or general banking under closer supervision.\n\n**Recommended:** Schedule targeted KB coaching this week. 3 agents are closest to the 85% threshold and could be ready by April 10.",
+    "suggested_chips": [
+      "Which agents are furthest behind?",
+      "Schedule targeted coaching",
+      "Can any of them handle tax season volume?",
+      "Go with the hybrid option"
+    ],
+    "data_sources_used": ["Dynamics 365 Quality Management", "Dynamics 365 Process Adherence", "Training System"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [
+      {
+        "type": "line_chart",
+        "title": "AHT by Week — March Cohort vs. Benchmark",
+        "dataset_key": "workforce_metrics.cohort_ramp"
+      }
+    ],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 89,
+      "rationale": "AHT and KB-adherence reads are direct LMS + Quality Management telemetry. Ramp comparison anchored to 8 prior cohorts.",
+      "signals_used": ["Dynamics 365 Quality Management", "Training System (8 prior cohorts)"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:58:54Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_act_hybrid_confirm": {
+    "ai_message": "Hybrid staffing plan activated for April 12–17:\n\n• 8 overtime shifts submitted in Dynamics 365 WFM — distributed across general banking (5) and mortgage servicing (3)\n• 10 cross-trained digital channel agents flagged for redeployment — Dynamics 365 routing profiles updated\n• Callback option pre-staged for queues exceeding 3-minute wait during April 12–17\n\nProjected service level: **79%** at a cost of $11,200. Q2 overtime budget: **85%** utilized. I'll send you a daily staffing report each morning April 11–17 with real-time adjustments.",
+    "suggested_chips": [
+      "Generate the weekly workforce report",
+      "Show me cross-trainable agents"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM", "Dynamics 365 Routing", "Budget System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 92,
+      "rationale": "All actions are deterministic system writes; projections re-confirmed against the same model used in the scenario turn.",
+      "signals_used": ["Dynamics 365 WFM", "Dynamics 365 Routing"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T09:00:08Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_ot_trajectory": {
+    "ai_message": "Q2 overtime trajectory:\n\n**MTD:** 342 hours at $18 average cost/hour = $6,156 spent this month\n**Q2 to date:** 78% of Q2 overtime budget consumed\n**Weeks remaining:** 10\n**Projected end-of-quarter:** 140% of budget — $26,000 overage\n\n**Top drivers:**\n1. Unplanned PTO coverage — Mortgage Servicing: 44% of all OT hours\n2. Tax season preparation: 22% of OT hours (projected)\n3. New hire gap coverage: 18% of OT hours\n\n**To stay within budget:** Cap discretionary OT at 3 shifts/week until April 10. The hybrid tax season plan ($11,200) would land Q2 at 96% of budget — acceptable range.",
+    "suggested_chips": [
+      "Go with the hybrid option",
+      "Generate the weekly workforce report"
+    ],
+    "data_sources_used": ["HR System", "Dynamics 365 WFM", "Budget System"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 77,
+      "rationale": "MTD numbers are authoritative; end-of-quarter projection assumes current burn-rate continues — sensitive to PTO coverage volatility.",
+      "signals_used": ["HR System", "Budget System"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:58:41Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_schedule_adherence": {
+    "ai_message": "Schedule adherence this week: **87.3%** overall (target: 90%).\n\nBreakdown by team:\n• General Banking: 91.2% — on target\n• Mortgage Servicing: 83.4% — below target (unplanned absences)\n• Auto Loans: 85.7% — below target\n• Digital Support: 92.1% — on target\n• Member Onboarding: 89.4% — near target\n\nMortgage Servicing is the consistent outlier — 3 consecutive weeks below 85%. The correlation: Tuesday and Thursday afternoon shifts have the highest unplanned absence rate. Pre-approving a flexible shift swap option for those windows historically improves adherence by 4–6 points.",
+    "suggested_chips": [
+      "Go with the hybrid option",
+      "Generate the weekly workforce report"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM", "HR System"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 90,
+      "rationale": "Adherence breakdown is direct telemetry; 4–6 pp improvement estimate from 5 prior flex-swap rollouts.",
+      "signals_used": ["Dynamics 365 WFM", "HR System"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:59:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_weekly_report": {
+    "ai_message": "**Weekly Workforce Report — Week of April 21, 2026**\n\n**Force-to-Load Ratio:** 0.94 (target: 1.0)\n**Schedule Adherence:** 87.3% (target: 90%)\n**Forecast Accuracy (30 days):** 82% (target: 85%)\n**Overtime Hours MTD:** 342 hrs / 78% of Q2 budget\n**Agent Attrition (trailing 90 days):** 18%\n**Average Speed of Answer:** 3:24\n\n**Top Risks This Week:**\n1. Tax season gap — 22 agents short at peak (April 12–17)\n2. March cohort AHT at 14:30 (target 9:00) — not ready for peak deployment\n3. Q2 OT budget on track to overage at current pace\n\n**Actions Taken:** Hybrid staffing plan activated. Report formatted for leadership review.",
+    "suggested_chips": [
+      "Walk me through the tax season risk",
+      "Show me schedule adherence by team"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM", "Dynamics 365 Historical Analytics", "HR System", "Snowflake"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Aggregation of pre-validated metrics. Deterministic format with no inference.",
+      "signals_used": ["Dynamics 365 WFM", "HR System", "Snowflake"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T09:00:02Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_fourth_scenario": {
+    "ai_message": "Modeled — **Scenario 4: Temporary Agency Staff (10 agents, 5-day contract):**\n\n**Projected service level:** 62% → **82%** — 2 points above the 80% target\n**Cost:** ~$22,000 (contract rate + NFCU system onboarding overhead)\n**Q2 budget impact:** 104% — $2,000 over budget\n\n**Critical risk:** Dynamics 365 provisioning for new external agents takes 24–48 hours. For April 12 coverage, agency staff would need to be contracted and onboarded by April 10 — 3 business days from now. Tight but executable if started today.\n\n**All four scenarios side by side:**\n| Scenario | SL | Cost | Budget | Activation |\n|---|---|---|---|---|\n| Current plan | 62% | — | 78% | N/A |\n| 15 OT shifts | 76% | $18,400 | 96% | 48 hrs |\n| Hybrid (OT + cross-train) | 79% | $11,200 | 85% | 24 hrs |\n| Agency staff | 82% | $22,000 | 104% | 72 hrs |\n\n**Verdict:** Agency achieves the highest service level but exceeds budget, is slowest to activate, and introduces onboarding risk. The hybrid option is still the strongest choice unless the board has explicitly set 80%+ as a hard minimum.",
+    "suggested_chips": [
+      "Add an agency-rate constraint and re-model",
+      "Go with the hybrid option",
+      "What about the new hire cohort?",
+      "Generate the weekly workforce report"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM Forecasting", "Budget System", "HR System"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 64,
+      "rationale": "Scenario sits beyond the modeled volume range — agency-staff productivity ramp is an assumption (no NFCU contracted-agent history this fiscal year). Onboarding risk and budget overrun add downside variance.",
+      "signals_used": ["Dynamics 365 WFM Forecasting (extrapolated)", "Budget System"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:59:23Z",
+      "escalation": {
+        "triggered": true,
+        "reason": "scenario beyond modeled volume range; no NFCU contracted-agent history in FY26",
+        "route_to": "Workforce Planning Lead",
+        "review_queue": "Dynamics 365 Workforce Planning Queue"
+      }
+    }
+  },
+
+  "nfcu_ana_fourth_scenario_resolved": {
+    "ai_message": "**Re-modeled with the agency-rate constraint applied.** Workforce Planning supplied a fixed onboarding curve from the FY24 vendor engagement (the only prior contracted-agent comparable). With that constraint anchored:\n\n**Projected service level:** 80% (was 82% — adjusted down for ramp)\n**Cost:** $19,800 (was $22,000 — onboarding overhead trimmed)\n**Q2 budget impact:** 102% (was 104%)\n\n**The scenario is now defensible.** Confidence has rebounded to 86% because the agency ramp is no longer extrapolated — it's anchored to a real prior engagement. Hybrid is still cheaper and faster, but agency is now a credible fallback if hybrid acceptance falls short.",
+    "suggested_chips": [
+      "Go with the hybrid option",
+      "Generate the weekly workforce report",
+      "Show me cross-trainable agents"
+    ],
+    "data_sources_used": ["Dynamics 365 WFM Forecasting", "Budget System", "Workforce Planning Constraint Library"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 86,
+      "rationale": "Re-modeled with FY24 vendor engagement as anchor. Onboarding ramp is no longer extrapolated.",
+      "signals_used": ["Dynamics 365 WFM Forecasting", "Workforce Planning Constraint Library", "FY24 Vendor Engagement"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T09:01:14Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_ana_cross_trainable_agents": {
+    "ai_message": "Cross-trainable agents from digital channels available for April 12–17 redeployment:\n\n**10 agents identified** with general banking certification eligible for peak queue support:\n\n**Digital Support → General Banking (5 agents)**\n• Avg quality score: 88/100 | Avg AHT: 7:45\n• Handle chat and email today — voice-capable with general banking brief\n• Digital SL impact if redeployed: minimal (digital volume drops 18% during peak hours anyway)\n\n**Member Onboarding → General Banking (3 agents)**\n• Avg quality score: 86/100 | Avg AHT: 8:10\n• Cross-trained in general banking in Q1 — immediately deployable, no additional training needed\n\n**Digital Support → General Banking, lower complexity (2 agents)**\n• Avg quality score: 84/100 | Avg AHT: 8:30\n• Currently handling lower-complexity digital queries — can be freed without impacting digital service level\n\n**Cannot cross-train for tax season peaks:**\n• Mortgage servicing — requires specialist product certification (3-week program)\n• Auto loans — requires loan calculator training (2-day minimum)\n\n**Activation:** Dynamics 365 routing profiles for all 10 agents updated to include general banking queue. Live in 15 minutes after your approval.",
+    "suggested_chips": [
+      "Go with the hybrid option",
+      "What about the new hire cohort?",
+      "Show me the training cohort data"
+    ],
+    "data_sources_used": ["Dynamics 365 Agent Profiles", "HR System", "Dynamics 365 Quality Management"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["workforce_metrics"],
+    "confidence": {
+      "score": 91,
+      "rationale": "Agent skill profiles and quality scores are authoritative reads from Dynamics 365 + HR.",
+      "signals_used": ["Dynamics 365 Agent Profiles", "HR System", "Dynamics 365 Quality Management"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T08:59:08Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

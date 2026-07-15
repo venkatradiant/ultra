@@ -1,0 +1,73 @@
+[
+  {
+    "id": "SIG-001",
+    "type": "anomaly_detection",
+    "title": "Mortgage Application Drop-Off Spike at Step 4",
+    "description": "Mortgage application completions dropped 41% at Step 4 \u2014 income verification. This started 72 hours ago and correlates with a document upload exception in the UiPath automation workflow. 847 members were affected this week.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 847,
+    "sources": [
+      "UiPath",
+      "Salesforce Data Cloud"
+    ],
+    "timestamp": "2026-03-27T06:14:00",
+    "trend": "worsening",
+    "related_segment": "SEG-001",
+    "metrics": {
+      "drop_off_rate": 0.41,
+      "affected_step": 4,
+      "anomaly_start": "2026-03-15",
+      "uipath_exceptions_this_week": 312
+    }
+  },
+  {
+    "id": "SIG-002",
+    "type": "predictive_intelligence",
+    "title": "Auto Loan Inquiry Abandonment \u2014 3x Increase",
+    "description": "Einstein's predictive model is flagging a 3x increase in auto loan inquiry abandonment. The model associates this with rate perception \u2014 members are comparing and leaving. Genesys transcript analysis confirms 'rate' appears in 68% of abandonment-adjacent calls this week.",
+    "impact": "high",
+    "severity": "warning",
+    "affected_count": 1396,
+    "sources": [
+      "Salesforce Einstein",
+      "Genesys Cloud"
+    ],
+    "timestamp": "2026-03-27T06:14:00",
+    "trend": "worsening",
+    "related_segment": null,
+    "metrics": {
+      "abandonment_increase_factor": 3.0,
+      "rate_keyword_pct": 0.68,
+      "competitor_mentions": [
+        "Navy Federal",
+        "USAA",
+        "Capital One"
+      ],
+      "weekly_inquiries_current": 2287
+    }
+  },
+  {
+    "id": "SIG-003",
+    "type": "behavioral_segmentation",
+    "title": "CD Complaint Cluster \u2014 Military Retirees",
+    "description": "A complaint cluster is forming around CD rate transparency. 214 Genesys interactions flagged in the last 5 days. This segment skews toward military retirees \u2014 your highest-tenure members and your strongest NPS drivers.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 214,
+    "sources": [
+      "Genesys Cloud",
+      "Voice of Member / NPS"
+    ],
+    "timestamp": "2026-03-27T06:14:00",
+    "trend": "emerging",
+    "related_segment": "SEG-002",
+    "metrics": {
+      "interactions_flagged": 214,
+      "window_days": 5,
+      "nps_decline_points": 13,
+      "avg_member_tenure_years": 19.4,
+      "avg_cd_balance": 147500
+    }
+  }
+]

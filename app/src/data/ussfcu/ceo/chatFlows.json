@@ -1,0 +1,233 @@
+{
+  "ussfcu_ceo_greeting": {
+    "ai_message": "Good morning, Tim. Here is where USSFCU stands this morning, validated at 6:00 AM. One thing needs your attention before board prep: loan demand is outpacing deposit growth, and liquidity is tightening faster than plan. Two more signals are steady — membership is up, and the trust layer already caught and contained one late data feed overnight. Want me to walk you through the liquidity picture?",
+    "suggested_chips": [
+      "Walk me through the liquidity signal",
+      "Can I trust these numbers this morning?",
+      "Open the full briefing"
+    ],
+    "data_sources_used": ["Symitar", "MeridianLink", "General Ledger", "Radiant Trust Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_ceo_signal_1_liquidity": {
+    "ai_message": "Primary issue — Liquidity Watch. Net loans are up 11.4% year to date while shares are up 4.1%. That gap has pushed loan-to-share to 84%, the highest in five years. Correlated across Symitar, MeridianLink, and the GL, the trajectory draws liquidity below your internal target by late Q4. This is the one board-level call this morning: a deposit-gathering campaign and a funding review before the September board meeting.",
+    "suggested_chips": [
+      "Walk me through the liquidity signal",
+      "What happens to liquidity if this continues?",
+      "Open the full briefing"
+    ],
+    "data_sources_used": ["Symitar", "MeridianLink", "General Ledger"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "convergence"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_ceo_signal_2_membership": {
+    "ai_message": "Membership is up 3.1% year to date to 52,488, with a growing national base of Senate alumni across all 50 states. Growth is strong but concentrated in the DMV — Virginia, Maryland, and DC hold most of the base. That concentration is the opportunity: a national membership strategy aimed at Senate alumni beyond the capital region.",
+    "suggested_chips": [
+      "Show me membership and growth",
+      "What is the national membership opportunity?",
+      "Next signal"
+    ],
+    "data_sources_used": ["Symitar", "CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "businessHealth"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_ceo_signal_3_trust": {
+    "ai_message": "This is the governance story in one card. The Barafin fraud feed loaded 41 minutes late overnight. The trust layer caught it, flagged the single dependent figure for reconciliation, and kept it out of your headline numbers. Nothing reached the board unvalidated. This is exactly what used to fail silently — a number would look off at month-end and no one knew why. Now it is caught before you cite it.",
+    "suggested_chips": [
+      "Can I trust these numbers this morning?",
+      "Trace net income back to source",
+      "Next signal"
+    ],
+    "data_sources_used": ["Barafin", "Radiant Trust Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "trustStrip"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_ceo_where_stands": {
+    "user_query": "Where does the business stand this morning?",
+    "ai_response": "The headline: a strong, well-run institution with one thing to manage. Assets are $1.53B, up 8.2% year over year. Net income is $9.4M, 6.8% ahead of plan. Capital is healthy at a 7.50% net worth ratio, well capitalized. Membership is up 3.1% to 52,488. The one thing to manage is liquidity — loan demand is outpacing deposits and loan-to-share has reached 84%. Every figure here is validated as of 6:00 AM and traceable to source.",
+    "suggested_chips": [
+      "Walk me through the liquidity signal",
+      "Show me membership and growth",
+      "Open the full briefing"
+    ],
+    "data_sources_used": ["Symitar", "General Ledger", "MeridianLink", "Radiant Trust Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["businessHealth"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_ceo_turn_liquidity": {
+    "user_query": "Walk me through the liquidity signal",
+    "ai_response": "Net loans are up 11.4% year to date. Shares are up 4.1%. That gap has pushed loan-to-share to 84%, the highest in five years. I correlated three systems to get there: loan balances from Symitar, share balances from the GL, and the 90-day pipeline of $312M from MeridianLink. This is one governed number, not three that disagree. Confidence is 94%.",
+    "suggested_chips": [
+      "What happens to liquidity if this continues?",
+      "Can I trust these numbers this morning?",
+      "Draft the board briefing",
+      "Next signal"
+    ],
+    "data_sources_used": ["Symitar", "General Ledger", "MeridianLink"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["convergence"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_ceo_turn_projection": {
+    "user_query": "What happens to liquidity if this continues?",
+    "ai_response": "On the current trajectory, liquidity tightens below your internal target by late Q4. I modeled two moves. A targeted deposit campaign to the DMV core and Senate-alumni segments closes most of the gap by year end. Pairing it with a funding-line review holds you above target through Q1. Both are sized for the September board meeting, so you decide with the numbers in hand, not after.",
+    "suggested_chips": [
+      "Can I trust these numbers this morning?",
+      "Draft the board briefing",
+      "Show me membership and growth",
+      "Next signal"
+    ],
+    "data_sources_used": ["Symitar", "General Ledger", "MeridianLink", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["projection"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_ceo_turn_trust": {
+    "user_query": "Can I trust these numbers this morning?",
+    "ai_response": "Yes, and here is why. Every figure this morning is validated and traceable. The trust strip shows all six sources loaded and reconciled at 6:04 AM, with one exception I already caught: the Barafin fraud feed loaded 41 minutes late, so I flagged one dependent figure for reconciliation and kept it out of your headline numbers. NCUA exam readiness sits at 88. And you can trace any figure from Symitar through ETL to this screen. That is the difference from the reports you have today, which cannot tell you when they are wrong.",
+    "suggested_chips": [
+      "Draft the board briefing",
+      "Open the full briefing",
+      "Trace net income back to source"
+    ],
+    "data_sources_used": ["Radiant Trust Layer", "Symitar", "MeridianLink", "Greenplum on Tanzu", "Tableau", "Barafin", "General Ledger"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["trustStrip"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_ceo_trace_net_income": {
+    "user_query": "Trace net income back to source",
+    "ai_response": "Here is where your reporting loses time today, and where it no longer has to. Net income of $9.4M starts as transactions in the Symitar core, posts through the Thought Machine ledger during cutover, aggregates into the General Ledger, lands in Greenplum, and renders in Tableau. Until now, that path was undocumented — when an examiner asked you to prove a figure, the answer took days of manual assembly. The trust layer now carries the full chain: core, ledger, GL, warehouse, brief. You can hand this trace to the board or the NCUA on demand.",
+    "suggested_chips": [
+      "Can I trust these numbers this morning?",
+      "Draft the board briefing",
+      "Open the full briefing"
+    ],
+    "data_sources_used": ["Symitar", "Thought Machine", "General Ledger", "Greenplum on Tanzu", "Tableau", "Radiant Trust Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["trustStrip"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_ceo_turn_membership": {
+    "user_query": "Show me membership and growth",
+    "ai_response": "Membership is up 3.1% to 52,488, and net income is 6.8% ahead of plan at $9.4M. Growth is strong but concentrated: Virginia, Maryland, and DC hold most of the base, with a growing national tail of Senate alumni across all 50 states. Capital is healthy at a 7.50% net worth ratio, well capitalized. The story is a strong, well-run institution with one thing to manage — liquidity — and a membership expansion opportunity beyond the DMV.",
+    "suggested_chips": [
+      "What is the national membership opportunity?",
+      "Draft the board briefing",
+      "Open the full briefing",
+      "Next signal"
+    ],
+    "data_sources_used": ["Symitar", "General Ledger", "CRM", "Voice of Member"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["businessHealth"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_ceo_national_opportunity": {
+    "user_query": "What is the national membership opportunity?",
+    "ai_response": "Today roughly four in five members sit in the DMV, but your fastest-growing segment is Senate alumni who have left the capital region — they now span all 50 states. That national tail is the opportunity: members who already know the institution, are digitally served, and carry above-average balances. A national membership strategy aimed at this alumni base diversifies deposits, which also eases the very liquidity pressure on the primary signal. It is the growth story and the funding story in one move.",
+    "suggested_chips": [
+      "Show me membership and growth",
+      "Draft the board briefing",
+      "Open the full briefing"
+    ],
+    "data_sources_used": ["Symitar", "CRM", "Voice of Member"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["businessHealth"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_ceo_turn_board_briefing": {
+    "user_query": "Draft the board briefing",
+    "ai_response": "Done. I assembled a board briefing: the state of the business, the liquidity watch with the two recommended moves, membership and capital, and a one-page appendix showing the lineage behind every figure so the board and the examiners can see how each number was built. It is ready to present as a deck or export as a document. Shall I finalize it?",
+    "suggested_chips": [
+      "Open the full briefing",
+      "Export as document",
+      "Add a recommendation slide"
+    ],
+    "data_sources_used": ["Symitar", "MeridianLink", "General Ledger", "Greenplum on Tanzu", "Radiant Trust Layer"],
+    "ui_components_to_render": [
+      {
+        "type": "action_cards",
+        "title": "Recommended Actions",
+        "actions": [
+          {
+            "id": "ACT-USSFCU-CEO-001",
+            "title": "Assemble the Board Briefing Deck",
+            "description": "Build the board-ready briefing — state of the business, the liquidity watch and the two recommended moves, membership and capital — as a fit-to-window Presentation Mode deck.",
+            "system": "Radiant Intelligence Layer",
+            "status": "pending_confirmation"
+          },
+          {
+            "id": "ACT-USSFCU-CEO-002",
+            "title": "Generate the Lineage-Backed Evidence Appendix",
+            "description": "Attach a one-page appendix tracing every figure from Symitar through ETL to the brief, so the board and NCUA examiners can see how each number was built.",
+            "system": "Radiant Trust Layer",
+            "status": "pending_confirmation"
+          }
+        ]
+      }
+    ],
+    "post_confirm_response": {
+      "ACT-USSFCU-CEO-001": "Assembled. The board briefing is built as a fit-to-window deck, opening on the cover, The State of USSFCU. Every figure carries its confidence badge. Open the full briefing to present it.",
+      "ACT-USSFCU-CEO-002": "Generated. The evidence appendix traces all headline figures — assets, net income, loan-to-share, capital — from core to brief. Traceability reads 100%; the board and examiners can see how each number was built."
+    },
+    "related_dataset_keys": ["businessHealth", "trustStrip"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_ceo_export_document": {
+    "user_query": "Export as document",
+    "ai_response": "Exported. The briefing is packaged as a scrolling long-form document — the same approved content as the deck, formatted as a board leave-behind with the lineage appendix attached. It reads as a single page you can share ahead of the September meeting, and it stays content-consistent with the Presentation Mode deck.",
+    "suggested_chips": [
+      "Open the full briefing",
+      "Add a recommendation slide"
+    ],
+    "data_sources_used": ["Radiant Intelligence Layer", "Radiant Trust Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["businessHealth"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_ceo_add_recommendation": {
+    "user_query": "Add a recommendation slide",
+    "ai_response": "Added. The briefing now closes on a leadership-next-steps slide: launch the DMV and Senate-alumni deposit campaign, open the funding-line review, and bring both to the September board with the modeled impact and confidence. It sits after the resolution options, so the board sees the problem, the two moves, and the ask in sequence.",
+    "suggested_chips": [
+      "Open the full briefing",
+      "Export as document"
+    ],
+    "data_sources_used": ["Radiant Intelligence Layer", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["projection"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_ceo_turn_full_briefing": {
+    "user_query": "Open the full briefing",
+    "ai_response": "Opening the full briefing. This launches Presentation Mode — a full-screen, board-ready deck that opens on the cover, Liquidity Watch, and renders the same intelligence you just saw as fit-to-window slides with a control bar. Use View Full Briefing below to present it, or Download PDF for the leave-behind. The close control returns you here.",
+    "suggested_chips": [
+      "Export as document",
+      "Where does the business stand this morning?",
+      "Draft the board briefing"
+    ],
+    "data_sources_used": ["Radiant Intelligence Layer", "Radiant Trust Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["businessHealth", "trustStrip"],
+    "capability": "Automated Action"
+  }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "SEG-RISK-001",
+    "name": "Structuring-Flagged Accounts",
+    "description": "Accounts with deposit patterns consistent with BSA structuring indicators",
+    "size": 4,
+    "avg_risk_score": 92,
+    "defining_rules": ["Multiple deposits $9,000–$9,900 within 7 days", "3+ different branch locations", "Cash-only transactions"],
+    "key_characteristics": {
+      "avg_account_age_years": 3.2,
+      "total_flagged_amount": "$187,400",
+      "branch_count": "3–5 branches per account",
+      "sar_status": "2 filed, 2 pending review"
+    }
+  },
+  {
+    "id": "SEG-RISK-002",
+    "name": "Dormant Account Reactivations",
+    "description": "Accounts dormant 12+ months that reactivated with high-risk transaction patterns",
+    "size": 2,
+    "avg_risk_score": 88,
+    "defining_rules": ["Account dormant ≥12 months", "Reactivated with wire transfer", "Destination: high-risk jurisdiction"],
+    "key_characteristics": {
+      "avg_dormancy_months": 19,
+      "total_wire_amount": "$94,200",
+      "destination_countries": ["Cayman Islands", "Cyprus"],
+      "pattern_match": "Layering typology"
+    }
+  },
+  {
+    "id": "SEG-RISK-003",
+    "name": "High-Velocity Transaction Accounts",
+    "description": "Accounts showing unusual transaction velocity spikes in the last 48 hours",
+    "size": 8,
+    "avg_risk_score": 74,
+    "defining_rules": ["Transaction count ≥ 3x 90-day average", "Occurred within 48-hour window", "Mix of ACH + wire + cash"],
+    "key_characteristics": {
+      "avg_transactions_48hr": 47,
+      "avg_normal_transactions_48hr": 12,
+      "total_volume": "$1.2M",
+      "channels": "ACH (62%), Wire (24%), Cash (14%)"
+    }
+  }
+]

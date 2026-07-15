@@ -1,0 +1,62 @@
+[
+  {
+    "id": "SEG-NFCU-SUP-001",
+    "name": "Auto Loans",
+    "platform": "Dynamics 365 + Genesys (migration)",
+    "agents_active": 14,
+    "agents_optimal": 22,
+    "members_waiting": 127,
+    "avg_wait_time": "12:47",
+    "sla_compliance": "54%",
+    "sla_target": "80%",
+    "status": "critical"
+  },
+  {
+    "id": "SEG-NFCU-SUP-002",
+    "name": "Mortgage Servicing",
+    "platform": "Genesys (pre-migration)",
+    "agents_active": 18,
+    "agents_optimal": 18,
+    "members_waiting": 11,
+    "avg_wait_time": "4:12",
+    "sla_compliance": "78%",
+    "sla_target": "80%",
+    "status": "warning"
+  },
+  {
+    "id": "SEG-NFCU-SUP-003",
+    "name": "General Banking",
+    "platform": "Dynamics 365",
+    "agents_active": 31,
+    "agents_optimal": 28,
+    "members_waiting": 6,
+    "avg_wait_time": "1:48",
+    "sla_compliance": "87%",
+    "sla_target": "80%",
+    "status": "healthy"
+  },
+  {
+    "id": "SEG-NFCU-SUP-004",
+    "name": "Member Onboarding",
+    "platform": "Dynamics 365",
+    "agents_active": 12,
+    "agents_optimal": 10,
+    "members_waiting": 3,
+    "avg_wait_time": "2:05",
+    "sla_compliance": "91%",
+    "sla_target": "80%",
+    "status": "healthy"
+  },
+  {
+    "id": "SEG-NFCU-SUP-005",
+    "name": "Digital Support",
+    "platform": "Dynamics 365 + Genesys (migration)",
+    "agents_active": 9,
+    "agents_optimal": 9,
+    "members_waiting": 2,
+    "avg_wait_time": "1:20",
+    "sla_compliance": "83%",
+    "sla_target": "80%",
+    "status": "healthy"
+  }
+]

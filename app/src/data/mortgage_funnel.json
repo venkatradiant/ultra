@@ -1,0 +1,347 @@
+{
+  "funnel_steps": [
+    {
+      "step": 1,
+      "name": "Pre-Qualification Check"
+    },
+    {
+      "step": 2,
+      "name": "Product Selection"
+    },
+    {
+      "step": 3,
+      "name": "Personal Information Entry"
+    },
+    {
+      "step": 4,
+      "name": "Income Verification & Document Upload"
+    },
+    {
+      "step": 5,
+      "name": "Credit Review & Approval"
+    },
+    {
+      "step": 6,
+      "name": "Closing & Disbursement"
+    }
+  ],
+  "daily_data": [
+    {
+      "date": "2026-03-21",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Pre-Qualification Check",
+          "completion_rate": 0.978,
+          "drop_off_rate": 0.022
+        },
+        {
+          "step": 2,
+          "name": "Product Selection",
+          "completion_rate": 0.921,
+          "drop_off_rate": 0.079
+        },
+        {
+          "step": 3,
+          "name": "Personal Information Entry",
+          "completion_rate": 0.853,
+          "drop_off_rate": 0.147
+        },
+        {
+          "step": 4,
+          "name": "Income Verification & Document Upload",
+          "completion_rate": 0.582,
+          "drop_off_rate": 0.418
+        },
+        {
+          "step": 5,
+          "name": "Credit Review & Approval",
+          "completion_rate": 0.502,
+          "drop_off_rate": 0.498
+        },
+        {
+          "step": 6,
+          "name": "Closing & Disbursement",
+          "completion_rate": 0.459,
+          "drop_off_rate": 0.541
+        }
+      ]
+    },
+    {
+      "date": "2026-03-22",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Pre-Qualification Check",
+          "completion_rate": 0.979,
+          "drop_off_rate": 0.021
+        },
+        {
+          "step": 2,
+          "name": "Product Selection",
+          "completion_rate": 0.9,
+          "drop_off_rate": 0.1
+        },
+        {
+          "step": 3,
+          "name": "Personal Information Entry",
+          "completion_rate": 0.851,
+          "drop_off_rate": 0.149
+        },
+        {
+          "step": 4,
+          "name": "Income Verification & Document Upload",
+          "completion_rate": 0.619,
+          "drop_off_rate": 0.381
+        },
+        {
+          "step": 5,
+          "name": "Credit Review & Approval",
+          "completion_rate": 0.526,
+          "drop_off_rate": 0.474
+        },
+        {
+          "step": 6,
+          "name": "Closing & Disbursement",
+          "completion_rate": 0.473,
+          "drop_off_rate": 0.527
+        }
+      ]
+    },
+    {
+      "date": "2026-03-23",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Pre-Qualification Check",
+          "completion_rate": 0.957,
+          "drop_off_rate": 0.043
+        },
+        {
+          "step": 2,
+          "name": "Product Selection",
+          "completion_rate": 0.889,
+          "drop_off_rate": 0.111
+        },
+        {
+          "step": 3,
+          "name": "Personal Information Entry",
+          "completion_rate": 0.842,
+          "drop_off_rate": 0.158
+        },
+        {
+          "step": 4,
+          "name": "Income Verification & Document Upload",
+          "completion_rate": 0.603,
+          "drop_off_rate": 0.397
+        },
+        {
+          "step": 5,
+          "name": "Credit Review & Approval",
+          "completion_rate": 0.524,
+          "drop_off_rate": 0.476
+        },
+        {
+          "step": 6,
+          "name": "Closing & Disbursement",
+          "completion_rate": 0.486,
+          "drop_off_rate": 0.514
+        }
+      ]
+    },
+    {
+      "date": "2026-03-24",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Pre-Qualification Check",
+          "completion_rate": 0.948,
+          "drop_off_rate": 0.052
+        },
+        {
+          "step": 2,
+          "name": "Product Selection",
+          "completion_rate": 0.907,
+          "drop_off_rate": 0.093
+        },
+        {
+          "step": 3,
+          "name": "Personal Information Entry",
+          "completion_rate": 0.876,
+          "drop_off_rate": 0.124
+        },
+        {
+          "step": 4,
+          "name": "Income Verification & Document Upload",
+          "completion_rate": 0.581,
+          "drop_off_rate": 0.419
+        },
+        {
+          "step": 5,
+          "name": "Credit Review & Approval",
+          "completion_rate": 0.529,
+          "drop_off_rate": 0.471
+        },
+        {
+          "step": 6,
+          "name": "Closing & Disbursement",
+          "completion_rate": 0.447,
+          "drop_off_rate": 0.553
+        }
+      ]
+    },
+    {
+      "date": "2026-03-25",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Pre-Qualification Check",
+          "completion_rate": 0.979,
+          "drop_off_rate": 0.021
+        },
+        {
+          "step": 2,
+          "name": "Product Selection",
+          "completion_rate": 0.91,
+          "drop_off_rate": 0.09
+        },
+        {
+          "step": 3,
+          "name": "Personal Information Entry",
+          "completion_rate": 0.834,
+          "drop_off_rate": 0.166
+        },
+        {
+          "step": 4,
+          "name": "Income Verification & Document Upload",
+          "completion_rate": 0.561,
+          "drop_off_rate": 0.439
+        },
+        {
+          "step": 5,
+          "name": "Credit Review & Approval",
+          "completion_rate": 0.519,
+          "drop_off_rate": 0.481
+        },
+        {
+          "step": 6,
+          "name": "Closing & Disbursement",
+          "completion_rate": 0.473,
+          "drop_off_rate": 0.527
+        }
+      ]
+    },
+    {
+      "date": "2026-03-26",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Pre-Qualification Check",
+          "completion_rate": 0.944,
+          "drop_off_rate": 0.056
+        },
+        {
+          "step": 2,
+          "name": "Product Selection",
+          "completion_rate": 0.93,
+          "drop_off_rate": 0.07
+        },
+        {
+          "step": 3,
+          "name": "Personal Information Entry",
+          "completion_rate": 0.875,
+          "drop_off_rate": 0.125
+        },
+        {
+          "step": 4,
+          "name": "Income Verification & Document Upload",
+          "completion_rate": 0.582,
+          "drop_off_rate": 0.418
+        },
+        {
+          "step": 5,
+          "name": "Credit Review & Approval",
+          "completion_rate": 0.488,
+          "drop_off_rate": 0.512
+        },
+        {
+          "step": 6,
+          "name": "Closing & Disbursement",
+          "completion_rate": 0.49,
+          "drop_off_rate": 0.51
+        }
+      ]
+    },
+    {
+      "date": "2026-03-27",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Pre-Qualification Check",
+          "completion_rate": 0.96,
+          "drop_off_rate": 0.04
+        },
+        {
+          "step": 2,
+          "name": "Product Selection",
+          "completion_rate": 0.916,
+          "drop_off_rate": 0.084
+        },
+        {
+          "step": 3,
+          "name": "Personal Information Entry",
+          "completion_rate": 0.851,
+          "drop_off_rate": 0.149
+        },
+        {
+          "step": 4,
+          "name": "Income Verification & Document Upload",
+          "completion_rate": 0.569,
+          "drop_off_rate": 0.431
+        },
+        {
+          "step": 5,
+          "name": "Credit Review & Approval",
+          "completion_rate": 0.538,
+          "drop_off_rate": 0.462
+        },
+        {
+          "step": 6,
+          "name": "Closing & Disbursement",
+          "completion_rate": 0.499,
+          "drop_off_rate": 0.501
+        }
+      ]
+    }
+  ],
+  "step_4_affected_member_ids": [
+    "MBR-10000",
+    "MBR-10001",
+    "MBR-10002",
+    "MBR-10003",
+    "MBR-10004",
+    "MBR-10005",
+    "MBR-10006",
+    "MBR-10007",
+    "MBR-10008",
+    "MBR-10009",
+    "MBR-10010",
+    "MBR-10011",
+    "MBR-10012",
+    "MBR-10013",
+    "MBR-10014",
+    "MBR-10015",
+    "MBR-10016",
+    "MBR-10017",
+    "MBR-10018",
+    "MBR-10019"
+  ],
+  "total_affected_this_week": 847,
+  "anomaly_start_date": "2026-03-15",
+  "summary": {
+    "step_4_avg_drop_off_rate": 0.41,
+    "step_4_avg_completion_rate": 0.59,
+    "primary_cause": "Document upload automation exception in UiPath workflow",
+    "correlation": "Members exit after 3+ failed upload attempts"
+  }
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "SIG-USSFCU-CEO-001",
+    "type": "liquidity_watch",
+    "primary": true,
+    "title": "Liquidity Watch: Loan Demand Outpacing Deposit Growth",
+    "description": "Net loans grew 11.4% year to date while shares grew 4.1%. Loan-to-share has reached 84%, the highest in five years. Correlated across Symitar, MeridianLink, and the GL, the trend draws down liquidity by late Q4 on the current trajectory. Recommended: a deposit-gathering campaign and a funding review before the September board meeting.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "Loan-to-share 84% · highest in 5 years",
+    "sources": ["Symitar", "MeridianLink", "General Ledger"],
+    "timestamp": "2026-07-08T06:00:00",
+    "trend": "tightening",
+    "metrics": {
+      "net_loan_growth_ytd_pct": 11.4,
+      "share_growth_ytd_pct": 4.1,
+      "loan_to_share_pct": 84,
+      "loan_to_share_delta_pts": 6,
+      "pipeline_90day_usd": 312000000
+    },
+    "confidence": {
+      "score": 94,
+      "rationale": "Loan balances from Symitar, share balances from the GL, and the 90-day origination pipeline of $312M from MeridianLink reconcile to a single governed loan-to-share ratio of 84%, validated overnight.",
+      "signals_used": ["Symitar", "General Ledger", "MeridianLink"],
+      "threshold": 80,
+      "model_version": "exec-liquidity-v1.0",
+      "validated_at": "2026-07-08T05:59:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-CEO-002",
+    "type": "membership_growth",
+    "primary": false,
+    "title": "Membership Growth Strong but Concentrated",
+    "description": "Membership is up 3.1% year to date to 52,488, with a growing national base of Senate alumni. Growth remains concentrated in the DMV — an opportunity signal for the national membership strategy.",
+    "impact": "info",
+    "severity": "info",
+    "metric_text": "52,488 members · +3.1% YTD",
+    "sources": ["Symitar", "CRM"],
+    "timestamp": "2026-07-08T06:00:00",
+    "metrics": {
+      "members": 52488,
+      "membership_growth_ytd_pct": 3.1
+    },
+    "confidence": {
+      "score": 96,
+      "rationale": "Member counts reconcile between the Symitar core and CRM with no divergence; geographic concentration is drawn from address-of-record on file.",
+      "signals_used": ["Symitar", "CRM"],
+      "threshold": 80,
+      "model_version": "exec-membership-v1.0",
+      "validated_at": "2026-07-08T05:58:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-CEO-003",
+    "type": "data_trust_exception",
+    "primary": false,
+    "title": "Data Trust Exception Caught This Morning",
+    "description": "The Barafin fraud feed loaded 41 minutes late overnight. One dependent figure is flagged for reconciliation before it is cited. Nothing reached the board unvalidated — the trust layer caught what previously failed silently, and it is the governance story in a single card.",
+    "impact": "medium",
+    "severity": "warning",
+    "metric_text": "1 figure flagged · Barafin +41 min late",
+    "sources": ["Barafin", "Radiant Trust Layer"],
+    "timestamp": "2026-07-08T06:04:00",
+    "trend": "caught",
+    "metrics": {
+      "late_load_minutes": 41,
+      "flagged_figures": 1
+    },
+    "confidence": {
+      "score": 98,
+      "rationale": "Pipeline monitoring detected the Barafin load completing 41 minutes past window; the single dependent figure was quarantined from headline numbers pending reconciliation.",
+      "signals_used": ["Barafin", "Radiant Trust Layer"],
+      "threshold": 80,
+      "model_version": "exec-trust-v1.0",
+      "validated_at": "2026-07-08T06:04:00"
+    }
+  }
+]

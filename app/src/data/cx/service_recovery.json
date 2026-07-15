@@ -1,0 +1,17 @@
+{
+  "overall_recovery_rate": 62,
+  "target_recovery_rate": 85,
+  "by_channel": [
+    { "channel": "Phone — Live Agent", "attempts": 189, "recovered": 134, "rate": 70.9, "avg_resolution_minutes": 12.4 },
+    { "channel": "Branch Visit", "attempts": 134, "recovered": 108, "rate": 80.6, "avg_resolution_minutes": 22.1 },
+    { "channel": "Chat — Live Agent", "attempts": 156, "recovered": 89, "rate": 57.1, "avg_resolution_minutes": 18.7 },
+    { "channel": "IVR Self-Service", "attempts": 267, "recovered": 78, "rate": 29.2, "avg_resolution_minutes": 4.2 },
+    { "channel": "Email Support", "attempts": 92, "recovered": 51, "rate": 55.4, "avg_resolution_minutes": 1440 },
+    { "channel": "Mobile App — In-App Help", "attempts": 164, "recovered": 72, "rate": 43.9, "avg_resolution_minutes": 8.6 }
+  ],
+  "recovery_by_issue_type": [
+    { "issue": "Document Upload Failure", "attempts": 423, "recovered": 198, "rate": 46.8 },
+    { "issue": "CD Rate Inquiry", "attempts": 267, "recovered": 189, "rate": 70.8 },
+    { "issue": "Channel Switch Completion", "attempts": 312, "recovered": 221, "rate": 70.8 }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "target_label": "Internal liquidity target",
+  "target_index": 100,
+  "unit_note": "Liquidity coverage indexed to internal target (100 = target).",
+  "series": [
+    { "period": "Jul", "base": 112, "campaign": 112, "campaign_plus_funding": 112 },
+    { "period": "Aug", "base": 108, "campaign": 109, "campaign_plus_funding": 110 },
+    { "period": "Sep", "base": 104, "campaign": 106, "campaign_plus_funding": 108 },
+    { "period": "Oct", "base": 99, "campaign": 103, "campaign_plus_funding": 106 },
+    { "period": "Nov", "base": 95, "campaign": 101, "campaign_plus_funding": 105 },
+    { "period": "Dec", "base": 92, "campaign": 100, "campaign_plus_funding": 104 },
+    { "period": "Q1", "base": 90, "campaign": 99, "campaign_plus_funding": 103 }
+  ],
+  "actions": [
+    {
+      "id": "act-deposit-campaign",
+      "title": "Targeted Deposit Campaign",
+      "description": "Deposit-gathering campaign to the DMV core and Senate-alumni segments. Closes most of the gap by year end.",
+      "projected_impact": "Back to target by December",
+      "confidence": 88
+    },
+    {
+      "id": "act-funding-review",
+      "title": "Funding-Line Review",
+      "description": "Pair the campaign with a funding-line review to hold above target through Q1.",
+      "projected_impact": "Above target through Q1",
+      "confidence": 84
+    }
+  ]
+}

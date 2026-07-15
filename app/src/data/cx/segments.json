@@ -1,0 +1,44 @@
+[
+  {
+    "id": "SEG-CX-001",
+    "name": "Digital-to-Branch Switchers",
+    "description": "Members who started a journey digitally but switched to branch mid-process",
+    "size": 312,
+    "avg_csat": 2.9,
+    "defining_rules": ["Started journey on web/mobile", "Visited branch within 48 hours", "Journey incomplete digitally"],
+    "key_characteristics": {
+      "avg_age": 46,
+      "primary_channel_before": "Mobile (64%)",
+      "top_journey": "Mortgage Application (58%)",
+      "avg_tenure_years": 8.2
+    }
+  },
+  {
+    "id": "SEG-CX-002",
+    "name": "Journey Abandoners — Document Upload",
+    "description": "Members who abandoned their application at the document upload step",
+    "size": 423,
+    "avg_csat": 2.8,
+    "defining_rules": ["Reached document upload step", "Did not complete upload within 72 hours", "No branch follow-up"],
+    "key_characteristics": {
+      "avg_age": 34,
+      "primary_channel": "Mobile (71%)",
+      "top_journey": "Mortgage Application (100%)",
+      "avg_upload_attempts": 3.2
+    }
+  },
+  {
+    "id": "SEG-CX-003",
+    "name": "IVR Escalation Queue Members",
+    "description": "Members who escalated from IVR self-service to live agent",
+    "size": 267,
+    "avg_csat": 3.1,
+    "defining_rules": ["Entered IVR system", "Pressed 0 or requested agent within 90 seconds", "Call topic: CD rates"],
+    "key_characteristics": {
+      "avg_age": 58,
+      "primary_product": "CD (82%)",
+      "avg_tenure_years": 14.6,
+      "avg_wait_time_minutes": 5.7
+    }
+  }
+]

@@ -1,0 +1,370 @@
+{
+  "nfcu_member_greeting": {
+    "ai_message": "Hi Elena. Before you ask, one thing needs your attention: your auto loan payment of $412.00 was declined on June 27. I have already found the reason and a one-tap fix. Want me to explain, or would you rather check something else first?",
+    "suggested_chips": [
+      "Tell me why it was declined",
+      "What's my balance?",
+      "Will I be charged a late fee?"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking", "Loan Servicing"],
+    "capability": "Proactive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 97,
+      "rationale": "The declined payment and its root cause are authoritative reads from the Payments Engine and Core Banking. Surfaced before you asked.",
+      "signals_used": ["Payments Engine", "Core Banking", "Loan Servicing"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_step2_balance": {
+    "ai_message": "Your available checking balance is $1,847.20, with 2 pending transactions. This answer came directly from your core banking record. No AI model was involved and no account detail left Navy Federal's systems. This is a straightforward, secure lookup.",
+    "suggested_chips": [
+      "Now tell me about the declined payment",
+      "Show my pending transactions",
+      "What's my auto loan balance?"
+    ],
+    "data_sources_used": ["Core Banking"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 99,
+      "rationale": "Deterministic balance lookup directly from Core Banking. No model inference, no data leaves NFCU systems.",
+      "signals_used": ["Core Banking"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_step3_decline": {
+    "ai_message": "Here is what happened. Your $412.00 auto loan payment was scheduled to draw from checking on June 27. At that moment your available balance was $208.14, below the payment amount, so the payment was declined for insufficient funds.\n\nBut that is only the surface reason. The real issue is that a $3,140.00 early salary credit from your employer arrived, but it is not being applied because direct deposit routing was never configured on this account. So the money is effectively waiting at the door.",
+    "suggested_chips": [
+      "Why isn't my salary being applied?",
+      "Can you fix the direct deposit?",
+      "Will this happen again next month?"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking", "Employer Direct Deposit File"],
+    "capability": "Friction Observability",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 96,
+      "rationale": "Declined transaction, balance-at-draw, and the unapplied employer credit are direct reads correlated across three systems.",
+      "signals_used": ["Payments Engine", "Core Banking", "Employer Direct Deposit File"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_step4_salary": {
+    "ai_message": "I checked your account against Navy Federal's deposit-handling procedures. Your employer is sending an early salary credit, a provision that releases pay ahead of the standard date. To apply automatically, it needs a matching direct deposit instruction on your checking account.\n\nYours has an early-credit flag but no direct deposit routing number on file, an exception condition. Because the two do not match, the funds are held rather than posted. This is not an error on your side; the routing was simply never completed.",
+    "suggested_chips": [
+      "Will I be charged a late fee?",
+      "Fix the direct deposit now",
+      "What happens to the held funds?",
+      "Retry my auto loan payment"
+    ],
+    "data_sources_used": ["SOP/MOP Repository", "Payments Engine", "Core Banking"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "_chips_note": "Late-fee chip included so the guided 7-step golden path chains into Step 5.",
+    "confidence": {
+      "score": 94,
+      "rationale": "The early-credit flag with no matching routing is a deterministic exception against the deposit-handling SOP. Account flags are authoritative.",
+      "signals_used": ["SOP/MOP Repository", "Payments Engine", "Core Banking"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_step5_latefee": {
+    "ai_message": "Not if you act in the next 3 days. Your auto loan has a 5-day grace period, so the $25 late fee has not been triggered yet.\n\nIf I set up direct deposit routing now, the held $3,140.00 salary credit posts within one business day, which brings your balance to $4,987.20, more than enough to cover the $412.00 payment. I can then retry the payment automatically. Based on similar cases, this fully resolves before the grace window closes and avoids the fee entirely.",
+    "suggested_chips": [
+      "Do the fix and retry the payment",
+      "Just retry with my current balance",
+      "Remind me tomorrow instead"
+    ],
+    "data_sources_used": ["Loan Servicing", "Payments Engine", "Core Banking"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 91,
+      "rationale": "Grace-period math is deterministic; the one-business-day posting timeline reflects standard early-credit settlement, with ±1 day variance.",
+      "signals_used": ["Loan Servicing", "Payments Engine", "Core Banking"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_step6_fix": {
+    "ai_message": "Done, and here is exactly what I did.\n\n(1) Added direct deposit routing to your primary checking account so the early salary credit posts automatically now and every pay cycle going forward.\n(2) Scheduled the $3,140.00 credit to apply within one business day.\n(3) Queued your $412.00 auto loan payment to retry automatically once the funds post, before the grace period ends.\n\nYou will get a confirmation when each step completes. No late fee will apply.",
+    "suggested_chips": [
+      "Great, confirm when it posts",
+      "Set this up for my credit card too",
+      "Anything else I should know?"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking", "Loan Servicing", "Direct Deposit Configuration"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 97,
+      "rationale": "All three actions are deterministic system writes with confirmations. Retry is queued against the projected posted balance.",
+      "signals_used": ["Payments Engine", "Core Banking", "Direct Deposit Configuration"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_step7_anything_else": {
+    "ai_message": "Two quick things. First, because direct deposit is now active, next month's auto loan payment will draw from a funded account automatically, so this will not repeat. Second, your available balance after the salary credit posts will be $4,987.20. Everything is on track and no action is needed from you. I will message you when the payment clears.",
+    "suggested_chips": [
+      "Thanks, that's all",
+      "Show my full activity",
+      "Turn on alerts for declined payments"
+    ],
+    "data_sources_used": ["Core Banking", "Loan Servicing", "Payments Engine"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 96,
+      "rationale": "Forward-looking reassurance derived from the now-active routing and the projected posted balance. Deterministic.",
+      "signals_used": ["Core Banking", "Loan Servicing", "Payments Engine"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_autoloan_balance": {
+    "ai_message": "Your auto loan is current apart from this cycle. Outstanding principal is $18,240.55, and the next scheduled payment is $412.00 due July 1. The only open item is the June 27 draw that was declined — once the routing fix posts your salary credit, that payment retries and clears automatically.",
+    "suggested_chips": [
+      "Now tell me about the declined payment",
+      "Will I be charged a late fee?"
+    ],
+    "data_sources_used": ["Loan Servicing", "Core Banking"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 98,
+      "rationale": "Loan balance and schedule are authoritative reads from Loan Servicing.",
+      "signals_used": ["Loan Servicing", "Core Banking"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_transactions": {
+    "ai_message": "Here are your most recent items:\n\n• Jun 27 — Auto Loan Payment $412.00 — Declined (insufficient funds)\n• Jun 27 — Early Salary Credit $3,140.00 — Held (routing not configured)\n• Jun 26 — Debit Card, Groceries $84.30 — Posted\n• Jun 25 — Utilities Autopay $132.16 — Posted\n\nTwo transactions are still pending. The declined payment and the held credit are the two that need attention, and both are resolved by the same one-tap fix.",
+    "suggested_chips": [
+      "Now tell me about the declined payment",
+      "What's my balance?"
+    ],
+    "data_sources_used": ["Core Banking", "Payments Engine"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 99,
+      "rationale": "Transaction history is a direct read from Core Banking and the Payments Engine.",
+      "signals_used": ["Core Banking", "Payments Engine"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_held_funds": {
+    "ai_message": "The $3,140.00 is safe — it is held in settlement, not lost or returned to your employer. Early salary credits sit in a hold state until a matching direct deposit instruction exists on the account. The moment I add the routing, the hold releases and the funds post to your available balance, normally within one business day. Nothing about the amount or timing of your pay changes.",
+    "suggested_chips": [
+      "Fix the direct deposit now",
+      "Will I be charged a late fee?"
+    ],
+    "data_sources_used": ["Payments Engine", "SOP/MOP Repository"],
+    "capability": "Anomaly Detection",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 93,
+      "rationale": "Held-funds behavior follows the deposit-handling SOP; the one-business-day release reflects standard settlement timing.",
+      "signals_used": ["Payments Engine", "SOP/MOP Repository"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_retry_only": {
+    "ai_message": "I can, but I would not recommend it yet. Your current available balance is $1,847.20, and the payment is $412.00 — so a plain retry would actually clear today. The risk is that the held $3,140.00 credit still isn't routed, so the same exception can recur next cycle. The durable fix is to add the routing first: then the credit posts, your balance is fully funded, and this doesn't repeat. Want me to do the fix and retry together?",
+    "suggested_chips": [
+      "Do the fix and retry the payment",
+      "Will I be charged a late fee?"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 90,
+      "rationale": "Balance and payment amounts are authoritative; the recurrence risk is a deterministic consequence of the unrouted early-credit flag.",
+      "signals_used": ["Payments Engine", "Core Banking"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_remind_tomorrow": {
+    "ai_message": "I can set a reminder for tomorrow morning. One caution: your grace window closes in 3 days, and the salary credit takes about one business day to post after routing is added. Waiting a day still leaves room, but doing the fix now removes the risk entirely and there is nothing further for you to do. Would you like me to just take care of it?",
+    "suggested_chips": [
+      "Do the fix and retry the payment",
+      "Will I be charged a late fee?"
+    ],
+    "data_sources_used": ["Loan Servicing", "Payments Engine"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 92,
+      "rationale": "Grace-window and posting timelines are deterministic; the reminder is a simple scheduled nudge.",
+      "signals_used": ["Loan Servicing", "Payments Engine"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_recurrence": {
+    "ai_message": "No — not once the routing is in place. The only reason this happened is that your early salary credit had no direct deposit instruction to match against. Adding the routing fixes it permanently: every future pay cycle posts automatically to a funded account, and your auto loan payment draws without issue. This was a one-time setup gap, not a recurring problem with your pay.",
+    "suggested_chips": [
+      "Do the fix and retry the payment",
+      "Why isn't my salary being applied?"
+    ],
+    "data_sources_used": ["SOP/MOP Repository", "Direct Deposit Configuration"],
+    "capability": "Predictive Intelligence",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 94,
+      "rationale": "Recurrence outcome follows deterministically from resolving the routing exception.",
+      "signals_used": ["SOP/MOP Repository", "Direct Deposit Configuration"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_next_payment": {
+    "ai_message": "Your next auto loan payment is $412.00, due July 1. With direct deposit routing now active, it will draw from a funded account automatically — no action needed from you. If you'd like, I can also send you a heads-up the day before each payment.",
+    "suggested_chips": [
+      "Do the fix and retry the payment",
+      "What's my balance?"
+    ],
+    "data_sources_used": ["Loan Servicing", "Core Banking"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 98,
+      "rationale": "Payment date and amount are authoritative reads from Loan Servicing.",
+      "signals_used": ["Loan Servicing", "Core Banking"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_confirm_posts": {
+    "ai_message": "Will do. I'll message you the moment the $3,140.00 salary credit posts and again when the $412.00 auto loan payment clears — expected within one business day. You don't need to check back; I'll come to you.",
+    "suggested_chips": [
+      "Anything else I should know?",
+      "Show my recent transactions"
+    ],
+    "data_sources_used": ["Payments Engine", "Core Banking"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 97,
+      "rationale": "Notification hooks are deterministic system triggers tied to the queued actions.",
+      "signals_used": ["Payments Engine", "Core Banking"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_creditcard": {
+    "ai_message": "Good idea. Your credit card autopay currently draws from the same checking account, so now that direct deposit is routed and the account stays funded, your card payments are already protected the same way. I've confirmed the card's autopay is active with the $1,203.55 statement balance and enough projected funds to cover it. Nothing else to set up.",
+    "suggested_chips": [
+      "Anything else I should know?",
+      "Thanks, that's all"
+    ],
+    "data_sources_used": ["Core Banking", "Payments Engine"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Card autopay linkage and statement balance are authoritative reads from Core Banking.",
+      "signals_used": ["Core Banking", "Payments Engine"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_thanks": {
+    "ai_message": "You're all set, Elena. The routing is fixed, your salary credit is posting, and the auto loan payment will clear before the grace window with no late fee. I'll message you as each step completes. Have a good one.",
+    "suggested_chips": [
+      "Show my full activity",
+      "Turn on alerts for declined payments"
+    ],
+    "data_sources_used": ["Core Banking", "Loan Servicing"],
+    "capability": "Converged Conversation",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 99,
+      "rationale": "Closing summary of completed, confirmed actions.",
+      "signals_used": ["Core Banking", "Loan Servicing"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_member_alerts": {
+    "ai_message": "Done — declined-payment alerts are now on. If any scheduled payment is ever at risk of declining, I'll notify you in the app before it happens, along with the reason and a one-tap fix, just like today. You can turn these off anytime in Settings.",
+    "suggested_chips": [
+      "Thanks, that's all",
+      "Show my full activity"
+    ],
+    "data_sources_used": ["Payments Engine", "Direct Deposit Configuration"],
+    "capability": "Automated Action",
+    "ui_components_to_render": [],
+    "confidence": {
+      "score": 97,
+      "rationale": "Alert preference is a deterministic settings write.",
+      "signals_used": ["Payments Engine"],
+      "threshold": 70,
+      "model_version": "member-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+}

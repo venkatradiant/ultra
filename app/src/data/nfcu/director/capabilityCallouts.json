@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI watches every team's queue, the migration program, and the Q2 budget overnight — surfacing director-level signals that no single manager dashboard can produce. Correlates Dynamics 365, Migration PMO, Finance, and HR data into one cross-team briefing.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask one question and receive a sourced cross-team answer drawn simultaneously from all four manager-led teams, the migration tracker, the budget system, and HR — the roll-up Dynamics 365 alone cannot produce.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Model trade-offs across teams in seconds — agent reallocation, overtime activation, and skills-based overflow. The AI projects service level recovery, cost impact, and budget exposure for each path.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Anomaly Detection",
+    "description": "The AI surfaces what is structurally different from prior weeks — like dual-team critical degradation or migration parity failures concentrated in 31% of call volume — before they show up in your weekly leadership report.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "Draft cross-system escalations, leadership reports, and remediation plans directly from the conversation. Send to your SI partner, generate the VP report, or compare month-over-month — without leaving the AI interface.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Friction Observability",
+    "description": "The AI maps where structural friction lives across the operation — the cascade pattern from auto loans to general banking, the SI partner accountability gap on IVR parity, the schedule-inflexibility driver behind evening shift attrition.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Surfaces the priority signals that matter at the top of the house before you ask — the liquidity watch, membership growth, and the morning data-trust exception — correlating across Symitar, MeridianLink, Greenplum, and the GL.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask any question across every connected source in plain language. Why is liquidity tightening pulls loans from Symitar, shares from the GL, and pipeline from MeridianLink, and reconciles them into one governed answer.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Projects the primary issue forward: liquidity through Q4, deposit and loan trajectories, and the board-relevant what-if of each recommended action so you decide with the numbers in hand.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Anomaly Detection",
+    "description": "Flags the data-trust exception itself: a source that loaded late, a figure that diverges from its history, a number to reconcile before it is cited. This is the trust layer catching what used to fail silently.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Friction Observability",
+    "description": "Shows where the business, and the reporting itself, is losing time or trust — manual assembly, figures without lineage, and the silent ETL failures that make month-end numbers look off — and closes the gap with a source-to-report trace.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "Executes executive actions: assemble the board briefing, generate the lineage-backed evidence for a figure, and open the full Presentation Mode briefing.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

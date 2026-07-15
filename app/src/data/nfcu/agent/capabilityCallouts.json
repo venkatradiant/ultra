@@ -1,0 +1,44 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The moment the call connects, Agent-Assist reads across the member's accounts and pre-diagnoses the issue — member, reason, root cause, and live sentiment — so you open with an answer instead of alt-tabbing across four systems while the member waits.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "One consolidated answer drawn from core banking, the payments log, the employer deposit file, and the deposit-handling SOP simultaneously — the talk-to-data moment where many systems resolve into a single root cause.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "Agent-Assist hands you a plain-language script and flags the jargon to avoid, reducing handle time and member frustration. It sees where explanations historically break down and steers you around them.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Anomaly Detection",
+    "description": "The account change requires BSA/AML identity verification, and Agent-Assist surfaces the prompt at the exact required step — rather than letting it be skipped — then logs completion for compliance.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Before you act, Agent-Assist forecasts both paths: the routing fix that resolves in one call versus a retry-only path that re-declines and drives a 48-hour callback — showing the FCR and late-fee impact of each.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "Agent-Assist executes the compliant resolution end to end — routing added, credit applied, payment retried — while keeping an AI-vs-human action log that records exactly what the AI did versus what you decided.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_6",
+    "capabilityName": "Friction Observability",
+    "description": "Agent-Assist drafts your after-call work — disposition, CRM note, FCR, and handle time — pre-filled and compliance-linked, so wrap-up is a review-and-save instead of a from-scratch write-up.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

@@ -1,0 +1,121 @@
+{
+  "model": {
+    "name": "Tax-Season Volume Forecaster",
+    "version": "forecast-tx-v2.4",
+    "domain": "Workforce Planning — Volume + Capacity Forecast",
+    "owner": "Derek Whitfield",
+    "last_validated": "2026-04-23T08:59:00Z"
+  },
+  "accuracy": {
+    "score_24h": 88.1,
+    "delta_7d_pp": -1.2,
+    "target": 90.0,
+    "note": "MAPE inverted; tax-season inflow is exceeding 2025 baseline.",
+    "spark_24h": [89.0, 88.7, 88.5, 88.6, 88.9, 88.8, 88.4, 88.2, 88.0, 87.9, 88.0, 88.1, 88.0, 88.2, 88.1, 88.3, 88.4, 88.2, 88.0, 87.9, 88.0, 88.1, 88.0, 88.1]
+  },
+  "confidence_distribution": {
+    "buckets": { "high": 48, "mid": 41, "low": 11 },
+    "total_turns_7d": 96
+  },
+  "drift": {
+    "score": 0.31,
+    "status": "warning",
+    "baseline": "FY25 tax-season call-volume distribution",
+    "delta_7d": 0.09,
+    "note": "Tax-season inflow exceeds 2025 baseline; mortgage queue mix shifting toward refinance inquiries."
+  },
+  "bias_checks": [
+    { "dimension": "Shift band (day / mid / evening)", "status": "pass", "delta_pp": 1.1 },
+    { "dimension": "Queue type (auto / mortgage / general)", "status": "pass", "delta_pp": 1.4 },
+    { "dimension": "Day-of-week (Mon–Sun)", "status": "warn", "delta_pp": 5.8, "note": "Tuesday/Thursday afternoon forecasts 5–6 pp below actual" }
+  ],
+  "escalation_rate": {
+    "rate_pct_24h": 6.3,
+    "target_pct": 5.0,
+    "events_24h": 4
+  },
+  "reviewer": {
+    "name": "Workforce Planning Lead",
+    "role": "Workforce Planning · Sr. Manager",
+    "sla": "Acknowledges within 30 min · Resolves within 4 hrs during business hours",
+    "queue": "Dynamics 365 Workforce Planning Queue",
+    "coverage": "Mon–Fri 7 AM–5 PM ET · Backup: Director of Operations"
+  },
+  "accuracy_timeline_14d": [
+    { "day": "Apr 10", "accuracy": 89.4, "avg_confidence": 84 },
+    { "day": "Apr 11", "accuracy": 89.1, "avg_confidence": 84 },
+    { "day": "Apr 12", "accuracy": 88.8, "avg_confidence": 83 },
+    { "day": "Apr 13", "accuracy": 88.6, "avg_confidence": 82 },
+    { "day": "Apr 14", "accuracy": 88.5, "avg_confidence": 81 },
+    { "day": "Apr 15", "accuracy": 88.7, "avg_confidence": 82 },
+    { "day": "Apr 16", "accuracy": 88.9, "avg_confidence": 83 },
+    { "day": "Apr 17", "accuracy": 89.0, "avg_confidence": 83 },
+    { "day": "Apr 18", "accuracy": 88.8, "avg_confidence": 82 },
+    { "day": "Apr 19", "accuracy": 88.5, "avg_confidence": 81 },
+    { "day": "Apr 20", "accuracy": 88.4, "avg_confidence": 81 },
+    { "day": "Apr 21", "accuracy": 88.2, "avg_confidence": 80 },
+    { "day": "Apr 22", "accuracy": 88.0, "avg_confidence": 80 },
+    { "day": "Apr 23", "accuracy": 88.1, "avg_confidence": 81 }
+  ],
+  "audit_trail": [
+    {
+      "auditId": "AUD-NFCU-2026-04-23-027",
+      "timestamp": "2026-04-23T10:04:11Z",
+      "persona": "nfcu_analyst",
+      "personaName": "Derek Whitfield",
+      "flowKey": "nfcu_ana_holiday_volume_lookahead",
+      "score": 62,
+      "threshold": 70,
+      "reason": "Memorial Day volume lookahead — sparse comparable history (n=3 across last 3 years).",
+      "route_to": "Workforce Planning Lead",
+      "review_queue": "Dynamics 365 Workforce Planning Queue",
+      "kind": "auto-escalation",
+      "model_version": "forecast-tx-v2.4"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-23-018",
+      "timestamp": "2026-04-23T09:01:14Z",
+      "persona": "nfcu_analyst",
+      "personaName": "Derek Whitfield",
+      "flowKey": "nfcu_ana_fourth_scenario",
+      "score": 64,
+      "threshold": 70,
+      "reason": "Scenario beyond modeled volume range; no NFCU contracted-agent history in FY26.",
+      "route_to": "Workforce Planning Lead",
+      "review_queue": "Dynamics 365 Workforce Planning Queue",
+      "kind": "auto-escalation",
+      "outcome": "Workforce Planning Lead supplied FY24 vendor engagement as anchor — re-modeled at 86% confidence.",
+      "model_version": "forecast-tx-v2.4"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-21-011",
+      "timestamp": "2026-04-21T16:24:00Z",
+      "persona": "nfcu_analyst",
+      "personaName": "Derek Whitfield",
+      "flowKey": "nfcu_ana_ot_trajectory",
+      "score": 77,
+      "threshold": 70,
+      "reason": "Mid-band confidence — burn-rate sensitive to PTO coverage volatility.",
+      "route_to": null,
+      "review_queue": null,
+      "kind": "watch-list",
+      "outcome": "No escalation — within tolerance.",
+      "model_version": "forecast-tx-v2.4"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-19-007",
+      "timestamp": "2026-04-19T10:00:00Z",
+      "persona": "nfcu_analyst",
+      "personaName": "Derek Whitfield",
+      "flowKey": "weekly-validation",
+      "score": 100,
+      "threshold": 70,
+      "reason": "Scheduled weekly forecast back-test — 96 turns scored.",
+      "route_to": "Quality Assurance",
+      "review_queue": "QA Queue",
+      "kind": "scheduled-validation",
+      "outcome": "Pass with drift warning logged for day-of-week bias.",
+      "model_version": "forecast-tx-v2.4"
+    }
+  ]
+}

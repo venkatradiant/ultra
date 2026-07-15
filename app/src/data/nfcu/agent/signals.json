@@ -1,0 +1,76 @@
+[
+  {
+    "id": "SIG-NFCU-AGT-001",
+    "type": "active_call",
+    "title": "Active Call: Payment Dispute — Elena Ruiz",
+    "description": "Member Elena Ruiz on the line. Reason: auto loan payment of $412.00 declined June 27. Agent-Assist has already pre-diagnosed the cause and staged a resolution. Open the recommended flow.",
+    "impact": "high",
+    "severity": "critical",
+    "metric_text": "Elena Ruiz · $412 dispute · pre-diagnosed",
+    "sources": ["Dynamics 365 Contact Center", "Payments Engine", "Core Banking"],
+    "timestamp": "2026-07-01T08:00:00Z",
+    "metrics": {
+      "member": "Elena Ruiz",
+      "reason": "Auto loan payment $412.00 declined June 27",
+      "status": "root cause identified, resolution staged"
+    },
+    "confidence": {
+      "score": 96,
+      "rationale": "Call context is authoritative from Dynamics 365; the root cause is pre-correlated across the Payments Engine and Core Banking before the agent picks up.",
+      "signals_used": ["Dynamics 365 Contact Center", "Payments Engine", "Core Banking"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-AGT-002",
+    "type": "live_sentiment",
+    "title": "Member Sentiment: Negative, Rising",
+    "description": "Live sentiment analysis flags frustration increasing over the last 90 seconds. Suggested tone: acknowledge, explain plainly, resolve in one call. Avoid transfers.",
+    "impact": "medium",
+    "severity": "warning",
+    "metric_text": "Frustration rising · last 90 seconds",
+    "sources": ["Dynamics 365 Sentiment Analysis"],
+    "timestamp": "2026-07-01T08:01:30Z",
+    "metrics": {
+      "trend": "negative, rising",
+      "window": "last 90 seconds",
+      "suggested_tone": "acknowledge, explain plainly, resolve in one call"
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Sentiment trend is direct telemetry from Dynamics 365 Sentiment Analysis on the live call audio.",
+      "signals_used": ["Dynamics 365 Sentiment Analysis"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:01:30Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-AGT-003",
+    "type": "compliance_pending",
+    "title": "Verification Step Pending (BSA/AML)",
+    "description": "Identity verification for account changes has not yet been completed on this call. Agent-Assist will prompt at the required step and log completion for compliance.",
+    "impact": "low",
+    "severity": "info",
+    "metric_text": "BSA/AML step pending on this call",
+    "sources": ["CRM Member Records", "Compliance Engine", "Dynamics 365 Process Adherence"],
+    "timestamp": "2026-07-01T08:00:30Z",
+    "metrics": {
+      "requirement": "BSA/AML identity verification before account changes",
+      "status": "pending — will prompt at required step"
+    },
+    "confidence": {
+      "score": 94,
+      "rationale": "Verification requirement and current status are deterministic checks against the compliance rule set and process-adherence state for this interaction.",
+      "signals_used": ["Compliance Engine", "Dynamics 365 Process Adherence"],
+      "threshold": 70,
+      "model_version": "agent-assist-v1.0",
+      "validated_at": "2026-07-01T08:00:30Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

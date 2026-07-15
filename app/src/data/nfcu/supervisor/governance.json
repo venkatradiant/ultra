@@ -1,0 +1,120 @@
+{
+  "model": {
+    "name": "Workforce Recommendation Model",
+    "version": "wfm-rec-v3.2",
+    "domain": "Contact Center — Queue & Staffing Recommender",
+    "owner": "Priya Kapoor",
+    "last_validated": "2026-04-23T08:59:51Z"
+  },
+  "accuracy": {
+    "score_24h": 92.4,
+    "delta_7d_pp": -0.6,
+    "target": 90.0,
+    "spark_24h": [91.8, 92.1, 92.0, 92.3, 92.6, 92.9, 92.7, 92.5, 92.2, 91.9, 92.0, 92.1, 92.4, 92.6, 92.8, 92.7, 92.5, 92.4, 92.3, 92.2, 92.4, 92.5, 92.6, 92.4]
+  },
+  "confidence_distribution": {
+    "buckets": { "high": 71, "mid": 23, "low": 6 },
+    "total_turns_7d": 184
+  },
+  "drift": {
+    "score": 0.18,
+    "status": "stable",
+    "baseline": "Q4 2025 contact-center volume mix",
+    "delta_7d": 0.02,
+    "note": "Drift well within tolerance; rate-promo events are recognized via Marketing Cloud feed."
+  },
+  "bias_checks": [
+    { "dimension": "Agent tenure (0–18mo vs. 18mo+)", "status": "pass", "delta_pp": 0.4 },
+    { "dimension": "Channel (voice / chat / callback)", "status": "pass", "delta_pp": 0.7 },
+    { "dimension": "Geography (East / Central / West)", "status": "warn", "delta_pp": 4.2, "note": "West Coast members slightly under-served on after-hours routing" }
+  ],
+  "escalation_rate": {
+    "rate_pct_24h": 4.1,
+    "target_pct": 5.0,
+    "events_24h": 2
+  },
+  "reviewer": {
+    "name": "Marcus Tillman",
+    "role": "Director, Contact Center Operations",
+    "sla": "Acknowledges within 15 min · Resolves within 60 min during business hours",
+    "queue": "Dynamics 365 Supervisor Queue",
+    "coverage": "Mon–Fri 6 AM–6 PM ET · Backup: Quality Lead"
+  },
+  "accuracy_timeline_14d": [
+    { "day": "Apr 10", "accuracy": 91.7, "avg_confidence": 86 },
+    { "day": "Apr 11", "accuracy": 92.0, "avg_confidence": 87 },
+    { "day": "Apr 12", "accuracy": 91.8, "avg_confidence": 85 },
+    { "day": "Apr 13", "accuracy": 92.4, "avg_confidence": 88 },
+    { "day": "Apr 14", "accuracy": 92.6, "avg_confidence": 88 },
+    { "day": "Apr 15", "accuracy": 93.0, "avg_confidence": 89 },
+    { "day": "Apr 16", "accuracy": 92.8, "avg_confidence": 87 },
+    { "day": "Apr 17", "accuracy": 92.5, "avg_confidence": 86 },
+    { "day": "Apr 18", "accuracy": 92.1, "avg_confidence": 85 },
+    { "day": "Apr 19", "accuracy": 92.3, "avg_confidence": 86 },
+    { "day": "Apr 20", "accuracy": 92.7, "avg_confidence": 87 },
+    { "day": "Apr 21", "accuracy": 93.0, "avg_confidence": 88 },
+    { "day": "Apr 22", "accuracy": 92.6, "avg_confidence": 86 },
+    { "day": "Apr 23", "accuracy": 92.4, "avg_confidence": 87 }
+  ],
+  "audit_trail": [
+    {
+      "auditId": "AUD-NFCU-2026-04-23-031",
+      "timestamp": "2026-04-23T10:18:42Z",
+      "persona": "nfcu_supervisor",
+      "personaName": "Priya Kapoor",
+      "flowKey": "nfcu_sup_late_shift_overflow",
+      "score": 64,
+      "threshold": 70,
+      "reason": "Late-shift overflow re-routing — projected vs. live abandonment delta exceeds tolerance.",
+      "route_to": "Marcus Tillman (Director, Contact Center Operations)",
+      "review_queue": "Dynamics 365 Supervisor Queue",
+      "kind": "auto-escalation",
+      "model_version": "wfm-rec-v3.2"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-23-014",
+      "timestamp": "2026-04-23T09:42:11Z",
+      "persona": "nfcu_supervisor",
+      "personaName": "Priya Kapoor",
+      "flowKey": "nfcu_sup_recovery_t3_drop",
+      "score": 58,
+      "threshold": 70,
+      "reason": "Sibling recommendation re-evaluated after evening volume taper; historical density too low.",
+      "route_to": "Marcus Tillman (Director, Contact Center Operations)",
+      "review_queue": "Dynamics 365 Supervisor Queue",
+      "kind": "auto-escalation",
+      "outcome": "Override + reweighting completed at 09:51 — corrected recommendation 88% confidence.",
+      "model_version": "wfm-rec-v3.2"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-22-009",
+      "timestamp": "2026-04-22T15:18:00Z",
+      "persona": "nfcu_supervisor",
+      "personaName": "Priya Kapoor",
+      "flowKey": "nfcu_sup_no_accept_plan",
+      "score": 58,
+      "threshold": 70,
+      "reason": "No recent comparable in last 18 months for secondary-coverage scenario.",
+      "route_to": "Marcus Tillman (Director, Contact Center Operations)",
+      "review_queue": "Dynamics 365 Supervisor Queue",
+      "kind": "auto-escalation",
+      "outcome": "Marcus authorized flexible-slot offers; coverage confirmed by EOD.",
+      "model_version": "wfm-rec-v3.2"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-19-006",
+      "timestamp": "2026-04-19T11:04:00Z",
+      "persona": "nfcu_supervisor",
+      "personaName": "Priya Kapoor",
+      "flowKey": "weekly-validation",
+      "score": 100,
+      "threshold": 70,
+      "reason": "Scheduled weekly validation pass — 184 turns scored, 6 in low band (3.3%).",
+      "route_to": "Quality Assurance",
+      "review_queue": "QA Queue",
+      "kind": "scheduled-validation",
+      "outcome": "Pass — distribution within drift tolerance.",
+      "model_version": "wfm-rec-v3.2"
+    }
+  ]
+}

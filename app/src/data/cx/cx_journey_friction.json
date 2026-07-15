@@ -1,0 +1,70 @@
+{
+  "journeys": [
+    {
+      "name": "Mortgage Application",
+      "total_starts": 1240,
+      "completions": 423,
+      "drop_off_rate": 65.9,
+      "avg_csat": 2.8,
+      "friction_step": "Document Upload",
+      "primary_channel": "Mobile",
+      "channel_switches": 134,
+      "trend": "worsening"
+    },
+    {
+      "name": "Auto Loan Application",
+      "total_starts": 890,
+      "completions": 512,
+      "drop_off_rate": 42.5,
+      "avg_csat": 3.4,
+      "friction_step": "Rate Comparison",
+      "primary_channel": "Desktop",
+      "channel_switches": 67,
+      "trend": "worsening"
+    },
+    {
+      "name": "CD Account Opening",
+      "total_starts": 620,
+      "completions": 441,
+      "drop_off_rate": 28.9,
+      "avg_csat": 3.1,
+      "friction_step": "Rate Selection",
+      "primary_channel": "Mobile",
+      "channel_switches": 43,
+      "trend": "stable"
+    },
+    {
+      "name": "Checking Account Onboarding",
+      "total_starts": 540,
+      "completions": 412,
+      "drop_off_rate": 23.7,
+      "avg_csat": 3.9,
+      "friction_step": "Identity Verification",
+      "primary_channel": "Mobile",
+      "channel_switches": 22,
+      "trend": "improving"
+    },
+    {
+      "name": "Credit Card Application",
+      "total_starts": 780,
+      "completions": 589,
+      "drop_off_rate": 24.5,
+      "avg_csat": 3.7,
+      "friction_step": "Income Documentation",
+      "primary_channel": "Desktop",
+      "channel_switches": 34,
+      "trend": "stable"
+    },
+    {
+      "name": "HELOC Application",
+      "total_starts": 340,
+      "completions": 178,
+      "drop_off_rate": 47.6,
+      "avg_csat": 3.0,
+      "friction_step": "Property Valuation",
+      "primary_channel": "Desktop",
+      "channel_switches": 12,
+      "trend": "worsening"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "ds-dir-01",
+    "name": "Dynamics 365 Contact Center (Executive Roll-up)",
+    "status": "connected",
+    "description": "Cross-manager aggregation layer over Dynamics 365 Contact Center. Roll-up service level, agent occupancy, and queue health across all four manager-led teams — the cross-team correlation Dynamics 365 cannot natively produce.",
+    "icon": "database",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 14600000
+  },
+  {
+    "id": "ds-dir-02",
+    "name": "Dynamics 365 Workforce Management",
+    "status": "connected",
+    "description": "Director-level forecasting, capacity modeling, agent skill profiles, and cross-team scheduling. Powers what-if scenarios for cross-queue agent reallocation and overtime trajectory forecasting.",
+    "icon": "users",
+    "lastSync": "2026-04-23T08:45:00",
+    "recordCount": 8400
+  },
+  {
+    "id": "ds-dir-03",
+    "name": "Migration PMO Tracker",
+    "status": "connected",
+    "description": "Genesys-to-Dynamics 365 migration program management. Phase milestones, parity testing status, IVR routing flow validation, and SI partner deliverables. Cross-referenced with Dynamics 365 + Genesys runtime data to surface migration risk in operational terms.",
+    "icon": "monitor",
+    "lastSync": "2026-04-23T08:30:00",
+    "recordCount": 1240
+  },
+  {
+    "id": "ds-dir-04",
+    "name": "Genesys Cloud (Legacy — Migration Bridge)",
+    "status": "connected",
+    "description": "On-premise legacy CCaaS in active migration. Continues to handle Mortgage Servicing and Escalations queues. Configuration export feeds parity testing for Phase 2 IVR cutover. License expiration tracked against Phase 3 timeline.",
+    "icon": "headphones",
+    "lastSync": "2026-04-23T08:50:00",
+    "recordCount": 5600000
+  },
+  {
+    "id": "ds-dir-05",
+    "name": "Budget & Financial Planning System",
+    "status": "connected",
+    "description": "Q2 operating budget, cost-per-contact roll-up, overtime spend trajectory, vendor & SI partner billing. Cross-referenced with HR overtime data and Dynamics 365 volume metrics to project budget burn against operational outcomes.",
+    "icon": "database",
+    "lastSync": "2026-04-23T06:00:00",
+    "recordCount": 92000
+  },
+  {
+    "id": "ds-dir-06",
+    "name": "HR System / Vendor Management",
+    "status": "connected",
+    "description": "Agent attrition, exit interview themes, leave-of-absence tracking, and vendor/SI partner contracts. Feeds attrition trend lines for executive reporting and SI partner accountability for migration delivery.",
+    "icon": "users",
+    "lastSync": "2026-04-23T06:15:00",
+    "recordCount": 11800
+  },
+  {
+    "id": "ds-dir-07",
+    "name": "Marketing Cloud",
+    "status": "connected",
+    "description": "Campaign launches and promotional volume drivers. Cross-correlated with queue spikes to attribute service level impacts to upstream marketing activity — root-cause visibility unavailable inside Dynamics 365 alone.",
+    "icon": "monitor",
+    "lastSync": "2026-04-23T07:15:00",
+    "recordCount": 2100000
+  },
+  {
+    "id": "ds-dir-08",
+    "name": "CRM (Member 360)",
+    "status": "connected",
+    "description": "Member-level interaction history, satisfaction surveys, sentiment, and complaint records. Powers CSAT roll-up and member experience reporting for monthly leadership reviews.",
+    "icon": "brain",
+    "lastSync": "2026-04-23T08:00:00",
+    "recordCount": 3450000
+  },
+  {
+    "id": "ds-dir-09",
+    "name": "Microsoft Fabric",
+    "status": "connected",
+    "description": "Tenant-specific unified data analytics platform fed by CCAS. Hosts the historical data lake, Power BI foundation, and AI/ML model registry. Radiant intelligence layer queries Fabric for enriched cross-source correlation across all four teams.",
+    "icon": "database",
+    "lastSync": "2026-05-12T14:25:00",
+    "recordCount": 12400000
+  },
+  {
+    "id": "ds-dir-10",
+    "name": "Variant WFM / Call Recording",
+    "status": "connected",
+    "description": "Workforce management schedules, force-to-load ratios, agent shift state, call recording metadata, and call reason codes (first/second reason). Critical for cross-team staffing-to-queue correlation during enterprise incidents.",
+    "icon": "cog",
+    "lastSync": "2026-05-12T14:30:00",
+    "recordCount": 1100000
+  },
+  {
+    "id": "ds-dir-11",
+    "name": "Voice Bio System",
+    "status": "connected",
+    "description": "Voice authentication enrollment, biometric match confidence, fraud detection flags. Feeds enterprise authentication posture metrics and fallback verification triggers when PinDrop degrades.",
+    "icon": "brain",
+    "lastSync": "2026-05-12T14:28:00",
+    "recordCount": 890000
+  },
+  {
+    "id": "ds-dir-12",
+    "name": "PinDrop",
+    "status": "connected",
+    "description": "Call authentication scoring, spoofing detection, ANI reputation, carrier intelligence, geo-risk signals. Critical for identifying security posture changes during SIP path degradation.",
+    "icon": "shield",
+    "lastSync": "2026-05-12T14:30:00",
+    "recordCount": 2300000
+  },
+  {
+    "id": "ds-dir-13",
+    "name": "Carrier Intelligence",
+    "status": "connected",
+    "description": "SIP path health, carrier status feeds, fiber/circuit incident reports, and estimated recovery timelines. Enables root-cause identification for infrastructure-driven service degradation at the executive roll-up level.",
+    "icon": "monitor",
+    "lastSync": "2026-05-12T14:27:00",
+    "recordCount": 45000
+  },
+  {
+    "id": "ds-dir-14",
+    "name": "Dynamics 365 IVR / Self-Service",
+    "status": "connected",
+    "description": "Real-time intent capture, self-service completion rates by intent, containment metrics, transfer-out reason codes. Feeds top-intent indicators across all dashboard tiers and powers the IVR template hot-swap path.",
+    "icon": "message-circle",
+    "lastSync": "2026-05-12T14:31:00",
+    "recordCount": 456000
+  }
+]

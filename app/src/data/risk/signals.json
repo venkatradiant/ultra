@@ -1,0 +1,57 @@
+[
+  {
+    "id": "SIG-RISK-001",
+    "type": "compliance_alert",
+    "title": "BSA Structuring Alert — 4 Accounts Flagged, SAR Auto-Filed",
+    "description": "4 accounts flagged for potential structuring activity. Deposits just below $10K threshold repeated across 3+ branches. 2 SARs auto-filed via UiPath compliance workflow.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 4,
+    "sources": ["Transaction Monitor", "UiPath"],
+    "timestamp": "2026-04-07T05:30:00Z",
+    "trend": "emerging",
+    "related_segment": "SEG-RISK-001",
+    "metrics": {
+      "accounts_flagged": 4,
+      "sars_filed": 2,
+      "total_suspicious_amount": "$187,400"
+    }
+  },
+  {
+    "id": "SIG-RISK-002",
+    "type": "anomaly_detection",
+    "title": "Cross-Border Wire Anomaly — 2 Dormant Accounts Reactivated",
+    "description": "2 accounts dormant for 18+ months reactivated with outbound wire transfers to high-risk jurisdictions. Combined amount: $94,200. Pattern matches known layering typology.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 2,
+    "sources": ["Transaction Monitor", "Fraud & Risk Feed"],
+    "timestamp": "2026-04-07T04:15:00Z",
+    "trend": "emerging",
+    "related_segment": "SEG-RISK-002",
+    "metrics": {
+      "accounts_reactivated": 2,
+      "dormancy_period": "18+ months",
+      "wire_amount": "$94,200"
+    }
+  },
+  {
+    "id": "SIG-RISK-003",
+    "type": "regulatory_readiness",
+    "title": "NCUA Readiness Decline — Score Dropped from 84 to 78",
+    "description": "Overall NCUA readiness score declined 6 points QoQ. Consumer Complaint Resolution and Operational Risk categories are now in amber status. Next exam window: Q3 2026.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 0,
+    "sources": ["Compliance DB", "Genesys Cloud"],
+    "timestamp": "2026-04-07T06:00:00Z",
+    "trend": "worsening",
+    "related_segment": null,
+    "metrics": {
+      "ncua_score": 78,
+      "previous_score": 84,
+      "decline": "6 points",
+      "next_exam": "Q3 2026"
+    }
+  }
+]

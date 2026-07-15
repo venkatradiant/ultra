@@ -1,0 +1,82 @@
+[
+  {
+    "id": "SIG-USSFCU-CFO-001",
+    "type": "reconciliation_break",
+    "title": "Audit Stalled: Loan-Loss Figure Does Not Reconcile",
+    "description": "The allowance for loan losses on the board report does not match Lending's origination system or the Thought Machine ledger. Three sources, three different numbers. The audit team has spent 22 staff hours this week tracing the difference by hand. No lineage exists from the GL figure back to the originating transactions.",
+    "impact": "critical",
+    "severity": "critical",
+    "metric_text": "3 sources, 3 numbers · $460K spread",
+    "sources": ["General Ledger", "Thought Machine Ledger", "Lending Origination", "Audit / GRC System"],
+    "timestamp": "2026-06-24T06:00:00",
+    "trend": "worsening",
+    "metrics": {
+      "gl_figure_usd": 14620000,
+      "ledger_figure_usd": 14410000,
+      "lending_figure_usd": 14880000,
+      "governed_figure_usd": 14490000,
+      "spread_usd": 460000,
+      "staff_hours_this_week": 22
+    },
+    "confidence": {
+      "score": 96,
+      "rationale": "GL extract timestamp, two post-extract charge-offs in the Thought Machine ledger, and three loan-sale records in Lending Origination fully account for the $460K spread.",
+      "signals_used": ["General Ledger", "Thought Machine Ledger", "Lending Origination"],
+      "threshold": 80,
+      "model_version": "gov-lineage-v1.0",
+      "validated_at": "2026-06-24T05:59:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-CFO-002",
+    "type": "data_parity_gap",
+    "title": "CFO and Lending Reporting Diverge",
+    "description": "The portfolio balance the CFO presents to the board is 1.4% higher than the figure Lending reports from origination. Root cause: the two teams pull from different systems on different refresh schedules, and no governed number reconciles them. Leadership is making decisions from two versions of the truth.",
+    "impact": "critical",
+    "severity": "critical",
+    "metric_text": "1.4% gap · $1.42B vs $1.40B",
+    "sources": ["General Ledger", "Lending Origination", "Thought Machine Ledger", "Snowflake"],
+    "timestamp": "2026-06-24T06:02:00",
+    "trend": "worsening",
+    "metrics": {
+      "cfo_board_balance_usd": 1420000000,
+      "lending_balance_usd": 1400000000,
+      "variance_pct": 1.4,
+      "recurrence_months": "7 of last 9"
+    },
+    "confidence": {
+      "score": 91,
+      "rationale": "Variance isolates to funded-but-unbooked loans counted by Lending and a refresh-schedule mismatch between the GL and origination — not a calculation error in either system.",
+      "signals_used": ["General Ledger", "Lending Origination", "Snowflake"],
+      "threshold": 80,
+      "model_version": "gov-parity-v1.0",
+      "validated_at": "2026-06-24T06:01:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-CFO-003",
+    "type": "lineage_gap",
+    "title": "No Lineage to Tableau: Audit Evidence Gap",
+    "description": "47 figures on the board and regulatory dashboards in Tableau have no documented lineage back to the core or ledger. Auditors have flagged this as a BCBS 239-style traceability gap. Each unexplained figure adds reconstruction time and weakens the institution's audit posture.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "47 figures · no lineage to source",
+    "sources": ["Tableau", "Snowflake", "General Ledger", "Radiant Lineage Map"],
+    "timestamp": "2026-06-24T06:04:00",
+    "trend": "worsening",
+    "metrics": {
+      "figures_lacking_lineage": 47,
+      "avg_reconstruction_hours_each": 3.5,
+      "undocumented_transformation_points": 4,
+      "traceability_coverage_pct": 53
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Lineage scan across Jack Henry core, the Thought Machine ledger, the GL, Snowflake, and Tableau identified 4 undocumented transformation points and 47 board/regulatory figures with no source trace.",
+      "signals_used": ["Snowflake", "Tableau", "Radiant Lineage Map"],
+      "threshold": 80,
+      "model_version": "gov-lineage-v1.0",
+      "validated_at": "2026-06-24T06:03:00"
+    }
+  }
+]

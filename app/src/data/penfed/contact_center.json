@@ -1,0 +1,3309 @@
+[
+  {
+    "interaction_id": "GCX-50000",
+    "member_id": "MBR-10016",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "stuck",
+      "upload",
+      "frustrated"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I keep getting a 'session expired' error right when I'm uploading my pay stubs.",
+    "timestamp": "2026-03-23T14:12:00",
+    "channel": "chat",
+    "duration_seconds": 122,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50001",
+    "member_id": "MBR-10075",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "shopping",
+      "refinance"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-26T18:31:00",
+    "channel": "chat",
+    "duration_seconds": 685,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50002",
+    "member_id": "MBR-10041",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "Navy Federal",
+      "better deal",
+      "rate"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-23T11:36:00",
+    "channel": "IVR",
+    "duration_seconds": 510,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50003",
+    "member_id": "MBR-10083",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "question"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "Can you help me set up automatic payments for my auto loan?",
+    "timestamp": "2026-03-23T15:02:00",
+    "channel": "chat",
+    "duration_seconds": 222,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50004",
+    "member_id": "MBR-10020",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "failed",
+      "verification"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I submitted my documents yesterday but the status still shows as pending. Can someone check?",
+    "timestamp": "2026-03-25T18:09:00",
+    "channel": "phone",
+    "duration_seconds": 456,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50005",
+    "member_id": "MBR-10080",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "account",
+      "balance",
+      "payment"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-25T16:02:00",
+    "channel": "chat",
+    "duration_seconds": 220,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50006",
+    "member_id": "MBR-10088",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "rate",
+      "USAA",
+      "competitor"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-24T08:02:00",
+    "channel": "phone",
+    "duration_seconds": 370,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50007",
+    "member_id": "MBR-10023",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "better deal",
+      "Navy Federal",
+      "shopping",
+      "USAA"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I was ready to finance my car through PenFed but USAA is at 4.9%. You're at 6.3%.",
+    "timestamp": "2026-03-23T10:05:00",
+    "channel": "chat",
+    "duration_seconds": 773,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50008",
+    "member_id": "MBR-10085",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "refinance",
+      "too high",
+      "APR"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-22T15:57:00",
+    "channel": "IVR",
+    "duration_seconds": 426,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50009",
+    "member_id": "MBR-10058",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "APR",
+      "Navy Federal",
+      "better deal"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I love PenFed but I have to go where the rates make sense. Can anything be done?",
+    "timestamp": "2026-03-24T11:24:00",
+    "channel": "IVR",
+    "duration_seconds": 422,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50010",
+    "member_id": "MBR-10007",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "failed",
+      "verification",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-25T12:00:00",
+    "channel": "IVR",
+    "duration_seconds": 314,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50011",
+    "member_id": "MBR-10092",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "rate",
+      "USAA",
+      "shopping",
+      "lower"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I love PenFed but I have to go where the rates make sense. Can anything be done?",
+    "timestamp": "2026-03-23T18:06:00",
+    "channel": "IVR",
+    "duration_seconds": 254,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50012",
+    "member_id": "MBR-10041",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "question"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you help me set up automatic payments for my auto loan?",
+    "timestamp": "2026-03-25T10:12:00",
+    "channel": "phone",
+    "duration_seconds": 383,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50013",
+    "member_id": "MBR-10037",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-24T09:29:00",
+    "channel": "IVR",
+    "duration_seconds": 494,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50014",
+    "member_id": "MBR-10001",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "payment",
+      "transfer"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'm having trouble logging into the mobile app.",
+    "timestamp": "2026-03-24T16:07:00",
+    "channel": "phone",
+    "duration_seconds": 811,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50015",
+    "member_id": "MBR-10079",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "Navy Federal",
+      "APR",
+      "shopping",
+      "competitor"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been a member for eight years and your rate for my new car is higher than Capital One.",
+    "timestamp": "2026-03-26T13:58:00",
+    "channel": "phone",
+    "duration_seconds": 263,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50016",
+    "member_id": "MBR-10038",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "question"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'd like to transfer funds from my savings to my checking account.",
+    "timestamp": "2026-03-25T09:06:00",
+    "channel": "chat",
+    "duration_seconds": 499,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50017",
+    "member_id": "MBR-10093",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "shopping",
+      "better deal"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been a member for eight years and your rate for my new car is higher than Capital One.",
+    "timestamp": "2026-03-23T14:41:00",
+    "channel": "IVR",
+    "duration_seconds": 499,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50018",
+    "member_id": "MBR-10030",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "refinance",
+      "competitor",
+      "rate"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-24T09:43:00",
+    "channel": "phone",
+    "duration_seconds": 245,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50019",
+    "member_id": "MBR-10018",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "stuck",
+      "frustrated"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-26T08:03:00",
+    "channel": "phone",
+    "duration_seconds": 358,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50020",
+    "member_id": "MBR-10076",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I have a question about a charge on my credit card statement.",
+    "timestamp": "2026-03-22T12:54:00",
+    "channel": "phone",
+    "duration_seconds": 796,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50021",
+    "member_id": "MBR-10023",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "verification"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-23T17:20:00",
+    "channel": "chat",
+    "duration_seconds": 658,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50022",
+    "member_id": "MBR-10060",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "account",
+      "help",
+      "balance"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I need help resetting my online banking password.",
+    "timestamp": "2026-03-25T13:32:00",
+    "channel": "chat",
+    "duration_seconds": 778,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50023",
+    "member_id": "MBR-10010",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "failed",
+      "frustrated"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-25T14:43:00",
+    "channel": "IVR",
+    "duration_seconds": 271,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50024",
+    "member_id": "MBR-10003",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "try again",
+      "verification"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-26T16:45:00",
+    "channel": "IVR",
+    "duration_seconds": 237,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50025",
+    "member_id": "MBR-10029",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "better deal",
+      "lower",
+      "APR"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-25T13:52:00",
+    "channel": "chat",
+    "duration_seconds": 801,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50026",
+    "member_id": "MBR-10019",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "better deal"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-25T09:05:00",
+    "channel": "phone",
+    "duration_seconds": 689,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50027",
+    "member_id": "MBR-10071",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "better deal",
+      "competitor"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-26T13:42:00",
+    "channel": "chat",
+    "duration_seconds": 734,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50028",
+    "member_id": "MBR-10073",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "shopping",
+      "Navy Federal",
+      "APR",
+      "too high"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My friend just got 5.2% at a local credit union. Your quote was 6.4%. That's a big difference.",
+    "timestamp": "2026-03-26T11:09:00",
+    "channel": "phone",
+    "duration_seconds": 900,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50029",
+    "member_id": "MBR-10054",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "refinance",
+      "rate",
+      "USAA",
+      "lower"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I was ready to finance my car through PenFed but USAA is at 4.9%. You're at 6.3%.",
+    "timestamp": "2026-03-26T17:39:00",
+    "channel": "IVR",
+    "duration_seconds": 900,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50030",
+    "member_id": "MBR-10044",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "question"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'm having trouble logging into the mobile app.",
+    "timestamp": "2026-03-22T10:55:00",
+    "channel": "phone",
+    "duration_seconds": 878,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50031",
+    "member_id": "MBR-10024",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "stuck",
+      "frustrated"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-23T14:26:00",
+    "channel": "IVR",
+    "duration_seconds": 730,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50032",
+    "member_id": "MBR-10019",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "account",
+      "payment",
+      "help"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'm having trouble logging into the mobile app.",
+    "timestamp": "2026-03-23T17:03:00",
+    "channel": "IVR",
+    "duration_seconds": 572,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50033",
+    "member_id": "MBR-10001",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "upload",
+      "verification",
+      "failed"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I was told to upload my tax returns but the system only accepts PDFs under 5MB. My return is 12 pages.",
+    "timestamp": "2026-03-26T09:22:00",
+    "channel": "phone",
+    "duration_seconds": 524,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50034",
+    "member_id": "MBR-10023",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "verification",
+      "income",
+      "upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-23T10:48:00",
+    "channel": "chat",
+    "duration_seconds": 299,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50035",
+    "member_id": "MBR-10090",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "competitor",
+      "APR",
+      "better deal",
+      "shopping"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I got pre-approved but Navy Federal is offering a full point lower. Can you match that?",
+    "timestamp": "2026-03-23T16:35:00",
+    "channel": "phone",
+    "duration_seconds": 590,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50036",
+    "member_id": "MBR-10073",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "transfer",
+      "help",
+      "payment"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "Can you check on the status of my credit card dispute from last week?",
+    "timestamp": "2026-03-25T17:25:00",
+    "channel": "phone",
+    "duration_seconds": 452,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50037",
+    "member_id": "MBR-10079",
+    "topic": "Transfer Question",
+    "keywords": [
+      "account",
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'm having trouble logging into the mobile app.",
+    "timestamp": "2026-03-25T13:05:00",
+    "channel": "IVR",
+    "duration_seconds": 200,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50038",
+    "member_id": "MBR-10095",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "account"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you check on the status of my credit card dispute from last week?",
+    "timestamp": "2026-03-24T11:21:00",
+    "channel": "chat",
+    "duration_seconds": 479,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50039",
+    "member_id": "MBR-10024",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "upload",
+      "frustrated",
+      "can't upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-24T11:11:00",
+    "channel": "IVR",
+    "duration_seconds": 898,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50040",
+    "member_id": "MBR-10072",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "competitor",
+      "too high",
+      "shopping",
+      "rate"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-26T13:55:00",
+    "channel": "IVR",
+    "duration_seconds": 430,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50041",
+    "member_id": "MBR-10045",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "shopping",
+      "rate",
+      "refinance"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-26T09:19:00",
+    "channel": "phone",
+    "duration_seconds": 780,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50042",
+    "member_id": "MBR-10064",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "rate",
+      "shopping",
+      "Navy Federal",
+      "too high"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I love PenFed but I have to go where the rates make sense. Can anything be done?",
+    "timestamp": "2026-03-25T15:37:00",
+    "channel": "IVR",
+    "duration_seconds": 274,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50043",
+    "member_id": "MBR-10043",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "rate",
+      "Navy Federal"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-22T16:41:00",
+    "channel": "IVR",
+    "duration_seconds": 655,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50044",
+    "member_id": "MBR-10036",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "lower",
+      "rate",
+      "competitor"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-25T14:49:00",
+    "channel": "phone",
+    "duration_seconds": 691,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50045",
+    "member_id": "MBR-10020",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "frustrated",
+      "stuck"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I submitted my documents yesterday but the status still shows as pending. Can someone check?",
+    "timestamp": "2026-03-26T10:21:00",
+    "channel": "IVR",
+    "duration_seconds": 798,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50046",
+    "member_id": "MBR-10000",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "stuck",
+      "upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I keep getting a 'session expired' error right when I'm uploading my pay stubs.",
+    "timestamp": "2026-03-22T12:35:00",
+    "channel": "chat",
+    "duration_seconds": 436,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50047",
+    "member_id": "MBR-10043",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you check on the status of my credit card dispute from last week?",
+    "timestamp": "2026-03-25T11:14:00",
+    "channel": "phone",
+    "duration_seconds": 639,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50048",
+    "member_id": "MBR-10098",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "too high",
+      "lower",
+      "refinance"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I love PenFed but I have to go where the rates make sense. Can anything be done?",
+    "timestamp": "2026-03-26T10:38:00",
+    "channel": "IVR",
+    "duration_seconds": 568,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50049",
+    "member_id": "MBR-10086",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "shopping",
+      "Navy Federal",
+      "refinance"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been a member for eight years and your rate for my new car is higher than Capital One.",
+    "timestamp": "2026-03-23T15:39:00",
+    "channel": "phone",
+    "duration_seconds": 496,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50050",
+    "member_id": "MBR-10036",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "too high",
+      "Navy Federal",
+      "lower"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been a member for eight years and your rate for my new car is higher than Capital One.",
+    "timestamp": "2026-03-25T16:33:00",
+    "channel": "IVR",
+    "duration_seconds": 612,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50051",
+    "member_id": "MBR-10013",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "too high",
+      "USAA"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-26T09:18:00",
+    "channel": "chat",
+    "duration_seconds": 213,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50052",
+    "member_id": "MBR-10044",
+    "topic": "Transfer Question",
+    "keywords": [
+      "question",
+      "payment"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-22T14:03:00",
+    "channel": "phone",
+    "duration_seconds": 503,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50053",
+    "member_id": "MBR-10014",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "verification",
+      "failed"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'm stuck on step four of my mortgage application. The document upload just spins and never completes.",
+    "timestamp": "2026-03-24T10:08:00",
+    "channel": "IVR",
+    "duration_seconds": 125,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50054",
+    "member_id": "MBR-10009",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "can't upload",
+      "upload",
+      "frustrated"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-23T16:46:00",
+    "channel": "phone",
+    "duration_seconds": 168,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50055",
+    "member_id": "MBR-10079",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "lower",
+      "refinance",
+      "rate"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "My friend just got 5.2% at a local credit union. Your quote was 6.4%. That's a big difference.",
+    "timestamp": "2026-03-25T09:07:00",
+    "channel": "IVR",
+    "duration_seconds": 267,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50056",
+    "member_id": "MBR-10078",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "too high",
+      "APR",
+      "competitor"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-24T11:36:00",
+    "channel": "chat",
+    "duration_seconds": 601,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50057",
+    "member_id": "MBR-10047",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "competitor",
+      "Navy Federal"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-24T08:22:00",
+    "channel": "phone",
+    "duration_seconds": 165,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50058",
+    "member_id": "MBR-10082",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "shopping",
+      "too high",
+      "refinance",
+      "rate"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-23T18:29:00",
+    "channel": "chat",
+    "duration_seconds": 326,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50059",
+    "member_id": "MBR-10005",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "question",
+      "help"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I have a question about a charge on my credit card statement.",
+    "timestamp": "2026-03-24T12:32:00",
+    "channel": "IVR",
+    "duration_seconds": 315,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50060",
+    "member_id": "MBR-10099",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "competitor",
+      "better deal"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-22T18:21:00",
+    "channel": "chat",
+    "duration_seconds": 467,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50061",
+    "member_id": "MBR-10063",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "better deal",
+      "APR"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-24T16:17:00",
+    "channel": "IVR",
+    "duration_seconds": 420,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50062",
+    "member_id": "MBR-10023",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "stuck",
+      "failed",
+      "try again"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-24T12:28:00",
+    "channel": "chat",
+    "duration_seconds": 749,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50063",
+    "member_id": "MBR-10019",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "try again",
+      "stuck"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-22T18:40:00",
+    "channel": "IVR",
+    "duration_seconds": 568,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50064",
+    "member_id": "MBR-10024",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "stuck",
+      "failed",
+      "try again"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I submitted my documents yesterday but the status still shows as pending. Can someone check?",
+    "timestamp": "2026-03-24T13:24:00",
+    "channel": "phone",
+    "duration_seconds": 707,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50065",
+    "member_id": "MBR-10050",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "rate"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I was ready to finance my car through PenFed but USAA is at 4.9%. You're at 6.3%.",
+    "timestamp": "2026-03-24T18:17:00",
+    "channel": "IVR",
+    "duration_seconds": 516,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50066",
+    "member_id": "MBR-10014",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "failed",
+      "error",
+      "upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm stuck on step four of my mortgage application. The document upload just spins and never completes.",
+    "timestamp": "2026-03-25T11:39:00",
+    "channel": "phone",
+    "duration_seconds": 850,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50067",
+    "member_id": "MBR-10087",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "account",
+      "question",
+      "payment"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I have a question about a charge on my credit card statement.",
+    "timestamp": "2026-03-24T18:22:00",
+    "channel": "IVR",
+    "duration_seconds": 846,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50068",
+    "member_id": "MBR-10065",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-23T09:12:00",
+    "channel": "chat",
+    "duration_seconds": 687,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50069",
+    "member_id": "MBR-10070",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "USAA"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-23T17:56:00",
+    "channel": "IVR",
+    "duration_seconds": 540,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50070",
+    "member_id": "MBR-10009",
+    "topic": "Transfer Question",
+    "keywords": [
+      "help"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-23T13:41:00",
+    "channel": "phone",
+    "duration_seconds": 684,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50071",
+    "member_id": "MBR-10016",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "account"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'd like to transfer funds from my savings to my checking account.",
+    "timestamp": "2026-03-25T16:58:00",
+    "channel": "phone",
+    "duration_seconds": 285,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50072",
+    "member_id": "MBR-10028",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "account",
+      "payment"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-24T16:57:00",
+    "channel": "phone",
+    "duration_seconds": 760,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50073",
+    "member_id": "MBR-10011",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "lower",
+      "too high",
+      "refinance",
+      "competitor"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I love PenFed but I have to go where the rates make sense. Can anything be done?",
+    "timestamp": "2026-03-26T18:10:00",
+    "channel": "IVR",
+    "duration_seconds": 162,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50074",
+    "member_id": "MBR-10015",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "frustrated",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm about ready to go to another lender. I've spent four hours on this upload issue.",
+    "timestamp": "2026-03-26T12:41:00",
+    "channel": "IVR",
+    "duration_seconds": 678,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50075",
+    "member_id": "MBR-10038",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "better deal",
+      "USAA",
+      "shopping",
+      "rate"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I got pre-approved but Navy Federal is offering a full point lower. Can you match that?",
+    "timestamp": "2026-03-25T11:51:00",
+    "channel": "chat",
+    "duration_seconds": 545,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50076",
+    "member_id": "MBR-10043",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "competitor",
+      "lower",
+      "better deal",
+      "APR"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-26T10:20:00",
+    "channel": "chat",
+    "duration_seconds": 367,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50077",
+    "member_id": "MBR-10007",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "verification",
+      "can't upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'm about ready to go to another lender. I've spent four hours on this upload issue.",
+    "timestamp": "2026-03-23T10:06:00",
+    "channel": "phone",
+    "duration_seconds": 455,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50078",
+    "member_id": "MBR-10016",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "verification",
+      "failed",
+      "document"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-25T16:29:00",
+    "channel": "chat",
+    "duration_seconds": 366,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50079",
+    "member_id": "MBR-10006",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "shopping",
+      "USAA",
+      "rate",
+      "better deal"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-22T12:31:00",
+    "channel": "phone",
+    "duration_seconds": 390,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50080",
+    "member_id": "MBR-10046",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "question",
+      "balance",
+      "payment"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I have a question about a charge on my credit card statement.",
+    "timestamp": "2026-03-22T14:03:00",
+    "channel": "chat",
+    "duration_seconds": 636,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50081",
+    "member_id": "MBR-10035",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "Can you check on the status of my credit card dispute from last week?",
+    "timestamp": "2026-03-26T18:39:00",
+    "channel": "chat",
+    "duration_seconds": 467,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50082",
+    "member_id": "MBR-10025",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "account",
+      "transfer",
+      "question"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'd like to transfer funds from my savings to my checking account.",
+    "timestamp": "2026-03-26T16:25:00",
+    "channel": "chat",
+    "duration_seconds": 651,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50083",
+    "member_id": "MBR-10016",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "stuck",
+      "can't upload",
+      "verification"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-23T13:59:00",
+    "channel": "IVR",
+    "duration_seconds": 665,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50084",
+    "member_id": "MBR-10038",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "APR",
+      "better deal",
+      "USAA"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I got pre-approved but Navy Federal is offering a full point lower. Can you match that?",
+    "timestamp": "2026-03-25T08:23:00",
+    "channel": "chat",
+    "duration_seconds": 791,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50085",
+    "member_id": "MBR-10074",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "lower",
+      "better deal",
+      "too high",
+      "refinance"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm calling to see if there's any flexibility on the auto loan APR before I go elsewhere.",
+    "timestamp": "2026-03-25T10:33:00",
+    "channel": "IVR",
+    "duration_seconds": 837,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50086",
+    "member_id": "MBR-10016",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "can't upload",
+      "failed"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-24T14:09:00",
+    "channel": "phone",
+    "duration_seconds": 694,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50087",
+    "member_id": "MBR-10061",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "help"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you help me set up automatic payments for my auto loan?",
+    "timestamp": "2026-03-26T14:20:00",
+    "channel": "IVR",
+    "duration_seconds": 858,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50088",
+    "member_id": "MBR-10024",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "Navy Federal",
+      "USAA",
+      "refinance"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I'm calling to see if there's any flexibility on the auto loan APR before I go elsewhere.",
+    "timestamp": "2026-03-23T12:35:00",
+    "channel": "chat",
+    "duration_seconds": 611,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50089",
+    "member_id": "MBR-10092",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "refinance",
+      "better deal",
+      "lower",
+      "shopping"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-24T12:07:00",
+    "channel": "chat",
+    "duration_seconds": 163,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50090",
+    "member_id": "MBR-10010",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "transfer",
+      "help"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-24T15:41:00",
+    "channel": "IVR",
+    "duration_seconds": 397,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50091",
+    "member_id": "MBR-10003",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "error"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-26T11:15:00",
+    "channel": "chat",
+    "duration_seconds": 458,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50092",
+    "member_id": "MBR-10024",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "failed"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-23T08:35:00",
+    "channel": "chat",
+    "duration_seconds": 448,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50093",
+    "member_id": "MBR-10098",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "refinance",
+      "rate"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I was ready to finance my car through PenFed but USAA is at 4.9%. You're at 6.3%.",
+    "timestamp": "2026-03-22T18:36:00",
+    "channel": "phone",
+    "duration_seconds": 157,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50094",
+    "member_id": "MBR-10023",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "question",
+      "transfer"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you check on the status of my credit card dispute from last week?",
+    "timestamp": "2026-03-24T08:00:00",
+    "channel": "chat",
+    "duration_seconds": 585,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50095",
+    "member_id": "MBR-10017",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "account"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you help me set up automatic payments for my auto loan?",
+    "timestamp": "2026-03-26T15:17:00",
+    "channel": "IVR",
+    "duration_seconds": 589,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50096",
+    "member_id": "MBR-10001",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "Navy Federal",
+      "too high",
+      "better deal",
+      "shopping"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-24T12:36:00",
+    "channel": "phone",
+    "duration_seconds": 530,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50097",
+    "member_id": "MBR-10014",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "verification"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I keep getting a 'session expired' error right when I'm uploading my pay stubs.",
+    "timestamp": "2026-03-25T13:59:00",
+    "channel": "chat",
+    "duration_seconds": 457,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50098",
+    "member_id": "MBR-10073",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "Navy Federal",
+      "rate",
+      "APR"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-22T12:41:00",
+    "channel": "phone",
+    "duration_seconds": 535,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50099",
+    "member_id": "MBR-10081",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "Navy Federal",
+      "too high"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-24T13:39:00",
+    "channel": "chat",
+    "duration_seconds": 885,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50100",
+    "member_id": "MBR-10070",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "Navy Federal",
+      "lower",
+      "APR",
+      "USAA"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-25T16:51:00",
+    "channel": "phone",
+    "duration_seconds": 697,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50101",
+    "member_id": "MBR-10003",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "frustrated",
+      "income",
+      "can't upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I was told to upload my tax returns but the system only accepts PDFs under 5MB. My return is 12 pages.",
+    "timestamp": "2026-03-26T11:36:00",
+    "channel": "IVR",
+    "duration_seconds": 330,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50102",
+    "member_id": "MBR-10017",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-25T08:29:00",
+    "channel": "chat",
+    "duration_seconds": 808,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50103",
+    "member_id": "MBR-10050",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "lower",
+      "APR"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I got pre-approved but Navy Federal is offering a full point lower. Can you match that?",
+    "timestamp": "2026-03-24T08:47:00",
+    "channel": "chat",
+    "duration_seconds": 837,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50104",
+    "member_id": "MBR-10007",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "better deal",
+      "too high",
+      "refinance"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-22T15:02:00",
+    "channel": "chat",
+    "duration_seconds": 579,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50105",
+    "member_id": "MBR-10087",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "too high",
+      "better deal"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "My friend just got 5.2% at a local credit union. Your quote was 6.4%. That's a big difference.",
+    "timestamp": "2026-03-26T10:41:00",
+    "channel": "IVR",
+    "duration_seconds": 348,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50106",
+    "member_id": "MBR-10038",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "help",
+      "question",
+      "transfer"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-25T18:46:00",
+    "channel": "chat",
+    "duration_seconds": 474,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50107",
+    "member_id": "MBR-10019",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "document",
+      "error",
+      "upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-22T08:51:00",
+    "channel": "phone",
+    "duration_seconds": 577,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50108",
+    "member_id": "MBR-10023",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "document",
+      "stuck",
+      "verification"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-25T15:14:00",
+    "channel": "IVR",
+    "duration_seconds": 446,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50109",
+    "member_id": "MBR-10001",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "verification",
+      "document",
+      "stuck"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I keep getting a 'session expired' error right when I'm uploading my pay stubs.",
+    "timestamp": "2026-03-26T11:26:00",
+    "channel": "chat",
+    "duration_seconds": 778,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50110",
+    "member_id": "MBR-10040",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "help",
+      "balance"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-25T14:09:00",
+    "channel": "phone",
+    "duration_seconds": 427,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50111",
+    "member_id": "MBR-10007",
+    "topic": "Transfer Question",
+    "keywords": [
+      "question",
+      "balance",
+      "help"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-26T14:26:00",
+    "channel": "phone",
+    "duration_seconds": 458,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50112",
+    "member_id": "MBR-10047",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "account"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I have a question about a charge on my credit card statement.",
+    "timestamp": "2026-03-22T16:46:00",
+    "channel": "IVR",
+    "duration_seconds": 739,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50113",
+    "member_id": "MBR-10024",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "help"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-26T18:35:00",
+    "channel": "chat",
+    "duration_seconds": 135,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50114",
+    "member_id": "MBR-10094",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "transfer"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-22T15:58:00",
+    "channel": "phone",
+    "duration_seconds": 685,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50115",
+    "member_id": "MBR-10048",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "payment",
+      "transfer"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "Can you help me set up automatic payments for my auto loan?",
+    "timestamp": "2026-03-25T16:41:00",
+    "channel": "chat",
+    "duration_seconds": 220,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50116",
+    "member_id": "MBR-10040",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "account",
+      "question"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-23T13:20:00",
+    "channel": "phone",
+    "duration_seconds": 387,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50117",
+    "member_id": "MBR-10014",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "failed",
+      "income",
+      "stuck"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-24T11:24:00",
+    "channel": "phone",
+    "duration_seconds": 870,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50118",
+    "member_id": "MBR-10024",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "try again",
+      "frustrated",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-26T15:11:00",
+    "channel": "phone",
+    "duration_seconds": 542,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50119",
+    "member_id": "MBR-10029",
+    "topic": "Transfer Question",
+    "keywords": [
+      "question"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-22T10:00:00",
+    "channel": "phone",
+    "duration_seconds": 752,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50120",
+    "member_id": "MBR-10002",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "rate",
+      "lower",
+      "USAA"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My friend just got 5.2% at a local credit union. Your quote was 6.4%. That's a big difference.",
+    "timestamp": "2026-03-22T16:35:00",
+    "channel": "phone",
+    "duration_seconds": 634,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50121",
+    "member_id": "MBR-10022",
+    "topic": "Transfer Question",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-22T09:33:00",
+    "channel": "chat",
+    "duration_seconds": 393,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50122",
+    "member_id": "MBR-10012",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "verification",
+      "upload",
+      "income"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-25T17:15:00",
+    "channel": "chat",
+    "duration_seconds": 506,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50123",
+    "member_id": "MBR-10022",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "upload",
+      "document"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-23T09:31:00",
+    "channel": "IVR",
+    "duration_seconds": 606,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50124",
+    "member_id": "MBR-10024",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "stuck",
+      "income",
+      "frustrated"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-24T16:36:00",
+    "channel": "IVR",
+    "duration_seconds": 527,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50125",
+    "member_id": "MBR-10016",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "income",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm stuck on step four of my mortgage application. The document upload just spins and never completes.",
+    "timestamp": "2026-03-23T17:53:00",
+    "channel": "IVR",
+    "duration_seconds": 474,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50126",
+    "member_id": "MBR-10015",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "frustrated",
+      "can't upload",
+      "income",
+      "document"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-22T13:38:00",
+    "channel": "phone",
+    "duration_seconds": 484,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50127",
+    "member_id": "MBR-10087",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "lower",
+      "USAA"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm calling to see if there's any flexibility on the auto loan APR before I go elsewhere.",
+    "timestamp": "2026-03-26T18:24:00",
+    "channel": "phone",
+    "duration_seconds": 394,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50128",
+    "member_id": "MBR-10081",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "lower",
+      "rate"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been a member for eight years and your rate for my new car is higher than Capital One.",
+    "timestamp": "2026-03-23T14:20:00",
+    "channel": "chat",
+    "duration_seconds": 899,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50129",
+    "member_id": "MBR-10011",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "frustrated",
+      "can't upload",
+      "document"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-23T14:28:00",
+    "channel": "IVR",
+    "duration_seconds": 215,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50130",
+    "member_id": "MBR-10001",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "transfer"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-24T14:24:00",
+    "channel": "IVR",
+    "duration_seconds": 509,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50131",
+    "member_id": "MBR-10009",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "can't upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-24T15:09:00",
+    "channel": "chat",
+    "duration_seconds": 198,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50132",
+    "member_id": "MBR-10000",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "failed",
+      "upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm stuck on step four of my mortgage application. The document upload just spins and never completes.",
+    "timestamp": "2026-03-25T17:39:00",
+    "channel": "chat",
+    "duration_seconds": 460,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50133",
+    "member_id": "MBR-10042",
+    "topic": "Transfer Question",
+    "keywords": [
+      "question",
+      "balance",
+      "payment"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you help me set up automatic payments for my auto loan?",
+    "timestamp": "2026-03-25T13:27:00",
+    "channel": "chat",
+    "duration_seconds": 441,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50134",
+    "member_id": "MBR-10040",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "balance",
+      "payment",
+      "help"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I have a question about a charge on my credit card statement.",
+    "timestamp": "2026-03-24T18:31:00",
+    "channel": "chat",
+    "duration_seconds": 236,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50135",
+    "member_id": "MBR-10069",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "rate",
+      "shopping",
+      "Navy Federal",
+      "refinance"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been a member for eight years and your rate for my new car is higher than Capital One.",
+    "timestamp": "2026-03-23T18:49:00",
+    "channel": "chat",
+    "duration_seconds": 809,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50136",
+    "member_id": "MBR-10019",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "frustrated"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-23T12:42:00",
+    "channel": "chat",
+    "duration_seconds": 716,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50137",
+    "member_id": "MBR-10088",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "refinance",
+      "APR",
+      "lower"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm calling to see if there's any flexibility on the auto loan APR before I go elsewhere.",
+    "timestamp": "2026-03-25T16:02:00",
+    "channel": "phone",
+    "duration_seconds": 782,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50138",
+    "member_id": "MBR-10082",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "APR",
+      "rate",
+      "lower"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I've been a member for eight years and your rate for my new car is higher than Capital One.",
+    "timestamp": "2026-03-25T13:50:00",
+    "channel": "IVR",
+    "duration_seconds": 884,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50139",
+    "member_id": "MBR-10050",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "refinance",
+      "too high",
+      "competitor",
+      "rate"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-25T18:37:00",
+    "channel": "chat",
+    "duration_seconds": 545,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50140",
+    "member_id": "MBR-10003",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "failed",
+      "error",
+      "frustrated"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I submitted my documents yesterday but the status still shows as pending. Can someone check?",
+    "timestamp": "2026-03-23T13:19:00",
+    "channel": "chat",
+    "duration_seconds": 859,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50141",
+    "member_id": "MBR-10017",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "upload",
+      "stuck",
+      "error"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I was told to upload my tax returns but the system only accepts PDFs under 5MB. My return is 12 pages.",
+    "timestamp": "2026-03-22T09:01:00",
+    "channel": "phone",
+    "duration_seconds": 458,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50142",
+    "member_id": "MBR-10029",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "transfer"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'm having trouble logging into the mobile app.",
+    "timestamp": "2026-03-25T18:11:00",
+    "channel": "phone",
+    "duration_seconds": 875,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50143",
+    "member_id": "MBR-10054",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "Navy Federal",
+      "USAA"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-25T08:45:00",
+    "channel": "IVR",
+    "duration_seconds": 311,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50144",
+    "member_id": "MBR-10018",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "income",
+      "can't upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'm about ready to go to another lender. I've spent four hours on this upload issue.",
+    "timestamp": "2026-03-22T12:42:00",
+    "channel": "phone",
+    "duration_seconds": 476,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50145",
+    "member_id": "MBR-10079",
+    "topic": "Transfer Question",
+    "keywords": [
+      "question",
+      "transfer"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Can you check on the status of my credit card dispute from last week?",
+    "timestamp": "2026-03-23T18:45:00",
+    "channel": "chat",
+    "duration_seconds": 240,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50146",
+    "member_id": "MBR-10015",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "stuck",
+      "frustrated"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I keep getting a 'session expired' error right when I'm uploading my pay stubs.",
+    "timestamp": "2026-03-24T10:32:00",
+    "channel": "IVR",
+    "duration_seconds": 670,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50147",
+    "member_id": "MBR-10062",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "shopping",
+      "rate",
+      "competitor"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I got pre-approved but Navy Federal is offering a full point lower. Can you match that?",
+    "timestamp": "2026-03-24T10:11:00",
+    "channel": "phone",
+    "duration_seconds": 319,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50148",
+    "member_id": "MBR-10064",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "help",
+      "transfer"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-25T14:43:00",
+    "channel": "phone",
+    "duration_seconds": 698,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50149",
+    "member_id": "MBR-10028",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "question"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I have a question about a charge on my credit card statement.",
+    "timestamp": "2026-03-24T08:17:00",
+    "channel": "chat",
+    "duration_seconds": 699,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50150",
+    "member_id": "MBR-10014",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "competitor",
+      "refinance",
+      "rate",
+      "better deal"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-26T09:17:00",
+    "channel": "chat",
+    "duration_seconds": 224,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50151",
+    "member_id": "MBR-10023",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "failed",
+      "upload"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-25T12:22:00",
+    "channel": "IVR",
+    "duration_seconds": 825,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50152",
+    "member_id": "MBR-10078",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-25T10:39:00",
+    "channel": "IVR",
+    "duration_seconds": 479,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50153",
+    "member_id": "MBR-10021",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "USAA",
+      "refinance",
+      "APR",
+      "shopping"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-24T12:18:00",
+    "channel": "chat",
+    "duration_seconds": 791,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50154",
+    "member_id": "MBR-10016",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "Navy Federal",
+      "better deal",
+      "shopping"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I was ready to finance my car through PenFed but USAA is at 4.9%. You're at 6.3%.",
+    "timestamp": "2026-03-23T10:45:00",
+    "channel": "IVR",
+    "duration_seconds": 544,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50155",
+    "member_id": "MBR-10081",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "USAA",
+      "competitor",
+      "shopping",
+      "Navy Federal"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-22T14:32:00",
+    "channel": "IVR",
+    "duration_seconds": 215,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50156",
+    "member_id": "MBR-10089",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "better deal",
+      "Navy Federal",
+      "lower",
+      "shopping"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I'm calling to see if there's any flexibility on the auto loan APR before I go elsewhere.",
+    "timestamp": "2026-03-24T09:50:00",
+    "channel": "chat",
+    "duration_seconds": 450,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50157",
+    "member_id": "MBR-10000",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "document",
+      "try again"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-23T17:54:00",
+    "channel": "phone",
+    "duration_seconds": 281,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50158",
+    "member_id": "MBR-10054",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "USAA",
+      "too high",
+      "lower",
+      "rate"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-23T10:56:00",
+    "channel": "phone",
+    "duration_seconds": 500,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50159",
+    "member_id": "MBR-10004",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "upload",
+      "frustrated",
+      "document",
+      "try again"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-24T11:27:00",
+    "channel": "IVR",
+    "duration_seconds": 351,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50160",
+    "member_id": "MBR-10002",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "failed",
+      "upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-24T09:55:00",
+    "channel": "IVR",
+    "duration_seconds": 224,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50161",
+    "member_id": "MBR-10019",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I was told to upload my tax returns but the system only accepts PDFs under 5MB. My return is 12 pages.",
+    "timestamp": "2026-03-23T14:49:00",
+    "channel": "IVR",
+    "duration_seconds": 288,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50162",
+    "member_id": "MBR-10027",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "shopping",
+      "Navy Federal",
+      "APR",
+      "rate"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I was ready to finance my car through PenFed but USAA is at 4.9%. You're at 6.3%.",
+    "timestamp": "2026-03-23T14:39:00",
+    "channel": "IVR",
+    "duration_seconds": 867,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50163",
+    "member_id": "MBR-10054",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "Navy Federal",
+      "USAA"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I got pre-approved but Navy Federal is offering a full point lower. Can you match that?",
+    "timestamp": "2026-03-24T10:15:00",
+    "channel": "phone",
+    "duration_seconds": 650,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50164",
+    "member_id": "MBR-10037",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "account",
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-22T11:31:00",
+    "channel": "IVR",
+    "duration_seconds": 132,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50165",
+    "member_id": "MBR-10016",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "question",
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-25T17:26:00",
+    "channel": "phone",
+    "duration_seconds": 721,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50166",
+    "member_id": "MBR-10002",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "verification",
+      "can't upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I keep getting a 'session expired' error right when I'm uploading my pay stubs.",
+    "timestamp": "2026-03-22T08:50:00",
+    "channel": "IVR",
+    "duration_seconds": 669,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50167",
+    "member_id": "MBR-10018",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "try again"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I submitted my documents yesterday but the status still shows as pending. Can someone check?",
+    "timestamp": "2026-03-22T16:58:00",
+    "channel": "IVR",
+    "duration_seconds": 785,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50168",
+    "member_id": "MBR-10009",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-23T08:15:00",
+    "channel": "IVR",
+    "duration_seconds": 879,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50169",
+    "member_id": "MBR-10004",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "try again",
+      "verification"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm stuck on step four of my mortgage application. The document upload just spins and never completes.",
+    "timestamp": "2026-03-23T08:10:00",
+    "channel": "IVR",
+    "duration_seconds": 395,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50170",
+    "member_id": "MBR-10003",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "account",
+      "payment",
+      "transfer"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-24T14:17:00",
+    "channel": "IVR",
+    "duration_seconds": 488,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50171",
+    "member_id": "MBR-10072",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "lower",
+      "Navy Federal"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My friend just got 5.2% at a local credit union. Your quote was 6.4%. That's a big difference.",
+    "timestamp": "2026-03-23T13:10:00",
+    "channel": "phone",
+    "duration_seconds": 132,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50172",
+    "member_id": "MBR-10007",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-25T10:11:00",
+    "channel": "chat",
+    "duration_seconds": 857,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50173",
+    "member_id": "MBR-10012",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "stuck",
+      "error",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I was told to upload my tax returns but the system only accepts PDFs under 5MB. My return is 12 pages.",
+    "timestamp": "2026-03-26T13:07:00",
+    "channel": "phone",
+    "duration_seconds": 596,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50174",
+    "member_id": "MBR-10039",
+    "topic": "Account Access Issue",
+    "keywords": [
+      "account",
+      "payment"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-24T09:35:00",
+    "channel": "IVR",
+    "duration_seconds": 431,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50175",
+    "member_id": "MBR-10075",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "Navy Federal",
+      "too high",
+      "rate",
+      "lower"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I got pre-approved but Navy Federal is offering a full point lower. Can you match that?",
+    "timestamp": "2026-03-25T11:46:00",
+    "channel": "IVR",
+    "duration_seconds": 474,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50176",
+    "member_id": "MBR-10000",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "question"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-25T12:06:00",
+    "channel": "chat",
+    "duration_seconds": 181,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50177",
+    "member_id": "MBR-10011",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "better deal",
+      "competitor",
+      "shopping",
+      "refinance"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-22T11:57:00",
+    "channel": "IVR",
+    "duration_seconds": 256,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50178",
+    "member_id": "MBR-10012",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "verification"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-22T14:42:00",
+    "channel": "IVR",
+    "duration_seconds": 873,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50179",
+    "member_id": "MBR-10005",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "frustrated",
+      "upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm stuck on step four of my mortgage application. The document upload just spins and never completes.",
+    "timestamp": "2026-03-23T09:12:00",
+    "channel": "chat",
+    "duration_seconds": 597,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50180",
+    "member_id": "MBR-10068",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "shopping",
+      "USAA",
+      "APR"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Your auto loan rate seems high compared to what I'm seeing at other credit unions.",
+    "timestamp": "2026-03-24T11:28:00",
+    "channel": "IVR",
+    "duration_seconds": 431,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50181",
+    "member_id": "MBR-10021",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "can't upload"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I was told to upload my tax returns but the system only accepts PDFs under 5MB. My return is 12 pages.",
+    "timestamp": "2026-03-23T09:45:00",
+    "channel": "chat",
+    "duration_seconds": 386,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50182",
+    "member_id": "MBR-10000",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "upload",
+      "failed",
+      "document"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I'm stuck on step four of my mortgage application. The document upload just spins and never completes.",
+    "timestamp": "2026-03-25T16:47:00",
+    "channel": "phone",
+    "duration_seconds": 347,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50183",
+    "member_id": "MBR-10020",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "upload",
+      "verification",
+      "frustrated",
+      "document"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-24T18:40:00",
+    "channel": "chat",
+    "duration_seconds": 251,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50184",
+    "member_id": "MBR-10042",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "balance"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'm having trouble logging into the mobile app.",
+    "timestamp": "2026-03-22T08:29:00",
+    "channel": "chat",
+    "duration_seconds": 150,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50185",
+    "member_id": "MBR-10022",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "USAA",
+      "lower"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-24T11:58:00",
+    "channel": "phone",
+    "duration_seconds": 748,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50186",
+    "member_id": "MBR-10063",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "APR",
+      "USAA"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'm shopping around for auto loan rates. What's the best you can offer for a 780 credit score?",
+    "timestamp": "2026-03-25T16:30:00",
+    "channel": "chat",
+    "duration_seconds": 324,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50187",
+    "member_id": "MBR-10069",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "competitor",
+      "shopping",
+      "refinance",
+      "too high"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I love PenFed but I have to go where the rates make sense. Can anything be done?",
+    "timestamp": "2026-03-22T14:50:00",
+    "channel": "chat",
+    "duration_seconds": 396,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50188",
+    "member_id": "MBR-10005",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "failed",
+      "income"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I'm about ready to go to another lender. I've spent four hours on this upload issue.",
+    "timestamp": "2026-03-23T08:57:00",
+    "channel": "phone",
+    "duration_seconds": 373,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50189",
+    "member_id": "MBR-10023",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "stuck",
+      "try again"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-22T11:36:00",
+    "channel": "IVR",
+    "duration_seconds": 487,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50190",
+    "member_id": "MBR-10045",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "Navy Federal",
+      "shopping",
+      "USAA",
+      "APR"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-26T17:09:00",
+    "channel": "phone",
+    "duration_seconds": 177,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50191",
+    "member_id": "MBR-10002",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "lower",
+      "Navy Federal",
+      "too high"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "Is there a relationship discount? I have three products with PenFed but the rate doesn't reflect that.",
+    "timestamp": "2026-03-26T15:00:00",
+    "channel": "chat",
+    "duration_seconds": 180,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50192",
+    "member_id": "MBR-10010",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "upload",
+      "frustrated",
+      "failed"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I keep getting a 'session expired' error right when I'm uploading my pay stubs.",
+    "timestamp": "2026-03-23T09:54:00",
+    "channel": "chat",
+    "duration_seconds": 450,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50193",
+    "member_id": "MBR-10093",
+    "topic": "Loan Payment Question",
+    "keywords": [
+      "payment",
+      "balance",
+      "transfer"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "What's the minimum balance requirement for the money market account?",
+    "timestamp": "2026-03-25T18:31:00",
+    "channel": "chat",
+    "duration_seconds": 434,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50194",
+    "member_id": "MBR-10020",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "document",
+      "stuck",
+      "income",
+      "can't upload"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I'm about ready to go to another lender. I've spent four hours on this upload issue.",
+    "timestamp": "2026-03-22T17:25:00",
+    "channel": "IVR",
+    "duration_seconds": 226,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50195",
+    "member_id": "MBR-10008",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "upload",
+      "income"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My wife and I are both trying to complete our mortgage app but the verification step is broken.",
+    "timestamp": "2026-03-22T11:22:00",
+    "channel": "phone",
+    "duration_seconds": 375,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50196",
+    "member_id": "MBR-10013",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "better deal",
+      "too high",
+      "lower"
+    ],
+    "sentiment": "very_negative",
+    "transcript_snippet": "I've been comparison shopping and PenFed used to be competitive. What happened to the rates?",
+    "timestamp": "2026-03-22T08:24:00",
+    "channel": "chat",
+    "duration_seconds": 679,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50197",
+    "member_id": "MBR-10000",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "error",
+      "stuck",
+      "failed",
+      "document"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-26T18:48:00",
+    "channel": "chat",
+    "duration_seconds": 387,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50198",
+    "member_id": "MBR-10022",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "try again",
+      "upload"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I submitted my documents yesterday but the status still shows as pending. Can someone check?",
+    "timestamp": "2026-03-25T10:46:00",
+    "channel": "phone",
+    "duration_seconds": 561,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50199",
+    "member_id": "MBR-10055",
+    "topic": "CD Rate Complaint",
+    "keywords": [
+      "Navy Federal",
+      "lower",
+      "better deal"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "My friend just got 5.2% at a local credit union. Your quote was 6.4%. That's a big difference.",
+    "timestamp": "2026-03-23T08:06:00",
+    "channel": "IVR",
+    "duration_seconds": 408,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50200",
+    "member_id": "MBR-10002",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "document",
+      "income"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-25T17:35:00",
+    "channel": "chat",
+    "duration_seconds": 797,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50201",
+    "member_id": "MBR-10015",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "upload",
+      "failed",
+      "frustrated"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "The upload button doesn't even respond on my phone. I've tried both Safari and Chrome.",
+    "timestamp": "2026-03-23T10:40:00",
+    "channel": "chat",
+    "duration_seconds": 796,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50202",
+    "member_id": "MBR-10014",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "income",
+      "stuck",
+      "failed"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "I've been trying to upload my income documents for three days now. The system keeps timing out.",
+    "timestamp": "2026-03-25T10:23:00",
+    "channel": "chat",
+    "duration_seconds": 389,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50203",
+    "member_id": "MBR-10072",
+    "topic": "Transfer Question",
+    "keywords": [
+      "transfer",
+      "account",
+      "question"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "Can you help me set up automatic payments for my auto loan?",
+    "timestamp": "2026-03-22T10:48:00",
+    "channel": "IVR",
+    "duration_seconds": 352,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50204",
+    "member_id": "MBR-10066",
+    "topic": "Transfer Question",
+    "keywords": [
+      "question",
+      "balance"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I'd like to update my mailing address on file.",
+    "timestamp": "2026-03-25T16:43:00",
+    "channel": "phone",
+    "duration_seconds": 524,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50205",
+    "member_id": "MBR-10066",
+    "topic": "Auto Loan Rate Inquiry",
+    "keywords": [
+      "APR",
+      "shopping"
+    ],
+    "sentiment": "neutral",
+    "transcript_snippet": "I was ready to finance my car through PenFed but USAA is at 4.9%. You're at 6.3%.",
+    "timestamp": "2026-03-26T18:39:00",
+    "channel": "phone",
+    "duration_seconds": 317,
+    "resolution": "escalated"
+  },
+  {
+    "interaction_id": "GCX-50206",
+    "member_id": "MBR-10012",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "stuck",
+      "verification",
+      "income",
+      "failed"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "Every time I try to submit my W-2, I get an error message saying the file format isn't supported.",
+    "timestamp": "2026-03-25T11:52:00",
+    "channel": "IVR",
+    "duration_seconds": 526,
+    "resolution": "unresolved"
+  },
+  {
+    "interaction_id": "GCX-50207",
+    "member_id": "MBR-10066",
+    "topic": "Credit Card Dispute",
+    "keywords": [
+      "question",
+      "transfer",
+      "help"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "Can you check on the status of my credit card dispute from last week?",
+    "timestamp": "2026-03-25T08:50:00",
+    "channel": "phone",
+    "duration_seconds": 271,
+    "resolution": "resolved"
+  },
+  {
+    "interaction_id": "GCX-50208",
+    "member_id": "MBR-10072",
+    "topic": "General Account Inquiry",
+    "keywords": [
+      "payment",
+      "help",
+      "transfer"
+    ],
+    "sentiment": "positive",
+    "transcript_snippet": "I'm having trouble logging into the mobile app.",
+    "timestamp": "2026-03-22T12:55:00",
+    "channel": "IVR",
+    "duration_seconds": 743,
+    "resolution": "callback_scheduled"
+  },
+  {
+    "interaction_id": "GCX-50209",
+    "member_id": "MBR-10023",
+    "topic": "Mortgage Document Upload Issue",
+    "keywords": [
+      "can't upload",
+      "document",
+      "frustrated",
+      "stuck"
+    ],
+    "sentiment": "negative",
+    "transcript_snippet": "This is my third call about the same issue. I can't get past the income verification screen.",
+    "timestamp": "2026-03-25T10:39:00",
+    "channel": "chat",
+    "duration_seconds": 395,
+    "resolution": "unresolved"
+  }
+]

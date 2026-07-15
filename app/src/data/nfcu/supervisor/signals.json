@@ -1,0 +1,87 @@
+[
+  {
+    "id": "SIG-NFCU-SUP-001",
+    "type": "queue_spike",
+    "title": "Queue Wait Time Spike — Auto Loans Up 340% in 2 Hours",
+    "description": "Average wait time jumped 340% in the auto loans queue over the last 2 hours. 127 members currently waiting. Correlates with a 2.9% rate promotion email sent this morning via Marketing Cloud to 45,000 members at 7:15 AM — not flagged to Contact Center ops for staffing preparation.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 127,
+    "sources": ["Dynamics 365 Contact Center", "Marketing Cloud"],
+    "timestamp": "2026-04-23T09:00:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-SUP-001",
+    "metrics": {
+      "wait_time_increase": "340%",
+      "members_waiting": 127,
+      "avg_wait_time": "12:47",
+      "volume_vs_normal": "3x",
+      "promotion_recipients": 45000
+    },
+    "confidence": {
+      "score": 94,
+      "rationale": "Marketing Cloud send-time and Dynamics 365 queue spike align within 8 minutes — high causal confidence.",
+      "signals_used": ["Dynamics 365 Contact Center", "Marketing Cloud"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-SUP-002",
+    "type": "staffing_risk",
+    "title": "Agent Attrition Cluster — Friday Evening Shift at Risk",
+    "description": "3 agents submitted PTO for Friday evening shift. Historical data shows this shift already runs at 85% force-to-load. Predicted service level drop to 62% without intervention. This shift handles 22% of weekly mortgage servicing volume due to West Coast members calling after work.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 3,
+    "sources": ["Dynamics 365 Workforce Management", "HR System"],
+    "timestamp": "2026-04-23T08:30:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-SUP-002",
+    "metrics": {
+      "pto_submitted": 3,
+      "current_force_to_load": "85%",
+      "predicted_service_level": "62%",
+      "agents_needed": 12,
+      "agents_available": 9
+    },
+    "confidence": {
+      "score": 86,
+      "rationale": "Force-to-load and PTO counts are direct telemetry; 62% projection has ±4 pp variance against last 9 Friday-evening events.",
+      "signals_used": ["Dynamics 365 Workforce Management", "HR System"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:30:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-SUP-003",
+    "type": "sentiment_decline",
+    "title": "Sentiment Decline — Mortgage Servicing Up 28% Negative This Week",
+    "description": "Negative sentiment in mortgage servicing calls increased 28% this week. Dynamics 365 sentiment analysis flags 'payment portal' and 'escrow' as top negative keywords. Cross-referencing with IT incident log shows a portal outage 48 hours ago — the root cause Dynamics 365 alone cannot surface.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 0,
+    "sources": ["Dynamics 365 Sentiment Analysis", "IT Incident Management"],
+    "timestamp": "2026-04-23T08:00:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-SUP-003",
+    "metrics": {
+      "negative_sentiment_increase": "28%",
+      "top_keywords": ["payment portal", "escrow"],
+      "it_outage_hours_ago": 48
+    },
+    "confidence": {
+      "score": 90,
+      "rationale": "Sentiment timeline aligns with IT incident timeline within 14 minutes; keyword detection precision 0.91 on this volume.",
+      "signals_used": ["Dynamics 365 Sentiment Analysis", "IT Incident Management"],
+      "threshold": 70,
+      "model_version": "wfm-rec-v3.2",
+      "validated_at": "2026-04-23T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

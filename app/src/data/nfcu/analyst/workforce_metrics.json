@@ -1,0 +1,55 @@
+{
+  "tax_season_volume": [
+    {"week": "W1 Tax (Apr 1)", "2024": 3820, "2025": 4110, "2026_projected": 4480, "staffing_capacity": 3200},
+    {"week": "W2 Tax (Apr 8)", "2024": 4940, "2025": 5320, "2026_projected": 5890, "staffing_capacity": 3200},
+    {"week": "Peak (Apr 12-17)", "2024": 6200, "2025": 6750, "2026_projected": 7440, "staffing_capacity": 3840},
+    {"week": "W3 Tax (Apr 15)", "2024": 5800, "2025": 6200, "2026_projected": 6820, "staffing_capacity": 3840},
+    {"week": "W4 Tax (Apr 22)", "2024": 4400, "2025": 4710, "2026_projected": 5080, "staffing_capacity": 3840},
+    {"week": "Post-Tax (Apr 29)", "2024": 3600, "2025": 3820, "2026_projected": 4010, "staffing_capacity": 3840}
+  ],
+  "scenario_comparison": [
+    {
+      "scenario": "Current Plan (No Change)",
+      "service_level_pct": 62,
+      "cost_usd": 0,
+      "budget_impact_pct": 78,
+      "agents_added": 0
+    },
+    {
+      "scenario": "15 OT Shifts Only",
+      "service_level_pct": 76,
+      "cost_usd": 18400,
+      "budget_impact_pct": 96,
+      "agents_added": 15
+    },
+    {
+      "scenario": "Hybrid: 8 OT + 10 Cross-Train (Recommended)",
+      "service_level_pct": 79,
+      "cost_usd": 11200,
+      "budget_impact_pct": 85,
+      "agents_added": 18
+    },
+    {
+      "scenario": "15 OT + Callback",
+      "service_level_pct": 81,
+      "cost_usd": 18400,
+      "budget_impact_pct": 96,
+      "agents_added": 15
+    }
+  ],
+  "cohort_ramp": [
+    {"week": "Week 1", "cohort_aht": "18:20", "benchmark_aht": "18:00"},
+    {"week": "Week 2", "cohort_aht": "16:45", "benchmark_aht": "16:00"},
+    {"week": "Week 3", "cohort_aht": "15:30", "benchmark_aht": "13:30"},
+    {"week": "Week 4", "cohort_aht": "15:10", "benchmark_aht": "11:30"},
+    {"week": "Week 5", "cohort_aht": "14:55", "benchmark_aht": "9:30"},
+    {"week": "Week 6 (Now)", "cohort_aht": "14:30", "benchmark_aht": "9:00"}
+  ],
+  "force_to_load_by_queue": [
+    {"queue": "General Banking", "ratio": 0.98, "target": 1.0, "status": "healthy"},
+    {"queue": "Mortgage Servicing", "ratio": 0.89, "target": 1.0, "status": "warning"},
+    {"queue": "Auto Loans", "ratio": 0.63, "target": 1.0, "status": "critical"},
+    {"queue": "Member Onboarding", "ratio": 1.10, "target": 1.0, "status": "overstaffed"},
+    {"queue": "Digital Support", "ratio": 0.97, "target": 1.0, "status": "healthy"}
+  ]
+}

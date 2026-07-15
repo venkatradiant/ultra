@@ -1,0 +1,91 @@
+[
+  {
+    "id": "SIG-NFCU-DIR-001",
+    "type": "service_level_degradation",
+    "title": "Cross-Team Service Level Degradation — 2 Teams Critical Simultaneously",
+    "description": "Aggregate service level across all four teams dropped to 68% (target: 80%). Auto loans and mortgage servicing are both in critical state simultaneously — first time in 90 days. Root cause: the auto loan spike is pulling cross-trained agents from general banking, which is now understaffed and cascading.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 4,
+    "sources": ["Dynamics 365 Contact Center (4-team roll-up)", "Dynamics 365 Workforce Management"],
+    "timestamp": "2026-04-23T07:45:00Z",
+    "trend": "worsening",
+    "related_segment": "TEAM-ROLLUP-001",
+    "metrics": {
+      "aggregate_sl": "68%",
+      "target_sl": "80%",
+      "teams_critical": 2,
+      "teams_warning": 0,
+      "teams_healthy": 2,
+      "days_since_last_dual_critical": 90
+    },
+    "confidence": {
+      "score": 91,
+      "rationale": "Per-team SL is direct telemetry; cascade attribution is causal — Priya's reroute and Okafor's drop align within 6 minutes.",
+      "signals_used": ["Dynamics 365 Contact Center (4-team roll-up)", "Workforce Management"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T07:45:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-DIR-002",
+    "type": "migration_risk",
+    "title": "Migration Phase 2 Risk — IVR Parity Gap, 12 Days Behind",
+    "description": "Genesys-to-Dynamics 365 migration Phase 2 (IVR parallel deployment) is 12 days behind schedule. 3 of 14 IVR routing flows have not passed functional parity testing — mortgage payment, fraud escalation, Spanish-language routing. These flows handle 31% of total call volume. If Phase 2 slips past May 15, it compresses Phase 3 (agent migration) and risks the Genesys license expiration window.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 3,
+    "sources": ["Migration PMO Tracker", "Genesys Cloud", "Dynamics 365 Routing"],
+    "timestamp": "2026-04-23T07:30:00Z",
+    "trend": "worsening",
+    "related_segment": "MIG-PHASE-2",
+    "metrics": {
+      "phase_2_progress": "64%",
+      "days_behind": 12,
+      "flows_failing_parity": 3,
+      "flows_total": 14,
+      "volume_at_risk_pct": "31%",
+      "hard_deadline": "2026-05-15"
+    },
+    "confidence": {
+      "score": 87,
+      "rationale": "Schedule slip and 31% volume share are deterministic; downstream Phase 3 compression risk is anchored to 4 prior contact-center migrations.",
+      "signals_used": ["Migration PMO Tracker", "SI Partner Status Reports"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T07:30:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-DIR-003",
+    "type": "budget_trajectory",
+    "title": "Q2 Overtime Budget Trajectory — Projected 138% by Quarter End",
+    "description": "Cross-team overtime spend is at 71% of Q2 budget with 10 weeks remaining. Current trajectory projects 138% of budget by quarter end. Top drivers: Priya's team (unplanned marketing-driven spikes) and mortgage servicing (3 experienced agents on extended leave).",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 2,
+    "sources": ["Finance System", "HR System", "Dynamics 365 Workforce Management"],
+    "timestamp": "2026-04-23T07:00:00Z",
+    "trend": "worsening",
+    "related_segment": "BUDGET-Q2",
+    "metrics": {
+      "budget_consumed_pct": "71%",
+      "weeks_remaining": 10,
+      "projected_end_pct": "138%",
+      "spend_to_date": "$287K",
+      "budget_total": "$412K"
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Spend-to-date is authoritative; quarter-end projection is a linear run-rate that has landed within ±5% on prior quarters.",
+      "signals_used": ["Finance System", "HR System"],
+      "threshold": 70,
+      "model_version": "exec-rollup-v1.6",
+      "validated_at": "2026-04-23T07:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

@@ -1,0 +1,104 @@
+{
+  "note": "Source-to-screen lineage for the executive figures. Every figure traces from the Symitar core through ETL and the warehouse to the board brief — the chain the CEO can show the board or an NCUA examiner.",
+  "figures": [
+    {
+      "id": "loan_to_share",
+      "label": "Loan-to-Share Ratio",
+      "value": "84%",
+      "confidence": 94,
+      "asOf": "Jun 30, 2026",
+      "source": "Symitar · General Ledger · MeridianLink",
+      "chain": [
+        { "stage": "Core", "system": "Symitar", "note": "Net loan balances, $1.29B" },
+        { "stage": "Source", "system": "General Ledger", "note": "Share balances, $1.54B" },
+        { "stage": "Source", "system": "MeridianLink", "note": "90-day pipeline, $312M" },
+        { "stage": "Warehouse", "system": "Greenplum on Tanzu", "note": "Reconciled to one governed ratio" },
+        { "stage": "Brief", "system": "Board Brief", "note": "84% · loan-to-share" }
+      ]
+    },
+    {
+      "id": "assets",
+      "label": "Total Assets",
+      "value": "$1.53B",
+      "confidence": 97,
+      "asOf": "Jun 30, 2026",
+      "source": "Symitar · General Ledger",
+      "chain": [
+        { "stage": "Core", "system": "Symitar", "note": "Member, deposit, and loan balances" },
+        { "stage": "Ledger", "system": "Thought Machine", "note": "Bridged during migration cutover" },
+        { "stage": "General Ledger", "system": "General Ledger", "note": "Aggregated balance sheet" },
+        { "stage": "Warehouse", "system": "Greenplum on Tanzu", "note": "Consolidated for reporting" },
+        { "stage": "Brief", "system": "Board Brief", "note": "$1.53B · +8.2% YoY" }
+      ]
+    },
+    {
+      "id": "members",
+      "label": "Members",
+      "value": "52,488",
+      "confidence": 96,
+      "asOf": "Jul 8, 2026",
+      "source": "Symitar · CRM",
+      "chain": [
+        { "stage": "Core", "system": "Symitar", "note": "System of record for membership" },
+        { "stage": "Source", "system": "CRM", "note": "Reconciled — no divergence" },
+        { "stage": "Warehouse", "system": "Greenplum on Tanzu", "note": "Geography and cohort roll-up" },
+        { "stage": "Brief", "system": "Board Brief", "note": "52,488 · +3.1% YTD" }
+      ]
+    },
+    {
+      "id": "net_worth",
+      "label": "Net Worth Ratio",
+      "value": "7.50%",
+      "confidence": 95,
+      "asOf": "Jun 30, 2026",
+      "source": "Call Report · General Ledger",
+      "chain": [
+        { "stage": "Source", "system": "General Ledger", "note": "Capital and net worth" },
+        { "stage": "Source", "system": "NCUA 5300 Call Report", "note": "Regulatory basis" },
+        { "stage": "Warehouse", "system": "Greenplum on Tanzu", "note": "Ratio computed" },
+        { "stage": "Brief", "system": "Board Brief", "note": "7.50% · well capitalized" }
+      ]
+    },
+    {
+      "id": "net_income",
+      "label": "Net Income, YTD",
+      "value": "$9.4M",
+      "confidence": 96,
+      "asOf": "Jun 30, 2026",
+      "source": "General Ledger",
+      "chain": [
+        { "stage": "Core", "system": "Symitar", "note": "Transaction-level activity" },
+        { "stage": "Ledger", "system": "Thought Machine", "note": "Posted during cutover" },
+        { "stage": "General Ledger", "system": "General Ledger", "note": "Income aggregation vs plan" },
+        { "stage": "Warehouse", "system": "Greenplum on Tanzu", "note": "Consolidated" },
+        { "stage": "Brief", "system": "Board Brief", "note": "$9.4M · +6.8% vs plan" }
+      ]
+    },
+    {
+      "id": "nps",
+      "label": "Member NPS",
+      "value": "71",
+      "confidence": 90,
+      "asOf": "Jul 1, 2026",
+      "source": "Voice of Member",
+      "chain": [
+        { "stage": "Source", "system": "Voice of Member", "note": "Survey responses" },
+        { "stage": "Warehouse", "system": "Greenplum on Tanzu", "note": "NPS computed" },
+        { "stage": "Brief", "system": "Board Brief", "note": "71 · member NPS" }
+      ]
+    },
+    {
+      "id": "data_trust",
+      "label": "Data Trust Score",
+      "value": "98%",
+      "confidence": 99,
+      "asOf": "Jul 8, 2026 · 6:04 AM ET",
+      "source": "Radiant Trust Layer",
+      "chain": [
+        { "stage": "Sources", "system": "All 6 connected sources", "note": "Loaded and reconciled overnight" },
+        { "stage": "Trust Layer", "system": "Radiant Trust Layer", "note": "Freshness + lineage validated" },
+        { "stage": "Brief", "system": "Board Brief", "note": "98% · validated 6:04 AM ET" }
+      ]
+    }
+  ]
+}

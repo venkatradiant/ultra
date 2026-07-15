@@ -1,0 +1,111 @@
+{
+  "overall_nps": 47,
+  "by_segment": [
+    {
+      "segment": "Military Retiree",
+      "current_nps": 39,
+      "previous_nps": 52,
+      "trend": "declining",
+      "change": -13,
+      "period": "6 weeks",
+      "sample_size": 482,
+      "top_detractor_themes": [
+        "CD rate transparency",
+        "Rate communication at maturity",
+        "Feeling undervalued as long-term member"
+      ]
+    },
+    {
+      "segment": "Active Multi-Product",
+      "current_nps": 58,
+      "previous_nps": 56,
+      "trend": "stable",
+      "change": 2,
+      "period": "6 weeks",
+      "sample_size": 1247,
+      "top_detractor_themes": [
+        "Mobile app speed",
+        "Wait times"
+      ]
+    },
+    {
+      "segment": "First-Time Mortgage Applicant",
+      "current_nps": 31,
+      "previous_nps": 44,
+      "trend": "declining",
+      "change": -13,
+      "period": "6 weeks",
+      "sample_size": 389,
+      "top_detractor_themes": [
+        "Document upload failures",
+        "Application process friction",
+        "Lack of status updates"
+      ]
+    },
+    {
+      "segment": "Young Professional",
+      "current_nps": 52,
+      "previous_nps": 50,
+      "trend": "stable",
+      "change": 2,
+      "period": "6 weeks",
+      "sample_size": 834,
+      "top_detractor_themes": [
+        "Limited budgeting tools",
+        "No Zelle integration"
+      ]
+    },
+    {
+      "segment": "Low Engagement",
+      "current_nps": 22,
+      "previous_nps": 28,
+      "trend": "declining",
+      "change": -6,
+      "period": "6 weeks",
+      "sample_size": 201,
+      "top_detractor_themes": [
+        "Don't see value",
+        "Rarely use services",
+        "Better rates elsewhere"
+      ]
+    },
+    {
+      "segment": "Digital-First",
+      "current_nps": 61,
+      "previous_nps": 59,
+      "trend": "improving",
+      "change": 2,
+      "period": "6 weeks",
+      "sample_size": 612,
+      "top_detractor_themes": [
+        "Feature parity with fintech apps"
+      ]
+    }
+  ],
+  "monthly_trend": [
+    {
+      "month": "2025-10",
+      "nps": 52
+    },
+    {
+      "month": "2025-11",
+      "nps": 51
+    },
+    {
+      "month": "2025-12",
+      "nps": 49
+    },
+    {
+      "month": "2026-01",
+      "nps": 48
+    },
+    {
+      "month": "2026-02",
+      "nps": 47
+    },
+    {
+      "month": "2026-03",
+      "nps": 44
+    }
+  ]
+}

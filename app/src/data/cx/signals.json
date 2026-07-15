@@ -1,0 +1,56 @@
+[
+  {
+    "id": "SIG-CX-001",
+    "type": "cx_friction",
+    "title": "Digital-to-Branch Channel Switch Spike — 47% Increase",
+    "description": "312 members switched from digital to branch mid-journey this week, up 47% from last week. Concentrated in mortgage and auto loan applications.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 312,
+    "sources": ["Genesys Cloud", "Service Cloud"],
+    "timestamp": "2026-04-07T06:00:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-CX-001",
+    "metrics": {
+      "switch_rate_increase": "47%",
+      "primary_journey": "Mortgage Application",
+      "avg_csat_after_switch": 2.9
+    }
+  },
+  {
+    "id": "SIG-CX-002",
+    "type": "cx_friction",
+    "title": "Mortgage Journey Abandonment — CSAT Dropped to 2.8",
+    "description": "423 members abandoned the mortgage application journey at document upload. Post-interaction CSAT for this touchpoint fell from 3.6 to 2.8 in 5 days.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 423,
+    "sources": ["Salesforce Data Cloud", "Genesys Cloud"],
+    "timestamp": "2026-04-07T05:30:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-CX-002",
+    "metrics": {
+      "csat_drop": "0.8 points",
+      "abandonment_step": "Document Upload",
+      "affected_this_week": 423
+    }
+  },
+  {
+    "id": "SIG-CX-003",
+    "type": "cx_friction",
+    "title": "IVR Escalation Queue 3x Normal Volume",
+    "description": "267 members escalated from IVR to live agent this week — 3x normal volume. Top reason: unable to resolve CD rate inquiry via self-service.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 267,
+    "sources": ["Genesys Cloud", "Service Cloud"],
+    "timestamp": "2026-04-07T06:15:00Z",
+    "trend": "emerging",
+    "related_segment": "SEG-CX-003",
+    "metrics": {
+      "escalation_multiplier": "3x",
+      "top_reason": "CD rate inquiry",
+      "avg_wait_time_seconds": 342
+    }
+  }
+]

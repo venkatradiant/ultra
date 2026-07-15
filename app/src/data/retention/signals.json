@@ -1,0 +1,56 @@
+[
+  {
+    "id": "SIG-RET-001",
+    "type": "churn_alert",
+    "title": "Churn Risk Surge — 312 Members Crossed 70% Threshold",
+    "description": "312 members crossed the 70% churn probability threshold this week, up from 198 last week. Concentrated in military retiree and single-product segments.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 312,
+    "sources": ["Salesforce Einstein", "Salesforce Data Cloud"],
+    "timestamp": "2026-04-07T06:00:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-RET-001",
+    "metrics": {
+      "threshold_crossed": "70%",
+      "week_over_week_increase": "+58%",
+      "avg_churn_probability": 0.76
+    }
+  },
+  {
+    "id": "SIG-RET-002",
+    "type": "engagement_decay",
+    "title": "Digital Engagement Decay — 1,243 Members No Login 90+ Days",
+    "description": "1,243 members have not logged into any digital channel in 90+ days. This cohort grew 14% in the last month. 62% are single-product holders.",
+    "impact": "high",
+    "severity": "warning",
+    "affected_count": 1243,
+    "sources": ["Salesforce Data Cloud", "Snowflake"],
+    "timestamp": "2026-04-07T05:45:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-RET-002",
+    "metrics": {
+      "no_login_days": "90+",
+      "monthly_growth": "+14%",
+      "single_product_pct": "62%"
+    }
+  },
+  {
+    "id": "SIG-RET-003",
+    "type": "nps_decline",
+    "title": "Military Retiree NPS Dropped 13 Points",
+    "description": "Military retiree segment NPS fell from 52 to 39 over 6 months. Top detractor theme: CD rate transparency and loyalty recognition. This segment holds $31.6M in CD balances.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 214,
+    "sources": ["Genesys Cloud", "Salesforce Data Cloud"],
+    "timestamp": "2026-04-07T06:10:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-RET-003",
+    "metrics": {
+      "nps_decline": "13 points",
+      "current_nps": 39,
+      "cd_balances_at_risk": "$31.6M"
+    }
+  }
+]

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ds-sup-01",
+    "name": "Dynamics 365 Contact Center",
+    "status": "connected",
+    "description": "Primary CCaaS platform: real-time queue metrics, agent state, interaction volumes, sentiment analysis, quality evaluations, and routing engine. Migrating from Genesys — currently covers General Banking and Onboarding queues fully.",
+    "icon": "database",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 3870000
+  },
+  {
+    "id": "ds-sup-02",
+    "name": "Marketing Cloud",
+    "status": "connected",
+    "description": "Campaign management and email delivery data. Cross-referenced with queue spikes to detect promotion-driven volume surges that Dynamics 365 cannot correlate natively.",
+    "icon": "monitor",
+    "lastSync": "2026-04-23T07:15:00",
+    "recordCount": 2100000
+  },
+  {
+    "id": "ds-sup-03",
+    "name": "HR / Workforce Management",
+    "status": "connected",
+    "description": "Agent schedules, PTO requests, shift assignments, overtime history, and agent skill certifications. Feeds force-to-load modeling and staffing gap detection.",
+    "icon": "users",
+    "lastSync": "2026-04-23T06:00:00",
+    "recordCount": 8400
+  },
+  {
+    "id": "ds-sup-04",
+    "name": "Genesys (Legacy — Migration Bridge)",
+    "status": "connected",
+    "description": "On-premise legacy CCaaS platform in active migration to Dynamics 365. Provides historical call patterns, abandonment data for blended metrics, and coverage for Mortgage Servicing and Escalations queues (Phase 3–4 migration).",
+    "icon": "headphones",
+    "lastSync": "2026-04-23T08:50:00",
+    "recordCount": 5600000
+  },
+  {
+    "id": "ds-sup-05",
+    "name": "IT Incident Management",
+    "status": "connected",
+    "description": "IT incident logs, outage records, and system health events. Cross-referenced with sentiment trends and queue spikes to identify technology-driven service degradation — a key cross-platform insight unavailable within Dynamics 365 alone.",
+    "icon": "shield",
+    "lastSync": "2026-04-23T08:00:00",
+    "recordCount": 14200
+  },
+  {
+    "id": "ds-sup-06",
+    "name": "Dynamics 365 Quality Management",
+    "status": "connected",
+    "description": "Quality evaluation agent outputs, agent performance scores, process adherence data, and coaching records. Powers CSAT correlation and top-performer identification.",
+    "icon": "brain",
+    "lastSync": "2026-04-23T06:30:00",
+    "recordCount": 890000
+  },
+  {
+    "id": "ds-sup-07",
+    "name": "Microsoft Fabric",
+    "status": "connected",
+    "description": "Tenant-specific unified data analytics platform fed by CCAS. Hosts the historical data lake, Power BI foundation, and AI/ML model registry. Radiant intelligence layer queries Fabric for enriched cross-source correlation.",
+    "icon": "database",
+    "lastSync": "2026-05-12T14:25:00",
+    "recordCount": 12400000
+  },
+  {
+    "id": "ds-sup-08",
+    "name": "Variant WFM / Call Recording",
+    "status": "connected",
+    "description": "Workforce management schedules, force-to-load ratios, agent shift state, call recording metadata, and call reason codes (first/second reason). Critical for correlating staffing state with queue performance during incidents.",
+    "icon": "cog",
+    "lastSync": "2026-05-12T14:30:00",
+    "recordCount": 1100000
+  },
+  {
+    "id": "ds-sup-09",
+    "name": "Voice Bio System",
+    "status": "connected",
+    "description": "Voice authentication enrollment, biometric match confidence, fraud detection flags. Feeds the agent authentication-mode indicator and fallback verification triggers when PinDrop degrades.",
+    "icon": "brain",
+    "lastSync": "2026-05-12T14:28:00",
+    "recordCount": 890000
+  },
+  {
+    "id": "ds-sup-10",
+    "name": "PinDrop",
+    "status": "connected",
+    "description": "Call authentication scoring, spoofing detection, ANI reputation, carrier intelligence, geo-risk signals. Critical for identifying security posture changes during SIP path degradation.",
+    "icon": "shield",
+    "lastSync": "2026-05-12T14:30:00",
+    "recordCount": 2300000
+  },
+  {
+    "id": "ds-sup-11",
+    "name": "Carrier Intelligence",
+    "status": "connected",
+    "description": "SIP path health, carrier status feeds, fiber/circuit incident reports, and estimated recovery timelines. Enables root-cause identification for infrastructure-driven service degradation.",
+    "icon": "monitor",
+    "lastSync": "2026-05-12T14:27:00",
+    "recordCount": 45000
+  },
+  {
+    "id": "ds-sup-12",
+    "name": "Dynamics 365 IVR / Self-Service",
+    "status": "connected",
+    "description": "Real-time intent capture, self-service completion rates by intent, containment metrics, transfer-out reason codes. Feeds top-intent indicators across all dashboard tiers and powers the IVR template hot-swap path.",
+    "icon": "message-circle",
+    "lastSync": "2026-05-12T14:31:00",
+    "recordCount": 456000
+  }
+]

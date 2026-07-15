@@ -1,0 +1,47 @@
+[
+  {
+    "id": "ds-mem-01",
+    "name": "Core Banking",
+    "status": "connected",
+    "description": "Real-time balances, pending transactions, account flags, and posted history. Answers simple lookups directly and securely — no AI model involved and no account detail leaving Navy Federal's systems.",
+    "icon": "database",
+    "lastSync": "2026-07-01T08:00:00",
+    "recordCount": 1200000
+  },
+  {
+    "id": "ds-mem-02",
+    "name": "Payments Engine",
+    "status": "connected",
+    "description": "Scheduled and declined payments, early salary credits, hold states, and retry queues. Source of truth for why the June 27 auto loan payment declined and where the held funds sit.",
+    "icon": "cog",
+    "lastSync": "2026-07-01T07:45:00",
+    "recordCount": 340000
+  },
+  {
+    "id": "ds-mem-03",
+    "name": "Dynamics 365 Contact Center",
+    "status": "connected",
+    "description": "Knowledge and escalation layer behind the self-service assistant. Provides answer content and a seamless handoff to a live agent when a question needs one.",
+    "icon": "headphones",
+    "lastSync": "2026-07-01T08:00:00",
+    "recordCount": 1800000
+  },
+  {
+    "id": "ds-mem-04",
+    "name": "SOP/MOP Repository",
+    "status": "connected",
+    "description": "Navy Federal's deposit-handling standard and method procedures. Governs how early salary credits are matched to direct deposit routing — the rule that explains the held-funds exception in plain language.",
+    "icon": "shield",
+    "lastSync": "2026-06-30T22:00:00",
+    "recordCount": 12400
+  },
+  {
+    "id": "ds-mem-05",
+    "name": "CRM / Member Records",
+    "status": "connected",
+    "description": "Member profile, product holdings, and interaction history. Links the self-service conversation to the member's broader relationship and prior contacts.",
+    "icon": "users",
+    "lastSync": "2026-07-01T06:30:00",
+    "recordCount": 1200000
+  }
+]

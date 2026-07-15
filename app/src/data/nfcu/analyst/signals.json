@@ -1,0 +1,90 @@
+[
+  {
+    "id": "SIG-NFCU-ANA-001",
+    "type": "volume_surge",
+    "title": "Tax Season Volume Surge — 45% Increase Predicted, 6 Days Out",
+    "description": "Historical 3-year pattern predicts 45% call volume increase starting April 10. Peak impact April 12–17 across general banking and mortgage servicing queues. Current staffing plan covers only 28% of the projected increase — a 22-agent gap at peak hours. 6 days until impact.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 22,
+    "sources": ["Dynamics 365 Historical Analytics", "Snowflake", "Dynamics 365 WFM"],
+    "timestamp": "2026-04-23T06:00:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-ANA-001",
+    "metrics": {
+      "volume_increase_predicted": "45%",
+      "coverage_gap": "17 points",
+      "agents_needed_peak": 70,
+      "agents_scheduled_peak": 48,
+      "days_until_impact": 6
+    },
+    "confidence": {
+      "score": 90,
+      "rationale": "Three-year tax-season pattern is highly stable (±4% YoY). Coverage-gap math is deterministic from authoritative WFM schedule.",
+      "signals_used": ["Dynamics 365 Historical Analytics (3yr)", "Snowflake", "Dynamics 365 WFM"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T06:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-ANA-002",
+    "type": "training_gap",
+    "title": "New Hire Ramp Falling Behind — AHT 14:30 vs. 9:00 Target at Week 6",
+    "description": "Current training cohort (12 agents, started March 1) is averaging 14:30 AHT vs. 9:00 target at the 6-week mark. Historical cohorts reached 9:00 by week 5. Knowledge base adherence is 62% vs. 85% benchmark — agents skip the guided resolution flow 38% of the time, going directly to supervisor escalation. Cohort may need 3 additional weeks before handling peak volume.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 12,
+    "sources": ["Dynamics 365 Quality Management", "Dynamics 365 Process Adherence", "Training System"],
+    "timestamp": "2026-04-23T06:15:00Z",
+    "trend": "stable",
+    "related_segment": "SEG-NFCU-ANA-002",
+    "metrics": {
+      "cohort_size": 12,
+      "current_aht": "14:30",
+      "target_aht": "9:00",
+      "kb_adherence": "62%",
+      "kb_benchmark": "85%",
+      "weeks_behind": 3
+    },
+    "confidence": {
+      "score": 87,
+      "rationale": "AHT and KB-adherence are direct telemetry; the 'needs 3 more weeks' projection is anchored to 8 prior cohort ramps with ±5-day variance.",
+      "signals_used": ["Dynamics 365 Quality Management", "Training System (8 prior cohorts)"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T06:15:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-ANA-003",
+    "type": "budget_risk",
+    "title": "Overtime Budget at 78% — Projected to Hit 140% by Quarter End",
+    "description": "Q2 overtime spend is at 78% of budget with 10 weeks remaining. Current trajectory projects 140% of budget by quarter end — a $26,000 overage. Top driver: unplanned PTO coverage in mortgage servicing. Hybrid scheduling approach (8 OT shifts + cross-trained agents) can stay within 96% of budget while meeting tax season demand.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 0,
+    "sources": ["HR System", "Dynamics 365 WFM", "Budget System"],
+    "timestamp": "2026-04-23T05:30:00Z",
+    "trend": "worsening",
+    "related_segment": "SEG-NFCU-ANA-003",
+    "metrics": {
+      "budget_used_pct": "78%",
+      "weeks_remaining": 10,
+      "projected_budget_pct": "140%",
+      "top_driver": "Unplanned PTO — Mortgage Servicing",
+      "q2_ot_hours_mtd": 342
+    },
+    "confidence": {
+      "score": 84,
+      "rationale": "MTD spend is authoritative; 140% projection assumes current burn-rate continues. Hybrid-scheduling 96% target has ±5 pp variance.",
+      "signals_used": ["HR System", "Dynamics 365 WFM", "Budget System"],
+      "threshold": 70,
+      "model_version": "forecast-tx-v2.4",
+      "validated_at": "2026-04-23T05:30:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

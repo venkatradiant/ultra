@@ -1,0 +1,166 @@
+{
+  "model": {
+    "name": "Executive Roll-up Model",
+    "version": "exec-rollup-v1.6",
+    "domain": "Cross-team weighted aggregator + migration-risk model",
+    "owner": "Marcus Tillman",
+    "last_validated": "2026-04-23T09:00:01Z"
+  },
+  "accuracy": {
+    "score_24h": 91.8,
+    "delta_7d_pp": -0.4,
+    "target": 90.0,
+    "note": "Weighted across all four NFCU domain models.",
+    "spark_24h": [92.0, 91.9, 91.7, 91.8, 91.9, 92.0, 92.1, 92.0, 91.9, 91.8, 91.7, 91.8, 91.9, 91.8, 91.7, 91.8, 91.9, 92.0, 91.9, 91.8, 91.8, 91.9, 91.8, 91.8]
+  },
+  "confidence_distribution": {
+    "buckets": { "high": 67, "mid": 26, "low": 7 },
+    "total_turns_7d": 692
+  },
+  "drift": {
+    "score": 0.22,
+    "status": "watch",
+    "baseline": "Aggregate baseline across 4 domain models",
+    "delta_7d": 0.05,
+    "note": "Driven by Derek's forecaster (forecast-tx-v2.4 drift 0.31). Other 3 domains stable."
+  },
+  "bias_checks": [
+    { "dimension": "Aggregate tenure", "status": "pass", "delta_pp": 0.8 },
+    { "dimension": "Aggregate channel", "status": "pass", "delta_pp": 1.0 },
+    { "dimension": "Aggregate language / day-of-week / geography", "status": "warn", "delta_pp": 5.2, "note": "Surfaced from Janelle (language) and Derek (day-of-week) — open mitigation" }
+  ],
+  "escalation_rate": {
+    "rate_pct_24h": 4.2,
+    "target_pct": 5.0,
+    "events_24h": 8
+  },
+  "reviewer": {
+    "name": "SI Partner Account Lead",
+    "role": "Genesys-to-Dynamics Migration Partner",
+    "sla": "Acknowledges within 4 hrs · Resolves within 72 hrs (vendor SLA)",
+    "queue": "Vendor Escalation Queue",
+    "coverage": "Mon–Fri 9 AM–6 PM ET · Backup: VP of Operations"
+  },
+  "accuracy_timeline_14d": [
+    { "day": "Apr 10", "accuracy": 92.4, "avg_confidence": 87 },
+    { "day": "Apr 11", "accuracy": 92.3, "avg_confidence": 87 },
+    { "day": "Apr 12", "accuracy": 92.2, "avg_confidence": 87 },
+    { "day": "Apr 13", "accuracy": 92.1, "avg_confidence": 86 },
+    { "day": "Apr 14", "accuracy": 92.0, "avg_confidence": 86 },
+    { "day": "Apr 15", "accuracy": 92.2, "avg_confidence": 87 },
+    { "day": "Apr 16", "accuracy": 92.1, "avg_confidence": 86 },
+    { "day": "Apr 17", "accuracy": 92.0, "avg_confidence": 86 },
+    { "day": "Apr 18", "accuracy": 91.9, "avg_confidence": 85 },
+    { "day": "Apr 19", "accuracy": 91.8, "avg_confidence": 85 },
+    { "day": "Apr 20", "accuracy": 91.9, "avg_confidence": 86 },
+    { "day": "Apr 21", "accuracy": 91.8, "avg_confidence": 85 },
+    { "day": "Apr 22", "accuracy": 91.7, "avg_confidence": 85 },
+    { "day": "Apr 23", "accuracy": 91.8, "avg_confidence": 86 }
+  ],
+  "audit_trail": [
+    {
+      "auditId": "AUD-NFCU-2026-04-23-035",
+      "timestamp": "2026-04-23T10:22:54Z",
+      "persona": "nfcu_director",
+      "personaName": "Marcus Tillman",
+      "flowKey": "nfcu_dir_phase3_compression_risk",
+      "score": 63,
+      "threshold": 70,
+      "reason": "Phase 3 compression scenario — vendor capacity assumption unverified for compressed timeline.",
+      "route_to": "SI Partner Account Lead",
+      "review_queue": "Vendor Escalation Queue",
+      "kind": "auto-escalation",
+      "model_version": "exec-rollup-v1.6"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-23-014",
+      "timestamp": "2026-04-23T09:42:11Z",
+      "persona": "nfcu_supervisor",
+      "personaName": "Priya Kapoor",
+      "flowKey": "nfcu_sup_recovery_t3_drop",
+      "score": 58,
+      "threshold": 70,
+      "reason": "Sibling recommendation re-evaluated after evening volume taper; historical density too low.",
+      "route_to": "Marcus Tillman (Director, Contact Center Operations)",
+      "review_queue": "Dynamics 365 Supervisor Queue",
+      "kind": "auto-escalation",
+      "outcome": "Override + reweighting completed at 09:51 — corrected recommendation 88% confidence.",
+      "model_version": "wfm-rec-v3.2"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-23-021",
+      "timestamp": "2026-04-23T09:01:18Z",
+      "persona": "nfcu_workforce",
+      "personaName": "Janelle Moreau",
+      "flowKey": "nfcu_wf_cost_impact",
+      "score": 66,
+      "threshold": 70,
+      "reason": "Cost model uses partial Q1 data.",
+      "route_to": "Finance Partner",
+      "review_queue": "Finance Cost-Model Review Queue",
+      "kind": "auto-escalation",
+      "outcome": "Resolved — 84% after refreshed Q1 inputs.",
+      "model_version": "qa-classifier-v4.0"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-23-018",
+      "timestamp": "2026-04-23T09:01:14Z",
+      "persona": "nfcu_analyst",
+      "personaName": "Derek Whitfield",
+      "flowKey": "nfcu_ana_fourth_scenario",
+      "score": 64,
+      "threshold": 70,
+      "reason": "Scenario beyond modeled volume range.",
+      "route_to": "Workforce Planning Lead",
+      "review_queue": "Dynamics 365 Workforce Planning Queue",
+      "kind": "auto-escalation",
+      "outcome": "Resolved — 86% with FY24 vendor anchor.",
+      "model_version": "forecast-tx-v2.4"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-23-024",
+      "timestamp": "2026-04-23T09:01:22Z",
+      "persona": "nfcu_director",
+      "personaName": "Marcus Tillman",
+      "flowKey": "nfcu_dir_deadline_impact",
+      "score": 61,
+      "threshold": 70,
+      "reason": "May 15 SI partner ETA unconfirmed; FY26 license-renewal terms unmodeled.",
+      "route_to": "SI Partner Account Lead",
+      "review_queue": "Vendor Escalation Queue",
+      "kind": "auto-escalation",
+      "outcome": "Resolved — 87% after SI confirmation + FY26 license terms validated.",
+      "model_version": "exec-rollup-v1.6"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-22-009",
+      "timestamp": "2026-04-22T15:18:00Z",
+      "persona": "nfcu_supervisor",
+      "personaName": "Priya Kapoor",
+      "flowKey": "nfcu_sup_no_accept_plan",
+      "score": 58,
+      "threshold": 70,
+      "reason": "No recent comparable in last 18 months for secondary-coverage scenario.",
+      "route_to": "Marcus Tillman (Director, Contact Center Operations)",
+      "review_queue": "Dynamics 365 Supervisor Queue",
+      "kind": "auto-escalation",
+      "outcome": "Marcus authorized flexible-slot offers; coverage confirmed by EOD.",
+      "model_version": "wfm-rec-v3.2"
+    },
+    {
+      "auditId": "AUD-NFCU-2026-04-19-001",
+      "timestamp": "2026-04-19T08:00:00Z",
+      "persona": "nfcu_director",
+      "personaName": "Marcus Tillman",
+      "flowKey": "weekly-validation",
+      "score": 100,
+      "threshold": 70,
+      "reason": "Scheduled aggregate validation across all 4 domain models.",
+      "route_to": "Quality Assurance",
+      "review_queue": "QA Queue",
+      "kind": "scheduled-validation",
+      "outcome": "Pass — drift watch logged on forecast-tx-v2.4.",
+      "model_version": "exec-rollup-v1.6"
+    }
+  ]
+}

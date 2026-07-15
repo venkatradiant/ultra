@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ds-ana-01",
+    "name": "Dynamics 365 WFM",
+    "status": "connected",
+    "description": "Primary workforce management module: real-time force-to-load ratios, schedule adherence, agent availability, shift coverage, and 6-week forecast modeling by 15-minute interval.",
+    "icon": "users",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 8400
+  },
+  {
+    "id": "ds-ana-02",
+    "name": "Dynamics 365 Historical Analytics",
+    "status": "connected",
+    "description": "Multi-year call volume history, seasonal pattern modeling, forecast accuracy tracking, and workforce trend analysis. Provides the 3-year tax season baseline data.",
+    "icon": "database",
+    "lastSync": "2026-04-23T05:30:00",
+    "recordCount": 5600000
+  },
+  {
+    "id": "ds-ana-03",
+    "name": "Snowflake Data Warehouse",
+    "status": "connected",
+    "description": "Deep historical data lake for long-range forecasting. Stores 5+ years of call volume, handle time, and staffing actuals. Powers the multi-year overlay forecasts.",
+    "icon": "database",
+    "lastSync": "2026-04-23T05:00:00",
+    "recordCount": 12400000
+  },
+  {
+    "id": "ds-ana-04",
+    "name": "HR System",
+    "status": "connected",
+    "description": "Agent headcount, attrition records, new hire onboarding status, overtime approvals, PTO tracking, and payroll cost data. Source of truth for budget impact modeling.",
+    "icon": "users",
+    "lastSync": "2026-04-23T06:00:00",
+    "recordCount": 8400
+  },
+  {
+    "id": "ds-ana-05",
+    "name": "Dynamics 365 Quality Management",
+    "status": "connected",
+    "description": "Agent quality scores, knowledge base adherence rates, process adherence reports, and new hire ramp tracking. Used to assess when the training cohort is ready for peak deployment.",
+    "icon": "brain",
+    "lastSync": "2026-04-23T06:30:00",
+    "recordCount": 890000
+  },
+  {
+    "id": "ds-ana-06",
+    "name": "Marketing Cloud",
+    "status": "connected",
+    "description": "Campaign calendar and promotion schedule. Cross-referenced with volume forecasts to predict campaign-driven spikes before they impact staffing — preventing the advance-notice gap that caused the auto loan spike.",
+    "icon": "monitor",
+    "lastSync": "2026-04-23T07:00:00",
+    "recordCount": 2100000
+  },
+  {
+    "id": "ds-ana-07",
+    "name": "Microsoft Fabric",
+    "status": "connected",
+    "description": "Tenant-specific unified data analytics platform fed by CCAS. Hosts the historical data lake, Power BI foundation, and AI/ML model registry. Radiant intelligence layer queries Fabric for enriched cross-source correlation.",
+    "icon": "database",
+    "lastSync": "2026-05-12T14:25:00",
+    "recordCount": 12400000
+  },
+  {
+    "id": "ds-ana-08",
+    "name": "Variant WFM / Call Recording",
+    "status": "connected",
+    "description": "Workforce management schedules, force-to-load ratios, agent shift state, call recording metadata, and call reason codes (first/second reason). Critical for correlating staffing state with queue performance during incidents.",
+    "icon": "cog",
+    "lastSync": "2026-05-12T14:30:00",
+    "recordCount": 1100000
+  },
+  {
+    "id": "ds-ana-09",
+    "name": "Voice Bio System",
+    "status": "connected",
+    "description": "Voice authentication enrollment, biometric match confidence, fraud detection flags. Feeds the agent authentication-mode indicator and fallback verification triggers when PinDrop degrades.",
+    "icon": "brain",
+    "lastSync": "2026-05-12T14:28:00",
+    "recordCount": 890000
+  },
+  {
+    "id": "ds-ana-10",
+    "name": "PinDrop",
+    "status": "connected",
+    "description": "Call authentication scoring, spoofing detection, ANI reputation, carrier intelligence, geo-risk signals. Critical for identifying security posture changes during SIP path degradation.",
+    "icon": "shield",
+    "lastSync": "2026-05-12T14:30:00",
+    "recordCount": 2300000
+  },
+  {
+    "id": "ds-ana-11",
+    "name": "Carrier Intelligence",
+    "status": "connected",
+    "description": "SIP path health, carrier status feeds, fiber/circuit incident reports, and estimated recovery timelines. Enables root-cause identification for infrastructure-driven service degradation.",
+    "icon": "monitor",
+    "lastSync": "2026-05-12T14:27:00",
+    "recordCount": 45000
+  },
+  {
+    "id": "ds-ana-12",
+    "name": "Dynamics 365 IVR / Self-Service",
+    "status": "connected",
+    "description": "Real-time intent capture, self-service completion rates by intent, containment metrics, transfer-out reason codes. Feeds top-intent indicators across all dashboard tiers and powers the IVR template hot-swap path.",
+    "icon": "message-circle",
+    "lastSync": "2026-05-12T14:31:00",
+    "recordCount": 456000
+  }
+]

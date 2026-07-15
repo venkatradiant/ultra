@@ -1,0 +1,31 @@
+{
+  "summary": {
+    "total_switches_this_week": 312,
+    "week_over_week_change": "+47%",
+    "top_journey": "Mortgage Application",
+    "peak_switch_day": "2026-04-03"
+  },
+  "by_journey_stage": [
+    { "stage": "Pre-Qualification", "digital_starts": 1240, "switches": 18, "switch_rate": 1.5 },
+    { "stage": "Product Selection", "digital_starts": 1180, "switches": 31, "switch_rate": 2.6 },
+    { "stage": "Personal Info", "digital_starts": 1090, "switches": 42, "switch_rate": 3.9 },
+    { "stage": "Document Upload", "digital_starts": 980, "switches": 134, "switch_rate": 13.7 },
+    { "stage": "Income Verification", "digital_starts": 720, "switches": 62, "switch_rate": 8.6 },
+    { "stage": "Credit Review", "digital_starts": 610, "switches": 17, "switch_rate": 2.8 },
+    { "stage": "Closing", "digital_starts": 580, "switches": 8, "switch_rate": 1.4 }
+  ],
+  "by_channel_from": [
+    { "channel": "Mobile App", "count": 198, "pct": 63 },
+    { "channel": "Desktop Web", "count": 87, "pct": 28 },
+    { "channel": "IVR to Branch", "count": 27, "pct": 9 }
+  ],
+  "daily_trend": [
+    { "date": "2026-04-01", "switches": 32 },
+    { "date": "2026-04-02", "switches": 38 },
+    { "date": "2026-04-03", "switches": 67 },
+    { "date": "2026-04-04", "switches": 54 },
+    { "date": "2026-04-05", "switches": 48 },
+    { "date": "2026-04-06", "switches": 41 },
+    { "date": "2026-04-07", "switches": 32 }
+  ]
+}

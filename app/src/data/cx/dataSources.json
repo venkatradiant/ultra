@@ -1,0 +1,7 @@
+[
+  {"id": "ds-cx-01", "name": "Genesys Cloud", "status": "connected", "description": "Contact center transcripts, IVR interactions, escalation logs, post-call surveys", "icon": "headphones", "lastSync": "2026-04-07T06:12:00", "recordCount": 892000},
+  {"id": "ds-cx-02", "name": "Service Cloud", "status": "connected", "description": "Case management, service recovery workflows, agent interactions, SLA tracking", "icon": "users", "lastSync": "2026-04-07T06:08:00", "recordCount": 567000},
+  {"id": "ds-cx-03", "name": "Salesforce Data Cloud", "status": "connected", "description": "Unified member journey data, behavioral profiles, cross-channel activity", "icon": "database", "lastSync": "2026-04-07T06:00:00", "recordCount": 2847000},
+  {"id": "ds-cx-04", "name": "Web & Mobile Analytics", "status": "connected", "description": "Session data, funnel drop-off, channel switch events, upload failure logs", "icon": "monitor", "lastSync": "2026-04-07T05:45:00", "recordCount": 3241000},
+  {"id": "ds-cx-05", "name": "Voice of Member / NPS", "status": "connected", "description": "Post-interaction CSAT surveys, NPS scores by journey and channel", "icon": "message-circle", "lastSync": "2026-04-07T06:05:00", "recordCount": 127000}
+]

@@ -1,0 +1,10 @@
+[
+  {"id": "ds-01", "name": "Salesforce Data Cloud", "status": "connected", "description": "Unified member behavioral and transactional records", "icon": "database", "lastSync": "2026-03-27T06:00:00", "recordCount": 2847000},
+  {"id": "ds-02", "name": "Salesforce AgentForce & Einstein", "status": "connected", "description": "Predictive models, churn scores, AI agent logs", "icon": "brain", "lastSync": "2026-03-27T05:45:00", "recordCount": 1243000},
+  {"id": "ds-03", "name": "Genesys Cloud", "status": "connected", "description": "Contact center transcripts, IVR drop-off data, post-call NPS surveys", "icon": "headphones", "lastSync": "2026-03-27T06:12:00", "recordCount": 892000},
+  {"id": "ds-04", "name": "UiPath", "status": "connected", "description": "RPA workflow logs, automation exceptions, process completion rates", "icon": "cog", "lastSync": "2026-03-27T06:08:00", "recordCount": 456000},
+  {"id": "ds-05", "name": "USSFCU Member CRM", "status": "connected", "description": "Product holdings, member segments, tenure and lifecycle data", "icon": "users", "lastSync": "2026-03-27T05:30:00", "recordCount": 1847000},
+  {"id": "ds-06", "name": "Web & Mobile Behavioral Analytics", "status": "partial", "description": "Session data, funnel drop-off, exit signals", "icon": "monitor", "lastSync": "2026-03-27T04:15:00", "recordCount": 3241000},
+  {"id": "ds-07", "name": "Voice of Member / NPS Surveys", "status": "connected", "description": "Post-interaction survey results, NPS scores by segment", "icon": "message-circle", "lastSync": "2026-03-27T06:05:00", "recordCount": 127000},
+  {"id": "ds-08", "name": "Fraud & Risk Signal Feed", "status": "connected", "description": "Transaction anomaly detection, BSA/AML pattern flags", "icon": "shield", "lastSync": "2026-03-27T06:14:00", "recordCount": 98000}
+]

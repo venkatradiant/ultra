@@ -1,0 +1,26 @@
+{
+  "overall": {
+    "score": 78,
+    "previous_score": 84,
+    "status": "amber",
+    "trend": "declining",
+    "next_exam_window": "Q3 2026",
+    "last_exam_date": "2025-09-15"
+  },
+  "categories": [
+    { "name": "BSA/AML Compliance", "score": 82, "previous": 86, "status": "amber", "trend": "declining", "key_finding": "SAR filing timeliness: 94% → 89%" },
+    { "name": "Capital Adequacy", "score": 91, "previous": 92, "status": "green", "trend": "stable", "key_finding": "Well-capitalized across all measures" },
+    { "name": "Consumer Complaint Resolution", "score": 64, "previous": 74, "status": "red", "trend": "declining", "key_finding": "Resolution time up 40%, CD complaints driving volume" },
+    { "name": "Cybersecurity", "score": 85, "previous": 84, "status": "green", "trend": "improving", "key_finding": "Incident response time improved 12%" },
+    { "name": "Fair Lending", "score": 79, "previous": 81, "status": "amber", "trend": "declining", "key_finding": "Mortgage approval rate disparity flagged for review" },
+    { "name": "Operational Risk", "score": 71, "previous": 78, "status": "amber", "trend": "declining", "key_finding": "UiPath automation exceptions increased 3x" }
+  ],
+  "open_findings": 7,
+  "closed_findings_ytd": 12,
+  "quarterly_trend": [
+    { "quarter": "Q2 2025", "score": 86 },
+    { "quarter": "Q3 2025", "score": 84 },
+    { "quarter": "Q4 2025", "score": 82 },
+    { "quarter": "Q1 2026", "score": 78 }
+  ]
+}

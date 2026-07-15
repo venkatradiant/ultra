@@ -1,0 +1,45 @@
+{
+  "waterfall": {
+    "title": "Allowance for Loan Losses: Three Sources to One Governed Number",
+    "governed_usd": 14490000,
+    "spread_usd": 460000,
+    "bars": [
+      { "label": "GL", "system": "General Ledger", "value_usd": 14620000, "type": "source", "note": "Board report source" },
+      { "label": "Thought Machine", "system": "Thought Machine Ledger", "value_usd": 14410000, "type": "source", "note": "2 charge-offs posted after GL extract" },
+      { "label": "Lending", "system": "Lending Origination", "value_usd": 14880000, "type": "source", "note": "Still counts 3 loans sold last week" },
+      { "label": "Governed", "system": "Radiant Lineage Map", "value_usd": 14490000, "type": "governed", "note": "Reconciled across all three" }
+    ]
+  },
+  "divergence": {
+    "title": "Portfolio Balance — CFO vs. Lending, Last 9 Months",
+    "unit": "usd_billions",
+    "series": [
+      { "month": "Oct", "cfo": 1.34, "lending": 1.34 },
+      { "month": "Nov", "cfo": 1.36, "lending": 1.34 },
+      { "month": "Dec", "cfo": 1.37, "lending": 1.35 },
+      { "month": "Jan", "cfo": 1.38, "lending": 1.37 },
+      { "month": "Feb", "cfo": 1.39, "lending": 1.37 },
+      { "month": "Mar", "cfo": 1.40, "lending": 1.38 },
+      { "month": "Apr", "cfo": 1.41, "lending": 1.39 },
+      { "month": "May", "cfo": 1.41, "lending": 1.40 },
+      { "month": "Jun", "cfo": 1.42, "lending": 1.40 }
+    ],
+    "drivers": [
+      "Lending counts funded-but-unbooked loans the GL has not yet posted",
+      "GL and origination refresh on different schedules"
+    ],
+    "recurrence": "7 of last 9 months",
+    "current_gap_pct": 1.4
+  },
+  "forecast": {
+    "title": "Audit Completion: Manual vs. Governed Lineage",
+    "manual_days": 31,
+    "governed_days": 12,
+    "reduction_pct": 61,
+    "recon_hours_before": 164,
+    "recon_hours_after": 38,
+    "recon_hours_reduction_pct": 77,
+    "traceability_before_pct": 53,
+    "traceability_after_pct": 100
+  }
+}
