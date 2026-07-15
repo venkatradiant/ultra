@@ -30,7 +30,7 @@ const chatFlowConfigSchema = z.object({
 export const personaManifestSchema = z.object({
   id: z.string().min(1),
   clientId: z.string().min(1),
-  domainId: z.string().min(1),
+  marketId: z.string().min(1),
   identity: identitySchema,
   capabilities: z.array(z.enum(CAPABILITIES)),
   flows: chatFlowConfigSchema,

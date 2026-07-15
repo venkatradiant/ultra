@@ -10,6 +10,7 @@ import AccuracyTimelinePanel from '../components/nfcu/governance/AccuracyTimelin
 import BiasCheckCard from '../components/nfcu/governance/BiasCheckCard';
 import AuditTrailFeed from '../components/nfcu/governance/AuditTrailFeed';
 import EscalationPolicyBar from '../components/nfcu/governance/EscalationPolicyBar';
+import PlatformAdminGovernance from '../components/nfcu/platform-admin/PlatformAdminGovernance';
 
 import supervisorGov from '../data/nfcu/supervisor/governance.json';
 import analystGov from '../data/nfcu/analyst/governance.json';
@@ -30,6 +31,12 @@ export default function Governance() {
   useEffect(() => {
     setData(GOVERNANCE_BY_PERSONA[persona.id]);
   }, [persona.id]);
+
+  // Platform Admin has its own governance surface (sovereignty routing, KAG
+  // provenance, tokenomics, observability) — distinct from the model-accuracy view.
+  if (persona.id === 'nfcu_platform_admin') {
+    return <PlatformAdminGovernance />;
+  }
 
   if (!data) {
     return (

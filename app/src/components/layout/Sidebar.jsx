@@ -19,20 +19,28 @@ export default function Sidebar({ open = false, onClose }) {
     ...manifest?.navLabels,
   };
   const isFocusedPersona = !!manifest?.features?.focusedNav;
+  const navSlots = manifest?.features?.navSlots;
 
-  const navItems = isFocusedPersona
-    ? [
-        { to: '/', icon: MessageSquare, label: 'Ask the AI' },
-        { to: '/data-sources', icon: Database, label: 'Data Sources' },
-      ]
+  // Every nav slot the app can render, keyed by NavKey. `navSlots` (an explicit
+  // ordered allow-list on the persona) selects and orders a subset of these.
+  const NAV_SLOTS = {
+    ask: { to: '/', icon: MessageSquare, label: 'Ask the AI' },
+    journey: { to: '/journey', icon: Route, label: labels.journey },
+    risk: { to: '/risk', icon: ShieldAlert, label: labels.risk },
+    governance: { to: '/governance', icon: Gauge, label: labels.governance },
+    dataSources: { to: '/data-sources', icon: Database, label: 'Data Sources' },
+  };
+
+  const navItems = Array.isArray(navSlots)
+    ? navSlots.map((k) => NAV_SLOTS[k]).filter(Boolean)
+    : isFocusedPersona
+    ? [NAV_SLOTS.ask, NAV_SLOTS.dataSources]
     : [
-        { to: '/', icon: MessageSquare, label: 'Ask the AI' },
-        { to: '/journey', icon: Route, label: labels.journey },
-        { to: '/risk', icon: ShieldAlert, label: labels.risk },
-        ...(labels.governance
-          ? [{ to: '/governance', icon: Gauge, label: labels.governance }]
-          : []),
-        { to: '/data-sources', icon: Database, label: 'Data Sources' },
+        NAV_SLOTS.ask,
+        NAV_SLOTS.journey,
+        NAV_SLOTS.risk,
+        ...(labels.governance ? [NAV_SLOTS.governance] : []),
+        NAV_SLOTS.dataSources,
       ];
 
   return (

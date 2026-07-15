@@ -1,11 +1,11 @@
 /**
- * AskTheAI — the /ask route. A thin router over the domain registry: it resolves
+ * AskTheAI — the /ask route. A thin router over the market registry: it resolves
  * the active persona from the session's client + the URL persona and renders the
  * generic, manifest-driven PersonaWorkspace.
  *
  * (Was a 1,276-line god-screen with ~40 static tenant imports and hand-maintained
  * per-persona registries; the North Star refactor moved all of that into
- * per-persona manifest modules under src/domains — see the plan.)
+ * per-persona manifest modules under src/markets — see the plan.)
  */
 
 import { usePersona } from '../context/PersonaContext';

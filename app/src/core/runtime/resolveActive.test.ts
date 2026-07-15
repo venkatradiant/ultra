@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import type { PersonaModule } from '../types';
 
-// Mock the domain registry so resolution is deterministic and independent of
+// Mock the market registry so resolution is deterministic and independent of
 // which tenants have been migrated.
 const persona = (id: string): PersonaModule => ({
   id,
@@ -9,8 +9,8 @@ const persona = (id: string): PersonaModule => ({
   load: async () => ({ default: {} as never }),
 });
 
-vi.mock('@domains', () => ({
-  domainRegistry: [
+vi.mock('@markets', () => ({
+  marketRegistry: [
     {
       id: 'financial-services',
       name: 'Financial Services',
@@ -18,7 +18,7 @@ vi.mock('@domains', () => ({
       clients: [
         {
           id: 'acme',
-          domainId: 'financial-services',
+          marketId: 'financial-services',
           branding: {} as never,
           defaultPersonaId: 'ops',
           personas: [persona('ops'), persona('cx')],
@@ -43,7 +43,7 @@ describe('resolveActive', () => {
     const r = resolveActive('acme', 'cx');
     expect(r?.persona.id).toBe('cx');
     expect(r?.client.id).toBe('acme');
-    expect(r?.domain.id).toBe('financial-services');
+    expect(r?.market.id).toBe('financial-services');
   });
 
   it('returns null for a requested-but-unregistered persona (defers to legacy)', () => {

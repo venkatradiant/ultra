@@ -1,29 +1,29 @@
 /**
- * Registry accessors — the runtime's read API over the domain registry.
+ * Registry accessors — the runtime's read API over the market registry.
  *
  * The app never imports a tenant module directly; it asks the registry. Client
- * ids are unique across domains, so client/persona lookups search all domains
- * (until the Domain axis becomes an explicit selection in Phase 6).
+ * ids are unique across markets, so client/persona lookups search all markets
+ * (until the Market axis becomes an explicit selection in Phase 6).
  */
 
-import { domainRegistry } from '@domains';
-import type { ClientManifest, DomainManifest, PersonaModule } from '../types';
+import { marketRegistry } from '@markets';
+import type { ClientManifest, MarketManifest, PersonaModule } from '../types';
 
-export function getDomains(): DomainManifest[] {
-  return domainRegistry;
+export function getMarkets(): MarketManifest[] {
+  return marketRegistry;
 }
 
-export function getDomain(domainId: string): DomainManifest | null {
-  return domainRegistry.find((d) => d.id === domainId) ?? null;
+export function getMarket(marketId: string): MarketManifest | null {
+  return marketRegistry.find((d) => d.id === marketId) ?? null;
 }
 
-/** Find a client (and its owning domain) by client id, across all domains. */
+/** Find a client (and its owning market) by client id, across all markets. */
 export function findClient(
   clientId: string,
-): { domain: DomainManifest; client: ClientManifest } | null {
-  for (const domain of domainRegistry) {
-    const client = domain.clients.find((c) => c.id === clientId);
-    if (client) return { domain, client };
+): { market: MarketManifest; client: ClientManifest } | null {
+  for (const market of marketRegistry) {
+    const client = market.clients.find((c) => c.id === clientId);
+    if (client) return { market, client };
   }
   return null;
 }

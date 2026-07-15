@@ -27,6 +27,13 @@ function DemoNavigateBridge() {
 function AppContent() {
   const { isAuthenticated } = useAuth();
 
+  // Default document title is "Ultra App" (the home/landing identity). Once a
+  // client is selected and the user enters the app, BrandingProvider overrides
+  // it with the client's name; on logout this resets it back to "Ultra App".
+  useEffect(() => {
+    if (!isAuthenticated) document.title = 'Ultra App';
+  }, [isAuthenticated]);
+
   // Admin access is ONLY granted when ?access=rdvr@9705 is present in the URL.
   // It is never stored — navigating without the param always shows Login.
   const [adminAccess] = useState(() => {

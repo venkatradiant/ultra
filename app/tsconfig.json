@@ -35,8 +35,8 @@
       "@core/*": ["src/core/*"],
       "@shared": ["src/shared"],
       "@shared/*": ["src/shared/*"],
-      "@domains": ["src/domains"],
-      "@domains/*": ["src/domains/*"],
+      "@markets": ["src/markets"],
+      "@markets/*": ["src/markets/*"],
       "@config": ["src/config"],
       "@config/*": ["src/config/*"]
     }

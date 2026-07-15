@@ -1,0 +1,81 @@
+[
+  {
+    "id": "SIG-NFCU-PA-001",
+    "type": "pii_routing_exception",
+    "title": "PII Routing Exception — Auto Loan Spike",
+    "description": "During this morning's auto loan spike (127 members waiting, service level at 54%), one agent response combined member financials with public rate data. The routing trace shows all PII fields stayed in the SLM. Flagged for confirmation before the incident is closed.",
+    "impact": "high",
+    "severity": "critical",
+    "affected_count": 1,
+    "sources": ["Routing log (Postgres)", "KAG (Neo4j)", "Agent observability log"],
+    "timestamp": "2026-04-23T08:47:00Z",
+    "trend": "stable",
+    "metrics": {
+      "pii_fields_routed_to_slm": 5,
+      "pii_leaks_to_llm": 0,
+      "members_waiting": 127,
+      "service_level": "54%"
+    },
+    "confidence": {
+      "score": 98,
+      "rationale": "Routing log and KAG tags agree on every field: 5 PII elements processed by the SLM, 0 reached the public LLM. Deterministic trace, no inference.",
+      "signals_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v1.0",
+      "validated_at": "2026-04-23T08:47:12Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-PA-002",
+    "type": "token_cost_anomaly",
+    "title": "Token Cost Anomaly — Mortgage Servicing",
+    "description": "LLM spend on the mortgage servicing persona is 41% above its 7-day average. Semantic cache hit rate dropped after a recent prompt change. Estimated overage of $180 this week if unaddressed.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 0,
+    "sources": ["LiteLLM gateway", "LiteLLM cost records (Postgres)"],
+    "timestamp": "2026-04-23T07:30:00Z",
+    "trend": "worsening",
+    "metrics": {
+      "llm_spend_vs_avg": "+41%",
+      "cache_hit_rate": "63%",
+      "estimated_overage": "$180"
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Spend delta and cache-hit drop are direct gateway telemetry; the $180 projection extrapolates the current 7-day trajectory with ±15% variance.",
+      "signals_used": ["LiteLLM gateway", "LiteLLM cost records (Postgres)"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v1.0",
+      "validated_at": "2026-04-23T07:30:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-NFCU-PA-003",
+    "type": "unexplained_agent_action",
+    "title": "Unexplained Agent Action — Quality Workflow",
+    "description": "An agent on the quality workflow returned an insight with no policy citation attached. The observability panel is missing the chain-of-thought record for one turn. Needs a logging check.",
+    "impact": "medium",
+    "severity": "warning",
+    "affected_count": 1,
+    "sources": ["Agent observability log", "Per-turn logging table"],
+    "timestamp": "2026-04-23T06:52:00Z",
+    "trend": "stable",
+    "metrics": {
+      "actions_with_policy_citation": "96%",
+      "missing_citations": 1,
+      "turn_id": "OBS-NFCU-2026-04-23-0091"
+    },
+    "confidence": {
+      "score": 82,
+      "rationale": "Citation coverage is a direct count from the observability log; the single gap is confirmed present but the root cause (render vs. logging) requires the chain-of-thought check.",
+      "signals_used": ["Agent observability log", "Per-turn logging table"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v1.0",
+      "validated_at": "2026-04-23T06:52:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

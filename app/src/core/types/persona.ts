@@ -37,6 +37,13 @@ export interface PersonaFeatures {
    * nav pages don't apply, so the sidebar shows only Ask the AI + Data Sources.
    */
   focusedNav?: boolean;
+  /**
+   * Explicit ordered allow-list of sidebar nav slots for this persona (e.g. the
+   * Platform Admin shows only Ask · Governance · Data Sources). When set, the
+   * sidebar builds nav from exactly these keys; overrides the default slot set
+   * and `focusedNav`. Labels still resolve via navLabels/client defaults.
+   */
+  navSlots?: NavKey[];
 }
 
 /** A KPI tile shown in the persona's data-overview row. */
@@ -87,7 +94,7 @@ export type InlineComponentFactory = (
 export interface PersonaManifest {
   id: string;
   clientId: string;
-  domainId: string;
+  marketId: string;
 
   identity: PersonaIdentity;
   capabilities: CapabilityId[];

@@ -147,7 +147,21 @@ export default function CapabilityCalloutModal({ isOpen, onClose, capability, ca
                   >
                     {DiagramComponent ? (
                       <DiagramComponent />
-                    ) : null}
+                    ) : (
+                      // Capabilities without a bespoke architecture diagram (e.g. the
+                      // governance capabilities) fall back to a readable description.
+                      <div className="h-full flex items-center justify-center p-8">
+                        <div className="max-w-xl text-center">
+                          {activeCapability.eyebrow && (
+                            <p className="text-[11px] font-bold uppercase tracking-[2px] text-brand/70 mb-3">
+                              {activeCapability.eyebrow}
+                            </p>
+                          )}
+                          <h2 className="text-2xl font-bold text-text mb-4">{activeCapability.capabilityName}</h2>
+                          <p className="text-sm text-text-muted leading-relaxed">{activeCapability.description}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               </AnimatePresence>

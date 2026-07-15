@@ -20,7 +20,7 @@ export interface ClientBranding {
 
 export interface ClientManifest {
   id: string;
-  domainId: string;
+  marketId: string;
   branding: ClientBranding;
   /** Personas this client exposes, in display order. */
   personas: PersonaModule[];
@@ -28,7 +28,7 @@ export interface ClientManifest {
   defaultPersonaId: string;
   /**
    * Optional per-client brand theme (colors, fonts, chart palette, dark variant).
-   * Overrides the domain theme; `branding.primaryColor` seeds the brand if omitted.
+   * Overrides the market theme; `branding.primaryColor` seeds the brand if omitted.
    */
   theme?: BrandTheme;
 }

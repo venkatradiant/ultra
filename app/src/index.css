@@ -9,9 +9,7 @@
    so utilities exist (bg-brand, text-muted, border-border, bg-success-subtle,
    text-chart-1 …). The ThemeProvider overrides `--color-brand` / fonts / chart
    palette per active client at runtime; the derived shades (via color-mix)
-   recompute automatically. Dark mode overrides the surface/text/state tokens
-   under [data-theme="dark"] — components never need `dark:` classes because
-   they only ever reference tokens.
+   recompute automatically.
    ════════════════════════════════════════════════════════════════════ */
 @theme {
   /* ── Brand (overridden per client at runtime) ───────────────────── */
@@ -80,26 +78,6 @@
   --dur-fast: 150ms;
   --dur-base: 250ms;
   --dur-slow: 400ms;
-}
-
-/* ── Dark theme — overrides surface/text/state; brand set by provider ── */
-[data-theme="dark"] {
-  --color-bg: #0b1220;
-  --color-surface: #141d31;
-  --color-surface-2: #1b2740;
-  --color-border: #26324c;
-  --color-border-subtle: #1b2740;
-  --color-overlay: rgba(0, 0, 0, 0.6);
-
-  --color-text: #f3f4f6;
-  --color-text-muted: #9aa4b6;
-  --color-text-subtle: #6b7688;
-  --color-text-inverse: #0b1220;
-
-  --color-chart-grid: #26324c;
-  --color-chart-axis: #6b7688;
-
-  /* brand-subtle & state-subtle auto-adapt (color-mix uses the dark surface) */
 }
 
 body {

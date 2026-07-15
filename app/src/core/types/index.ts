@@ -5,4 +5,4 @@ export * from './dataSource';
 export * from './chatFlow';
 export * from './persona';
 export * from './client';
-export * from './domain';
+export * from './market';

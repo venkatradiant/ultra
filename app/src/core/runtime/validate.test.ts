@@ -5,7 +5,7 @@ import type { PersonaManifest } from '../types';
 const valid: PersonaManifest = {
   id: 'demo_persona',
   clientId: 'demo_client',
-  domainId: 'financial-services',
+  marketId: 'financial-services',
   identity: { name: 'Maya J.', initials: 'MJ', role: 'Analyst', greeting: 'Maya' },
   capabilities: ['Proactive Intelligence', 'Automated Action'],
   flows: {

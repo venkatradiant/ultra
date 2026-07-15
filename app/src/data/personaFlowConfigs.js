@@ -19,6 +19,7 @@ import nfcuDirChatFlows from './nfcu/director/chatFlows.json';
 import nfcuDirIntradayChatFlows from './nfcu/director/intradayChatFlows.json';
 import nfcuMemberChatFlows from './nfcu/member/chatFlows.json';
 import nfcuAgentChatFlows from './nfcu/agent/chatFlows.json';
+import nfcuPaChatFlows from './nfcu/platform-admin/chatFlows.json';
 import ussfcuCfoChatFlows from './ussfcu/cfo/chatFlows.json';
 import ussfcuCeoChatFlows from './ussfcu/ceo/chatFlows.json';
 
@@ -860,6 +861,56 @@ const nfcuAgentConfig = {
   actionConfirmMap: {},
 };
 
+// ─── NFCU: Platform Administrator, AI Governance & LLMOps (Rama Kandarpa) ──
+const nfcuPaConfig = {
+  chatFlows: nfcuPaChatFlows,
+  chipToFlowKey: {
+    // Greeting follow-ups
+    'Investigate the PII exception': 'nfcu_pa_routing_provenance',
+    'Show me the cost anomaly': 'nfcu_pa_cost_anomaly',
+    'Which action is missing a citation?': 'nfcu_pa_observability',
+    // Routing provenance (Step 2)
+    'Why was the SSN classified sensitive?': 'nfcu_pa_kag_sensitivity',
+    'Was anything routed incorrectly?': 'nfcu_pa_routing_correct',
+    // KAG sensitivity (Step 3)
+    'Show all fields flagged sensitive': 'nfcu_pa_sensitive_registry',
+    'Which system did this originate in?': 'nfcu_pa_kag_sensitivity',
+    'Show me the routing logic': 'nfcu_pa_routing_logic',
+    // Routing logic (Step 4)
+    'Show the cost gate detail': 'nfcu_pa_cost_gate_detail',
+    'What did this response cost?': 'nfcu_pa_cost_query',
+    'Go back to the provenance trace': 'nfcu_pa_routing_provenance',
+    // Cost query (Step 5)
+    "Show Marcus's cost for last month": 'nfcu_pa_cost_person',
+    'Compare to the LLM-only cost': 'nfcu_pa_llm_only_compare',
+    // Tokenomics (Step 6)
+    'Break it down by week': 'nfcu_pa_cost_person',
+    'Show the highest-cost queries': 'nfcu_pa_highest_cost',
+    'Export for finance': 'nfcu_pa_export_finance',
+    // Observability (Step 7)
+    'Show me system health for the admin portal': 'nfcu_pa_system_health',
+    'Close the PII exception': 'nfcu_pa_close_pii',
+    'Generate a governance summary': 'nfcu_pa_gov_summary',
+    // Suggested query bar (8, verbatim from spec)
+    'Which model processed this response?': 'nfcu_pa_routing_provenance',
+    'Did any PII reach a public LLM today?': 'nfcu_pa_pii_check',
+    'Show me the routing logic as a diagram': 'nfcu_pa_routing_logic',
+    'Why was this field classified sensitive?': 'nfcu_pa_kag_sensitivity',
+    'What did this conversation cost, SLM vs LLM?': 'nfcu_pa_cost_query',
+    "Show me this month's token spend by persona": 'nfcu_pa_cost_person',
+    "What policy drove this agent's action?": 'nfcu_pa_observability',
+  },
+  signalSequence: ['nfcu_pa_routing_provenance', 'nfcu_pa_cost_anomaly', 'nfcu_pa_observability'],
+  askTurnSequence: [
+    'nfcu_pa_routing_provenance',
+    'nfcu_pa_kag_sensitivity',
+    'nfcu_pa_routing_logic',
+    'nfcu_pa_cost_query',
+    'nfcu_pa_cost_person',
+    'nfcu_pa_observability',
+  ],
+};
+
 // ─── PenFed-only: Capital Markets Risk (Sowmya Ha) ───────────────
 // This config is added ONLY to penfedPersonaFlowConfigs below — never to the
 // base registry — so the capmarkets persona has no chat flows outside PenFed.
@@ -1068,6 +1119,7 @@ const personaFlowConfigs = {
   nfcu_director: nfcuDirConfig,
   nfcu_member: nfcuMemberConfig,
   nfcu_agent: nfcuAgentConfig,
+  nfcu_platform_admin: nfcuPaConfig,
   ussfcu_cfo: ussfcuCfoConfig,
   ussfcu_ceo: ussfcuCeoConfig,
 };

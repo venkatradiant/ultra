@@ -1,5 +1,5 @@
 /**
- * resolveActive — pure resolution of the active Domain → Client → Persona from
+ * resolveActive — pure resolution of the active Market → Client → Persona from
  * a clientId (from session) and an optional requested persona id (from URL).
  *
  * This replaces the CLIENT_PERSONAS allow-list + CLIENT_DEFAULT_PERSONA maps
@@ -8,10 +8,10 @@
  */
 
 import { findClient } from './registry';
-import type { ClientManifest, DomainManifest, PersonaModule } from '../types';
+import type { ClientManifest, MarketManifest, PersonaModule } from '../types';
 
 export interface ActiveResolution {
-  domain: DomainManifest;
+  market: MarketManifest;
   client: ClientManifest;
   persona: PersonaModule;
 }
@@ -35,7 +35,7 @@ export function resolveActive(
   const found = findClient(clientId);
   if (!found) return null;
 
-  const { domain, client } = found;
+  const { market, client } = found;
 
   let persona;
   if (requestedPersonaId) {
@@ -47,5 +47,5 @@ export function resolveActive(
   }
 
   if (!persona) return null;
-  return { domain, client, persona };
+  return { market, client, persona };
 }

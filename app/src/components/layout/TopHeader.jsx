@@ -22,6 +22,9 @@ export default function TopHeader({ onMenuClick }) {
     // USSFCU CEO — pure executive altitude. Business Performance is the roll-up
     // view; Priority Signals is the state-of-the-business signal set.
     ussfcu_ceo: { journey: 'Business Performance', risk: 'Priority Signals' },
+    // NFCU Platform Admin — governance persona; the single module page combines
+    // governance + observability (matches the persona manifest navLabels).
+    nfcu_platform_admin: { governance: 'Governance & Observability' },
   };
   const labels = personaNavLabels[persona?.id] ?? client?.navLabels ?? { journey: 'Member Journey', risk: 'Risk Signals' };
   const pageTitles = {
@@ -29,6 +32,7 @@ export default function TopHeader({ onMenuClick }) {
     '/ask': 'Ask the AI',
     '/journey': labels.journey,
     '/risk': labels.risk,
+    '/governance': labels.governance || client?.navLabels?.governance || 'Model Governance',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || 'Ask the AI';

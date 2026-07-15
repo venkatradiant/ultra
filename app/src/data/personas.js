@@ -168,6 +168,21 @@ const personas = {
       'Automated Action',
     ],
   },
+  // Platform Administrator — AI governance & LLMOps. The only Gen-UI-wired persona;
+  // tells the sovereignty-routing / KAG-provenance / tokenomics governance story.
+  nfcu_platform_admin: {
+    id: 'nfcu_platform_admin',
+    name: 'Rama Kandarpa',
+    initials: 'RK',
+    role: 'Platform Administrator, AI Governance & LLMOps',
+    greeting: 'Rama',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Automated Action',
+      'Friction Observability',
+    ],
+  },
 
   // ─── USSFCU-only Persona ──────────────────────────────────────
   // Visible only when clientId === 'ussfcu' (gated in PersonaContext CLIENT_PERSONAS).
@@ -209,7 +224,7 @@ const personas = {
     ],
   },
 
-  // ─── Healthcare domain — Riverside Health System ──────────────
+  // ─── Healthcare market — Riverside Health System ──────────────
   // Visible only when clientId === 'riverside_health'.
   care_ops: {
     id: 'care_ops',

@@ -43,7 +43,7 @@ export const CLIENTS = {
     primaryColor: '#003087',
     navLabels: { journey: 'Workforce Intelligence', risk: 'Quality Signals', governance: 'Model Governance' },
   },
-  // ─── Healthcare domain (proves the platform is multi-domain) ────
+  // ─── Healthcare market (proves the platform is multi-market) ────
   riverside_health: {
     id: 'riverside_health',
     name: 'Riverside Health System',

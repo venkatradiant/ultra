@@ -8,7 +8,7 @@ const alias = {
   '@': fileURLToPath(new URL('./src', import.meta.url)),
   '@core': fileURLToPath(new URL('./src/core', import.meta.url)),
   '@shared': fileURLToPath(new URL('./src/shared', import.meta.url)),
-  '@domains': fileURLToPath(new URL('./src/domains', import.meta.url)),
+  '@markets': fileURLToPath(new URL('./src/markets', import.meta.url)),
   '@config': fileURLToPath(new URL('./src/config', import.meta.url)),
 }
 

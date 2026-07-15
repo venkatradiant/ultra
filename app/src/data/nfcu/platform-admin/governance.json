@@ -1,0 +1,143 @@
+{
+  "routingTrace": {
+    "title": "Model Routing Provenance — Priya's Auto Loan Response",
+    "subtitle": "Returned to Priya Kapoor at 8:47 AM · auto loan spike · 8 data elements across 2 models",
+    "verdict": "No PII reached the public model. All member financial fields stayed in the in-environment SLM.",
+    "rows": [
+      { "element": "Member SSN", "sensitivity": "PII", "model": "SLM", "reason": "Tagged sensitive by KAG rule DG-07 (member identifier) — kept in-environment" },
+      { "element": "Account Number", "sensitivity": "PII", "model": "SLM", "reason": "Financial account data (DG-07) — kept in-environment" },
+      { "element": "Account Balance", "sensitivity": "PII", "model": "SLM", "reason": "Member financial data (DG-07) — kept in-environment" },
+      { "element": "Member Name", "sensitivity": "PII", "model": "SLM", "reason": "Personally identifiable (DG-02) — kept in-environment" },
+      { "element": "Current Auto Loan Rate", "sensitivity": "Sensitive-Internal", "model": "SLM", "reason": "Member-specific financial term (DG-04) — kept in-environment" },
+      { "element": "Promotional Rate (2.9%)", "sensitivity": "Public", "model": "LLM", "reason": "Public marketing data — routed to Claude Sonnet for depth" },
+      { "element": "Rate Comparison Copy", "sensitivity": "Public", "model": "LLM", "reason": "Public product content — routed to LLM" },
+      { "element": "Payment Estimate Formula", "sensitivity": "Public", "model": "LLM", "reason": "Non-sensitive calculation — routed to LLM" }
+    ]
+  },
+  "kagGraph": {
+    "nodes": [
+      { "id": "field", "kind": "field", "label": "Member SSN", "sub": "flagged field" },
+      { "id": "source", "kind": "source", "label": "Dynamics 365", "sub": "source system" },
+      { "id": "policy", "kind": "policy", "label": "Rule DG-07", "sub": "governing policy" }
+    ],
+    "edges": [
+      { "from": "field", "to": "source", "label": "originates in" },
+      { "from": "field", "to": "policy", "label": "governed by" }
+    ],
+    "policy": {
+      "id": "DG-07",
+      "name": "Member PII Sovereignty Rule",
+      "classification": "PII / Sovereign",
+      "text": "Member identifiers and financial account data are classified PII and must not leave the NFCU environment. All such fields are processed exclusively by the in-environment SLM.",
+      "owner": "Data Governance Council",
+      "effective": "2026-01-15",
+      "sourceSystem": "Dynamics 365 Contact Center"
+    }
+  },
+  "routingFlow": {
+    "title": "Sovereignty-Aware Routing — Decision Path",
+    "subtitle": "Data sensitivity and cost, evaluated together",
+    "steps": [
+      { "id": "sources", "kind": "source", "label": "Data Sources", "detail": "Dynamics 365 · KAG (Neo4j) · member context" },
+      { "id": "flag", "kind": "process", "label": "Deterministic Field Flagging", "detail": "Type/pattern rules flag PII fields before any model sees them" },
+      { "id": "slm_gate", "kind": "gate", "label": "SLM Sensitivity Gate", "detail": "SLM verifies sensitivity against the KAG tag and decides if it can answer safely" },
+      { "id": "cost_gate", "kind": "gate", "label": "Cost Gate", "detail": "Public data only: does the query need LLM depth/speed and pass the cost budget?" }
+    ],
+    "outcomes": [
+      { "id": "slm_stay", "kind": "slm", "label": "Stay in SLM", "detail": "Data is sensitive, or the SLM can answer reliably in-environment" },
+      { "id": "llm_route", "kind": "llm", "label": "Route to LLM", "detail": "Data is public and needs the LLM's depth — after passing the cost gate" }
+    ]
+  },
+  "costQuery": {
+    "conversation": "Priya Kapoor — Auto Loan Spike",
+    "timestamp": "8:47 AM · Apr 23",
+    "cost": 0.14,
+    "turns": 4,
+    "inputTokens": 3410,
+    "outputTokens": 1220,
+    "slmPct": 82,
+    "llmPct": 18,
+    "llmOnlyCost": 0.39,
+    "savings": 0.25,
+    "note": "82% of tokens stayed in the SLM because most of the content was sensitive and stayed in-environment."
+  },
+  "tokenomics": {
+    "person": "Marcus Tillman",
+    "role": "Director, Contact Center Operations",
+    "period": "Last month",
+    "total": 47.20,
+    "turns": 92,
+    "slmPct": 74,
+    "llmPct": 26,
+    "savings": 61.00,
+    "llmOnlyCost": 108.20,
+    "trend": [
+      { "week": "Wk 1", "cost": 9.80 },
+      { "week": "Wk 2", "cost": 12.40 },
+      { "week": "Wk 3", "cost": 11.90 },
+      { "week": "Wk 4", "cost": 13.10 }
+    ],
+    "byPersona": [
+      { "name": "Marcus Tillman", "cost": 47.20, "slmPct": 74 },
+      { "name": "Priya Kapoor", "cost": 38.60, "slmPct": 79 },
+      { "name": "Janelle Moreau", "cost": 29.40, "slmPct": 81 },
+      { "name": "Derek Whitfield", "cost": 22.10, "slmPct": 77 },
+      { "name": "David Torres", "cost": 15.80, "slmPct": 85 }
+    ]
+  },
+  "observability": {
+    "turnId": "OBS-NFCU-2026-04-23-0091",
+    "workflow": "Quality workflow · Janelle Moreau",
+    "query": "Give me a coaching recommendation for agent Torres on mortgage calls.",
+    "response": "Recommend targeted coaching on escrow-explanation scripting. Torres is 12 points below team FCR on mortgage-servicing calls despite a 94 quality score — the gap is concentrated in the escrow step.",
+    "contextSources": ["Quality Scorecard (Dynamics 365)", "Call Transcript — 3 prior mortgage calls", "FCR Trend (CRM)"],
+    "chainOfThought": [
+      "Pulled Torres quality scorecard — overall 94, mortgage FCR 71%.",
+      "Compared against team mortgage FCR baseline of 83%.",
+      "Scanned the 3 most recent mortgage transcripts — escrow-explanation step skipped in 2 of 3.",
+      "Matched the pattern to policy QA-12 (coaching threshold: FCR gap > 10 pts).",
+      "Generated a targeted coaching recommendation on escrow scripting."
+    ],
+    "policy": {
+      "id": "QA-12",
+      "name": "Coaching Threshold Policy",
+      "text": "Agents with a first-contact-resolution gap greater than 10 points against the team baseline on a given call type are flagged for targeted coaching."
+    },
+    "citationStatus": "resolved",
+    "citationNote": "Policy citation was recorded in the observability log but not surfaced in the response. Re-attached now; render gap flagged for the team."
+  },
+  "sensitiveFields": {
+    "title": "Sensitive Field Registry",
+    "subtitle": "Every field the KAG flags as sensitive, the rule that flags it, and where it originates",
+    "rows": [
+      { "field": "Member SSN", "classification": "PII", "rule": "DG-07", "source": "Dynamics 365 Contact Center" },
+      { "field": "Account Number", "classification": "PII", "rule": "DG-07", "source": "Core Banking" },
+      { "field": "Account Balance", "classification": "PII", "rule": "DG-07", "source": "Core Banking" },
+      { "field": "Member Name", "classification": "PII", "rule": "DG-02", "source": "CRM / Member Records" },
+      { "field": "Date of Birth", "classification": "PII", "rule": "DG-02", "source": "CRM / Member Records" },
+      { "field": "Card Number (PAN)", "classification": "PII / PCI", "rule": "DG-09", "source": "Payments Engine" },
+      { "field": "Current Loan Rate", "classification": "Sensitive-Internal", "rule": "DG-04", "source": "Loan Servicing" },
+      { "field": "Agent Quality Score", "classification": "Internal", "rule": "DG-11", "source": "Dynamics 365 Quality Mgmt" }
+    ]
+  },
+  "systemMetric": {
+    "title": "Admin Portal — System Health",
+    "subtitle": "Router throughput and p95 latency · pulled from Grafana via API, re-rendered in Ultra",
+    "series": [
+      { "t": "08:00", "cpu": 32, "latency": 180 },
+      { "t": "08:15", "cpu": 36, "latency": 190 },
+      { "t": "08:30", "cpu": 41, "latency": 205 },
+      { "t": "08:47", "cpu": 68, "latency": 240 },
+      { "t": "09:00", "cpu": 74, "latency": 262 },
+      { "t": "09:15", "cpu": 61, "latency": 228 },
+      { "t": "09:30", "cpu": 52, "latency": 210 },
+      { "t": "10:00", "cpu": 38, "latency": 188 }
+    ],
+    "events": [
+      { "time": "08:47", "event": "Auto loan spike — routing volume +180%", "level": "warning" },
+      { "time": "08:47", "event": "PII routing exception flagged for review", "level": "critical" },
+      { "time": "09:02", "event": "SLM autoscaled +2 replicas", "level": "info" },
+      { "time": "09:28", "event": "Routing load normalized", "level": "info" }
+    ]
+  }
+}

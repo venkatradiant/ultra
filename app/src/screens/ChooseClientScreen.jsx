@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Landmark, HeartPulse, Building2, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { getDomains } from '@core/runtime/registry';
+import { getMarkets } from '@core/runtime/registry';
 
-// Per-domain accent + icon for the landing tiles. Falls back gracefully so a
-// newly-registered domain shows up without any edit here.
-const DOMAIN_META = {
+// Per-market accent + icon for the landing tiles. Falls back gracefully so a
+// newly-registered market shows up without any edit here.
+const MARKET_META = {
   'financial-services': { icon: Landmark, from: '#3b82f6', to: '#6366f1' },
   healthcare: { icon: HeartPulse, from: '#10b981', to: '#0ea5e9' },
 };
-const domainMeta = (id) => DOMAIN_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
+const marketMeta = (id) => MARKET_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
 
 // Premium product monogram — a gradient badge with a layered "signal" mark.
 function UltraMark() {
@@ -38,9 +38,9 @@ function UltraMark() {
 
 export default function ChooseClientScreen() {
   const { adminSelectClient } = useAuth();
-  const domains = getDomains();
-  const [activeDomainId, setActiveDomainId] = useState(null);
-  const activeDomain = domains.find((d) => d.id === activeDomainId) || null;
+  const markets = getMarkets();
+  const [activeMarketId, setActiveMarketId] = useState(null);
+  const activeMarket = markets.find((d) => d.id === activeMarketId) || null;
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0a1633] flex items-center justify-center px-4 py-12">
@@ -63,30 +63,30 @@ export default function ChooseClientScreen() {
           <div className="mt-4 flex items-center gap-3">
             <span className="h-px w-8 bg-gradient-to-r from-transparent to-white/25" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
-              {activeDomain ? activeDomain.name : 'Enterprise AI Platform'}
+              {activeMarket ? activeMarket.name : 'Enterprise AI Platform'}
             </p>
             <span className="h-px w-8 bg-gradient-to-l from-transparent to-white/25" />
           </div>
         </div>
 
         <AnimatePresence mode="wait">
-          {!activeDomain ? (
-            /* ─── Level 1: domains ─── */
+          {!activeMarket ? (
+            /* ─── Level 1: markets ─── */
             <motion.div
-              key="domains"
+              key="markets"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25 }}
             >
-              <p className="text-center text-white/40 text-[13px] mb-6">Choose a domain to get started</p>
+              <p className="text-center text-white/40 text-[13px] mb-6">Choose a market to get started</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {domains.map((domain) => {
-                  const { icon: Icon, from, to } = domainMeta(domain.id);
+                {markets.map((market) => {
+                  const { icon: Icon, from, to } = marketMeta(market.id);
                   return (
                     <button
-                      key={domain.id}
-                      onClick={() => setActiveDomainId(domain.id)}
+                      key={market.id}
+                      onClick={() => setActiveMarketId(market.id)}
                       className="group relative overflow-hidden rounded-[22px] p-6 text-left border border-white/10 bg-white/[0.04] hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-20px_rgba(37,99,235,0.55)] cursor-pointer"
                     >
                       {/* accent top-edge */}
@@ -100,9 +100,9 @@ export default function ChooseClientScreen() {
                         </div>
                         <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white/80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                       </div>
-                      <p className="mt-5 text-white font-semibold text-[19px] tracking-tight">{domain.name}</p>
+                      <p className="mt-5 text-white font-semibold text-[19px] tracking-tight">{market.name}</p>
                       <p className="mt-1 text-white/40 text-[13px]">
-                        {domain.clients.length} {domain.clients.length === 1 ? 'client' : 'clients'} available
+                        {market.clients.length} {market.clients.length === 1 ? 'client' : 'clients'} available
                       </p>
                     </button>
                   );
@@ -110,23 +110,23 @@ export default function ChooseClientScreen() {
               </div>
             </motion.div>
           ) : (
-            /* ─── Level 2: clients within the domain ─── */
+            /* ─── Level 2: clients within the market ─── */
             <motion.div
-              key={activeDomain.id}
+              key={activeMarket.id}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25 }}
             >
               <button
-                onClick={() => setActiveDomainId(null)}
+                onClick={() => setActiveMarketId(null)}
                 className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-white/50 hover:text-white mb-6 transition-colors cursor-pointer"
               >
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" /> All domains
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" /> All markets
               </button>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {activeDomain.clients.map(({ id, branding }) => (
+                {activeMarket.clients.map(({ id, branding }) => (
                   <button
                     key={id}
                     onClick={() => adminSelectClient(id)}

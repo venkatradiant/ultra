@@ -1,13 +1,11 @@
 /**
- * Theme token contract. A `BrandTheme` (on a domain or client manifest) supplies
+ * Theme token contract. A `BrandTheme` (on a market or client manifest) supplies
  * a partial set of token overrides; the ThemeProvider flattens it to CSS custom
  * properties and writes them on <html>. Everything not overridden falls back to
- * the defaults in index.css (light) / [data-theme="dark"] (dark).
+ * the defaults in index.css.
  */
 
-export type ThemeMode = 'light' | 'dark';
-
-/** Per-mode token overrides. Every field is optional — omit to inherit the default. */
+/** Token overrides. Every field is optional — omit to inherit the default. */
 export interface ThemeTokens {
   brand?: string;
   brandFg?: string;
@@ -28,8 +26,7 @@ export interface ThemeTokens {
 
 export interface BrandTheme {
   light?: ThemeTokens;
-  dark?: ThemeTokens;
-  /** Font families (from the curated set) — applied in both modes. */
+  /** Font families (from the curated set). */
   fonts?: { sans?: string; display?: string };
 }
 

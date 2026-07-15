@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ds-pa-01",
+    "name": "Routing Log (Postgres)",
+    "status": "connected",
+    "description": "Per-turn routing decisions: which model processed each field, the sensitivity tag applied, the reason, and the outcome. The source of truth for the Model Routing Provenance Trace — proves sensitive data stayed in the SLM.",
+    "icon": "database",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 1840000
+  },
+  {
+    "id": "ds-pa-02",
+    "name": "LiteLLM Gateway",
+    "status": "connected",
+    "description": "Unified model gateway in front of the in-environment SLM and Claude Sonnet LLM. Emits token counts, model split, semantic cache hit rate, and per-turn cost — the feed behind tokenomics and cost governance.",
+    "icon": "cpu",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 2470000
+  },
+  {
+    "id": "ds-pa-03",
+    "name": "KAG Knowledge Graph (Neo4j)",
+    "status": "connected",
+    "description": "The governance graph: field nodes, source-system nodes, and policy nodes (rules like DG-07) with their relationships. Decides what is sensitive and where it originates; queried via Cypher to drive the routing decision. Re-rendered in Ultra through Gen UI — never shown as the raw Neo4j browser.",
+    "icon": "shield",
+    "lastSync": "2026-04-23T08:55:00",
+    "recordCount": 128000
+  },
+  {
+    "id": "ds-pa-04",
+    "name": "Agent Observability Log",
+    "status": "connected",
+    "description": "Per-turn record of every agent action: query, response, context sources used, chain-of-thought, and the policy or business rule that drove it. Powers the single-pane observability panel — rendered conversationally, not as raw Grafana.",
+    "icon": "monitor",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 512000
+  },
+  {
+    "id": "ds-pa-05",
+    "name": "LiteLLM Cost Records (Postgres)",
+    "status": "connected",
+    "description": "Per-query and per-person token cost records with SLM/LLM split and savings versus LLM-only processing. Governs cost over time across every persona on the platform.",
+    "icon": "database",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 2470000
+  },
+  {
+    "id": "ds-pa-06",
+    "name": "Model Registry",
+    "status": "connected",
+    "description": "Registry of models in production: the in-environment SLM (Azure) and Claude Sonnet LLM (Azure), with versions, deployment environment, and routing eligibility.",
+    "icon": "brain",
+    "lastSync": "2026-04-23T06:00:00",
+    "recordCount": 2
+  },
+  {
+    "id": "ds-pa-07",
+    "name": "Grafana (via API / MCP)",
+    "status": "connected",
+    "description": "Infrastructure telemetry for the admin portal — router throughput, CPU, and p95 latency. Pulled through an API/MCP call and re-rendered as a Gen UI chart in Ultra rather than embedding raw Grafana.",
+    "icon": "monitor",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 96000
+  }
+]

@@ -10,7 +10,7 @@ const SESSION_KEY = 'active_persona';
 
 // Personas that belong to each client (non-listed clients get the generic set)
 const CLIENT_PERSONAS = {
-  nfcu: ['nfcu_supervisor', 'nfcu_analyst', 'nfcu_workforce', 'nfcu_director', 'nfcu_member', 'nfcu_agent'],
+  nfcu: ['nfcu_supervisor', 'nfcu_analyst', 'nfcu_workforce', 'nfcu_director', 'nfcu_member', 'nfcu_agent', 'nfcu_platform_admin'],
   // PenFed: four generic personas + PenFed-only capmarkets (Sowmya Ha).
   // capmarkets is intentionally absent from every other client's allowlist so it
   // cannot be selected via dropdown or URL outside PenFed.
@@ -20,7 +20,7 @@ const CLIENT_PERSONAS = {
   // generic personas. ussfcu_cfo and ussfcu_ceo are intentionally absent from
   // every other client's allowlist so they cannot be selected outside USSFCU.
   ussfcu: ['ussfcu_cfo', 'ussfcu_ceo', 'ops', 'cx', 'retention', 'risk'],
-  // Healthcare domain — Riverside Health System (care-ops persona).
+  // Healthcare market — Riverside Health System (care-ops persona).
   riverside_health: ['care_ops'],
 };
 

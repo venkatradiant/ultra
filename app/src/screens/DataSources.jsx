@@ -11,6 +11,7 @@ import nfcuWfDataSources from '../data/nfcu/workforce/dataSources.json';
 import nfcuDirDataSources from '../data/nfcu/director/dataSources.json';
 import nfcuMemberDataSources from '../data/nfcu/member/dataSources.json';
 import nfcuAgentDataSources from '../data/nfcu/agent/dataSources.json';
+import nfcuPaDataSources from '../data/nfcu/platform-admin/dataSources.json';
 import penfedOpsDataSources from '../data/penfed/dataSources.json';
 import penfedRetDataSources from '../data/penfed/retention/dataSources.json';
 import penfedCapmDataSources from '../data/penfed/capmarkets/dataSources.json';
@@ -29,6 +30,7 @@ const personaDataSources = {
   nfcu_director: nfcuDirDataSources,
   nfcu_member: nfcuMemberDataSources,
   nfcu_agent: nfcuAgentDataSources,
+  nfcu_platform_admin: nfcuPaDataSources,
   // USSFCU-only CFO persona (gated to clientId === 'ussfcu' in PersonaContext).
   ussfcu_cfo: ussfcuCfoDataSources,
   // USSFCU-only CEO persona (gated to clientId === 'ussfcu' in PersonaContext).
