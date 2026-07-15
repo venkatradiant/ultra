@@ -1,6 +1,6 @@
 {
   "nfcu_pa_greeting": {
-    "ai_message": "Good morning, Rama. 3 governance signals need review. Priya flagged an auto loan response for a possible PII routing issue, mortgage servicing LLM spend is 41% over its average, and one quality-workflow action is missing its policy citation. Want to start with the PII routing exception?",
+    "ai_message": "Good morning, Daniel. 3 governance signals need review. Priya flagged an auto loan response for a possible PII routing issue, mortgage servicing LLM spend is 41% over its average, and one quality-workflow action is missing its policy citation. Want to start with the PII routing exception?",
     "suggested_chips": [
       "Investigate the PII exception",
       "Show me the cost anomaly",
@@ -331,7 +331,7 @@
   },
 
   "nfcu_pa_close_pii": {
-    "ai_message": "Done. PII Routing Exception SIG-NFCU-PA-001 is closed. I've recorded the confirmation: 5 PII fields verified in the SLM, 0 leaks to the LLM, DG-07 satisfied, reviewed by Rama Kandarpa at 9:00 AM. The provenance trace is attached to the audit record and the incident is cleared. Priya's response stands.",
+    "ai_message": "Done. PII Routing Exception SIG-NFCU-PA-001 is closed. I've recorded the confirmation: 5 PII fields verified in the SLM, 0 leaks to the LLM, DG-07 satisfied, reviewed by Daniel Okonkwo at 9:00 AM. The provenance trace is attached to the audit record and the incident is cleared. Priya's response stands.",
     "suggested_chips": [
       "Generate a governance summary",
       "Show me system health for the admin portal",

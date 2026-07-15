@@ -8,6 +8,12 @@ export default function ChatThread({ messages, isTyping, chips, onChipClick, ren
   const bottomRef = useRef(null);
 
   useEffect(() => {
+    // Don't auto-scroll on the initial greeting-only view — scrolling the bottom
+    // sentinel into view here would push the persona greeting header (which shares
+    // this scroll container) off the top of the fold. Only follow the conversation
+    // once it's actually active (a reply/typing beyond the greeting).
+    const isInitialView = messages.length <= 1 && !isTyping;
+    if (isInitialView) return;
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 

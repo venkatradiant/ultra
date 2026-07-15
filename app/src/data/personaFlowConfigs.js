@@ -861,7 +861,7 @@ const nfcuAgentConfig = {
   actionConfirmMap: {},
 };
 
-// ─── NFCU: Platform Administrator, AI Governance & LLMOps (Rama Kandarpa) ──
+// ─── NFCU: Platform Administrator, AI Governance & LLMOps (Daniel Okonkwo) ──
 const nfcuPaConfig = {
   chatFlows: nfcuPaChatFlows,
   chipToFlowKey: {

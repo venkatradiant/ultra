@@ -1,5 +1,5 @@
 /**
- * Persona: Platform Administrator, AI Governance & LLMOps (Rama Kandarpa) — NFCU.
+ * Persona: Platform Administrator, AI Governance & LLMOps (Daniel Okonkwo) — NFCU.
  * The governance persona and the only Gen-UI-wired surface for this build. Tells
  * the three-demo story — sovereignty-aware routing, KAG sensitivity & provenance,
  * and tokenomics — with agent observability as the connective tissue. Every turn
@@ -32,7 +32,7 @@ const manifest: PersonaManifest = {
   clientId: 'nfcu',
   marketId: 'financial-services',
 
-  identity: { name: 'Rama Kandarpa', initials: 'RK', role: 'Platform Administrator, AI Governance & LLMOps', greeting: 'Rama' },
+  identity: { name: 'Daniel Okonkwo', initials: 'DO', role: 'Platform Administrator, AI Governance & LLMOps', greeting: 'Daniel' },
   capabilities: [
     'Proactive Intelligence',
     'Anomaly Detection',
@@ -47,7 +47,7 @@ const manifest: PersonaManifest = {
   layout: 'inline',
 
   navLabels: { governance: 'Governance & Observability' },
-  features: { navSlots: ['ask', 'governance', 'dataSources'] },
+  features: { navSlots: ['ask', 'governance', 'dataSources'], staticCapabilityBadges: true },
 
   // 7 governance KPIs shown 4-up in a paginated carousel (see statsComponent).
   statsComponent: PlatformAdminKpiCarousel as unknown as PersonaManifest['statsComponent'],

@@ -116,7 +116,11 @@ export default function PersonaWorkspace({ manifest }) {
     if (msg.role !== 'ai' || !msg.flowKey) return undefined;
     const trigger = ui.flowKeyToCapabilityTrigger[msg.flowKey];
     if (!trigger) return undefined;
-    return ui.capabilityCallouts.find((c) => c.trigger === trigger) || undefined;
+    const callout = ui.capabilityCallouts.find((c) => c.trigger === trigger);
+    if (!callout) return undefined;
+    // Some personas (e.g. NFCU Platform Admin) show capability tags as static
+    // info pills rather than buttons that open the architecture deep-dive.
+    return features?.staticCapabilityBadges ? { ...callout, interactive: false } : callout;
   };
 
   const handleConfirmAction = (actionId) => {
@@ -201,6 +205,12 @@ export default function PersonaWorkspace({ manifest }) {
     ? ui.goldenPathChip[currentFlowKey] || null
     : ui.goldenPathChip[ui.greetingFlowKey];
   const isInitialView = messages.length <= 1 && !isTyping;
+  // Personas without a dedicated briefing panel / top-aligned flag get a centered
+  // "welcome" initial view on desktop — but only via `my-auto` on the content
+  // block (below), which centers when the content fits and collapses to
+  // top-aligned when it overflows. (Using `justify-center` on the scroll
+  // container instead clips the top — the greeting — with no way to scroll to it.)
+  const centerInitialView = isInitialView && !briefing && !features?.topAlignedInitial;
 
   return (
     <div className="flex-1 flex h-full min-w-0">
@@ -210,13 +220,12 @@ export default function PersonaWorkspace({ manifest }) {
         <div
           className={`flex-1 overflow-y-auto scrollbar-sleek ${
             isInitialView
-              ? // Personas with tall initial content (briefing dashboards, top-aligned
-                // executives) always top-align so the greeting is never centered off
-                // the top of the scroll area. Everyone else top-aligns on mobile (short
-                // viewports crop centered content) and centers only on desktop.
+              ? // Always top-align the scroll container; desktop centering (for
+                // short initial views) is done via `my-auto` on the content block
+                // so tall content never gets its top (the greeting) clipped.
                 briefing || features?.topAlignedInitial
                 ? 'flex flex-col justify-start pt-2'
-                : 'flex flex-col justify-start lg:justify-center'
+                : 'flex flex-col justify-start'
               : ''
           }`}
           style={{
@@ -225,7 +234,7 @@ export default function PersonaWorkspace({ manifest }) {
               : 'var(--color-surface)',
           }}
         >
-          <div className={`w-full min-w-0 ${!hasContextPanel ? 'max-w-3xl mx-auto' : ''} px-4 sm:px-6`}>
+          <div className={`w-full min-w-0 ${!hasContextPanel ? 'max-w-3xl mx-auto' : ''} px-4 sm:px-6 ${centerInitialView ? 'lg:my-auto' : ''}`}>
             <AnimatePresence>
               {isInitialView && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, height: 0, marginBottom: 0, overflow: 'hidden' }} transition={{ duration: 0.4 }} className="pt-4 pb-4">

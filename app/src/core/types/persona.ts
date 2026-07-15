@@ -44,6 +44,12 @@ export interface PersonaFeatures {
    * and `focusedNav`. Labels still resolve via navLabels/client defaults.
    */
   navSlots?: NavKey[];
+  /**
+   * Render the AI-message capability tags as static, non-clickable info pills
+   * instead of buttons that open the architecture deep-dive modal (e.g. the NFCU
+   * Platform Admin's governance capabilities, which have no bespoke diagram).
+   */
+  staticCapabilityBadges?: boolean;
 }
 
 /** A KPI tile shown in the persona's data-overview row. */

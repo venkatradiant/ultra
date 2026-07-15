@@ -172,10 +172,10 @@ const personas = {
   // tells the sovereignty-routing / KAG-provenance / tokenomics governance story.
   nfcu_platform_admin: {
     id: 'nfcu_platform_admin',
-    name: 'Rama Kandarpa',
-    initials: 'RK',
+    name: 'Daniel Okonkwo',
+    initials: 'DO',
     role: 'Platform Administrator, AI Governance & LLMOps',
-    greeting: 'Rama',
+    greeting: 'Daniel',
     capabilities: [
       'Proactive Intelligence',
       'Anomaly Detection',
