@@ -1,81 +1,115 @@
 [
   {
     "id": "SIG-NFCU-PA-001",
-    "type": "pii_routing_exception",
-    "title": "PII Routing Exception — Auto Loan Spike",
-    "description": "During this morning's auto loan spike (127 members waiting, service level at 54%), one agent response combined member financials with public rate data. The routing trace shows all PII fields stayed in the SLM. Flagged for confirmation before the incident is closed.",
-    "impact": "high",
-    "severity": "critical",
+    "type": "frontier_usage_review",
+    "title": "Frontier Usage Review \u2014 Auto Loan Spike",
+    "description": "Priya's spike response is queued for routine frontier-usage review. All member data resolved locally; one reasoning task used the frontier model on non-PII inputs. Confirm the justification and close.",
+    "impact": "low",
+    "severity": "review",
     "affected_count": 1,
-    "sources": ["Routing log (Postgres)", "KAG (Neo4j)", "Agent observability log"],
+    "sources": [
+      "Routing log (Postgres)",
+      "LLM usage log",
+      "KAG (Neo4j)"
+    ],
     "timestamp": "2026-04-23T08:47:00Z",
     "trend": "stable",
     "metrics": {
-      "pii_fields_routed_to_slm": 5,
-      "pii_leaks_to_llm": 0,
-      "members_waiting": 127,
-      "service_level": "54%"
+      "member_fields_resolved_locally": "100%",
+      "frontier_tasks": 1,
+      "pii_to_frontier": 0
     },
     "confidence": {
       "score": 98,
-      "rationale": "Routing log and KAG tags agree on every field: 5 PII elements processed by the SLM, 0 reached the public LLM. Deterministic trace, no inference.",
-      "signals_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
+      "rationale": "Routing log and KAG tags agree on every field: all member data resolved by the in-environment SLM, one reasoning task on non-PII inputs. Deterministic trace, no inference.",
+      "signals_used": [
+        "Routing log (Postgres)",
+        "KAG (Neo4j)"
+      ],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T08:47:12Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "metric_text": "1 frontier task \u00b7 0 PII \u00b7 confirm and close"
   },
   {
     "id": "SIG-NFCU-PA-002",
-    "type": "token_cost_anomaly",
-    "title": "Token Cost Anomaly — Mortgage Servicing",
-    "description": "LLM spend on the mortgage servicing persona is 41% above its 7-day average. Semantic cache hit rate dropped after a recent prompt change. Estimated overage of $180 this week if unaddressed.",
-    "impact": "medium",
-    "severity": "warning",
+    "type": "spend_on_track",
+    "title": "Contact Center Spend \u2014 On Track",
+    "description": "Frontier spend is within budget this month. The frontier model handled a small share of tasks; the in-environment SLM handled the rest.",
+    "impact": "low",
+    "severity": "healthy",
     "affected_count": 0,
-    "sources": ["LiteLLM gateway", "LiteLLM cost records (Postgres)"],
+    "sources": [
+      "LLM usage log",
+      "LiteLLM cost records (Postgres)"
+    ],
     "timestamp": "2026-04-23T07:30:00Z",
-    "trend": "worsening",
+    "trend": "stable",
     "metrics": {
-      "llm_spend_vs_avg": "+41%",
-      "cache_hit_rate": "63%",
-      "estimated_overage": "$180"
+      "frontier_task_share": "11%",
+      "token_split": "88% SLM / 12% frontier",
+      "spend_vs_all_frontier": "-71%"
     },
     "confidence": {
-      "score": 88,
-      "rationale": "Spend delta and cache-hit drop are direct gateway telemetry; the $180 projection extrapolates the current 7-day trajectory with ±15% variance.",
-      "signals_used": ["LiteLLM gateway", "LiteLLM cost records (Postgres)"],
+      "score": 96,
+      "rationale": "Task share and spend are direct gateway telemetry against the monthly budget. No inference.",
+      "signals_used": [
+        "LiteLLM gateway",
+        "LiteLLM cost records (Postgres)"
+      ],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T07:30:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "metric_text": "11% frontier \u00b7 71% under all-frontier"
   },
   {
     "id": "SIG-NFCU-PA-003",
-    "type": "unexplained_agent_action",
-    "title": "Unexplained Agent Action — Quality Workflow",
-    "description": "An agent on the quality workflow returned an insight with no policy citation attached. The observability panel is missing the chain-of-thought record for one turn. Needs a logging check.",
-    "impact": "medium",
-    "severity": "warning",
+    "type": "borderline_classification",
+    "title": "Borderline Classification Caught",
+    "description": "The knowledge graph flagged a public-looking field, the current auto loan rate, as member-specific and held it local. Logged for audit.",
+    "impact": "low",
+    "severity": "info",
     "affected_count": 1,
-    "sources": ["Agent observability log", "Per-turn logging table"],
-    "timestamp": "2026-04-23T06:52:00Z",
+    "sources": [
+      "KAG (Neo4j)"
+    ],
+    "timestamp": "2026-04-23T08:46:00Z",
     "trend": "stable",
     "metrics": {
-      "actions_with_policy_citation": "96%",
-      "missing_citations": 1,
-      "turn_id": "OBS-NFCU-2026-04-23-0091"
+      "field": "Current Auto Loan Rate",
+      "rule": "DG-04",
+      "outcome": "held in-environment"
     },
     "confidence": {
-      "score": 82,
-      "rationale": "Citation coverage is a direct count from the observability log; the single gap is confirmed present but the root cause (render vs. logging) requires the chain-of-thought check.",
-      "signals_used": ["Agent observability log", "Per-turn logging table"],
+      "score": 94,
+      "rationale": "Classification by meaning, not keyword matching. The graph links the field to its source system and the governing policy node (DG-04); the tag is read directly via Cypher.",
+      "signals_used": [
+        "KAG (Neo4j)"
+      ],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T06:52:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T08:46:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "metric_text": "DG-04 \u00b7 held in-environment"
   }
 ]

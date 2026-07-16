@@ -862,51 +862,49 @@ const nfcuAgentConfig = {
 };
 
 // ─── NFCU: Platform Administrator, AI Governance & LLMOps (Daniel Okonkwo) ──
+// Six-turn assurance journey per NFCU_CCaaS_Prototype_Spec.docx. Every chip the
+// spec offers maps to a flow — no dead ends.
 const nfcuPaConfig = {
   chatFlows: nfcuPaChatFlows,
   chipToFlowKey: {
-    // Greeting follow-ups
-    'Investigate the PII exception': 'nfcu_pa_routing_provenance',
-    'Show me the cost anomaly': 'nfcu_pa_cost_anomaly',
-    'Which action is missing a citation?': 'nfcu_pa_observability',
-    // Routing provenance (Step 2)
-    'Why was the SSN classified sensitive?': 'nfcu_pa_kag_sensitivity',
-    'Was anything routed incorrectly?': 'nfcu_pa_routing_correct',
-    // KAG sensitivity (Step 3)
-    'Show all fields flagged sensitive': 'nfcu_pa_sensitive_registry',
-    'Which system did this originate in?': 'nfcu_pa_kag_sensitivity',
+    // Turn 1 — Assurance Briefing
+    'Review the auto loan spike': 'nfcu_pa_field_sovereignty',
+    'Show me contact center spend': 'nfcu_pa_spend_on_track',
+    'What did the graph catch?': 'nfcu_pa_kag_provenance',
+    // Turn 2 — Field Sovereignty
+    'Why did the auto loan rate stay local?': 'nfcu_pa_kag_provenance',
     'Show me the routing logic': 'nfcu_pa_routing_logic',
-    // Routing logic (Step 4)
-    'Show the cost gate detail': 'nfcu_pa_cost_gate_detail',
-    'What did this response cost?': 'nfcu_pa_cost_query',
-    'Go back to the provenance trace': 'nfcu_pa_routing_provenance',
-    // Cost query (Step 5)
-    "Show Marcus's cost for last month": 'nfcu_pa_cost_person',
-    'Compare to the LLM-only cost': 'nfcu_pa_llm_only_compare',
-    // Tokenomics (Step 6)
-    'Break it down by week': 'nfcu_pa_cost_person',
-    'Show the highest-cost queries': 'nfcu_pa_highest_cost',
-    'Export for finance': 'nfcu_pa_export_finance',
-    // Observability (Step 7)
-    'Show me system health for the admin portal': 'nfcu_pa_system_health',
-    'Close the PII exception': 'nfcu_pa_close_pii',
+    'What did the frontier model do?': 'nfcu_pa_frontier_task',
+    // Turn 3 — Sensitivity Provenance (KAG)
+    'Show all fields flagged sensitive': 'nfcu_pa_field_sovereignty',
+    // Turn 4 — Routing Logic
+    'Run the cost report': 'nfcu_pa_cost_usage',
+    'Show me the field ledger again': 'nfcu_pa_field_sovereignty',
+    'Which tasks used the frontier model?': 'nfcu_pa_frontier_task',
+    // Turn 5 — LLM Cost and Usage
+    'Show me the highest-cost tasks': 'nfcu_pa_highest_cost',
+    'Break it down by persona': 'nfcu_pa_by_persona',
+    'Show frontier usage this month': 'nfcu_pa_observability',
+    // Turn 6 — Agent Observability and Governance
+    'Expand a flagged action': 'nfcu_pa_expand_action',
+    'Show the spend trend': 'nfcu_pa_spend_trend',
     'Generate a governance summary': 'nfcu_pa_gov_summary',
-    // Suggested query bar (8, verbatim from spec)
-    'Which model processed this response?': 'nfcu_pa_routing_provenance',
-    'Did any PII reach a public LLM today?': 'nfcu_pa_pii_check',
+    // Suggested query bar (8, verbatim from the spec)
+    'Show me where every field in this response went': 'nfcu_pa_field_sovereignty',
+    'Did any PII reach the frontier model?': 'nfcu_pa_pii_check',
+    'Why was this field classified sensitive?': 'nfcu_pa_kag_provenance',
     'Show me the routing logic as a diagram': 'nfcu_pa_routing_logic',
-    'Why was this field classified sensitive?': 'nfcu_pa_kag_sensitivity',
-    'What did this conversation cost, SLM vs LLM?': 'nfcu_pa_cost_query',
-    "Show me this month's token spend by persona": 'nfcu_pa_cost_person',
-    "What policy drove this agent's action?": 'nfcu_pa_observability',
+    'Which tasks used the frontier model, and why?': 'nfcu_pa_frontier_task',
+    'Run the LLM cost report for this session': 'nfcu_pa_cost_usage',
+    'How much did routing save versus all-frontier?': 'nfcu_pa_savings',
+    'Show me agent activity across the contact center': 'nfcu_pa_observability',
   },
-  signalSequence: ['nfcu_pa_routing_provenance', 'nfcu_pa_cost_anomaly', 'nfcu_pa_observability'],
+  signalSequence: ['nfcu_pa_field_sovereignty', 'nfcu_pa_spend_on_track', 'nfcu_pa_kag_provenance'],
   askTurnSequence: [
-    'nfcu_pa_routing_provenance',
-    'nfcu_pa_kag_sensitivity',
+    'nfcu_pa_field_sovereignty',
+    'nfcu_pa_kag_provenance',
     'nfcu_pa_routing_logic',
-    'nfcu_pa_cost_query',
-    'nfcu_pa_cost_person',
+    'nfcu_pa_cost_usage',
     'nfcu_pa_observability',
   ],
 };

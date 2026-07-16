@@ -1,36 +1,26 @@
 import { motion } from 'framer-motion';
-import { ShieldCheck, Coins, Eye } from 'lucide-react';
-import governance from '../../../data/nfcu/platform-admin/governance.json';
-import ModelRoutingProvenanceTrace from './ModelRoutingProvenanceTrace';
-import SensitiveFieldRegistry from './SensitiveFieldRegistry';
+import { ShieldCheck, Coins, Activity } from 'lucide-react';
+import { GOVERNANCE_KPIS } from '../../../data/nfcu/platform-admin/governanceData';
+import FieldSovereigntyLedger from './FieldSovereigntyLedger';
 import KagNodeView from './KagNodeView';
-import TokenomicsDashboard from './TokenomicsDashboard';
-import CostCard from './CostCard';
-import AgentObservabilityPanel from './AgentObservabilityPanel';
-import SystemMetricChart from './SystemMetricChart';
+import RoutingDiagram from './RoutingDiagram';
+import LlmCostUsageReport from './LlmCostUsageReport';
+import AgentObservabilityGovernanceDashboard from './AgentObservabilityGovernanceDashboard';
 
 /**
- * Governance & Observability — the Platform Admin's standing module page. A single
- * pane over the same governance artifacts the guided conversation walks through:
- * sovereignty routing, KAG provenance, tokenomics, and agent observability.
+ * Governance & Observability — the Platform Admin's standing module page. The
+ * same five Gen UI components the guided conversation walks through, laid out as
+ * a continuous-governance pane. KPIs come from the shared data layer, so there is
+ * exactly one place to change a number.
  */
-const HEADER_KPIS = [
-  { label: 'Sensitive → SLM', value: '100%' },
-  { label: 'PII → LLM', value: '0' },
-  { label: 'SLM / LLM split', value: '78 / 22' },
-  { label: 'Cache hit rate', value: '63%' },
-  { label: 'Avg cost / query', value: '$0.11' },
-  { label: 'Actions w/ citation', value: '96%' },
-];
-
 function Section({ icon: Icon, title, subtitle, children }) {
   return (
     <section className="space-y-3">
       <div className="flex items-center gap-2">
-        <span className="w-6 h-6 rounded-lg bg-brand/10 flex items-center justify-center">
+        <span className="w-6 h-6 rounded-lg bg-brand/10 flex items-center justify-center flex-shrink-0">
           <Icon className="w-3.5 h-3.5 text-brand" />
         </span>
-        <div>
+        <div className="min-w-0">
           <h2 className="text-sm font-bold text-text leading-tight">{title}</h2>
           <p className="text-[11px] text-text-muted">{subtitle}</p>
         </div>
@@ -51,41 +41,48 @@ export default function PlatformAdminGovernance() {
             <h1 className="text-lg font-bold text-text">Governance &amp; Observability</h1>
           </div>
           <p className="text-[12px] text-text-muted mt-0.5">
-            Sovereignty-aware routing, KAG sensitivity &amp; provenance, tokenomics, and agent observability — one pane, live against the same data the business personas use.
+            Two gates — safe to send, then worth sending. Member data resolves in-environment; the frontier model is used
+            only where a task earns it, and every use is measured.
           </p>
-          <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-            {HEADER_KPIS.map((k) => (
-              <div key={k.label} className="rounded-xl bg-surface border border-border-subtle px-3 py-2.5">
+          <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+            {GOVERNANCE_KPIS.map((k) => (
+              <div key={k.id} className="rounded-xl bg-surface border border-border-subtle px-3 py-2.5">
                 <div className="text-base font-bold text-text tabular-nums leading-none">{k.value}</div>
-                <div className="text-[9.5px] text-text-subtle uppercase tracking-wide mt-1">{k.label}</div>
+                <div className="text-[9.5px] text-text-subtle uppercase tracking-wide mt-1 leading-tight">{k.label}</div>
               </div>
             ))}
           </div>
         </motion.div>
 
         {/* Sovereignty */}
-        <Section icon={ShieldCheck} title="Sovereignty & Provenance" subtitle="Which model processed what, why it was flagged sensitive, and where it originates">
+        <Section
+          icon={ShieldCheck}
+          title="Field Sovereignty & Provenance"
+          subtitle="Where every field went, why a borderline field stayed local, and the two gates that decided"
+        >
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-            <ModelRoutingProvenanceTrace data={governance.routingTrace} />
-            <SensitiveFieldRegistry data={governance.sensitiveFields} />
+            <FieldSovereigntyLedger />
+            <RoutingDiagram />
           </div>
-          <KagNodeView data={governance.kagGraph} />
+          <KagNodeView />
         </Section>
 
-        {/* Tokenomics */}
-        <Section icon={Coins} title="Tokenomics & Cost Governance" subtitle="Cost per query and per person, token split, and savings versus LLM-only">
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-            <TokenomicsDashboard data={governance.tokenomics} />
-            <CostCard data={governance.costQuery} />
-          </div>
+        {/* Cost */}
+        <Section
+          icon={Coins}
+          title="LLM Cost and Usage"
+          subtitle="Per-task routing and cost, with the all-frontier counterfactual"
+        >
+          <LlmCostUsageReport />
         </Section>
 
         {/* Observability */}
-        <Section icon={Eye} title="Agent Observability" subtitle="Each agent action explained against the policy that drove it — plus admin portal health">
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-            <AgentObservabilityPanel data={governance.observability} />
-            <SystemMetricChart data={governance.systemMetric} />
-          </div>
+        <Section
+          icon={Activity}
+          title="Agent Observability"
+          subtitle="Agent health, frontier share and spend trend — every action explainable against its policy"
+        >
+          <AgentObservabilityGovernanceDashboard />
         </Section>
       </div>
     </div>

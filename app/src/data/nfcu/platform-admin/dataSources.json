@@ -3,63 +3,72 @@
     "id": "ds-pa-01",
     "name": "Routing Log (Postgres)",
     "status": "connected",
-    "description": "Per-turn routing decisions: which model processed each field, the sensitivity tag applied, the reason, and the outcome. The source of truth for the Model Routing Provenance Trace — proves sensitive data stayed in the SLM.",
+    "description": "Per-turn routing decisions: the field-level sensitivity tag applied at Gate 1, the capability decision at Gate 2, and the outcome for every field and task. The source of truth for the Field Sovereignty Ledger — it is what proves member data resolved in-environment and that zero PII reached the frontier model.",
     "icon": "database",
     "lastSync": "2026-04-23T09:00:00",
     "recordCount": 1840000
   },
   {
     "id": "ds-pa-02",
-    "name": "LiteLLM Gateway",
+    "name": "LLM Usage Log",
     "status": "connected",
-    "description": "Unified model gateway in front of the in-environment SLM and Claude Sonnet LLM. Emits token counts, model split, semantic cache hit rate, and per-turn cost — the feed behind tokenomics and cost governance.",
-    "icon": "cpu",
+    "description": "Which tasks ran on the in-environment SLM and which escalated to the frontier model, with the justification for each escalation. Behind the frontier task share, the 88/12 token split, and the monthly usage view.",
+    "icon": "brain",
     "lastSync": "2026-04-23T09:00:00",
-    "recordCount": 2470000
+    "recordCount": 1120000
   },
   {
     "id": "ds-pa-03",
     "name": "KAG Knowledge Graph (Neo4j)",
     "status": "connected",
-    "description": "The governance graph: field nodes, source-system nodes, and policy nodes (rules like DG-07) with their relationships. Decides what is sensitive and where it originates; queried via Cypher to drive the routing decision. Re-rendered in Ultra through Gen UI — never shown as the raw Neo4j browser.",
+    "description": "The governance graph: field nodes, source-system nodes, and policy nodes (rules like DG-04 and DG-07) with their relationships. Decides what is sensitive and where it originates — classification by meaning, not keyword matching — and feeds the Gate 1 sovereignty decision. Queried via Cypher and re-rendered in Ultra through Gen UI, never shown as the raw Neo4j browser.",
     "icon": "shield",
     "lastSync": "2026-04-23T08:55:00",
     "recordCount": 128000
   },
   {
     "id": "ds-pa-04",
-    "name": "Agent Observability Log",
+    "name": "LiteLLM Gateway",
     "status": "connected",
-    "description": "Per-turn record of every agent action: query, response, context sources used, chain-of-thought, and the policy or business rule that drove it. Powers the single-pane observability panel — rendered conversationally, not as raw Grafana.",
-    "icon": "monitor",
+    "description": "The unified model gateway in front of the in-environment SLM and the frontier model (Claude Sonnet on Azure). Emits token counts, the SLM/frontier split, and per-task cost as each request is routed.",
+    "icon": "cpu",
     "lastSync": "2026-04-23T09:00:00",
-    "recordCount": 512000
+    "recordCount": 2470000
   },
   {
     "id": "ds-pa-05",
     "name": "LiteLLM Cost Records (Postgres)",
     "status": "connected",
-    "description": "Per-query and per-person token cost records with SLM/LLM split and savings versus LLM-only processing. Governs cost over time across every persona on the platform.",
+    "description": "Per-task and per-session cost with the SLM versus frontier split, plus the modelled all-frontier counterfactual used to measure what routing saves. Governs cost across every persona on the platform.",
     "icon": "database",
     "lastSync": "2026-04-23T09:00:00",
     "recordCount": 2470000
   },
   {
     "id": "ds-pa-06",
-    "name": "Model Registry",
+    "name": "Agent Observability Log",
     "status": "connected",
-    "description": "Registry of models in production: the in-environment SLM (Azure) and Claude Sonnet LLM (Azure), with versions, deployment environment, and routing eligibility.",
-    "icon": "brain",
-    "lastSync": "2026-04-23T06:00:00",
-    "recordCount": 2
+    "description": "Per-turn record of every agent action: the query, the response, the context it used, its chain of thought, and the policy or business rule that governed it. Powers the single-pane observability view — rendered conversationally in Ultra, not as raw Grafana.",
+    "icon": "monitor",
+    "lastSync": "2026-04-23T09:00:00",
+    "recordCount": 512000
   },
   {
     "id": "ds-pa-07",
-    "name": "Grafana (via API / MCP)",
+    "name": "Grafana (via API)",
     "status": "connected",
-    "description": "Infrastructure telemetry for the admin portal — router throughput, CPU, and p95 latency. Pulled through an API/MCP call and re-rendered as a Gen UI chart in Ultra rather than embedding raw Grafana.",
+    "description": "Agent health and platform telemetry behind the observability dashboard. Pulled through an API call and re-rendered as Gen UI in Ultra rather than embedding a Grafana panel.",
     "icon": "monitor",
     "lastSync": "2026-04-23T09:00:00",
     "recordCount": 96000
+  },
+  {
+    "id": "ds-pa-08",
+    "name": "Model Registry",
+    "status": "connected",
+    "description": "The two models in production: the in-environment SLM (Azure) and the frontier model, Claude Sonnet (Azure), with versions, deployment environment, and routing eligibility.",
+    "icon": "cog",
+    "lastSync": "2026-04-23T06:00:00",
+    "recordCount": 2
   }
 ]

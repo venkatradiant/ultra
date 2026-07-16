@@ -1,26 +1,38 @@
 [
   {
-    "trigger": "gov_observability",
-    "capabilityName": "Agent Observability",
-    "description": "Every agent action is recorded in a single pane: the query, the response, the context it used, its chain-of-thought, and the policy that drove it. Rendered conversationally in Ultra — not as raw Grafana — so any action can be explained against the rule behind it.",
-    "eyebrow": "GOVERNANCE CAPABILITY"
+    "trigger": "step_briefing",
+    "capabilityName": "Assurance Briefing",
+    "description": "The governance day starts as an assurance journey, not a leak hunt. Daniel is shown what needs confirming — a routine frontier-usage review, spend against budget, and a borderline field the knowledge graph caught and held local.",
+    "eyebrow": "GOVERNANCE STEP"
   },
   {
-    "trigger": "gov_routing",
-    "capabilityName": "Sovereignty-Aware Routing",
-    "description": "Routing is driven by cost and data sensitivity together. Deterministic logic flags fields first, the in-environment SLM verifies sensitivity, then a cost gate decides stay-in-SLM or route-to-LLM. Sensitive member data never leaves the NFCU environment.",
-    "eyebrow": "GOVERNANCE CAPABILITY"
+    "trigger": "step_field_sovereignty",
+    "capabilityName": "Field Sovereignty",
+    "description": "Field-level proof that member data stayed in-environment. Fields never route to the frontier model — tasks do. Every field resolves on the in-environment SLM; the frontier appears once, on non-PII inputs only.",
+    "eyebrow": "GOVERNANCE STEP"
   },
   {
-    "trigger": "gov_kag",
-    "capabilityName": "Sensitivity & Provenance (KAG)",
-    "description": "The KAG knowledge graph is the source of truth for what is sensitive and where it originated. Field nodes link to their source system and to the policy node that governs them. The agent queries it to drive the routing decision — the graph is re-rendered in Ultra, never shown as the raw Neo4j browser.",
-    "eyebrow": "GOVERNANCE CAPABILITY"
+    "trigger": "step_kag",
+    "capabilityName": "Sensitivity Provenance (KAG)",
+    "description": "The knowledge graph is the source of truth for what is sensitive and where it came from. It links a field to its source system and the policy node that governs it — classification by meaning, not keyword matching.",
+    "eyebrow": "GOVERNANCE STEP"
   },
   {
-    "trigger": "gov_tokenomics",
-    "capabilityName": "Tokenomics & Cost Governance",
-    "description": "Cost is measured and controlled per query and per person. Token split between the SLM and the LLM, semantic cache hit rate, and savings versus LLM-only processing are tracked over time — proving sovereignty routing is also the cheaper path.",
-    "eyebrow": "GOVERNANCE CAPABILITY"
+    "trigger": "step_routing",
+    "capabilityName": "Routing Logic",
+    "description": "Two gates, evaluated in order. Safe to send: any field carrying PII stays in the SLM, always. Worth sending: a task reaches the frontier only when it needs reasoning or generation the SLM cannot do reliably. Both must pass.",
+    "eyebrow": "GOVERNANCE STEP"
+  },
+  {
+    "trigger": "step_cost",
+    "capabilityName": "LLM Cost and Usage",
+    "description": "Per-task routing and cost together. Every frontier call is deliberate and justified, and the saving against an all-frontier platform is measured, not asserted.",
+    "eyebrow": "GOVERNANCE STEP"
+  },
+  {
+    "trigger": "step_observability",
+    "capabilityName": "Agent Observability and Governance",
+    "description": "Continuous governance across the contact center: agent health, frontier task share and cost trend, with every agent action expandable to its context, chain of thought and the policy that drove it. Rendered in Ultra, not raw Grafana.",
+    "eyebrow": "GOVERNANCE STEP"
   }
 ]

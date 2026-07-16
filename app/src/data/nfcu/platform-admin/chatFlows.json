@@ -1,396 +1,329 @@
 {
   "nfcu_pa_greeting": {
-    "ai_message": "Good morning, Daniel. 3 governance signals need review. Priya flagged an auto loan response for a possible PII routing issue, mortgage servicing LLM spend is 41% over its average, and one quality-workflow action is missing its policy citation. Want to start with the PII routing exception?",
+    "ai_message": "Good morning, Daniel. Three items for review. Priya's auto loan spike response is up for routine frontier-usage review, contact center spend is on track, and the knowledge graph caught one borderline field and held it local. Want to start with the spike review?",
     "suggested_chips": [
-      "Investigate the PII exception",
-      "Show me the cost anomaly",
-      "Which action is missing a citation?"
+      "Review the auto loan spike",
+      "Show me contact center spend",
+      "What did the graph catch?"
     ],
-    "data_sources_used": ["Routing log (Postgres)", "LiteLLM gateway", "Agent observability log"],
-    "capability": "Agent Observability",
+    "data_sources_used": ["Routing log (Postgres)", "LLM usage log", "KAG (Neo4j)"],
+    "capability": "Assurance Briefing",
     "ui_components_to_render": [],
     "related_dataset_keys": ["signals"],
     "confidence": {
       "score": 97,
-      "rationale": "Signal counts pulled directly from the routing log, LiteLLM gateway, and observability log. No inference.",
-      "signals_used": ["Routing log (Postgres)", "LiteLLM gateway", "Agent observability log"],
+      "rationale": "Item counts and statuses read directly from the routing log, LLM usage log and KAG. No inference.",
+      "signals_used": ["Routing log (Postgres)", "LLM usage log", "KAG (Neo4j)"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T08:58:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
-  "nfcu_pa_routing_provenance": {
-    "ai_message": "Here is the response returned to Priya at 8:47 AM on the auto loan spike. It drew on two models. Member financials — the balance, SSN, and account number — were processed by the in-environment SLM. Public rate and promotion data were processed by the LLM, Claude Sonnet. No PII reached the public model. The full provenance trace is below.",
+  "nfcu_pa_field_sovereignty": {
+    "ai_message": "Here is the field-level routing. Every member financial, the SSN, account number, balance, and name, was resolved by the in-environment SLM. Two public fields were also handled locally. One reasoning task used the frontier model, on non-PII inputs only. Zero PII reached the frontier model.",
     "suggested_chips": [
-      "Why was the SSN classified sensitive?",
+      "Why did the auto loan rate stay local?",
       "Show me the routing logic",
-      "Was anything routed incorrectly?"
+      "What did the frontier model do?"
     ],
     "data_sources_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
-    "capability": "Sovereignty-Aware Routing",
-    "ui_components_to_render": [{ "type": "routing_provenance_trace" }],
-    "related_dataset_keys": ["routingTrace"],
+    "capability": "Field Sovereignty",
+    "ui_components_to_render": [{ "type": "field_sovereignty_ledger" }],
+    "related_dataset_keys": ["fieldLedger"],
     "confidence": {
       "score": 98,
-      "rationale": "Each row is a deterministic routing-log entry cross-checked against its KAG sensitivity tag. 5 PII fields to SLM, 3 public fields to LLM, 0 leaks.",
+      "rationale": "Each row is a deterministic routing-log entry cross-checked against its KAG sensitivity tag. 7 fields resolved locally, 1 frontier task on non-PII inputs, 0 PII to frontier.",
       "signals_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T08:47:12Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
-  "nfcu_pa_kag_sensitivity": {
-    "ai_message": "The SSN field is tagged sensitive in the KAG knowledge graph. The tag comes from business rule DG-07: member identifiers and financial account data are PII and must not leave the NFCU environment. The graph links the field to its source system, Dynamics 365, and to the policy node that governs it. The bounded subgraph and the DG-07 policy card are below.",
+  "nfcu_pa_kag_provenance": {
+    "ai_message": "The knowledge graph flagged it member-specific under rule DG-04, a member-specific financial term, not public marketing data. The graph links the field to its source system and the governing policy, so it was kept in-environment. This is classification by meaning, not keyword matching.",
     "suggested_chips": [
       "Show all fields flagged sensitive",
-      "Which system did this originate in?",
-      "Show me the routing logic"
+      "Show me the routing logic",
+      "What did the frontier model do?"
     ],
     "data_sources_used": ["KAG (Neo4j)"],
-    "capability": "Sensitivity & Provenance (KAG)",
+    "capability": "Sensitivity Provenance (KAG)",
     "ui_components_to_render": [{ "type": "kag_node_view" }],
-    "related_dataset_keys": ["kagGraph"],
+    "related_dataset_keys": ["kagSubgraph"],
     "confidence": {
       "score": 96,
-      "rationale": "The sensitivity tag, source-system edge, and policy edge are read directly from the KAG via Cypher. Authoritative.",
+      "rationale": "The sensitivity tag, source-system edge and policy edge are read directly from the KAG via Cypher. Authoritative.",
       "signals_used": ["KAG (Neo4j)"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T08:47:20Z",
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T08:46:20Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
   "nfcu_pa_routing_logic": {
-    "ai_message": "Here is the decision path. Deterministic business logic flags fields by type first. The SLM then verifies sensitivity and decides whether it can answer safely. If the data is sensitive, or the SLM can answer reliably, the response stays in the SLM. It routes to the LLM only when the data is public and the query needs the LLM's depth or speed, after passing the cost gate. The process diagram is below.",
+    "ai_message": "Two gates. First, is it safe to send: any field carrying PII stays in the SLM, always. Second, is it worth sending: a task uses the frontier model only when it needs reasoning or generation the SLM cannot do reliably. A task has to pass both. Everything else stays local.",
     "suggested_chips": [
-      "Show the cost gate detail",
-      "What did this response cost?",
-      "Go back to the provenance trace"
+      "Run the cost report",
+      "Show me the field ledger again",
+      "Which tasks used the frontier model?"
     ],
     "data_sources_used": ["Routing service code", "KAG (Neo4j)"],
-    "capability": "Sovereignty-Aware Routing",
+    "capability": "Routing Logic",
     "ui_components_to_render": [{ "type": "routing_logic_diagram" }],
-    "related_dataset_keys": ["routingFlow"],
+    "related_dataset_keys": ["routingMermaid"],
     "confidence": {
       "score": 95,
-      "rationale": "The diagram reflects the deterministic routing-service configuration currently in production. No probabilistic component.",
+      "rationale": "The diagram reflects the deterministic routing-service configuration in production. No probabilistic component.",
       "signals_used": ["Routing service code", "KAG (Neo4j)"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T08:48:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
-  "nfcu_pa_cost_query": {
-    "ai_message": "That conversation cost $0.14 across 4 turns. 82% of tokens were processed by the SLM and 18% by the LLM, because most of the content was sensitive and stayed in-environment. Input tokens were 3,410 and output tokens were 1,220. The per-query cost card is below.",
+  "nfcu_pa_cost_usage": {
+    "ai_message": "Across Priya's session the frontier model was used on 3 of 24 tasks, all complex reasoning or generation, all on non-PII inputs. The rest ran on the in-environment SLM. Total cost was $0.63. Running everything on the frontier model would have cost $2.18, so routing saved 71%.",
     "suggested_chips": [
-      "Show Marcus's cost for last month",
-      "Compare to the LLM-only cost",
-      "Show the cost anomaly"
+      "Show me the highest-cost tasks",
+      "Break it down by persona",
+      "Show frontier usage this month"
     ],
     "data_sources_used": ["LiteLLM cost records (Postgres)", "Per-turn routing log"],
-    "capability": "Tokenomics & Cost Governance",
-    "ui_components_to_render": [{ "type": "cost_card" }],
-    "related_dataset_keys": ["costQuery"],
+    "capability": "LLM Cost and Usage",
+    "ui_components_to_render": [{ "type": "llm_cost_usage_report" }],
+    "related_dataset_keys": ["costReport"],
     "confidence": {
       "score": 97,
-      "rationale": "Cost, turns, and token split are direct meter reads from the LiteLLM cost records joined to the per-turn routing log.",
+      "rationale": "Per-task cost and model are direct meter reads from the LiteLLM cost records joined to the per-turn routing log. The all-frontier figure is modelled from the same token counts at frontier rates.",
       "signals_used": ["LiteLLM cost records (Postgres)", "Per-turn routing log"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T08:51:30Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
-  "nfcu_pa_cost_person": {
-    "ai_message": "Marcus's total was $47.20 across 92 turns. 74% of his tokens ran on the SLM and 26% on the LLM. Routing sensitive contact center data to the SLM saved an estimated $61 versus processing everything on the LLM. The tokenomics dashboard is below — including the per-persona spend for the month.",
+  "nfcu_pa_observability": {
+    "ai_message": "Across the contact center, agents are healthy and frontier usage held at 11% of tasks, all justified and PII-safe. Here is the activity view. You can expand any agent action to see what it did, the context it used, and the policy that governed it.",
     "suggested_chips": [
-      "Which action is missing a citation?",
-      "Break it down by week",
-      "Show the highest-cost queries",
-      "Export for finance"
+      "Expand a flagged action",
+      "Show the spend trend",
+      "Generate a governance summary"
     ],
-    "data_sources_used": ["LiteLLM cost records (Postgres)", "Per-turn routing log"],
-    "capability": "Tokenomics & Cost Governance",
-    "ui_components_to_render": [{ "type": "tokenomics_dashboard" }],
-    "related_dataset_keys": ["tokenomics"],
+    "data_sources_used": ["Agent observability log", "LLM usage log", "Grafana via API"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [{ "type": "agent_observability_dashboard" }],
+    "related_dataset_keys": ["governance"],
     "confidence": {
       "score": 94,
-      "rationale": "Per-person totals and split are direct meter reads. The $61 savings compares measured SLM spend to a modeled LLM-only cost with ±8% variance.",
-      "signals_used": ["LiteLLM cost records (Postgres)", "Per-turn routing log"],
+      "rationale": "Agent health and task counts come from the observability log; frontier share from the LLM usage log. Grafana metrics are pulled via API and re-rendered, not altered.",
+      "signals_used": ["Agent observability log", "LLM usage log", "Grafana via API"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T08:52:10Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
-  },
-
-  "nfcu_pa_observability": {
-    "ai_message": "Here is the full trace for that turn. The user asked for a coaching recommendation. The agent used the quality scorecard and the call transcript as context, reasoned across three prior calls, and applied policy QA-12 on coaching thresholds. The policy citation was recorded in the log but was not surfaced in the response. I have attached it now and flagged the render gap for the team. The observability panel is below.",
-    "suggested_chips": [
-      "Show me system health for the admin portal",
-      "Close the PII exception",
-      "Generate a governance summary"
-    ],
-    "data_sources_used": ["Agent observability log", "Per-turn logging table"],
-    "capability": "Agent Observability",
-    "ui_components_to_render": [{ "type": "agent_observability_panel" }],
-    "related_dataset_keys": ["observability"],
-    "confidence": {
-      "score": 93,
-      "rationale": "The action, context sources, chain-of-thought, and applied policy are read from the observability log. The citation was present in the log — the gap was in rendering, now corrected.",
-      "signals_used": ["Agent observability log", "Per-turn logging table"],
-      "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T08:53:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
-  },
-
-  "nfcu_pa_sensitive_registry": {
-    "ai_message": "Here is the full sensitivity surface — every field the KAG flags as sensitive, the rule that flags it, and the system it originates in. This is what the routing layer checks against on every turn before any model sees the data.",
-    "suggested_chips": [
-      "Show me the routing logic",
-      "What did this response cost?",
-      "Generate a governance summary"
-    ],
-    "data_sources_used": ["KAG (Neo4j)"],
-    "capability": "Sensitivity & Provenance (KAG)",
-    "ui_components_to_render": [{ "type": "sensitive_field_registry" }],
-    "related_dataset_keys": ["sensitiveFields"],
-    "confidence": {
-      "score": 96,
-      "rationale": "The registry is a direct Cypher read of every flagged field node and its governing policy edge.",
-      "signals_used": ["KAG (Neo4j)"],
-      "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T08:49:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
-  },
-
-  "nfcu_pa_system_health": {
-    "ai_message": "Here is system health for the admin portal. Router throughput and p95 latency spiked at 8:47 AM with the auto loan surge, the SLM autoscaled two replicas at 9:02, and load normalized by 9:28. This is Grafana data pulled through the API and re-rendered here — you never leave the Ultra plane. The chart and event history are below.",
-    "suggested_chips": [
-      "Close the PII exception",
-      "Generate a governance summary",
-      "Show me this month's token spend by persona"
-    ],
-    "data_sources_used": ["Grafana (via API / MCP)"],
-    "capability": "Agent Observability",
-    "ui_components_to_render": [{ "type": "system_metric_chart" }],
-    "related_dataset_keys": ["systemMetric"],
-    "confidence": {
-      "score": 91,
-      "rationale": "Metric series and events are pulled directly from Grafana via API; re-rendering does not alter the values.",
-      "signals_used": ["Grafana (via API / MCP)"],
-      "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T09:30:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
-  },
-
-  "nfcu_pa_pii_check": {
-    "ai_message": "No. Zero PII fields reached a public LLM today. Across every persona, 100% of sensitive data — member identifiers, financial account data, and card numbers — was processed by the in-environment SLM. The sovereignty-aware routing guard blocked 0 attempted leaks because deterministic flagging caught every PII field before a model saw it. The auto loan response Priya flagged is the closest call, and its provenance trace confirms all 5 PII fields stayed in the SLM.",
-    "suggested_chips": [
-      "Investigate the PII exception",
-      "Show all fields flagged sensitive",
-      "Show me the routing logic"
-    ],
-    "data_sources_used": ["Routing log (Postgres)", "Sovereignty-aware routing guard"],
-    "capability": "Sovereignty-Aware Routing",
-    "ui_components_to_render": [],
-    "related_dataset_keys": [],
-    "confidence": {
-      "score": 99,
-      "rationale": "PII-to-LLM count is a deterministic aggregate over the routing log for the full day. Zero events.",
-      "signals_used": ["Routing log (Postgres)"],
-      "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T09:00:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
-  "nfcu_pa_cost_anomaly": {
-    "ai_message": "The mortgage servicing persona's LLM spend is 41% above its 7-day average. The driver is the semantic cache: hit rate dropped from 71% to 63% after a prompt change three days ago, so more turns are hitting the LLM fresh instead of being served from cache. Estimated overage is $180 this week if unaddressed. The fix is to revert or re-tune the prompt so cache keys stabilize — I can flag it to the mortgage servicing owner.",
+  "nfcu_pa_frontier_task": {
+    "ai_message": "Three tasks, all in Priya's session, all on non-PII inputs. **Spike cause analysis** correlated queue depth, service level and the Marketing promo send — multi-source causal reasoning the SLM cannot do reliably. **Staffing recommendation** weighed cost, coverage and history to recommend rerouting 8 cross-trained agents. **Draft leadership summary** generated the long-form note for her VP. Everything else in the session — the lookups, the classifications, the batch transcript and sentiment work — stayed on the in-environment SLM. No field was ever sent; each task received only the non-PII signals it needed.",
     "suggested_chips": [
-      "Show me this month's token spend by persona",
-      "What did this response cost?",
-      "Generate a governance summary"
+      "Run the cost report",
+      "Show me the field ledger again",
+      "Show me the routing logic"
     ],
-    "data_sources_used": ["LiteLLM gateway", "LiteLLM cost records (Postgres)"],
-    "capability": "Tokenomics & Cost Governance",
+    "data_sources_used": ["Per-turn routing log", "LLM usage log"],
+    "capability": "LLM Cost and Usage",
     "ui_components_to_render": [],
     "related_dataset_keys": [],
     "confidence": {
-      "score": 88,
-      "rationale": "Spend delta and cache-hit drop are direct gateway telemetry; the $180 projection extrapolates the current trajectory with ±15% variance.",
-      "signals_used": ["LiteLLM gateway", "LiteLLM cost records (Postgres)"],
+      "score": 96,
+      "rationale": "The three frontier tasks and their inputs are enumerated in the per-turn routing log. Deterministic.",
+      "signals_used": ["Per-turn routing log", "LLM usage log"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T08:52:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_pa_pii_check": {
+    "ai_message": "No. Zero PII reached the frontier model — today, and month to date. The guarantee is structural, not statistical: Gate 1 tags every field before a model sees it, and any field carrying PII is pinned to the in-environment SLM. Fields never route to the frontier at all; only tasks do, and a task is handed nothing but the non-PII signals it needs. Priya's spike response is the closest call this week, and its ledger confirms all seven fields resolved locally.",
+    "suggested_chips": [
+      "Show me where every field in this response went",
+      "Show me the routing logic",
+      "Show me agent activity across the contact center"
+    ],
+    "data_sources_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
+    "capability": "Field Sovereignty",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 99,
+      "rationale": "PII-to-frontier is a deterministic aggregate over the full routing log. Zero events.",
+      "signals_used": ["Routing log (Postgres)"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_pa_spend_on_track": {
+    "ai_message": "Spend is on track. Month to date the frontier model handled 11% of tasks and the in-environment SLM handled the rest, holding the token split at 88/12. That keeps us 71% below what an all-frontier platform would cost. Priya's session is representative: $0.63 against a $2.18 all-frontier counterfactual. Nothing here needs action — the number is healthy because the routing is doing its job.",
+    "suggested_chips": [
+      "Run the LLM cost report for this session",
+      "Show me agent activity across the contact center",
+      "Review the auto loan spike"
+    ],
+    "data_sources_used": ["LLM usage log", "LiteLLM cost records (Postgres)"],
+    "capability": "LLM Cost and Usage",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": {
+      "score": 95,
+      "rationale": "Task share and spend are direct gateway telemetry measured against the monthly budget.",
+      "signals_used": ["LLM usage log", "LiteLLM cost records (Postgres)"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T07:30:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
-  "nfcu_pa_routing_correct": {
-    "ai_message": "Nothing was routed incorrectly. All 5 PII fields stayed in the SLM and all 3 public fields went to the LLM — every field matches its KAG sensitivity tag and the DG-07 policy. The exception was flagged only because the response combined member financials with public rate data in a single answer, which trips the review rule for manual confirmation. The routing itself was correct; the flag is a safeguard, not a violation. You can close it with confidence.",
+  "nfcu_pa_savings": {
+    "ai_message": "For Priya's session, 71%. The session cost $0.63; the same 24 tasks run entirely on the frontier model would have cost $2.18. The saving comes from the heavy work — the batch transcript summarization, the sentiment pass over 90 calls, the cross-source correlation. Those are token-hungry, and on the SLM they cost roughly a quarter of what the frontier would charge. The three tasks that genuinely needed frontier reasoning stayed on it. That is the point of Gate 2: pay for the frontier only where it earns its place.",
     "suggested_chips": [
-      "Close the PII exception",
-      "Show me the routing logic",
-      "Go back to the provenance trace"
-    ],
-    "data_sources_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
-    "capability": "Sovereignty-Aware Routing",
-    "ui_components_to_render": [],
-    "related_dataset_keys": [],
-    "confidence": {
-      "score": 97,
-      "rationale": "Every field's routed model matches its KAG tag in the routing log. The review flag is a deterministic rule, not a routing error.",
-      "signals_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
-      "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T08:47:40Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
-  },
-
-  "nfcu_pa_cost_gate_detail": {
-    "ai_message": "The cost gate is the last check before any public data goes to the LLM. Once the SLM confirms a field is public and the query genuinely needs the LLM's depth or speed, the gate checks the projected token cost against the persona's budget and the semantic cache. If the answer is already cached, it never reaches the LLM. If the projected cost exceeds the budget threshold, the gate holds the request in the SLM and logs the deferral. For Priya's auto loan response, only the public rate copy passed the gate — everything sensitive was already held in the SLM upstream.",
-    "suggested_chips": [
-      "What did this response cost?",
-      "Go back to the provenance trace",
-      "Show me this month's token spend by persona"
-    ],
-    "data_sources_used": ["Routing service code", "LiteLLM gateway"],
-    "capability": "Sovereignty-Aware Routing",
-    "ui_components_to_render": [],
-    "related_dataset_keys": [],
-    "confidence": {
-      "score": 94,
-      "rationale": "Gate behavior reflects the deterministic routing-service configuration and the LiteLLM cache/budget settings in production.",
-      "signals_used": ["Routing service code", "LiteLLM gateway"],
-      "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T08:48:30Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
-  },
-
-  "nfcu_pa_llm_only_compare": {
-    "ai_message": "If Priya's auto loan conversation had run entirely on the LLM, it would have cost $0.39 instead of $0.14 — nearly 3x. More important than the cost, all 5 PII fields would have been processed by a public model, which DG-07 prohibits. Sovereignty routing is both the compliant path and the cheaper one: the same conversation, $0.25 less, with zero PII exposure.",
-    "suggested_chips": [
-      "Show Marcus's cost for last month",
-      "Show me this month's token spend by persona",
-      "Export for finance"
+      "Run the LLM cost report for this session",
+      "Show me the highest-cost tasks",
+      "Show me the routing logic"
     ],
     "data_sources_used": ["LiteLLM cost records (Postgres)", "Per-turn routing log"],
-    "capability": "Tokenomics & Cost Governance",
-    "ui_components_to_render": [{ "type": "cost_card" }],
-    "related_dataset_keys": ["costQuery"],
+    "capability": "LLM Cost and Usage",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
     "confidence": {
-      "score": 92,
-      "rationale": "Measured SLM cost versus a modeled LLM-only cost using the same token counts at published LLM rates.",
+      "score": 93,
+      "rationale": "Measured session cost against a modelled all-frontier counterfactual using the same token counts at published frontier rates.",
       "signals_used": ["LiteLLM cost records (Postgres)"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T08:51:45Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
   "nfcu_pa_highest_cost": {
-    "ai_message": "Marcus's highest-cost queries last month were the cross-team weekly leadership reports — each pulled from all five business personas and ran 8–12 turns, averaging $1.10 per report. Next were the migration-risk scenario models. Notably, even his most expensive queries kept a 68% SLM share, because the aggregated contact-center data they reason over is sensitive and stays in-environment. The tokenomics dashboard breaks this down.",
+    "ai_message": "The three most expensive tasks in Priya's session all ran on the in-environment SLM: cross-source signal correlation across 6 systems at $0.118, call transcript summarization over 12 calls at $0.086, and sentiment classification across 90 calls at $0.071. That is token volume, not model tier — those jobs read a lot. The most expensive frontier task, the drafted leadership summary, was $0.050. It is the cheap-looking rows that matter most for the cost story: run those same three batch jobs on the frontier and the session stops being $0.63.",
     "suggested_chips": [
-      "Break it down by week",
-      "Export for finance",
-      "Compare to the LLM-only cost"
+      "Break it down by persona",
+      "How much did routing save versus all-frontier?",
+      "Run the LLM cost report for this session"
     ],
     "data_sources_used": ["LiteLLM cost records (Postgres)", "Per-turn routing log"],
-    "capability": "Tokenomics & Cost Governance",
-    "ui_components_to_render": [{ "type": "tokenomics_dashboard" }],
-    "related_dataset_keys": ["tokenomics"],
+    "capability": "LLM Cost and Usage",
+    "ui_components_to_render": [{ "type": "llm_cost_usage_report" }],
+    "related_dataset_keys": ["costReport"],
     "confidence": {
-      "score": 90,
-      "rationale": "Query cost ranking is a direct sort of the cost records; the SLM-share note is a per-query meter read.",
+      "score": 96,
+      "rationale": "A direct sort of the session's per-task cost records.",
       "signals_used": ["LiteLLM cost records (Postgres)"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T08:52:30Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
-  "nfcu_pa_close_pii": {
-    "ai_message": "Done. PII Routing Exception SIG-NFCU-PA-001 is closed. I've recorded the confirmation: 5 PII fields verified in the SLM, 0 leaks to the LLM, DG-07 satisfied, reviewed by Daniel Okonkwo at 9:00 AM. The provenance trace is attached to the audit record and the incident is cleared. Priya's response stands.",
+  "nfcu_pa_by_persona": {
+    "ai_message": "Month to date, by persona: Priya (contact center ops) $38.60 across 812 tasks, 12% frontier. Marcus (director) $47.20 across 604 tasks, 14% frontier — he drafts more leadership summaries, which is generation work. Janelle (quality) $29.40 across 517 tasks, 9% frontier. Derek (workforce) $22.10 across 448 tasks, 8% frontier. David (agent-assist) $15.80 across 396 tasks, 6% frontier — almost entirely lookups, which is exactly what you want at the agent desktop. Every persona is PII-clean: zero fields to the frontier across all five.",
     "suggested_chips": [
-      "Generate a governance summary",
-      "Show me system health for the admin portal",
-      "Which action is missing a citation?"
+      "Show me agent activity across the contact center",
+      "Show the spend trend",
+      "Run the LLM cost report for this session"
     ],
-    "data_sources_used": ["Routing log (Postgres)", "Agent observability log"],
-    "capability": "Agent Observability",
+    "data_sources_used": ["LiteLLM cost records (Postgres)", "LLM usage log"],
+    "capability": "LLM Cost and Usage",
     "ui_components_to_render": [],
     "related_dataset_keys": [],
     "confidence": {
-      "score": 98,
-      "rationale": "Closing the exception is a deterministic audit-log write with the provenance trace attached.",
-      "signals_used": ["Routing log (Postgres)"],
+      "score": 94,
+      "rationale": "Per-persona totals are direct meter reads grouped by persona id over the month.",
+      "signals_used": ["LiteLLM cost records (Postgres)", "LLM usage log"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_pa_expand_action": {
+    "ai_message": "Here is the activity view again — expand any row to open the full record. The coaching recommendation on Auto Loan Assist is the one worth looking at: it used the quality scorecard, the call transcript and three prior calls as context, reasoned across the cohort to find the gap, and applied policy QA-12 on coaching thresholds. Every action carries that same record: what it did, what it read, how it reasoned, and the rule that governed it.",
+    "suggested_chips": [
+      "Show the spend trend",
+      "Generate a governance summary",
+      "Run the LLM cost report for this session"
+    ],
+    "data_sources_used": ["Agent observability log", "Per-turn logging table"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [{ "type": "agent_observability_dashboard" }],
+    "related_dataset_keys": ["governance"],
+    "confidence": {
+      "score": 95,
+      "rationale": "The action, context, chain-of-thought and applied policy are read from the observability log for that turn.",
+      "signals_used": ["Agent observability log"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+
+  "nfcu_pa_spend_trend": {
+    "ai_message": "Frontier spend over the last five weeks: $0.42, $0.48, $0.55, $0.51, $0.63. The rise tracks contact center volume, not routing drift — the frontier task share has held between 10% and 12% the whole way. That is the number to watch. If share climbs while volume is flat, Gate 2 has loosened and something is escalating to the frontier that should not be. It hasn't.",
+    "suggested_chips": [
+      "Show me agent activity across the contact center",
+      "Generate a governance summary",
+      "Break it down by persona"
+    ],
+    "data_sources_used": ["LLM usage log", "Grafana via API"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [{ "type": "agent_observability_dashboard" }],
+    "related_dataset_keys": ["governance"],
+    "confidence": {
+      "score": 93,
+      "rationale": "Weekly spend is a direct aggregate of the usage log; the share-vs-volume read is a trend observation over five points.",
+      "signals_used": ["LLM usage log", "Grafana via API"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T09:00:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
   },
 
   "nfcu_pa_gov_summary": {
-    "ai_message": "Here is your governance summary for the morning:\n\n**Sovereignty:** 100% of sensitive data routed to the SLM · 0 PII leakage events to the LLM · the auto loan exception verified and closed.\n**Tokenomics:** SLM/LLM token split 78% / 22% · semantic cache hit rate 63% · average cost per query $0.11 · mortgage servicing cost anomaly (+41%) open, prompt re-tune recommended.\n**Observability:** 96% of agent actions carried a policy citation · the one quality-workflow gap was a render issue, citation re-attached · admin portal healthy after the 8:47 AM spike.\n**Models in production:** 2 — in-environment SLM and Claude Sonnet LLM.\n\nOne item still open: the mortgage servicing cost anomaly. Everything else is green.",
+    "ai_message": "Governance summary, contact center, month to date:\n\n**Sovereignty.** 0 PII to the frontier model. 100% of sensitive fields resolved in-environment. The knowledge graph caught one borderline field — the current auto loan rate — and held it local under DG-04.\n\n**Frontier usage.** 11% of tasks, every one complex reasoning or generation, every one on non-PII inputs. Token split 88/12.\n\n**Cost.** 71% below the all-frontier counterfactual. Priya's session: $0.63 against $2.18.\n\n**Observability.** Every agent action carries its context, chain of thought and governing policy. Auto Loan Assist and Mortgage Servicing healthy; Card Disputes on watch for volume, not compliance.\n\n**Open items.** One: confirm the justification on Priya's spike review and close it. Everything else is green.",
     "suggested_chips": [
-      "Show me the cost anomaly",
-      "Export for finance",
-      "Show me system health for the admin portal"
+      "Review the auto loan spike",
+      "Show me agent activity across the contact center",
+      "Show me contact center spend"
     ],
-    "data_sources_used": ["Routing log (Postgres)", "LiteLLM gateway", "Agent observability log", "KAG (Neo4j)"],
-    "capability": "Agent Observability",
+    "data_sources_used": ["Routing log (Postgres)", "LLM usage log", "Agent observability log", "KAG (Neo4j)"],
+    "capability": "Agent Observability and Governance",
     "ui_components_to_render": [],
     "related_dataset_keys": [],
     "confidence": {
       "score": 95,
       "rationale": "Aggregation of already-validated governance metrics; no inference beyond formatting.",
-      "signals_used": ["Routing log (Postgres)", "LiteLLM gateway", "Agent observability log"],
+      "signals_used": ["Routing log (Postgres)", "LLM usage log", "Agent observability log"],
       "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
-      "validated_at": "2026-04-23T09:00:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-    }
-  },
-
-  "nfcu_pa_export_finance": {
-    "ai_message": "Exported. I've generated a finance-ready tokenomics report: per-person spend, SLM/LLM split, semantic cache savings, and total savings versus LLM-only ($61 for Marcus, $284 across all five personas this month). It's formatted as a CSV plus a one-page summary and queued to your Finance distribution. The savings-versus-LLM-only line is the headline number for the cost review.",
-    "suggested_chips": [
-      "Show Marcus's cost for last month",
-      "Generate a governance summary",
-      "Break it down by week"
-    ],
-    "data_sources_used": ["LiteLLM cost records (Postgres)"],
-    "capability": "Tokenomics & Cost Governance",
-    "ui_components_to_render": [],
-    "related_dataset_keys": [],
-    "confidence": {
-      "score": 96,
-      "rationale": "Export is a deterministic aggregation of the cost records into a report artifact.",
-      "signals_used": ["LiteLLM cost records (Postgres)"],
-      "threshold": 70,
-      "model_version": "sovereign-router-v1.0",
+      "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T09:00:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }

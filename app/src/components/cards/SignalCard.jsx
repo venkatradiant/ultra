@@ -1,12 +1,22 @@
-import { AlertTriangle, TrendingDown, Users, LineChart } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Users, LineChart, ClipboardCheck, CheckCircle2 } from 'lucide-react';
 import SourceBadge from '../chat/SourceBadge';
 import { tierFor, colorFor } from '../../utils/confidence';
 
+// `review` and `healthy` serve governance personas whose signals are assurance
+// items rather than incidents (NFCU Platform Admin). Lookup is case-insensitive
+// so specs written as REVIEW / HEALTHY / INFO resolve correctly.
 const severityStyles = {
-  critical: { border: 'border-red-200',   bg: 'bg-red-50',   icon: AlertTriangle, iconColor: 'text-red-500',    dot: 'bg-red-500'    },
-  warning:  { border: 'border-amber-200', bg: 'bg-amber-50', icon: TrendingDown,  iconColor: 'text-amber-500',  dot: 'bg-amber-500'  },
-  info:     { border: 'border-blue-200',  bg: 'bg-blue-50',  icon: Users,         iconColor: 'text-blue-500',   dot: 'bg-blue-500'   },
+  critical: { border: 'border-red-200',     bg: 'bg-red-50',     icon: AlertTriangle,  iconColor: 'text-red-500',     dot: 'bg-red-500'     },
+  warning:  { border: 'border-amber-200',   bg: 'bg-amber-50',   icon: TrendingDown,   iconColor: 'text-amber-500',   dot: 'bg-amber-500'   },
+  info:     { border: 'border-blue-200',    bg: 'bg-blue-50',    icon: Users,          iconColor: 'text-blue-500',    dot: 'bg-blue-500'    },
+  review:   { border: 'border-indigo-200',  bg: 'bg-indigo-50',  icon: ClipboardCheck, iconColor: 'text-indigo-500',  dot: 'bg-indigo-500'  },
+  healthy:  { border: 'border-emerald-200', bg: 'bg-emerald-50', icon: CheckCircle2,   iconColor: 'text-emerald-500', dot: 'bg-emerald-500' },
 };
+
+/** Resolve a signal's severity to a style, case-insensitively, defaulting to info. */
+export function styleForSeverity(severity) {
+  return severityStyles[String(severity ?? '').toLowerCase()] || severityStyles.info;
+}
 
 const calmStyle = {
   border: 'border-border',
@@ -69,9 +79,7 @@ function CompactCard({ signal, style, tone }) {
 
 export default function SignalCard({ signal, tone = 'urgent', compact = false }) {
   const isCalm = tone === 'calm';
-  const style = isCalm
-    ? calmStyle
-    : (severityStyles[signal.severity] || severityStyles.info);
+  const style = isCalm ? calmStyle : styleForSeverity(signal.severity);
 
   if (compact) return <CompactCard signal={signal} style={style} tone={tone} />;
 

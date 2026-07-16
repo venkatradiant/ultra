@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { AlertTriangle, TrendingDown, Activity, ChevronRight, LineChart } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Activity, ChevronRight, LineChart, ClipboardCheck, CheckCircle2 } from 'lucide-react';
 import { tierFor, colorFor } from '../../utils/confidence';
 
 const severityConfig = {
@@ -36,6 +36,24 @@ const severityConfig = {
     iconColor: 'text-slate-500',
     badge: 'text-slate-600 bg-slate-50',
     badgeLabel: 'Watch',
+  },
+  // Governance personas (NFCU Platform Admin) surface assurance items, not
+  // incidents: something to confirm, or something already healthy.
+  review: {
+    accent: 'bg-indigo-500',
+    iconBg: 'bg-indigo-50',
+    icon: ClipboardCheck,
+    iconColor: 'text-indigo-500',
+    badge: 'text-indigo-700 bg-indigo-50',
+    badgeLabel: 'Review',
+  },
+  healthy: {
+    accent: 'bg-emerald-500',
+    iconBg: 'bg-emerald-50',
+    icon: CheckCircle2,
+    iconColor: 'text-emerald-500',
+    badge: 'text-emerald-700 bg-emerald-50',
+    badgeLabel: 'Healthy',
   },
 };
 
@@ -97,7 +115,8 @@ function formatMetric(signal) {
 export default function InsightMiniCard({ signal, onClick, index = 0 }) {
   // Trend signals don't carry a severity — they carry `trend: "watch"`.
   // Fall through to severity first, then trend, then info.
-  const variantKey = signal.severity || signal.trend || 'info';
+  // Case-insensitive so specs written as REVIEW / HEALTHY / INFO resolve too.
+  const variantKey = String(signal.severity || signal.trend || 'info').toLowerCase();
   const config = severityConfig[variantKey] || severityConfig.info;
   const Icon = config.icon;
 

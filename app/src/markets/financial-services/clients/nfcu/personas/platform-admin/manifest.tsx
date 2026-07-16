@@ -1,29 +1,31 @@
 /**
  * Persona: Platform Administrator, AI Governance & LLMOps (Daniel Okonkwo) — NFCU.
- * The governance persona and the only Gen-UI-wired surface for this build. Tells
- * the three-demo story — sovereignty-aware routing, KAG sensitivity & provenance,
- * and tokenomics — with agent observability as the connective tissue. Every turn
- * renders a governance artifact inline. Scripted/synthetic data only.
+ *
+ * The governance persona and the only Gen-UI-wired surface for this build. Per
+ * NFCU_CCaaS_Prototype_Spec.docx this is an ASSURANCE JOURNEY, not a leak hunt:
+ * Daniel verifies member data stayed in-environment, confirms every frontier use
+ * was justified, and reviews cost. Two gates govern routing — safe to send (PII
+ * stays in the SLM) and worth sending (only a task that needs the frontier gets
+ * it). Fields never route to the frontier; tasks do.
+ *
+ * Turns 2–6 render the five Gen UI components, all fed by the governanceData
+ * layer (static now, live API later — swapping a getter is the only change).
  */
 
-import { ShieldCheck, Lock, Cpu, Zap, Receipt, FileCheck, Layers } from 'lucide-react';
+import { ShieldOff, ShieldCheck, Sparkles, Cpu, TrendingDown, Receipt, Layers } from 'lucide-react';
 import type { PersonaManifest } from '@core/types';
 
 import { getPersonaFlowConfigs } from '@/data/personaFlowConfigs';
 import signals from '@/data/nfcu/platform-admin/signals.json';
 import dataSources from '@/data/nfcu/platform-admin/dataSources.json';
 import capabilityCallouts from '@/data/nfcu/platform-admin/capabilityCallouts.json';
-import governance from '@/data/nfcu/platform-admin/governance.json';
 
 import PlatformAdminKpiCarousel from '@/components/nfcu/platform-admin/PlatformAdminKpiCarousel';
-import ModelRoutingProvenanceTrace from '@/components/nfcu/platform-admin/ModelRoutingProvenanceTrace';
+import FieldSovereigntyLedger from '@/components/nfcu/platform-admin/FieldSovereigntyLedger';
 import KagNodeView from '@/components/nfcu/platform-admin/KagNodeView';
-import RoutingLogicDiagram from '@/components/nfcu/platform-admin/RoutingLogicDiagram';
-import CostCard from '@/components/nfcu/platform-admin/CostCard';
-import TokenomicsDashboard from '@/components/nfcu/platform-admin/TokenomicsDashboard';
-import AgentObservabilityPanel from '@/components/nfcu/platform-admin/AgentObservabilityPanel';
-import SensitiveFieldRegistry from '@/components/nfcu/platform-admin/SensitiveFieldRegistry';
-import SystemMetricChart from '@/components/nfcu/platform-admin/SystemMetricChart';
+import RoutingDiagram from '@/components/nfcu/platform-admin/RoutingDiagram';
+import LlmCostUsageReport from '@/components/nfcu/platform-admin/LlmCostUsageReport';
+import AgentObservabilityGovernanceDashboard from '@/components/nfcu/platform-admin/AgentObservabilityGovernanceDashboard';
 
 const flows = (getPersonaFlowConfigs('nfcu') as unknown as Record<string, PersonaManifest['flows']>).nfcu_platform_admin;
 
@@ -49,73 +51,74 @@ const manifest: PersonaManifest = {
   navLabels: { governance: 'Governance & Observability' },
   features: { navSlots: ['ask', 'governance', 'dataSources'], staticCapabilityBadges: true },
 
-  // 7 governance KPIs shown 4-up in a paginated carousel (see statsComponent).
+  // 7 governance KPIs shown 4-up in a paginated carousel.
   statsComponent: PlatformAdminKpiCarousel as unknown as PersonaManifest['statsComponent'],
 
   ui: {
     greetingFlowKey: 'nfcu_pa_greeting',
     initialChips: [
-      'Investigate the PII exception',
-      'Did any PII reach a public LLM today?',
-      "Show me this month's token spend by persona",
-      "What policy drove this agent's action?",
-      'Show me system health for the admin portal',
+      'Review the auto loan spike',
+      'Did any PII reach the frontier model?',
+      'Show me the routing logic as a diagram',
+      'Run the LLM cost report for this session',
+      'Show me agent activity across the contact center',
     ],
+    // The golden path walks the spec's six turns in order.
     goldenPathChip: {
-      nfcu_pa_greeting: 'Investigate the PII exception',
-      nfcu_pa_routing_provenance: 'Why was the SSN classified sensitive?',
-      nfcu_pa_kag_sensitivity: 'Show me the routing logic',
-      nfcu_pa_routing_logic: 'What did this response cost?',
-      nfcu_pa_cost_query: "Show Marcus's cost for last month",
-      nfcu_pa_cost_person: 'Which action is missing a citation?',
-      nfcu_pa_observability: 'Show me system health for the admin portal',
+      nfcu_pa_greeting: 'Review the auto loan spike',
+      nfcu_pa_field_sovereignty: 'Why did the auto loan rate stay local?',
+      nfcu_pa_kag_provenance: 'Show me the routing logic',
+      nfcu_pa_routing_logic: 'Run the cost report',
+      nfcu_pa_cost_usage: 'Show frontier usage this month',
+      nfcu_pa_observability: 'Generate a governance summary',
     },
     flowKeyToCapabilityTrigger: {
-      nfcu_pa_greeting: 'gov_observability',
-      nfcu_pa_routing_provenance: 'gov_routing',
-      nfcu_pa_pii_check: 'gov_routing',
-      nfcu_pa_routing_correct: 'gov_routing',
-      nfcu_pa_cost_gate_detail: 'gov_routing',
-      nfcu_pa_kag_sensitivity: 'gov_kag',
-      nfcu_pa_sensitive_registry: 'gov_kag',
-      nfcu_pa_routing_logic: 'gov_routing',
-      nfcu_pa_cost_query: 'gov_tokenomics',
-      nfcu_pa_cost_person: 'gov_tokenomics',
-      nfcu_pa_cost_anomaly: 'gov_tokenomics',
-      nfcu_pa_llm_only_compare: 'gov_tokenomics',
-      nfcu_pa_highest_cost: 'gov_tokenomics',
-      nfcu_pa_observability: 'gov_observability',
-      nfcu_pa_system_health: 'gov_observability',
-      nfcu_pa_gov_summary: 'gov_observability',
+      nfcu_pa_greeting: 'step_briefing',
+      nfcu_pa_field_sovereignty: 'step_field_sovereignty',
+      nfcu_pa_pii_check: 'step_field_sovereignty',
+      nfcu_pa_kag_provenance: 'step_kag',
+      nfcu_pa_routing_logic: 'step_routing',
+      nfcu_pa_cost_usage: 'step_cost',
+      nfcu_pa_frontier_task: 'step_cost',
+      nfcu_pa_spend_on_track: 'step_cost',
+      nfcu_pa_savings: 'step_cost',
+      nfcu_pa_highest_cost: 'step_cost',
+      nfcu_pa_by_persona: 'step_cost',
+      nfcu_pa_observability: 'step_observability',
+      nfcu_pa_expand_action: 'step_observability',
+      nfcu_pa_spend_trend: 'step_observability',
+      nfcu_pa_gov_summary: 'step_observability',
     },
+    // Dashboard KPIs — spec: Daniel Okonkwo.
     stats: [
-      { id: 'slm_routed', label: 'Sensitive Data Routed to SLM', value: '100%', trend: 'Routing log + KAG', positive: true, icon: ShieldCheck, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'Show me the routing logic as a diagram' },
-      { id: 'pii_leaks', label: 'PII Leakage Events to LLM', value: '0', trend: 'Sovereignty guard', positive: true, icon: Lock, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'Did any PII reach a public LLM today?' },
-      { id: 'token_split', label: 'SLM / LLM Token Split', value: '78% / 22%', trend: 'LiteLLM gateway', positive: true, icon: Cpu, iconColor: 'text-brand', iconBg: 'bg-brand/10', chipText: 'What did this conversation cost, SLM vs LLM?' },
-      { id: 'cache', label: 'Semantic Cache Hit Rate', value: '63%', trend: '↓ after prompt change', positive: false, icon: Zap, iconColor: 'text-amber-600', iconBg: 'bg-amber-500/10', chipText: 'Show me the cost anomaly' },
-      { id: 'cost_q', label: 'Avg Cost per Query', value: '$0.11', trend: 'LiteLLM cost records', positive: true, icon: Receipt, iconColor: 'text-blue-600', iconBg: 'bg-blue-500/10', chipText: "Show me this month's token spend by persona" },
-      { id: 'citation', label: 'Agent Actions w/ Policy Citation', value: '96%', trend: '1 render gap flagged', positive: false, icon: FileCheck, iconColor: 'text-violet-600', iconBg: 'bg-violet-500/10', chipText: "What policy drove this agent's action?" },
-      { id: 'models', label: 'Models in Production', value: '2', trend: 'SLM + Claude Sonnet', positive: true, icon: Layers, iconColor: 'text-text-muted', iconBg: 'bg-surface-2', chipText: null },
+      { id: 'pii_frontier', label: 'PII Sent to Frontier Model', value: '0', trend: 'Routing log + KAG', positive: true, icon: ShieldOff, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'Did any PII reach the frontier model?' },
+      { id: 'sensitive_local', label: 'Sensitive Fields Kept In-Environment', value: '100%', trend: 'Routing log', positive: true, icon: ShieldCheck, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'Show me where every field in this response went' },
+      { id: 'frontier_share', label: 'Frontier Task Share (today)', value: '12%', trend: 'LLM usage log', positive: true, icon: Sparkles, iconColor: 'text-violet-600', iconBg: 'bg-violet-500/10', chipText: 'Which tasks used the frontier model, and why?' },
+      { id: 'token_split', label: 'SLM / Frontier Token Split', value: '88% / 12%', trend: 'LiteLLM gateway', positive: true, icon: Cpu, iconColor: 'text-brand', iconBg: 'bg-brand/10', chipText: 'Show me the routing logic as a diagram' },
+      { id: 'spend_vs_all', label: 'Frontier Spend vs All-Frontier', value: '-71%', trend: 'Cost and usage report', positive: true, icon: TrendingDown, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'How much did routing save versus all-frontier?' },
+      { id: 'cost_query', label: 'Average Cost per Query', value: '$0.11', trend: 'LiteLLM cost records', positive: true, icon: Receipt, iconColor: 'text-blue-600', iconBg: 'bg-blue-500/10', chipText: 'Run the LLM cost report for this session' },
+      { id: 'models', label: 'Models in Production', value: '2', trend: 'In-environment SLM + Claude Sonnet', positive: true, icon: Layers, iconColor: 'text-text-muted', iconBg: 'bg-surface-2', chipText: null },
     ],
     signalToChip: {
-      'SIG-NFCU-PA-001': 'Investigate the PII exception',
-      'SIG-NFCU-PA-002': 'Show me the cost anomaly',
-      'SIG-NFCU-PA-003': 'Which action is missing a citation?',
+      'SIG-NFCU-PA-001': 'Review the auto loan spike',
+      'SIG-NFCU-PA-002': 'Show me contact center spend',
+      'SIG-NFCU-PA-003': 'What did the graph catch?',
     },
     capabilityCallouts: capabilityCallouts as PersonaManifest['ui']['capabilityCallouts'],
   },
 
+  // Turns 2–6 → the five Gen UI components. Each reads its own data-layer getter,
+  // so swapping a getter to the live API needs no change here.
   inlineComponents: (msg) => {
     const out = [];
     const k = msg.flowKey;
-    if (k === 'nfcu_pa_routing_provenance') out.push(<ModelRoutingProvenanceTrace key="prov" data={governance.routingTrace} />);
-    if (k === 'nfcu_pa_kag_sensitivity') out.push(<KagNodeView key="kag" data={governance.kagGraph} />);
-    if (k === 'nfcu_pa_routing_logic') out.push(<RoutingLogicDiagram key="flow" data={governance.routingFlow} />);
-    if (k === 'nfcu_pa_cost_query' || k === 'nfcu_pa_llm_only_compare') out.push(<CostCard key="cost" data={governance.costQuery} />);
-    if (k === 'nfcu_pa_cost_person' || k === 'nfcu_pa_highest_cost') out.push(<TokenomicsDashboard key="tok" data={governance.tokenomics} />);
-    if (k === 'nfcu_pa_observability') out.push(<AgentObservabilityPanel key="obs" data={governance.observability} />);
-    if (k === 'nfcu_pa_sensitive_registry') out.push(<SensitiveFieldRegistry key="reg" data={governance.sensitiveFields} />);
-    if (k === 'nfcu_pa_system_health') out.push(<SystemMetricChart key="sys" data={governance.systemMetric} />);
+    if (k === 'nfcu_pa_field_sovereignty') out.push(<FieldSovereigntyLedger key="ledger" />);
+    if (k === 'nfcu_pa_kag_provenance') out.push(<KagNodeView key="kag" />);
+    if (k === 'nfcu_pa_routing_logic') out.push(<RoutingDiagram key="routing" />);
+    if (k === 'nfcu_pa_cost_usage' || k === 'nfcu_pa_highest_cost') out.push(<LlmCostUsageReport key="cost" />);
+    if (k === 'nfcu_pa_observability' || k === 'nfcu_pa_expand_action' || k === 'nfcu_pa_spend_trend') {
+      out.push(<AgentObservabilityGovernanceDashboard key="obs" />);
+    }
     return out.length ? out : undefined;
   },
 };
