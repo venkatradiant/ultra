@@ -48,8 +48,14 @@ const manifest: PersonaManifest = {
 
   layout: 'inline',
 
-  navLabels: { governance: 'Governance & Observability' },
-  features: { navSlots: ['ask', 'governance', 'dataSources'], staticCapabilityBadges: true },
+  // 'Governance' rather than 'Governance & Observability': Agent Observability is
+  // now its own page, and two sidebar entries both claiming observability is a
+  // coin-flip for a presenter mid-demo.
+  navLabels: { governance: 'Governance', agentObservability: 'Agent Observability' },
+  features: {
+    navSlots: ['ask', 'governance', 'agentObservability', 'dataSources'],
+    staticCapabilityBadges: true,
+  },
 
   // 7 governance KPIs shown 4-up in a paginated carousel.
   statsComponent: PlatformAdminKpiCarousel as unknown as PersonaManifest['statsComponent'],

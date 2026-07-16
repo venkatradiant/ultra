@@ -22,9 +22,10 @@ export default function TopHeader({ onMenuClick }) {
     // USSFCU CEO — pure executive altitude. Business Performance is the roll-up
     // view; Priority Signals is the state-of-the-business signal set.
     ussfcu_ceo: { journey: 'Business Performance', risk: 'Priority Signals' },
-    // NFCU Platform Admin — governance persona; the single module page combines
-    // governance + observability (matches the persona manifest navLabels).
-    nfcu_platform_admin: { governance: 'Governance & Observability' },
+    // NFCU Platform Admin — governance persona. Observability is its own page
+    // now, so Governance no longer claims it. Keep in sync with the persona
+    // manifest's navLabels; this map duplicates them.
+    nfcu_platform_admin: { governance: 'Governance', agentObservability: 'Agent Observability' },
   };
   const labels = personaNavLabels[persona?.id] ?? client?.navLabels ?? { journey: 'Member Journey', risk: 'Risk Signals' };
   const pageTitles = {
@@ -33,6 +34,7 @@ export default function TopHeader({ onMenuClick }) {
     '/journey': labels.journey,
     '/risk': labels.risk,
     '/governance': labels.governance || client?.navLabels?.governance || 'Model Governance',
+    '/agent-observability': labels.agentObservability || 'Agent Observability',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || 'Ask the AI';

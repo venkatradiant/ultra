@@ -48,6 +48,22 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react(), tailwindcss(), ttsDevServer(env)],
     resolve: { alias },
+    build: {
+      rolldownOptions: {
+        output: {
+          advancedChunks: {
+            groups: [
+              // personaFlowConfigs is ~562kB of scripted demo dialogue reached
+              // only from lazily-loaded persona manifests. Rolldown chunked it
+              // out on its own until a second dynamic route entered the graph,
+              // at which point it inlined it into the eager entry. Pin it so the
+              // initial bundle doesn't carry every persona's script.
+              { name: 'personaFlowConfigs', test: /src[\\/]data[\\/]personaFlowConfigs/ },
+            ],
+          },
+        },
+      },
+    },
     server: {
       port: process.env.PORT ? parseInt(process.env.PORT) : undefined,
     },

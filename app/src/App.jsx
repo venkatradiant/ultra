@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { PersonaProvider } from './context/PersonaContext';
 import { BrandingProvider } from './context/BrandingContext';
@@ -13,6 +13,11 @@ import RiskSignals from './screens/RiskSignals';
 import DataSources from './screens/DataSources';
 import Governance from './screens/Governance';
 import { ADMIN_ACCESS_KEY } from './config/access';
+
+// Lazy: this route pulls in recharts-heavy observability components for a single
+// persona. The main chunk is already oversized (NVL + mermaid land in the eager
+// Governance route); a new heavy route shouldn't add to that.
+const AgentObservability = lazy(() => import('./screens/AgentObservability'));
 
 // Expose navigate() for the demo runner
 function DemoNavigateBridge() {
@@ -67,6 +72,14 @@ function AppContent() {
                 <Route path="/journey" element={<MemberJourney />} />
                 <Route path="/risk" element={<RiskSignals />} />
                 <Route path="/governance" element={<Governance />} />
+                <Route
+                  path="/agent-observability"
+                  element={(
+                    <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                      <AgentObservability />
+                    </Suspense>
+                  )}
+                />
                 <Route path="/data-sources" element={<DataSources />} />
               </Route>
             </Routes>

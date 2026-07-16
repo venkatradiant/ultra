@@ -8,10 +8,13 @@ import LlmCostUsageReport from './LlmCostUsageReport';
 import AgentObservabilityGovernanceDashboard from './AgentObservabilityGovernanceDashboard';
 
 /**
- * Governance & Observability — the Platform Admin's standing module page. The
- * same five Gen UI components the guided conversation walks through, laid out as
- * a continuous-governance pane. KPIs come from the shared data layer, so there is
+ * Governance — the Platform Admin's standing module page. The same five Gen UI
+ * components the guided conversation walks through, laid out as a
+ * continuous-governance pane. KPIs come from the shared data layer, so there is
  * exactly one place to change a number.
+ *
+ * Live operational telemetry (fleet health, RCA, event history) lives on the
+ * separate Agent Observability page; this page is sovereignty, cost and policy.
  */
 function Section({ icon: Icon, title, subtitle, children }) {
   return (
@@ -38,7 +41,7 @@ export default function PlatformAdminGovernance() {
         <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-brand" />
-            <h1 className="text-lg font-bold text-text">Governance &amp; Observability</h1>
+            <h1 className="text-lg font-bold text-text">Governance</h1>
           </div>
           <p className="text-[12px] text-text-muted mt-0.5">
             Two gates — safe to send, then worth sending. Member data resolves in-environment; the frontier model is used
@@ -79,7 +82,10 @@ export default function PlatformAdminGovernance() {
         {/* Observability */}
         <Section
           icon={Activity}
-          title="Agent Observability"
+          // Retitled from "Agent Observability" — that name now belongs to the
+          // dedicated page. This section is the turn-6 summary (health, spend,
+          // policy), not the live telemetry view; the content is unchanged.
+          title="Agent Activity & Policy"
           subtitle="Agent health, frontier share and spend trend — every action explainable against its policy"
         >
           <AgentObservabilityGovernanceDashboard />
