@@ -308,7 +308,7 @@
   },
 
   "nfcu_pa_gov_summary": {
-    "ai_message": "Governance summary, contact center, month to date:\n\n**Sovereignty.** 0 PII to the frontier model. 100% of sensitive fields resolved in-environment. The knowledge graph caught one borderline field — the current auto loan rate — and held it local under DG-04.\n\n**Frontier usage.** 11% of tasks, every one complex reasoning or generation, every one on non-PII inputs. Token split 88/12.\n\n**Cost.** 71% below the all-frontier counterfactual. Priya's session: $0.63 against $2.18.\n\n**Observability.** Every agent action carries its context, chain of thought and governing policy. Auto Loan Assist and Mortgage Servicing healthy; Card Disputes on watch for volume, not compliance.\n\n**Open items.** One: confirm the justification on Priya's spike review and close it. Everything else is green.",
+    "ai_message": "Here is the month-to-date governance summary for the contact center. Four claims, one open item — the detail behind each number is in the turns above.",
     "suggested_chips": [
       "Review the auto loan spike",
       "Show me agent activity across the contact center",

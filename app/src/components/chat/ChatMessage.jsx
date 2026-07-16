@@ -8,6 +8,24 @@ import EscalationNotice from '../nfcu/confidence/EscalationNotice';
 import ReviewBadge from '../nfcu/confidence/ReviewBadge';
 import MessageFeedback from '../nfcu/feedback/MessageFeedback';
 
+/**
+ * Renders inline `**bold**` inside a line.
+ *
+ * The scripted flows have always been authored with markdown emphasis — 284
+ * spans across five NFCU personas — but nothing ever parsed it, so every one
+ * rendered as literal asterisks ("**Sovereignty.** 0 PII to the frontier").
+ * This is deliberately just bold: the flows use no other markdown, and a full
+ * parser would be a dependency and an injection surface for zero extra benefit.
+ */
+function renderInline(text) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    const m = part.match(/^\*\*([^*]+)\*\*$/);
+    if (!m) return part;
+    return <strong key={i} className="font-semibold text-text">{m[1]}</strong>;
+  });
+}
+
 export default function ChatMessage({ message, inlineComponents, capability, onCapabilityClick }) {
   const persona = usePersona();
   const isUser = message.role === 'user';
@@ -46,7 +64,7 @@ export default function ChatMessage({ message, inlineComponents, capability, onC
               return (
                 <p key={i} className="mb-1.5">
                   <span className="font-semibold text-brand">[{bracketMatch[1]}]</span>{' '}
-                  <span className="text-text-muted">{bracketMatch[2]}</span>
+                  <span className="text-text-muted">{renderInline(bracketMatch[2])}</span>
                 </p>
               );
             }
@@ -57,7 +75,7 @@ export default function ChatMessage({ message, inlineComponents, capability, onC
               return (
                 <p key={i} className="mb-1.5">
                   <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-brand/10 text-brand text-[10px] font-bold mr-1.5">{numberedMatch[1]}</span>
-                  <span className="text-text-muted">{numberedMatch[2]}</span>
+                  <span className="text-text-muted">{renderInline(numberedMatch[2])}</span>
                 </p>
               );
             }
@@ -68,12 +86,12 @@ export default function ChatMessage({ message, inlineComponents, capability, onC
               return (
                 <p key={i} className="mb-1 pl-3 relative text-text-muted">
                   <span className="absolute left-0 top-0 text-brand/30">—</span>
-                  {dashMatch[1]}
+                  {renderInline(dashMatch[1])}
                 </p>
               );
             }
 
-            return <p key={i} className="mb-1.5 last:mb-0">{line}</p>;
+            return <p key={i} className="mb-1.5 last:mb-0">{renderInline(line)}</p>;
           })}
         </div>
 

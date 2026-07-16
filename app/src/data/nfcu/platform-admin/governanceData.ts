@@ -172,6 +172,65 @@ export const GOVERNANCE_KPIS = [
   { id: 'models', label: 'Models in Production', value: '2', trend: 'In-environment SLM + Claude Sonnet', positive: true },
 ];
 
+/**
+ * The closing turn — the governance summary Daniel would hand to a risk
+ * committee. Every number here is restated from the fixtures above, not
+ * recomputed: sovereignty from FIELD_LEDGER, frontier share and split from
+ * GOVERNANCE/COST_REPORT, cost from COST_REPORT.footer. If one of those moves,
+ * move it here too — governanceData.test.ts has no opinion, but a reader adding
+ * the column up does.
+ */
+export const GOVERNANCE_SUMMARY = {
+  period: 'Contact center · month to date',
+  verdict: 'One open item · everything else green',
+  pillars: [
+    {
+      id: 'sovereignty',
+      label: 'Sovereignty',
+      headline: '0',
+      unit: 'PII to the frontier model',
+      support: '100% of sensitive fields resolved in-environment',
+      detail: 'The knowledge graph caught one borderline field — the current auto loan rate — and held it local under DG-04.',
+      tone: 'emerald' as const,
+    },
+    {
+      id: 'frontier',
+      label: 'Frontier usage',
+      headline: '11%',
+      unit: 'of tasks',
+      support: '88 / 12 token split',
+      detail: 'Every one complex reasoning or generation. Every one on non-PII inputs.',
+      tone: 'violet' as const,
+    },
+    {
+      id: 'cost',
+      label: 'Cost',
+      headline: '−71%',
+      unit: 'vs all-frontier',
+      support: "Priya's session: $0.63 against $2.18",
+      detail: 'Routing pays for itself at this volume; the counterfactual is modelled on the same 24 tasks.',
+      tone: 'blue' as const,
+    },
+    {
+      id: 'observability',
+      label: 'Observability',
+      headline: '100%',
+      unit: 'of actions explainable',
+      support: 'Context, chain of thought and governing policy on every action',
+      detail: 'Auto Loan Assist and Mortgage Servicing healthy. Card Disputes on watch for volume, not compliance.',
+      tone: 'brand' as const,
+    },
+  ],
+  openItems: [
+    {
+      id: 'OPEN-1',
+      text: "Confirm the justification on Priya's spike review and close it.",
+      owner: 'D. Okonkwo',
+      severity: 'review' as const,
+    },
+  ],
+};
+
 // ─── Data access ────────────────────────────────────────────────────────────
 // Swap the bodies below to API calls when ready. Components stay untouched.
 
@@ -180,3 +239,4 @@ export async function getRoutingMermaid() { return ROUTING_MERMAID; }
 export async function getKagSubgraph() { return KAG_SUBGRAPH; }
 export async function getCostReport() { return COST_REPORT; }
 export async function getGovernance() { return GOVERNANCE; }
+export async function getGovernanceSummary() { return GOVERNANCE_SUMMARY; }

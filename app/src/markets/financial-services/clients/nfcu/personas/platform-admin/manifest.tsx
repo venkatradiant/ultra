@@ -26,6 +26,7 @@ import KagNodeView from '@/components/nfcu/platform-admin/KagNodeView';
 import RoutingDiagram from '@/components/nfcu/platform-admin/RoutingDiagram';
 import LlmCostUsageReport from '@/components/nfcu/platform-admin/LlmCostUsageReport';
 import AgentObservabilityGovernanceDashboard from '@/components/nfcu/platform-admin/AgentObservabilityGovernanceDashboard';
+import GovernanceSummaryCard from '@/components/nfcu/platform-admin/GovernanceSummaryCard';
 
 const flows = (getPersonaFlowConfigs('nfcu') as unknown as Record<string, PersonaManifest['flows']>).nfcu_platform_admin;
 
@@ -125,6 +126,8 @@ const manifest: PersonaManifest = {
     if (k === 'nfcu_pa_observability' || k === 'nfcu_pa_expand_action' || k === 'nfcu_pa_spend_trend') {
       out.push(<AgentObservabilityGovernanceDashboard key="obs" />);
     }
+    // The closing summary: four numbers and an open item, not a wall of prose.
+    if (k === 'nfcu_pa_gov_summary') out.push(<GovernanceSummaryCard key="gov-summary" />);
     return out.length ? out : undefined;
   },
 };
