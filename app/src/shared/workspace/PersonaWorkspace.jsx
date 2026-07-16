@@ -10,9 +10,9 @@
  * their personas migrate (plan Phase 4).
  */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
 import useManifestChat from '@core/engine/useManifestChat';
 import ChatThread from '../../components/chat/ChatThread';
 import ChatInput from '../../components/chat/ChatInput';
@@ -75,6 +75,15 @@ export default function PersonaWorkspace({ manifest }) {
     setConfirmedActions(new Set());
     initializeFlow(ui.greetingFlowKey);
   }, [manifest.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Return to the briefing (greeting + signals + KPIs) from anywhere in the
+  // conversation. `initializeFlow` is a full reset — it cancels in-flight typing,
+  // clears the thread and re-seeds the greeting — which flips the view back to
+  // the initial state. Lets a demo re-anchor on the briefing without a reload.
+  const handleBackToBriefing = useCallback(() => {
+    setConfirmedActions(new Set());
+    initializeFlow(ui.greetingFlowKey);
+  }, [initializeFlow, ui.greetingFlowKey]);
 
   // ─── Intraday briefing wiring (NFCU supervisor/director) ──────────
   // Set the default tier + honor ?intraday=1 on entry.
@@ -235,6 +244,26 @@ export default function PersonaWorkspace({ manifest }) {
           }}
         >
           <div className={`w-full min-w-0 ${!hasContextPanel ? 'max-w-3xl mx-auto' : ''} px-4 sm:px-6 ${centerInitialView ? 'lg:my-auto' : ''}`}>
+            {/* Back to the briefing — sits where the greeting does, but only once the
+                conversation has started (there's nowhere to go back to before that).
+                Sticky, because the thread auto-scrolls to the newest message and an
+                in-flow button would scroll out of reach mid-demo.
+                Deliberately un-animated (no motion/AnimatePresence): a control that
+                must always be clickable shouldn't depend on an animation completing.
+                rAF throttling can freeze a fade part-way and leave it half-visible. */}
+            {!isInitialView && (
+              <div className="sticky top-0 z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 py-2 bg-surface/85 backdrop-blur-sm border-b border-border-subtle">
+                <button
+                  type="button"
+                  onClick={handleBackToBriefing}
+                  className="group inline-flex items-center gap-1.5 rounded-lg px-2 py-1 -ml-2 text-[11px] font-semibold text-text-muted hover:text-brand hover:bg-brand/[0.06] transition-colors cursor-pointer"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
+                  Back to briefing
+                </button>
+              </div>
+            )}
+
             <AnimatePresence>
               {isInitialView && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, height: 0, marginBottom: 0, overflow: 'hidden' }} transition={{ duration: 0.4 }} className="pt-4 pb-4">
