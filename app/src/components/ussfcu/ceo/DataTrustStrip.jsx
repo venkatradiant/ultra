@@ -39,7 +39,7 @@ function TrustRibbon({ onTrace }) {
         <div className="ic">{RibbonIcons.pipeline}</div>
         <div className="th">Pipeline health</div>
         <div className="big good">{loaded} / {sources.length}</div>
-        <div className="st">All sources loaded and reconciled at <b style={{ color: '#cddcea' }}>{validatedTime} ET</b>. Barafin loaded 41 min late; one dependent figure held for reconciliation.</div>
+        <div className="st">All sources loaded and reconciled at <b style={{ color: '#cddcea' }}>{validatedTime} ET</b>. Verafin loaded 41 min late; one dependent figure held for reconciliation.</div>
         <div className="srcl"><span className="d" />{sources.slice(0, 3).map((s) => s.name).join(' · ')}</div>
       </div>
       <div {...askProps('assur_exception', 'tw')}>

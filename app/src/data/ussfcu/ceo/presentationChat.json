@@ -31,10 +31,10 @@
         "q": "Can I trust these numbers?",
         "aliases": ["can i trust this", "is this validated", "are these numbers right", "how reliable", "trustworthy"],
         "keywords": ["trust", "reliable", "validated", "accurate", "right", "confidence"],
-        "a": "Yes. Every figure was validated overnight and reconciled at 6:04 AM ET — 6 of 6 sources loaded. One exception was caught: the Barafin fraud feed loaded 41 minutes late, so one dependent figure was held for reconciliation and kept out of your headline numbers. NCUA exam readiness sits at 88, and any figure can be traced to source on demand.",
+        "a": "Yes. Every figure was validated overnight and reconciled at 6:04 AM ET — 6 of 6 sources loaded. One exception was caught: the Verafin fraud feed loaded 41 minutes late, so one dependent figure was held for reconciliation and kept out of your headline numbers. NCUA exam readiness sits at 88, and any figure can be traced to source on demand.",
         "sources": ["Radiant Trust Layer"],
         "confidence": 98,
-        "followups": ["What was the Barafin exception?", "Trace it to source", "What's the NCUA readiness?"]
+        "followups": ["What was the Verafin exception?", "Trace it to source", "What's the NCUA readiness?"]
       },
       {
         "id": "g_recommend",
@@ -47,12 +47,12 @@
         "followups": ["Compare the three options", "What are the next steps?", "Why is Option 1 recommended?"]
       },
       {
-        "id": "g_barafin",
-        "q": "What was the Barafin exception?",
-        "aliases": ["barafin", "the exception", "late feed", "data exception"],
-        "keywords": ["barafin", "exception", "late", "feed", "held"],
-        "a": "The Barafin third-party fraud feed loaded 41 minutes past its window overnight. The trust layer caught it, held the single dependent figure for reconciliation, and kept it out of your headline numbers — so nothing reached the board unvalidated. This is exactly the kind of silent failure that used to surface only at month-end.",
-        "sources": ["Barafin", "Radiant Trust Layer"],
+        "id": "g_verafin",
+        "q": "What was the Verafin exception?",
+        "aliases": ["verafin", "the exception", "late feed", "data exception"],
+        "keywords": ["verafin", "exception", "late", "feed", "held"],
+        "a": "The Verafin third-party fraud feed loaded 41 minutes past its window overnight. The trust layer caught it, held the single dependent figure for reconciliation, and kept it out of your headline numbers — so nothing reached the board unvalidated. This is exactly the kind of silent failure that used to surface only at month-end.",
+        "sources": ["Verafin", "Radiant Trust Layer"],
         "confidence": 98,
         "followups": ["Can I trust these numbers?", "What's the NCUA readiness?", "Trace it to source"]
       },
@@ -204,7 +204,7 @@
       ]
     },
     "assurance": {
-      "suggested": ["What was the Barafin exception?", "Is the data fully loaded?", "What's the NCUA readiness?"],
+      "suggested": ["What was the Verafin exception?", "Is the data fully loaded?", "What's the NCUA readiness?"],
       "questions": [
         {
           "id": "assur_pipeline",
@@ -214,15 +214,15 @@
           "a": "Yes — 6 of 6 sources loaded and reconciled at 6:04 AM ET, including Symitar, MeridianLink, and Greenplum. The overnight load completed cleanly aside from one caught exception.",
           "sources": ["Radiant Trust Layer"],
           "confidence": 98,
-          "followups": ["What was the Barafin exception?", "What's the NCUA readiness?", "Can I trust these numbers?"]
+          "followups": ["What was the Verafin exception?", "What's the NCUA readiness?", "Can I trust these numbers?"]
         },
         {
           "id": "assur_exception",
-          "q": "What was the Barafin exception?",
-          "aliases": ["barafin", "exception", "late feed", "1 caught"],
-          "keywords": ["barafin", "exception", "late", "caught", "held"],
-          "a": "The Barafin fraud feed loaded 41 minutes late. The trust layer caught it, held the one dependent figure for reconciliation, and kept it out of your headline numbers — nothing reached the board unvalidated. This is the silent failure that used to surface only when a month-end number looked off.",
-          "sources": ["Barafin", "Radiant Trust Layer"],
+          "q": "What was the Verafin exception?",
+          "aliases": ["verafin", "exception", "late feed", "1 caught"],
+          "keywords": ["verafin", "exception", "late", "caught", "held"],
+          "a": "The Verafin fraud feed loaded 41 minutes late. The trust layer caught it, held the one dependent figure for reconciliation, and kept it out of your headline numbers — nothing reached the board unvalidated. This is the silent failure that used to surface only when a month-end number looked off.",
+          "sources": ["Verafin", "Radiant Trust Layer"],
           "confidence": 98,
           "followups": ["Is the data fully loaded?", "What's the NCUA readiness?", "Trace it to source"]
         },

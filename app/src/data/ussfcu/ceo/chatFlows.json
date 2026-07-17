@@ -39,13 +39,13 @@
   },
 
   "ussfcu_ceo_signal_3_trust": {
-    "ai_message": "This is the governance story in one card. The Barafin fraud feed loaded 41 minutes late overnight. The trust layer caught it, flagged the single dependent figure for reconciliation, and kept it out of your headline numbers. Nothing reached the board unvalidated. This is exactly what used to fail silently — a number would look off at month-end and no one knew why. Now it is caught before you cite it.",
+    "ai_message": "This is the governance story in one card. The Verafin fraud feed loaded 41 minutes late overnight. The trust layer caught it, flagged the single dependent figure for reconciliation, and kept it out of your headline numbers. Nothing reached the board unvalidated. This is exactly what used to fail silently — a number would look off at month-end and no one knew why. Now it is caught before you cite it.",
     "suggested_chips": [
       "Can I trust these numbers this morning?",
       "Trace net income back to source",
       "Next signal"
     ],
-    "data_sources_used": ["Barafin", "Radiant Trust Layer"],
+    "data_sources_used": ["Verafin", "Radiant Trust Layer"],
     "ui_components_to_render": [],
     "related_dataset_keys": ["signals", "trustStrip"],
     "capability": "Anomaly Detection"
@@ -97,13 +97,13 @@
 
   "ussfcu_ceo_turn_trust": {
     "user_query": "Can I trust these numbers this morning?",
-    "ai_response": "Yes, and here is why. Every figure this morning is validated and traceable. The trust strip shows all six sources loaded and reconciled at 6:04 AM, with one exception I already caught: the Barafin fraud feed loaded 41 minutes late, so I flagged one dependent figure for reconciliation and kept it out of your headline numbers. NCUA exam readiness sits at 88. And you can trace any figure from Symitar through ETL to this screen. That is the difference from the reports you have today, which cannot tell you when they are wrong.",
+    "ai_response": "Yes, and here is why. Every figure this morning is validated and traceable. The trust strip shows all six sources loaded and reconciled at 6:04 AM, with one exception I already caught: the Verafin fraud feed loaded 41 minutes late, so I flagged one dependent figure for reconciliation and kept it out of your headline numbers. NCUA exam readiness sits at 88. And you can trace any figure from Symitar through ETL to this screen. That is the difference from the reports you have today, which cannot tell you when they are wrong.",
     "suggested_chips": [
       "Draft the board briefing",
       "Open the full briefing",
       "Trace net income back to source"
     ],
-    "data_sources_used": ["Radiant Trust Layer", "Symitar", "MeridianLink", "Greenplum on Tanzu", "Tableau", "Barafin", "General Ledger"],
+    "data_sources_used": ["Radiant Trust Layer", "Symitar", "MeridianLink", "Greenplum on Tanzu", "Tableau", "Verafin", "General Ledger"],
     "ui_components_to_render": [],
     "related_dataset_keys": ["trustStrip"],
     "capability": "Anomaly Detection"

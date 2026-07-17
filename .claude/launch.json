@@ -14,6 +14,13 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--port", "5600", "--strictPort"],
       "port": 5600
+    },
+    {
+      "name": "Ultra App",
+      "cwd": "app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "autoPort": true
     }
   ]
 }

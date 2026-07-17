@@ -46,7 +46,7 @@
   },
   {
     "id": "ds-ceo-06",
-    "name": "Barafin",
+    "name": "Verafin",
     "status": "connected",
     "description": "Third-party fraud analytics. The feed whose late load the trust layer flagged this morning, holding one dependent figure for reconciliation.",
     "icon": "shield",

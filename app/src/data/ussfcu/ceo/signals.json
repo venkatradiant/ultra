@@ -56,11 +56,11 @@
     "type": "data_trust_exception",
     "primary": false,
     "title": "Data Trust Exception Caught This Morning",
-    "description": "The Barafin fraud feed loaded 41 minutes late overnight. One dependent figure is flagged for reconciliation before it is cited. Nothing reached the board unvalidated — the trust layer caught what previously failed silently, and it is the governance story in a single card.",
+    "description": "The Verafin fraud feed loaded 41 minutes late overnight. One dependent figure is flagged for reconciliation before it is cited. Nothing reached the board unvalidated — the trust layer caught what previously failed silently, and it is the governance story in a single card.",
     "impact": "medium",
     "severity": "warning",
-    "metric_text": "1 figure flagged · Barafin +41 min late",
-    "sources": ["Barafin", "Radiant Trust Layer"],
+    "metric_text": "1 figure flagged · Verafin +41 min late",
+    "sources": ["Verafin", "Radiant Trust Layer"],
     "timestamp": "2026-07-08T06:04:00",
     "trend": "caught",
     "metrics": {
@@ -69,8 +69,8 @@
     },
     "confidence": {
       "score": 98,
-      "rationale": "Pipeline monitoring detected the Barafin load completing 41 minutes past window; the single dependent figure was quarantined from headline numbers pending reconciliation.",
-      "signals_used": ["Barafin", "Radiant Trust Layer"],
+      "rationale": "Pipeline monitoring detected the Verafin load completing 41 minutes past window; the single dependent figure was quarantined from headline numbers pending reconciliation.",
+      "signals_used": ["Verafin", "Radiant Trust Layer"],
       "threshold": 80,
       "model_version": "exec-trust-v1.0",
       "validated_at": "2026-07-08T06:04:00"

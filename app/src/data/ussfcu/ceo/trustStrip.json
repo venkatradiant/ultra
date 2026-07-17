@@ -5,13 +5,13 @@
     "pipeline_health": {
       "state": "warning",
       "summary": "6 of 6 sources loaded · 1 late",
-      "detail": "All sources loaded and reconciled at 6:04 AM. Barafin loaded 41 minutes late; one dependent figure flagged and held from headline numbers.",
+      "detail": "All sources loaded and reconciled at 6:04 AM. Verafin loaded 41 minutes late; one dependent figure flagged and held from headline numbers.",
       "sources": [
         { "name": "Symitar", "state": "good", "loaded_at": "05:58" },
         { "name": "MeridianLink", "state": "good", "loaded_at": "06:01" },
         { "name": "Greenplum on Tanzu", "state": "good", "loaded_at": "06:02" },
         { "name": "Tableau", "state": "good", "loaded_at": "06:03" },
-        { "name": "Barafin", "state": "warning", "loaded_at": "06:04", "note": "41 min late" },
+        { "name": "Verafin", "state": "warning", "loaded_at": "06:04", "note": "41 min late" },
         { "name": "Thought Machine sandbox", "state": "good", "loaded_at": "05:55", "note": "migration cutover" }
       ]
     },
