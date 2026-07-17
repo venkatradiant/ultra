@@ -672,22 +672,131 @@ export function metricSeries(componentId: string, metric: string, baseline: numb
 // The `tick` argument is a simulation artifact — a live API drops it and just
 // returns whatever the simulator currently reports.
 
+
+// ─── API base ────────────────────────────────────────────────────────────────
+// Change this to the deployed backend URL when deploying.
+const API_BASE = (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_BASE ?? 'http://localhost:8000';
+
+// ─── Metric ring buffer ───────────────────────────────────────────────────────
+// Keeps the last METRIC_WINDOW readings per component so LiveMetricPanel can
+// draw a sparkline. The backend returns point values only; we accumulate them
+// here across polls. A Map keyed by component then metric name.
+const _metricBuffer = new Map<string, Map<string, Array<{ t: number; value: number }>>>();
+let _tick = 0;
+
+function pushToBuffer(componentId: string, metrics: Record<string, number>) {
+  if (!_metricBuffer.has(componentId)) {
+    // Pre-seed the buffer with METRIC_WINDOW random values around the current
+    // reading so the sparkline is immediately visible instead of empty.
+    _metricBuffer.set(componentId, new Map());
+    const comp = _metricBuffer.get(componentId)!;
+    for (const [key, value] of Object.entries(metrics)) {
+      const buf: Array<{ t: number; value: number }> = [];
+      for (let i = 0; i < METRIC_WINDOW - 1; i++) {
+        const spread = 0.06;
+        const jittered = value + (Math.random() - 0.5) * 2 * spread * (value || 1);
+        buf.push({ t: _tick - (METRIC_WINDOW - 1 - i), value: Math.max(0, Math.round(jittered * 100) / 100) });
+      }
+      comp.set(key, buf);
+    }
+  }
+  const comp = _metricBuffer.get(componentId)!;
+  const t = _tick++;
+  for (const [key, value] of Object.entries(metrics)) {
+    if (!comp.has(key)) comp.set(key, []);
+    const buf = comp.get(key)!;
+    buf.push({ t, value });
+    if (buf.length > METRIC_WINDOW) buf.shift();
+  }
+}
+
+function getSeriesFromBuffer(componentId: string): Record<string, Array<{ t: number; value: number }>> {
+  const comp = _metricBuffer.get(componentId);
+  if (!comp) return {};
+  const out: Record<string, Array<{ t: number; value: number }>> = {};
+  for (const [key, buf] of comp.entries()) out[key] = [...buf];
+  return out;
+}
+
+// ─── Health trend buffer ─────────────────────────────────────────────────────
+// Records healthy% on every getSystemOverview poll so the trend graph updates.
+// Keeps last 12 readings to match HEALTH_TREND length.
+const HEALTH_TREND_WINDOW = 12;
+const _healthTrendBuffer: number[] = [];
+
+function pushHealthTrend(healthyPct: number) {
+  _healthTrendBuffer.push(Math.round(healthyPct * 10) / 10);
+  if (_healthTrendBuffer.length > HEALTH_TREND_WINDOW) _healthTrendBuffer.shift();
+}
+
+function getLiveTrend(): number[] {
+  if (_healthTrendBuffer.length === 0) return HEALTH_TREND;
+  // Pad with first value if we don't have enough readings yet
+  const padded = Array(Math.max(0, HEALTH_TREND_WINDOW - _healthTrendBuffer.length))
+    .fill(_healthTrendBuffer[0]);
+  return [...padded, ..._healthTrendBuffer];
+}
+
+// ─── State history buffer ─────────────────────────────────────────────────────
+// Records the component state on every poll so ComponentStateHistory can draw
+// the state timeline. Keeps the last 20 readings (oldest → newest).
+const STATE_HISTORY_WINDOW = 20;
+const _stateBuffer = new Map<string, ComponentState[]>();
+
+function pushStateToBuffer(componentId: string, state: ComponentState) {
+  if (!_stateBuffer.has(componentId)) _stateBuffer.set(componentId, []);
+  const buf = _stateBuffer.get(componentId)!;
+  buf.push(state);
+  if (buf.length > STATE_HISTORY_WINDOW) buf.shift();
+}
+
+function getStateHistory(componentId: string, currentState: ComponentState): ComponentState[] {
+  const buf = _stateBuffer.get(componentId);
+  if (!buf || buf.length === 0) {
+    // No history yet — return current state repeated so the bar renders
+    return Array<ComponentState>(8).fill(currentState);
+  }
+  return [...buf];
+}
+
 export async function getCategories(): Promise<CategoryRow[]> {
-  const seen = new Map<string, LayerId>();
-  for (const c of COMPONENTS) if (!seen.has(c.category)) seen.set(c.category, c.layer);
-  return [...seen.entries()]
-    .map(([category, layer]) => ({ category, layer }))
-    .sort((a, b) => a.category.localeCompare(b.category));
+  try {
+    const res = await fetch(`${API_BASE}/api/categories`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  } catch {
+    // Fall back to static data if backend is unreachable
+    const seen = new Map<string, LayerId>();
+    for (const c of COMPONENTS) if (!seen.has(c.category)) seen.set(c.category, c.layer);
+    return [...seen.entries()]
+      .map(([category, layer]) => ({ category, layer }))
+      .sort((a, b) => a.category.localeCompare(b.category));
+  }
 }
 
 export async function getComponents(filter: { category?: string; layer?: LayerId } = {}) {
-  return COMPONENTS.filter(
-    (c) => (!filter.category || c.category === filter.category) && (!filter.layer || c.layer === filter.layer),
-  );
+  try {
+    const params = new URLSearchParams();
+    if (filter.category) params.set('category', filter.category);
+    if (filter.layer) params.set('layer', filter.layer);
+    const res = await fetch(`${API_BASE}/api/components?${params}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  } catch {
+    return COMPONENTS.filter(
+      (c) => (!filter.category || c.category === filter.category) && (!filter.layer || c.layer === filter.layer),
+    );
+  }
 }
 
 export async function getComponent(componentId: string) {
-  return COMPONENTS.find((c) => c.component === componentId) ?? null;
+  try {
+    const res = await fetch(`${API_BASE}/api/components/${componentId}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  } catch {
+    return COMPONENTS.find((c) => c.component === componentId) ?? null;
+  }
 }
 
 /**
@@ -701,37 +810,126 @@ export async function getComponent(componentId: string) {
  * unchanged either way.
  */
 export async function getComponentMetrics(componentId: string, tick = 0) {
-  const c = COMPONENTS.find((x) => x.component === componentId);
-  if (!c) return null;
-  const metrics: Record<string, number> = {};
-  const series: Record<string, Array<{ t: number; value: number }>> = {};
-  for (const [key, baseline] of Object.entries(c.metrics)) {
-    metrics[key] = jitter(baseline, `${componentId}|${key}`, tick);
-    series[key] = metricSeries(componentId, key, baseline, tick);
+  try {
+    const res = await fetch(`${API_BASE}/api/components/${componentId}/metrics`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    // Push live values + state into ring buffers
+    pushToBuffer(componentId, data.metrics ?? {});
+    pushStateToBuffer(componentId, data.state as ComponentState);
+    const series = getSeriesFromBuffer(componentId);
+    return { ...data, series };
+  } catch {
+    // Fall back to static data
+    const c = COMPONENTS.find((x) => x.component === componentId);
+    if (!c) return null;
+    const metrics: Record<string, number> = {};
+    const series: Record<string, Array<{ t: number; value: number }>> = {};
+    for (const [key, baseline] of Object.entries(c.metrics)) {
+      metrics[key] = jitter(baseline, `${componentId}|${key}`, tick);
+      series[key] = metricSeries(componentId, key, baseline, tick);
+    }
+    return {
+      component: c.component,
+      layer: c.layer,
+      category: c.category,
+      state: c.state,
+      metrics_count: Object.keys(metrics).length,
+      metrics,
+      series,
+    };
   }
-  return {
-    component: c.component,
-    layer: c.layer,
-    category: c.category,
-    state: c.state,
-    metrics_count: Object.keys(metrics).length,
-    metrics,
-    series,
-  };
 }
 
 export async function getComponentActivity(componentId: string) {
-  const events = ACTIVITY[componentId] ?? STEADY_ACTIVITY;
-  const withComponent = events.map((e) => ({ ...e, component: componentId }));
-  return { component: componentId, total_events: withComponent.length, events: withComponent };
+  try {
+    const res = await fetch(`${API_BASE}/api/components/${componentId}/activity`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    // If backend has no events yet, fall back to static activity
+    if (!data.events || data.events.length === 0) {
+      const events = ACTIVITY[componentId] ?? STEADY_ACTIVITY;
+      const withComponent = events.map((e) => ({ ...e, component: componentId }));
+      return { component: componentId, total_events: withComponent.length, events: withComponent };
+    }
+    return data;
+  } catch {
+    const events = ACTIVITY[componentId] ?? STEADY_ACTIVITY;
+    const withComponent = events.map((e) => ({ ...e, component: componentId }));
+    return { component: componentId, total_events: withComponent.length, events: withComponent };
+  }
 }
 
 /** Null for a healthy component — nothing to diagnose, so no card renders. */
 export async function getRootCause(componentId: string): Promise<RootCause | null> {
-  return ROOT_CAUSES[componentId] ?? null;
+  try {
+    // Check activity log for RCA results posted by the orchestrator
+    const res = await fetch(`${API_BASE}/api/components/${componentId}/activity`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const events: Array<{ message: string; timestamp: string }> = data.events ?? [];
+
+    // Find the most recent RCA result message
+    // Orchestrator posts: "RCA Result: fan_failure_overheating, Confidence: 86.0%"
+    const rcaEvent = [...events].reverse().find((e) => e.message.includes('RCA Result:'));
+    if (!rcaEvent) return ROOT_CAUSES[componentId] ?? null;
+
+    // Parse root cause and confidence from message
+    const match = rcaEvent.message.match(/RCA Result:\s*([^,]+),\s*Confidence:\s*([\d.]+)%?/i);
+    if (!match) return ROOT_CAUSES[componentId] ?? null;
+
+    const rootCause = match[1].trim();
+    const confidence = parseFloat(match[2]);
+
+    // Find remediation outcome if available
+    const remediationEvent = [...events].reverse().find(
+      (e) => e.message.includes('Action completed') || e.message.includes('remediation')
+    );
+    const isRemediated = remediationEvent?.message.includes('SUCCESS');
+
+    // Build evidence from activity events
+    const evidence = events
+      .filter((e) =>
+        e.message.includes('State changed') ||
+        e.message.includes('Starting action') ||
+        e.message.includes('Calling remediation')
+      )
+      .slice(-3)
+      .map((e) => e.message);
+
+    return {
+      finding: rootCause.replace(/_/g, ' '),
+      confidence,
+      evidence: evidence.length > 0 ? evidence : [`Root cause identified: ${rootCause}`],
+      ruledOut: [],
+      recommendation: `Apply automated fix for ${rootCause.replace(/_/g, ' ')}`,
+      policy: 'Automated remediation — human approval required before execution',
+      status: isRemediated ? 'completed' : 'pending',
+      outcome: isRemediated ? `Automated fix applied successfully · component recovered` : undefined,
+    } as RootCause;
+  } catch {
+    return ROOT_CAUSES[componentId] ?? null;
+  }
 }
 
 export async function getComponentStateHistory(componentId: string): Promise<ComponentState[]> {
+  try {
+    // First check if we have live state history from polling
+    const liveHistory = _stateBuffer.get(componentId);
+    if (liveHistory && liveHistory.length > 0) {
+      return [...liveHistory];
+    }
+    // If no live history yet, fetch current state and seed the buffer
+    const res = await fetch(`${API_BASE}/api/components/${componentId}`);
+    if (res.ok) {
+      const data = await res.json();
+      const state = data.state as ComponentState;
+      return getStateHistory(componentId, state);
+    }
+  } catch {
+    // fall through
+  }
+  // Fall back to static history or all-healthy
   const c = COMPONENTS.find((x) => x.component === componentId);
   return STATE_HISTORY[componentId] ?? Array<ComponentState>(8).fill(c?.state ?? 'healthy');
 }
@@ -743,28 +941,79 @@ export async function getComponentStateHistory(componentId: string): Promise<Com
  * observabilityData.test.ts asserts it.
  */
 export async function getSystemOverview() {
-  const byState = (s: ComponentState) => COMPONENTS.filter((c) => c.state === s).length;
-  const layers = (Object.keys(LAYER_LABELS) as LayerId[]).map((id) => {
-    const members = COMPONENTS.filter((c) => c.layer === id);
-    const healthy = members.filter((c) => c.state === 'healthy').length;
+  try {
+    // Derive overview from live components
+    const allComponents: PlatformComponent[] = await getComponents();
+    const byState = (s: ComponentState) => allComponents.filter((c) => c.state === s).length;
+    const layers = (Object.keys(LAYER_LABELS) as LayerId[]).map((id) => {
+      const members = allComponents.filter((c) => c.layer === id);
+      const healthy = members.filter((c) => c.state === 'healthy').length;
+      return {
+        id,
+        label: LAYER_LABELS[id],
+        total: members.length,
+        healthy,
+        health: members.length ? Math.round((healthy / members.length) * 1000) / 10 : 100,
+      };
+    });
+    const total = allComponents.length;
+    const healthyCount = byState('healthy');
+    const healthyPct = total ? Math.round((healthyCount / total) * 1000) / 10 : 100;
+    // Push to trend buffer so the graph updates every poll
+    pushHealthTrend(healthyPct);
     return {
-      id,
-      label: LAYER_LABELS[id],
-      total: members.length,
-      healthy,
-      // Percent of this layer's components reporting healthy.
-      health: members.length ? Math.round((healthy / members.length) * 1000) / 10 : 100,
+      total,
+      healthy: healthyCount,
+      degraded: byState('degraded'),
+      failed: byState('failed'),
+      recovering: byState('recovering'),
+      layers,
+      trend: getLiveTrend(),
     };
-  });
-  return {
-    total: COMPONENTS.length,
-    healthy: byState('healthy'),
-    degraded: byState('degraded'),
-    failed: byState('failed'),
-    recovering: byState('recovering'),
-    layers,
-    trend: HEALTH_TREND,
-  };
+  } catch {
+    // Fall back to static
+    const byState = (s: ComponentState) => COMPONENTS.filter((c) => c.state === s).length;
+    const layers = (Object.keys(LAYER_LABELS) as LayerId[]).map((id) => {
+      const members = COMPONENTS.filter((c) => c.layer === id);
+      const healthy = members.filter((c) => c.state === 'healthy').length;
+      return {
+        id,
+        label: LAYER_LABELS[id],
+        total: members.length,
+        healthy,
+        health: members.length ? Math.round((healthy / members.length) * 1000) / 10 : 100,
+      };
+    });
+    return {
+      total: COMPONENTS.length,
+      healthy: byState('healthy'),
+      degraded: byState('degraded'),
+      failed: byState('failed'),
+      recovering: byState('recovering'),
+      layers,
+      trend: HEALTH_TREND,
+    };
+  }
+}
+
+export async function getCorrelationSummary() {
+  try {
+    const res = await fetch(`${API_BASE}/api/correlation/summary`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  } catch {
+    return null;
+  }
+}
+
+export async function getRemediationStats() {
+  try {
+    const res = await fetch(`${API_BASE}/api/remediation/stats`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  } catch {
+    return null;
+  }
 }
 
 /**
