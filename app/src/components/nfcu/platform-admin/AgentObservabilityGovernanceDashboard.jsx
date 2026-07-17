@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, ChevronDown, Sparkles, Database, Brain, Scale, User, Bot } from 'lucide-react';
 import { useAsyncData } from '@/hooks/useAsyncData';
 import { getGovernance } from '@/data/nfcu/platform-admin/governanceData';
 
 /**
- * Turn 6 — Agent Observability and Governance Dashboard. Agent health + activity,
- * frontier task share and spend trend, and an expandable action view revealing
- * the chain of thought and the applied policy. Rendered in Ultra through Gen UI,
- * not raw Grafana.
+ * Turn 8 — Enterprise Agent Observability and Governance. CR-06.
+ *
+ * Grouped by INITIATIVE rather than by contact-center team. That grouping IS the
+ * argument: Pari and Pavan asked whether the governance layer works across all
+ * the different agents regardless of platform, and the answer only reads at a
+ * glance when Contact Center sits beside Core Banking and the rest under one
+ * frontier-share number.
  */
 const healthPill = (h) =>
   h === 'Healthy'
@@ -35,6 +38,22 @@ function SpendTrend({ points }) {
 export default function AgentObservabilityGovernanceDashboard() {
   const data = useAsyncData(getGovernance);
   const [open, setOpen] = useState(false);
+
+  // Group by initiative, preserving first-seen order so Contact Center — the
+  // initiative the demo just drilled through — leads. Totals are derived per
+  // group so a row edit can't desync the header from its members.
+  const initiatives = useMemo(() => {
+    const out = [];
+    for (const a of data?.agents ?? []) {
+      let g = out.find((x) => x.initiative === a.initiative);
+      if (!g) { g = { initiative: a.initiative, agents: [], tasks: 0, frontier: 0 }; out.push(g); }
+      g.agents.push(a);
+      g.tasks += a.tasks;
+      g.frontier += a.frontier;
+    }
+    return out;
+  }, [data?.agents]);
+
   if (!data) return null;
 
   const totalTasks = data.agents.reduce((sum, a) => sum + a.tasks, 0);
@@ -55,7 +74,7 @@ export default function AgentObservabilityGovernanceDashboard() {
           All justified · PII-safe
         </span>
       </div>
-      <p className="text-xs text-text-subtle mb-4">Contact center · this month</p>
+      <p className="text-xs text-text-subtle mb-4">Every AI initiative on the platform · this month</p>
 
       {/* Summary tiles */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4">
@@ -74,21 +93,39 @@ export default function AgentObservabilityGovernanceDashboard() {
         </div>
       </div>
 
-      {/* Agent health */}
-      <div className="text-[10px] font-semibold text-text-muted uppercase tracking-wider mb-2">Agent health</div>
-      <div className="space-y-2 mb-4">
-        {data.agents.map((agent) => (
-          <div key={agent.name} className="flex items-center gap-3 rounded-lg border border-border-subtle px-3 py-2">
-            <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${healthPill(agent.health)}`}>
-              {agent.health}
-            </span>
-            <span className="text-[11.5px] font-medium text-text flex-1 min-w-0 truncate">{agent.name}</span>
-            <span className="text-[10.5px] text-text-muted tabular-nums whitespace-nowrap">
-              {agent.tasks} tasks · <span className="text-violet-700 font-semibold">{agent.frontier} frontier</span>
-            </span>
+      {/* Agent health, grouped by initiative — CR-06. Contact Center is one row
+          group among several, which is the whole point of the reframe. */}
+      <div className="text-[10px] font-semibold text-text-muted uppercase tracking-wider mb-2">
+        Agent health by initiative
+      </div>
+      <div className="space-y-3 mb-4">
+        {initiatives.map(({ initiative, agents, tasks, frontier }) => (
+          <div key={initiative}>
+            <div className="flex items-baseline gap-2 mb-1.5">
+              <span className="text-[10px] font-bold text-text uppercase tracking-wider">{initiative}</span>
+              <span className="text-[9.5px] text-text-subtle tabular-nums">
+                {tasks.toLocaleString()} tasks · {Math.round((frontier / tasks) * 100)}% frontier
+              </span>
+            </div>
+            <div className="space-y-2">
+              {agents.map((agent) => (
+                <div key={agent.name} className="flex items-center gap-3 rounded-lg border border-border-subtle px-3 py-2">
+                  <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${healthPill(agent.health)}`}>
+                    {agent.health}
+                  </span>
+                  <span className="text-[11.5px] font-medium text-text flex-1 min-w-0 truncate">{agent.name}</span>
+                  <span className="text-[10.5px] text-text-muted tabular-nums whitespace-nowrap">
+                    {agent.tasks} tasks · <span className="text-violet-700 font-semibold">{agent.frontier} frontier</span>
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
+      <p className="text-[10.5px] text-text-muted -mt-2 mb-4 leading-snug">
+        Whatever tool or agent a team builds on, it routes through one governance model.
+      </p>
 
       {/* Expandable action */}
       <div className="text-[10px] font-semibold text-text-muted uppercase tracking-wider mb-2">Recent agent action</div>

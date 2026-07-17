@@ -21,7 +21,7 @@
     "id": "ds-pa-03",
     "name": "KAG Knowledge Graph (Neo4j)",
     "status": "connected",
-    "description": "The governance graph: field nodes, source-system nodes, and policy nodes (rules like DG-04 and DG-07) with their relationships. Decides what is sensitive and where it originates — classification by meaning, not keyword matching — and feeds the Gate 1 sovereignty decision. Queried via Cypher and re-rendered in Ultra through Gen UI, never shown as the raw Neo4j browser.",
+    "description": "The governance graph: field nodes, source-system nodes, and policy nodes (rules like DG-04 and DG-07) with their relationships. Decides what is sensitive and where it originates — classification by meaning, not keyword matching — and feeds the Gate 1 sovereignty decision.",
     "icon": "shield",
     "lastSync": "2026-04-23T08:55:00",
     "recordCount": 128000
@@ -48,7 +48,7 @@
     "id": "ds-pa-06",
     "name": "Agent Observability Log",
     "status": "connected",
-    "description": "Per-turn record of every agent action: the query, the response, the context it used, its chain of thought, and the policy or business rule that governed it. Powers the single-pane observability view — rendered conversationally in Ultra, not as raw Grafana.",
+    "description": "Per-turn record of every agent action: the query, the response, the context it used, its chain of thought, and the policy or business rule that governed it. Powers the single-pane observability view.",
     "icon": "monitor",
     "lastSync": "2026-04-23T09:00:00",
     "recordCount": 512000
@@ -57,7 +57,7 @@
     "id": "ds-pa-07",
     "name": "Grafana (via API)",
     "status": "connected",
-    "description": "Agent health and platform telemetry behind the observability dashboard. Pulled through an API call and re-rendered as Gen UI in Ultra rather than embedding a Grafana panel.",
+    "description": "Agent health and platform telemetry behind the observability dashboard.",
     "icon": "monitor",
     "lastSync": "2026-04-23T09:00:00",
     "recordCount": 96000

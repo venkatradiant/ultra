@@ -174,7 +174,7 @@ const personas = {
     id: 'nfcu_platform_admin',
     name: 'Daniel Okonkwo',
     initials: 'DO',
-    role: 'Platform Administrator, AI Governance & LLMOps',
+    role: 'AI Governance Admin, LLMOps',
     greeting: 'Daniel',
     capabilities: [
       'Proactive Intelligence',

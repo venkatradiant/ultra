@@ -18,6 +18,7 @@ import { ADMIN_ACCESS_KEY } from './config/access';
 // persona. The main chunk is already oversized (NVL + mermaid land in the eager
 // Governance route); a new heavy route shouldn't add to that.
 const AgentObservability = lazy(() => import('./screens/AgentObservability'));
+const AgentInventory = lazy(() => import('./screens/AgentInventory'));
 
 // Expose navigate() for the demo runner
 function DemoNavigateBridge() {
@@ -77,6 +78,14 @@ function AppContent() {
                   element={(
                     <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
                       <AgentObservability />
+                    </Suspense>
+                  )}
+                />
+                <Route
+                  path="/agent-inventory"
+                  element={(
+                    <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                      <AgentInventory />
                     </Suspense>
                   )}
                 />

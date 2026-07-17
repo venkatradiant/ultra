@@ -877,19 +877,35 @@ const nfcuPaConfig = {
     'What did the frontier model do?': 'nfcu_pa_frontier_task',
     // Turn 3 — Sensitivity Provenance (KAG)
     'Show all fields flagged sensitive': 'nfcu_pa_field_sovereignty',
-    // Turn 4 — Routing Logic
+    // Turn 4 — Routing Logic (three gates)
+    'Show me the budget guardrail': 'nfcu_pa_budget_guardrail',
     'Run the cost report': 'nfcu_pa_cost_usage',
     'Show me the field ledger again': 'nfcu_pa_field_sovereignty',
     'Which tasks used the frontier model?': 'nfcu_pa_frontier_task',
-    // Turn 5 — LLM Cost and Usage
+    // Turn 5 — Budget Guardrail
+    'Show me who is near their budget': 'nfcu_pa_near_budget',
+    'Show the routing logic': 'nfcu_pa_routing_logic',
+    // Turn 6 — LLM Cost and Usage
     'Show me the highest-cost tasks': 'nfcu_pa_highest_cost',
     'Break it down by persona': 'nfcu_pa_by_persona',
     'Show frontier usage this month': 'nfcu_pa_observability',
-    // Turn 6 — Agent Observability and Governance
+    // Turn 7 — Semantic Cache Reuse
+    'Show cache hit rate this month': 'nfcu_pa_cache_hit_rate',
+    'Which answers are cached?': 'nfcu_pa_cache_hit_rate',
+    // Turn 8 — Enterprise Agent Observability
     'Expand a flagged action': 'nfcu_pa_expand_action',
     'Show the spend trend': 'nfcu_pa_spend_trend',
+    // Spec v2 Step 8 words it without the "me"; keep both so either lands.
+    'Show the enterprise agent inventory': 'nfcu_pa_agent_inventory',
+    'Show me the enterprise agent inventory': 'nfcu_pa_agent_inventory',
+    'Compare governance across initiatives': 'nfcu_pa_by_foundry',
     'Generate a governance summary': 'nfcu_pa_gov_summary',
-    // Suggested query bar (8, verbatim from the spec)
+    'Generate an enterprise governance summary': 'nfcu_pa_gov_summary',
+    // Turn 9 — Enterprise Agent Inventory
+    'Group these by foundry': 'nfcu_pa_by_foundry',
+    'Show anything not yet under governance': 'nfcu_pa_ungoverned',
+    'Onboard an agent to governance': 'nfcu_pa_onboard_agent',
+    // Suggested query bar (12, verbatim from spec v2)
     'Show me where every field in this response went': 'nfcu_pa_field_sovereignty',
     'Did any PII reach the frontier model?': 'nfcu_pa_pii_check',
     'Why was this field classified sensitive?': 'nfcu_pa_kag_provenance',
@@ -897,15 +913,24 @@ const nfcuPaConfig = {
     'Which tasks used the frontier model, and why?': 'nfcu_pa_frontier_task',
     'Run the LLM cost report for this session': 'nfcu_pa_cost_usage',
     'How much did routing save versus all-frontier?': 'nfcu_pa_savings',
-    'Show me agent activity across the contact center': 'nfcu_pa_observability',
+    'Show me agent activity and frontier usage across the enterprise': 'nfcu_pa_observability',
+    'What happens when someone hits their budget cap?': 'nfcu_pa_budget_guardrail',
+    'Show me where we reused an answer instead of calling a model': 'nfcu_pa_cache_reuse',
+    'Show me every AI agent and foundry in the enterprise': 'nfcu_pa_agent_inventory',
+    'Show me every AI agent running across the enterprise and what it is built on': 'nfcu_pa_agent_inventory',
   },
   signalSequence: ['nfcu_pa_field_sovereignty', 'nfcu_pa_spend_on_track', 'nfcu_pa_kag_provenance'],
+  // Spec v2's nine turns. Turn 1 is the greeting, which is seeded rather than
+  // sequenced, so this holds turns 2–9.
   askTurnSequence: [
     'nfcu_pa_field_sovereignty',
     'nfcu_pa_kag_provenance',
     'nfcu_pa_routing_logic',
+    'nfcu_pa_budget_guardrail',
     'nfcu_pa_cost_usage',
+    'nfcu_pa_cache_reuse',
     'nfcu_pa_observability',
+    'nfcu_pa_agent_inventory',
   ],
 };
 

@@ -13,7 +13,18 @@ import {
   METRIC_META,
   metricSeries,
 } from './observabilityData';
-import { GOVERNANCE } from './governanceData';
+import {
+  GOVERNANCE,
+  COST_REPORT,
+  BUDGET_GUARDRAIL,
+  getCacheReuse,
+  getBudgetGuardrail,
+} from './governanceData';
+import {
+  getAgentRegistry,
+  getRegistryByFoundry,
+  getUngovernedAgents,
+} from './agentRegistryData';
 
 describe('observability data — overview reconciles with the component list', () => {
   it('reports a total equal to the number of components', async () => {
@@ -73,6 +84,124 @@ describe('observability data — agrees with the turn-6 governance dashboard', (
   it('states the bridge maps Watch to degraded and Healthy to healthy', () => {
     expect(turn6HealthToState('Healthy')).toBe('healthy');
     expect(turn6HealthToState('Watch')).toBe('degraded');
+  });
+});
+
+// The figures a technical audience will add up. Spec v2 owns them; these lock
+// them down so a later edit can't quietly move one.
+describe('governance arithmetic — the spec-owned numbers', () => {
+  it('keeps the cost report reconciled and untouched by the new turns', () => {
+    const rows = COST_REPORT.rows;
+    const f = COST_REPORT.footer;
+    expect(rows.length).toBe(f.totalTasks);
+    expect(rows.filter((r) => r.model === 'Frontier').length).toBe(f.frontierTasks);
+    expect(+rows.reduce((s, r) => s + r.cost, 0).toFixed(2)).toBe(f.total);
+    // 1 - 0.63/2.18 = 71.1%
+    expect(f.saved).toBe(`${Math.round((1 - f.total / f.allFrontier) * 100)}%`);
+  });
+
+  it('derives the month frontier share from the agent rows', () => {
+    const tasks = GOVERNANCE.agents.reduce((s, a) => s + a.tasks, 0);
+    const frontier = GOVERNANCE.agents.reduce((s, a) => s + a.frontier, 0);
+    expect(GOVERNANCE.frontierTaskShare).toBe(`${Math.round((frontier / tasks) * 100)}%`);
+  });
+
+  it('groups every agent under an initiative for the enterprise view', () => {
+    for (const a of GOVERNANCE.agents) expect(a.initiative).toBeTruthy();
+    // The enterprise point only lands if it is not all one initiative.
+    expect(new Set(GOVERNANCE.agents.map((a) => a.initiative)).size).toBeGreaterThan(1);
+  });
+});
+
+describe('cache reuse — month scope, must not disturb the session cost report', () => {
+  it('counts the same month the agent rows describe', async () => {
+    const c = await getCacheReuse();
+    const tasks = GOVERNANCE.agents.reduce((s, a) => s + a.tasks, 0);
+    expect(c.month.tasks).toBe(tasks);
+  });
+
+  it('derives hit rate and cost avoided rather than restating them', async () => {
+    const c = await getCacheReuse();
+    const { tasks, cacheHits, avgCostPerQuery, avgTokensPerCall } = c.month;
+    expect(c.month.hitRatePct).toBeCloseTo((cacheHits / tasks) * 100, 1);
+    expect(c.month.costAvoided).toBeCloseTo(cacheHits * avgCostPerQuery, 2);
+    expect(c.month.tokensAvoided).toBe(cacheHits * avgTokensPerCall);
+  });
+
+  it('serves the second query from cache at zero tokens and zero cost', async () => {
+    const { pair } = await getCacheReuse();
+    expect(pair.first.served).toBe('model');
+    expect(pair.second.served).toBe('cache');
+    expect(pair.second.tokens).toBe(0);
+    expect(pair.second.cost).toBe(0);
+    // A cache hit that wasn't faster would make the whole turn pointless.
+    expect(pair.second.latencyMs).toBeLessThan(pair.first.latencyMs);
+    expect(pair.similarity).toBeGreaterThanOrEqual(pair.threshold);
+  });
+});
+
+describe('budget guardrail — both spec sentences must be true at once', () => {
+  it('crosses the soft budget but never breaches the hard cap', async () => {
+    const b = await getBudgetGuardrail();
+    expect(b.budget).toBeLessThan(b.cap);
+    expect(b.spendAtDownshift).toBeGreaterThan(b.budget); // "crossed their budget"
+    expect(b.finalSpend).toBeLessThanOrEqual(b.cap); // "spend stayed inside the cap"
+  });
+
+  it('shows the downshift actually prevented a breach', async () => {
+    const b = await getBudgetGuardrail();
+    expect(b.counterfactual).toBeGreaterThan(b.cap);
+    expect(b.finalSpend).toBeLessThan(b.counterfactual);
+  });
+
+  it('reconciles the spend curve with the quoted figures', () => {
+    const s = BUDGET_GUARDRAIL.spendByTask;
+    expect(s.length).toBe(BUDGET_GUARDRAIL.totalTasks);
+    expect(s[BUDGET_GUARDRAIL.downshiftAtTask - 1]).toBe(BUDGET_GUARDRAIL.spendAtDownshift);
+    expect(s[s.length - 1]).toBe(BUDGET_GUARDRAIL.finalSpend);
+    // Cumulative spend can never go down.
+    for (let i = 1; i < s.length; i += 1) expect(s[i]).toBeGreaterThanOrEqual(s[i - 1]);
+    expect(BUDGET_GUARDRAIL.before.tasks + BUDGET_GUARDRAIL.after.tasks).toBe(BUDGET_GUARDRAIL.totalTasks);
+  });
+});
+
+describe('agent registry — one governance model across many foundries', () => {
+  it('has exactly 3 ungoverned agents, as spec v2 Step 9 states', async () => {
+    const r = await getAgentRegistry();
+    expect(r.ungoverned).toBe(3);
+    expect((await getUngovernedAgents()).length).toBe(3);
+  });
+
+  it('derives totals from the rows', async () => {
+    const r = await getAgentRegistry();
+    expect(r.governed + r.ungoverned).toBe(r.total);
+    expect(r.total).toBe(r.rows.length);
+  });
+
+  it('lists every agent turn 8 reports on', async () => {
+    const { rows } = await getAgentRegistry();
+    for (const agent of GOVERNANCE.agents) {
+      const row = rows.find((x) => x.agent === agent.name);
+      expect(row, `${agent.name} is reported in turn 8 but missing from the registry`).toBeDefined();
+      expect(row?.governed).toBe(true);
+    }
+  });
+
+  it('reports PII-safety as unknown for ungoverned agents, never as safe', async () => {
+    // The whole point of the screen: outside the layer, nobody can answer this.
+    for (const a of await getUngovernedAgents()) {
+      expect(a.piiSafe).toBeNull();
+      expect(a.withinBudget).toBeNull();
+      expect(a.policyVersion).toBe('—');
+    }
+  });
+
+  it('spans more than one foundry, and the pivot reconciles to the rows', async () => {
+    const groups = await getRegistryByFoundry();
+    const r = await getAgentRegistry();
+    expect(groups.length).toBeGreaterThan(1);
+    expect(groups.reduce((s, g) => s + g.total, 0)).toBe(r.total);
+    expect(groups.reduce((s, g) => s + g.ungoverned, 0)).toBe(r.ungoverned);
   });
 });
 

@@ -40,7 +40,7 @@ export default function AgentEventLog({ events }) {
         <h3 className="text-sm font-semibold text-text">Event history</h3>
         <span className="ml-auto text-[10px] text-text-subtle tabular-nums">{rows.length} events</span>
       </div>
-      <p className="text-xs text-text-subtle mb-3">Newest first · everything the agents did here</p>
+      <p className="text-xs text-text-subtle mb-3">Newest first</p>
 
       <ul className="space-y-0.5 max-h-[300px] overflow-y-auto scrollbar-sleek pr-1">
         {/* initial={false} — without it, opening a component cascades 13 entry

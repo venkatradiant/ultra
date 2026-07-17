@@ -27,6 +27,9 @@ import RoutingDiagram from '@/components/nfcu/platform-admin/RoutingDiagram';
 import LlmCostUsageReport from '@/components/nfcu/platform-admin/LlmCostUsageReport';
 import AgentObservabilityGovernanceDashboard from '@/components/nfcu/platform-admin/AgentObservabilityGovernanceDashboard';
 import GovernanceSummaryCard from '@/components/nfcu/platform-admin/GovernanceSummaryCard';
+import BudgetGuardrailPanel from '@/components/nfcu/platform-admin/BudgetGuardrailPanel';
+import CacheReusePanel from '@/components/nfcu/platform-admin/CacheReusePanel';
+import EnterpriseAgentInventory from '@/components/nfcu/platform-admin/EnterpriseAgentInventory';
 
 const flows = (getPersonaFlowConfigs('nfcu') as unknown as Record<string, PersonaManifest['flows']>).nfcu_platform_admin;
 
@@ -35,7 +38,10 @@ const manifest: PersonaManifest = {
   clientId: 'nfcu',
   marketId: 'financial-services',
 
-  identity: { name: 'Daniel Okonkwo', initials: 'DO', role: 'Platform Administrator, AI Governance & LLMOps', greeting: 'Daniel' },
+  // Role label per CR-01 / spec v2. The persona id (`nfcu_platform_admin`) and
+  // the platform-admin/ paths deliberately do NOT change — CR-01 scopes the
+  // rename to the label only.
+  identity: { name: 'Daniel Okonkwo', initials: 'DO', role: 'AI Governance Admin, LLMOps', greeting: 'Daniel' },
   capabilities: [
     'Proactive Intelligence',
     'Anomaly Detection',
@@ -52,9 +58,17 @@ const manifest: PersonaManifest = {
   // 'Governance' rather than 'Governance & Observability': Agent Observability is
   // now its own page, and two sidebar entries both claiming observability is a
   // coin-flip for a presenter mid-demo.
-  navLabels: { governance: 'Governance', agentObservability: 'Agent Observability' },
+  // Spec v2: "Ask the AI (Home), plus Governance, Observability, and Agent
+  // Inventory modules". Data Sources is kept — the spec lists the governance
+  // modules, it isn't enumerating the whole sidebar.
+  // ⚠ TopHeader.jsx keeps its OWN copy of these labels; change both.
+  navLabels: {
+    governance: 'Governance',
+    agentObservability: 'Agent Observability',
+    agentInventory: 'Agent Inventory',
+  },
   features: {
-    navSlots: ['ask', 'governance', 'agentObservability', 'dataSources'],
+    navSlots: ['ask', 'governance', 'agentObservability', 'agentInventory', 'dataSources'],
     staticCapabilityBadges: true,
   },
 
@@ -63,21 +77,32 @@ const manifest: PersonaManifest = {
 
   ui: {
     greetingFlowKey: 'nfcu_pa_greeting',
+    // Spec v2's always-visible query bar. The four new entries are the turns the
+    // executives asked for: budget cap, response reuse, and the cross-foundry
+    // inventory.
     initialChips: [
       'Review the auto loan spike',
       'Did any PII reach the frontier model?',
       'Show me the routing logic as a diagram',
+      'What happens when someone hits their budget cap?',
       'Run the LLM cost report for this session',
-      'Show me agent activity across the contact center',
+      'Show me where we reused an answer instead of calling a model',
+      'Show me agent activity and frontier usage across the enterprise',
+      'Show me every AI agent and foundry in the enterprise',
     ],
-    // The golden path walks the spec's six turns in order.
+    // The golden path walks spec v2's nine turns in order:
+    // 1 brief · 2 sovereignty · 3 KAG · 4 routing · 5 budget · 6 cost
+    // · 7 cache · 8 enterprise observability · 9 agent inventory.
     goldenPathChip: {
       nfcu_pa_greeting: 'Review the auto loan spike',
       nfcu_pa_field_sovereignty: 'Why did the auto loan rate stay local?',
       nfcu_pa_kag_provenance: 'Show me the routing logic',
-      nfcu_pa_routing_logic: 'Run the cost report',
-      nfcu_pa_cost_usage: 'Show frontier usage this month',
-      nfcu_pa_observability: 'Generate a governance summary',
+      nfcu_pa_routing_logic: 'Show me the budget guardrail',
+      nfcu_pa_budget_guardrail: 'Run the cost report',
+      nfcu_pa_cost_usage: 'Show me where we reused an answer instead of calling a model',
+      nfcu_pa_cache_reuse: 'Show me agent activity and frontier usage across the enterprise',
+      nfcu_pa_observability: 'Show the enterprise agent inventory',
+      nfcu_pa_agent_inventory: 'Show anything not yet under governance',
     },
     flowKeyToCapabilityTrigger: {
       nfcu_pa_greeting: 'step_briefing',
@@ -85,16 +110,26 @@ const manifest: PersonaManifest = {
       nfcu_pa_pii_check: 'step_field_sovereignty',
       nfcu_pa_kag_provenance: 'step_kag',
       nfcu_pa_routing_logic: 'step_routing',
+      // Budget is a routing gate, so it shares the routing capability.
+      nfcu_pa_budget_guardrail: 'step_routing',
+      nfcu_pa_near_budget: 'step_routing',
       nfcu_pa_cost_usage: 'step_cost',
       nfcu_pa_frontier_task: 'step_cost',
       nfcu_pa_spend_on_track: 'step_cost',
       nfcu_pa_savings: 'step_cost',
       nfcu_pa_highest_cost: 'step_cost',
       nfcu_pa_by_persona: 'step_cost',
+      // Cache reuse is a cost/token story.
+      nfcu_pa_cache_reuse: 'step_cost',
+      nfcu_pa_cache_hit_rate: 'step_cost',
       nfcu_pa_observability: 'step_observability',
       nfcu_pa_expand_action: 'step_observability',
       nfcu_pa_spend_trend: 'step_observability',
       nfcu_pa_gov_summary: 'step_observability',
+      nfcu_pa_agent_inventory: 'step_observability',
+      nfcu_pa_by_foundry: 'step_observability',
+      nfcu_pa_ungoverned: 'step_observability',
+      nfcu_pa_onboard_agent: 'step_observability',
     },
     // Dashboard KPIs — spec: Daniel Okonkwo.
     stats: [
@@ -125,6 +160,19 @@ const manifest: PersonaManifest = {
     if (k === 'nfcu_pa_cost_usage' || k === 'nfcu_pa_highest_cost') out.push(<LlmCostUsageReport key="cost" />);
     if (k === 'nfcu_pa_observability' || k === 'nfcu_pa_expand_action' || k === 'nfcu_pa_spend_trend') {
       out.push(<AgentObservabilityGovernanceDashboard key="obs" />);
+    }
+    // Turn 5 — CR-05. Budget as a live control, not a healthy KPI.
+    if (k === 'nfcu_pa_budget_guardrail' || k === 'nfcu_pa_near_budget') {
+      out.push(<BudgetGuardrailPanel key="budget" />);
+    }
+    // Turn 7 — CR-04. Shankar's response-reuse example.
+    if (k === 'nfcu_pa_cache_reuse' || k === 'nfcu_pa_cache_hit_rate') {
+      out.push(<CacheReusePanel key="cache" />);
+    }
+    // Turn 9 — CR-08. The crescendo: every agent, every foundry, one layer.
+    if (k === 'nfcu_pa_agent_inventory' || k === 'nfcu_pa_by_foundry'
+        || k === 'nfcu_pa_ungoverned' || k === 'nfcu_pa_onboard_agent') {
+      out.push(<EnterpriseAgentInventory key="inventory" />);
     }
     // The closing summary: four numbers and an open item, not a wall of prose.
     if (k === 'nfcu_pa_gov_summary') out.push(<GovernanceSummaryCard key="gov-summary" />);

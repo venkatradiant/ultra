@@ -14,7 +14,14 @@ import type { DataSource } from './dataSource';
 export type PersonaLayout = 'split' | 'inline' | 'full';
 
 /** Nav slots whose labels a persona/client may relabel. */
-export type NavKey = 'ask' | 'journey' | 'risk' | 'governance' | 'agentObservability' | 'dataSources';
+export type NavKey =
+  | 'ask'
+  | 'journey'
+  | 'risk'
+  | 'governance'
+  | 'agentObservability'
+  | 'agentInventory'
+  | 'dataSources';
 
 export interface PersonaIdentity {
   name: string;

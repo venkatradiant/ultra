@@ -1,6 +1,6 @@
 {
   "nfcu_pa_greeting": {
-    "ai_message": "Good morning, Daniel. Three items for review. Priya's auto loan spike response is up for routine frontier-usage review, contact center spend is on track, and the knowledge graph caught one borderline field and held it local. Want to start with the spike review?",
+    "ai_message": "Good morning, Daniel. Governance is healthy across the enterprise: dozens of agents on several foundries, all under one layer. Three items for review, starting with one initiative, the contact center. Priya's auto loan spike response is up for routine frontier-usage review, spend is on track, and the knowledge graph caught one borderline field and held it local. Want to start with the spike review?",
     "suggested_chips": [
       "Review the auto loan spike",
       "Show me contact center spend",
@@ -66,10 +66,10 @@
   },
 
   "nfcu_pa_routing_logic": {
-    "ai_message": "Two gates. First, is it safe to send: any field carrying PII stays in the SLM, always. Second, is it worth sending: a task uses the frontier model only when it needs reasoning or generation the SLM cannot do reliably. A task has to pass both. Everything else stays local.",
+    "ai_message": "Three gates. First, is it safe to send: any field carrying PII stays in the SLM, always. Second, is it worth sending: a task uses the frontier model only when it needs reasoning or generation the SLM cannot do reliably. Third, is it within budget: if a user or agent has hit its cost ceiling, non-critical tasks stay on the SLM even if they would otherwise qualify. A task has to pass all three. Everything else stays local.",
     "suggested_chips": [
+      "Show me the budget guardrail",
       "Run the cost report",
-      "Show me the field ledger again",
       "Which tasks used the frontier model?"
     ],
     "data_sources_used": ["Routing service code", "KAG (Neo4j)"],
@@ -90,6 +90,7 @@
   "nfcu_pa_cost_usage": {
     "ai_message": "Across Priya's session the frontier model was used on 3 of 24 tasks, all complex reasoning or generation, all on non-PII inputs. The rest ran on the in-environment SLM. Total cost was $0.63. Running everything on the frontier model would have cost $2.18, so routing saved 71%.",
     "suggested_chips": [
+      "Show me where we reused an answer instead of calling a model",
       "Show me the highest-cost tasks",
       "Break it down by persona",
       "Show frontier usage this month"
@@ -110,11 +111,12 @@
   },
 
   "nfcu_pa_observability": {
-    "ai_message": "Across the contact center, agents are healthy and frontier usage held at 11% of tasks, all justified and PII-safe. Here is the activity view. You can expand any agent action to see what it did, the context it used, and the policy that governed it.",
+    "ai_message": "Across the enterprise, the contact center, core banking, and the other AI initiatives on the platform, every agent is governed by the same layer. Frontier usage held at 11% of tasks, all justified and PII-safe. Whatever tool or agent a team builds on, it routes through one governance model. You can expand any agent action to see what it did, the context it used, and the policy that governed it.",
     "suggested_chips": [
+      "Show the enterprise agent inventory",
       "Expand a flagged action",
-      "Show the spend trend",
-      "Generate a governance summary"
+      "Compare governance across initiatives",
+      "Generate an enterprise governance summary"
     ],
     "data_sources_used": ["Agent observability log", "LLM usage log", "Grafana via API"],
     "capability": "Agent Observability and Governance",
@@ -122,7 +124,7 @@
     "related_dataset_keys": ["governance"],
     "confidence": {
       "score": 94,
-      "rationale": "Agent health and task counts come from the observability log; frontier share from the LLM usage log. Grafana metrics are pulled via API and re-rendered, not altered.",
+      "rationale": "Agent health and task counts come from the observability log; frontier share from the LLM usage log.",
       "signals_used": ["Agent observability log", "LLM usage log", "Grafana via API"],
       "threshold": 70,
       "model_version": "sovereign-router-v2.0",
@@ -158,7 +160,7 @@
     "suggested_chips": [
       "Show me where every field in this response went",
       "Show me the routing logic",
-      "Show me agent activity across the contact center"
+      "Show me agent activity and frontier usage across the enterprise"
     ],
     "data_sources_used": ["Routing log (Postgres)", "KAG (Neo4j)"],
     "capability": "Field Sovereignty",
@@ -179,7 +181,7 @@
     "ai_message": "Spend is on track. Month to date the frontier model handled 11% of tasks and the in-environment SLM handled the rest, holding the token split at 88/12. That keeps us 71% below what an all-frontier platform would cost. Priya's session is representative: $0.63 against a $2.18 all-frontier counterfactual. Nothing here needs action — the number is healthy because the routing is doing its job.",
     "suggested_chips": [
       "Run the LLM cost report for this session",
-      "Show me agent activity across the contact center",
+      "Show me agent activity and frontier usage across the enterprise",
       "Review the auto loan spike"
     ],
     "data_sources_used": ["LLM usage log", "LiteLLM cost records (Postgres)"],
@@ -244,7 +246,7 @@
   "nfcu_pa_by_persona": {
     "ai_message": "Month to date, by persona: Priya (contact center ops) $38.60 across 812 tasks, 12% frontier. Marcus (director) $47.20 across 604 tasks, 14% frontier — he drafts more leadership summaries, which is generation work. Janelle (quality) $29.40 across 517 tasks, 9% frontier. Derek (workforce) $22.10 across 448 tasks, 8% frontier. David (agent-assist) $15.80 across 396 tasks, 6% frontier — almost entirely lookups, which is exactly what you want at the agent desktop. Every persona is PII-clean: zero fields to the frontier across all five.",
     "suggested_chips": [
-      "Show me agent activity across the contact center",
+      "Show me agent activity and frontier usage across the enterprise",
       "Show the spend trend",
       "Run the LLM cost report for this session"
     ],
@@ -288,7 +290,7 @@
   "nfcu_pa_spend_trend": {
     "ai_message": "Frontier spend over the last five weeks: $0.42, $0.48, $0.55, $0.51, $0.63. The rise tracks contact center volume, not routing drift — the frontier task share has held between 10% and 12% the whole way. That is the number to watch. If share climbs while volume is flat, Gate 2 has loosened and something is escalating to the frontier that should not be. It hasn't.",
     "suggested_chips": [
-      "Show me agent activity across the contact center",
+      "Show me agent activity and frontier usage across the enterprise",
       "Generate a governance summary",
       "Break it down by persona"
     ],
@@ -311,7 +313,7 @@
     "ai_message": "Here is the month-to-date governance summary for the contact center. Four claims, one open item — the detail behind each number is in the turns above.",
     "suggested_chips": [
       "Review the auto loan spike",
-      "Show me agent activity across the contact center",
+      "Show me agent activity and frontier usage across the enterprise",
       "Show me contact center spend"
     ],
     "data_sources_used": ["Routing log (Postgres)", "LLM usage log", "Agent observability log", "KAG (Neo4j)"],
@@ -322,6 +324,175 @@
       "score": 95,
       "rationale": "Aggregation of already-validated governance metrics; no inference beyond formatting.",
       "signals_used": ["Routing log (Postgres)", "LLM usage log", "Agent observability log"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_budget_guardrail": {
+    "ai_message": "One heavy user in the insights tool crossed their session budget this morning. The platform automatically shifted their remaining tasks from the frontier model to the in-environment SLM. They kept getting complete, accurate answers, and spend stayed inside the cap. No interruption, no manual intervention.",
+    "suggested_chips": [
+      "Show me who is near their budget",
+      "Show the routing logic",
+      "Run the cost report"
+    ],
+    "data_sources_used": ["LiteLLM cost records (Postgres)", "Budget policy config", "Routing log (Postgres)"],
+    "capability": "Budget Guardrail",
+    "ui_components_to_render": [{ "type": "budget_guardrail_panel" }],
+    "related_dataset_keys": ["budgetGuardrail"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Per-task spend is a direct meter read from the LiteLLM cost records; the downshift point is the routing log entry where the budget gate fired. The no-downshift figure is modelled from the same token counts at frontier rates.",
+      "signals_used": ["LiteLLM cost records (Postgres)", "Budget policy config", "Routing log (Postgres)"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_near_budget": {
+    "ai_message": "Marcus is the only user who has crossed a session budget today; he is the case above. Two others are inside 80% of theirs and will downshift automatically if they cross. Nobody is near the hard cap, and no task has been refused.",
+    "suggested_chips": [
+      "Show the routing logic",
+      "Run the cost report",
+      "Show me where we reused an answer instead of calling a model"
+    ],
+    "data_sources_used": ["LiteLLM cost records (Postgres)", "Budget policy config"],
+    "capability": "Budget Guardrail",
+    "ui_components_to_render": [{ "type": "budget_guardrail_panel" }],
+    "related_dataset_keys": ["budgetGuardrail"],
+    "confidence": {
+      "score": 94,
+      "rationale": "Spend-to-cap ratios read from the LiteLLM cost records against the budget policy config. Deterministic.",
+      "signals_used": ["LiteLLM cost records (Postgres)", "Budget policy config"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_cache_reuse": {
+    "ai_message": "Priya and Marcus both asked for the same auto loan spike summary within the hour. The first call ran once. The second was served from the semantic cache, so it never reached a model. Same answer, zero new tokens, near-zero cost, and a faster response. This month, cache reuse avoided 214 model calls.",
+    "suggested_chips": [
+      "Show me agent activity and frontier usage across the enterprise",
+      "Show cache hit rate this month",
+      "Which answers are cached?",
+      "Run the cost report"
+    ],
+    "data_sources_used": ["Semantic cache log", "LiteLLM gateway", "Routing log (Postgres)"],
+    "capability": "Semantic Cache Reuse",
+    "ui_components_to_render": [{ "type": "cache_reuse_panel" }],
+    "related_dataset_keys": ["cacheReuse"],
+    "confidence": {
+      "score": 96,
+      "rationale": "Both queries and the cache decision are read from the semantic cache log joined to the routing log. The similarity score is the value the cache compared against its 0.90 reuse threshold.",
+      "signals_used": ["Semantic cache log", "LiteLLM gateway", "Routing log (Postgres)"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_cache_hit_rate": {
+    "ai_message": "13.6% of tasks this month were served from the semantic cache: 214 of 1,577. That avoided about 899,000 tokens and $23.54, and every cached answer came back in roughly a seventh of the time. Reuse only fires above 0.90 similarity, inside the same tenant, on a 24-hour TTL, so a stale or cross-tenant answer cannot be served.",
+    "suggested_chips": [
+      "Run the cost report",
+      "Show me agent activity and frontier usage across the enterprise",
+      "Show me the routing logic"
+    ],
+    "data_sources_used": ["Semantic cache log", "LiteLLM gateway"],
+    "capability": "Semantic Cache Reuse",
+    "ui_components_to_render": [{ "type": "cache_reuse_panel" }],
+    "related_dataset_keys": ["cacheReuse"],
+    "confidence": {
+      "score": 95,
+      "rationale": "Hit count and token savings are meter reads from the semantic cache log; the rate is that count over the month's task total from the LLM usage log.",
+      "signals_used": ["Semantic cache log", "LiteLLM gateway"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_agent_inventory": {
+    "ai_message": "Across NFCU, teams are running 17 AI agents on six foundries. Contact center and collections are on Copilot Studio and Azure AI Foundry, a member-facing assistant is on Anthropic, a core-banking pilot is on Backbase AI. Every one of them routes through the same governance layer for PII, cost, and audit. Three agents are not yet onboarded to governance. Here is the full inventory.",
+    "suggested_chips": [
+      "Group these by foundry",
+      "Show anything not yet under governance",
+      "Onboard an agent to governance"
+    ],
+    "data_sources_used": ["Agent registry", "Routing log (Postgres)", "Policy config", "LLM usage log"],
+    "capability": "Enterprise Agent Inventory",
+    "ui_components_to_render": [{ "type": "enterprise_agent_inventory" }],
+    "related_dataset_keys": ["agentRegistry"],
+    "confidence": {
+      "score": 93,
+      "rationale": "Rows are the agent registry joined to the routing log and policy config. The three ungoverned agents were found by the registry scan; their PII and budget posture is unknown precisely because they do not route through the layer.",
+      "signals_used": ["Agent registry", "Routing log (Postgres)", "Policy config"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_by_foundry": {
+    "ai_message": "Grouped by foundry: Copilot Studio carries five agents, Azure AI Foundry three, Anthropic three, Cloud core three, OpenAI two, and the Backbase AI core-banking pilot one. Six foundries, one governance model. Nothing about the routing, PII rules, or cost controls changes with the platform underneath, which is the point: teams pick the tool, governance does not fragment.",
+    "suggested_chips": [
+      "Show anything not yet under governance",
+      "Onboard an agent to governance",
+      "Generate a governance summary"
+    ],
+    "data_sources_used": ["Agent registry", "Policy config"],
+    "capability": "Enterprise Agent Inventory",
+    "ui_components_to_render": [{ "type": "enterprise_agent_inventory" }],
+    "related_dataset_keys": ["agentRegistry"],
+    "confidence": {
+      "score": 94,
+      "rationale": "A direct grouping of the agent registry by runtime. No inference.",
+      "signals_used": ["Agent registry"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_ungoverned": {
+    "ai_message": "Three agents are running outside the governance layer: a marketing copy generator on OpenAI, a legal contract summarizer pilot on Anthropic, and a data science sandbox agent on unpinned models. I cannot tell you whether they are PII-safe or inside budget, because they do not route through the layer. That is the honest answer, and it is the proliferation risk in one line. None are member-facing today.",
+    "suggested_chips": [
+      "Onboard an agent to governance",
+      "Group these by foundry",
+      "Generate a governance summary"
+    ],
+    "data_sources_used": ["Agent registry", "Routing log (Postgres)"],
+    "capability": "Enterprise Agent Inventory",
+    "ui_components_to_render": [{ "type": "enterprise_agent_inventory" }],
+    "related_dataset_keys": ["agentRegistry"],
+    "confidence": {
+      "score": 88,
+      "rationale": "The three agents were identified by the registry scan finding runtimes with no corresponding routing-log traffic. Their internal behaviour is unknown by definition, so confidence covers their existence and runtime, not their data handling.",
+      "signals_used": ["Agent registry", "Routing log (Postgres)"],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T09:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  "nfcu_pa_onboard_agent": {
+    "ai_message": "Onboarding an agent points it at the LiteLLM gateway and attaches the current policy version. From that moment its fields are tagged by the knowledge graph, the three gates apply, and every action lands in the observability log. For the contract summarizer that would mean PII rules on legal documents and a session budget. It is a routing change, not a rebuild, and the team keeps working on Anthropic. Want me to draft the change request?",
+    "suggested_chips": [
+      "Show anything not yet under governance",
+      "Generate a governance summary",
+      "Show me agent activity and frontier usage across the enterprise"
+    ],
+    "data_sources_used": ["Agent registry", "Policy config"],
+    "capability": "Enterprise Agent Inventory",
+    "ui_components_to_render": [{ "type": "enterprise_agent_inventory" }],
+    "related_dataset_keys": ["agentRegistry"],
+    "confidence": {
+      "score": 90,
+      "rationale": "The onboarding path is the documented policy-attach procedure in the policy config. Describes the change; does not execute it.",
+      "signals_used": ["Agent registry", "Policy config"],
       "threshold": 70,
       "model_version": "sovereign-router-v2.0",
       "validated_at": "2026-04-23T09:00:00Z",

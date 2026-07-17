@@ -65,6 +65,14 @@ export function styleForState(state) {
 /** Non-healthy first, so an incident sorts to the top of its group. */
 export const STATE_PRIORITY = { failed: 0, degraded: 1, recovering: 2, healthy: 3 };
 
+/** Layer health % → gauge status band. Lives here, not in the gauge component,
+ *  so that file only exports a component (react-refresh/only-export-components). */
+export function statusForScore(score) {
+  if (score >= 90) return 'green';
+  if (score >= 75) return 'amber';
+  return 'red';
+}
+
 /** Relative time for the event log. Same shape as AuditTrailFeed's helper. */
 export function relativeTime(iso) {
   if (!iso) return '';

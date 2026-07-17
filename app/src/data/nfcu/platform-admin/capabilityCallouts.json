@@ -32,7 +32,7 @@
   {
     "trigger": "step_observability",
     "capabilityName": "Agent Observability and Governance",
-    "description": "Continuous governance across the contact center: agent health, frontier task share and cost trend, with every agent action expandable to its context, chain of thought and the policy that drove it. Rendered in Ultra, not raw Grafana.",
+    "description": "Continuous governance across the contact center: agent health, frontier task share and cost trend, with every agent action expandable to its context, chain of thought and the policy that drove it.",
     "eyebrow": "GOVERNANCE STEP"
   }
 ]

@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { MessageSquare, Route, ShieldAlert, Database, Gauge, Activity, X } from 'lucide-react';
+import { MessageSquare, Route, ShieldAlert, Database, Gauge, Activity, Boxes, X } from 'lucide-react';
 import { useBranding } from '../../context/BrandingContext';
 import { usePersona } from '../../context/PersonaContext';
 import { useActivePersona } from '@core/runtime/useActivePersona';
@@ -29,6 +29,7 @@ export default function Sidebar({ open = false, onClose }) {
     risk: { to: '/risk', icon: ShieldAlert, label: labels.risk },
     governance: { to: '/governance', icon: Gauge, label: labels.governance },
     agentObservability: { to: '/agent-observability', icon: Activity, label: labels.agentObservability ?? 'Agent Observability' },
+    agentInventory: { to: '/agent-inventory', icon: Boxes, label: labels.agentInventory ?? 'Agent Inventory' },
     dataSources: { to: '/data-sources', icon: Database, label: 'Data Sources' },
   };
 

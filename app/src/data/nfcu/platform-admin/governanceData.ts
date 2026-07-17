@@ -61,7 +61,9 @@ export const ROUTING_MERMAID = `flowchart LR
   B -- carries PII --> S[In-environment SLM]
   B -- no PII --> C{Worth sending?}
   C -- simple, SLM sufficient --> S
-  C -- complex and safe --> L[Frontier LLM]`;
+  C -- complex and safe --> D{Within budget?}
+  D -- over cap, non-critical --> S
+  D -- within cap --> L[Frontier LLM]`;
 
 /** Turn 3 — bounded KAG subgraph for the borderline catch. Neo4j NVL shape. */
 export const KAG_SUBGRAPH = {
@@ -143,13 +145,34 @@ export const COST_REPORT = {
   },
 };
 
-/** Turn 6 — Agent Observability and Governance Dashboard (contact center, this month). */
+/**
+ * Turn 8 — Enterprise Agent Observability and Governance (this month). CR-06.
+ *
+ * Grouped by INITIATIVE, not by contact-center team: the point Parijat asked for
+ * is "one common governance model across multiple AI implementations", and that
+ * only reads at a glance if the contact center sits beside the other initiatives
+ * rather than being the whole list.
+ *
+ * ⚠ The three Contact Center agents keep their EXACT original counts so the
+ * Card Disputes thread (turn 8 says "Watch", the Observability page diagnoses
+ * why) survives the reframe. New initiatives are additive.
+ *
+ * ARITHMETIC — `frontierTaskShare` must equal Σfrontier / Σtasks:
+ *   tasks    412+380+205+180+240+160 = 1577
+ *   frontier  46+ 51+ 18+ 19+ 28+ 17 =  179
+ *   179/1577 = 11.35% → '11%'   ✓ matches spec v2 Step 8 ("held at 11% of tasks")
+ * Note this is the MONTH figure. `ui.stats.frontier_share = '12%'` is TODAY —
+ * a different window, also spec v2. They are not meant to match.
+ */
 export const GOVERNANCE = {
   frontierTaskShare: '11%',
   agents: [
-    { name: 'Auto Loan Assist', health: 'Healthy', tasks: 412, frontier: 46 },
-    { name: 'Mortgage Servicing', health: 'Healthy', tasks: 380, frontier: 51 },
-    { name: 'Card Disputes', health: 'Watch', tasks: 205, frontier: 18 },
+    { initiative: 'Contact Center', name: 'Auto Loan Assist', health: 'Healthy', tasks: 412, frontier: 46 },
+    { initiative: 'Contact Center', name: 'Mortgage Servicing', health: 'Healthy', tasks: 380, frontier: 51 },
+    { initiative: 'Contact Center', name: 'Card Disputes', health: 'Watch', tasks: 205, frontier: 18 },
+    { initiative: 'Core Banking', name: 'Core Banking Copilot', health: 'Healthy', tasks: 180, frontier: 19 },
+    { initiative: 'Member Assistant', name: 'Member Assistant', health: 'Healthy', tasks: 240, frontier: 28 },
+    { initiative: 'Collections', name: 'Collections Assist', health: 'Healthy', tasks: 160, frontier: 17 },
   ],
   spendTrend: [0.42, 0.48, 0.55, 0.51, 0.63],
   sampleAction: {
@@ -159,6 +182,96 @@ export const GOVERNANCE = {
     chainOfThought: 'Compared handle time and QA scores against the cohort, identified the gap, matched it to a coaching play',
     policy: 'QA-12, coaching thresholds',
   },
+};
+
+/**
+ * Turn 5 — Budget Guardrail. CR-05 / spec v2 Step 5.
+ *
+ * ⚠ RESOLVES A WORDING CONFLICT IN THE SPEC. Step 5 says the user "crossed their
+ * session budget" AND that "spend stayed inside the cap" — both can't be true of
+ * one number. Modelled as two thresholds, which is how such systems actually
+ * work and makes both sentences true:
+ *   budget ($2.00) — the SOFT trigger. Cross it and non-critical tasks downshift.
+ *   cap    ($2.50) — the HARD ceiling. Never breached.
+ *
+ * ARITHMETIC:
+ *   18 tasks. Frontier through task 12, where spend hits $2.04 and crosses the
+ *   budget. Remaining 6 tasks downshift to the SLM at ~$0.025 → +$0.15.
+ *   final     2.04 + 0.15 = $2.19  → under the $2.50 cap ✓
+ *   had they stayed on frontier: 2.04 + (6 × $0.20) = $3.24 → would have
+ *   breached the cap by $0.74. That counterfactual is the point of the panel.
+ */
+export const BUDGET_GUARDRAIL = {
+  user: 'Marcus Tillman',
+  surface: 'Insights tool',
+  window: 'This morning · session',
+  budget: 2.0,
+  cap: 2.5,
+  spendAtDownshift: 2.04,
+  finalSpend: 2.19,
+  /** What the session would have cost with no downshift — breaches the cap. */
+  counterfactual: 3.24,
+  downshiftAtTask: 12,
+  totalTasks: 18,
+  before: { model: 'Frontier (Claude Sonnet)', tasks: 12 },
+  after: { model: 'In-environment SLM', tasks: 6 },
+  answerQuality: 'Acceptable',
+  qualityNote: 'Post-downshift answers stayed complete and accurate; no task failed and no escalation was raised.',
+  /** Per-task cumulative spend, index 0-based; the downshift is between 11 and 12. */
+  spendByTask: [0.17, 0.34, 0.51, 0.69, 0.86, 1.03, 1.20, 1.37, 1.54, 1.70, 1.87, 2.04, 2.07, 2.09, 2.12, 2.14, 2.17, 2.19],
+  policy: 'DG-14 — per-session budget, non-critical tasks downshift at the soft threshold',
+};
+
+/**
+ * Turn 7 — Semantic Cache Reuse. CR-04 / spec v2 Step 7.
+ *
+ * ⚠ SCOPE. This is MONTH-scope and cross-user (Priya then Marcus). The cost
+ * report (turn 6) is ONE session of Priya's — 24 tasks, $0.63. CR-04's note asks
+ * these to "reconcile", but they measure different windows, so they cannot and
+ * must not: nothing here may alter COST_REPORT. What it must agree with is the
+ * month: 1577 tasks and 11% frontier share, from GOVERNANCE.agents above.
+ *
+ * ARITHMETIC (month):
+ *   monthTasks 1577 (= Σ GOVERNANCE.agents.tasks)
+ *   cacheHits   214  → hit rate 214/1577 = 13.6%
+ *   costAvoided 214 × $0.11 (avg cost/query KPI) = $23.54
+ *   tokensAvoided 214 × 4,200 avg = 898,800
+ * getCacheReuse() derives rate and costAvoided rather than restating them.
+ */
+export const CACHE_REUSE = {
+  /** The worked example: same question, two people, inside an hour. */
+  pair: {
+    first: {
+      user: 'Priya Kapoor',
+      at: '09:12',
+      query: 'Summarize the auto loan spike and what we did about it',
+      served: 'model' as const,
+      model: 'In-environment SLM',
+      tokens: 4180,
+      cost: 0.12,
+      latencyMs: 1240,
+    },
+    second: {
+      user: 'Marcus Tillman',
+      at: '09:41',
+      query: 'Give me a summary of the auto loan spike response',
+      served: 'cache' as const,
+      model: 'None — served from semantic cache',
+      tokens: 0,
+      cost: 0,
+      latencyMs: 180,
+    },
+    /** Cosine similarity that cleared the reuse threshold (0.90). */
+    similarity: 0.94,
+    threshold: 0.9,
+  },
+  month: {
+    tasks: 1577,
+    cacheHits: 214,
+    avgTokensPerCall: 4200,
+    avgCostPerQuery: 0.11,
+  },
+  policy: 'DG-16 — semantic reuse above 0.90 similarity, same tenant, 24h TTL',
 };
 
 /** The seven governance KPIs (spec: Dashboard KPIs). Single source for the stats row + governance page. */
@@ -181,7 +294,9 @@ export const GOVERNANCE_KPIS = [
  * the column up does.
  */
 export const GOVERNANCE_SUMMARY = {
-  period: 'Contact center · month to date',
+  // CR-07: enterprise altitude. The contact center is the worked example inside
+  // this summary, not its scope.
+  period: 'Enterprise · every AI initiative · month to date',
   verdict: 'One open item · everything else green',
   pillars: [
     {
@@ -197,9 +312,9 @@ export const GOVERNANCE_SUMMARY = {
       id: 'frontier',
       label: 'Frontier usage',
       headline: '11%',
-      unit: 'of tasks',
+      unit: 'of tasks, enterprise-wide',
       support: '88 / 12 token split',
-      detail: 'Every one complex reasoning or generation. Every one on non-PII inputs.',
+      detail: 'Every one complex reasoning or generation. Every one on non-PII inputs. Same gates on every initiative.',
       tone: 'violet' as const,
     },
     {
@@ -216,8 +331,8 @@ export const GOVERNANCE_SUMMARY = {
       label: 'Observability',
       headline: '100%',
       unit: 'of actions explainable',
-      support: 'Context, chain of thought and governing policy on every action',
-      detail: 'Auto Loan Assist and Mortgage Servicing healthy. Card Disputes on watch for volume, not compliance.',
+      support: 'One governance layer across every foundry in the estate',
+      detail: 'Contact center, core banking and the rest all route through the same model. Card Disputes on watch for volume, not compliance. Three agents are not yet onboarded.',
       tone: 'brand' as const,
     },
   ],
@@ -240,3 +355,23 @@ export async function getKagSubgraph() { return KAG_SUBGRAPH; }
 export async function getCostReport() { return COST_REPORT; }
 export async function getGovernance() { return GOVERNANCE; }
 export async function getGovernanceSummary() { return GOVERNANCE_SUMMARY; }
+export async function getBudgetGuardrail() { return BUDGET_GUARDRAIL; }
+
+/**
+ * Cache reuse with the month figures DERIVED, not restated — hit rate and cost
+ * avoided fall out of cacheHits, so they can't drift from each other the way two
+ * hand-authored numbers would.
+ */
+export async function getCacheReuse() {
+  const { tasks, cacheHits, avgTokensPerCall, avgCostPerQuery } = CACHE_REUSE.month;
+  return {
+    ...CACHE_REUSE,
+    month: {
+      ...CACHE_REUSE.month,
+      hitRatePct: Math.round((cacheHits / tasks) * 1000) / 10,
+      tokensAvoided: cacheHits * avgTokensPerCall,
+      costAvoided: Math.round(cacheHits * avgCostPerQuery * 100) / 100,
+      latencySavedMs: CACHE_REUSE.pair.first.latencyMs - CACHE_REUSE.pair.second.latencyMs,
+    },
+  };
+}

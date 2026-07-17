@@ -204,6 +204,23 @@ const COMPONENTS: PlatformComponent[] = [
     lastUpdated: BASE_TS,
     metrics: { containment_rate_percent: 72.3, avg_response_time_ms: 1010, escalation_rate_percent: 27.7, frontier_task_share_percent: 10.4, tasks_per_minute: 3.8 },
   },
+  // CR-06: the enterprise reframe. These two are the non-contact-center agents
+  // turn 8 now reports, so the page and the turn describe the same estate. They
+  // also prove the "one layer, many foundries" point on the platform view —
+  // Core Banking runs on Backbase AI, Member Assistant on Anthropic, and both
+  // sit in the same application layer as the Copilot Studio agents.
+  {
+    component: 'core-banking-copilot', label: 'Core Banking Copilot',
+    layer: 'application_layer', category: 'ai_agents', state: 'healthy',
+    lastUpdated: BASE_TS,
+    metrics: { containment_rate_percent: 70.4, avg_response_time_ms: 1180, escalation_rate_percent: 29.6, frontier_task_share_percent: 10.6, tasks_per_minute: 2.9 },
+  },
+  {
+    component: 'member-assistant', label: 'Member Assistant',
+    layer: 'application_layer', category: 'ai_agents', state: 'healthy',
+    lastUpdated: BASE_TS,
+    metrics: { containment_rate_percent: 83.1, avg_response_time_ms: 820, escalation_rate_percent: 16.9, frontier_task_share_percent: 11.7, tasks_per_minute: 5.6 },
+  },
 
   // ─── application_layer · api_services_member ──────────────────────────────
   {
@@ -426,7 +443,7 @@ const ACTIVITY: Record<string, ActivityFixture[]> = {
     { message: 'Ruled out: model drift — accuracy within tolerance over 14d', timestamp: minutesAgo(29) },
     { message: 'Ruled out: frontier routing — task share 8.8%, below policy ceiling', timestamp: minutesAgo(29) },
     { message: 'Recommended action: scale slm-inference-pool-02 to 4 replicas — awaiting approval', timestamp: minutesAgo(28) },
-    { message: 'Notified: D. Okonkwo (Platform Administrator)', timestamp: minutesAgo(28) },
+    { message: 'Notified: D. Okonkwo (AI Governance Admin)', timestamp: minutesAgo(28) },
     { message: 'Gate 1 verified during incident: 0 PII fields routed to frontier', timestamp: minutesAgo(28) },
     { message: 'Awaiting human approval — no action executed', timestamp: minutesAgo(1) },
   ],
@@ -759,6 +776,10 @@ export const AGENT_STATE_BRIDGE: Record<string, { turn6Health: string; component
   'Auto Loan Assist': { turn6Health: 'Healthy', componentId: 'auto-loan-assist' },
   'Mortgage Servicing': { turn6Health: 'Healthy', componentId: 'mortgage-servicing-assist' },
   'Card Disputes': { turn6Health: 'Watch', componentId: 'card-disputes-assist' },
+  // CR-06 — the enterprise initiatives turn 8 added.
+  'Core Banking Copilot': { turn6Health: 'Healthy', componentId: 'core-banking-copilot' },
+  'Member Assistant': { turn6Health: 'Healthy', componentId: 'member-assistant' },
+  'Collections Assist': { turn6Health: 'Healthy', componentId: 'collections-assist' },
 };
 
 /** turn-6 'Watch' ↔ 'degraded' here; 'Healthy' ↔ 'healthy'. */

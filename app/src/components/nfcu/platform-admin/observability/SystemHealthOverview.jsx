@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Boxes } from 'lucide-react';
 import { AreaChart, Area, ResponsiveContainer, YAxis } from 'recharts';
-import MiniGauge, { statusForScore } from '@/components/charts/MiniGauge';
-import { STATE_STYLES } from './stateStyles';
+import LayerHealthGauge from './LayerHealthGauge';
+import { STATE_STYLES, statusForScore } from './stateStyles';
 
 /**
  * Band 1 — the fleet at a glance: total, the health split, the trend, and one
@@ -72,7 +72,7 @@ export default function SystemHealthOverview({ overview }) {
         </span>
       </div>
       <p className="text-xs text-text-subtle mb-4">
-        The AI platform Daniel administers · re-rendered in Ultra from Grafana, not embedded
+        The AI platform the AI Governance Admin oversees
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_1.1fr] gap-5 lg:gap-6">
@@ -132,14 +132,7 @@ export default function SystemHealthOverview({ overview }) {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {overview.layers.map((layer) => (
             <div key={layer.id} className="rounded-lg bg-surface-2 px-3 py-2.5 flex items-center gap-3">
-              {/* MiniGauge sizes its own box to size/2+4 but draws a size-tall
-                  SVG, so the arc overflows by ~24px. RegulatoryGaugePanel's
-                  roomier layout absorbs that; a compact tile doesn't, and the
-                  arc escapes the card. Reserve the real height here rather than
-                  change the shared component and disturb the Risk page. */}
-              <div className="w-14 h-14 flex-shrink-0">
-                <MiniGauge score={layer.health} status={statusForScore(layer.health)} size={56} />
-              </div>
+              <LayerHealthGauge score={layer.health} status={statusForScore(layer.health)} size={56} />
               <div className="min-w-0">
                 <div className="text-[11px] font-semibold text-text truncate">{layer.label}</div>
                 <div className="text-[9.5px] text-text-subtle tabular-nums">

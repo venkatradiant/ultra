@@ -25,7 +25,11 @@ export default function TopHeader({ onMenuClick }) {
     // NFCU Platform Admin — governance persona. Observability is its own page
     // now, so Governance no longer claims it. Keep in sync with the persona
     // manifest's navLabels; this map duplicates them.
-    nfcu_platform_admin: { governance: 'Governance', agentObservability: 'Agent Observability' },
+    nfcu_platform_admin: {
+      governance: 'Governance',
+      agentObservability: 'Agent Observability',
+      agentInventory: 'Agent Inventory',
+    },
   };
   const labels = personaNavLabels[persona?.id] ?? client?.navLabels ?? { journey: 'Member Journey', risk: 'Risk Signals' };
   const pageTitles = {
@@ -35,6 +39,7 @@ export default function TopHeader({ onMenuClick }) {
     '/risk': labels.risk,
     '/governance': labels.governance || client?.navLabels?.governance || 'Model Governance',
     '/agent-observability': labels.agentObservability || 'Agent Observability',
+    '/agent-inventory': labels.agentInventory || 'Agent Inventory',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || 'Ask the AI';

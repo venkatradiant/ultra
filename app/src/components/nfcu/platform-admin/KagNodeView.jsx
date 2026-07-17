@@ -53,9 +53,6 @@ export default function KagNodeView() {
                 KAG Knowledge Graph · bounded subgraph
               </span>
             </div>
-            <p className="text-[11px] text-text-muted mt-0.5">
-              Queried via Cypher, re-rendered in Ultra — not the Neo4j browser
-            </p>
           </div>
           <div className="hidden sm:flex flex-wrap gap-2 justify-end">
             {LEGEND.map((l) => (

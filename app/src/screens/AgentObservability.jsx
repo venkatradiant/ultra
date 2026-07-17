@@ -12,7 +12,7 @@ export default function AgentObservability() {
   if (persona.id !== 'nfcu_platform_admin') {
     return (
       <div className="flex items-center justify-center h-full text-text-muted text-sm">
-        Agent Observability is available for the NFCU Platform Administrator only.
+        Agent Observability is available for the NFCU AI Governance Admin only.
       </div>
     );
   }
