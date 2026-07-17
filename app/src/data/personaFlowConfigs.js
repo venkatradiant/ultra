@@ -905,6 +905,24 @@ const nfcuPaConfig = {
     'Group these by foundry': 'nfcu_pa_by_foundry',
     'Show anything not yet under governance': 'nfcu_pa_ungoverned',
     'Onboard an agent to governance': 'nfcu_pa_onboard_agent',
+    // ─── Floating assistant bar: page-scoped Q&A (not offered on /ask) ──────
+    // Governance page
+    "What's the governance posture?": 'nfcu_pa_ask_gov_posture',
+    "What's the open item?": 'nfcu_pa_ask_gov_open_item',
+    'Which policies are applied?': 'nfcu_pa_ask_gov_policies',
+    'How much did routing save?': 'nfcu_pa_savings',
+    // Agent Observability page
+    'Why is Card Disputes degraded?': 'nfcu_pa_ask_obs_degraded',
+    "What's the frontier share by initiative?": 'nfcu_pa_ask_obs_frontier',
+    'How many agents are healthy?': 'nfcu_pa_ask_obs_health',
+    // Agent Inventory page
+    'How many agents are ungoverned?': 'nfcu_pa_ask_inv_ungoverned',
+    'Which foundries are in use?': 'nfcu_pa_ask_inv_foundries',
+    "What isn't PII-safe?": 'nfcu_pa_ask_inv_pii',
+    // Data Sources page
+    'What feeds the routing decision?': 'nfcu_pa_ask_ds_routing',
+    'Where does sensitivity classification come from?': 'nfcu_pa_ask_ds_sensitivity',
+    'Which sources are live?': 'nfcu_pa_ask_ds_live',
     // Suggested query bar (12, verbatim from spec v2)
     'Show me where every field in this response went': 'nfcu_pa_field_sovereignty',
     'Did any PII reach the frontier model?': 'nfcu_pa_pii_check',

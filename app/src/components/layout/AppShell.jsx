@@ -7,6 +7,8 @@ import { IntradayProvider, useIntraday } from '../../context/IntradayContext';
 import { usePersona } from '../../context/PersonaContext';
 import useNfcuBaselineLoader from '../../hooks/useNfcuBaselineLoader';
 import StickyIntelligenceWidget from '../intelligence/StickyIntelligenceWidget';
+import PlatformAdminAssistantBar from '../nfcu/platform-admin/PlatformAdminAssistantBar';
+import { ASSISTANT_ROUTES } from '../../data/nfcu/platform-admin/assistantContext';
 
 // Personas that own the Sticky Intelligence Widget. Kept in sync with the
 // matching set inside StickyIntelligenceWidget.jsx so we reserve layout
@@ -40,6 +42,12 @@ function ShellInner() {
     ? 'lg:mr-11'
     : '';
 
+  // Daniel's floating assistant bar: only for the AI Governance Admin, only on
+  // his four non-Ask pages. When it's up, reserve bottom space so the fixed bar
+  // never covers dashboard content — same principle as the widget margin above.
+  const assistantVisible =
+    persona?.id === 'nfcu_platform_admin' && ASSISTANT_ROUTES.includes(location.pathname);
+
   return (
     <div className="h-[100dvh] bg-bg flex overflow-hidden">
       <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
@@ -55,13 +63,16 @@ function ShellInner() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="flex flex-col h-full"
+              className={`flex flex-col h-full ${assistantVisible ? 'pb-32' : ''}`}
             >
               <Outlet />
             </motion.div>
           </AnimatePresence>
         </main>
         <StickyIntelligenceWidget />
+        {assistantVisible && (
+          <PlatformAdminAssistantBar key={location.pathname} route={location.pathname} />
+        )}
       </div>
     </div>
   );

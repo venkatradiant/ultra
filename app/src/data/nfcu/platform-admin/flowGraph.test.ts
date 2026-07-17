@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getPersonaFlowConfigs } from '@/data/personaFlowConfigs';
+import { ASSISTANT_CONTEXT } from './assistantContext';
 
 /**
  * Guards Daniel's guided flow as a graph. A dead-end chip — one the presenter
@@ -141,6 +142,20 @@ describe("Daniel's flow graph", () => {
       expect(flow.ai_message, `${key} has no ai_message`).toBeTruthy();
       expect(flow.data_sources_used?.length, `${key} cites no sources`).toBeGreaterThan(0);
       expect(flow.confidence?.score, `${key} has no confidence score`).toBeGreaterThan(0);
+    }
+  });
+
+  // The floating assistant bar offers page-scoped chips per route. Each must
+  // resolve, or the presenter clicks a suggested question on Data Sources and
+  // gets nothing — the same silent failure the golden-path checks guard, but on
+  // a surface those checks don't reach.
+  it('resolves every assistant-bar chip on every page', () => {
+    for (const [route, ctx] of Object.entries(ASSISTANT_CONTEXT)) {
+      for (const chip of ctx.chips) {
+        const key = chipToFlowKey[chip];
+        expect(key, `assistant chip "${chip}" on ${route} maps to nothing`).toBeDefined();
+        expect(flows[key], `assistant chip "${chip}" on ${route} points at missing flow "${key}"`).toBeDefined();
+      }
     }
   });
 

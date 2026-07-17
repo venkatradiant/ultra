@@ -498,5 +498,117 @@
       "validated_at": "2026-04-23T09:00:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
+  },
+
+  "nfcu_pa_ask_gov_posture": {
+    "ai_message": "Governance is green. Zero PII reached the frontier model this month and 100% of sensitive fields resolved in-environment. Frontier usage sits at 11% of tasks enterprise-wide, all justified and on non-PII inputs. One open item: confirm the justification on Priya's spike review and close it. Everything else is clear.",
+    "suggested_chips": ["What's the open item?", "Which policies are applied?", "How much did routing save?"],
+    "data_sources_used": ["Routing log (Postgres)", "LLM usage log", "KAG (Neo4j)"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 96, "rationale": "Aggregation of the routing log, LLM usage log and KAG; no inference beyond formatting.", "signals_used": ["Routing log (Postgres)", "LLM usage log"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_gov_open_item": {
+    "ai_message": "One open item this cycle: Priya's auto loan spike used the frontier model on one reasoning task. It ran on non-PII inputs and is within policy, so this is a routine frontier-usage review — confirm the justification and close it. No breach, no escalation.",
+    "suggested_chips": ["What's the governance posture?", "Which policies are applied?"],
+    "data_sources_used": ["Routing log (Postgres)", "LLM usage log"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 95, "rationale": "Read directly from the routing log entry for Priya's session.", "signals_used": ["Routing log (Postgres)"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_gov_policies": {
+    "ai_message": "The knowledge graph governs sensitivity: DG-04 classifies member-specific financial terms (it caught the auto loan rate), DG-07 keeps PII fields in-environment. Routing adds DG-11 for scale-out cost, DG-14 for per-session budget, and DG-16 for semantic reuse. Every agent action is logged against the policy that drove it.",
+    "suggested_chips": ["What's the governance posture?", "What's the open item?"],
+    "data_sources_used": ["KAG (Neo4j)", "Policy config"],
+    "capability": "Sensitivity Provenance (KAG)",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 96, "rationale": "Policy nodes read from the KAG and policy config.", "signals_used": ["KAG (Neo4j)"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+
+  "nfcu_pa_ask_obs_degraded": {
+    "ai_message": "Card Disputes is the one agent on Watch. Root cause, at 86% confidence, is upstream SLM queue saturation on inference pool 02 — not the agent itself. Containment fell to 61%, below the 65% threshold, while response time climbed to 2,840ms. The recommended fix (scale pool 02 to 4 replicas) is awaiting your approval; nothing has executed.",
+    "suggested_chips": ["What's the frontier share by initiative?", "How many agents are healthy?"],
+    "data_sources_used": ["Agent observability log", "Grafana via API"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 90, "rationale": "RCA correlation from the observability log; the 86% is the agent's own confidence on the queue-saturation finding.", "signals_used": ["Agent observability log"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_obs_frontier": {
+    "ai_message": "Frontier usage held at 11% of tasks across every initiative this month — Contact Center, Core Banking, Member Assistant and Collections all route through the same gates, so the share is comparable across them. The other 89% ran on the in-environment SLM. Every frontier call was on non-PII inputs.",
+    "suggested_chips": ["Why is Card Disputes degraded?", "How many agents are healthy?"],
+    "data_sources_used": ["LLM usage log", "Agent observability log"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 95, "rationale": "Frontier share is the LLM usage log's task split, grouped by initiative.", "signals_used": ["LLM usage log"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_obs_health": {
+    "ai_message": "Five of the six governed agents are healthy; Card Disputes is on Watch for volume, not compliance. Across all initiatives that is 1,577 tasks handled this month with 179 on the frontier model. No agent has a compliance flag — the one Watch is a capacity issue upstream.",
+    "suggested_chips": ["Why is Card Disputes degraded?", "What's the frontier share by initiative?"],
+    "data_sources_used": ["Agent observability log", "LLM usage log"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 94, "rationale": "Counts summed from the observability log's per-agent records.", "signals_used": ["Agent observability log"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+
+  "nfcu_pa_ask_inv_ungoverned": {
+    "ai_message": "Three of the 17 agents are not yet under governance: a marketing copy generator on OpenAI, a legal contract summarizer pilot on Anthropic, and a data science sandbox agent on unpinned models. I can't tell you whether they are PII-safe or inside budget, because they don't route through the layer — that unknown is exactly the proliferation risk. None are member-facing today.",
+    "suggested_chips": ["Which foundries are in use?", "What isn't PII-safe?"],
+    "data_sources_used": ["Agent registry", "Routing log (Postgres)"],
+    "capability": "Enterprise Agent Inventory",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 88, "rationale": "The three were found by the registry scan as runtimes with no routing-log traffic; their internals are unknown by definition.", "signals_used": ["Agent registry"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_inv_foundries": {
+    "ai_message": "Six foundries in production: Copilot Studio (5 agents), Azure AI Foundry (3), Anthropic (3), Cloud core (3), OpenAI (2), and the Backbase AI core-banking pilot (1). One governance model sits over all of them — the routing, PII rules and cost controls don't change with the platform underneath. That's the point: teams pick the tool, governance stays common.",
+    "suggested_chips": ["How many agents are ungoverned?", "What isn't PII-safe?"],
+    "data_sources_used": ["Agent registry"],
+    "capability": "Enterprise Agent Inventory",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 95, "rationale": "A direct grouping of the registry by runtime.", "signals_used": ["Agent registry"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_inv_pii": {
+    "ai_message": "Every one of the 14 governed agents is PII-safe and inside budget — their fields are tagged by the knowledge graph and pass the three gates. The three ungoverned agents show '—' for PII-safe because outside the layer that answer doesn't exist. Onboarding any of them attaches the current policy and closes that gap.",
+    "suggested_chips": ["How many agents are ungoverned?", "Which foundries are in use?"],
+    "data_sources_used": ["Agent registry", "Routing log (Postgres)", "Policy config"],
+    "capability": "Enterprise Agent Inventory",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 91, "rationale": "PII-safe status read from the routing log for governed agents; null for the three with no traffic.", "signals_used": ["Agent registry", "Routing log (Postgres)"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+
+  "nfcu_pa_ask_ds_routing": {
+    "ai_message": "Routing decisions draw on three sources: the Routing Log (Postgres) records the per-field sensitivity tag and the gate outcome, the KAG (Neo4j) decides what is sensitive and why, and the LiteLLM Gateway emits the token and cost split as each request routes. All three are connected and live.",
+    "suggested_chips": ["Where does sensitivity classification come from?", "Which sources are live?"],
+    "data_sources_used": ["Routing log (Postgres)", "KAG (Neo4j)", "LiteLLM Gateway"],
+    "capability": "Routing Logic",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 95, "rationale": "Source roles read from the data source registry.", "signals_used": ["Routing log (Postgres)"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_ds_sensitivity": {
+    "ai_message": "Sensitivity classification comes from the KAG Knowledge Graph (Neo4j). It links each field to its source system and the governing policy node — DG-04 for member-specific financial terms, DG-07 for PII — so classification is by meaning, not keyword matching. That is what caught the auto loan rate and held it local.",
+    "suggested_chips": ["What feeds the routing decision?", "Which sources are live?"],
+    "data_sources_used": ["KAG (Neo4j)"],
+    "capability": "Sensitivity Provenance (KAG)",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 96, "rationale": "The classification edge is read from the KAG.", "signals_used": ["KAG (Neo4j)"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "nfcu_pa_ask_ds_live": {
+    "ai_message": "All eight sources are connected: the Routing Log and LiteLLM Cost Records (Postgres), the LLM Usage Log, the KAG (Neo4j), the LiteLLM Gateway, the Agent Observability Log, Grafana via API, and the Model Registry. Together they back every figure on the governance and observability pages — nothing shown is unsourced.",
+    "suggested_chips": ["What feeds the routing decision?", "Where does sensitivity classification come from?"],
+    "data_sources_used": ["Routing log (Postgres)", "LLM usage log", "KAG (Neo4j)", "LiteLLM Gateway"],
+    "capability": "Agent Observability and Governance",
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "confidence": { "score": 97, "rationale": "Connection status read directly from the data source registry.", "signals_used": ["Model Registry"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
   }
 }
