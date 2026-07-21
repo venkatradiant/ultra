@@ -55,30 +55,318 @@ export const FIELD_LEDGER = {
   },
 };
 
-/** Turn 4 — the two-gate routing flowchart (Mermaid v11). */
+/**
+ * Turn 4 — the two-gate routing flowchart (Mermaid v11).
+ *
+ * Shapes carry meaning: stadium/terminator = start & ends, diamonds = decision
+ * gates. Each node is tagged with a role class (:::entry / :::gate / :::local /
+ * :::frontier); RoutingDiagram appends the matching classDefs at render time so
+ * the colors stay brand-token driven. Node ids map to ROUTING_NODE_META below.
+ */
 export const ROUTING_MERMAID = `flowchart LR
-  A[Field tagging] --> B{Safe to send?}
-  B -- carries PII --> S[In-environment SLM]
-  B -- no PII --> C{Worth sending?}
+  A([Field tagging]):::entry --> B{Safe to send?}:::gate
+  B -- carries PII --> S([In-environment SLM]):::local
+  B -- no PII --> C{Worth sending?}:::gate
   C -- simple, SLM sufficient --> S
-  C -- complex and safe --> D{Within budget?}
+  C -- complex and safe --> D{Within budget?}:::gate
   D -- over cap, non-critical --> S
-  D -- within cap --> L[Frontier LLM]`;
+  D -- within cap --> L([Frontier LLM]):::frontier`;
 
-/** Turn 3 — bounded KAG subgraph for the borderline catch. Neo4j NVL shape. */
-export const KAG_SUBGRAPH = {
+/**
+ * Plain-language copy for each routing node, keyed by Mermaid node id. Powers
+ * the hover tooltips in RoutingDiagram so any reader understands a node without
+ * prior context. `role` matches the :::class tags above.
+ */
+export type RoutingNodeRole = 'entry' | 'gate' | 'local' | 'frontier';
+export const ROUTING_NODE_META: Record<
+  string,
+  { title: string; body: string; role: RoutingNodeRole }
+> = {
+  A: {
+    title: 'Field tagging',
+    body: 'Where every task enters. Each field is tagged before anything is routed.',
+    role: 'entry',
+  },
+  B: {
+    title: 'Gate 1 · Safe to send?',
+    body: 'Sovereignty check. If a field carries PII, it stays local — a hard rule, not a preference.',
+    role: 'gate',
+  },
+  C: {
+    title: 'Gate 2 · Worth sending?',
+    body: 'Is the task complex enough to need the frontier model, or can the local SLM handle it?',
+    role: 'gate',
+  },
+  D: {
+    title: 'Within budget?',
+    body: 'Part of Gate 2. Even a complex, safe task stays local if it is over the cost cap and non-critical.',
+    role: 'gate',
+  },
+  S: {
+    title: 'In-environment SLM',
+    body: 'Stays local. The private default path — data never leaves the environment.',
+    role: 'local',
+  },
+  L: {
+    title: 'Frontier LLM',
+    body: 'Reaches the frontier model. Only complex, safe, in-budget tasks get here.',
+    role: 'frontier',
+  },
+};
+
+/**
+ * Turn 3 — bounded KAG subgraph for the borderline catch. Neo4j NVL shape.
+ *
+ * Two levels: the five top-level nodes (fields, source, policies) plus the
+ * data-lineage children each one expands into (columns, source tables, the
+ * transforms/ETL that move the data, the steward who owns it, and the policy
+ * controls). `parent` marks a child and names its owner; children stay hidden
+ * until the parent is clicked. Every node carries a `detail` block that feeds
+ * the inline node-detail panel in KagNodeView.
+ */
+export interface KagNode {
+  id: string;
+  caption: string;
+  group:
+    | 'field-internal'
+    | 'field-pii'
+    | 'source'
+    | 'policy'
+    | 'source-table'
+    | 'column'
+    | 'transform'
+    | 'pipeline'
+    | 'steward'
+    | 'control';
+  /** Omitted for top-level nodes; the parent node id for a lineage child. */
+  parent?: string;
+  detail: { kind: string; description: string; tags: string[] };
+}
+
+export interface KagRel {
+  id: string;
+  from: string;
+  to: string;
+  caption: string;
+}
+
+export const KAG_SUBGRAPH: {
+  nodes: KagNode[];
+  rels: KagRel[];
+  policyCard: { id: string; title: string; body: string };
+} = {
   nodes: [
-    { id: 'rate', caption: 'Current Auto Loan Rate', group: 'field-internal' },
-    { id: 'ssn', caption: 'Member SSN', group: 'field-pii' },
-    { id: 'dyn', caption: 'Dynamics 365', group: 'source' },
-    { id: 'dg04', caption: 'Policy DG-04', group: 'policy' },
-    { id: 'dg07', caption: 'Policy DG-07', group: 'policy' },
+    // --- Top level ---
+    {
+      id: 'rate',
+      caption: 'Current Auto Loan Rate',
+      group: 'field-internal',
+      detail: {
+        kind: 'Member-specific field',
+        description:
+          'The live APR on a member’s auto loan. Looks public, but it is member-specific and priced per profile — so it stays in-environment.',
+        tags: ['Confidential', 'Member-specific', 'Financial term'],
+      },
+    },
+    {
+      id: 'ssn',
+      caption: 'Member SSN',
+      group: 'field-pii',
+      detail: {
+        kind: 'PII field',
+        description:
+          'Social Security Number. Direct identifier — never leaves the environment and is only ever read in encrypted/tokenized form.',
+        tags: ['PII', 'Restricted', 'Encrypted at rest'],
+      },
+    },
+    {
+      id: 'dyn',
+      caption: 'Dynamics 365',
+      group: 'source',
+      detail: {
+        kind: 'Source system',
+        description:
+          'Microsoft Dynamics 365 — the system of record for member accounts and loan servicing. Both fields originate here.',
+        tags: ['System of record', 'CRM', 'On-prem connector'],
+      },
+    },
+    {
+      id: 'dg04',
+      caption: 'Policy DG-04',
+      group: 'policy',
+      detail: {
+        kind: 'Governing policy',
+        description:
+          'Member-specific rates and terms are treated as sensitive and must stay in-environment.',
+        tags: ['Data governance', 'In-environment only'],
+      },
+    },
+    {
+      id: 'dg07',
+      caption: 'Policy DG-07',
+      group: 'policy',
+      detail: {
+        kind: 'Governing policy',
+        description:
+          'Direct identifiers (SSN, account numbers) must be encrypted at rest and masked in transit.',
+        tags: ['Data governance', 'PII handling'],
+      },
+    },
+
+    // --- Lineage children: Current Auto Loan Rate ---
+    {
+      id: 'rate-col',
+      caption: 'rate_apr',
+      group: 'column',
+      parent: 'rate',
+      detail: {
+        kind: 'Column',
+        description: 'Decimal column holding the effective APR. Type NUMBER(5,3).',
+        tags: ['Column', 'NUMBER(5,3)', 'Confidential'],
+      },
+    },
+    {
+      id: 'rate-calc',
+      caption: 'APR derivation rule',
+      group: 'transform',
+      parent: 'rate',
+      detail: {
+        kind: 'Transform',
+        description:
+          'Derives the member APR from base rate, term, and risk tier. This per-member computation is what makes the field sensitive.',
+        tags: ['Derived', 'Per-member', 'Business rule'],
+      },
+    },
+    {
+      id: 'rate-tbl',
+      caption: 'LOAN_TERMS',
+      group: 'source-table',
+      parent: 'rate',
+      detail: {
+        kind: 'Source table',
+        description: 'Origin table in Dynamics 365 that stores per-loan terms and rates.',
+        tags: ['Table', 'Dynamics 365'],
+      },
+    },
+
+    // --- Lineage children: Member SSN ---
+    {
+      id: 'ssn-col',
+      caption: 'ssn_enc',
+      group: 'column',
+      parent: 'ssn',
+      detail: {
+        kind: 'Column',
+        description: 'Encrypted SSN column. Stored ciphertext only; never persisted in the clear.',
+        tags: ['Column', 'Encrypted', 'PII'],
+      },
+    },
+    {
+      id: 'ssn-mask',
+      caption: 'Tokenization step',
+      group: 'transform',
+      parent: 'ssn',
+      detail: {
+        kind: 'Transform',
+        description:
+          'Masks/tokenizes the SSN before any downstream read, so agents and models only ever see a token.',
+        tags: ['Masking', 'Tokenization', 'PII control'],
+      },
+    },
+
+    // --- Lineage children: Dynamics 365 ---
+    {
+      id: 'dyn-crm',
+      caption: 'CRM_ACCOUNTS',
+      group: 'source-table',
+      parent: 'dyn',
+      detail: {
+        kind: 'Source table',
+        description: 'Member account master in Dynamics 365. Holds identity and contact fields.',
+        tags: ['Table', 'Master data'],
+      },
+    },
+    {
+      id: 'dyn-loan',
+      caption: 'LOAN_TERMS',
+      group: 'source-table',
+      parent: 'dyn',
+      detail: {
+        kind: 'Source table',
+        description: 'Per-loan terms and rates in Dynamics 365 — the origin of the auto loan rate.',
+        tags: ['Table', 'Loan servicing'],
+      },
+    },
+    {
+      id: 'dyn-etl',
+      caption: 'Nightly ETL ingest',
+      group: 'pipeline',
+      parent: 'dyn',
+      detail: {
+        kind: 'Pipeline',
+        description:
+          'Scheduled job that ingests Dynamics 365 tables into the governed data environment each night.',
+        tags: ['Batch', 'Nightly', 'Ingest'],
+      },
+    },
+    {
+      id: 'dyn-steward',
+      caption: 'Data steward',
+      group: 'steward',
+      parent: 'dyn',
+      detail: {
+        kind: 'Owner',
+        description: 'Accountable data steward for the Dynamics 365 source domain and its classifications.',
+        tags: ['Ownership', 'Accountable'],
+      },
+    },
+
+    // --- Lineage children: policies ---
+    {
+      id: 'dg04-scope',
+      caption: 'Applies to member-term columns',
+      group: 'control',
+      parent: 'dg04',
+      detail: {
+        kind: 'Policy scope',
+        description:
+          'DG-04 scopes to any column carrying member-specific rates or terms — including rate_apr.',
+        tags: ['Scope', 'In-environment only'],
+      },
+    },
+    {
+      id: 'dg07-ctl',
+      caption: 'Encryption-at-rest control',
+      group: 'control',
+      parent: 'dg07',
+      detail: {
+        kind: 'Control',
+        description: 'DG-07 control requiring PII columns to be encrypted at rest and masked in transit.',
+        tags: ['Control', 'Encryption', 'Masking'],
+      },
+    },
   ],
   rels: [
+    // Top-level provenance
     { id: 'r1', from: 'rate', to: 'dyn', caption: 'originates in' },
     { id: 'r2', from: 'rate', to: 'dg04', caption: 'governed by' },
     { id: 'r3', from: 'ssn', to: 'dyn', caption: 'originates in' },
     { id: 'r4', from: 'ssn', to: 'dg07', caption: 'governed by' },
+    // Rate lineage
+    { id: 'r5', from: 'rate', to: 'rate-col', caption: 'has column' },
+    { id: 'r6', from: 'rate', to: 'rate-calc', caption: 'derived by' },
+    { id: 'r7', from: 'rate', to: 'rate-tbl', caption: 'sourced from' },
+    // SSN lineage
+    { id: 'r8', from: 'ssn', to: 'ssn-col', caption: 'has column' },
+    { id: 'r9', from: 'ssn', to: 'ssn-mask', caption: 'protected by' },
+    // Dynamics 365 lineage
+    { id: 'r10', from: 'dyn', to: 'dyn-crm', caption: 'has table' },
+    { id: 'r11', from: 'dyn', to: 'dyn-loan', caption: 'has table' },
+    { id: 'r12', from: 'dyn', to: 'dyn-etl', caption: 'ingested via' },
+    { id: 'r13', from: 'dyn', to: 'dyn-steward', caption: 'owned by' },
+    // Policy lineage
+    { id: 'r14', from: 'dg04', to: 'dg04-scope', caption: 'scopes to' },
+    { id: 'r15', from: 'dg07', to: 'dg07-ctl', caption: 'enforces' },
   ],
   policyCard: {
     id: 'DG-04',

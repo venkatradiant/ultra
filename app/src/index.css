@@ -147,3 +147,41 @@ body {
 .scrollbar-sleek::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+/* ── Routing Logic flowchart — flowing edges + hover focus ─────────── */
+/* Continuous directional flow along every edge (source → target). The dash
+   period (12) divides the animated offset (24) so the loop is seamless. */
+@keyframes routing-flow {
+  from { stroke-dashoffset: 24; }
+  to   { stroke-dashoffset: 0; }
+}
+.routing-diagram .edgePaths .flowchart-link {
+  /* !important beats Mermaid's id-scoped `.edge-pattern-solid{stroke-dasharray:0}`. */
+  stroke: var(--color-brand-muted) !important;
+  stroke-dasharray: 8 4 !important;
+  animation: routing-flow 1s linear infinite;
+}
+
+/* Nodes read as interactive; opacity eased for the hover focus effect. */
+.routing-diagram .node { cursor: pointer; }
+.routing-diagram .node,
+.routing-diagram .edgePaths .flowchart-link,
+.routing-diagram .edgeLabel {
+  transition: opacity var(--dur-base) ease;
+}
+
+/* Hover focus: dim everything, then re-light the hovered node's downstream
+   route. `rd-dim` is toggled on the container, `rd-hl` on the route elements. */
+.routing-diagram.rd-dim .node,
+.routing-diagram.rd-dim .edgePaths .flowchart-link { opacity: 0.16; }
+.routing-diagram.rd-dim .node.rd-hl,
+.routing-diagram.rd-dim .edgePaths .flowchart-link.rd-hl { opacity: 1; }
+.routing-diagram .edgePaths .flowchart-link.rd-hl { stroke-width: 3px; }
+
+/* Respect users who prefer less motion — freeze the flow. */
+@media (prefers-reduced-motion: reduce) {
+  .routing-diagram .edgePaths .flowchart-link {
+    animation: none;
+    stroke-dasharray: none;
+  }
+}
