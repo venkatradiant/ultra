@@ -1,0 +1,72 @@
+{
+  "title": "Regulatory Tests Applied",
+  "subtitle": "94-member population · Colorado mortgage · under 30",
+  "tests": [
+    {
+      "id": "fair-lending",
+      "name": "Fair lending",
+      "regulation": "ECOA · Regulation B",
+      "checks": "Approval and pricing disparities by a protected basis such as age",
+      "status": "flag",
+      "severity": "critical",
+      "result": "Under-30 approval rate 14 pts below over-30 — documented analysis required",
+      "count": "14 pt gap",
+      "sources": ["MeridianLink", "Symitar Core"]
+    },
+    {
+      "id": "electronic-delivery",
+      "name": "Electronic delivery",
+      "regulation": "ESIGN Act",
+      "checks": "Valid electronic-consent record on file before disclosures are delivered electronically",
+      "status": "flag",
+      "severity": "critical",
+      "result": "11 electronic-communication members have no ESIGN consent on file",
+      "count": "11 files",
+      "sources": ["SharePoint", "Member Communications"]
+    },
+    {
+      "id": "disclosure-timing",
+      "name": "Disclosure timing",
+      "regulation": "TILA · RESPA · TRID",
+      "checks": "Loan Estimate within 3 business days; Closing Disclosure ≥ 3 business days before closing",
+      "status": "flag",
+      "severity": "warning",
+      "result": "3 files delivered a Loan Estimate on the 4th business day, past the TRID 3-day rule",
+      "count": "3 files",
+      "sources": ["MeridianLink", "Regulatory Rules Engine"]
+    },
+    {
+      "id": "complaint-identification",
+      "name": "Complaint identification",
+      "regulation": "CFPB definition",
+      "checks": "Dissatisfaction language or trigger words that meet the complaint definition, logged or not",
+      "status": "flag",
+      "severity": "warning",
+      "result": "7 members used dissatisfaction language and the trigger word fee — none logged",
+      "count": "7 unlogged",
+      "sources": ["Member Communications", "Compliance / GRC System"]
+    },
+    {
+      "id": "privacy",
+      "name": "Privacy",
+      "regulation": "GLBA · state law",
+      "checks": "Jurisdiction-specific privacy notices and handling by member location",
+      "status": "pass",
+      "severity": "ok",
+      "result": "Colorado privacy notice on file for all 94 members",
+      "count": "94 / 94",
+      "sources": ["SharePoint", "Regulatory Rules Engine"]
+    },
+    {
+      "id": "procedure-adherence",
+      "name": "Procedure adherence",
+      "regulation": "Internal policy",
+      "checks": "Files that stepped outside documented procedure and the resulting risk",
+      "status": "pass",
+      "severity": "ok",
+      "result": "No supervisor-review deviations in this population outside the 3 flagged files",
+      "count": "91 / 94",
+      "sources": ["MeridianLink", "Compliance / GRC System"]
+    }
+  ]
+}

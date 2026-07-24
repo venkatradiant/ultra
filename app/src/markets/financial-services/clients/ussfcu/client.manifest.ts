@@ -1,14 +1,18 @@
 /**
  * Client: United States Senate Federal Credit Union (USSFCU).
  *
- * Exposes the USSFCU-only executive personas (CFO default, CEO) plus the shared
- * generic personas (base flows — USSFCU has no generic flow overrides).
+ * Exposes the USSFCU-only Risk & Compliance personas (Evelyn Marsh, VP Compliance
+ * — the default — and Nadia Hassan, Compliance Analyst) and the executive personas
+ * (CFO, CEO), plus the shared generic personas (base flows — USSFCU has no generic
+ * flow overrides).
  */
 import type { ClientManifest } from '@core/types';
 import { makeOpsPersona } from '../../shared/personas/ops';
 import { makeCxPersona } from '../../shared/personas/cx';
 import { makeRetentionPersona } from '../../shared/personas/retention';
 import { makeRiskPersona } from '../../shared/personas/risk';
+import { evelynPersona } from './personas/evelyn';
+import { nadiaPersona } from './personas/nadia';
 import { cfoPersona } from './personas/cfo';
 import { ceoPersona } from './personas/ceo';
 
@@ -28,6 +32,8 @@ export const ussfcuClient: ClientManifest = {
     navLabels: { journey: 'Member Journey', risk: 'Risk Signals' },
   },
   personas: [
+    evelynPersona,
+    nadiaPersona,
     cfoPersona,
     ceoPersona,
     makeOpsPersona(CLIENT_ID),
@@ -35,5 +41,5 @@ export const ussfcuClient: ClientManifest = {
     makeRetentionPersona(CLIENT_ID),
     makeRiskPersona(CLIENT_ID),
   ],
-  defaultPersonaId: 'ussfcu_cfo',
+  defaultPersonaId: 'ussfcu_evelyn',
 };

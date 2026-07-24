@@ -1,0 +1,37 @@
+{
+  "title": "Procedure Adherence — File 20-4471",
+  "steps": [
+    {
+      "id": "le-window",
+      "required": "Loan Estimate within 3 business days of application",
+      "actual": "Delivered on the 4th business day",
+      "status": "deviation"
+    },
+    {
+      "id": "supervisor-review",
+      "required": "Supervisor review when a file crosses 40 days to closing",
+      "actual": "At 43 days, no review logged",
+      "status": "deviation"
+    },
+    {
+      "id": "esign",
+      "required": "ESIGN consent on file before electronic delivery",
+      "actual": "Consent on file",
+      "status": "met"
+    },
+    {
+      "id": "privacy",
+      "required": "State privacy notice at account opening",
+      "actual": "Colorado notice on file",
+      "status": "met"
+    }
+  ],
+  "pattern": {
+    "title": "Pattern across the queue",
+    "detail": "Late Loan Estimates cluster on files that came in through the branch rather than online, where the intake step is manual.",
+    "by_channel": [
+      { "channel": "Branch (manual intake)", "late_rate_pct": 18 },
+      { "channel": "Online (timestamped)", "late_rate_pct": 3 }
+    ]
+  }
+}

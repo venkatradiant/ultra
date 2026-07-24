@@ -9,6 +9,8 @@ import penfedJourneyMap from '../data/penfed/journeyMap.json';
 import nfcuWorkforceMap from '../data/nfcu/nfcuWorkforceMap.json';
 import DataFlowLineageMap from '../components/ussfcu/cfo/DataFlowLineageMap';
 import BusinessPerformanceView from '../components/ussfcu/ceo/performance/BusinessPerformanceView';
+import ComplianceQueryWorkbench from '../components/ussfcu/evelyn/ComplianceQueryWorkbench';
+import FileExceptionQueue from '../components/ussfcu/nadia/FileExceptionQueue';
 import { usePersona } from '../context/PersonaContext';
 import { useBranding } from '../context/BrandingContext';
 
@@ -30,6 +32,18 @@ const cfoLineageChips = [
   "What would full lineage do for the audit?",
 ];
 
+const evelynQueryChips = [
+  "How many members match a set of characteristics?",
+  "Apply the compliance tests to this population",
+  "Did we lose these members to another lender?",
+];
+
+const nadiaQueryChips = [
+  "Show me today's file exceptions",
+  "Open a member file and build its timeline",
+  "Run the compliance tests on this file",
+];
+
 export default function MemberJourney() {
   const [activePhaseId, setActivePhaseId] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -40,6 +54,8 @@ export default function MemberJourney() {
   const isNFCU = persona?.id?.startsWith('nfcu_');
   const isCfo = persona?.id === 'ussfcu_cfo';
   const isCeo = persona?.id === 'ussfcu_ceo';
+  const isEvelyn = persona?.id === 'ussfcu_evelyn';
+  const isNadia = persona?.id === 'ussfcu_nadia';
   const baseJourneyMap = clientId === 'penfed' ? penfedJourneyMap : journeyMap;
   const mapData = isNFCU ? nfcuWorkforceMap : baseJourneyMap;
   const chips = isNFCU ? nfcuWorkforceChips : journeyChips;
@@ -84,6 +100,40 @@ export default function MemberJourney() {
           isOpen={drawerOpen}
           onClose={() => { setDrawerOpen(false); setInitialQuery(null); }}
           preloadedChips={cfoLineageChips}
+          initialQuery={initialQuery}
+        />
+      </div>
+    );
+  }
+
+  // USSFCU Evelyn / Nadia — the Compliance Query workbench. Evelyn works the
+  // population-level deep query; Nadia works the file-level exception queue.
+  if (isEvelyn || isNadia) {
+    const complianceChips = isEvelyn ? evelynQueryChips : nadiaQueryChips;
+    const compliancePlaceholder = isEvelyn
+      ? 'Ask a population question by characteristic…'
+      : 'Open a file, run the tests, or build a timeline…';
+    return (
+      <div className="flex-1 flex flex-col h-[calc(100vh-64px)]">
+        <div className="flex-1 overflow-y-auto scrollbar-sleek px-6 pt-6 pb-28">
+          {isEvelyn ? <ComplianceQueryWorkbench /> : <FileExceptionQueue />}
+        </div>
+
+        {/* Persistent Chat Input */}
+        <div className="fixed bottom-0 left-[260px] right-0 bg-surface border-t border-border px-6 py-4 z-30">
+          <div className="max-w-3xl mx-auto">
+            <ChatInput
+              onSend={(text) => { setInitialQuery(text); setDrawerOpen(true); }}
+              placeholder={compliancePlaceholder}
+              suggestions={complianceChips}
+            />
+          </div>
+        </div>
+
+        <ChatDrawer
+          isOpen={drawerOpen}
+          onClose={() => { setDrawerOpen(false); setInitialQuery(null); }}
+          preloadedChips={complianceChips}
           initialQuery={initialQuery}
         />
       </div>

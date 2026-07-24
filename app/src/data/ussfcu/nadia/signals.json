@@ -1,0 +1,74 @@
+[
+  {
+    "id": "SIG-USSFCU-NADIA-001",
+    "type": "file_exception_trid",
+    "primary": true,
+    "title": "File Exception: Loan Estimate Past the 3-Day Window",
+    "description": "Member file 20-4471: application received Monday, Loan Estimate delivered Friday — one business day past the TRID rule. Needs documentation and a cure.",
+    "impact": "critical",
+    "severity": "critical",
+    "metric_text": "File 20-4471 · LE 1 business day late · TRID",
+    "sources": ["MeridianLink", "Regulatory Rules Engine"],
+    "timestamp": "2026-07-24T07:10:00",
+    "trend": "watch",
+    "metrics": {
+      "file": "20-4471",
+      "days_late": 1,
+      "rule": "TRID Loan Estimate 3-business-day window"
+    },
+    "confidence": {
+      "score": 97,
+      "rationale": "Application and Loan Estimate delivery timestamps in MeridianLink place delivery on the 4th business day, one day outside the TRID window.",
+      "threshold": 80,
+      "model_version": "trid-clock-v1.0",
+      "validated_at": "2026-07-24T07:09:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-NADIA-002",
+    "type": "file_exception_esign",
+    "title": "Missing ESIGN Consent on Electronic File",
+    "description": "Member file 20-4460: all disclosures delivered electronically, but no ESIGN consent record on file. Electronic delivery may be invalid until consent is obtained.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "File 20-4460 · no ESIGN consent record",
+    "sources": ["SharePoint", "Regulatory Rules Engine"],
+    "timestamp": "2026-07-24T07:12:00",
+    "trend": "watch",
+    "metrics": {
+      "file": "20-4460",
+      "rule": "ESIGN affirmative electronic consent"
+    },
+    "confidence": {
+      "score": 89,
+      "rationale": "Document-management scan shows electronic delivery of all disclosures on file 20-4460 with no corresponding ESIGN consent record.",
+      "threshold": 80,
+      "model_version": "esign-consent-v1.0",
+      "validated_at": "2026-07-24T07:11:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-NADIA-003",
+    "type": "possible_complaint",
+    "title": "Dissatisfaction Phrase in a Call Transcript",
+    "description": "A mortgage-servicing call used the phrase \"and I am not happy with the fee.\" Flagged as a possible complaint under the CFPB definition; not yet logged.",
+    "impact": "medium",
+    "severity": "warning",
+    "metric_text": "Servicing call · trigger word fee · not logged",
+    "sources": ["Member Communications", "Compliance / GRC System"],
+    "timestamp": "2026-07-24T07:14:00",
+    "trend": "watch",
+    "metrics": {
+      "phrase": "and I am not happy with the fee",
+      "trigger_word": "fee",
+      "logged": false
+    },
+    "confidence": {
+      "score": 84,
+      "rationale": "Contact-center NLP flags dissatisfaction language plus the trigger word fee in a servicing call, meeting the CFPB complaint definition; no complaint record exists.",
+      "threshold": 80,
+      "model_version": "complaint-nlp-v1.0",
+      "validated_at": "2026-07-24T07:13:00"
+    }
+  }
+]

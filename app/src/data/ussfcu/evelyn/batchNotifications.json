@@ -1,0 +1,14 @@
+{
+  "title": "Batch Disclosure Notifications",
+  "subtitle": "20 mortgages waiting on a disclosure — filter by state, approve once, the layer sends them",
+  "total": 20,
+  "disclosure_type": "Loan Estimate & Closing Disclosure reminders",
+  "by_state": [
+    { "state": "CO", "label": "Colorado", "count": 9 },
+    { "state": "VA", "label": "Virginia", "count": 6 },
+    { "state": "CA", "label": "California", "count": 3 },
+    { "state": "MD", "label": "Maryland", "count": 2 }
+  ],
+  "approval_copy": "One human-in-the-loop approval sends every pending notice. Each is logged to its file and the exam evidence trail.",
+  "sent_copy": "disclosure notices issued and logged to their files."
+}

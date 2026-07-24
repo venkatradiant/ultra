@@ -1,0 +1,37 @@
+{
+  "title": "Exam Exposure — Ranked",
+  "subtitle": "94-member population, ordered by likelihood of becoming a finding",
+  "items": [
+    {
+      "id": "late-le",
+      "rank": 1,
+      "label": "3 late Loan Estimates",
+      "basis": "TILA · TRID — reimbursable finding",
+      "kind": "file",
+      "severity": "critical",
+      "action": "Document the cure on each file this week",
+      "count": 3
+    },
+    {
+      "id": "missing-esign",
+      "rank": 2,
+      "label": "11 missing ESIGN consents",
+      "basis": "ESIGN Act — cascades to every electronic disclosure",
+      "kind": "file",
+      "severity": "critical",
+      "action": "Capture consent; re-validate electronic delivery",
+      "count": 11
+    },
+    {
+      "id": "disparity",
+      "rank": 3,
+      "label": "Under-30 approval disparity",
+      "basis": "ECOA · Regulation B — pattern finding",
+      "kind": "pattern",
+      "severity": "warning",
+      "action": "Documented disparity analysis, not a per-file fix",
+      "count": 1
+    }
+  ],
+  "summary": "14 file-level items this week and the disparity memo before the exam window."
+}

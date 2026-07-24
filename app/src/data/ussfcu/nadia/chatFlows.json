@@ -1,0 +1,167 @@
+{
+  "ussfcu_nadia_greeting": {
+    "ai_message": "Good morning, Nadia. 3 file exceptions need you first. File 20-4471 has a Loan Estimate delivered one business day past the TRID window. File 20-4460 is missing its ESIGN consent. And a servicing call this morning used dissatisfaction language about a fee. Want to start with the late Loan Estimate?",
+    "suggested_chips": ["Open file 20-4471", "Run a population query", "Show me the ESIGN gap"],
+    "data_sources_used": ["MeridianLink", "SharePoint", "Member Communications"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_nadia_today_exceptions": {
+    "user_query": "Show me today's file exceptions",
+    "ai_response": "3 exceptions on your queue this morning. File 20-4471: Loan Estimate delivered on the 4th business day, one day past the TRID rule — needs documentation and a cure. File 20-4460: all disclosures delivered electronically, but no ESIGN consent record on file — electronic delivery may be invalid until consent is obtained. And a mortgage-servicing call flagged for the phrase and I am not happy with the fee, a possible complaint under the CFPB definition, not yet logged.",
+    "suggested_chips": ["Open file 20-4471", "Show me the ESIGN gap", "Log the fee complaint"],
+    "data_sources_used": ["MeridianLink", "SharePoint", "Member Communications"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileExceptions"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_nadia_signal_1_lateloan": {
+    "ai_message": "File 20-4471 is the one to start with. Application received Monday, Loan Estimate delivered Friday — one business day past the TRID 3-day rule. Late delivery is a reimbursable finding, so this needs documentation and a cure. I have already pulled the timeline from MeridianLink and the contact center so you do not have to.",
+    "suggested_chips": ["Open file 20-4471", "Compare to procedure", "Build the disclosure checklist"],
+    "data_sources_used": ["MeridianLink", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_nadia_signal_2_esign": {
+    "ai_message": "File 20-4460 delivered all of its disclosures electronically, but there is no ESIGN consent record on file. Under the ESIGN Act, electronic delivery may be invalid until an affirmative electronic-consent record is captured, so every electronic disclosure on this file is in question. It is a document-management gap, not a delivery failure — the consent step was skipped.",
+    "suggested_chips": ["Show me the ESIGN gap", "Run a population query", "Open file 20-4471"],
+    "data_sources_used": ["SharePoint", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_nadia_signal_3_dissatisfaction": {
+    "ai_message": "A mortgage-servicing call this morning used the phrase and I am not happy with the fee. The contact-center NLP flagged it as a possible complaint under the CFPB definition — dissatisfaction language plus the trigger word fee — and it has not been logged. From here it is one step to a logged complaint with the transcript excerpt attached as evidence.",
+    "suggested_chips": ["Log the fee complaint", "Open file 20-4471", "Run a population query"],
+    "data_sources_used": ["Member Communications", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_nadia_turn_openfile": {
+    "user_query": "Open file 20-4471",
+    "ai_response": "Here is the file. Colorado mortgage, applicant age 28, originated, all communication electronic. Application received on the 3rd, Loan Estimate delivered on the 9th, which is the 4th business day, one day late under TRID. The member had 6 interactions in the window, and used the trigger word closing cost twice. I have already assembled the timeline from MeridianLink and the contact center so you do not have to.",
+    "suggested_chips": ["Compare to procedure", "Run the tests on this file", "Build the disclosure checklist"],
+    "data_sources_used": ["MeridianLink", "Symitar Core", "Member Communications"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileTimeline"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_nadia_turn_procedure": {
+    "user_query": "Compare to procedure",
+    "ai_response": "Your procedure requires the Loan Estimate within 3 business days and a supervisor review when a file crosses 40 days to closing. This file missed the disclosure window and is at 43 days with no review logged. Both are deviations from procedure. The pattern across your queue: late Loan Estimates cluster on files that came in through the branch rather than online, where the intake step is manual.",
+    "suggested_chips": ["Build the disclosure checklist and calendar", "Flag the branch intake issue"],
+    "data_sources_used": ["MeridianLink", "Procedure Library", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["procedureAdherence"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_nadia_turn_checklist": {
+    "user_query": "Build the disclosure checklist and calendar",
+    "ai_response": "Done for file 20-4471. The checklist lists every disclosure this member is owed and its status: Loan Estimate delivered but late, intent to proceed on file, Closing Disclosure not yet issued, ESIGN consent on file, Colorado privacy notice on file. The calendar plots the Closing Disclosure at least 3 business days before the scheduled closing, and flags the late Loan Estimate for a documented cure. Nothing else on this file is at risk.",
+    "suggested_chips": ["Log the fee complaint", "Document the cure", "Generate the daily exception report"],
+    "data_sources_used": ["MeridianLink", "SharePoint", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileChecklist", "fileCalendar"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_nadia_turn_complaint": {
+    "user_query": "Log the fee complaint",
+    "ai_response": "Logged. The servicing call is recorded as a complaint under the CFPB definition, categorized as fees or interest, linked to the member and the file, with the transcript excerpt attached as evidence. It now appears in the complaint register and the exam evidence trail. From flag to logged complaint in one step, with no separate form.",
+    "suggested_chips": ["Generate the daily exception report", "Send the file to Evelyn", "Next file"],
+    "data_sources_used": ["Member Communications", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["complaintRecord"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_nadia_run_population": {
+    "user_query": "Run a population query",
+    "ai_response": "You can ask the same question Evelyn asks, at file altitude. Give me a set of characteristics — product, state, age, origination outcome, channel — and I will return the matched files with the tests already applied, each traceable to its source. For today's queue, the fastest path is the 3 open exceptions; the population query is there when you want to size a pattern rather than work a file.",
+    "suggested_chips": ["Show me today's file exceptions", "Open file 20-4471", "Show me the ESIGN gap"],
+    "data_sources_used": ["MeridianLink", "Symitar Core", "Member Communications"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileExceptions"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_nadia_esign_gap": {
+    "user_query": "Show me the ESIGN gap",
+    "ai_response": "File 20-4460 delivered every disclosure electronically but has no ESIGN consent record on file, so the delivery may be invalid until consent is captured. Across your open queue there are 11 files with the same gap. The cure is the same on each: capture the affirmative electronic consent, then re-validate the electronic disclosures already sent. I can queue the consent-capture task on all 11.",
+    "suggested_chips": ["Open file 20-4471", "Run the tests on this file", "Generate the daily exception report"],
+    "data_sources_used": ["SharePoint", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileExceptions"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_nadia_run_tests": {
+    "user_query": "Run the tests on this file",
+    "ai_response": "Tests on file 20-4471. Disclosure timing: flag — Loan Estimate delivered on the 4th business day, one day past TRID. Procedure adherence: flag — 43 days to closing with no supervisor review logged. Fair lending: no disparity on a single file, but the applicant is 28, so it counts toward the under-30 population. Electronic delivery: pass — ESIGN consent is on file. Complaint identification: watch — trigger word closing cost used twice, no dissatisfaction language yet.",
+    "suggested_chips": ["Compare to procedure", "Build the disclosure checklist and calendar", "Document the cure"],
+    "data_sources_used": ["MeridianLink", "SharePoint", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileTests"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_nadia_flag_branch": {
+    "user_query": "Flag the branch intake issue",
+    "ai_response": "Flagged. I sent a note to the branch operations lead: late Loan Estimates cluster on files that came in through the branch rather than online, where the intake step is manual and the disclosure clock starts before the file is in the system. The recommendation is to move branch intake onto the same timestamped workflow as online applications, which is where the TRID clock is reliably captured. It is logged as a process finding, not a per-file exception.",
+    "suggested_chips": ["Build the disclosure checklist and calendar", "Generate the daily exception report", "Compare to procedure"],
+    "data_sources_used": ["MeridianLink", "Procedure Library"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["procedureAdherence"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_nadia_document_cure": {
+    "user_query": "Document the cure",
+    "ai_response": "Cure documented on file 20-4471. The record notes the late Loan Estimate, the one-business-day miss under TRID, the reason — manual branch intake — and the corrective delivery, with the timeline and the member interactions attached as evidence. The file now carries its own remediation trail, so if it comes up in the exam the answer is already written rather than reconstructed by hand.",
+    "suggested_chips": ["Log the fee complaint", "Generate the daily exception report", "Send the file to Evelyn"],
+    "data_sources_used": ["MeridianLink", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileCalendar"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_nadia_exception_report": {
+    "user_query": "Generate the daily exception report",
+    "ai_response": "Generated. Today's exception report lists the 3 open items — the late Loan Estimate on 20-4471, the missing ESIGN consent on 20-4460, and the logged fee complaint — each with the rule at issue, the status, and the action taken or owed. It is the record that shows the queue was worked, and it feeds straight into the exam evidence trail. Ready to send to Evelyn or file to the register.",
+    "suggested_chips": ["Send the file to Evelyn", "Next file", "Log the fee complaint"],
+    "data_sources_used": ["Compliance / GRC System", "MeridianLink"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileExceptions"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_nadia_send_evelyn": {
+    "user_query": "Send the file to Evelyn",
+    "ai_response": "Sent. File 20-4471 goes to Evelyn with the timeline, the two procedure deviations, the documented cure, the disclosure checklist and calendar, and the logged fee complaint attached. She sees it as a worked file with the judgment already applied, so she can fold it into the pattern-level view and the risk-committee narrative without re-opening the systems.",
+    "suggested_chips": ["Next file", "Generate the daily exception report", "Log the fee complaint"],
+    "data_sources_used": ["Compliance / GRC System", "MeridianLink"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_nadia_next_file": {
+    "user_query": "Next file",
+    "ai_response": "Next up is file 20-4460, the missing-ESIGN file. All disclosures were delivered electronically with no consent record, so the cure is to capture the affirmative electronic consent and re-validate the delivered disclosures. I have the timeline assembled and the consent-capture task staged. Want to open it and build its checklist the same way?",
+    "suggested_chips": ["Show me the ESIGN gap", "Build the disclosure checklist and calendar", "Generate the daily exception report"],
+    "data_sources_used": ["MeridianLink", "SharePoint"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["fileExceptions"],
+    "capability": "Converged Conversation"
+  }
+}

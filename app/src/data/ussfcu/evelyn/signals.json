@@ -1,0 +1,76 @@
+[
+  {
+    "id": "SIG-USSFCU-EVELYN-001",
+    "type": "fair_lending_disparity",
+    "primary": true,
+    "title": "Fair-Lending Disparity: Mortgage Approvals by Age",
+    "description": "Approval rate for applicants under 30 is 14 points below the portfolio in one product and geography — a Colorado mortgage. ECOA and Regulation B exposure; age is a protected basis. The pattern was not visible in any single system.",
+    "impact": "critical",
+    "severity": "critical",
+    "metric_text": "Under-30 approval 14 pts below portfolio · Reg B",
+    "sources": ["MeridianLink", "Symitar Core", "Compliance / GRC System"],
+    "timestamp": "2026-07-24T06:00:00",
+    "trend": "worsening",
+    "metrics": {
+      "approval_gap_pts": 14,
+      "product": "Mortgage",
+      "geography": "Colorado",
+      "protected_basis": "Age (under 30)"
+    },
+    "confidence": {
+      "score": 92,
+      "rationale": "Approvals from MeridianLink joined to member age and geography from the Symitar core across the matched population isolate a 14-point under-30 gap not explained by loan amount, LTV, or DTI.",
+      "threshold": 80,
+      "model_version": "fair-lending-v1.0",
+      "validated_at": "2026-07-24T05:59:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-EVELYN-002",
+    "type": "trid_timing_exposure",
+    "title": "TRID Timing Exposure on Active Files",
+    "description": "18 mortgage files are at risk on the disclosure clock: Loan Estimates approaching the 3-business-day delivery window, or Closing Disclosures inside the 3-business-day-before-closing rule. Late delivery is a reimbursable finding.",
+    "impact": "critical",
+    "severity": "critical",
+    "metric_text": "18 files on the disclosure clock · TRID",
+    "sources": ["MeridianLink", "HUNA", "Regulatory Rules Engine"],
+    "timestamp": "2026-07-24T06:02:00",
+    "trend": "watch",
+    "metrics": {
+      "files_at_risk": 18,
+      "le_window_days": 3,
+      "cd_before_closing_days": 3
+    },
+    "confidence": {
+      "score": 90,
+      "rationale": "Application and disclosure timestamps in MeridianLink and HUNA, run against the TRID timing rules, place 18 active files inside a reimbursable-finding window.",
+      "threshold": 80,
+      "model_version": "trid-clock-v1.0",
+      "validated_at": "2026-07-24T06:01:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-EVELYN-003",
+    "type": "unlogged_complaints",
+    "title": "Unlogged Complaints: Dissatisfaction Language",
+    "description": "34 member interactions this month used dissatisfaction language and trigger words (fee, disclosure, discrimination) that may meet the CFPB complaint definition, but were never logged. Normalized for volume, complaints on this product are up 6% quarter over quarter — a key risk indicator.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "34 unlogged · +6% QoQ normalized",
+    "sources": ["Member Communications", "Medallia", "Compliance / GRC System"],
+    "timestamp": "2026-07-24T06:04:00",
+    "trend": "worsening",
+    "metrics": {
+      "unlogged_interactions": 34,
+      "complaint_trend_qoq_pct": 6,
+      "trigger_words": ["fee", "disclosure", "discrimination"]
+    },
+    "confidence": {
+      "score": 86,
+      "rationale": "Contact-center NLP over the month's transcripts flags 34 interactions with dissatisfaction language and trigger words meeting the CFPB complaint definition; volume-normalized, the product's complaint rate is up 6% QoQ.",
+      "threshold": 80,
+      "model_version": "complaint-nlp-v1.0",
+      "validated_at": "2026-07-24T06:03:00"
+    }
+  }
+]

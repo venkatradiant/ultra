@@ -1,0 +1,32 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Surfaces today's file exceptions before you go looking — the late Loan Estimate, the missing ESIGN consent, and the dissatisfaction phrase in a call — each with the member file number, the rule at issue, and a severity flag.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Opens a single member file and assembles its timeline across MeridianLink, the core, and the contact center — attributes, disclosure dates, interactions, and trigger words — so you do not export and cross-reference by hand.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "Compares the file to your documented procedure, marks each deviation, and shows the pattern behind it — late Loan Estimates clustering on manual branch intake — so a one-off fix becomes a process fix.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Automated Action",
+    "description": "Builds the member-specific disclosure checklist and calendar for the file, flags the late item for a documented cure, and plots the remaining milestones on their required dates.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "Logs the interaction as a complaint under the CFPB definition — categorized, linked to the member and file, with the transcript excerpt attached — from flag to logged complaint in one step, with no separate form.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

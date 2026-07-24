@@ -1,0 +1,13 @@
+{
+  "title": "Disclosure Calendar — TRID Milestones",
+  "window_label": "Application to closing",
+  "months": ["Application", "+3 bus. days", "Underwriting", "Pre-closing", "Closing"],
+  "milestones": [
+    { "id": "le", "name": "Loan Estimate", "regulation": "Within 3 business days", "span": [0, 1], "status": "on_time" },
+    { "id": "itp", "name": "Intent to Proceed", "regulation": "After LE review", "span": [1, 2], "status": "on_time" },
+    { "id": "esign", "name": "ESIGN Consent", "regulation": "Before e-delivery", "span": [0, 1], "status": "past_due" },
+    { "id": "cd", "name": "Closing Disclosure", "regulation": "≥ 3 bus. days before closing", "span": [3, 4], "status": "past_due" }
+  ],
+  "past_due_count": 2,
+  "footnote": "Each disclosure placed on its required date under the rules. 2 past-due items are highlighted for a documented cure."
+}

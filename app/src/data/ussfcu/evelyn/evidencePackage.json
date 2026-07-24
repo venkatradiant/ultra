@@ -1,0 +1,14 @@
+{
+  "title": "Exam Evidence Package",
+  "completeness_before": 0,
+  "completeness_after": 100,
+  "meter_label": "Assembled from one conversation",
+  "sections": [
+    { "id": "population", "title": "Population & query", "detail": "94 members · Colorado mortgage · under 30 · reconciled across 4 systems" },
+    { "id": "tests", "title": "Regulatory tests & citations", "detail": "Reg B, ESIGN, TRID, GLBA, CFPB — each with result and source" },
+    { "id": "disclosures", "title": "Disclosure checklist & calendar", "detail": "Past-due items and their documented remediation" },
+    { "id": "fair-lending", "title": "Fair-lending disparity analysis", "detail": "Under-30 14-point gap, documented for the record" },
+    { "id": "complaints", "title": "Logged complaints", "detail": "7 complaints logged with CFPB categorization and transcript evidence" }
+  ],
+  "footnote": "Every figure traces to its source system. This is what an examiner asks for — one conversation instead of a week of manual work."
+}

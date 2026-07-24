@@ -1,0 +1,30 @@
+{
+  "title": "Today's File Exceptions",
+  "subtitle": "3 open items on the queue this morning",
+  "exceptions": [
+    {
+      "id": "20-4471",
+      "file": "20-4471",
+      "rule": "TRID · Loan Estimate 3-business-day window",
+      "detail": "Application Monday, Loan Estimate Friday — one business day late. Reimbursable finding; needs documentation and a cure.",
+      "severity": "critical",
+      "status": "open"
+    },
+    {
+      "id": "20-4460",
+      "file": "20-4460",
+      "rule": "ESIGN · affirmative electronic consent",
+      "detail": "All disclosures delivered electronically, no consent record on file. Delivery may be invalid until consent is captured.",
+      "severity": "warning",
+      "status": "open"
+    },
+    {
+      "id": "call-4471",
+      "file": "Servicing call",
+      "rule": "CFPB · complaint definition",
+      "detail": "Call used the phrase “and I am not happy with the fee.” Possible complaint, not yet logged.",
+      "severity": "warning",
+      "status": "open"
+    }
+  ]
+}

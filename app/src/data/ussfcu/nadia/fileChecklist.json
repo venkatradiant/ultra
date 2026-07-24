@@ -1,0 +1,14 @@
+{
+  "title": "Disclosure Checklist — File 20-4471",
+  "member_label": "Colorado mortgage · age 28 · originated electronically",
+  "items": [
+    { "id": "le", "disclosure": "Loan Estimate", "regulation": "TILA · TRID", "required_by": "Within 3 business days", "status": "late" },
+    { "id": "itp", "disclosure": "Intent to Proceed", "regulation": "TRID", "required_by": "After Loan Estimate review", "status": "on_file" },
+    { "id": "cd", "disclosure": "Closing Disclosure", "regulation": "TILA · TRID", "required_by": "≥ 3 business days before closing", "status": "pending" },
+    { "id": "esign", "disclosure": "ESIGN Consent", "regulation": "ESIGN Act", "required_by": "Before electronic delivery", "status": "on_file" },
+    { "id": "privacy", "disclosure": "Colorado Privacy Notice", "regulation": "GLBA · state law", "required_by": "At account opening", "status": "on_file" }
+  ],
+  "past_due_count": 0,
+  "cure_count": 1,
+  "footnote": "The Loan Estimate is flagged for a documented cure. Nothing else on this file is at risk."
+}

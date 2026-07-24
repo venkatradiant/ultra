@@ -1,0 +1,61 @@
+{
+  "title": "Regulatory Tests — File 20-4471",
+  "subtitle": "Single file · Colorado mortgage · age 28",
+  "tests": [
+    {
+      "id": "disclosure-timing",
+      "name": "Disclosure timing",
+      "regulation": "TILA · RESPA · TRID",
+      "checks": "Loan Estimate within 3 business days of application",
+      "status": "flag",
+      "severity": "critical",
+      "result": "Loan Estimate delivered on the 4th business day — one day past the rule",
+      "count": "1 day late",
+      "sources": ["MeridianLink", "Regulatory Rules Engine"]
+    },
+    {
+      "id": "procedure-adherence",
+      "name": "Procedure adherence",
+      "regulation": "Internal policy",
+      "checks": "Supervisor review when a file crosses 40 days to closing",
+      "status": "flag",
+      "severity": "warning",
+      "result": "43 days to closing with no supervisor review logged",
+      "count": "43 days",
+      "sources": ["MeridianLink", "Procedure Library"]
+    },
+    {
+      "id": "fair-lending",
+      "name": "Fair lending",
+      "regulation": "ECOA · Regulation B",
+      "checks": "Approval and pricing disparities by a protected basis such as age",
+      "status": "watch",
+      "severity": "info",
+      "result": "No single-file disparity; applicant is 28, counts toward the under-30 population",
+      "count": "age 28",
+      "sources": ["MeridianLink", "Symitar Core"]
+    },
+    {
+      "id": "electronic-delivery",
+      "name": "Electronic delivery",
+      "regulation": "ESIGN Act",
+      "checks": "Valid electronic-consent record on file before disclosures are delivered electronically",
+      "status": "pass",
+      "severity": "ok",
+      "result": "ESIGN consent on file",
+      "count": "on file",
+      "sources": ["SharePoint"]
+    },
+    {
+      "id": "complaint-identification",
+      "name": "Complaint identification",
+      "regulation": "CFPB definition",
+      "checks": "Dissatisfaction language or trigger words that meet the complaint definition",
+      "status": "watch",
+      "severity": "info",
+      "result": "Trigger word closing cost used twice; no dissatisfaction language yet",
+      "count": "2 mentions",
+      "sources": ["Member Communications"]
+    }
+  ]
+}

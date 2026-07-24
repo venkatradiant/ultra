@@ -1,0 +1,44 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Surfaces the compliance signals that matter before they are asked — fair-lending disparities, disclosure-timing exposure, and dissatisfaction clusters that may be unlogged complaints — correlated across the core, origination, and the contact center.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Answers the deep compliance query in plain language — counting members and products by characteristic across the core, origination, and the contact center — and reconciles them into one traceable population.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Anomaly Detection",
+    "description": "Flags the outliers: an approval-rate gap by age, a Loan Estimate delivered late, a missing ESIGN consent, and a dissatisfaction phrase that meets the CFPB complaint definition — each with its regulatory citation.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Automated Action",
+    "description": "Generates the member-specific disclosure checklist and calendar, placing each disclosure on its required date under the rules and flagging past-due and at-risk items.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Forecasts exam and audit exposure and directs limited resources to the files and patterns most likely to become findings, separating file-level fixes from pattern-level analysis.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Friction Observability",
+    "description": "Maps where the compliance process and the member journey break — late disclosures, missing consent, files that stepped outside procedure, and attrition that shows up as withdrawn applications and named competitors.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_6",
+    "capabilityName": "Automated Action",
+    "description": "Assembles the exam-ready evidence package — population, tests and citations, disclosure remediation, fair-lending analysis, and logged complaints — every figure traceable to its source system.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

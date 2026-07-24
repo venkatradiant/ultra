@@ -1,0 +1,23 @@
+{
+  "title": "File 20-4471 — Timeline",
+  "member": {
+    "file": "20-4471",
+    "product": "Colorado mortgage",
+    "age": 28,
+    "origination": "Originated",
+    "channel": "All communication electronic"
+  },
+  "events": [
+    { "id": "app", "date": "Day 0 · the 3rd", "label": "Application received", "status": "ok" },
+    { "id": "le", "date": "Day 6 · the 9th", "label": "Loan Estimate delivered (4th business day)", "status": "late", "note": "1 day past TRID 3-day rule" },
+    { "id": "itp", "date": "Day 8", "label": "Intent to proceed on file", "status": "ok" },
+    { "id": "review", "date": "Day 43", "label": "Supervisor review due (40-day rule)", "status": "missing", "note": "No review logged" }
+  ],
+  "interactions": {
+    "count": 6,
+    "trigger_words": [
+      { "word": "closing cost", "occurrences": 2 }
+    ]
+  },
+  "footnote": "Timeline assembled from MeridianLink and the contact center — no manual export or cross-reference."
+}

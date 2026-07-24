@@ -22,6 +22,8 @@ import nfcuAgentChatFlows from './nfcu/agent/chatFlows.json';
 import nfcuPaChatFlows from './nfcu/platform-admin/chatFlows.json';
 import ussfcuCfoChatFlows from './ussfcu/cfo/chatFlows.json';
 import ussfcuCeoChatFlows from './ussfcu/ceo/chatFlows.json';
+import ussfcuEvelynChatFlows from './ussfcu/evelyn/chatFlows.json';
+import ussfcuNadiaChatFlows from './ussfcu/nadia/chatFlows.json';
 
 // ─── Operations & Analytics (Maya J.) ────────────────────────────
 const opsConfig = {
@@ -1148,6 +1150,113 @@ const ussfcuCeoConfig = {
   },
 };
 
+// USSFCU Evelyn Marsh — VP Compliance & Public Policy. The signature deep
+// compliance query and the disclosure checklist/calendar, at population altitude.
+// Gated to clientId === 'ussfcu' in PersonaContext.
+const ussfcuEvelynConfig = {
+  chatFlows: ussfcuEvelynChatFlows,
+  chipToFlowKey: {
+    'Next signal': '__next_signal__',
+
+    // Deep query
+    'Run the deep query': 'ussfcu_evelyn_turn_deepquery',
+    'Show me the population': 'ussfcu_evelyn_turn_deepquery',
+    'How many members match a set of characteristics?': 'ussfcu_evelyn_turn_deepquery',
+
+    // Disclosure clock (the TRID signal)
+    'What is on the disclosure clock?': 'ussfcu_evelyn_signal_2_trid',
+    'What is on the disclosure clock this week?': 'ussfcu_evelyn_signal_2_trid',
+
+    // Tests
+    'Apply the compliance tests': 'ussfcu_evelyn_turn_tests',
+    'Apply the compliance tests to this population': 'ussfcu_evelyn_turn_tests',
+    'Check ESIGN consent': 'ussfcu_evelyn_esign_check',
+
+    // Checklist & calendar
+    'Build the disclosure checklist and calendar': 'ussfcu_evelyn_turn_checklist',
+    "Build a member's disclosure checklist and calendar": 'ussfcu_evelyn_turn_checklist',
+    'Generate for the whole population': 'ussfcu_evelyn_generate_population',
+
+    // Ranked risk
+    'Which files are highest risk?': 'ussfcu_evelyn_turn_ranked_risk',
+    'Which files are highest risk before the exam?': 'ussfcu_evelyn_turn_ranked_risk',
+    'Assign the 14 files': 'ussfcu_evelyn_assign_files',
+
+    // Attrition
+    'Did we lose the 33 to another lender?': 'ussfcu_evelyn_turn_attrition',
+    'Did we lose the 33 to another lender, and why?': 'ussfcu_evelyn_turn_attrition',
+    'Did we lose these members to another lender?': 'ussfcu_evelyn_turn_attrition',
+    'Show me the competitor mentions': 'ussfcu_evelyn_competitor_mentions',
+    'Flag the speed issue to Lending': 'ussfcu_evelyn_flag_speed',
+
+    // Complaints & fair lending
+    'Log the 7 complaints': 'ussfcu_evelyn_log_complaints',
+    'Show me the complaint trend': 'ussfcu_evelyn_complaint_trend',
+    'Which interactions may be unlogged complaints?': 'ussfcu_evelyn_signal_3_complaints',
+    'Show me fair-lending disparities by product': 'ussfcu_evelyn_signal_1_fairlending',
+    'Draft the fair-lending memo': 'ussfcu_evelyn_fairlending_memo',
+    'Draft the disparity analysis': 'ussfcu_evelyn_disparity_analysis',
+
+    // Evidence package & closing actions
+    'Generate the exam evidence package': 'ussfcu_evelyn_turn_evidence',
+    'Route to the risk committee': 'ussfcu_evelyn_route_committee',
+    'Export for the examiner': 'ussfcu_evelyn_export_examiner',
+    'Hand the files to Nadia': 'ussfcu_evelyn_hand_to_nadia',
+  },
+  signalSequence: ['ussfcu_evelyn_signal_1_fairlending', 'ussfcu_evelyn_signal_2_trid', 'ussfcu_evelyn_signal_3_complaints'],
+  askTurnSequence: [
+    'ussfcu_evelyn_turn_deepquery',
+    'ussfcu_evelyn_turn_tests',
+    'ussfcu_evelyn_turn_checklist',
+    'ussfcu_evelyn_turn_ranked_risk',
+    'ussfcu_evelyn_turn_attrition',
+    'ussfcu_evelyn_turn_evidence',
+  ],
+};
+
+// USSFCU Nadia Hassan — Compliance Analyst. The operator version: run the query,
+// drill into a single file, apply the tests, build the checklist/calendar, log
+// the complaint. Gated to clientId === 'ussfcu' in PersonaContext.
+const ussfcuNadiaConfig = {
+  chatFlows: ussfcuNadiaChatFlows,
+  chipToFlowKey: {
+    'Next signal': '__next_signal__',
+
+    // Exceptions & file open
+    "Show me today's file exceptions": 'ussfcu_nadia_today_exceptions',
+    'Open file 20-4471': 'ussfcu_nadia_turn_openfile',
+    'Open a member file and build its timeline': 'ussfcu_nadia_turn_openfile',
+    'Run a population query': 'ussfcu_nadia_run_population',
+    'Show me the ESIGN gap': 'ussfcu_nadia_esign_gap',
+
+    // Procedure & tests
+    'Compare to procedure': 'ussfcu_nadia_turn_procedure',
+    'Compare this file to procedure': 'ussfcu_nadia_turn_procedure',
+    'Run the tests on this file': 'ussfcu_nadia_run_tests',
+    'Run the compliance tests on this file': 'ussfcu_nadia_run_tests',
+    'Flag the branch intake issue': 'ussfcu_nadia_flag_branch',
+
+    // Checklist & calendar
+    'Build the disclosure checklist': 'ussfcu_nadia_turn_checklist',
+    'Build the disclosure checklist and calendar': 'ussfcu_nadia_turn_checklist',
+    'Document the cure': 'ussfcu_nadia_document_cure',
+
+    // Complaint & reporting
+    'Log the fee complaint': 'ussfcu_nadia_turn_complaint',
+    'Log this interaction as a complaint': 'ussfcu_nadia_turn_complaint',
+    'Generate the daily exception report': 'ussfcu_nadia_exception_report',
+    'Send the file to Evelyn': 'ussfcu_nadia_send_evelyn',
+    'Next file': 'ussfcu_nadia_next_file',
+  },
+  signalSequence: ['ussfcu_nadia_signal_1_lateloan', 'ussfcu_nadia_signal_2_esign', 'ussfcu_nadia_signal_3_dissatisfaction'],
+  askTurnSequence: [
+    'ussfcu_nadia_turn_openfile',
+    'ussfcu_nadia_turn_procedure',
+    'ussfcu_nadia_turn_checklist',
+    'ussfcu_nadia_turn_complaint',
+  ],
+};
+
 // ─── Export registry ─────────────────────────────────────────────
 const personaFlowConfigs = {
   ops: opsConfig,
@@ -1163,6 +1272,8 @@ const personaFlowConfigs = {
   nfcu_platform_admin: nfcuPaConfig,
   ussfcu_cfo: ussfcuCfoConfig,
   ussfcu_ceo: ussfcuCeoConfig,
+  ussfcu_evelyn: ussfcuEvelynConfig,
+  ussfcu_nadia: ussfcuNadiaConfig,
 };
 
 // PenFed gets its own chatFlows for the generic personas (ops/cx/retention),

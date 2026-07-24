@@ -22,6 +22,11 @@ export default function TopHeader({ onMenuClick }) {
     // USSFCU CEO — pure executive altitude. Business Performance is the roll-up
     // view; Priority Signals is the state-of-the-business signal set.
     ussfcu_ceo: { journey: 'Business Performance', risk: 'Priority Signals' },
+    // USSFCU Risk & Compliance — Evelyn (VP) and Nadia (Analyst) reframe journey
+    // as the Compliance Query workbench and risk as the Disclosure Calendar.
+    // Keep in sync with each persona manifest's navLabels.
+    ussfcu_evelyn: { journey: 'Compliance Query', risk: 'Disclosure Calendar' },
+    ussfcu_nadia: { journey: 'Compliance Query', risk: 'Disclosure Calendar' },
     // NFCU Platform Admin — governance persona. Observability is its own page
     // now, so Governance no longer claims it. Keep in sync with the persona
     // manifest's navLabels; this map duplicates them.

@@ -15,11 +15,12 @@ const CLIENT_PERSONAS = {
   // capmarkets is intentionally absent from every other client's allowlist so it
   // cannot be selected via dropdown or URL outside PenFed.
   penfed: ['ops', 'cx', 'retention', 'risk', 'capmarkets'],
-  // USSFCU: USSFCU-only CFO persona (Sylvia Reyes) listed first as the default,
-  // alongside the pure-executive CEO persona (Timothy Anderson) and the four
-  // generic personas. ussfcu_cfo and ussfcu_ceo are intentionally absent from
-  // every other client's allowlist so they cannot be selected outside USSFCU.
-  ussfcu: ['ussfcu_cfo', 'ussfcu_ceo', 'ops', 'cx', 'retention', 'risk'],
+  // USSFCU: Risk & Compliance personas first — Evelyn Marsh (VP Compliance, the
+  // default) and Nadia Hassan (Compliance Analyst) — alongside the CFO (Sylvia
+  // Reyes), the CEO (Timothy Anderson), and the four generic personas. The
+  // ussfcu_* personas are intentionally absent from every other client's
+  // allowlist so they cannot be selected outside USSFCU.
+  ussfcu: ['ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_cfo', 'ussfcu_ceo', 'ops', 'cx', 'retention', 'risk'],
   // Healthcare market — Riverside Health System (care-ops persona).
   riverside_health: ['care_ops'],
 };
@@ -27,7 +28,7 @@ const CLIENT_PERSONAS = {
 // Default (primary) persona per client
 const CLIENT_DEFAULT_PERSONA = {
   nfcu: 'nfcu_supervisor',
-  ussfcu: 'ussfcu_cfo',
+  ussfcu: 'ussfcu_evelyn',
   riverside_health: 'care_ops',
 };
 

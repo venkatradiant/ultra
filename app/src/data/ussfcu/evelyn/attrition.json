@@ -1,0 +1,18 @@
+{
+  "title": "Attrition — The 33 Who Did Not Originate",
+  "subtitle": "Why we lost them, from the last interaction before they left",
+  "outcomes": [
+    { "id": "withdrawn", "label": "Withdrew", "value": 21, "tone": "warn" },
+    { "id": "denied", "label": "Denied", "value": 12, "tone": "neutral" }
+  ],
+  "triggers": [
+    { "id": "rate-cost", "label": "Mentioned interest rate or closing cost", "value": 15, "of": 21 },
+    { "id": "competitor", "label": "Named a competitor", "value": 6, "of": 21 }
+  ],
+  "days_to_decision": [
+    { "id": "originated", "label": "Originated", "days": 41 },
+    { "id": "withdrawn", "label": "Withdrawn", "days": 53 }
+  ],
+  "days_gap": 12,
+  "footnote": "The friction is speed and price transparency, and it shows up as attrition, not just dissatisfaction."
+}

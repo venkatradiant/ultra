@@ -186,6 +186,45 @@ const personas = {
 
   // ─── USSFCU-only Persona ──────────────────────────────────────
   // Visible only when clientId === 'ussfcu' (gated in PersonaContext CLIENT_PERSONAS).
+  // Risk & Compliance — VP Compliance & Public Policy. The deep compliance query
+  // and the member-specific disclosure checklist + calendar, at population altitude.
+  ussfcu_evelyn: {
+    id: 'ussfcu_evelyn',
+    name: 'Evelyn Marsh',
+    initials: 'EM',
+    role: 'VP, Compliance & Public Policy',
+    greeting: 'Evelyn',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Anomaly Detection',
+      'Automated Action',
+      'Predictive Intelligence',
+      'Friction Observability',
+    ],
+  },
+
+  // ─── USSFCU-only Persona ──────────────────────────────────────
+  // Visible only when clientId === 'ussfcu' (gated in PersonaContext CLIENT_PERSONAS).
+  // Risk & Compliance — Compliance Analyst. The operator version: file-level
+  // exceptions, timelines, tests, checklist + calendar, and complaint logging.
+  ussfcu_nadia: {
+    id: 'ussfcu_nadia',
+    name: 'Nadia Hassan',
+    initials: 'NH',
+    role: 'Compliance Analyst',
+    greeting: 'Nadia',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Anomaly Detection',
+      'Friction Observability',
+      'Automated Action',
+    ],
+  },
+
+  // ─── USSFCU-only Persona ──────────────────────────────────────
+  // Visible only when clientId === 'ussfcu' (gated in PersonaContext CLIENT_PERSONAS).
   // Enterprise financial data-governance / audit story (data-flow & lineage).
   ussfcu_cfo: {
     id: 'ussfcu_cfo',

@@ -1,0 +1,18 @@
+{
+  "title": "Complaint Trend — Normalized for Member Volume",
+  "subtitle": "Mortgage complaints per 1,000 members · quarter-over-quarter change",
+  "current_qoq_pct": 6,
+  "kri_threshold_pct": 5,
+  "series": [
+    { "period": "Q3 '25", "qoq": 3.2, "rate": 2.05 },
+    { "period": "Q4 '25", "qoq": 4.1, "rate": 2.13 },
+    { "period": "Q1 '26", "qoq": 4.6, "rate": 2.23 },
+    { "period": "Q2 '26", "qoq": 6.0, "rate": 2.36 }
+  ],
+  "normalized_note": "Normalized for member volume, so the rise is not simply a function of membership growth.",
+  "kri_note": "Q2 crossed the 5% KRI threshold at +6% on this product and state — a key risk indicator, and the kind of trend examiners react to.",
+  "pattern": {
+    "verdict": "Pattern, not a one-off",
+    "detail": "34 dissatisfaction-language interactions this month cluster on the same product and trigger words (fee, disclosure). The surrounding data supports a genuine pattern — in an exam, the difference between a finding and a clarification."
+  }
+}

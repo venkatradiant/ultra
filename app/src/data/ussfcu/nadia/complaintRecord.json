@@ -1,0 +1,15 @@
+{
+  "title": "Complaint Record — Logged",
+  "record": {
+    "id": "CMP-2026-0442",
+    "category": "Fees or interest",
+    "regulation": "CFPB complaint definition",
+    "member_file": "20-4471",
+    "channel": "Mortgage-servicing call",
+    "excerpt": "“…and I am not happy with the fee.”",
+    "status": "Logged",
+    "evidence": "Transcript excerpt attached",
+    "logged_at": "2026-07-24T09:12:00"
+  },
+  "footnote": "From flag to logged complaint in one step, with no separate form. Now visible in the complaint register and the exam evidence trail."
+}

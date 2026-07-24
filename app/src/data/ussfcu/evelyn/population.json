@@ -1,0 +1,18 @@
+{
+  "title": "Deep Query Result — Colorado Mortgage, Under 30",
+  "query_summary": "Approved for a mortgage · Colorado · under 30 · originated · majority electronic communication",
+  "total_match": 94,
+  "counts": [
+    { "id": "originated", "label": "Originated", "value": 61, "tone": "good", "source": "MeridianLink" },
+    { "id": "elsewhere", "label": "Went elsewhere", "value": 33, "tone": "warn", "source": "MeridianLink + CRM" },
+    { "id": "electronic", "label": "Majority electronic", "value": "78%", "tone": "info", "source": "Member Communications" }
+  ],
+  "breakdown": [
+    { "product_type": "Conventional 30-yr", "matched": 52, "originated": 36, "withdrawn": 11, "denied": 5 },
+    { "product_type": "Conventional 15-yr", "matched": 21, "originated": 15, "withdrawn": 5, "denied": 1 },
+    { "product_type": "FHA", "matched": 14, "originated": 7, "withdrawn": 4, "denied": 3 },
+    { "product_type": "VA", "matched": 7, "originated": 3, "withdrawn": 1, "denied": 3 }
+  ],
+  "reconciled_from": ["HUNA", "MeridianLink", "Symitar Core", "Member Communications"],
+  "footnote": "One reconciled population. Each figure links to its source system. This is the question that used to take days of manual pulls."
+}

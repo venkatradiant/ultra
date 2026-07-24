@@ -1,0 +1,12 @@
+{
+  "title": "Disclosure Calendar — File 20-4471",
+  "window_label": "Application to scheduled closing",
+  "months": ["Application", "+3 bus. days", "Underwriting", "Pre-closing", "Closing"],
+  "milestones": [
+    { "id": "le", "name": "Loan Estimate", "regulation": "Delivered 4th business day", "span": [0, 1], "status": "late" },
+    { "id": "itp", "name": "Intent to Proceed", "regulation": "On file", "span": [1, 2], "status": "on_time" },
+    { "id": "cd", "name": "Closing Disclosure", "regulation": "≥ 3 bus. days before closing", "span": [3, 4], "status": "scheduled" }
+  ],
+  "cure_count": 1,
+  "footnote": "Closing Disclosure plotted at least 3 business days before the scheduled closing; the late Loan Estimate is flagged for a documented cure."
+}

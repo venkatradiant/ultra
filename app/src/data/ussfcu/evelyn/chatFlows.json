@@ -1,0 +1,217 @@
+{
+  "ussfcu_evelyn_greeting": {
+    "ai_message": "Good morning, Evelyn. 3 compliance signals need your attention before your risk committee. The most urgent: mortgage approval rates for applicants under 30 are running 14 points below the portfolio in one product and state, a fair-lending pattern under Regulation B. This pattern was not visible in any single system. Want me to show you the population behind it?",
+    "suggested_chips": ["Run the deep query", "Show me the population", "What is on the disclosure clock?"],
+    "data_sources_used": ["MeridianLink", "Symitar Core", "Compliance / GRC System", "Radiant Intelligence Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_evelyn_signal_1_fairlending": {
+    "ai_message": "Fair-lending disparity, and it is the critical one. The approval rate for applicants under 30 is 14 points below the portfolio in one product and one geography — a Colorado mortgage. Under ECOA and Regulation B, age is a protected basis, so a gap this size is exposure worth a documented analysis. It was invisible before because approvals live in MeridianLink, ages and geography in the core, and no report joined them. I reconciled them into one population so you can see it.",
+    "suggested_chips": ["Run the deep query", "Apply the compliance tests", "Draft the fair-lending memo"],
+    "data_sources_used": ["MeridianLink", "Symitar Core", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_evelyn_signal_2_trid": {
+    "ai_message": "Here is what is on the disclosure clock this week. 18 active mortgage files are at risk on the TRID timing rules: Loan Estimates approaching the 3-business-day delivery window, or Closing Disclosures inside the 3-business-day-before-closing rule. Late delivery is a reimbursable finding, so these are the files your team should touch first. I can build the member-specific checklist and calendar for any of them.",
+    "suggested_chips": ["Build a member's disclosure checklist and calendar", "Which files are highest risk?", "Run the deep query"],
+    "data_sources_used": ["MeridianLink", "HUNA", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "ussfcu_evelyn_signal_3_complaints": {
+    "ai_message": "34 member interactions this month used dissatisfaction language and trigger words — fee, disclosure, discrimination — that may meet the CFPB complaint definition, but were never logged. Normalized for member volume, complaints on this product are up 6% quarter over quarter, and examiners react to trends, not one-off mistakes. That trend is the risk indicator, whether or not any single interaction was logged.",
+    "suggested_chips": ["Show me the complaint trend", "Log the 7 complaints", "Apply the compliance tests"],
+    "data_sources_used": ["Member Communications", "Medallia", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "trends"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_evelyn_complaint_trend": {
+    "user_query": "Show me the complaint trend",
+    "ai_response": "Here is the trend, and it is the part examiners actually react to. Complaints on the Colorado mortgage are up 6% quarter over quarter, normalized per 1,000 members so the rise is not just a function of membership growth. That crosses your 5% key-risk-indicator threshold. And it is a pattern, not a one-off: the 34 dissatisfaction-language interactions this month cluster on the same product and the same trigger words, fee and disclosure. The surrounding data is what turns an examiner's question from a finding into a clarification.",
+    "suggested_chips": ["Log the 7 complaints", "Apply the compliance tests", "Generate the exam evidence package"],
+    "data_sources_used": ["Member Communications", "Medallia", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["trends"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_evelyn_turn_deepquery": {
+    "user_query": "How many members were approved for a mortgage, in Colorado, under 30, who originated, and did most of their communication electronically?",
+    "ai_response": "94 members match. Of those, 61 originated and 33 went elsewhere. 78% did the majority of their communication electronically. I pulled approvals from MeridianLink, member profiles and geography from the core, and interaction channel from the contact center, and reconciled them into one population. This is the question that used to take your team days.",
+    "suggested_chips": ["Apply the compliance tests", "Did we lose the 33 to another lender?", "Check ESIGN consent"],
+    "data_sources_used": ["HUNA", "MeridianLink", "Symitar Core", "Member Communications"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["population"],
+    "capability": "Converged Conversation"
+  },
+
+  "ussfcu_evelyn_turn_tests": {
+    "user_query": "Apply the compliance tests",
+    "ai_response": "Four flags on this population. One, fair lending: the under-30 approval rate is 14 points below the over-30 rate, a Regulation B disparity worth documenting. Two, ESIGN: 11 of the electronic-communication members have no electronic-consent record on file, so their disclosures may not be validly delivered. Three, disclosure timing: 3 files had a Loan Estimate delivered on the 4th business day, past the TRID 3-day rule. Four, complaint risk: 7 members used dissatisfaction language and the trigger word fee, and none were logged as complaints under the CFPB definition.",
+    "suggested_chips": ["Build the disclosure checklist and calendar", "Which files are highest risk?", "Log the 7 complaints"],
+    "data_sources_used": ["MeridianLink", "SharePoint", "Member Communications", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["regulatoryTests"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_evelyn_turn_checklist": {
+    "user_query": "Build the disclosure checklist and calendar",
+    "ai_response": "Done, for a representative file. The checklist has every disclosure this member is owed, given a Colorado mortgage originated electronically: Loan Estimate, intent to proceed, the Closing Disclosure, the ESIGN consent, and the state privacy notice. The calendar places each on its required date: the Loan Estimate within 3 business days of application, the Closing Disclosure received at least 3 business days before closing. 2 items on this file are already past due, flagged in red. I can generate this for every file in the population.",
+    "suggested_chips": ["Which files are highest risk before the exam?", "Generate for the whole population", "Draft the fair-lending memo"],
+    "data_sources_used": ["MeridianLink", "SharePoint", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["disclosureChecklist", "disclosureCalendar"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_turn_ranked_risk": {
+    "user_query": "Which files are highest risk before the exam?",
+    "ai_response": "I ranked the population by exam exposure. The 3 late-Loan-Estimate files are reimbursable findings and rank first. The 11 missing-ESIGN-consent files rank next, because they cascade: every electronic disclosure on them is in question. The under-30 disparity is a pattern finding, not a file finding, so it needs a documented analysis rather than a fix. Focus your team on the 14 file-level items this week and the disparity memo before the exam window.",
+    "suggested_chips": ["Did we lose the 33 to another lender, and why?", "Assign the 14 files", "Draft the disparity analysis"],
+    "data_sources_used": ["Compliance / GRC System", "MeridianLink", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["rankedRisk"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_evelyn_turn_attrition": {
+    "user_query": "Did we lose the 33 to another lender, and why?",
+    "ai_response": "Of the 33 who did not originate, 21 withdrew and 12 were denied. Cross-referencing contact-center transcripts, 15 of the 21 withdrawals mention interest rate or closing cost in the last interaction before they left, and 6 mention a competitor by name. Average days-to-decision for the withdrawn group was 12 days longer than for those who originated. The friction is speed and price transparency, and it shows up as attrition, not just dissatisfaction.",
+    "suggested_chips": ["Generate the exam evidence package", "Show me the competitor mentions", "Flag the speed issue to Lending"],
+    "data_sources_used": ["MeridianLink", "Member Communications", "CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["attrition"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_evelyn_turn_evidence": {
+    "user_query": "Generate the exam evidence package",
+    "ai_response": "Assembled. The package documents the population and the query, each regulatory test with its result and citation, the disclosure checklist and calendar with the past-due items and their remediation, the fair-lending disparity analysis, and the 7 complaints now logged with their CFPB categorization. Every figure traces to its source system. This is what an examiner asks for, and it took one conversation instead of a week of manual work. Shall I route it to the risk committee?",
+    "suggested_chips": ["Route to the risk committee", "Export for the examiner", "Hand the files to Nadia"],
+    "data_sources_used": ["Compliance / GRC System", "Radiant Intelligence Layer", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["evidencePackage"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_esign_check": {
+    "user_query": "Check ESIGN consent",
+    "ai_response": "Of the 73 members who did the majority of their communication electronically, 62 have a valid ESIGN consent record on file and 11 do not. For those 11, every electronic disclosure is in question until consent is captured, because the ESIGN Act requires an affirmative electronic-consent record before disclosures are delivered electronically. Those 11 files rank high on the exam-risk list for exactly that reason.",
+    "suggested_chips": ["Apply the compliance tests", "Which files are highest risk before the exam?", "Build the disclosure checklist and calendar"],
+    "data_sources_used": ["SharePoint", "Member Communications", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["regulatoryTests"],
+    "capability": "Anomaly Detection"
+  },
+
+  "ussfcu_evelyn_log_complaints": {
+    "user_query": "Log the 7 complaints",
+    "ai_response": "Logged. The 7 interactions that used dissatisfaction language and the trigger word fee are now recorded as complaints under the CFPB definition, each categorized as fees or interest, linked to its member and file, with the transcript excerpt attached as evidence. They now appear in the complaint register and the exam evidence trail, so the trend is documented rather than sitting unlogged in the contact center.",
+    "suggested_chips": ["Generate the exam evidence package", "Apply the compliance tests", "Which interactions may be unlogged complaints?"],
+    "data_sources_used": ["Member Communications", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_generate_population": {
+    "user_query": "Generate for the whole population",
+    "ai_response": "Generating the checklist and calendar for all 94 files. 20 mortgages are waiting on a disclosure and can be batched: filter by state, approve the notifications with a single human-in-the-loop review, and the layer sends them. Across the population, 2 files carry past-due items and 14 carry file-level exceptions that need attention before the exam. I have the batch staged and ready for your one approval.",
+    "suggested_chips": ["Which files are highest risk before the exam?", "Generate the exam evidence package", "Assign the 14 files"],
+    "data_sources_used": ["MeridianLink", "SharePoint", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["disclosureCalendar"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_fairlending_memo": {
+    "user_query": "Draft the fair-lending memo",
+    "ai_response": "Drafted. The memo documents the under-30 approval disparity: the population, the 14-point gap against the over-30 rate, the product and geography where it appears, the ECOA and Regulation B basis, and the analysis showing whether the gap is explained by legitimate underwriting factors. It closes with a recommended monitoring cadence. This is the documented analysis a pattern finding needs — ready for your review before it goes to the risk committee.",
+    "suggested_chips": ["Generate the exam evidence package", "Draft the disparity analysis", "Route to the risk committee"],
+    "data_sources_used": ["MeridianLink", "Symitar Core", "Compliance / GRC System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["regulatoryTests"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_assign_files": {
+    "user_query": "Assign the 14 files",
+    "ai_response": "Assigned. The 14 file-level items — the 3 late Loan Estimates and the 11 missing-ESIGN files — are routed to Nadia's queue with the rule at issue, the recommended action, and a documented-cure or consent-capture task on each. She sees them as today's exceptions with the timelines already assembled, so her time goes to judgment rather than pulling the files.",
+    "suggested_chips": ["Generate the exam evidence package", "Hand the files to Nadia", "Route to the risk committee"],
+    "data_sources_used": ["Compliance / GRC System", "MeridianLink"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["rankedRisk"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_disparity_analysis": {
+    "user_query": "Draft the disparity analysis",
+    "ai_response": "Drafted. The analysis takes the under-30 population, compares approval and pricing against the over-30 group, controls for the legitimate underwriting factors, and isolates the residual 14-point gap that remains unexplained. It cites ECOA and Regulation B, states the exposure plainly, and recommends a documented remediation and a monitoring cadence. It reads the way an examiner expects a fair-lending self-assessment to read.",
+    "suggested_chips": ["Generate the exam evidence package", "Draft the fair-lending memo", "Route to the risk committee"],
+    "data_sources_used": ["MeridianLink", "Symitar Core", "Predictive Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["regulatoryTests"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "ussfcu_evelyn_competitor_mentions": {
+    "user_query": "Show me the competitor mentions",
+    "ai_response": "6 of the 21 withdrawals named a competitor in their last interaction. In every one, the phrase sat next to a trigger word — interest rate or closing cost — so price, not service, is the reason they named someone else. This is a lending and pricing signal as much as a compliance one: the members we lost told us why on the way out, and it was speed and price.",
+    "suggested_chips": ["Flag the speed issue to Lending", "Generate the exam evidence package", "Did we lose the 33 to another lender, and why?"],
+    "data_sources_used": ["Member Communications", "CRM"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["attrition"],
+    "capability": "Friction Observability"
+  },
+
+  "ussfcu_evelyn_flag_speed": {
+    "user_query": "Flag the speed issue to Lending",
+    "ai_response": "Flagged. I sent Lending a brief on the withdrawn group: the 12-day-longer days-to-decision, the 15 interactions citing rate or closing cost, and the 6 competitor mentions, with the recommendation to review turn time and price transparency on Colorado mortgages. It is framed as a member-experience and attrition issue with the compliance context attached, so it lands as a business signal, not just a complaint.",
+    "suggested_chips": ["Generate the exam evidence package", "Show me the competitor mentions", "Route to the risk committee"],
+    "data_sources_used": ["CRM", "Member Communications"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_route_committee": {
+    "user_query": "Route to the risk committee",
+    "ai_response": "Routed. The exam evidence package is on the risk committee agenda with the population, the tests and citations, the disclosure remediation, the fair-lending analysis, and the 7 logged complaints. Every figure carries its source trace, so the committee — and the examiner after them — can see how each number was built. From a plain-language question to an exam-ready package, in one conversation.",
+    "suggested_chips": ["Export for the examiner", "Hand the files to Nadia", "Generate the exam evidence package"],
+    "data_sources_used": ["Compliance / GRC System", "Radiant Intelligence Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["evidencePackage"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_export_examiner": {
+    "user_query": "Export for the examiner",
+    "ai_response": "Exported. The package is rendered as an examiner-ready file: the population and query, each regulatory test with its result and citation, the disclosure checklist and calendar with past-due items and cures, the fair-lending disparity analysis, and the logged complaints with their CFPB categorization — every figure traceable to its source system. This is the artifact that used to take a week of manual pulls across systems that do not talk.",
+    "suggested_chips": ["Route to the risk committee", "Hand the files to Nadia", "Generate the exam evidence package"],
+    "data_sources_used": ["Compliance / GRC System", "Radiant Intelligence Layer", "Regulatory Rules Engine"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["evidencePackage"],
+    "capability": "Automated Action"
+  },
+
+  "ussfcu_evelyn_hand_to_nadia": {
+    "user_query": "Hand the files to Nadia",
+    "ai_response": "Handed off. Nadia now has the 14 file-level items in her queue — the 3 late Loan Estimates for a documented cure and the 11 missing-ESIGN files for consent capture — each with the timeline assembled, the rule at issue, and the recommended action. She works the files; you keep the pattern-level analysis and the committee narrative. That is the division of labor the tool is built for.",
+    "suggested_chips": ["Route to the risk committee", "Export for the examiner", "Assign the 14 files"],
+    "data_sources_used": ["Compliance / GRC System", "MeridianLink"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["rankedRisk"],
+    "capability": "Automated Action"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Member Disclosure Checklist",
+  "member_label": "Representative file · Colorado mortgage · originated electronically",
+  "items": [
+    { "id": "le", "disclosure": "Loan Estimate", "regulation": "TILA · TRID", "required_by": "Within 3 business days of application", "status": "delivered" },
+    { "id": "itp", "disclosure": "Intent to Proceed", "regulation": "TRID", "required_by": "After Loan Estimate review", "status": "on_file" },
+    { "id": "cd", "disclosure": "Closing Disclosure", "regulation": "TILA · TRID", "required_by": "≥ 3 business days before closing", "status": "past_due" },
+    { "id": "esign", "disclosure": "ESIGN Consent", "regulation": "ESIGN Act", "required_by": "Before electronic delivery", "status": "past_due" },
+    { "id": "privacy", "disclosure": "Colorado Privacy Notice", "regulation": "GLBA · state law", "required_by": "At account opening", "status": "on_file" }
+  ],
+  "past_due_count": 2,
+  "footnote": "Every disclosure this member is owed, given the product, jurisdiction, and channel. 2 items are past due, flagged in red."
+}

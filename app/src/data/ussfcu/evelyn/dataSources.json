@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ds-ussfcu-01",
+    "name": "Jack Henry / Symitar (Core)",
+    "status": "connected",
+    "description": "Member profiles, geography, age, product holdings, and consumer-loan records. Resolves who is in the population.",
+    "icon": "database",
+    "lastSync": "2026-07-24T05:30:00",
+    "recordCount": 2600000
+  },
+  {
+    "id": "ds-ussfcu-02",
+    "name": "MeridianLink",
+    "status": "connected",
+    "description": "Consumer loan origination, timelines, and disclosure delivery records.",
+    "icon": "users",
+    "lastSync": "2026-07-24T05:32:00",
+    "recordCount": 412000
+  },
+  {
+    "id": "ds-ussfcu-03",
+    "name": "HUNA (Mortgage System)",
+    "status": "connected",
+    "description": "The mortgage system of record. Application-to-closing timeline, mortgage disclosures, and outcomes. The heart of the mortgage compliance query.",
+    "icon": "trending-up",
+    "lastSync": "2026-07-24T05:28:00",
+    "recordCount": 96000
+  },
+  {
+    "id": "ds-ussfcu-04",
+    "name": "SharePoint",
+    "status": "connected",
+    "description": "Complaint records and document management, including disclosures on file and ESIGN consent.",
+    "icon": "shield",
+    "lastSync": "2026-07-24T05:35:00",
+    "recordCount": 740000
+  },
+  {
+    "id": "ds-ussfcu-05",
+    "name": "Medallia (Voice of Member, social listening)",
+    "status": "connected",
+    "description": "Member surveys, sentiment, and experience feedback. A primary source of trends and of the dissatisfaction language that signals a complaint.",
+    "icon": "star",
+    "lastSync": "2026-07-24T05:20:00",
+    "recordCount": 210000
+  },
+  {
+    "id": "ds-ussfcu-06",
+    "name": "Member Communications",
+    "status": "connected",
+    "description": "Emails and interactions across the loan lifecycle. Source of interaction counts, trigger words, and dissatisfaction language.",
+    "icon": "message-circle",
+    "lastSync": "2026-07-24T05:25:00",
+    "recordCount": 1900000
+  },
+  {
+    "id": "ds-ussfcu-07",
+    "name": "Regulatory Rules Engine",
+    "status": "connected",
+    "description": "The encoded rules (TRID timelines, ECOA, ESIGN, GLBA, CFPB) that drive the tests, checklists, and calendars.",
+    "icon": "cog",
+    "lastSync": "2026-07-24T05:40:00",
+    "recordCount": null
+  }
+]

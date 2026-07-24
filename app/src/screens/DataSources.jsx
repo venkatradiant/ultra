@@ -17,6 +17,8 @@ import penfedRetDataSources from '../data/penfed/retention/dataSources.json';
 import penfedCapmDataSources from '../data/penfed/capmarkets/dataSources.json';
 import ussfcuCfoDataSources from '../data/ussfcu/cfo/dataSources.json';
 import ussfcuCeoDataSources from '../data/ussfcu/ceo/dataSources.json';
+import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
+import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
 import { useBranding } from '../context/BrandingContext';
 
 const personaDataSources = {
@@ -35,6 +37,9 @@ const personaDataSources = {
   ussfcu_cfo: ussfcuCfoDataSources,
   // USSFCU-only CEO persona (gated to clientId === 'ussfcu' in PersonaContext).
   ussfcu_ceo: ussfcuCeoDataSources,
+  // USSFCU-only Risk & Compliance personas (gated to clientId === 'ussfcu').
+  ussfcu_evelyn: ussfcuEvelynDataSources,
+  ussfcu_nadia: ussfcuNadiaDataSources,
 };
 
 const penfedPersonaDataSources = {
