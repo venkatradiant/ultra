@@ -15,8 +15,8 @@ import { getBudgetGuardrail } from '@/data/nfcu/platform-admin/governanceData';
  * budget triggers the downshift, the HARD cap is never breached. The
  * counterfactual bar is the payoff — without the downshift it would have been.
  */
-export default function BudgetGuardrailPanel() {
-  const d = useAsyncData(getBudgetGuardrail);
+export default function BudgetGuardrailPanel({ getter = getBudgetGuardrail }) {
+  const d = useAsyncData(getter);
   if (!d) return null;
 
   // Scale every bar to the counterfactual so they're comparable at a glance.

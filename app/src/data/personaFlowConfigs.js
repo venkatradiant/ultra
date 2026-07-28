@@ -24,6 +24,13 @@ import ussfcuCfoChatFlows from './ussfcu/cfo/chatFlows.json';
 import ussfcuCeoChatFlows from './ussfcu/ceo/chatFlows.json';
 import ussfcuEvelynChatFlows from './ussfcu/evelyn/chatFlows.json';
 import ussfcuNadiaChatFlows from './ussfcu/nadia/chatFlows.json';
+import newfoldDirChatFlows from './newfold-digital/director/chatFlows.json';
+import newfoldOpsChatFlows from './newfold-digital/ops/chatFlows.json';
+import newfoldGovChatFlows from './newfold-digital/governance/chatFlows.json';
+import newfoldMemberChatFlows from './newfold-digital/member/chatFlows.json';
+import newfoldAgentChatFlows from './newfold-digital/agent/chatFlows.json';
+import newfoldWfChatFlows from './newfold-digital/workforce/chatFlows.json';
+import newfoldQaChatFlows from './newfold-digital/quality/chatFlows.json';
 
 // ─── Operations & Analytics (Maya J.) ────────────────────────────
 const opsConfig = {
@@ -1257,6 +1264,300 @@ const ussfcuNadiaConfig = {
   ],
 };
 
+// ─── Newfold Digital: Director, Global Customer Care (Marisol Castellano) ──
+const newfoldDirConfig = {
+  chatFlows: newfoldDirChatFlows,
+  chipToFlowKey: {
+    // Greeting walkthrough
+    'Walk me through the service level issue': 'newfold_dir_signal_1_service',
+    'Show me the consolidation risk': 'newfold_dir_signal_2_consolidation',
+    'What is my churn exposure?': 'newfold_dir_signal_3_churn',
+    'Next signal': '__next_signal__',
+    // Service-level signal follow-ups
+    'What are my options to stabilize both brands?': 'newfold_dir_turn_2_scenarios',
+    'Show me the cascade impact': 'newfold_dir_cascade_impact',
+    'Which brand should I prioritize?': 'newfold_dir_brand_priority',
+    'How does this compare to last quarter?': 'newfold_dir_quarter_compare',
+    // Scenario follow-ups
+    'Execute Scenario C': 'newfold_dir_act_scenario_c',
+    'Show me the save-desk impact': 'newfold_dir_save_desk_impact',
+    'What about the consolidation risk?': 'newfold_dir_consolidation_detail',
+    'Model a fourth scenario': 'newfold_dir_fourth_scenario',
+    // Consolidation follow-ups
+    'What are my options to accelerate?': 'newfold_dir_accelerate',
+    'Show me the 3 failing flows': 'newfold_dir_failing_flows',
+    'What happens if we miss the license window?': 'newfold_dir_license_window',
+    'Draft an escalation to the SI partner': 'newfold_dir_act_si_escalation',
+    // Escalation follow-ups
+    'Review and send manually': 'newfold_dir_send_manual',
+    'Show me the churn exposure': 'newfold_dir_signal_3_churn',
+    'Compare this pace to industry benchmarks': 'newfold_dir_benchmarks',
+    // Weekly report follow-ups
+    'Generate my weekly leadership report': 'newfold_dir_weekly_report',
+    'Export as PDF': 'newfold_dir_report_pdf',
+    'Add a recommendation section': 'newfold_dir_report_recommendation',
+    'Show me the churn detail': 'newfold_dir_churn_detail',
+    "Compare to last month's report": 'newfold_dir_month_compare',
+    // Month-compare follow-ups
+    'What should I prioritize this week?': 'newfold_dir_prioritize_week',
+    'Drill into the churn data': 'newfold_dir_churn_detail',
+    'Show me the save-rate driver': 'newfold_dir_save_rate_driver',
+    'Export the comparison': 'newfold_dir_export_comparison',
+    // Always-visible suggested-query bar
+    'Show me service levels across all brands': 'newfold_dir_signal_1_service',
+    'Which brand needs attention right now?': 'newfold_dir_signal_1_service',
+    'What is my consolidation status?': 'newfold_dir_signal_2_consolidation',
+    'Show me cost per contact trend': 'newfold_dir_cost_trend',
+    'What is my churn and save exposure this week?': 'newfold_dir_signal_3_churn',
+    'Compare brand performance this week versus last week': 'newfold_dir_signal_1_service',
+    'What is my overtime budget exposure?': 'newfold_dir_budget_exposure',
+  },
+  signalSequence: ['newfold_dir_signal_1_service', 'newfold_dir_signal_2_consolidation', 'newfold_dir_signal_3_churn'],
+  askTurnSequence: ['newfold_dir_signal_1_service', 'newfold_dir_turn_2_scenarios', 'newfold_dir_consolidation_detail', 'newfold_dir_act_si_escalation', 'newfold_dir_weekly_report'],
+  actionTurnKey: 'newfold_dir_act_scenario_c',
+};
+
+// ─── Newfold Digital: Contact Center Operations Manager (Sofia Reyes) ──
+const newfoldOpsConfig = {
+  chatFlows: newfoldOpsChatFlows,
+  chipToFlowKey: {
+    'Yes, walk me through them': 'newfold_ops_walkthrough',
+    'What caused the renewal spike?': 'newfold_ops_spike_cause',
+    'Show me the save-desk status': 'newfold_ops_savedesk_status',
+    'Next signal': '__next_signal__',
+    // Walkthrough follow-ups
+    'What should we do?': 'newfold_ops_recommendations',
+    'Who are these customers?': 'newfold_ops_customers',
+    'How does this compare to the last renewal cycle?': 'newfold_ops_compare_cycle',
+    // Compare-cycle follow-ups
+    'Show me save-desk load right now': 'newfold_ops_savedesk_status',
+    'Can we deflect the simple ones?': 'newfold_ops_deflect',
+    // Recommendation actions
+    'Activate the cross-trained agents': 'newfold_ops_act_agents',
+    'Enable the billing explainer and callback': 'newfold_ops_act_explainer',
+    'Draft the notification rule': 'newfold_ops_act_notification',
+    // Agent-reroute follow-ups
+    'Yes, enable the explainer and callback': 'newfold_ops_act_explainer',
+    'Show me the second signal': 'newfold_ops_signal_2_outage',
+    'Monitor and report back in 30 min': 'newfold_ops_monitor',
+    // Outage follow-ups
+    'Push a known-issue macro to agents': 'newfold_ops_act_macro',
+    'Who is affected?': 'newfold_ops_affected',
+    'When is the fix expected?': 'newfold_ops_fix_eta',
+    'Show me the save-desk signal': 'newfold_ops_signal_3_savedesk',
+    // Save-desk follow-ups
+    'Draft the tailored save offers': 'newfold_ops_act_offers',
+    'Show me the highest-value at-risk accounts': 'newfold_ops_highest_value',
+    'Add save agents from another queue': 'newfold_ops_add_agents',
+    'Generate my daily ops report': 'newfold_ops_daily_report',
+    // Always-visible suggested-query bar
+    'What is my service level right now?': 'newfold_ops_service_level',
+    'Show me queue performance by channel': 'newfold_ops_queue_channel',
+    'What is driving the renewals spike?': 'newfold_ops_spike_cause',
+    "Compare today's volume to the last renewal cycle": 'newfold_ops_compare_cycle',
+    'Show me save-desk load and at-risk accounts': 'newfold_ops_savedesk_status',
+    'Forecast this afternoon\'s staffing needs': 'newfold_ops_forecast_staffing',
+    'Which agents are idle?': 'newfold_ops_idle_agents',
+  },
+  signalSequence: ['newfold_ops_walkthrough', 'newfold_ops_signal_2_outage', 'newfold_ops_signal_3_savedesk'],
+  askTurnSequence: ['newfold_ops_walkthrough', 'newfold_ops_compare_cycle', 'newfold_ops_recommendations', 'newfold_ops_act_agents', 'newfold_ops_signal_2_outage'],
+  actionTurnKey: 'newfold_ops_act_agents',
+};
+
+// ─── Newfold Digital: AI Governance Admin (Arjun Nair) ──
+const newfoldGovConfig = {
+  chatFlows: newfoldGovChatFlows,
+  chipToFlowKey: {
+    'Review the renewal spike': 'newfold_gov_field_sovereignty',
+    'Show me care AI spend': 'newfold_gov_care_spend',
+    'What did the graph catch?': 'newfold_gov_graph_catch',
+    // Field sovereignty follow-ups
+    'Why did the renewal price stay local?': 'newfold_gov_kag_provenance',
+    'Show me the routing logic': 'newfold_gov_routing_logic',
+    'Show the routing logic': 'newfold_gov_routing_logic',
+    'What did the frontier model do?': 'newfold_gov_frontier_task',
+    'Show all fields flagged sensitive': 'newfold_gov_all_sensitive',
+    // Routing / budget
+    'Show me the budget guardrail': 'newfold_gov_budget_guardrail',
+    'Which tasks used the frontier model?': 'newfold_gov_cost_usage',
+    'Which tasks used the frontier model, and why?': 'newfold_gov_cost_usage',
+    'Run the cost report': 'newfold_gov_cost_usage',
+    'Show me who is near their budget': 'newfold_gov_near_budget',
+    // Cost / cache
+    'Show me the highest-cost tasks': 'newfold_gov_highest_cost',
+    'Show me where we reused an answer instead of calling a model': 'newfold_gov_cache_reuse',
+    'Break it down by initiative': 'newfold_gov_by_initiative',
+    'Show cache hit rate this month': 'newfold_gov_cache_hit_rate',
+    // Observability / inventory
+    'Show me agent activity and frontier usage across the enterprise': 'newfold_gov_observability',
+    'Expand a flagged action': 'newfold_gov_expand_action',
+    'Compare governance across initiatives': 'newfold_gov_compare_initiatives',
+    'Show the enterprise agent inventory': 'newfold_gov_agent_inventory',
+    'Group these by foundry': 'newfold_gov_by_foundry',
+    'Show anything not yet under governance': 'newfold_gov_ungoverned',
+    'Onboard an agent to governance': 'newfold_gov_onboard_agent',
+    'Show me the governance summary': 'newfold_gov_summary',
+    // Always-visible query bar
+    'Show me where every field in this response went': 'newfold_gov_field_sovereignty',
+    'Did any PII or PCI reach the frontier model?': 'newfold_gov_field_sovereignty',
+    'Why was this field classified sensitive?': 'newfold_gov_kag_provenance',
+    'Show me the routing logic as a diagram': 'newfold_gov_routing_logic',
+    'Run the LLM cost report for this session': 'newfold_gov_cost_usage',
+    'How much did routing save versus all-frontier?': 'newfold_gov_cost_usage',
+    'What happens when someone hits their budget cap?': 'newfold_gov_budget_guardrail',
+    'Show me every AI agent and foundry in the enterprise': 'newfold_gov_agent_inventory',
+  },
+  signalSequence: ['newfold_gov_field_sovereignty', 'newfold_gov_care_spend', 'newfold_gov_graph_catch'],
+  askTurnSequence: [
+    'newfold_gov_field_sovereignty', 'newfold_gov_kag_provenance', 'newfold_gov_routing_logic',
+    'newfold_gov_budget_guardrail', 'newfold_gov_cost_usage', 'newfold_gov_cache_reuse',
+    'newfold_gov_observability', 'newfold_gov_agent_inventory',
+  ],
+};
+
+// ─── Newfold Digital: Small Business Customer, Self-Service (Grace Bello) ──
+const newfoldMemberConfig = {
+  chatFlows: newfoldMemberChatFlows,
+  chipToFlowKey: {
+    'What is my account status?': 'newfold_member_status',
+    'Tell me why my site is down': 'newfold_member_why_down',
+    'Now tell me why my site is down': 'newfold_member_why_down',
+    'What do I owe?': 'newfold_member_owe',
+    'Show me what I owe': 'newfold_member_owe',
+    "Why didn't I know the card expired?": 'newfold_member_dunning',
+    'Can you fix it now?': 'newfold_member_fix_now',
+    'Will my store data still be there?': 'newfold_member_store_data',
+    'What happens to my store data?': 'newfold_member_store_data',
+    'Fix the payment and my billing email': 'newfold_member_fix',
+    'Restore my site now': 'newfold_member_reactivation',
+    'Will I be charged a reactivation fee?': 'newfold_member_reactivation',
+    'Do the fix and restore my site': 'newfold_member_fix',
+    'Apply the loyalty credit': 'newfold_member_loyalty',
+    'Remind me tomorrow instead': 'newfold_member_remind',
+    'Great, confirm when my site is back': 'newfold_member_confirm_back',
+    'Set up a backup for my store': 'newfold_member_backup',
+    'Anything else I should know?': 'newfold_member_wrap',
+    "Thanks, that's all": 'newfold_member_thanks',
+    'Show my full account activity': 'newfold_member_activity',
+    'Turn on alerts for failed payments': 'newfold_member_alerts',
+    'When does my domain renew?': 'newfold_member_domain_renew',
+    // Always-visible suggested-query bar
+    'Why is my site down?': 'newfold_member_why_down',
+    'What do I owe to restore my account?': 'newfold_member_owe',
+    'Is my store data still there?': 'newfold_member_store_data',
+    'Fix my payment method': 'newfold_member_fix_now',
+  },
+  signalSequence: ['newfold_member_why_down', 'newfold_member_owe', 'newfold_member_reactivation'],
+  askTurnSequence: ['newfold_member_why_down', 'newfold_member_dunning', 'newfold_member_reactivation', 'newfold_member_fix', 'newfold_member_wrap'],
+  actionTurnKey: 'newfold_member_fix',
+};
+
+// ─── Newfold Digital: Support Agent, Agent-Assist (Jordan Ellis) ──
+const newfoldAgentConfig = {
+  chatFlows: newfoldAgentChatFlows,
+  chipToFlowKey: {
+    'Give me the full breakdown': 'newfold_agent_breakdown',
+    'What do I tell her first?': 'newfold_agent_tell_first',
+    'Show her account summary': 'newfold_agent_account_summary',
+    'How do I explain this simply?': 'newfold_agent_script',
+    'Is there a reactivation fee risk?': 'newfold_agent_fee_risk',
+    'Walk me through the fix': 'newfold_agent_walk_fix',
+    "Good, I'll say that": 'newfold_agent_say_that',
+    'Now walk me through the fix': 'newfold_agent_walk_fix',
+    'Verify her identity first': 'newfold_agent_verify',
+    'Identity confirmed': 'newfold_agent_forecast',
+    'Why is this required here?': 'newfold_agent_why_required',
+    'Continue to the fix': 'newfold_agent_continue_fix',
+    'Do the full fix now': 'newfold_agent_fix',
+    'Apply the loyalty credit': 'newfold_agent_loyalty',
+    'Show me the churn risk detail': 'newfold_agent_churn_risk',
+    'Confirm to the customer': 'newfold_agent_confirm_customer',
+    'Add a note to her record': 'newfold_agent_add_note',
+    'Wrap up the contact': 'newfold_agent_wrap',
+    'Save and close': 'newfold_agent_save_close',
+    'Edit the note': 'newfold_agent_edit_note',
+    'Next contact': 'newfold_agent_next',
+    // Always-visible suggested-query bar
+    "Why is this customer's site down?": 'newfold_agent_breakdown',
+    'Correlate the issue across her accounts': 'newfold_agent_breakdown',
+    'How do I explain this in plain language?': 'newfold_agent_script',
+    'What is the compliant resolution?': 'newfold_agent_walk_fix',
+    'Prompt the identity and payment verification step': 'newfold_agent_verify',
+    'Restore the account after the fix': 'newfold_agent_fix',
+    'Log AI versus human actions for this contact': 'newfold_agent_fix',
+    'Draft my after-contact summary': 'newfold_agent_wrap',
+  },
+  signalSequence: ['newfold_agent_breakdown', 'newfold_agent_tell_first', 'newfold_agent_verify'],
+  askTurnSequence: ['newfold_agent_breakdown', 'newfold_agent_script', 'newfold_agent_verify', 'newfold_agent_forecast', 'newfold_agent_fix'],
+  actionTurnKey: 'newfold_agent_fix',
+};
+
+// ─── Newfold Digital: Workforce Planning Analyst (Tomas Herrera) ──
+const newfoldWfConfig = {
+  chatFlows: newfoldWfChatFlows,
+  chipToFlowKey: {
+    'Walk me through the surge risk': 'newfold_wf_surge',
+    'Show me the training cohort data': 'newfold_wf_cohort',
+    'What is my overtime trajectory?': 'newfold_wf_ot_trajectory',
+    'What are my options to close the gap?': 'newfold_wf_options',
+    'Run a what-if with 16 overtime shifts': 'newfold_wf_whatif',
+    'Which queues are most impacted?': 'newfold_wf_queues_impacted',
+    'How did we handle it last year?': 'newfold_wf_last_year',
+    'Go with the hybrid option': 'newfold_wf_hybrid',
+    'Show me BPO overflow readiness': 'newfold_wf_bpo',
+    'What about the new-hire cohort?': 'newfold_wf_cohort',
+    'Model a fourth scenario': 'newfold_wf_fourth_scenario',
+    'Which agents are furthest behind?': 'newfold_wf_furthest_behind',
+    'Schedule targeted coaching': 'newfold_wf_coaching',
+    'Can any of them handle Q4 volume?': 'newfold_wf_can_handle',
+    'Show me the overtime budget impact': 'newfold_wf_ot_budget_impact',
+    'Generate the weekly workforce report': 'newfold_wf_report',
+    // Always-visible suggested-query bar
+    "Forecast next week's volume by 30-minute interval": 'newfold_wf_forecast_interval',
+    'Show me force-to-load ratio by queue and brand': 'newfold_wf_ftl',
+    'Compare actual versus forecast accuracy this month': 'newfold_wf_forecast_accuracy',
+    'Which shifts are understaffed for the Q4 peak?': 'newfold_wf_understaffed',
+    'What is my agent attrition trend?': 'newfold_wf_attrition',
+    'Model staffing for a 38% volume increase': 'newfold_wf_model_38',
+  },
+  signalSequence: ['newfold_wf_surge', 'newfold_wf_cohort', 'newfold_wf_ot_trajectory'],
+  askTurnSequence: ['newfold_wf_surge', 'newfold_wf_whatif', 'newfold_wf_cohort'],
+};
+
+// ─── Newfold Digital: Quality & Customer Experience Analyst (Aisha Karim) ──
+const newfoldQaConfig = {
+  chatFlows: newfoldQaChatFlows,
+  chipToFlowKey: {
+    'Walk me through the compliance issue': 'newfold_qa_compliance',
+    'Show me the repeat-contact data': 'newfold_qa_repeat',
+    'Which agents are at risk?': 'newfold_qa_at_risk',
+    'Which contacts need remediation?': 'newfold_qa_remediation',
+    'Recommend a fix': 'newfold_qa_fix',
+    'Show me the agent breakdown': 'newfold_qa_agent_breakdown',
+    'How does this affect our compliance posture?': 'newfold_qa_posture',
+    'Approve the macro revert': 'newfold_qa_macro_revert',
+    'Show me the 21 needing callbacks': 'newfold_qa_callbacks',
+    'Generate a compliance incident report': 'newfold_qa_incident_report',
+    'Next signal, the repeat contacts': 'newfold_qa_repeat',
+    'What should we tell agents?': 'newfold_qa_tell_agents',
+    'Show me the review impact': 'newfold_qa_review_impact',
+    'When is the IT fix expected?': 'newfold_qa_it_fix',
+    'How much is this costing us?': 'newfold_qa_cost',
+    // Always-visible suggested-query bar
+    'Show me quality scores by team this week': 'newfold_qa_scores_team',
+    'Which agents need coaching?': 'newfold_qa_coaching',
+    'What are the top 5 contact drivers today?': 'newfold_qa_top_drivers',
+    'Show me sentiment trends by brand': 'newfold_qa_sentiment_brand',
+    'Compare first contact resolution this month versus last month': 'newfold_qa_fcr_compare',
+    'Generate a quality scorecard for my leadership meeting': 'newfold_qa_scorecard',
+    'Which process steps have the lowest adherence?': 'newfold_qa_lowest_adherence',
+    'Show me refund and billing complaints by category': 'newfold_qa_complaints_category',
+  },
+  signalSequence: ['newfold_qa_compliance', 'newfold_qa_repeat', 'newfold_qa_at_risk'],
+  askTurnSequence: ['newfold_qa_compliance', 'newfold_qa_fix', 'newfold_qa_repeat'],
+  actionTurnKey: 'newfold_qa_fix',
+};
+
 // ─── Export registry ─────────────────────────────────────────────
 const personaFlowConfigs = {
   ops: opsConfig,
@@ -1274,6 +1575,13 @@ const personaFlowConfigs = {
   ussfcu_ceo: ussfcuCeoConfig,
   ussfcu_evelyn: ussfcuEvelynConfig,
   ussfcu_nadia: ussfcuNadiaConfig,
+  newfold_director: newfoldDirConfig,
+  newfold_ops: newfoldOpsConfig,
+  newfold_governance: newfoldGovConfig,
+  newfold_member: newfoldMemberConfig,
+  newfold_agent: newfoldAgentConfig,
+  newfold_workforce: newfoldWfConfig,
+  newfold_quality: newfoldQaConfig,
 };
 
 // PenFed gets its own chatFlows for the generic personas (ops/cx/retention),

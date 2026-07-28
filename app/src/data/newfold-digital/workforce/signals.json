@@ -1,0 +1,41 @@
+[
+  {
+    "id": "SIG-NEWFOLD-WF-001",
+    "type": "surge_predicted",
+    "title": "Q4 Renewal and Holiday Surge Predicted",
+    "description": "A 3-year pattern predicts a 38% contact-volume increase starting December 1, concentrated in Billing and Renewals and in Bluehost store support ahead of holiday selling. The current staffing plan covers 26% of the projected increase. 5 days until impact.",
+    "impact": "high",
+    "severity": "critical",
+    "sources": ["Historical Analytics + Snowflake", "Workforce Management", "Marketing Cloud"],
+    "timestamp": "2026-07-28T07:40:00Z",
+    "trend": "worsening",
+    "metrics": { "volume_increase": "38%", "plan_coverage": "26%", "days_to_impact": 5 },
+    "confidence": { "score": 90, "rationale": "3-year seasonal pattern with tight variance; the coverage gap is a direct schedule-vs-forecast comparison.", "signals_used": ["Historical Analytics", "Snowflake", "Workforce Management"], "threshold": 70, "model_version": "wfm-forecast-v2.1", "validated_at": "2026-07-28T07:40:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  {
+    "id": "SIG-NEWFOLD-WF-002",
+    "type": "cohort_behind",
+    "title": "New-Hire Ramp Falling Behind",
+    "description": "The November cohort (14 agents) is averaging 15:10 handle time versus a 9:30 target at the 6-week mark. Past cohorts hit target by week 5. Knowledge-base adherence is 60% versus an 85% benchmark, concentrated in hosting and domain troubleshooting.",
+    "impact": "medium",
+    "severity": "warning",
+    "sources": ["Quality Management", "Training System", "Knowledge Base"],
+    "timestamp": "2026-07-28T07:25:00Z",
+    "trend": "worsening",
+    "metrics": { "cohort_size": 14, "handle_time": "15:10", "target": "9:30", "kb_adherence": "60%" },
+    "confidence": { "score": 88, "rationale": "Handle time and adherence are direct telemetry; the ramp comparison is anchored to prior cohorts.", "signals_used": ["Quality Management", "Training System"], "threshold": 70, "model_version": "wfm-forecast-v2.1", "validated_at": "2026-07-28T07:25:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  {
+    "id": "SIG-NEWFOLD-WF-003",
+    "type": "overtime_budget",
+    "title": "Overtime Budget Approaching Limit",
+    "description": "Q4 overtime spend is at 76% of budget with 8 weeks left. Current trajectory projects 135% of budget by quarter end. Top driver: unplanned renewal-batch spikes with no advance notice.",
+    "impact": "medium",
+    "severity": "warning",
+    "sources": ["HR System + Workforce Management", "Budget Tracking"],
+    "timestamp": "2026-07-28T07:10:00Z",
+    "trend": "worsening",
+    "metrics": { "budget_consumed": "76%", "weeks_left": 8, "projected_end": "135%" },
+    "confidence": { "score": 87, "rationale": "Spend-to-date is authoritative; the projection is a run-rate that has landed within ±5% historically.", "signals_used": ["HR System", "Workforce Management"], "threshold": 70, "model_version": "wfm-forecast-v2.1", "validated_at": "2026-07-28T07:10:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  }
+]

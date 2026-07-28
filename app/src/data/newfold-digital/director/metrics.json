@@ -1,0 +1,68 @@
+{
+  "brandRollup": [
+    { "brand": "Network Solutions", "serviceLevel": "52%", "agents": 62, "status": "critical", "note": "Renewal price-increase spike" },
+    { "brand": "Bluehost", "serviceLevel": "71%", "agents": 148, "status": "critical", "note": "Cross-trained agents pulled to cover renewals" },
+    { "brand": "Web.com", "serviceLevel": "84%", "agents": 44, "status": "healthy", "note": "Holding" },
+    { "brand": "HostGator", "serviceLevel": "88%", "agents": 51, "status": "healthy", "note": "Holding" },
+    { "brand": "Crazy Domains", "serviceLevel": "90%", "agents": 33, "status": "healthy", "note": "Holding" }
+  ],
+  "serviceLevelByBrand": [
+    { "brand": "Network Solutions", "thisWeek": 52, "lastWeek": 81 },
+    { "brand": "Bluehost", "thisWeek": 71, "lastWeek": 86 },
+    { "brand": "Web.com", "thisWeek": 84, "lastWeek": 85 },
+    { "brand": "HostGator", "thisWeek": 88, "lastWeek": 87 },
+    { "brand": "Crazy Domains", "thisWeek": 90, "lastWeek": 89 }
+  ],
+  "scenarios": [
+    { "label": "Scenario A", "notes": "Pull 4 agents to Bluehost + chat deflection", "netsol_sl": "69%", "bluehost_sl": "82%", "aggregate_sl": "74%", "cost": "$0", "budget_impact": "70%", "highlight": false },
+    { "label": "Scenario B", "notes": "8 overtime agents across both queues", "netsol_sl": "79%", "bluehost_sl": "80%", "aggregate_sl": "79%", "cost": "$5,600", "budget_impact": "76%", "highlight": false },
+    { "label": "Scenario C", "notes": "Self-service billing explainer + protect save desk", "netsol_sl": "80%", "bluehost_sl": "79%", "aggregate_sl": "80%", "cost": "$1,100", "budget_impact": "71%", "highlight": true }
+  ],
+  "migrationPhases": [
+    { "phase": "Discovery & mapping", "progress": 100, "status": "complete", "window": "Complete" },
+    { "phase": "Macro & routing config", "progress": 100, "status": "complete", "window": "Complete" },
+    { "phase": "Parity testing (cutover)", "progress": 61, "status": "behind", "window": "11 days behind · 3 of 12 flows failing" },
+    { "phase": "Agent migration", "progress": 0, "status": "at_risk", "window": "Compresses 12→8 wks if license window missed" },
+    { "phase": "Legacy decommission", "progress": 0, "status": "pending", "window": "Gated on license window" }
+  ],
+  "licenseWindow": "Legacy license expires in 24 days",
+  "flowParity": [
+    { "flow": "Refund handling", "legacy": "Auto-approves refunds under $50 in-macro", "unified": "Routes all refunds to a review step", "status": "failing" },
+    { "flow": "Auto-renewal disclosure", "legacy": "Disclosure at step 3 of cancellation flow", "unified": "Disclosure at step 7 — drift the quality team is tracking", "status": "failing" },
+    { "flow": "Spanish-language routing", "legacy": "Skill-based route to bilingual queue", "unified": "No parity mapping yet", "status": "failing" }
+  ],
+  "weeklyReport": [
+    { "section": "Aggregate performance", "value": "66%", "trend": "down", "detail": "Two simultaneous brand degradations; recovery to 79% projected by EOD." },
+    { "section": "Consolidation", "value": "61%", "trend": "down", "detail": "Network Solutions cutover 11 days behind; 3 flows failing parity; escalation sent." },
+    { "section": "Cost & churn", "value": "$9.40 CPC", "trend": "down", "detail": "Cancellations +180% in renewal cohort; save rate 41%; $1.9M ARR at risk." },
+    { "section": "CSAT", "value": "3.7 / 5.0", "trend": "flat", "detail": "Softened in Network Solutions billing." },
+    { "section": "Attrition", "value": "22%", "trend": "down", "detail": "Exit interviews cite schedule inflexibility." }
+  ],
+  "cascade": [
+    { "node": "Marketing price-increase + auto-renewal batch", "detail": "240,000 Network Solutions customers · 7:15 AM · no care notice", "tone": "trigger" },
+    { "node": "Network Solutions renewals spike to 52%", "detail": "Call & chat volume 3.1x normal within 2 hours", "tone": "critical" },
+    { "node": "Sofia reroutes 9 cross-trained agents", "detail": "Pulled from Bluehost hosting support to cover renewals", "tone": "action" },
+    { "node": "Bluehost hosting support drops to 71%", "detail": "Understaffed and declining — a second brand critical from a staffing decision", "tone": "critical" }
+  ],
+  "escalationMemo": {
+    "to": "SI Partner — Delivery Lead",
+    "subject": "ESCALATION: Network Solutions cutover parity failures — 48-hour remediation required",
+    "highlights": [
+      { "label": "Delay", "value": "11 days behind schedule" },
+      { "label": "Failing flows", "value": "3 of 12 (refund handling, auto-renewal disclosure, Spanish routing)" },
+      { "label": "Volume at risk", "value": "34% of Network Solutions contacts" },
+      { "label": "Hard deadline", "value": "Legacy license window — 24 days" },
+      { "label": "Downstream risk", "value": "Agent migration compresses 12→8 weeks" },
+      { "label": "Requested", "value": "Dated remediation plan within 48 hours" }
+    ],
+    "body": "Per the attached flow-parity side-by-side, three flows have not passed parity testing 9 days after your team flagged them, with no remediation date. This puts the legacy license window and the downstream agent-migration phase at risk. We require a dated remediation plan within 48 hours."
+  },
+  "monthCompare": [
+    { "metric": "Service Level", "last": "77%", "current": "66%", "delta": "-11 pts", "positive": false, "spark": [77, 78, 77, 76, 77, 66] },
+    { "metric": "Cost per Contact", "last": "$8.90", "current": "$9.40", "delta": "+$0.50", "positive": false, "spark": [8.6, 8.75, 8.8, 8.9, 8.9, 9.4] },
+    { "metric": "Gross Churn", "last": "2.4%", "current": "2.9%", "delta": "+0.5 pts", "positive": false, "spark": [2.3, 2.4, 2.4, 2.5, 2.4, 2.9] },
+    { "metric": "Save Rate", "last": "46%", "current": "41%", "delta": "-5 pts", "positive": false, "spark": [47, 46, 46, 45, 46, 41] },
+    { "metric": "Consolidation", "last": "48%", "current": "61%", "delta": "+13 pts", "positive": true, "spark": [30, 36, 42, 48, 55, 61] },
+    { "metric": "First Contact Resolution", "last": "67%", "current": "69%", "delta": "+2 pts", "positive": true, "spark": [65, 66, 66, 67, 67, 69] }
+  ]
+}

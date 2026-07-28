@@ -32,8 +32,18 @@ export default function ProactiveIntelligenceDiagram() {
 
   // Client-specific config
   const isCfo = persona.id === 'ussfcu_cfo';
+  const isNewfold = persona.id.startsWith('newfold_');
 
-  const clientConfig = isCfo ? {
+  const clientConfig = isNewfold ? {
+    sourcesLabel: 'NEWFOLD DATA SOURCES',
+    primarySources: ['Service Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
+    secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Your contact center platform reasons within its own data. This capability reads across Service Cloud, Billing, Domains, Hosting, Marketing, and IT — and every brand — surfacing the care signals that matter before you ask.',
+    gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
+    withText: 'Cross-brand, cross-system intelligence — queue spikes, renewal-driven billing surges, outage-correlated volume, and churn risk correlated and ranked before the day starts.',
+  } : isCfo ? {
     sourcesLabel: 'USSFCU DATA SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],
     secondarySources: ['Snowflake', 'Tableau', 'Audit / GRC'],
@@ -103,11 +113,15 @@ export default function ProactiveIntelligenceDiagram() {
               <span style={{ fontSize: fs.labelSm, color: '#666666', fontWeight: 400 }}>Scoring, correlation, and prioritization</span>
             </div>
             <div className="flex flex-1 min-h-0" style={{ gap: 'min(0.6vw, 8px)' }}>
-              {[
+              {(isNewfold ? [
+                { name: 'Signal Correlation', desc: 'Cross-brand, cross-system pattern detection across Service Cloud, Billing, Domains, Hosting, Marketing, and IT' },
+                { name: 'Anomaly Scoring', desc: 'Time-series analysis on queue metrics, billing and dunning, sentiment, and compliance' },
+                { name: 'Priority Ranking', desc: 'Business-impact weighting for care operations, including revenue-at-risk and churn' },
+              ] : [
                 { name: 'Signal Correlation', desc: 'Cross-platform pattern detection and linking' },
                 { name: 'Anomaly Scoring', desc: 'Time-series analysis, threshold-based flagging' },
                 { name: 'Priority Ranking', desc: 'Business impact weighting, urgency sequencing' },
-              ].map((item) => (
+              ]).map((item) => (
                 <div
                   key={item.name}
                   className="flex-1 flex flex-col justify-center"
@@ -127,7 +141,9 @@ export default function ProactiveIntelligenceDiagram() {
           >
             <p className="flex-shrink-0" style={{ fontSize: fs.label, color: '#00897B', fontWeight: 700, letterSpacing: '1.5px', margin: '0 0 min(1.2vh, 10px) 0' }}>RESPONSIBLE AI</p>
             <div className="flex-1 flex flex-col justify-around">
-              {['Data Observability', 'Compliance and Regulation', 'Role-Based Access Control', 'Bias Removal'].map((item) => (
+              {(isNewfold
+                ? ['Data Observability', 'Compliance & Regulation (PCI-DSS, auto-renewal & negative-option, GDPR/WHOIS)', 'Role-Based Access Control', 'Bias Removal']
+                : ['Data Observability', 'Compliance and Regulation', 'Role-Based Access Control', 'Bias Removal']).map((item) => (
                 <p key={item} style={{ fontSize: fs.cardDesc, color: '#333333', fontWeight: 600, margin: 0, lineHeight: 1.35 }}>{item}</p>
               ))}
             </div>

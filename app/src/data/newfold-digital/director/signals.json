@@ -1,0 +1,131 @@
+[
+  {
+    "id": "SIG-NEWFOLD-DIR-001",
+    "type": "service_level_degradation",
+    "title": "Cross-Brand Service Degradation \u2014 2 Brands Critical Simultaneously",
+    "description": "Aggregate service level across all brands dropped to 66% (target: 80%). Network Solutions renewals and Bluehost hosting support are both critical at once \u2014 the first dual-brand degradation in 90 days. Root cause: a renewal price-increase batch drove a billing-call spike, and cross-trained agents pulled to cover it left Bluehost hosting support understaffed and cascading.",
+    "impact": "high",
+    "severity": "critical",
+    "sources": [
+      "Service Cloud (roll-up across 5 managers)",
+      "Billing and Subscriptions",
+      "Marketing Cloud"
+    ],
+    "timestamp": "2026-07-28T07:45:00Z",
+    "trend": "worsening",
+    "related_segment": "BRAND-ROLLUP-001",
+    "metrics": {
+      "aggregate_sl": "66%",
+      "target_sl": "80%",
+      "brands_critical": 2,
+      "days_since_last_dual_critical": 90
+    },
+    "confidence": {
+      "score": 91,
+      "rationale": "Per-brand SL is direct telemetry; cascade attribution is causal \u2014 Sofia's cross-brand reroute and the Bluehost drop align within 8 minutes.",
+      "signals_used": [
+        "Service Cloud (brand roll-up)",
+        "Workforce Management"
+      ],
+      "threshold": 70,
+      "model_version": "care-rollup-v1.4",
+      "validated_at": "2026-07-28T07:45:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "brands": [
+      "network_solutions",
+      "bluehost"
+    ]
+  },
+  {
+    "id": "SIG-NEWFOLD-DIR-002",
+    "type": "consolidation_risk",
+    "title": "Consolidation Cutover Risk, Network Solutions \u2014 11 Days Behind",
+    "description": "The Network Solutions support-tooling cutover onto the unified platform is 11 days behind schedule. 3 of 12 macro and routing flows have not passed parity testing \u2014 including refund handling and auto-renewal disclosure. If the cutover slips past the legacy license window, it compresses the agent-migration phase and raises risk.",
+    "impact": "high",
+    "severity": "critical",
+    "sources": [
+      "Migration PMO",
+      "Service Cloud",
+      "SI Partner status reports"
+    ],
+    "timestamp": "2026-07-28T07:30:00Z",
+    "trend": "worsening",
+    "related_segment": "CONSOLIDATION-NETSOL",
+    "metrics": {
+      "progress": "61%",
+      "days_behind": 11,
+      "flows_failing_parity": 3,
+      "flows_total": 12,
+      "volume_at_risk_pct": "34%"
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Schedule slip and 34% volume share are deterministic; downstream agent-migration compression risk is anchored to prior consolidation cutovers.",
+      "signals_used": [
+        "Migration PMO",
+        "SI Partner Status Reports"
+      ],
+      "threshold": 70,
+      "model_version": "care-rollup-v1.4",
+      "validated_at": "2026-07-28T07:30:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "brands": [
+      "network_solutions"
+    ]
+  },
+  {
+    "id": "SIG-NEWFOLD-DIR-003",
+    "type": "churn_exposure",
+    "title": "Q4 Save-Desk and Churn Exposure \u2014 Cancellations Up 180% WoW",
+    "description": "Cancellation requests are up 180% week over week, concentrated in the renewal cohort just billed. Save-desk capacity is exceeded, and abandoned save conversations are rising. Estimated revenue at risk this week: $1.9M in annual recurring revenue if save rate holds at the current 41%.",
+    "impact": "high",
+    "severity": "warning",
+    "sources": [
+      "Service Cloud",
+      "Billing and Subscriptions",
+      "Customer 360"
+    ],
+    "timestamp": "2026-07-28T07:00:00Z",
+    "trend": "worsening",
+    "related_segment": "CHURN-Q4",
+    "metrics": {
+      "cancellations_wow_pct": "+180%",
+      "save_rate": "41%",
+      "arr_at_risk": "$1.9M",
+      "save_desk_capacity_pct": "118%"
+    },
+    "confidence": {
+      "score": 86,
+      "rationale": "Cancellation volume and save rate are authoritative; ARR-at-risk is a run-rate against the current save rate that has landed within \u00b16% on prior cycles.",
+      "signals_used": [
+        "Service Cloud",
+        "Billing and Subscriptions",
+        "Customer 360"
+      ],
+      "threshold": 70,
+      "model_version": "care-rollup-v1.4",
+      "validated_at": "2026-07-28T07:00:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "brands": [
+      "network_solutions"
+    ]
+  }
+]

@@ -40,8 +40,9 @@ const LEGEND = [
   { label: 'Lineage', color: COLORS.column },
 ];
 
-export default function KagNodeView() {
-  const data = useAsyncData(getKagSubgraph);
+export default function KagNodeView({ getter = getKagSubgraph, internalLabel = 'Member-specific' }) {
+  const data = useAsyncData(getter);
+  const legend = LEGEND.map((l) => (l.label === 'Member-specific' ? { ...l, label: internalLabel } : l));
   const [expanded, setExpanded] = useState(() => new Set());
   const [selectedId, setSelectedId] = useState(null);
 
@@ -130,7 +131,7 @@ export default function KagNodeView() {
             </div>
           </div>
           <div className="hidden sm:flex flex-wrap gap-2 justify-end">
-            {LEGEND.map((l) => (
+            {legend.map((l) => (
               <span key={l.label} className="inline-flex items-center gap-1 text-[9.5px] text-text-muted">
                 <span className="w-2 h-2 rounded-full" style={{ background: l.color }} />
                 {l.label}

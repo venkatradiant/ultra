@@ -7,12 +7,13 @@ import DemoOverlay from '../../demo/DemoOverlay';
 import { usePersona, usePersonaList } from '../../context/PersonaContext';
 import { useAuth } from '../../context/AuthContext';
 import { useBranding } from '../../context/BrandingContext';
+import BrandSelector from '../newfold/BrandSelector';
 
 export default function TopHeader({ onMenuClick }) {
   const persona = usePersona();
   const personaList = usePersonaList();
   const { logout } = useAuth();
-  const { client } = useBranding();
+  const { client, clientId } = useBranding();
   const location = useLocation();
   const navigate = useNavigate();
   // Persona-specific nav relabels (USSFCU CFO reframes journey/risk as the
@@ -31,6 +32,13 @@ export default function TopHeader({ onMenuClick }) {
     // now, so Governance no longer claims it. Keep in sync with the persona
     // manifest's navLabels; this map duplicates them.
     nfcu_platform_admin: {
+      governance: 'Governance',
+      agentObservability: 'Agent Observability',
+      agentInventory: 'Agent Inventory',
+    },
+    // Newfold Digital AI Governance Admin (Arjun Nair) — same governance module
+    // set. Keep in sync with the persona manifest's navLabels.
+    newfold_governance: {
       governance: 'Governance',
       agentObservability: 'Agent Observability',
       agentInventory: 'Agent Inventory',
@@ -102,6 +110,9 @@ export default function TopHeader({ onMenuClick }) {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+          {/* Brand-context selector — Newfold Digital only (portfolio of 80+ brands) */}
+          {clientId === 'newfold_digital' && <BrandSelector />}
+
           {/* Run Guided Demo button — hidden via flag; functionality preserved for later re-enable */}
           {RUN_GUIDED_DEMO === 'yes' && !demoRunning && (
             <button

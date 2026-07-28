@@ -2,6 +2,14 @@ import { motion } from 'framer-motion';
 import { Boxes } from 'lucide-react';
 import { usePersona } from '../context/PersonaContext';
 import EnterpriseAgentInventory from '../components/nfcu/platform-admin/EnterpriseAgentInventory';
+import { getAgentRegistry as newfoldAgentRegistry } from '../data/newfold-digital/governance/agentRegistryData';
+
+// Governance personas allowed on this page, mapped to the registry getter that
+// feeds it. NFCU uses the component default; Newfold passes its own registry.
+const INVENTORY_GETTER = {
+  nfcu_platform_admin: undefined,
+  newfold_governance: newfoldAgentRegistry,
+};
 
 /**
  * Agent Inventory — the standing view of the governance registry. Spec v2 lists
@@ -16,13 +24,14 @@ import EnterpriseAgentInventory from '../components/nfcu/platform-admin/Enterpri
 export default function AgentInventory() {
   const persona = usePersona();
 
-  if (persona.id !== 'nfcu_platform_admin') {
+  if (!(persona.id in INVENTORY_GETTER)) {
     return (
       <div className="flex items-center justify-center h-full text-text-muted text-sm">
-        Agent Inventory is available for the NFCU AI Governance Admin only.
+        Agent Inventory is available for the AI Governance Admin only.
       </div>
     );
   }
+  const inventoryGetter = INVENTORY_GETTER[persona.id];
 
   return (
     <div className="flex-1 overflow-y-auto bg-gray-50/50">
@@ -42,7 +51,7 @@ export default function AgentInventory() {
           </p>
         </motion.div>
 
-        <EnterpriseAgentInventory />
+        <EnterpriseAgentInventory getter={inventoryGetter} />
       </div>
     </div>
   );

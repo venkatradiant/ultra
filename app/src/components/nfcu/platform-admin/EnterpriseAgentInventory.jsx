@@ -97,8 +97,8 @@ function Head() {
   );
 }
 
-export default function EnterpriseAgentInventory() {
-  const data = useAsyncData(getAgentRegistry);
+export default function EnterpriseAgentInventory({ getter = getAgentRegistry }) {
+  const data = useAsyncData(getter);
   const [view, setView] = useState('all');
 
   // Both pivots derive from the same rows — no second source to drift.

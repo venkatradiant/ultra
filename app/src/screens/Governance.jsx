@@ -11,6 +11,13 @@ import BiasCheckCard from '../components/nfcu/governance/BiasCheckCard';
 import AuditTrailFeed from '../components/nfcu/governance/AuditTrailFeed';
 import EscalationPolicyBar from '../components/nfcu/governance/EscalationPolicyBar';
 import PlatformAdminGovernance from '../components/nfcu/platform-admin/PlatformAdminGovernance';
+import {
+  GOVERNANCE_KPIS as NEWFOLD_GOVERNANCE_KPIS,
+  getFieldLedger as newfoldFieldLedger,
+  getKagSubgraph as newfoldKag,
+  getCostReport as newfoldCost,
+  getGovernance as newfoldGovernance,
+} from '../data/newfold-digital/governance/governanceData';
 
 import supervisorGov from '../data/nfcu/supervisor/governance.json';
 import analystGov from '../data/nfcu/analyst/governance.json';
@@ -36,6 +43,21 @@ export default function Governance() {
   // provenance, tokenomics, observability) — distinct from the model-accuracy view.
   if (persona.id === 'nfcu_platform_admin') {
     return <PlatformAdminGovernance />;
+  }
+
+  // Newfold governance persona (Arjun Nair) — same surface, Newfold data via props.
+  if (persona.id === 'newfold_governance') {
+    return (
+      <PlatformAdminGovernance
+        kpis={NEWFOLD_GOVERNANCE_KPIS}
+        subtitle="Three gates — safe to send, worth sending, within budget. Customer data resolves in-environment; the frontier model is used only where a task earns it, and every use is measured across every foundry."
+        ledgerProps={{ getter: newfoldFieldLedger, subtitle: "Sofia's renewal spike response · every field resolved in-environment" }}
+        routingProps={{ downloadName: 'newfold-routing-logic.svg' }}
+        kagProps={{ getter: newfoldKag, internalLabel: 'Customer-specific' }}
+        costProps={{ getter: newfoldCost, heading: "LLM Cost and Usage — Sofia's session" }}
+        obsProps={{ getter: newfoldGovernance }}
+      />
+    );
   }
 
   if (!data) {

@@ -23,6 +23,19 @@ const CLIENT_PERSONAS = {
   ussfcu: ['ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_cfo', 'ussfcu_ceo', 'ops', 'cx', 'retention', 'risk'],
   // Healthcare market — Riverside Health System (care-ops persona).
   riverside_health: ['care_ops'],
+  // Commercial market — Newfold Digital. Seven CCaaS personas; Marisol (director)
+  // is the default, Sofia (ops) second. The newfold_* personas are intentionally
+  // absent from every other client's allowlist so they cannot be selected outside
+  // Newfold.
+  newfold_digital: [
+    'newfold_director',
+    'newfold_ops',
+    'newfold_workforce',
+    'newfold_quality',
+    'newfold_governance',
+    'newfold_member',
+    'newfold_agent',
+  ],
 };
 
 // Default (primary) persona per client
@@ -30,6 +43,7 @@ const CLIENT_DEFAULT_PERSONA = {
   nfcu: 'nfcu_supervisor',
   ussfcu: 'ussfcu_evelyn',
   riverside_health: 'care_ops',
+  newfold_digital: 'newfold_director',
 };
 
 const GENERIC_PERSONAS = ['ops', 'cx', 'retention', 'risk'];

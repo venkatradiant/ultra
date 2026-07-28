@@ -8,6 +8,7 @@ import GovernanceSignalsTable from '../components/ussfcu/cfo/GovernanceSignalsTa
 import GovernanceKpiCards from '../components/ussfcu/cfo/GovernanceKpiCards';
 import PrioritySignalsView from '../components/ussfcu/ceo/PrioritySignalsView';
 import DisclosureCalendarPage from '../components/ussfcu/compliance/DisclosureCalendarPage';
+import QualitySignalsPage from '../components/newfold/quality/QualitySignalsPage';
 import ChatInput from '../components/chat/ChatInput';
 import ChatDrawer from '../components/chat/ChatDrawer';
 import riskExtras from '../data/riskScreenExtras.json';
@@ -49,6 +50,13 @@ export default function RiskSignals() {
   const inputPlaceholder = isCfo ? 'Ask about reconciliation breaks, parity, or lineage…' : isNFCU ? 'Ask about quality signals...' : 'Ask about risk signals...';
   const leftColLabel = isCfo ? 'Active Governance Signals' : isNFCU ? 'Active Quality Signals' : 'Active Risk Signals';
   const rightColLabel = isCfo ? 'Governance Posture' : isNFCU ? 'Compliance & Experience Summary' : 'Forward-Looking Summary';
+
+  // Newfold Digital — the Quality Signals page: compliance posture (PCI,
+  // auto-renewal disclosure), disclosure-adherence timeline, repeat-contact
+  // drivers, sentiment by brand, and quality-score distribution.
+  if (persona.id.startsWith('newfold_')) {
+    return <QualitySignalsPage />;
+  }
 
   // USSFCU CEO — the state-of-the-business signals surface: the primary
   // liquidity watch as a hero (with View Full Briefing + trace), the two steady

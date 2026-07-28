@@ -59,8 +59,8 @@ function Pillar({ pillar, index }) {
   );
 }
 
-export default function GovernanceSummaryCard() {
-  const data = useAsyncData(getGovernanceSummary);
+export default function GovernanceSummaryCard({ getter = getGovernanceSummary }) {
+  const data = useAsyncData(getter);
   if (!data) return null;
 
   const open = data.openItems ?? [];

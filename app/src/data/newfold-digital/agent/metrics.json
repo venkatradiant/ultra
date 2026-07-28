@@ -1,0 +1,29 @@
+{
+  "contact": { "customer": "Grace Bello", "reason": "Website & store down", "sentiment": "Negative, rising", "tenure": "6-yr Bluehost", "recommended": "Site suspended — root cause identified" },
+  "rootCauseSources": ["Hosting Control Panel", "Billing & Payments", "Customer 360", "DNS & Email", "Reactivation SOP"],
+  "jargonFlags": ["suspension", "dunning", "grace period"],
+  "identityElements": [
+    { "label": "Last 4 of card on file", "verified": false },
+    { "label": "Account email + PIN on record", "verified": false }
+  ],
+  "fixSteps": [
+    "Updated the card & corrected the billing email",
+    "Processed the $203.88 renewal (6-yr loyalty credit → $178.88)",
+    "Lifted the suspension — site, store & email restoring",
+    "Enabled auto-renew on the new card"
+  ],
+  "aiVsHuman": [
+    { "actor": "Human", "who": "Jordan Ellis", "action": "Verified customer identity (2 elements)" },
+    { "actor": "Human+AI", "who": "Agent + Agent-Assist", "action": "Executed payment method change" },
+    { "actor": "AI", "who": "Agent-Assist", "action": "Automated renewal & reactivation" },
+    { "actor": "Human", "who": "Jordan Ellis", "action": "Approved loyalty credit under agent authority" }
+  ],
+  "afterContact": {
+    "reason": "Site and store down",
+    "rootCause": "Failed renewal, expired card, dunning to outdated email, auto-suspension",
+    "resolution": "Card & billing email updated, renewal processed with loyalty credit, suspension lifted, auto-renew enabled, no reactivation fee",
+    "compliance": "Identity verified and logged",
+    "fcr": "Yes",
+    "handleTime": "6:40"
+  }
+}

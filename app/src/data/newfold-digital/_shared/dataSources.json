@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ds-newfold-01",
+    "name": "Salesforce Service Cloud (Contact Center)",
+    "status": "connected",
+    "description": "Primary contact center platform of record. Real-time and historical voice, chat, email, and social interaction data across brands — queue metrics, agent performance, routing decisions, sentiment scores.",
+    "icon": "headphones",
+    "lastSync": "2026-07-28T09:00:00",
+    "recordCount": 2600000
+  },
+  {
+    "id": "ds-newfold-02",
+    "name": "Billing and Subscriptions",
+    "status": "connected",
+    "description": "Subscription, renewal, auto-renewal, dunning, invoice, refund, and chargeback records across all brands. Drives renewal-spike and churn prediction.",
+    "icon": "database",
+    "lastSync": "2026-07-28T08:45:00",
+    "recordCount": 9400000
+  },
+  {
+    "id": "ds-newfold-03",
+    "name": "Domain Registrar and Registry",
+    "status": "connected",
+    "description": "Domain status, registration, renewal, transfer, expiration, WHOIS, and DNS records across the brand portfolio.",
+    "icon": "monitor",
+    "lastSync": "2026-07-28T08:30:00",
+    "recordCount": 12100000
+  },
+  {
+    "id": "ds-newfold-04",
+    "name": "Hosting Control Panel and Provisioning",
+    "status": "connected",
+    "description": "Account provisioning, suspension and reactivation status, resource usage, control-panel state, uptime, and migration status.",
+    "icon": "cog",
+    "lastSync": "2026-07-28T08:50:00",
+    "recordCount": 4300000
+  },
+  {
+    "id": "ds-newfold-05",
+    "name": "Customer 360 / CRM",
+    "status": "connected",
+    "description": "Customer profiles, product holdings, tenure, lifetime value, churn score, and interaction history across all brands. Links care activity to the customer lifecycle.",
+    "icon": "brain",
+    "lastSync": "2026-07-28T08:00:00",
+    "recordCount": 6900000
+  },
+  {
+    "id": "ds-newfold-06",
+    "name": "Marketing Cloud / Campaigns",
+    "status": "connected",
+    "description": "Campaign schedules, renewal and price-increase notices, promotions, and email deployments. Critical for predicting volume spikes from outbound activity.",
+    "icon": "message-circle",
+    "lastSync": "2026-07-28T07:15:00",
+    "recordCount": 1400000
+  },
+  {
+    "id": "ds-newfold-07",
+    "name": "IT and Infrastructure Monitoring",
+    "status": "connected",
+    "description": "Outage records, cloud-region and data-center health, provisioning incidents, and change management. Correlates infrastructure events with contact volume and sentiment.",
+    "icon": "shield",
+    "lastSync": "2026-07-28T08:55:00",
+    "recordCount": 58000
+  },
+  {
+    "id": "ds-newfold-08",
+    "name": "Workforce Management + Snowflake",
+    "status": "connected",
+    "description": "Agent schedules, adherence, PTO, force-to-load, overtime, and BPO capacity, with a 3-year cross-brand analytics history in Snowflake for trend and churn modeling.",
+    "icon": "users",
+    "lastSync": "2026-07-28T08:15:00",
+    "recordCount": 620000
+  }
+]

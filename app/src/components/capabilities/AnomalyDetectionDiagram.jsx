@@ -31,8 +31,25 @@ export default function AnomalyDetectionDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  const isNewfold = persona.id.startsWith('newfold_');
 
-  const clientConfig = isCfo ? {
+  const clientConfig = isNewfold ? {
+    sourcesLabel: 'NEWFOLD DATA SOURCES',
+    primarySources: ['Service Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
+    secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Flags unusual patterns across brands and systems — dunning and billing anomalies, refund spikes, outage-correlated volume, and compliance gaps like a skipped auto-renewal disclosure — before they show up in a report.',
+    monitorAgents: [
+      { name: 'Billing & Dunning Monitor', desc: 'Watches billing anomalies, refund spikes, and dunning failures' },
+      { name: 'Volume Monitor', desc: 'Renewal-batch and outage-correlated contact spikes' },
+      { name: 'Adherence Monitor', desc: 'Disclosure and process-deviation detection' },
+      { name: 'Pattern Correlator', desc: 'Links anomalies across brands and systems' },
+      { name: 'Compliance Scanner', desc: 'Auto-renewal and negative-option disclosure gaps' },
+    ],
+    gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
+    withText: 'Billing anomalies, refund spikes, outage-correlated volume, and disclosure gaps flagged before they escalate.',
+  } : isCfo ? {
     bodyText: 'Detects where the same metric diverges across systems, where a transformation silently changes a figure between the ledger and Tableau, and which reconciliation exceptions are aging — surfaced as prioritized, actionable signals.',
     monitorAgents: [
       { name: 'Parity Monitor', desc: 'Watches CFO-vs-Lending figure divergence' },

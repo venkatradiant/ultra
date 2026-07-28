@@ -11,6 +11,7 @@ import DataFlowLineageMap from '../components/ussfcu/cfo/DataFlowLineageMap';
 import BusinessPerformanceView from '../components/ussfcu/ceo/performance/BusinessPerformanceView';
 import ComplianceQueryWorkbench from '../components/ussfcu/evelyn/ComplianceQueryWorkbench';
 import FileExceptionQueue from '../components/ussfcu/nadia/FileExceptionQueue';
+import WorkforceIntelligencePage from '../components/newfold/workforce/WorkforceIntelligencePage';
 import { usePersona } from '../context/PersonaContext';
 import { useBranding } from '../context/BrandingContext';
 
@@ -52,6 +53,7 @@ export default function MemberJourney() {
   const { clientId } = useBranding();
 
   const isNFCU = persona?.id?.startsWith('nfcu_');
+  const isNewfold = persona?.id?.startsWith('newfold_');
   const isCfo = persona?.id === 'ussfcu_cfo';
   const isCeo = persona?.id === 'ussfcu_ceo';
   const isEvelyn = persona?.id === 'ussfcu_evelyn';
@@ -59,6 +61,13 @@ export default function MemberJourney() {
   const baseJourneyMap = clientId === 'penfed' ? penfedJourneyMap : journeyMap;
   const mapData = isNFCU ? nfcuWorkforceMap : baseJourneyMap;
   const chips = isNFCU ? nfcuWorkforceChips : journeyChips;
+
+  // Newfold Digital — the Workforce Intelligence page: force-to-load by queue and
+  // brand, shift coverage, the seasonal Q4 overlay, staffing scenarios, BPO
+  // readiness, and the new-hire ramp. Shared across all Newfold personas.
+  if (isNewfold) {
+    return <WorkforceIntelligencePage />;
+  }
 
   // USSFCU CEO — Business Performance is the executive roll-up: assets and
   // growth, loan portfolio, deposits, membership and geography, and capital,

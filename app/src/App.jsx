@@ -3,6 +3,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { PersonaProvider } from './context/PersonaContext';
 import { BrandingProvider } from './context/BrandingContext';
+import { BrandProvider } from './context/BrandContext';
 import { ThemeProvider } from '@core/providers/ThemeProvider';
 import AppShell from './components/layout/AppShell';
 import LoginScreen from './screens/LoginScreen';
@@ -65,6 +66,7 @@ function AppContent() {
       <BrandingProvider>
         <ThemeProvider>
           <PersonaProvider>
+            <BrandProvider>
             <DemoNavigateBridge />
             <Routes>
               <Route element={<AppShell />}>
@@ -92,6 +94,7 @@ function AppContent() {
                 <Route path="/data-sources" element={<DataSources />} />
               </Route>
             </Routes>
+            </BrandProvider>
           </PersonaProvider>
         </ThemeProvider>
       </BrandingProvider>

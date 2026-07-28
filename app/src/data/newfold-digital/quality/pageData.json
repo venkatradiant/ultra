@@ -1,0 +1,22 @@
+{
+  "sentimentByBrand": [
+    { "brand": "Network Solutions", "positive": 58, "neutral": 20, "negative": 22 },
+    { "brand": "Bluehost", "positive": 62, "neutral": 20, "negative": 18 },
+    { "brand": "Web.com", "positive": 74, "neutral": 16, "negative": 10 },
+    { "brand": "HostGator", "positive": 76, "neutral": 15, "negative": 9 },
+    { "brand": "Crazy Domains", "positive": 78, "neutral": 14, "negative": 8 }
+  ],
+  "qualityDistribution": [
+    { "band": "90–100", "pct": 24 },
+    { "band": "80–89", "pct": 41 },
+    { "band": "70–79", "pct": 22 },
+    { "band": "60–69", "pct": 9 },
+    { "band": "<60", "pct": 4 }
+  ],
+  "compliancePosture": [
+    { "item": "Auto-renewal disclosure", "status": "At risk", "detail": "21% skip · macro reverted, remediation in flight", "tone": "risk" },
+    { "item": "PCI payment verification", "status": "Monitored", "detail": "88% adherence · surfaced at the right step in Agent-Assist", "tone": "watch" },
+    { "item": "Refund eligibility disclosure", "status": "At risk", "detail": "Bundled with the auto-renewal macro revert", "tone": "risk" },
+    { "item": "WHOIS / registrant privacy", "status": "Compliant", "detail": "Registrant PII held in-environment (governance layer)", "tone": "ok" }
+  ]
+}

@@ -19,6 +19,7 @@ import ussfcuCfoDataSources from '../data/ussfcu/cfo/dataSources.json';
 import ussfcuCeoDataSources from '../data/ussfcu/ceo/dataSources.json';
 import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
 import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
+import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
 import { useBranding } from '../context/BrandingContext';
 
 const personaDataSources = {
@@ -40,6 +41,16 @@ const personaDataSources = {
   // USSFCU-only Risk & Compliance personas (gated to clientId === 'ussfcu').
   ussfcu_evelyn: ussfcuEvelynDataSources,
   ussfcu_nadia: ussfcuNadiaDataSources,
+  // Commercial market — Newfold Digital. All seven personas share the same eight
+  // connected sources (Service Cloud primary + Billing, Domains, Hosting, CRM,
+  // Marketing, IT, Snowflake).
+  newfold_director: newfoldDataSources,
+  newfold_ops: newfoldDataSources,
+  newfold_workforce: newfoldDataSources,
+  newfold_quality: newfoldDataSources,
+  newfold_governance: newfoldDataSources,
+  newfold_member: newfoldDataSources,
+  newfold_agent: newfoldDataSources,
 };
 
 const penfedPersonaDataSources = {

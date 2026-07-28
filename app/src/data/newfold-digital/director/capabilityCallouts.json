@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI watches every brand's queues, the consolidation program, and the Q4 budget overnight — surfacing director-level signals no single brand or manager dashboard can produce. Correlates Service Cloud, Billing, Marketing, Migration PMO, and Finance across the whole portfolio.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask one question and get a sourced cross-brand answer drawn at once from all five manager-led teams, Billing, Marketing Cloud, and Workforce Management — the roll-up the contact center platform alone cannot produce.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Model trade-offs across brands in seconds — agent reallocation, chat deflection, self-service billing explainer, overtime. The AI projects service-level recovery, save-desk impact, cost, and budget exposure for each path.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Anomaly Detection",
+    "description": "The AI surfaces what is structurally different from prior weeks — dual-brand critical degradation, a consolidation parity failure concentrated in 34% of a brand's volume — before it lands in your weekly leadership report.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "Draft cross-system escalations, leadership reports, and remediation plans directly from the conversation. Send to your SI partner, generate the CCO report, or compare month-over-month — without leaving the AI interface.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Friction Observability",
+    "description": "The AI maps where structural friction lives across the operation — the cascade from a renewal spike to Bluehost support, the SI partner accountability gap on cutover parity, the Marketing-to-care notification gap driving unplanned spikes.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

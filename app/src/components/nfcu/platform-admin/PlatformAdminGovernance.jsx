@@ -33,7 +33,15 @@ function Section({ icon: Icon, title, subtitle, children }) {
   );
 }
 
-export default function PlatformAdminGovernance() {
+export default function PlatformAdminGovernance({
+  kpis = GOVERNANCE_KPIS,
+  subtitle = 'Two gates — safe to send, then worth sending. Member data resolves in-environment; the frontier model is used only where a task earns it, and every use is measured.',
+  ledgerProps = {},
+  routingProps = {},
+  kagProps = {},
+  costProps = {},
+  obsProps = {},
+} = {}) {
   return (
     <div className="flex-1 overflow-y-auto bg-bg">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-5 space-y-6">
@@ -44,11 +52,10 @@ export default function PlatformAdminGovernance() {
             <h1 className="text-lg font-bold text-text">Governance</h1>
           </div>
           <p className="text-[12px] text-text-muted mt-0.5">
-            Two gates — safe to send, then worth sending. Member data resolves in-environment; the frontier model is used
-            only where a task earns it, and every use is measured.
+            {subtitle}
           </p>
           <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
-            {GOVERNANCE_KPIS.map((k) => (
+            {kpis.map((k) => (
               <div key={k.id} className="rounded-xl bg-surface border border-border-subtle px-3 py-2.5">
                 <div className="text-base font-bold text-text tabular-nums leading-none">{k.value}</div>
                 <div className="text-[9.5px] text-text-subtle uppercase tracking-wide mt-1 leading-tight">{k.label}</div>
@@ -64,10 +71,10 @@ export default function PlatformAdminGovernance() {
           subtitle="Where every field went, why a borderline field stayed local, and the two gates that decided"
         >
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-            <FieldSovereigntyLedger />
-            <RoutingDiagram />
+            <FieldSovereigntyLedger {...ledgerProps} />
+            <RoutingDiagram {...routingProps} />
           </div>
-          <KagNodeView />
+          <KagNodeView {...kagProps} />
         </Section>
 
         {/* Cost */}
@@ -76,7 +83,7 @@ export default function PlatformAdminGovernance() {
           title="LLM Cost and Usage"
           subtitle="Per-task routing and cost, with the all-frontier counterfactual"
         >
-          <LlmCostUsageReport />
+          <LlmCostUsageReport {...costProps} />
         </Section>
 
         {/* Observability */}
@@ -88,7 +95,7 @@ export default function PlatformAdminGovernance() {
           title="Agent Activity & Policy"
           subtitle="Agent health, frontier share and spend trend — every action explainable against its policy"
         >
-          <AgentObservabilityGovernanceDashboard />
+          <AgentObservabilityGovernanceDashboard {...obsProps} />
         </Section>
       </div>
     </div>

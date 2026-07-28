@@ -35,8 +35,8 @@ function SpendTrend({ points }) {
   );
 }
 
-export default function AgentObservabilityGovernanceDashboard() {
-  const data = useAsyncData(getGovernance);
+export default function AgentObservabilityGovernanceDashboard({ getter = getGovernance }) {
+  const data = useAsyncData(getter);
   const [open, setOpen] = useState(false);
 
   // Group by initiative, preserving first-seen order so Contact Center — the

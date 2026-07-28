@@ -1,0 +1,34 @@
+{
+  "disclosureByDay": [
+    { "day": "Nov 18", "rate": 96, "macro": false },
+    { "day": "Nov 19", "rate": 95, "macro": false },
+    { "day": "Nov 20", "rate": 88, "macro": true },
+    { "day": "Nov 21", "rate": 82, "macro": false },
+    { "day": "Nov 22", "rate": 79, "macro": false },
+    { "day": "Nov 23", "rate": 78, "macro": false },
+    { "day": "Nov 24", "rate": 79, "macro": false }
+  ],
+  "shiftHeatmap": [
+    { "shift": "Day (9–5)", "skipRate": 6 },
+    { "shift": "Swing (1–9)", "skipRate": 14 },
+    { "shift": "Evening (6–12)", "skipRate": 31 }
+  ],
+  "remediation": [
+    { "title": "Revert disclosure to step 3", "detail": "Eliminates the skip risk · ~15 min to propagate", "kind": "macro" },
+    { "title": "Email disclosure to 297 contacts", "detail": "Sufficient contact history for a compliant email follow-up", "kind": "auto" },
+    { "title": "Callback 21 contacts", "detail": "Incomplete records or refund dispute — require a live disclosure", "kind": "callback" }
+  ],
+  "posture": { "current": 79, "postRemediation": 96 },
+  "repeatFcr": [
+    { "day": "Nov 18", "fcr": 82, "reviewNeg": 8 },
+    { "day": "Nov 20", "fcr": 80, "reviewNeg": 9 },
+    { "day": "Nov 22", "fcr": 68, "reviewNeg": 14, "incident": true },
+    { "day": "Nov 24", "fcr": 60, "reviewNeg": 20 },
+    { "day": "Nov 26", "fcr": 55, "reviewNeg": 27 }
+  ],
+  "correlationChain": [
+    { "node": "IT billing-sync delay", "detail": "Logged Nov 22 · fix ETA Nov 30", "tone": "cause" },
+    { "node": "Agent manual workaround", "detail": "Refund instructions instead of a real fix", "tone": "mid" },
+    { "node": "Repeat contact + 1-star review", "detail": "74% mention 'refund not showing' · reviews +34%", "tone": "effect" }
+  ]
+}

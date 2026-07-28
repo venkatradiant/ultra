@@ -16,8 +16,11 @@ const sensitivityPill = (s) => {
   return 'bg-surface-2 text-text-muted border border-border';
 };
 
-export default function FieldSovereigntyLedger() {
-  const data = useAsyncData(getFieldLedger);
+export default function FieldSovereigntyLedger({
+  getter = getFieldLedger,
+  subtitle = "Priya's auto loan spike response · every field resolved in-environment",
+}) {
+  const data = useAsyncData(getter);
   if (!data) return null;
 
   return (
@@ -34,7 +37,7 @@ export default function FieldSovereigntyLedger() {
         </span>
       </div>
       <p className="text-xs text-text-subtle mb-4">
-        Priya&apos;s auto loan spike response · every field resolved in-environment
+        {subtitle}
       </p>
 
       <div className="overflow-x-auto">

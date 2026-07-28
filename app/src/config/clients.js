@@ -43,6 +43,18 @@ export const CLIENTS = {
     primaryColor: '#003087',
     navLabels: { journey: 'Workforce Intelligence', risk: 'Quality Signals', governance: 'Model Governance' },
   },
+  // ─── Commercial market — Newfold Digital (cross-brand SMB care) ──
+  newfold_digital: {
+    id: 'newfold_digital',
+    name: 'Newfold Digital',
+    shortName: 'Newfold',
+    nameLines: ['Newfold', 'Digital'],
+    tagline: 'Customer Care Intelligence',
+    logo: '/logos/newfold-icon.svg',
+    favicon: '/logos/newfold-icon.svg',
+    primaryColor: '#F27121',
+    navLabels: { journey: 'Workforce Intelligence', risk: 'Quality Signals' },
+  },
   // ─── Healthcare market (proves the platform is multi-market) ────
   riverside_health: {
     id: 'riverside_health',

@@ -41,8 +41,18 @@ export default function ActionExecutionDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  const isNewfold = persona.id.startsWith('newfold_');
 
-  const clientConfig = isCfo ? {
+  const clientConfig = isNewfold ? {
+    targetsLabel: 'NEWFOLD EXECUTION TARGETS',
+    primaryTargets: ['Service Cloud', 'Billing & Subscriptions', 'Hosting Control Panel', 'Marketing Cloud'],
+    secondaryTargets: ['Domain Registrar', 'Loyalty Engine', 'IT / Incident', 'Email'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Executes operational actions across brands and systems — reroute agents between queues, enable callback and chat deflection, draft save offers, open refund and incident tickets, and restore suspended accounts on approval.',
+    gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
+    withText: 'Reroute agents, enable deflection, draft save offers, and restore accounts — executed from the conversation, with an audit trail.',
+  } : isCfo ? {
     bodyText: 'Move from insight to action inside the same conversation: generate the lineage-backed evidence package, reconcile divergent figures to one governed number, and route the right data to the right role — all confirmed by the user before execution.',
     targetsLabel: 'USSFCU EXECUTION TARGETS',
     primaryTargets: ['Audit / GRC', 'General Ledger', 'Thought Machine', 'Lending Origination'],

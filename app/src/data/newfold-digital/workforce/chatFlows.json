@@ -1,0 +1,198 @@
+{
+  "newfold_wf_greeting": {
+    "ai_message": "Good morning, Tomas. Your workforce forecast needs attention. The Q4 renewal and holiday surge is 5 days out and your current plan has a 12-point coverage gap. Your November new-hire cohort is also behind on handle time, and overtime is tracking over budget. Want me to walk you through the risks?",
+    "suggested_chips": ["Walk me through the surge risk", "Show me the training cohort data", "What is my overtime trajectory?"],
+    "data_sources_used": ["Workforce Management", "Historical Analytics", "HR System", "Budget Tracking"],
+    "capability": "Proactive Intelligence",
+    "confidence": 91
+  },
+
+  "newfold_wf_surge": {
+    "user_query": "Walk me through the surge risk",
+    "ai_message": "Based on 3 years of history, the Q4 renewal and holiday period drives a 38% volume increase, concentrated in Billing and Renewals and in Bluehost store support. Peak impact December 8 to 15. Your current schedule has 52 agents across those queues at peak. You need 76 to hold an 80/20 service level. The gap is 24 agents. Last year you closed a similar gap with 14 overtime shifts and 9 BPO overflow agents, and by pre-notifying care of the renewal batches so the spikes were staffed rather than absorbed.",
+    "suggested_chips": ["What are my options to close the gap?", "Run a what-if with 16 overtime shifts", "Which queues are most impacted?", "How did we handle it last year?"],
+    "data_sources_used": ["Historical Analytics", "Snowflake (3-year volume)", "Workforce Management", "Marketing Cloud (planned Q4 campaigns)"],
+    "capability": "Converged Conversation",
+    "confidence": 90
+  },
+
+  "newfold_wf_whatif": {
+    "user_query": "Run a what-if with 16 overtime shifts",
+    "ai_message": "Scenario modeled. With 16 overtime shifts across December 8 to 15: projected service level improves from 61% to 77%, still 3 points short. Adding a self-service billing explainer for renewal contacts and callback for waits over 3 minutes closes the gap to 81%. Overtime cost about $19,800, which puts you at 94% of Q4 budget. Alternative: 9 overtime shifts plus 12 BPO overflow agents costs $12,600 and projects 79%, and it preserves budget headroom for the renewal batches you cannot predict.",
+    "suggested_chips": ["Go with the hybrid option", "Show me BPO overflow readiness", "What about the new-hire cohort?", "Model a fourth scenario"],
+    "data_sources_used": ["Workforce Management (forecasting)", "Budget System", "BPO capacity feed", "Agent Skill Profiles"],
+    "capability": "Predictive Intelligence",
+    "confidence": 89
+  },
+
+  "newfold_wf_cohort": {
+    "user_query": "What about the new-hire cohort?",
+    "ai_message": "The November cohort of 14 agents is behind. At week 6 their handle time is 15:10 versus the 9:30 target. Root cause: knowledge-base adherence is 60%, concentrated in hosting and domain troubleshooting. Process data shows they skip the guided resolution flow 36% of the time and escalate directly to a supervisor. Cohorts that hit 85% adherence by week 4 reach the handle-time target by week 6. This cohort likely needs 3 more weeks before it can carry peak volume independently, so I would not count them in the December 8 plan.",
+    "suggested_chips": ["Which agents are furthest behind?", "Schedule targeted coaching", "Can any of them handle Q4 volume?", "Show me the overtime budget impact"],
+    "data_sources_used": ["Quality Management", "Process Adherence", "Training System", "Knowledge Base"],
+    "capability": "Friction Observability",
+    "confidence": 88
+  },
+
+  "newfold_wf_options": {
+    "user_query": "What are my options to close the gap?",
+    "ai_message": "Three levers to close the 24-agent gap: overtime shifts (fastest, but budget-heavy), BPO overflow agents (cheaper, slightly lower CSAT on complex contacts), and self-service deflection plus callback for the simple renewal-billing contacts. The cheapest path that holds 80/20 is a hybrid — 9 overtime shifts, 12 BPO agents, and the billing explainer — which preserves budget headroom for the unplanned renewal batches. Want me to model the 16-shift and the hybrid side by side?",
+    "suggested_chips": ["Run a what-if with 16 overtime shifts", "Show me BPO overflow readiness", "How did we handle it last year?"],
+    "data_sources_used": ["Workforce Management", "Budget System", "BPO capacity feed"],
+    "capability": "Predictive Intelligence",
+    "confidence": 89
+  },
+
+  "newfold_wf_queues_impacted": {
+    "user_query": "Which queues are most impacted?",
+    "ai_message": "The surge is concentrated in two queues: Billing and Renewals (Q4 auto-renewal waves) and Bluehost store support (holiday selling). Together they account for 82% of the projected 38% volume increase. Domain support sees a smaller bump around the year-end registration cycle. Hosting general support stays near baseline. So the staffing plan should weight the overtime and BPO capacity toward Billing/Renewals and Bluehost store, not spread evenly.",
+    "suggested_chips": ["What are my options to close the gap?", "Run a what-if with 16 overtime shifts"],
+    "data_sources_used": ["Historical Analytics", "Snowflake", "Marketing Cloud"],
+    "capability": "Converged Conversation",
+    "confidence": 89
+  },
+
+  "newfold_wf_last_year": {
+    "user_query": "How did we handle it last year?",
+    "ai_message": "Last Q4 you faced a similar 34% surge and closed the gap with 14 overtime shifts, 9 BPO overflow agents, and — critically — Marketing pre-notified care of the renewal batches so the spikes were staffed rather than absorbed. Service level held at 78% through the peak. The one miss was the new-hire cohort, which was counted in the plan and wasn't ready; this year the AI is flagging that risk in advance so you don't repeat it.",
+    "suggested_chips": ["Run a what-if with 16 overtime shifts", "What about the new-hire cohort?"],
+    "data_sources_used": ["Historical Analytics", "Workforce Management", "Marketing Cloud"],
+    "capability": "Converged Conversation",
+    "confidence": 88
+  },
+
+  "newfold_wf_hybrid": {
+    "user_query": "Go with the hybrid option",
+    "ai_message": "Done. I've staged the hybrid plan for December 8 to 15: 9 overtime shifts, 12 BPO overflow agents, and the self-service billing explainer with callback. Projected service level 79%, cost $12,600, and it holds budget headroom for the unpredictable renewal batches. I've routed the BPO request to your vendor manager and the overtime offers to the eligible agents. I'll monitor actual volume against the forecast and alert you if the surge runs hotter than modeled.",
+    "suggested_chips": ["Show me BPO overflow readiness", "Generate the weekly workforce report", "What about the new-hire cohort?"],
+    "data_sources_used": ["Workforce Management", "BPO capacity feed", "Budget System"],
+    "capability": "Automated Action",
+    "confidence": 90
+  },
+
+  "newfold_wf_bpo": {
+    "user_query": "Show me BPO overflow readiness",
+    "ai_message": "Your BPO partner has 18 renewal-billing-certified agents available for the December 8 to 15 window, against the 12 the hybrid plan needs — so capacity is there with headroom. Ramp time is 2 days for the known scripts, so they need to be confirmed by December 6. Their handle time on billing contacts runs about 10% longer than in-house but within tolerance. I can lock the 12 now and hold 6 as contingency.",
+    "suggested_chips": ["Go with the hybrid option", "Generate the weekly workforce report"],
+    "data_sources_used": ["BPO capacity feed", "Workforce Management"],
+    "capability": "Predictive Intelligence",
+    "confidence": 88
+  },
+
+  "newfold_wf_fourth_scenario": {
+    "user_query": "Model a fourth scenario",
+    "ai_message": "Scenario D — deflection-first: lead with the self-service billing explainer and callback across both surge queues, add only 6 overtime shifts, and hold BPO as contingency. Projects 78% service level at $8,400, the lowest cost. The trade-off is it leans hardest on deflection, so if the self-service catch rate underperforms the 28% assumption, you'd need to activate the BPO contingency mid-surge. It's the cheapest if deflection holds, the riskiest if it doesn't. The hybrid is the safer bet.",
+    "suggested_chips": ["Go with the hybrid option", "Show me BPO overflow readiness"],
+    "data_sources_used": ["Workforce Management (forecasting)", "Budget System", "Billing (deflection eligibility)"],
+    "capability": "Predictive Intelligence",
+    "confidence": 86
+  },
+
+  "newfold_wf_furthest_behind": {
+    "user_query": "Which agents are furthest behind?",
+    "ai_message": "Five of the 14 November-cohort agents are furthest behind, all clustered in hosting and domain troubleshooting where knowledge-base adherence sits at 48% to 55%. They account for most of the cohort's handle-time gap. The other 9 are within 2 weeks of target. Targeted coaching on the hosting and domain guided flows for those 5 would lift the whole cohort's average and is the highest-leverage intervention before peak.",
+    "suggested_chips": ["Schedule targeted coaching", "Can any of them handle Q4 volume?"],
+    "data_sources_used": ["Quality Management", "Process Adherence", "Training System"],
+    "capability": "Friction Observability",
+    "confidence": 88
+  },
+
+  "newfold_wf_coaching": {
+    "user_query": "Schedule targeted coaching",
+    "ai_message": "Scheduled. I've booked focused coaching sessions for the 5 furthest-behind agents on the hosting and domain guided-resolution flows, paired each with a top-quartile mentor, and flagged the guided-flow skip pattern to their supervisor. Historically this closes about 60% of the adherence gap within two weeks. I've also queued a knowledge-base refresh on the two topics driving the most escalations. I'll track their handle time weekly and report progress.",
+    "suggested_chips": ["Can any of them handle Q4 volume?", "Generate the weekly workforce report"],
+    "data_sources_used": ["Training System", "Quality Management", "Knowledge Base"],
+    "capability": "Automated Action",
+    "confidence": 89
+  },
+
+  "newfold_wf_can_handle": {
+    "user_query": "Can any of them handle Q4 volume?",
+    "ai_message": "The 9 on-track cohort agents can handle standard billing and general hosting volume by December 8, so you can count them for the surge on those queues — but not the complex hosting and domain troubleshooting yet. The 5 behind should not be in the December 8 plan for independent peak coverage; with coaching they're likely ready by late December. So plan for 9 of 14 at peak, on simpler queues, and keep the 5 on supervised volume.",
+    "suggested_chips": ["Schedule targeted coaching", "Run a what-if with 16 overtime shifts"],
+    "data_sources_used": ["Quality Management", "Workforce Management"],
+    "capability": "Predictive Intelligence",
+    "confidence": 87
+  },
+
+  "newfold_wf_ot_trajectory": {
+    "user_query": "What is my overtime trajectory?",
+    "ai_message": "Q4 overtime is at 76% of budget with 8 weeks left, and the current run-rate projects 135% by quarter end. The top driver is unplanned renewal-batch spikes with no advance care notice — the same gap Sofia and Marisol are flagging. The hybrid staffing plan plus the 48-hour Marketing notification rule are what bring the trajectory back inside budget; without them, overtime alone can't absorb the surge affordably.",
+    "suggested_chips": ["What are my options to close the gap?", "Generate the weekly workforce report"],
+    "data_sources_used": ["HR System", "Workforce Management", "Budget Tracking"],
+    "capability": "Predictive Intelligence",
+    "confidence": 88
+  },
+
+  "newfold_wf_ot_budget_impact": {
+    "user_query": "Show me the overtime budget impact",
+    "ai_message": "If you count the unready cohort agents and cover the gap with overtime alone, you hit 135% of Q4 budget. The hybrid plan (9 OT + 12 BPO + deflection) lands at 84% and holds headroom. Not counting the 5 behind-cohort agents in the December 8 plan actually saves budget, because relying on unready agents drives longer handle times and more escalation overtime downstream. The disciplined plan is also the cheaper one.",
+    "suggested_chips": ["Go with the hybrid option", "What is my overtime trajectory?"],
+    "data_sources_used": ["Budget System", "Workforce Management", "HR System"],
+    "capability": "Predictive Intelligence",
+    "confidence": 87
+  },
+
+  "newfold_wf_report": {
+    "user_query": "Generate the weekly workforce report",
+    "ai_message": "Here is your weekly workforce report: (1) Q4 surge — 38% projected increase, 24-agent gap at peak, hybrid plan staged (9 OT + 12 BPO + deflection) projecting 79% at $12,600. (2) New-hire cohort — 5 of 14 behind on hosting/domain adherence, targeted coaching scheduled; plan for 9 of 14 at peak. (3) Overtime — 76% of budget, trajectory 135% without intervention, 94% with the hybrid plan. (4) Recommendation — the 48-hour Marketing notification rule, which removes the biggest unplanned-overtime driver.",
+    "suggested_chips": ["Go with the hybrid option", "What about the new-hire cohort?"],
+    "data_sources_used": ["Workforce Management", "Historical Analytics", "HR System", "Budget Tracking"],
+    "capability": "Automated Action",
+    "confidence": 90
+  },
+
+  "newfold_wf_forecast_interval": {
+    "user_query": "Forecast next week's volume by 30-minute interval",
+    "ai_message": "Next week's forecast peaks in two daily windows: 9:00–11:00 AM (renewal-billing contacts as batches post) and 6:00–9:00 PM (Bluehost store support ahead of holiday selling). Interval-level, the 10:00–10:30 AM slot is your single hottest at 2.4x baseline. Overnight stays near baseline. The 30-minute forecast is loaded into the scheduler so shift coverage aligns to the peaks rather than a flat daily average.",
+    "suggested_chips": ["Walk me through the surge risk", "Which queues are most impacted?"],
+    "data_sources_used": ["Workforce Management (forecasting)", "Historical Analytics", "Snowflake"],
+    "capability": "Predictive Intelligence",
+    "confidence": 88
+  },
+
+  "newfold_wf_ftl": {
+    "user_query": "Show me force-to-load ratio by queue and brand",
+    "ai_message": "Force-to-load today is 0.93 overall — under the 1.0 target, meaning you're slightly short of staffed-to-demand. By queue: Billing and Renewals is tightest at 0.86, Bluehost store support 0.89, hosting general 0.98, domain 1.02. By brand, Network Solutions and Bluehost carry the pressure. The surge plan targets the two sub-1.0 queues first, which is where the ratio and the risk are worst.",
+    "suggested_chips": ["Walk me through the surge risk", "Which shifts are understaffed for the Q4 peak?"],
+    "data_sources_used": ["Workforce Management"],
+    "capability": "Converged Conversation",
+    "confidence": 89
+  },
+
+  "newfold_wf_forecast_accuracy": {
+    "user_query": "Compare actual versus forecast accuracy this month",
+    "ai_message": "Forecast accuracy this month is 81%, below your 90% target. The misses cluster on days a renewal batch went out without care notice — those spikes weren't in the forecast because Marketing's send calendar wasn't shared. When batches are pre-notified, accuracy runs 92%. So the accuracy gap isn't a model problem, it's a data-sharing problem — the 48-hour notification rule fixes it.",
+    "suggested_chips": ["Walk me through the surge risk", "What is my overtime trajectory?"],
+    "data_sources_used": ["Historical Analytics", "Snowflake", "Marketing Cloud"],
+    "capability": "Friction Observability",
+    "confidence": 88
+  },
+
+  "newfold_wf_understaffed": {
+    "user_query": "Which shifts are understaffed for the Q4 peak?",
+    "ai_message": "For the December 8 to 15 peak, your morning shift (9 AM–1 PM) on Billing and Renewals is 14 agents short, and the evening shift (6 PM–10 PM) on Bluehost store support is 10 short — those two windows are 82% of the gap. The overnight and mid-afternoon shifts are adequately covered. The hybrid plan weights overtime and BPO to exactly those two understaffed windows rather than spreading thin.",
+    "suggested_chips": ["Run a what-if with 16 overtime shifts", "Go with the hybrid option"],
+    "data_sources_used": ["Workforce Management", "Historical Analytics"],
+    "capability": "Predictive Intelligence",
+    "confidence": 89
+  },
+
+  "newfold_wf_attrition": {
+    "user_query": "What is my agent attrition trend?",
+    "ai_message": "Trailing-90-day attrition is 22%, up from 18% a quarter ago. Exit interviews cite schedule inflexibility, especially around the unpredictable renewal-batch overtime. Attrition is highest among agents pulled repeatedly onto unplanned overtime — the same unplanned-spike driver behind the budget trajectory. Stabilizing the schedule with the notification rule and planned surge coverage is also the lever that slows attrition.",
+    "suggested_chips": ["What is my overtime trajectory?", "Generate the weekly workforce report"],
+    "data_sources_used": ["HR System", "Workforce Management"],
+    "capability": "Anomaly Detection",
+    "confidence": 87
+  },
+
+  "newfold_wf_model_38": {
+    "user_query": "Model staffing for a 38% volume increase",
+    "ai_message": "At a 38% increase you need 76 agents across Billing/Renewals and Bluehost store at peak versus 52 scheduled — a 24-agent gap. The hybrid plan (9 overtime shifts, 12 BPO overflow, self-service deflection) closes it to 79% service level at $12,600 while preserving budget headroom. Overtime alone would cost far more and push you to 135% of budget. Want me to stage the hybrid plan?",
+    "suggested_chips": ["Go with the hybrid option", "Run a what-if with 16 overtime shifts"],
+    "data_sources_used": ["Workforce Management (forecasting)", "Budget System", "BPO capacity feed"],
+    "capability": "Predictive Intelligence",
+    "confidence": 89
+  }
+}

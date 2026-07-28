@@ -1,0 +1,16 @@
+{
+  "forceToLoad": [
+    { "queue": "Billing & Renewals", "brand": "Network Solutions", "ftl": 0.86, "coverage": "Understaffed" },
+    { "queue": "Bluehost Store Support", "brand": "Bluehost", "ftl": 0.89, "coverage": "Understaffed" },
+    { "queue": "Hosting Support", "brand": "Bluehost", "ftl": 0.98, "coverage": "Adequate" },
+    { "queue": "Domain Support", "brand": "Crazy Domains", "ftl": 1.02, "coverage": "Adequate" },
+    { "queue": "General Support", "brand": "Web.com", "ftl": 1.04, "coverage": "Adequate" }
+  ],
+  "shiftCoverage": [
+    { "shift": "Morning (9–1)", "scheduled": 62, "required": 76, "gap": 14 },
+    { "shift": "Afternoon (1–5)", "scheduled": 58, "required": 60, "gap": 2 },
+    { "shift": "Evening (6–10)", "scheduled": 44, "required": 54, "gap": 10 },
+    { "shift": "Overnight (10–6)", "scheduled": 20, "required": 20, "gap": 0 }
+  ],
+  "bpoCapacity": { "available": 18, "needed": 12, "certified": "Renewal-billing", "confirmBy": "Dec 6", "contingency": 6 }
+}

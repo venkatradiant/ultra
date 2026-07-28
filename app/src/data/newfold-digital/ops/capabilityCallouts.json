@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI watches your Billing and Renewals and Hosting Support queues in real time, correlating Service Cloud volume with the Marketing send and the Billing batch — so a renewal spike is a briefing before your 9 AM sync, not a surprise at the queue.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask what caused the spike and get one sourced answer drawn at once from Service Cloud, Marketing Cloud, and Billing — the campaign send, the batch timing, the queue volume, and the top contact reasons, together.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "The AI compares today's pattern to past renewal cycles and shows where customers get stuck — the price-increase handle-time premium, the save-conversation drop-off — the history the real-time dashboard cannot show you.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Predictive Intelligence",
+    "description": "The AI forecasts how long the spike sustains and how many contacts turn into cancellations, then models the staffing and deflection actions that hold service level — so you staff the save desk before the wave, not after.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "Reroute cross-trained agents, enable the self-service billing explainer and callback, and draft the Marketing notification rule — executed from the conversation, with the Bluehost trade-off surfaced before you commit.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Anomaly Detection",
+    "description": "The AI flags the hosting-outage spike as infrastructure, not billing, by correlating contacts with the IT incident timeline — so agents point to a known event instead of troubleshooting individually.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

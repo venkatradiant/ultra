@@ -1,0 +1,41 @@
+[
+  {
+    "id": "SIG-NEWFOLD-QA-001",
+    "type": "disclosure_gap",
+    "title": "Auto-Renewal Disclosure Gap",
+    "description": "Agents are skipping the required auto-renewal and refund-eligibility disclosure in 21% of cancellation and refund contacts this week, up from a 4% baseline. Process adherence flagged the pattern. It correlates with a November 20 macro update that moved the disclosure from step 3 to step 7. This is regulatory exposure under negative-option and state auto-renewal rules, not just a quality miss.",
+    "impact": "high",
+    "severity": "critical",
+    "sources": ["Process Adherence", "Macro Version History", "Agent Activity Logs"],
+    "timestamp": "2026-07-28T07:35:00Z",
+    "trend": "worsening",
+    "metrics": { "skip_rate": "21%", "baseline": "4%", "affected_contacts": 318 },
+    "confidence": { "score": 92, "rationale": "Skip rate is a direct process-adherence measure; the macro-change correlation is anchored to the Nov 20 version timestamp.", "signals_used": ["Process Adherence", "Macro Version History"], "threshold": 70, "model_version": "quality-v1.9", "validated_at": "2026-07-28T07:35:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  {
+    "id": "SIG-NEWFOLD-QA-002",
+    "type": "repeat_contact",
+    "title": "Repeat Contact Spike, Refunds",
+    "description": "Customers contacting again within 48 hours rose 29% for refund and billing issues. First contact resolution for refunds dropped to 55%. Root cause: agents are issuing manual workarounds instead of resolving an underlying billing-sync delay logged by IT.",
+    "impact": "high",
+    "severity": "critical",
+    "sources": ["Service Cloud", "IT Incident Management", "Billing and Subscriptions"],
+    "timestamp": "2026-07-28T07:20:00Z",
+    "trend": "worsening",
+    "metrics": { "repeat_delta": "+29%", "refund_fcr": "55%" },
+    "confidence": { "score": 90, "rationale": "Repeat-contact rate is counted from Service Cloud; the IT-incident correlation is confirmed against the Nov 22 sync-delay ticket.", "signals_used": ["Service Cloud", "IT Incident Management"], "threshold": 70, "model_version": "quality-v1.9", "validated_at": "2026-07-28T07:20:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  {
+    "id": "SIG-NEWFOLD-QA-003",
+    "type": "burnout_risk",
+    "title": "Top Performer Burnout Risk",
+    "description": "3 of your top 10 rated agents show declining quality scores over 30 days: handle time up, positive sentiment down. They carry the highest-complexity save and migration contacts.",
+    "impact": "medium",
+    "severity": "warning",
+    "sources": ["Quality Management", "Sentiment Analysis", "Workforce Management"],
+    "timestamp": "2026-07-28T07:05:00Z",
+    "trend": "worsening",
+    "metrics": { "agents_at_risk": 3, "window_days": 30 },
+    "confidence": { "score": 86, "rationale": "Score decline and handle-time rise are direct telemetry over a 30-day window; burnout attribution is a pattern match against prior cases.", "signals_used": ["Quality Management", "Sentiment Analysis"], "threshold": 70, "model_version": "quality-v1.9", "validated_at": "2026-07-28T07:05:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  }
+]

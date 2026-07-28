@@ -10,7 +10,7 @@ function StatCard({ stat, index, onClick }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25, delay: index * 0.05, ease: 'easeOut' }}
       onClick={isClickable ? () => onClick(stat.chipText) : undefined}
-      className={`flex-1 min-w-0 rounded-lg px-2.5 py-2 bg-surface border border-gray-100/80 ${
+      className={`flex-1 min-w-[150px] rounded-lg px-2.5 py-2 bg-surface border border-gray-100/80 ${
         isClickable
           ? 'cursor-pointer hover:border-brand/15 hover:shadow-[0_2px_8px_rgba(0,48,135,0.06)] transition-all duration-200'
           : ''
@@ -55,7 +55,7 @@ export default function DataOverviewBar({ visible, onStatClick, stats }) {
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           className="mb-3"
         >
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {stats.map((stat, idx) => (
               <StatCard
                 key={stat.id}

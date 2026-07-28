@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Landmark, HeartPulse, Building2, ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Landmark, HeartPulse, Building2, Globe, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getMarkets } from '@core/runtime/registry';
 
@@ -9,6 +9,7 @@ import { getMarkets } from '@core/runtime/registry';
 const MARKET_META = {
   'financial-services': { icon: Landmark, from: '#3b82f6', to: '#6366f1' },
   healthcare: { icon: HeartPulse, from: '#10b981', to: '#0ea5e9' },
+  commercial: { icon: Globe, from: '#F27121', to: '#E94057' },
 };
 const marketMeta = (id) => MARKET_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
 

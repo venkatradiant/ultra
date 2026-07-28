@@ -1,0 +1,38 @@
+[
+  {
+    "id": "SIG-NEWFOLD-MEM-001",
+    "type": "site_down",
+    "title": "Website and Store Down",
+    "description": "Your website and online store are offline because your hosting account was suspended. The assistant has already identified the cause and a one-tap fix. Tap to see why and resolve it.",
+    "impact": "high",
+    "severity": "critical",
+    "sources": ["Hosting Control Panel", "Billing and Payments"],
+    "timestamp": "2026-07-28T08:00:00Z",
+    "trend": "stable",
+    "confidence": { "score": 98, "rationale": "Suspension state is a direct read from the Hosting Control Panel, matched to the failed renewal in Billing.", "signals_used": ["Hosting Control Panel", "Billing and Payments"], "threshold": 70, "model_version": "self-serve-v1.0", "validated_at": "2026-07-28T08:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  {
+    "id": "SIG-NEWFOLD-MEM-002",
+    "type": "payment_failed",
+    "title": "Renewal Payment Failed",
+    "description": "Your annual hosting renewal did not go through because the card on file expired. This is the root cause of the suspension. Updating your payment restores everything.",
+    "impact": "medium",
+    "severity": "warning",
+    "sources": ["Billing and Payments"],
+    "timestamp": "2026-07-28T07:55:00Z",
+    "trend": "stable",
+    "confidence": { "score": 97, "rationale": "Declined-payment reason code is authoritative from Billing; the card expiry date confirms it.", "signals_used": ["Billing and Payments"], "threshold": 70, "model_version": "self-serve-v1.0", "validated_at": "2026-07-28T07:55:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  {
+    "id": "SIG-NEWFOLD-MEM-003",
+    "type": "reactivation_window",
+    "title": "Reactivation Window",
+    "description": "A reactivation fee applies if the account is not restored within the grace period. You have 4 days remaining. Resolving now avoids the fee, and a loyalty credit is available for your tenure.",
+    "impact": "low",
+    "severity": "info",
+    "sources": ["Billing and Payments", "Loyalty and Offer engine"],
+    "timestamp": "2026-07-28T07:50:00Z",
+    "trend": "stable",
+    "confidence": { "score": 95, "rationale": "Grace-window countdown and fee schedule are deterministic from Billing; loyalty eligibility from the offer engine.", "signals_used": ["Billing and Payments", "Loyalty and Offer engine"], "threshold": 70, "model_version": "self-serve-v1.0", "validated_at": "2026-07-28T07:50:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  }
+]

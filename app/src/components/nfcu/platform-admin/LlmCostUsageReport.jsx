@@ -9,8 +9,8 @@ import { getCostReport } from '@/data/nfcu/platform-admin/governanceData';
  * highlighted and carry their justification. Footer reconciles the split, the
  * total, and the all-frontier counterfactual with the savings.
  */
-export default function LlmCostUsageReport() {
-  const data = useAsyncData(getCostReport);
+export default function LlmCostUsageReport({ getter = getCostReport, heading = "LLM Cost and Usage — Priya's session" }) {
+  const data = useAsyncData(getter);
   if (!data) return null;
 
   const { rows, footer } = data;
@@ -25,7 +25,7 @@ export default function LlmCostUsageReport() {
       <div className="flex items-start justify-between gap-3 mb-1">
         <div className="flex items-center gap-2">
           <Receipt className="w-4 h-4 text-brand" />
-          <h3 className="text-sm font-semibold text-text">LLM Cost and Usage — Priya&apos;s session</h3>
+          <h3 className="text-sm font-semibold text-text">{heading}</h3>
         </div>
         <span className="text-[10px] font-bold text-violet-700 bg-violet-50 border border-violet-200 px-2 py-0.5 rounded-full flex-shrink-0">
           {footer.frontierTasks} of {footer.totalTasks} on frontier

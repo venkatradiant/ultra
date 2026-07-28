@@ -106,8 +106,8 @@ function reachableFrom(start) {
   return seen;
 }
 
-export default function RoutingDiagram() {
-  const definition = useAsyncData(getRoutingMermaid);
+export default function RoutingDiagram({ getter = getRoutingMermaid, nodeMeta = ROUTING_NODE_META, downloadName = 'nfcu-routing-logic.svg' }) {
+  const definition = useAsyncData(getter);
   const [svg, setSvg] = useState('');
   const [hovered, setHovered] = useState(null); // { id, left, top, below }
   const boxRef = useRef(null);
@@ -206,14 +206,14 @@ export default function RoutingDiagram() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'nfcu-routing-logic.svg';
+    a.download = downloadName;
     a.click();
     URL.revokeObjectURL(url);
   }, [svg]);
 
   if (!definition) return null;
 
-  const tip = hovered ? ROUTING_NODE_META[hovered.id] : null;
+  const tip = hovered ? nodeMeta[hovered.id] : null;
 
   return (
     <motion.div

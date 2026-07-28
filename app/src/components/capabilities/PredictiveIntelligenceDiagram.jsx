@@ -31,8 +31,26 @@ export default function PredictiveIntelligenceDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  const isNewfold = persona.id.startsWith('newfold_');
 
-  const clientConfig = isCfo ? {
+  const clientConfig = isNewfold ? {
+    sourcesLabel: 'NEWFOLD DATA SOURCES',
+    primarySources: ['Service Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
+    secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Forecasts contact volume, staffing needs, churn and save likelihood, and renewal-driven spikes using history across the contact center platform and the legacy brand systems — and models what-if scenarios for care planning.',
+    predCards: [
+      { name: 'Volume & Staffing Forecast', desc: 'Projects contact volume by 30-minute interval and the headcount gap, weeks out' },
+      { name: 'Churn & Save Likelihood', desc: 'Predicts which renewal-cohort customers will cancel and which offer saves them' },
+      { name: 'Renewal-Spike Prediction', desc: 'Correlates Marketing sends and Billing batches to the volume spike they will drive' },
+    ],
+    signalSubtitle: 'Service Cloud (existing) extended by the Agentic Data Platform across Billing, Marketing, and Snowflake',
+    existingCard: { title: 'Service Cloud WFM (Newfold existing)', desc: 'Real-time queue metrics, forecasting, scheduling, and adherence in the contact center platform' },
+    agenticCardDesc: 'Extends Service Cloud signals with Billing, Marketing Cloud, and 3-year Snowflake history',
+    gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
+    withText: 'What-if care planning — staffing, deflection, and save-offer scenarios modeled before the surge lands.',
+  } : isCfo ? {
     bodyText: 'Surfaces what is likely to happen next: when the audit will close, how many staff hours remediation saves, and whether your next NCUA 5300 filing is governed — before the numbers confirm it.',
     predCards: [
       { name: 'Audit Completion Forecast', desc: 'Projects audit close from your audit history — manual reconstruction vs. governed lineage' },

@@ -1,0 +1,124 @@
+[
+  {
+    "id": "SIG-NEWFOLD-OPS-001",
+    "type": "renewal_spike",
+    "title": "Renewal Charge Spike, Network Solutions",
+    "description": "Contact volume in the Billing and Renewals queue jumped 210% over the last two hours. 240,000 customers received a price-increase and auto-renewal notice at 7:15 AM and the batch charged the same morning. 148 customers are waiting. 'Cancel' and 'refund' are the top contact reasons.",
+    "impact": "high",
+    "severity": "critical",
+    "sources": [
+      "Service Cloud (real-time)",
+      "Marketing Cloud",
+      "Billing and Subscriptions"
+    ],
+    "timestamp": "2026-07-28T08:40:00Z",
+    "trend": "worsening",
+    "metrics": {
+      "volume_delta": "+210%",
+      "customers_waiting": 148,
+      "batch_size": "240,000"
+    },
+    "confidence": {
+      "score": 95,
+      "rationale": "Queue volume is real-time telemetry; the campaign send-time and billing-batch timestamp give direct causal attribution.",
+      "signals_used": [
+        "Service Cloud (real-time)",
+        "Marketing Cloud",
+        "Billing and Subscriptions"
+      ],
+      "threshold": 70,
+      "model_version": "care-intraday-v1.2",
+      "validated_at": "2026-07-28T08:40:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "brands": [
+      "network_solutions"
+    ]
+  },
+  {
+    "id": "SIG-NEWFOLD-OPS-002",
+    "type": "hosting_outage",
+    "title": "Hosting Outage Volume, OCI Region",
+    "description": "Site-down contacts rose 24% after a provisioning incident in one cloud region logged by IT 40 minutes ago. The dynamics of the spike match a partial outage, not a billing issue. 30% of affected customers are on the Bluehost store plan.",
+    "impact": "medium",
+    "severity": "warning",
+    "sources": [
+      "Service Cloud",
+      "IT and Infrastructure Monitoring",
+      "Hosting Control Panel"
+    ],
+    "timestamp": "2026-07-28T08:20:00Z",
+    "trend": "worsening",
+    "metrics": {
+      "volume_delta": "+24%",
+      "store_plan_share": "30%",
+      "incident_age_min": 40
+    },
+    "confidence": {
+      "score": 89,
+      "rationale": "Contact rise correlates with the IT incident timestamp within 6 minutes; the spike shape matches a partial outage signature, not billing.",
+      "signals_used": [
+        "Service Cloud",
+        "IT and Infrastructure Monitoring"
+      ],
+      "threshold": 70,
+      "model_version": "care-intraday-v1.2",
+      "validated_at": "2026-07-28T08:20:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "brands": [
+      "bluehost"
+    ]
+  },
+  {
+    "id": "SIG-NEWFOLD-OPS-003",
+    "type": "save_desk_overflow",
+    "title": "Save-Desk Overflow",
+    "description": "The retention desk is at 118% of planned capacity. Save conversations average 12:40 versus 8:50 for standard billing contacts. Abandoned save contacts are up 22%, each one an at-risk subscription.",
+    "impact": "medium",
+    "severity": "warning",
+    "sources": [
+      "Service Cloud",
+      "Billing",
+      "Customer 360"
+    ],
+    "timestamp": "2026-07-28T08:10:00Z",
+    "trend": "worsening",
+    "metrics": {
+      "capacity_pct": "118%",
+      "save_aht": "12:40",
+      "abandoned_delta": "+22%"
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Capacity and handle-time are direct telemetry; abandonment rise is a counted delta against the 7-day baseline.",
+      "signals_used": [
+        "Service Cloud",
+        "Billing",
+        "Customer 360"
+      ],
+      "threshold": 70,
+      "model_version": "care-intraday-v1.2",
+      "validated_at": "2026-07-28T08:10:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    },
+    "brands": [
+      "network_solutions"
+    ]
+  }
+]

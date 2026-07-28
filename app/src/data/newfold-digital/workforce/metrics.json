@@ -1,0 +1,36 @@
+{
+  "surgeOverlay": [
+    { "week": "Nov 24", "y2023": 100, "y2024": 108, "y2025": 112, "capacity": 115 },
+    { "week": "Dec 1", "y2023": 118, "y2024": 128, "y2025": 138, "capacity": 116 },
+    { "week": "Dec 8", "y2023": 132, "y2024": 145, "y2025": 158, "capacity": 116 },
+    { "week": "Dec 15", "y2023": 128, "y2024": 140, "y2025": 152, "capacity": 116 },
+    { "week": "Dec 22", "y2023": 110, "y2024": 118, "y2025": 124, "capacity": 116 }
+  ],
+  "scenarios": [
+    { "label": "Current Plan", "notes": "No added capacity", "serviceLevel": "61%", "cost": "$0", "budget_impact": "76%", "highlight": false },
+    { "label": "16 OT Shifts", "notes": "+ billing explainer & callback", "serviceLevel": "81%", "cost": "$19,800", "budget_impact": "94%", "highlight": false },
+    { "label": "9 OT + 12 BPO", "notes": "Hybrid + deflection (recommended)", "serviceLevel": "79%", "cost": "$12,600", "budget_impact": "84%", "highlight": true }
+  ],
+  "cohortRamp": [
+    { "week": "W1", "cohort": 22.0, "benchmark": 20.0 },
+    { "week": "W2", "cohort": 19.5, "benchmark": 16.0 },
+    { "week": "W3", "cohort": 17.8, "benchmark": 13.0 },
+    { "week": "W4", "cohort": 16.4, "benchmark": 10.5 },
+    { "week": "W5", "cohort": 15.6, "benchmark": 9.5 },
+    { "week": "W6", "cohort": 15.2, "benchmark": 9.5 }
+  ],
+  "cohortAdherence": "60%",
+  "cohortBenchmark": "85%",
+  "kbAdherenceScatter": [
+    { "agent": "A1", "handleTime": 18.2, "adherence": 48, "topic": "hosting" },
+    { "agent": "A2", "handleTime": 17.1, "adherence": 52, "topic": "domains" },
+    { "agent": "A3", "handleTime": 16.4, "adherence": 55, "topic": "hosting" },
+    { "agent": "A4", "handleTime": 16.0, "adherence": 58, "topic": "domains" },
+    { "agent": "A5", "handleTime": 15.6, "adherence": 60, "topic": "hosting" },
+    { "agent": "A6", "handleTime": 13.2, "adherence": 74, "topic": "billing" },
+    { "agent": "A7", "handleTime": 12.4, "adherence": 78, "topic": "billing" },
+    { "agent": "A8", "handleTime": 11.1, "adherence": 82, "topic": "billing" },
+    { "agent": "A9", "handleTime": 10.6, "adherence": 86, "topic": "billing" },
+    { "agent": "A10", "handleTime": 10.1, "adherence": 88, "topic": "domains" }
+  ]
+}

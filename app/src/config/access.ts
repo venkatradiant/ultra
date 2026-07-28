@@ -23,6 +23,7 @@ export const DEMO_CREDENTIALS: Record<string, DemoCredential> = {
   penfed: { password: 'penfed@9705', clientId: 'penfed' },
   nfcu: { password: 'nfcu@9705', clientId: 'nfcu' },
   riverside: { password: 'riverside@9705', clientId: 'riverside_health' },
+  newfold: { password: 'newfold@9705', clientId: 'newfold_digital' },
 };
 
 /**

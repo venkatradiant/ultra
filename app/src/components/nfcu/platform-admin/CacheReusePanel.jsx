@@ -82,8 +82,8 @@ function Metric({ icon: Icon, value, label }) {
   );
 }
 
-export default function CacheReusePanel() {
-  const d = useAsyncData(getCacheReuse);
+export default function CacheReusePanel({ getter = getCacheReuse }) {
+  const d = useAsyncData(getter);
   if (!d) return null;
 
   const { pair, month } = d;
