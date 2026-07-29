@@ -28,7 +28,7 @@ export default function ScenarioTable() {
     <div className="bg-surface rounded-xl border border-border overflow-hidden">
       <div className="px-4 py-3 border-b border-border-subtle">
         <p className="text-xs font-semibold text-text-muted">Cross-Brand Stabilization Scenarios — Today</p>
-        <p className="text-[10px] text-text-subtle mt-0.5">Source: Service Cloud forecasting · Agent skill profiles · Billing deflection eligibility · Finance budget model</p>
+        <p className="text-[10px] text-text-subtle mt-0.5">Source: Genesys Cloud forecasting · Agent skill profiles · Billing deflection eligibility · Finance budget model</p>
       </div>
       <table className="w-full text-xs">
         <thead>

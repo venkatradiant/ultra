@@ -111,7 +111,7 @@ const manifest: PersonaManifest = {
       { id: 'churn', label: 'Gross Churn (MTD)', value: '2.9%', trend: '+0.5 pts, renewal cohort', positive: false, icon: TrendingDown, iconColor: 'text-red-600', iconBg: 'bg-red-500/10', chipText: 'What is my churn and save exposure this week?' },
       { id: 'consolidation', label: 'Consolidation (Network Sol.)', value: '61%', trend: '11 days behind', positive: false, icon: Layers, iconColor: 'text-red-600', iconBg: 'bg-red-500/10', chipText: 'What is my consolidation status?' },
       { id: 'ot', label: 'Q4 Overtime Spend', value: '$2.1M / $3.0M', trend: 'Trajectory: 135%', positive: false, icon: Briefcase, iconColor: 'text-amber-600', iconBg: 'bg-amber-500/10', chipText: 'What is my overtime budget exposure?' },
-      { id: 'contacts', label: 'Total Contacts Handled (MTD)', value: '981,400', trend: 'Service Cloud + legacy brands', positive: true, icon: PhoneCall, iconColor: 'text-blue-600', iconBg: 'bg-blue-500/10', chipText: 'Compare brand performance this week versus last week' },
+      { id: 'contacts', label: 'Total Contacts Handled (MTD)', value: '981,400', trend: 'Genesys Cloud + legacy brands', positive: true, icon: PhoneCall, iconColor: 'text-blue-600', iconBg: 'bg-blue-500/10', chipText: 'Compare brand performance this week versus last week' },
       { id: 'csat', label: 'CSAT (30-day)', value: '3.7 / 5.0', trend: 'Softened on Network Sol. billing', positive: false, icon: Star, iconColor: 'text-amber-600', iconBg: 'bg-amber-500/10', chipText: "Compare to last month's report" },
     ],
     signalToChip: {

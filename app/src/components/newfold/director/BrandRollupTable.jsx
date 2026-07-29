@@ -33,7 +33,7 @@ export default function BrandRollupTable() {
         <p className="text-xs font-semibold text-text-muted">
           Service Level by Brand — {focusName ? `${focusName} (focused)` : 'Cross-Brand Roll-up'}
         </p>
-        <p className="text-[10px] text-text-subtle mt-0.5">Source: Service Cloud (brand roll-ups) · Workforce Management</p>
+        <p className="text-[10px] text-text-subtle mt-0.5">Source: Genesys Cloud (brand roll-ups) · Workforce Management</p>
       </div>
       <table className="w-full text-xs">
         <thead>

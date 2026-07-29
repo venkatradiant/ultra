@@ -13,7 +13,7 @@ export default function CascadeDiagram() {
     <div className="bg-surface rounded-xl border border-border overflow-hidden">
       <div className="px-4 py-3 border-b border-border-subtle">
         <p className="text-xs font-semibold text-text-muted">Cascade — How the Renewal Spike Pulled Bluehost Down</p>
-        <p className="text-[10px] text-text-subtle mt-0.5">Source: Marketing Cloud · Billing · Service Cloud · Workforce Management</p>
+        <p className="text-[10px] text-text-subtle mt-0.5">Source: Marketing Cloud · Billing · Genesys Cloud · Workforce Management</p>
       </div>
       <div className="p-4">
         {chain.map((n, i) => {

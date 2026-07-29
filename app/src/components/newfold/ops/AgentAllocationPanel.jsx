@@ -35,7 +35,7 @@ export default function AgentAllocationPanel() {
     <div className="bg-surface rounded-xl border border-border overflow-hidden">
       <div className="px-4 py-3 border-b border-border-subtle">
         <p className="text-xs font-semibold text-text-muted">Real-Time Agent Allocation</p>
-        <p className="text-[10px] text-text-subtle mt-0.5">Source: Service Cloud (routing) · Workforce Management · Agent Skill Profiles</p>
+        <p className="text-[10px] text-text-subtle mt-0.5">Source: Genesys Cloud (routing) · Workforce Management · Agent Skill Profiles</p>
       </div>
       <div className="p-4">
         <div className="flex items-center justify-center gap-3 mb-4">

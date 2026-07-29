@@ -45,7 +45,7 @@ export default function ActionExecutionDiagram() {
 
   const clientConfig = isNewfold ? {
     targetsLabel: 'NEWFOLD EXECUTION TARGETS',
-    primaryTargets: ['Service Cloud', 'Billing & Subscriptions', 'Hosting Control Panel', 'Marketing Cloud'],
+    primaryTargets: ['Genesys Cloud', 'Billing & Subscriptions', 'Hosting Control Panel', 'Marketing Cloud'],
     secondaryTargets: ['Domain Registrar', 'Loyalty Engine', 'IT / Incident', 'Email'],
     deployedAt: 'Verizon',
     deployedDesc: 'Multi-agent orchestration across network ops',

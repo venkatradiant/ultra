@@ -35,7 +35,7 @@ export default function AnomalyDetectionDiagram() {
 
   const clientConfig = isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
-    primarySources: ['Service Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
+    primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
     deployedAt: 'Verizon',
     deployedDesc: 'Multi-agent orchestration across network ops',

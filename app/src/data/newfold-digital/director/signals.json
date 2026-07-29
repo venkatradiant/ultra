@@ -7,7 +7,7 @@
     "impact": "high",
     "severity": "critical",
     "sources": [
-      "Service Cloud (roll-up across 5 managers)",
+      "Genesys Cloud (roll-up across 5 managers)",
       "Billing and Subscriptions",
       "Marketing Cloud"
     ],
@@ -24,7 +24,7 @@
       "score": 91,
       "rationale": "Per-brand SL is direct telemetry; cascade attribution is causal \u2014 Sofia's cross-brand reroute and the Bluehost drop align within 8 minutes.",
       "signals_used": [
-        "Service Cloud (brand roll-up)",
+        "Genesys Cloud (brand roll-up)",
         "Workforce Management"
       ],
       "threshold": 70,
@@ -51,7 +51,7 @@
     "severity": "critical",
     "sources": [
       "Migration PMO",
-      "Service Cloud",
+      "Genesys Cloud",
       "SI Partner status reports"
     ],
     "timestamp": "2026-07-28T07:30:00Z",
@@ -93,7 +93,7 @@
     "impact": "high",
     "severity": "warning",
     "sources": [
-      "Service Cloud",
+      "Genesys Cloud",
       "Billing and Subscriptions",
       "Customer 360"
     ],
@@ -110,7 +110,7 @@
       "score": 86,
       "rationale": "Cancellation volume and save rate are authoritative; ARR-at-risk is a run-rate against the current save rate that has landed within \u00b16% on prior cycles.",
       "signals_used": [
-        "Service Cloud",
+        "Genesys Cloud",
         "Billing and Subscriptions",
         "Customer 360"
       ],

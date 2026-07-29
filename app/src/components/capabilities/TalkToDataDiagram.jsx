@@ -35,13 +35,13 @@ export default function TalkToDataDiagram() {
 
   const clientConfig = isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
-    primarySources: ['Service Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
+    primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
     deployedAt: 'Verizon',
     deployedDesc: 'Multi-agent orchestration across network ops',
-    connectorDesc: 'Service Cloud, Billing, Domains, Hosting',
+    connectorDesc: 'Genesys Cloud, Billing, Domains, Hosting',
     piiDesc: 'Customer & registrant data masking',
-    bodyText: 'Ask one question in plain language and get a sourced answer drawn at once from Service Cloud, Billing, Marketing Cloud, Domains, and Hosting — across every brand, without knowing which system holds which fact.',
+    bodyText: 'Ask one question in plain language and get a sourced answer drawn at once from Genesys Cloud, Billing, Marketing Cloud, Domains, and Hosting — across every brand, without knowing which system holds which fact.',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'Natural-language querying across all connected care and business data — one answer, many systems, every brand.',
   } : isCfo ? {

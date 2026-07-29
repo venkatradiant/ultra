@@ -19,11 +19,11 @@
     "description": "Customers contacting again within 48 hours rose 29% for refund and billing issues. First contact resolution for refunds dropped to 55%. Root cause: agents are issuing manual workarounds instead of resolving an underlying billing-sync delay logged by IT.",
     "impact": "high",
     "severity": "critical",
-    "sources": ["Service Cloud", "IT Incident Management", "Billing and Subscriptions"],
+    "sources": ["Genesys Cloud", "IT Incident Management", "Billing and Subscriptions"],
     "timestamp": "2026-07-28T07:20:00Z",
     "trend": "worsening",
     "metrics": { "repeat_delta": "+29%", "refund_fcr": "55%" },
-    "confidence": { "score": 90, "rationale": "Repeat-contact rate is counted from Service Cloud; the IT-incident correlation is confirmed against the Nov 22 sync-delay ticket.", "signals_used": ["Service Cloud", "IT Incident Management"], "threshold": 70, "model_version": "quality-v1.9", "validated_at": "2026-07-28T07:20:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+    "confidence": { "score": 90, "rationale": "Repeat-contact rate is counted from Genesys Cloud; the IT-incident correlation is confirmed against the Nov 22 sync-delay ticket.", "signals_used": ["Genesys Cloud", "IT Incident Management"], "threshold": 70, "model_version": "quality-v1.9", "validated_at": "2026-07-28T07:20:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
   },
   {
     "id": "SIG-NEWFOLD-QA-003",

@@ -2,13 +2,13 @@
   {
     "trigger": "home_load",
     "capabilityName": "Proactive Intelligence",
-    "description": "The AI watches your Billing and Renewals and Hosting Support queues in real time, correlating Service Cloud volume with the Marketing send and the Billing batch — so a renewal spike is a briefing before your 9 AM sync, not a surprise at the queue.",
+    "description": "The AI watches your Billing and Renewals and Hosting Support queues in real time, correlating Genesys Cloud volume with the Marketing send and the Billing batch — so a renewal spike is a briefing before your 9 AM sync, not a surprise at the queue.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
     "trigger": "ask_turn_1",
     "capabilityName": "Converged Conversation",
-    "description": "Ask what caused the spike and get one sourced answer drawn at once from Service Cloud, Marketing Cloud, and Billing — the campaign send, the batch timing, the queue volume, and the top contact reasons, together.",
+    "description": "Ask what caused the spike and get one sourced answer drawn at once from Genesys Cloud, Marketing Cloud, and Billing — the campaign send, the batch timing, the queue volume, and the top contact reasons, together.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {

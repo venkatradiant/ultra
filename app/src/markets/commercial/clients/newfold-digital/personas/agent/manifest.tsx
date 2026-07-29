@@ -91,9 +91,9 @@ const manifest: PersonaManifest = {
     },
     stats: [
       { id: 'aht', label: 'Average Handle Time', value: '8:10', trend: 'Today', positive: true, icon: Clock, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'Draft my after-contact summary' },
-      { id: 'fcr', label: 'First Contact Resolution', value: '73%', trend: 'Service Cloud + Customer 360', positive: true, icon: CheckCircle2, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'What is the compliant resolution?' },
+      { id: 'fcr', label: 'First Contact Resolution', value: '73%', trend: 'Genesys Cloud + Customer 360', positive: true, icon: CheckCircle2, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: 'What is the compliant resolution?' },
       { id: 'quality', label: 'Quality Score (30d)', value: '91/100', trend: 'Quality Management', positive: true, icon: Star, iconColor: 'text-blue-600', iconBg: 'bg-blue-500/10', chipText: 'Log AI versus human actions for this contact' },
-      { id: 'handled', label: 'Contacts Handled (Today)', value: '21', trend: 'Service Cloud', positive: true, icon: Phone, iconColor: 'text-text-muted', iconBg: 'bg-surface-2', chipText: null },
+      { id: 'handled', label: 'Contacts Handled (Today)', value: '21', trend: 'Genesys Cloud', positive: true, icon: Phone, iconColor: 'text-text-muted', iconBg: 'bg-surface-2', chipText: null },
       { id: 'sentiment', label: 'Live Sentiment (Current)', value: 'Negative', trend: 'Rising', positive: false, icon: Frown, iconColor: 'text-red-600', iconBg: 'bg-red-500/10', chipText: "Why is this customer's site down?" },
       { id: 'adherence', label: 'Schedule Adherence', value: '93%', trend: 'Workforce Management', positive: true, icon: CalendarCheck, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-500/10', chipText: null },
     ],

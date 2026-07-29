@@ -2,7 +2,7 @@
   "newfold_dir_greeting": {
     "ai_message": "Good morning, Marisol. Your care operation has 3 signals at the director level. The most urgent: aggregate service level dropped to 66%, with two brands critical at the same time for the first time in 90 days, driven by a renewal price-increase spike. Your Network Solutions consolidation cutover is also at risk, and Q4 churn exposure is climbing. Want me to walk you through them?",
     "suggested_chips": ["Walk me through the service level issue", "Show me the consolidation risk", "What is my churn exposure?"],
-    "data_sources_used": ["Service Cloud (aggregated)", "Billing and Subscriptions", "Migration PMO", "Finance", "Marketing Cloud"],
+    "data_sources_used": ["Genesys Cloud (aggregated)", "Billing and Subscriptions", "Migration PMO", "Finance", "Marketing Cloud"],
     "capability": "Proactive Intelligence",
     "confidence": 92
   },
@@ -11,7 +11,7 @@
     "user_query": "Walk me through the service level issue",
     "ai_message": "Two of your brands are critical at once. Network Solutions renewals dropped to 52% after Marketing sent a price-increase and auto-renewal notice to 240,000 customers and Billing processed the batch the same morning. Call and chat volume in that queue hit 3.1x normal within two hours. To cover it, Sofia activated 9 cross-trained agents from Bluehost hosting support, which pulled that queue down to 71% and declining. Your other three brands are holding between 84% and 90%.",
     "suggested_chips": ["What are my options to stabilize both brands?", "Show me the cascade impact", "Which brand should I prioritize?", "How does this compare to last quarter?"],
-    "data_sources_used": ["Service Cloud (brand roll-ups)", "Billing and Subscriptions", "Marketing Cloud", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud (brand roll-ups)", "Billing and Subscriptions", "Marketing Cloud", "Workforce Management"],
     "capability": "Converged Conversation",
     "confidence": 94
   },
@@ -20,7 +20,7 @@
     "user_query": "What are my options to stabilize both brands?",
     "ai_message": "I modeled three scenarios. Scenario A: pull 4 agents back to Bluehost and enable chat deflection on Network Solutions renewals — projects Network Solutions at 69% (still below target) but Bluehost recovers to 82%, net aggregate 74%. Scenario B: activate 8 overtime agents across both queues for the afternoon — both recover above 79%, cost $5,600, pushing Q4 overtime to 76% of budget. Scenario C: route low-complexity 'why was I charged' contacts to a self-service billing explainer with agent fallback, and hold the save conversations for live agents — projects Network Solutions at 80%, Bluehost recovering to 79%, at the lowest cost and highest aggregate recovery, and it protects the save desk. I recommend Scenario C.",
     "suggested_chips": ["Execute Scenario C", "Show me the save-desk impact", "What about the consolidation risk?", "Model a fourth scenario"],
-    "data_sources_used": ["Service Cloud (forecasting)", "Agent Skill Profiles (cross-brand)", "Billing (deflection eligibility)", "Finance (budget modeling)"],
+    "data_sources_used": ["Genesys Cloud (forecasting)", "Agent Skill Profiles (cross-brand)", "Billing (deflection eligibility)", "Finance (budget modeling)"],
     "capability": "Predictive Intelligence",
     "confidence": 90
   },
@@ -29,7 +29,7 @@
     "user_query": "Execute Scenario C",
     "ai_message": "Done. I enabled the self-service billing explainer with agent fallback on the Network Solutions renewals queue and held save conversations for live agents. Projected recovery to 80% within 30 minutes; I am monitoring Bluehost so it does not tip back into critical. Should I move on to the consolidation risk, or generate your weekly leadership report?",
     "suggested_chips": ["What about the consolidation risk?", "Generate my weekly leadership report", "Show me the save-desk impact"],
-    "data_sources_used": ["Service Cloud (routing)", "Billing (deflection)", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud (routing)", "Billing (deflection)", "Workforce Management"],
     "capability": "Automated Action",
     "confidence": 93
   },
@@ -38,7 +38,7 @@
     "user_query": "What about the consolidation risk?",
     "ai_message": "The Network Solutions support-tooling cutover onto the unified platform is 11 days behind. The delay is concentrated in 3 of 12 flows: refund handling, auto-renewal disclosure, and Spanish-language routing. Those three carry 34% of that brand's contact volume. Parity testing is failing because the legacy brand's macros encode refund and disclosure rules the new platform handles differently. Your SI partner flagged it 9 days ago without a remediation date. If the cutover misses the legacy license window, the agent-migration phase compresses from 12 weeks to 8, which workforce planning has flagged as high risk for handle time and quality.",
     "suggested_chips": ["What are my options to accelerate?", "Show me the 3 failing flows", "What happens if we miss the license window?", "Draft an escalation to the SI partner"],
-    "data_sources_used": ["Migration PMO", "Service Cloud", "Legacy brand support systems", "SI Partner status reports"],
+    "data_sources_used": ["Migration PMO", "Genesys Cloud", "Legacy brand support systems", "SI Partner status reports"],
     "capability": "Anomaly Detection",
     "confidence": 88
   },
@@ -56,7 +56,7 @@
     "user_query": "Generate my weekly leadership report",
     "ai_message": "Here is your weekly Customer Care report for the Chief Customer Officer. It covers: (1) Aggregate performance: service level at 66%, driven by two simultaneous brand degradations; corrective actions in progress with projected recovery to 79% by end of day. (2) Consolidation: Network Solutions cutover at 61%, 11 days behind, 3 flows failing parity, escalation sent. (3) Cost and churn: cost per contact at $9.40; cancellation requests up 180% in the renewal cohort; save rate 41%; $1.9M in annual recurring revenue at risk this week; recommended a mandatory care-notification rule for future price-increase batches. (4) CSAT: 3.7, softened in Network Solutions billing. (5) Attrition: 22%, with exit interviews citing schedule inflexibility.",
     "suggested_chips": ["Export as PDF", "Add a recommendation section", "Show me the churn detail", "Compare to last month's report"],
-    "data_sources_used": ["Service Cloud (all modules)", "Billing", "HR", "Finance", "Migration PMO", "Marketing Cloud", "Customer 360"],
+    "data_sources_used": ["Genesys Cloud (all modules)", "Billing", "HR", "Finance", "Migration PMO", "Marketing Cloud", "Customer 360"],
     "capability": "Friction Observability",
     "confidence": 91
   },
@@ -65,7 +65,7 @@
     "user_query": "Compare to last month's report",
     "ai_message": "Month over month: service level declined from 77% to 66%, driven by this week's dual-brand incident; the prior month had none. Cost per contact rose from $8.90 to $9.40, mostly overtime and longer save conversations. Gross churn rose from 2.4% to 2.9%, concentrated in the renewal cohort billed without advance care notice. Save rate slipped from 46% to 41% as the desk exceeded capacity. Consolidation moved from 48% to 61%, on track until the parity issue surfaced. One positive: first contact resolution improved from 67% to 69% after the new hosting knowledge base shipped. If the care-notification rule and self-service billing explainer go in, I project cost per contact back under $9.00 and churn back toward 2.5% within two cycles.",
     "suggested_chips": ["What should I prioritize this week?", "Drill into the churn data", "Show me the save-rate driver", "Export the comparison"],
-    "data_sources_used": ["Service Cloud (historical)", "Billing", "Finance", "HR", "Migration PMO"],
+    "data_sources_used": ["Genesys Cloud (historical)", "Billing", "Finance", "HR", "Migration PMO"],
     "capability": "Predictive Intelligence",
     "confidence": 89
   },
@@ -74,7 +74,7 @@
     "user_query": "Show me the consolidation risk",
     "ai_message": "The Network Solutions consolidation cutover is at 61% and 11 days behind. 3 of 12 macro and routing flows have not passed parity — refund handling, auto-renewal disclosure, and Spanish-language routing — and together they carry 34% of that brand's contact volume. The migration timeline and the hard license-window deadline are below. This is one of your two critical signals this morning.",
     "suggested_chips": ["What are my options to accelerate?", "Show me the 3 failing flows", "Draft an escalation to the SI partner"],
-    "data_sources_used": ["Migration PMO", "Service Cloud", "SI Partner status reports"],
+    "data_sources_used": ["Migration PMO", "Genesys Cloud", "SI Partner status reports"],
     "capability": "Anomaly Detection",
     "confidence": 88
   },
@@ -83,7 +83,7 @@
     "user_query": "What is my churn exposure?",
     "ai_message": "Cancellation requests are up 180% week over week, concentrated in the Network Solutions renewal cohort billed this morning. Your save desk is at 118% of capacity and abandoned save conversations are rising — each one an at-risk subscription. At the current 41% save rate, $1.9M in annual recurring revenue is exposed this week. The fastest lever is protecting the save desk while deflecting the simple 'why was I charged' contacts, which is exactly what Scenario C does.",
     "suggested_chips": ["Show me the save-desk impact", "What are my options to stabilize both brands?", "Generate my weekly leadership report"],
-    "data_sources_used": ["Service Cloud", "Billing and Subscriptions", "Customer 360"],
+    "data_sources_used": ["Genesys Cloud", "Billing and Subscriptions", "Customer 360"],
     "capability": "Predictive Intelligence",
     "confidence": 87
   },
@@ -92,7 +92,7 @@
     "user_query": "Show me the cascade impact",
     "ai_message": "Here is the cascade. The renewal spike hit Network Solutions renewals first (52%). Sofia's reroute of 9 cross-trained agents from Bluehost hosting support stabilized renewals briefly but pulled Bluehost to 71% and declining. Web.com, HostGator, and Crazy Domains are unaffected at 84–90%. Without intervention, Workforce Management projects Bluehost breaching critical within ~30 minutes — a second brand down from a staffing decision, not a demand shock.",
     "suggested_chips": ["What are my options to stabilize both brands?", "Which brand should I prioritize?"],
-    "data_sources_used": ["Service Cloud (brand roll-ups)", "Workforce Management", "Agent Skill Profiles"],
+    "data_sources_used": ["Genesys Cloud (brand roll-ups)", "Workforce Management", "Agent Skill Profiles"],
     "capability": "Friction Observability",
     "confidence": 89
   },
@@ -101,7 +101,7 @@
     "user_query": "Which brand should I prioritize?",
     "ai_message": "Prioritize Network Solutions renewals — it carries the churn and revenue exposure (240,000 customers in the batch, $1.9M ARR at risk) and it is the root of the cascade. But do not solve it by draining Bluehost further. Scenario C stabilizes Network Solutions with self-service deflection instead of more agents, which lets Bluehost recover in parallel. That is why I recommend it over a straight reroute.",
     "suggested_chips": ["What are my options to stabilize both brands?", "Show me the cascade impact"],
-    "data_sources_used": ["Service Cloud", "Billing", "Customer 360"],
+    "data_sources_used": ["Genesys Cloud", "Billing", "Customer 360"],
     "capability": "Predictive Intelligence",
     "confidence": 88
   },
@@ -110,7 +110,7 @@
     "user_query": "How does this compare to last quarter?",
     "ai_message": "Last quarter you had no dual-brand critical events. The nearest comparison was the April renewal batch, which drove a 1.9x spike — but Billing and Marketing gave care 48 hours' notice, so the save desk was pre-staffed and service level never breached 78%. The difference this time is the missing care notification, not the volume. That is the systemic gap the weekly report recommends closing with a mandatory 48-hour notice rule.",
     "suggested_chips": ["Generate my weekly leadership report", "What are my options to stabilize both brands?"],
-    "data_sources_used": ["Service Cloud (historical)", "Marketing Cloud (campaign history)", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud (historical)", "Marketing Cloud (campaign history)", "Workforce Management"],
     "capability": "Friction Observability",
     "confidence": 87
   },
@@ -119,7 +119,7 @@
     "user_query": "Show me the save-desk impact",
     "ai_message": "The save desk is at 118% of planned capacity, and abandoned save conversations are up 22%. Cross-referencing the renewal cohort with Customer 360 churn scores, 640 customers in today's batch are high churn risk and high lifetime value. Scenario C protects the desk by holding save conversations for live agents and deflecting the simple billing questions — historically that lifts the save rate 6 to 9 points on a spike day.",
     "suggested_chips": ["What are my options to stabilize both brands?", "Generate my weekly leadership report"],
-    "data_sources_used": ["Service Cloud", "Billing", "Customer 360 (churn and lifetime value)"],
+    "data_sources_used": ["Genesys Cloud", "Billing", "Customer 360 (churn and lifetime value)"],
     "capability": "Predictive Intelligence",
     "confidence": 88
   },
@@ -128,7 +128,7 @@
     "user_query": "Model a fourth scenario",
     "ai_message": "Scenario D — BPO overflow: route the simple billing contacts to your BPO partner for the afternoon and keep all in-house agents on save conversations. Projects Network Solutions at 81% and Bluehost at 80%, cost $4,200, and it preserves overtime budget. The trade-off is a 4-point CSAT dip on BPO-handled contacts, which for 'why was I charged' questions is acceptable. It edges Scenario C on service level but Scenario C still wins on cost and CSAT. Your call.",
     "suggested_chips": ["Execute Scenario C", "Show me the save-desk impact"],
-    "data_sources_used": ["Service Cloud (forecasting)", "BPO capacity feed", "Finance (budget modeling)"],
+    "data_sources_used": ["Genesys Cloud (forecasting)", "BPO capacity feed", "Finance (budget modeling)"],
     "capability": "Predictive Intelligence",
     "confidence": 85
   },
@@ -182,7 +182,7 @@
     "user_query": "Export as PDF",
     "ai_message": "Exported. Your weekly Customer Care report is saved as a one-page PDF for the Chief Customer Officer, with the five sections, trend arrows per KPI, the consolidation progress bar, and the revenue-at-risk callout. It is in your reports folder and ready to attach.",
     "suggested_chips": ["Add a recommendation section", "Compare to last month's report"],
-    "data_sources_used": ["Service Cloud", "Billing", "Finance", "Migration PMO"],
+    "data_sources_used": ["Genesys Cloud", "Billing", "Finance", "Migration PMO"],
     "capability": "Automated Action",
     "confidence": 95
   },
@@ -191,7 +191,7 @@
     "user_query": "Add a recommendation section",
     "ai_message": "Added. The recommendation section leads with the mandatory 48-hour care-notification rule for any price-increase or renewal batch above 20,000 customers, followed by the self-service billing explainer rollout and the SI escalation on the cutover parity gap. Each recommendation carries a projected impact: the notification rule alone would have prevented today's dual-brand degradation. Want it exported?",
     "suggested_chips": ["Export as PDF", "Compare to last month's report"],
-    "data_sources_used": ["Service Cloud", "Marketing Cloud", "Migration PMO"],
+    "data_sources_used": ["Genesys Cloud", "Marketing Cloud", "Migration PMO"],
     "capability": "Automated Action",
     "confidence": 90
   },
@@ -200,7 +200,7 @@
     "user_query": "Show me the churn detail",
     "ai_message": "The churn is concentrated in the Network Solutions renewal cohort billed this morning — 240,000 customers, of whom Customer 360 flags 640 as high-risk-high-value. Gross churn rose from 2.4% to 2.9% month over month, entirely in this cohort. The driver is the missing advance care notice: customers surprised by a price increase cancel at roughly 3x the rate of pre-notified customers. Protecting the save desk and closing the notification gap are the two levers that move it.",
     "suggested_chips": ["Show me the save-rate driver", "What should I prioritize this week?"],
-    "data_sources_used": ["Billing and Subscriptions", "Customer 360", "Service Cloud"],
+    "data_sources_used": ["Billing and Subscriptions", "Customer 360", "Genesys Cloud"],
     "capability": "Anomaly Detection",
     "confidence": 88
   },
@@ -209,7 +209,7 @@
     "user_query": "Show me the save-rate driver",
     "ai_message": "The save rate slipped from 46% to 41% because the save desk exceeded capacity — save conversations averaged 12:40 versus 8:50 for standard billing, and abandoned save contacts rose 22%. When the desk is overloaded, agents improvise offers instead of leading with the right one. A tailored first offer — loyalty discount for long-tenure customers, plan-fit downgrade for the over-provisioned — historically lifts save rate 9 points. That is queued in Sofia's flow.",
     "suggested_chips": ["Show me the churn detail", "What should I prioritize this week?"],
-    "data_sources_used": ["Service Cloud", "Billing", "Save-Offer Catalog"],
+    "data_sources_used": ["Genesys Cloud", "Billing", "Save-Offer Catalog"],
     "capability": "Predictive Intelligence",
     "confidence": 87
   },
@@ -218,7 +218,7 @@
     "user_query": "What should I prioritize this week?",
     "ai_message": "Three priorities. First, close today's incident: execute Scenario C and hold Bluehost out of critical. Second, unblock the consolidation: get a dated SI remediation plan on the 3 failing flows before the license window. Third, prevent the next one: stand up the mandatory 48-hour care-notification rule for large renewal batches — it is the single change that would have prevented this morning entirely. Everything else this week is downstream of these three.",
     "suggested_chips": ["Execute Scenario C", "Draft an escalation to the SI partner", "Generate my weekly leadership report"],
-    "data_sources_used": ["Service Cloud", "Migration PMO", "Marketing Cloud"],
+    "data_sources_used": ["Genesys Cloud", "Migration PMO", "Marketing Cloud"],
     "capability": "Friction Observability",
     "confidence": 89
   },
@@ -227,7 +227,7 @@
     "user_query": "Export the comparison",
     "ai_message": "Exported. The month-over-month comparison is saved with trend arrows and deltas per KPI, six-month sparklines for service level, cost per contact, churn, and save rate, and the projection band showing the effect of the two recommended actions. Ready to attach to your leadership review.",
     "suggested_chips": ["What should I prioritize this week?", "Compare to last month's report"],
-    "data_sources_used": ["Service Cloud (historical)", "Billing", "Finance"],
+    "data_sources_used": ["Genesys Cloud (historical)", "Billing", "Finance"],
     "capability": "Automated Action",
     "confidence": 94
   },
@@ -245,7 +245,7 @@
     "user_query": "Show me cost per contact trend",
     "ai_message": "Cost per contact is $9.40, up from $8.90 last month — the rise is overtime and longer save conversations, not structural. Over six months it ran $8.60, $8.75, $8.80, $8.90, $8.90, $9.40, so today's tick is the incident, not a trend. With the self-service billing explainer and the care-notification rule in place, I project it back under $9.00 within two cycles.",
     "suggested_chips": ["Compare to last month's report", "What is my overtime budget exposure?"],
-    "data_sources_used": ["Finance System", "Service Cloud (volume)"],
+    "data_sources_used": ["Finance System", "Genesys Cloud (volume)"],
     "capability": "Predictive Intelligence",
     "confidence": 88
   }

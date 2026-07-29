@@ -81,7 +81,7 @@ const manifest: PersonaManifest = {
       { id: 'accuracy', label: 'Forecast Accuracy (30d)', value: '81%', trend: 'Below 90% target', positive: false, icon: Target, iconColor: 'text-amber-600', iconBg: 'bg-amber-500/10', chipText: 'Compare actual versus forecast accuracy this month' },
       { id: 'ot', label: 'Overtime Hours (MTD)', value: '1,180 hrs', trend: 'HR + WFM', positive: false, icon: Clock, iconColor: 'text-amber-600', iconBg: 'bg-amber-500/10', chipText: 'What is my overtime trajectory?' },
       { id: 'attrition', label: 'Agent Attrition (90d)', value: '22%', trend: 'Schedule inflexibility', positive: false, icon: TrendingDown, iconColor: 'text-red-600', iconBg: 'bg-red-500/10', chipText: 'What is my agent attrition trend?' },
-      { id: 'asa', label: 'Average Speed of Answer', value: '3:38', trend: 'Service Cloud', positive: false, icon: Timer, iconColor: 'text-text-muted', iconBg: 'bg-surface-2', chipText: "Forecast next week's volume by 30-minute interval" },
+      { id: 'asa', label: 'Average Speed of Answer', value: '3:38', trend: 'Genesys Cloud', positive: false, icon: Timer, iconColor: 'text-text-muted', iconBg: 'bg-surface-2', chipText: "Forecast next week's volume by 30-minute interval" },
     ],
     signalToChip: {
       'SIG-NEWFOLD-WF-001': 'Walk me through the surge risk',

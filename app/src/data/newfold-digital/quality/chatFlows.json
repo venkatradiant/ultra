@@ -29,7 +29,7 @@
     "user_query": "Next signal, the repeat contacts",
     "ai_message": "Refund repeat contacts are up 29% this week. I correlated contact transcripts with IT incident logs: 74% of repeat callers mention 'refund not showing' or 'charged twice.' The root cause is a billing-sync delay logged by IT on November 22, estimated fix November 30. Agents are giving manual workaround instructions, but customers call back when the refund still does not post. First contact resolution for refunds dropped from 82% to 55%, and negative sentiment on those contacts is spilling into one-star reviews.",
     "suggested_chips": ["What should we tell agents?", "Show me the review impact", "When is the IT fix expected?", "How much is this costing us?"],
-    "data_sources_used": ["Service Cloud", "IT Incident Management", "Billing and Subscriptions", "Customer Voice"],
+    "data_sources_used": ["Genesys Cloud", "IT Incident Management", "Billing and Subscriptions", "Customer Voice"],
     "capability": "Converged Conversation",
     "confidence": 90
   },
@@ -74,7 +74,7 @@
     "user_query": "Show me the 21 needing callbacks",
     "ai_message": "Here are the 21 contacts that need a live callback rather than an email disclosure — each touched a refund dispute or has incomplete contact records, so a documented verbal disclosure is the compliant path. I've prioritized them by contact recency and attached the disclosure script and the customer's original contact context to each, so the callback agent has everything in one place. Want me to queue them to the compliance-trained agents?",
     "suggested_chips": ["Generate a compliance incident report", "Recommend a fix", "Next signal, the repeat contacts"],
-    "data_sources_used": ["Customer 360", "Compliance Engine", "Service Cloud"],
+    "data_sources_used": ["Customer 360", "Compliance Engine", "Genesys Cloud"],
     "capability": "Automated Action",
     "confidence": 91
   },
@@ -92,7 +92,7 @@
     "user_query": "What should we tell agents?",
     "ai_message": "Tell agents to stop issuing the manual refund workaround and instead set the correct expectation: 'Your refund is confirmed and will post by [date] — there's a temporary billing-sync delay on our side, not a problem with your account, so no need to call back.' I've drafted a one-line macro note with the IT fix date (Nov 30) baked in, so the message updates automatically as IT revises the ETA. That single change is what stops the repeat calls.",
     "suggested_chips": ["When is the IT fix expected?", "How much is this costing us?", "Show me the review impact"],
-    "data_sources_used": ["Service Cloud", "IT Incident Management", "SOP repository"],
+    "data_sources_used": ["Genesys Cloud", "IT Incident Management", "SOP repository"],
     "capability": "Automated Action",
     "confidence": 90
   },
@@ -101,7 +101,7 @@
     "user_query": "Show me the review impact",
     "ai_message": "The refund repeat-contact frustration is spilling into public reviews: one-star reviews mentioning 'refund' or 'charged twice' are up 34% this week across the review-site feed, concentrated in the same 48-hour repeat-caller cohort. Each unresolved repeat contact is roughly 3x more likely to leave a negative review than a first-contact resolution. Stopping the repeat calls with the corrected agent message and the IT fix is also the fastest way to stem the review damage.",
     "suggested_chips": ["What should we tell agents?", "How much is this costing us?"],
-    "data_sources_used": ["Customer Voice", "review sites feed", "Service Cloud"],
+    "data_sources_used": ["Customer Voice", "review sites feed", "Genesys Cloud"],
     "capability": "Converged Conversation",
     "confidence": 88
   },
@@ -110,7 +110,7 @@
     "user_query": "When is the IT fix expected?",
     "ai_message": "IT's estimated fix for the billing-sync delay is November 30 — six days out. Until then, the repeat contacts will continue unless agents stop the manual workaround and set the correct expectation, which is why the corrected agent message matters now rather than waiting for the fix. I'm tracking the IT ticket and will update the agent macro automatically when the fix lands, and flag you if the ETA slips.",
     "suggested_chips": ["What should we tell agents?", "How much is this costing us?"],
-    "data_sources_used": ["IT Incident Management", "Service Cloud"],
+    "data_sources_used": ["IT Incident Management", "Genesys Cloud"],
     "capability": "Converged Conversation",
     "confidence": 89
   },
@@ -119,7 +119,7 @@
     "user_query": "How much is this costing us?",
     "ai_message": "The refund repeat contacts are costing on two axes. Operationally, the 29% repeat spike adds roughly 480 avoidable contacts this week at your cost-per-contact, plus the longer handle time on frustrated callers. Reputationally, the 34% rise in one-star refund reviews carries a churn and acquisition cost that outlasts the incident. Both stop when the repeat calls stop — the corrected agent message plus the Nov 30 IT fix. I can have Finance refresh the exact figure against the Q4 model if you want it for the scorecard.",
     "suggested_chips": ["What should we tell agents?", "Generate a quality scorecard for my leadership meeting"],
-    "data_sources_used": ["Service Cloud", "Billing and Subscriptions", "Customer Voice"],
+    "data_sources_used": ["Genesys Cloud", "Billing and Subscriptions", "Customer Voice"],
     "capability": "Predictive Intelligence",
     "confidence": 87
   },
@@ -137,7 +137,7 @@
     "user_query": "Show me quality scores by team this week",
     "ai_message": "Quality score is 81/100 overall this week, down 2 points, with the drop concentrated in the cancellation and refund teams — the same teams touched by the disclosure macro and the billing-sync delay. The hosting and domain support teams are steady at 84–86. So the quality dip isn't broad; it's two specific, already-diagnosed root causes. Fixing the macro and the sync delay recovers most of the 2-point drop.",
     "suggested_chips": ["Which agents need coaching?", "Generate a quality scorecard for my leadership meeting"],
-    "data_sources_used": ["Quality Management", "Service Cloud"],
+    "data_sources_used": ["Quality Management", "Genesys Cloud"],
     "capability": "Converged Conversation",
     "confidence": 89
   },
@@ -155,7 +155,7 @@
     "user_query": "What are the top 5 contact drivers today?",
     "ai_message": "Today's top 5 contact drivers: (1) 'Why was I charged' — the Network Solutions renewal spike. (2) Cancellation and refund requests — same cohort. (3) 'My site is down' — the hosting outage and the failed-renewal suspensions. (4) 'Refund not showing' — the billing-sync repeat contacts. (5) Domain renewal questions. Drivers 1, 2, and 4 all trace to the renewal and billing events, so they move together as those root causes clear.",
     "suggested_chips": ["Show me refund and billing complaints by category", "Generate a quality scorecard for my leadership meeting"],
-    "data_sources_used": ["Service Cloud", "Billing and Subscriptions"],
+    "data_sources_used": ["Genesys Cloud", "Billing and Subscriptions"],
     "capability": "Converged Conversation",
     "confidence": 88
   },
@@ -173,7 +173,7 @@
     "user_query": "Compare first contact resolution this month versus last month",
     "ai_message": "Overall FCR is 67% this month, down from 69% last month. The drop is entirely in refunds, which fell from 82% to 55% on the billing-sync repeat contacts — every other category held or improved. Strip out the refund anomaly and FCR is actually up. So the headline decline is one fixable root cause, not a broad resolution problem, and it recovers when the sync delay clears and agents stop the manual workaround.",
     "suggested_chips": ["How much is this costing us?", "Generate a quality scorecard for my leadership meeting"],
-    "data_sources_used": ["Service Cloud", "Customer 360"],
+    "data_sources_used": ["Genesys Cloud", "Customer 360"],
     "capability": "Converged Conversation",
     "confidence": 89
   },
@@ -182,7 +182,7 @@
     "user_query": "Generate a quality scorecard for my leadership meeting",
     "ai_message": "Here is your quality scorecard: (1) Quality score 81, down 2, isolated to cancellation/refund teams. (2) Compliance — auto-renewal disclosure skip caught at 21%, macro reverted, 318 contacts remediated, incident report filed. (3) Repeat contacts — refunds up 29% from a billing-sync delay (IT fix Nov 30), corrected agent message deployed. (4) FCR 67%, the dip isolated to refunds. (5) Burnout watch — 3 top performers flagged, workload relief scheduled. Every red item has a named root cause and an action in flight.",
     "suggested_chips": ["Which agents are at risk?", "Show me quality scores by team this week"],
-    "data_sources_used": ["Quality Management", "Process Adherence", "Service Cloud", "Compliance Engine"],
+    "data_sources_used": ["Quality Management", "Process Adherence", "Genesys Cloud", "Compliance Engine"],
     "capability": "Automated Action",
     "confidence": 91
   },
@@ -200,7 +200,7 @@
     "user_query": "Show me refund and billing complaints by category",
     "ai_message": "Refund and billing complaints this month by category: 'refund not showing / charged twice' is the largest at 41% (the billing-sync delay), 'why was I charged' at 28% (the renewal price increase), 'cancel and refund' at 19%, and disputed reactivation fees at 12%. The top two categories, 69% of the volume, both trace to the active renewal and billing-sync incidents — so the complaint mix confirms the two root causes rather than pointing to a new one.",
     "suggested_chips": ["What are the top 5 contact drivers today?", "How much is this costing us?"],
-    "data_sources_used": ["Billing and Subscriptions", "Service Cloud", "Customer Voice"],
+    "data_sources_used": ["Billing and Subscriptions", "Genesys Cloud", "Customer Voice"],
     "capability": "Converged Conversation",
     "confidence": 88
   }

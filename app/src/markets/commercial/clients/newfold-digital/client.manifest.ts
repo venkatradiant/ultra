@@ -3,7 +3,7 @@
  *
  * A CCaaS prototype for Newfold's global care operation (~7M SMB customers across
  * 80+ brands: Bluehost, Network Solutions, Web.com, HostGator, Domain.com,
- * Crazy Domains, Yoast). Salesforce Service Cloud is the contact-center platform
+ * Crazy Domains, Yoast). Genesys Cloud is the contact-center platform
  * of record; Radiant's intelligence layer connects it to Billing, Domains,
  * Hosting, Marketing, IT, and the legacy brand support systems being consolidated.
  *

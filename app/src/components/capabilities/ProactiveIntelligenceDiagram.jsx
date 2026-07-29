@@ -36,11 +36,11 @@ export default function ProactiveIntelligenceDiagram() {
 
   const clientConfig = isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
-    primarySources: ['Service Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
+    primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
     deployedAt: 'Verizon',
     deployedDesc: 'Multi-agent orchestration across network ops',
-    bodyText: 'Your contact center platform reasons within its own data. This capability reads across Service Cloud, Billing, Domains, Hosting, Marketing, and IT — and every brand — surfacing the care signals that matter before you ask.',
+    bodyText: 'Your contact center platform reasons within its own data. This capability reads across Genesys Cloud, Billing, Domains, Hosting, Marketing, and IT — and every brand — surfacing the care signals that matter before you ask.',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'Cross-brand, cross-system intelligence — queue spikes, renewal-driven billing surges, outage-correlated volume, and churn risk correlated and ranked before the day starts.',
   } : isCfo ? {
@@ -114,7 +114,7 @@ export default function ProactiveIntelligenceDiagram() {
             </div>
             <div className="flex flex-1 min-h-0" style={{ gap: 'min(0.6vw, 8px)' }}>
               {(isNewfold ? [
-                { name: 'Signal Correlation', desc: 'Cross-brand, cross-system pattern detection across Service Cloud, Billing, Domains, Hosting, Marketing, and IT' },
+                { name: 'Signal Correlation', desc: 'Cross-brand, cross-system pattern detection across Genesys Cloud, Billing, Domains, Hosting, Marketing, and IT' },
                 { name: 'Anomaly Scoring', desc: 'Time-series analysis on queue metrics, billing and dunning, sentiment, and compliance' },
                 { name: 'Priority Ranking', desc: 'Business-impact weighting for care operations, including revenue-at-risk and churn' },
               ] : [

@@ -2,16 +2,16 @@
   "newfold_ops_greeting": {
     "ai_message": "Good morning, Sofia. 3 signals need your attention before your 9 AM sync. The Network Solutions renewals queue is critical: contacts spiked 210% after this morning's price-increase and auto-renewal batch. Want me to walk you through them?",
     "suggested_chips": ["Yes, walk me through them", "What caused the renewal spike?", "Show me the save-desk status"],
-    "data_sources_used": ["Service Cloud", "Billing and Subscriptions", "Marketing Cloud", "IT Monitoring"],
+    "data_sources_used": ["Genesys Cloud", "Billing and Subscriptions", "Marketing Cloud", "IT Monitoring"],
     "capability": "Proactive Intelligence",
     "confidence": 93
   },
 
   "newfold_ops_walkthrough": {
     "user_query": "Yes, walk me through them",
-    "ai_message": "First: your renewals queue spiked because Marketing sent a price-increase and auto-renewal notice to 240,000 Network Solutions customers at 7:15 AM, and Billing charged the batch the same morning. Contact volume hit 3.1x normal within two hours. Service Cloud shows 148 customers waiting, average wait 11:20. The batch was not flagged to care operations for staffing. 'Cancel' and 'refund' are your top two contact reasons right now.",
+    "ai_message": "First: your renewals queue spiked because Marketing sent a price-increase and auto-renewal notice to 240,000 Network Solutions customers at 7:15 AM, and Billing charged the batch the same morning. Contact volume hit 3.1x normal within two hours. Genesys Cloud shows 148 customers waiting, average wait 11:20. The batch was not flagged to care operations for staffing. 'Cancel' and 'refund' are your top two contact reasons right now.",
     "suggested_chips": ["What should we do?", "Who are these customers?", "How does this compare to the last renewal cycle?", "Next signal"],
-    "data_sources_used": ["Service Cloud (real-time)", "Marketing Cloud (campaign triggers)", "Billing and Subscriptions (batch timing)"],
+    "data_sources_used": ["Genesys Cloud (real-time)", "Marketing Cloud (campaign triggers)", "Billing and Subscriptions (batch timing)"],
     "capability": "Converged Conversation",
     "confidence": 94
   },
@@ -20,7 +20,7 @@
     "user_query": "How does this compare to the last renewal cycle?",
     "ai_message": "Last renewal batch (April 18) drove a 1.9x volume increase, but Billing and Marketing gave care 48 hours' notice, so the save desk was pre-staffed. This time there was no notice. History shows price-increase contacts run 12:40 handle time versus your normal 8:50, because customers ask for justification and often move to a cancel or save conversation. Your renewals team is staffed for standard billing volume, not a price-increase batch.",
     "suggested_chips": ["What should we do?", "Show me save-desk load right now", "Can we deflect the simple ones?", "Next signal"],
-    "data_sources_used": ["Service Cloud (historical)", "Marketing Cloud (campaign history)", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud (historical)", "Marketing Cloud (campaign history)", "Workforce Management"],
     "capability": "Friction Observability",
     "confidence": 91
   },
@@ -29,7 +29,7 @@
     "user_query": "What should we do?",
     "ai_message": "Based on past price-increase patterns, this volume sustains 4 to 6 hours and tapers by early afternoon. Three actions: (1) Activate 9 cross-trained agents from Bluehost hosting support to renewals — projected to cut wait time under 4 minutes within 30 minutes. Note this will pull Bluehost toward warning, so pair it with action 2. (2) Enable a self-service billing explainer plus callback for 'why was I charged' contacts — historically deflects 28% and preserves live agents for save conversations. (3) Flag Marketing and Billing to require 48-hour care notification for any price-increase or renewal batch above 20,000 customers.",
     "suggested_chips": ["Activate the cross-trained agents", "Enable the billing explainer and callback", "Draft the notification rule", "Next signal"],
-    "data_sources_used": ["Workforce Management", "Service Cloud (historical)", "Billing (deflection eligibility)"],
+    "data_sources_used": ["Workforce Management", "Genesys Cloud (historical)", "Billing (deflection eligibility)"],
     "capability": "Predictive Intelligence",
     "confidence": 90
   },
@@ -38,7 +38,7 @@
     "user_query": "Activate the cross-trained agents",
     "ai_message": "Done. I rerouted 9 agents with billing certification from Bluehost hosting support to the renewals queue. Estimated time to impact 12 minutes. I will monitor and alert you if service level does not recover to 80% within 30 minutes, and I am watching Bluehost so it does not tip into critical. Should I also enable the self-service billing explainer and callback as a safety net for the simple 'why was I charged' contacts?",
     "suggested_chips": ["Yes, enable the explainer and callback", "Show me the second signal", "Monitor and report back in 30 min"],
-    "data_sources_used": ["Service Cloud (routing)", "Workforce Management", "Agent Skill Profiles"],
+    "data_sources_used": ["Genesys Cloud (routing)", "Workforce Management", "Agent Skill Profiles"],
     "capability": "Automated Action",
     "confidence": 93
   },
@@ -47,7 +47,7 @@
     "user_query": "Show me the second signal",
     "ai_message": "Second signal: hosting outage volume. IT logged a provisioning incident in one cloud region 40 minutes ago. Since then, 'my site is down' and 'my store is down' contacts rose 24%, and the pattern matches a partial outage, not a billing issue. 30% of affected customers are on the Bluehost store plan, so each minute down is lost orders for them. The incident is not yet on your agents' radar, so they are troubleshooting individually instead of pointing to a known event.",
     "suggested_chips": ["Push a known-issue macro to agents", "Who is affected?", "When is the fix expected?", "Show me the save-desk signal"],
-    "data_sources_used": ["Service Cloud", "IT and Infrastructure Monitoring", "Hosting Control Panel"],
+    "data_sources_used": ["Genesys Cloud", "IT and Infrastructure Monitoring", "Hosting Control Panel"],
     "capability": "Anomaly Detection",
     "confidence": 89
   },
@@ -56,7 +56,7 @@
     "user_query": "Show me the save-desk signal",
     "ai_message": "Your retention desk is at 118% of planned capacity, and abandoned save contacts are up 22%, each an at-risk subscription. Cross-referencing the renewal cohort with Customer 360 churn scores: 640 customers in today's batch are high churn risk and high lifetime value. I can rank them and draft tailored save offers — a loyalty discount for long-tenure customers and a plan-fit downgrade for those over-provisioned — so agents lead with the right offer instead of improvising. Historically, a tailored first offer lifts save rate 9 points.",
     "suggested_chips": ["Draft the tailored save offers", "Show me the highest-value at-risk accounts", "Add save agents from another queue", "Generate my daily ops report"],
-    "data_sources_used": ["Service Cloud", "Billing", "Customer 360 (churn and lifetime value)", "Save-Offer Catalog"],
+    "data_sources_used": ["Genesys Cloud", "Billing", "Customer 360 (churn and lifetime value)", "Save-Offer Catalog"],
     "capability": "Predictive Intelligence",
     "confidence": 90
   },
@@ -65,7 +65,7 @@
     "user_query": "What caused the renewal spike?",
     "ai_message": "The spike traces to two events the same morning: Marketing sent a price-increase and auto-renewal notice to 240,000 Network Solutions customers at 7:15 AM, and Billing processed the auto-renewal batch the same morning. Neither was flagged to care for staffing. Within two hours contact volume hit 3.1x normal, with 'cancel' and 'refund' as the top reasons. It is a coordination gap, not a demand shock.",
     "suggested_chips": ["What should we do?", "How does this compare to the last renewal cycle?"],
-    "data_sources_used": ["Marketing Cloud", "Billing and Subscriptions", "Service Cloud"],
+    "data_sources_used": ["Marketing Cloud", "Billing and Subscriptions", "Genesys Cloud"],
     "capability": "Converged Conversation",
     "confidence": 92
   },
@@ -74,7 +74,7 @@
     "user_query": "Show me the save-desk status",
     "ai_message": "The save desk is at 118% of planned capacity, save conversations are averaging 12:40 versus 8:50 for standard billing, and abandoned save contacts are up 22%. The overload is entirely from the renewal cohort. The fastest relief is deflecting the simple 'why was I charged' contacts to self-service so live agents stay on save conversations.",
     "suggested_chips": ["Show me the highest-value at-risk accounts", "Can we deflect the simple ones?", "What should we do?"],
-    "data_sources_used": ["Service Cloud", "Billing", "Customer 360"],
+    "data_sources_used": ["Genesys Cloud", "Billing", "Customer 360"],
     "capability": "Friction Observability",
     "confidence": 89
   },
@@ -83,7 +83,7 @@
     "user_query": "Who are these customers?",
     "ai_message": "Of the 148 waiting, Customer 360 shows 61% are existing Network Solutions customers questioning the price increase, 24% are cancel/refund requests, and 15% are asking to confirm the charge. 640 across the full batch are flagged high-churn-high-value. Most are small businesses on multi-year domain and email plans, so a save here protects recurring revenue, not a one-off.",
     "suggested_chips": ["What should we do?", "Show me the highest-value at-risk accounts"],
-    "data_sources_used": ["Customer 360", "Billing", "Service Cloud"],
+    "data_sources_used": ["Customer 360", "Billing", "Genesys Cloud"],
     "capability": "Converged Conversation",
     "confidence": 88
   },
@@ -92,7 +92,7 @@
     "user_query": "Can we deflect the simple ones?",
     "ai_message": "Yes. The 'why was I charged' and 'confirm the charge' contacts — about 39% of the queue — are deflectable to a self-service billing explainer with callback for anything unresolved. History shows 28% self-resolve, and it preserves live agents for the save conversations that actually need a human. I can enable it now paired with the agent reroute.",
     "suggested_chips": ["Enable the billing explainer and callback", "What should we do?"],
-    "data_sources_used": ["Service Cloud (historical)", "Billing (deflection eligibility)"],
+    "data_sources_used": ["Genesys Cloud (historical)", "Billing (deflection eligibility)"],
     "capability": "Predictive Intelligence",
     "confidence": 89
   },
@@ -101,7 +101,7 @@
     "user_query": "Enable the billing explainer and callback",
     "ai_message": "Enabled. The self-service billing explainer is now live on the Network Solutions renewals queue with callback for any wait over 3 minutes. It is catching the 'why was I charged' contacts and routing save conversations to live agents. Combined with the agent reroute, projected service-level recovery to 80% within 30 minutes. I will report back.",
     "suggested_chips": ["Show me the second signal", "Monitor and report back in 30 min", "Show me the save-desk signal"],
-    "data_sources_used": ["Service Cloud (routing)", "Billing", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud (routing)", "Billing", "Workforce Management"],
     "capability": "Automated Action",
     "confidence": 92
   },
@@ -119,7 +119,7 @@
     "user_query": "Monitor and report back in 30 min",
     "ai_message": "Monitoring. I will alert you the moment the renewals queue crosses back above 80% service level, and immediately if Bluehost hosting support dips toward warning. I am tracking wait time, abandonment, and save-desk load on all three. No action needed from you until I report.",
     "suggested_chips": ["Show me the second signal", "Show me the save-desk signal", "Generate my daily ops report"],
-    "data_sources_used": ["Service Cloud (real-time)", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud (real-time)", "Workforce Management"],
     "capability": "Automated Action",
     "confidence": 94
   },
@@ -128,7 +128,7 @@
     "user_query": "Push a known-issue macro to agents",
     "ai_message": "Pushed. Agents handling 'site down' and 'store down' contacts now see a known-issue banner: partial outage in one cloud region, IT engaged, ETA to follow, with a customer-safe explanation and no troubleshooting steps required. This stops agents chasing individual diagnoses and cuts handle time on the outage contacts. IT's ticket is linked for status.",
     "suggested_chips": ["Who is affected?", "When is the fix expected?", "Show me the save-desk signal"],
-    "data_sources_used": ["Service Cloud", "IT and Infrastructure Monitoring", "Hosting Control Panel"],
+    "data_sources_used": ["Genesys Cloud", "IT and Infrastructure Monitoring", "Hosting Control Panel"],
     "capability": "Automated Action",
     "confidence": 92
   },
@@ -146,7 +146,7 @@
     "user_query": "When is the fix expected?",
     "ai_message": "IT's current ETA is 45–75 minutes for full provisioning recovery in the region, with partial restoration already underway. I will update the known-issue macro automatically as IT revises the estimate, so agents always quote the current ETA. If it slips past 75 minutes I will flag it to you and to the store-plan customers proactively.",
     "suggested_chips": ["Push a known-issue macro to agents", "Show me the save-desk signal"],
-    "data_sources_used": ["IT and Infrastructure Monitoring", "Service Cloud"],
+    "data_sources_used": ["IT and Infrastructure Monitoring", "Genesys Cloud"],
     "capability": "Predictive Intelligence",
     "confidence": 85
   },
@@ -164,7 +164,7 @@
     "user_query": "Show me the highest-value at-risk accounts",
     "ai_message": "Ranked by lifetime value and churn score, the top at-risk accounts are long-tenure Network Solutions customers with multi-product holdings — domain, email, and hosting bundles. The top 20 alone represent $214K in annual recurring revenue. Each has the tailored offer pre-attached and a note on their tenure and product mix, so the first agent they reach can save them without a lookup.",
     "suggested_chips": ["Draft the tailored save offers", "Add save agents from another queue"],
-    "data_sources_used": ["Customer 360 (churn and lifetime value)", "Billing", "Service Cloud"],
+    "data_sources_used": ["Customer 360 (churn and lifetime value)", "Billing", "Genesys Cloud"],
     "capability": "Predictive Intelligence",
     "confidence": 88
   },
@@ -173,7 +173,7 @@
     "user_query": "Add save agents from another queue",
     "ai_message": "I can move 4 save-certified agents from the Web.com general queue, which is holding at 87% and can absorb it. That takes the save desk from 118% to roughly 96% of capacity and cuts abandoned save contacts. Web.com stays above target. Shall I execute, or hold for your sign-off?",
     "suggested_chips": ["Draft the tailored save offers", "Generate my daily ops report"],
-    "data_sources_used": ["Workforce Management", "Service Cloud", "Agent Skill Profiles"],
+    "data_sources_used": ["Workforce Management", "Genesys Cloud", "Agent Skill Profiles"],
     "capability": "Automated Action",
     "confidence": 89
   },
@@ -182,7 +182,7 @@
     "user_query": "Generate my daily ops report",
     "ai_message": "Here is your daily ops report: (1) Renewals spike — Network Solutions +210%, root cause the un-notified price-increase batch; 9 agents rerouted, billing explainer enabled, projected recovery to 80% by early afternoon. (2) Hosting outage — one region, +24% site-down contacts, known-issue macro pushed, IT ETA 45–75 min. (3) Save desk — 118% capacity, 640 high-value at-risk accounts with tailored offers staged. (4) Recommendation — the 48-hour Marketing notification rule, drafted and routed for approval. Service level projected back to target by 2 PM.",
     "suggested_chips": ["Draft the notification rule", "Show me the save-desk signal"],
-    "data_sources_used": ["Service Cloud", "Billing", "Marketing Cloud", "IT Monitoring", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud", "Billing", "Marketing Cloud", "IT Monitoring", "Workforce Management"],
     "capability": "Automated Action",
     "confidence": 92
   },
@@ -191,7 +191,7 @@
     "user_query": "What is my service level right now?",
     "ai_message": "Right now the blended service level across your queues is 68.4% against the 80/20 target, dragged down by Network Solutions renewals at 52%. Average handle time is 9:52, abandonment 16.1%, and agent occupancy is at 92% — near the ceiling. The reroute and billing explainer are projected to lift the blend back to target within 30 minutes.",
     "suggested_chips": ["What should we do?", "Show me queue performance by channel"],
-    "data_sources_used": ["Service Cloud (real-time)", "Workforce Management"],
+    "data_sources_used": ["Genesys Cloud (real-time)", "Workforce Management"],
     "capability": "Converged Conversation",
     "confidence": 93
   },
@@ -200,7 +200,7 @@
     "user_query": "Show me queue performance by channel",
     "ai_message": "By channel: voice is the most pressured at 61% service level with the longest waits, chat is at 74%, email backlog is up 40% and running about 6 hours behind, and social is steady. The renewal spike is concentrated in voice and chat. Enabling the self-service billing explainer pulls the deflectable contacts out of voice and chat, which is where it helps most.",
     "suggested_chips": ["What should we do?", "What is my service level right now?"],
-    "data_sources_used": ["Service Cloud (voice, chat, email, social)"],
+    "data_sources_used": ["Genesys Cloud (voice, chat, email, social)"],
     "capability": "Converged Conversation",
     "confidence": 90
   },
@@ -209,7 +209,7 @@
     "user_query": "Which agents are idle?",
     "ai_message": "Right now 12 agents are idle or under-utilized: 7 in the Web.com general queue (holding at 87%, so it can spare them) and 5 save-certified agents between contacts on the HostGator queue. None are idle in the pressured Network Solutions renewals or Bluehost store queues. The 7 Web.com agents are billing-certified and reroutable to renewals in about 3 minutes; the 5 save-certified agents can backfill the save desk. Want me to reroute them?",
     "suggested_chips": ["Activate the cross-trained agents", "Add save agents from another queue", "What should we do?"],
-    "data_sources_used": ["Workforce Management", "Service Cloud (real-time)", "Agent Skill Profiles"],
+    "data_sources_used": ["Workforce Management", "Genesys Cloud (real-time)", "Agent Skill Profiles"],
     "capability": "Converged Conversation",
     "confidence": 91
   },
@@ -218,7 +218,7 @@
     "user_query": "Forecast this afternoon's staffing needs",
     "ai_message": "The renewal spike sustains 4 to 6 hours and tapers by early afternoon, so peak staffing need is now through about 1 PM. To hold 80/20 through the afternoon you need the 9 rerouted agents in place until 1 PM, then you can return 5 of them to Bluehost. If the hosting outage runs long, hold 2 extra on the site-down queue. I can schedule the step-down automatically and alert you if the taper is slower than modeled.",
     "suggested_chips": ["Activate the cross-trained agents", "Generate my daily ops report"],
-    "data_sources_used": ["Workforce Management (forecasting)", "Service Cloud (historical)"],
+    "data_sources_used": ["Workforce Management (forecasting)", "Genesys Cloud (historical)"],
     "capability": "Predictive Intelligence",
     "confidence": 87
   }

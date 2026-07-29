@@ -7,7 +7,7 @@
     "impact": "high",
     "severity": "critical",
     "sources": [
-      "Service Cloud (real-time)",
+      "Genesys Cloud (real-time)",
       "Marketing Cloud",
       "Billing and Subscriptions"
     ],
@@ -22,7 +22,7 @@
       "score": 95,
       "rationale": "Queue volume is real-time telemetry; the campaign send-time and billing-batch timestamp give direct causal attribution.",
       "signals_used": [
-        "Service Cloud (real-time)",
+        "Genesys Cloud (real-time)",
         "Marketing Cloud",
         "Billing and Subscriptions"
       ],
@@ -48,7 +48,7 @@
     "impact": "medium",
     "severity": "warning",
     "sources": [
-      "Service Cloud",
+      "Genesys Cloud",
       "IT and Infrastructure Monitoring",
       "Hosting Control Panel"
     ],
@@ -63,7 +63,7 @@
       "score": 89,
       "rationale": "Contact rise correlates with the IT incident timestamp within 6 minutes; the spike shape matches a partial outage signature, not billing.",
       "signals_used": [
-        "Service Cloud",
+        "Genesys Cloud",
         "IT and Infrastructure Monitoring"
       ],
       "threshold": 70,
@@ -88,7 +88,7 @@
     "impact": "medium",
     "severity": "warning",
     "sources": [
-      "Service Cloud",
+      "Genesys Cloud",
       "Billing",
       "Customer 360"
     ],
@@ -103,7 +103,7 @@
       "score": 88,
       "rationale": "Capacity and handle-time are direct telemetry; abandonment rise is a counted delta against the 7-day baseline.",
       "signals_used": [
-        "Service Cloud",
+        "Genesys Cloud",
         "Billing",
         "Customer 360"
       ],

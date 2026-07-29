@@ -2,7 +2,7 @@
   {
     "trigger": "home_load",
     "capabilityName": "Proactive Intelligence",
-    "description": "The AI watches every brand's queues, the consolidation program, and the Q4 budget overnight — surfacing director-level signals no single brand or manager dashboard can produce. Correlates Service Cloud, Billing, Marketing, Migration PMO, and Finance across the whole portfolio.",
+    "description": "The AI watches every brand's queues, the consolidation program, and the Q4 budget overnight — surfacing director-level signals no single brand or manager dashboard can produce. Correlates Genesys Cloud, Billing, Marketing, Migration PMO, and Finance across the whole portfolio.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {

@@ -1,7 +1,7 @@
 [
   {
     "id": "ds-newfold-01",
-    "name": "Salesforce Service Cloud (Contact Center)",
+    "name": "Genesys Cloud (Contact Center)",
     "status": "connected",
     "description": "Primary contact center platform of record. Real-time and historical voice, chat, email, and social interaction data across brands — queue metrics, agent performance, routing decisions, sentiment scores.",
     "icon": "headphones",

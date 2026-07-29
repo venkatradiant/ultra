@@ -161,7 +161,7 @@ export const COST_REPORT = {
     { task: 'Save-desk load computation', complexity: 'Deterministic', model: 'SLM', piiToFrontier: 0, cost: 0.001 },
     { task: 'KAG field tagging, 7 fields', complexity: 'Classification', model: 'SLM', piiToFrontier: 0, cost: 0.008 },
     { task: 'Renewal volume aggregation, 4h', complexity: 'Aggregation', model: 'SLM', piiToFrontier: 0, cost: 0.031 },
-    { task: 'Contact-reason blend, Service Cloud', complexity: 'Aggregation', model: 'SLM', piiToFrontier: 0, cost: 0.029 },
+    { task: 'Contact-reason blend, Genesys Cloud', complexity: 'Aggregation', model: 'SLM', piiToFrontier: 0, cost: 0.029 },
     { task: 'Agent skill matching, 70 agents', complexity: 'Retrieval', model: 'SLM', piiToFrontier: 0, cost: 0.034 },
     { task: 'Historical renewal pattern match, 3 yrs', complexity: 'Retrieval', model: 'SLM', piiToFrontier: 0, cost: 0.048 },
     { task: 'Intent classification, queue backlog', complexity: 'Classification, batch', model: 'SLM', piiToFrontier: 0, cost: 0.062 },

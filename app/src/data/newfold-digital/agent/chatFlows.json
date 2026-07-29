@@ -2,7 +2,7 @@
   "newfold_agent_greeting": {
     "ai_message": "Jordan, your incoming contact is Grace Bello. She is calling because her website and store are down. I have already looked across her accounts and pre-diagnosed the cause: a failed annual hosting renewal, the card on file expired, dunning notices went to an outdated billing email, and the account auto-suspended after the grace period. Her sentiment is trending negative and she is losing orders, so I recommend leading with a clear explanation. Want the full breakdown?",
     "suggested_chips": ["Give me the full breakdown", "What do I tell her first?", "Show her account summary"],
-    "data_sources_used": ["Service Cloud (contact context)", "Billing and Payments", "Hosting Control Panel", "Sentiment Analysis"],
+    "data_sources_used": ["Genesys Cloud (contact context)", "Billing and Payments", "Hosting Control Panel", "Sentiment Analysis"],
     "capability": "Proactive Intelligence",
     "confidence": 97
   },
@@ -20,7 +20,7 @@
     "user_query": "How do I explain this simply?",
     "ai_message": "Suggested customer-friendly script: 'Grace, your site is down because your yearly hosting renewal didn't go through — the card on file had expired, and our reminders were going to an old email address, so you never saw them. It's a quick fix on my end. Once I update your card and turn your hosting back on, your site, store, and email all come back in a few minutes, with no reactivation fee.' This avoids jargon like 'suspension,' 'dunning,' or 'grace period' that historically increases contact length and frustration. Customers who get a plain-language explanation here resolve in one contact 40% more often.",
     "suggested_chips": ["Good, I'll say that", "Now walk me through the fix", "Verify her identity first"],
-    "data_sources_used": ["SOP repository", "Service Cloud (historical resolution patterns)"],
+    "data_sources_used": ["SOP repository", "Genesys Cloud (historical resolution patterns)"],
     "capability": "Friction Observability",
     "confidence": 95
   },
@@ -56,7 +56,7 @@
     "user_query": "Wrap up the contact",
     "ai_message": "Contact summary drafted for your after-contact work: reason (site and store down), root cause (failed renewal, expired card, dunning to an outdated email, auto-suspension), resolution (card and billing email updated, renewal processed with loyalty credit, suspension lifted, auto-renew enabled, no reactivation fee), compliance (identity verified and logged). First contact resolution: yes. I have pre-filled the disposition and the customer-record note; review and save. Handle time on this contact: 6:40, under your daily average.",
     "suggested_chips": ["Save and close", "Edit the note", "Next contact"],
-    "data_sources_used": ["Service Cloud", "Customer 360", "Quality Management"],
+    "data_sources_used": ["Genesys Cloud", "Customer 360", "Quality Management"],
     "capability": "Friction Observability",
     "confidence": 97
   },
@@ -155,7 +155,7 @@
     "user_query": "Add a note to her record",
     "ai_message": "Noted. I've added to Grace's record: root cause (failed renewal, expired card, dunning to outdated email), resolution (card and billing email updated, renewal with loyalty credit, suspension lifted, auto-renew on), and a flag to confirm store is taking orders. The note is timestamped and linked to this contact's audit trail. Anything else before you wrap up?",
     "suggested_chips": ["Wrap up the contact", "Confirm to the customer"],
-    "data_sources_used": ["Customer 360", "Service Cloud"],
+    "data_sources_used": ["Customer 360", "Genesys Cloud"],
     "capability": "Automated Action",
     "confidence": 96
   },
@@ -164,7 +164,7 @@
     "user_query": "Save and close",
     "ai_message": "Saved and closed. Disposition recorded as resolved, first-contact resolution: yes, handle time 6:40. The AI-versus-human action log and the compliance record are attached to the contact. You're clear for your next contact — nice work landing that one in a single call.",
     "suggested_chips": ["Next contact"],
-    "data_sources_used": ["Service Cloud", "Quality Management"],
+    "data_sources_used": ["Genesys Cloud", "Quality Management"],
     "capability": "Automated Action",
     "confidence": 97
   },
@@ -173,7 +173,7 @@
     "user_query": "Edit the note",
     "ai_message": "Opened the disposition note for editing — the root cause, resolution, and compliance fields are pre-filled and fully editable. Adjust anything you'd like, then save; the audit trail and the AI-versus-human log stay attached regardless of your edits. Want me to save and close once you're done?",
     "suggested_chips": ["Save and close", "Next contact"],
-    "data_sources_used": ["Service Cloud", "Quality Management"],
+    "data_sources_used": ["Genesys Cloud", "Quality Management"],
     "capability": "Friction Observability",
     "confidence": 95
   },
@@ -182,7 +182,7 @@
     "user_query": "Next contact",
     "ai_message": "Ready for your next contact. This one is closed and logged as first-contact resolution. I'll pre-diagnose the next customer the same way — reading across their accounts before they connect — so you open with the answer again. Standing by.",
     "suggested_chips": ["Save and close"],
-    "data_sources_used": ["Service Cloud"],
+    "data_sources_used": ["Genesys Cloud"],
     "capability": "Proactive Intelligence",
     "confidence": 96
   }

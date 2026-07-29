@@ -9,7 +9,7 @@ export default function SaveDeskPanel() {
       <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
         <div>
           <p className="text-xs font-semibold text-text-muted">Save-Desk Load & High-Value At-Risk Accounts</p>
-          <p className="text-[10px] text-text-subtle mt-0.5">Source: Service Cloud · Billing · Customer 360 · Save-Offer Catalog</p>
+          <p className="text-[10px] text-text-subtle mt-0.5">Source: Genesys Cloud · Billing · Customer 360 · Save-Offer Catalog</p>
         </div>
         <span className="text-[10px] font-semibold text-red-600 bg-red-500/10 rounded-full px-2 py-1">Abandoned {s.abandonedDelta}</span>
       </div>

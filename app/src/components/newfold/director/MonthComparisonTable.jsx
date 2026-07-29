@@ -25,7 +25,7 @@ export default function MonthComparisonTable() {
     <div className="bg-surface rounded-xl border border-border overflow-hidden">
       <div className="px-4 py-3 border-b border-border-subtle">
         <p className="text-xs font-semibold text-text-muted">Month-over-Month Comparison — With 6-Month Trend</p>
-        <p className="text-[10px] text-text-subtle mt-0.5">Source: Service Cloud (historical) · Billing · Finance · HR · Migration PMO</p>
+        <p className="text-[10px] text-text-subtle mt-0.5">Source: Genesys Cloud (historical) · Billing · Finance · HR · Migration PMO</p>
       </div>
       <table className="w-full text-xs">
         <thead>
