@@ -36,13 +36,6 @@ export default function TopHeader({ onMenuClick }) {
       agentObservability: 'Agent Observability',
       agentInventory: 'Agent Inventory',
     },
-    // Newfold Digital AI Governance Admin (Arjun Nair) — same governance module
-    // set. Keep in sync with the persona manifest's navLabels.
-    newfold_governance: {
-      governance: 'Governance',
-      agentObservability: 'Agent Observability',
-      agentInventory: 'Agent Inventory',
-    },
   };
   const labels = personaNavLabels[persona?.id] ?? client?.navLabels ?? { journey: 'Member Journey', risk: 'Risk Signals' };
   const pageTitles = {

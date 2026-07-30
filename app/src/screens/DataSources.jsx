@@ -41,16 +41,11 @@ const personaDataSources = {
   // USSFCU-only Risk & Compliance personas (gated to clientId === 'ussfcu').
   ussfcu_evelyn: ussfcuEvelynDataSources,
   ussfcu_nadia: ussfcuNadiaDataSources,
-  // Commercial market — Newfold Digital. All seven personas share the same eight
-  // connected sources (Service Cloud primary + Billing, Domains, Hosting, CRM,
+  // Commercial market — Newfold Digital. Both personas share the same eight
+  // connected sources (Genesys Cloud primary + Billing, Domains, Hosting, CRM,
   // Marketing, IT, Snowflake).
   newfold_director: newfoldDataSources,
   newfold_ops: newfoldDataSources,
-  newfold_workforce: newfoldDataSources,
-  newfold_quality: newfoldDataSources,
-  newfold_governance: newfoldDataSources,
-  newfold_member: newfoldDataSources,
-  newfold_agent: newfoldDataSources,
 };
 
 const penfedPersonaDataSources = {

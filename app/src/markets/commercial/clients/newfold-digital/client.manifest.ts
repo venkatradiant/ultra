@@ -7,17 +7,12 @@
  * of record; Radiant's intelligence layer connects it to Billing, Domains,
  * Hosting, Marketing, IT, and the legacy brand support systems being consolidated.
  *
- * Seven personas mirror the NFCU CCaaS build, re-skinned banking → SMB hosting.
+ * Two personas mirror the NFCU CCaaS build, re-skinned banking → SMB hosting.
  * Default = Marisol Castellano (Director); Sofia Reyes second.
  */
 import type { ClientManifest } from '@core/types';
 import { directorPersona } from './personas/director';
 import { opsPersona } from './personas/ops';
-import { workforcePersona } from './personas/workforce';
-import { qualityPersona } from './personas/quality';
-import { governancePersona } from './personas/governance';
-import { memberPersona } from './personas/member';
-import { agentPersona } from './personas/agent';
 
 export const newfoldDigitalClient: ClientManifest = {
   id: 'newfold_digital',
@@ -30,20 +25,13 @@ export const newfoldDigitalClient: ClientManifest = {
     logo: '/logos/newfold-icon.svg',
     favicon: '/logos/newfold-icon.svg',
     primaryColor: '#F27121',
-    // Governance is intentionally NOT set here — per spec the business personas
-    // have 4 pages (Ask, Workforce Intelligence, Quality Signals, Data Sources).
-    // The governance persona (Arjun) adds its own Governance/Observability/
-    // Inventory modules via features.navSlots + navLabels in its manifest.
+    // Governance is intentionally NOT set here — the business personas have 4
+    // pages (Ask, Workforce Intelligence, Quality Signals, Data Sources).
     navLabels: { journey: 'Workforce Intelligence', risk: 'Quality Signals' },
   },
   personas: [
     directorPersona,
     opsPersona,
-    workforcePersona,
-    qualityPersona,
-    governancePersona,
-    memberPersona,
-    agentPersona,
   ],
   defaultPersonaId: 'newfold_director',
 };

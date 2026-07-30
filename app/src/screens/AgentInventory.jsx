@@ -2,13 +2,11 @@ import { motion } from 'framer-motion';
 import { Boxes } from 'lucide-react';
 import { usePersona } from '../context/PersonaContext';
 import EnterpriseAgentInventory from '../components/nfcu/platform-admin/EnterpriseAgentInventory';
-import { getAgentRegistry as newfoldAgentRegistry } from '../data/newfold-digital/governance/agentRegistryData';
 
 // Governance personas allowed on this page, mapped to the registry getter that
-// feeds it. NFCU uses the component default; Newfold passes its own registry.
+// feeds it. NFCU uses the component default.
 const INVENTORY_GETTER = {
   nfcu_platform_admin: undefined,
-  newfold_governance: newfoldAgentRegistry,
 };
 
 /**

@@ -1,6 +1,0 @@
-[
-  { "trigger": "home_load", "capabilityName": "Proactive Intelligence", "description": "The AI monitors contact quality, process adherence, and sentiment across every brand, and surfaces the compliance risk — the skipped auto-renewal disclosure — as a flagged signal six days before it would reach an audit.", "eyebrow": "RADIANT AI CAPABILITY" },
-  { "trigger": "ask_turn_1", "capabilityName": "Anomaly Detection", "description": "The AI ties the disclosure-skip spike to the exact macro change that caused it, pinpoints the shift where it concentrates, and quantifies the regulatory exposure — the correlation the raw quality score cannot show.", "eyebrow": "RADIANT AI CAPABILITY" },
-  { "trigger": "ask_turn_2", "capabilityName": "Automated Action", "description": "Revert the macro, generate the remediation list of affected contacts split by resolution path, and draft the compliance incident summary — executed from the conversation, pending your approval.", "eyebrow": "RADIANT AI CAPABILITY" },
-  { "trigger": "ask_turn_3", "capabilityName": "Converged Conversation", "description": "The AI correlates repeat-contact transcripts with IT incident logs to find the real root cause — a billing-sync delay, not agent error — and connects the quality miss to the one-star reviews it is spilling into.", "eyebrow": "RADIANT AI CAPABILITY" }
-]
