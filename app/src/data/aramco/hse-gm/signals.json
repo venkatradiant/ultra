@@ -1,0 +1,106 @@
+[
+  {
+    "id": "SIG-ARAMCO-HSE-001",
+    "type": "headcount_reconciliation_gap",
+    "title": "Headcount Sources Disagree — No Single Defensible Figure",
+    "description": "The gate access-control headcount and the number the permit system says are working rarely match, and contractor timesheets tell a third story. Today: gate 2,440, permit 2,400, timesheets 2,380. During muster drills, accounting for everyone takes far longer than it should because the count starts from a number nobody trusts.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "compliance",
+    "action": "Reconcile to one trusted figure with an evidence trail, so muster and audit both start from a defensible number.",
+    "sources": [
+      "Gate access-control",
+      "Permit-to-work system",
+      "Contractor timesheets"
+    ],
+    "timestamp": "2026-08-05T06:41:00Z",
+    "freshness": "12 minutes ago",
+    "trend": "persistent",
+    "related_segment": "SITE-HEADCOUNT-001",
+    "metrics": {
+      "gate": "2,440",
+      "permit": "2,400",
+      "timesheets": "2,380",
+      "reconciled": "2,412",
+      "unmatched": 28
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 97,
+      "rationale": "All three source figures are direct system reads; the resolved figure is a deterministic match of badge-ins to live location signal, not a model estimate. The 28 exceptions are held rather than assumed.",
+      "signals_used": ["Gate access-control", "Location and tag data (vendor-agnostic)", "Contractor timesheets"],
+      "threshold": 70,
+      "model_version": "hse-reconcile-v1.0",
+      "validated_at": "2026-08-05T06:41:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-HSE-002",
+    "type": "contractor_surge_exposure",
+    "title": "Contractor Surge Outpacing Manual Controls",
+    "description": "The next turnaround will push contractor headcount toward 3,000 and roughly double daily permit volume, stretching current manual controls past their limit. Verification capacity does not scale with permit volume, so the share of high-risk work that is actually checked falls exactly when contractor density peaks.",
+    "impact": "high",
+    "severity": "warning",
+    "bucket": "safety",
+    "action": "Stand up the live permit-and-location view before the surge, and pre-stage extra verification capacity on the riskiest units.",
+    "sources": [
+      "Turnaround resource plan",
+      "Gate access-control projections",
+      "Permit-to-work system"
+    ],
+    "timestamp": "2026-08-05T06:15:00Z",
+    "freshness": "38 minutes ago",
+    "trend": "worsening",
+    "related_segment": "TURNAROUND-SURGE-001",
+    "metrics": {
+      "contractors_now": "2,400",
+      "contractors_projected": "3,000",
+      "permits_now": 450,
+      "permits_projected": "about 900"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 87,
+      "rationale": "Headcount and permit projections come from the turnaround resource plan and gate history; the control-coverage inference is a modelled ratio of verification capacity to permit volume, so it carries more uncertainty than the counts themselves.",
+      "signals_used": ["Turnaround resource plan", "Gate access-control", "Permit-to-work system"],
+      "threshold": 70,
+      "model_version": "hse-surge-v1.0",
+      "validated_at": "2026-08-05T06:15:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-HSE-003",
+    "type": "verification_idle_time",
+    "title": "Turnaround Idle Time from Permit Verification",
+    "description": "Crews can spend a large share of a shift waiting on permit checks and manual verifications. Low-risk permits queue behind high-risk ones for the same verifier, so routine jobs wait on a check that takes minutes. Connecting permits with live location could cut idle time and shorten the turnaround critical path.",
+    "impact": "medium",
+    "severity": "info",
+    "bucket": "equipment",
+    "action": "Reallocate verification effort to the highest-risk jobs and clear low-risk permits faster, shortening the critical path.",
+    "sources": [
+      "Permit-to-work system",
+      "Gate dwell data"
+    ],
+    "timestamp": "2026-08-05T05:50:00Z",
+    "freshness": "1 hour 3 minutes ago",
+    "trend": "stable",
+    "related_segment": "TURNAROUND-IDLE-001",
+    "metrics": {
+      "permits_awaiting_check": 61,
+      "median_wait": "illustrative — not yet measured",
+      "high_risk_share_of_verifier_time": "about 70%"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 85,
+      "rationale": "Derived from permit-to-work timestamps and gate dwell data. The idle-time attribution is inferred from queueing patterns rather than directly observed, and the site has not yet instrumented a median wait figure.",
+      "signals_used": ["Permit-to-work system", "Gate access-control"],
+      "threshold": 70,
+      "model_version": "hse-idle-v1.0",
+      "validated_at": "2026-08-05T05:50:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

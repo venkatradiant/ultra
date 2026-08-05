@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { MessageSquare, Route, ShieldAlert, Database, Gauge, Activity, Boxes, X } from 'lucide-react';
+import { MessageSquare, Route, ShieldAlert, Database, Gauge, Activity, Boxes, MapPin, FileCheck, Users, X } from 'lucide-react';
 import { useBranding } from '../../context/BrandingContext';
 import { usePersona } from '../../context/PersonaContext';
 import { useActivePersona } from '@core/runtime/useActivePersona';
@@ -24,12 +24,15 @@ export default function Sidebar({ open = false, onClose }) {
   // Every nav slot the app can render, keyed by NavKey. `navSlots` (an explicit
   // ordered allow-list on the persona) selects and orders a subset of these.
   const NAV_SLOTS = {
-    ask: { to: '/', icon: MessageSquare, label: 'Ask the AI' },
+    ask: { to: '/', icon: MessageSquare, label: labels.ask ?? 'Ask the AI' },
     journey: { to: '/journey', icon: Route, label: labels.journey },
     risk: { to: '/risk', icon: ShieldAlert, label: labels.risk },
     governance: { to: '/governance', icon: Gauge, label: labels.governance },
     agentObservability: { to: '/agent-observability', icon: Activity, label: labels.agentObservability ?? 'Agent Observability' },
     agentInventory: { to: '/agent-inventory', icon: Boxes, label: labels.agentInventory ?? 'Agent Inventory' },
+    liveSite: { to: '/live-site', icon: MapPin, label: labels.liveSite ?? 'Live Site Picture' },
+    permits: { to: '/permits', icon: FileCheck, label: labels.permits ?? 'Permit and Job Detail' },
+    muster: { to: '/muster', icon: Users, label: labels.muster ?? 'Muster Status' },
     dataSources: { to: '/data-sources', icon: Database, label: 'Data Sources' },
   };
 
@@ -109,11 +112,27 @@ export default function Sidebar({ open = false, onClose }) {
         </ul>
       </nav>
 
-        {/* Footer */}
+        {/* Footer — Radiant by default. A client whose demo leads with its own
+            product brand supplies `footerMark` and that takes this slot. */}
         <div className="px-5 py-4 border-t border-border-subtle/80">
-          <p className="text-[10px] text-text-subtle">
-            Powered by <span className="font-semibold text-text-muted">Radiant Digital</span>
-          </p>
+          {client.footerMark ? (
+            <div className="flex flex-col gap-1 min-w-0">
+              {client.footerMark.label && (
+                <span className="text-[9.5px] text-text-subtle">{client.footerMark.label}</span>
+              )}
+              {/* h-8: these lockups are stacked (mark above wordmark), so they
+                  need more height than a horizontal mark to stay legible. */}
+              <img
+                src={client.footerMark.logo}
+                alt={client.footerMark.alt}
+                className="h-8 w-auto object-contain self-start"
+              />
+            </div>
+          ) : (
+            <p className="text-[10px] text-text-subtle">
+              Powered by <span className="font-semibold text-text-muted">Radiant Digital</span>
+            </p>
+          )}
         </div>
       </aside>
     </>

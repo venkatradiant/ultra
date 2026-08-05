@@ -1,0 +1,59 @@
+{
+  "asOf": "2026-08-05T06:53:00Z",
+  "freshness": "under 1 minute ago",
+  "illustrative": true,
+  "horizon": "Before the night shift",
+  "actions": [
+    {
+      "id": "ACT-HSE-001",
+      "rank": 1,
+      "title": "Clear the two expired hot-work permits — or stop the work",
+      "bucket": "safety",
+      "priority": "highest",
+      "rationale": "HW-4471 and HW-4468 both lapsed within the last hour and still show seven workers active on location inside the Unit 2 hazard zone. This is the highest-consequence exposure on site and it is live right now.",
+      "owner": "Unit 2 shift supervisor and the Unit 2 permit issuer, jointly",
+      "ownerNote": "Jointly, because the issuing authority is off site and the extend-or-stop decision cannot wait for a shift change.",
+      "dueBy": "Before the night shift",
+      "evidence": ["Permit record HW-4471 and HW-4468", "Location trail — 7 tags inside the zone", "Expiry timestamps — 47 and 35 minutes past"],
+      "sources": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+      "draftTask": "Attend Unit 2 hydrocracker. For permits HW-4471 and HW-4468: either issue a documented extension with fresh conditions, or stop the work and clear the zone. Confirm zone occupancy is zero or permits are valid before you leave. Evidence attached.",
+      "system": "HSE action tracker",
+      "status": "pending_confirmation",
+      "buttons": ["Confirm", "Edit First"]
+    },
+    {
+      "id": "ACT-HSE-002",
+      "rank": 2,
+      "title": "Confirm the Unit 3 gas test so CS-1182 stays compliant",
+      "bucket": "health",
+      "priority": "high",
+      "rationale": "The confined-space entry on Unit 3 is compliant on every condition except one: the next gas test is due in about a minute. Two entrants are inside. Missing the interval turns a compliant permit into a breach.",
+      "owner": "Unit 3 shift supervisor",
+      "ownerNote": "Standby attendant already has the reminder; this is the supervisory confirmation.",
+      "dueBy": "Within 5 minutes",
+      "evidence": ["Permit CS-1182 conditions", "Gas test log — 3 readings, all within limits", "Occupancy — 2 of maximum 2 inside"],
+      "sources": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+      "draftTask": "Confirm the next gas test on CS-1182 is logged within the 15-minute interval. If no reading is logged within 5 minutes of the due time, stop the entry and clear the space. Evidence attached.",
+      "system": "HSE action tracker",
+      "status": "pending_confirmation",
+      "buttons": ["Confirm", "Edit First"]
+    },
+    {
+      "id": "ACT-HSE-003",
+      "rank": 3,
+      "title": "Reconcile the 28 unmatched people before the shift-change muster",
+      "bucket": "compliance",
+      "priority": "medium",
+      "rationale": "The next muster starts from whatever headcount it inherits. Clearing the 28 exceptions now means the shift-change count starts clean and defensible — and the two with no signal at all get eyes on them before they become a muster problem.",
+      "owner": "Gate and muster coordinator",
+      "ownerNote": "Two of the 28 need physical verification; the other 26 are tag-assignment housekeeping.",
+      "dueBy": "Before shift-change muster",
+      "evidence": ["Reconciliation record — gate 2,440 / permit 2,400 / timesheets 2,380 → 2,412", "Exception list — 19 stale, 7 no fix, 2 no signal", "Last-known positions for all 28"],
+      "sources": ["Gate access-control", "Location and tag data (vendor-agnostic)", "Contractor timesheets"],
+      "draftTask": "Resolve the 28 held exceptions from the 06:41 reconciliation. Priority: the 2 with no signal since 06:41 near the Unit 4 boundary — send a warden for eyes-on. Then reassign or recover tags for the remaining 26. Evidence attached.",
+      "system": "HSE action tracker",
+      "status": "pending_confirmation",
+      "buttons": ["Confirm", "Edit First"]
+    }
+  ]
+}

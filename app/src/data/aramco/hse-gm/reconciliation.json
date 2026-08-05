@@ -1,0 +1,79 @@
+{
+  "asOf": "2026-08-05T06:41:00Z",
+  "freshness": "12 minutes ago",
+  "illustrative": true,
+  "metric": "On-site headcount",
+  "resolved": 2412,
+  "resolvedLabel": "TrackLynk reconciled headcount",
+  "method": "Match gate badge-ins to live location signal. Badge-ins with no active location signal are held as exceptions rather than counted or discarded.",
+  "auditLogged": true,
+  "auditNote": "Reconciliation run and its exception list are written to an immutable, timestamped record for audit.",
+  "sources": [
+    {
+      "id": "src-gate",
+      "name": "Gate access-control",
+      "value": 2440,
+      "delta": 28,
+      "freshness": "under 1 minute ago",
+      "note": "Counts badge-ins net of badge-outs. Over-reports: it cannot tell that a tag was left in a vehicle or a locker.",
+      "reliability": "high for entry events, low for current presence"
+    },
+    {
+      "id": "src-permit",
+      "name": "Permit-to-work system",
+      "value": 2400,
+      "delta": -12,
+      "freshness": "2 minutes ago",
+      "note": "Counts only people working under an open permit, so it never sees the support and logistics population.",
+      "reliability": "high, but partial coverage by design"
+    },
+    {
+      "id": "src-timesheets",
+      "name": "Contractor timesheets",
+      "value": 2380,
+      "delta": -32,
+      "freshness": "2 hours 45 minutes ago",
+      "note": "Submitted per contractor company on each company's own cadence. Lags the gate by hours and under-reports during a surge.",
+      "reliability": "lowest — consistently the laggiest source"
+    }
+  ],
+  "exceptions": {
+    "total": 28,
+    "groups": [
+      {
+        "id": "exc-stale",
+        "count": 19,
+        "label": "Badged in, location signal stale over 10 minutes",
+        "gate": "West Gate",
+        "likelyCause": "Tag left in a vehicle or a locker",
+        "priority": "low",
+        "lastKnown": "Near the west gate"
+      },
+      {
+        "id": "exc-nofix",
+        "count": 7,
+        "label": "Badged in, never produced a location fix",
+        "gate": "West Gate",
+        "likelyCause": "Unassigned or unworn tag",
+        "priority": "medium",
+        "lastKnown": "Parking muster point — not yet checked in"
+      },
+      {
+        "id": "exc-nosignal",
+        "count": 2,
+        "label": "Badged in, no signal at all since 06:41",
+        "gate": "West Gate",
+        "likelyCause": "Known coverage shadow near the Unit 4 sulphur recovery boundary — most likely a tag issue, but cannot be assumed",
+        "priority": "high",
+        "lastKnown": "Unit 4 sulphur recovery boundary, last fix 06:41",
+        "note": "The only group where the gap could mean a person rather than a tag. Eyes-on required first."
+      }
+    ]
+  },
+  "trustedFigures": [
+    { "label": "People on site now", "value": "2,412", "source": "Reconciled — gate, permit, location", "freshness": "12 minutes ago", "reconciled": true },
+    { "label": "Active permits today", "value": "450", "source": "Permit-to-work system", "freshness": "2 minutes ago", "reconciled": false },
+    { "label": "High-risk permits", "value": "60", "source": "Permit-to-work system", "freshness": "2 minutes ago", "reconciled": false },
+    { "label": "Jobs in a hazard zone without a valid permit", "value": "3", "source": "Fused permit plus location view", "freshness": "under 1 minute ago", "reconciled": true }
+  ]
+}

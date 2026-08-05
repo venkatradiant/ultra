@@ -21,6 +21,12 @@ export type NavKey =
   | 'governance'
   | 'agentObservability'
   | 'agentInventory'
+  // Oil & Gas / HSE slots. Additive: no existing persona lists them in
+  // `features.navSlots`, and they are absent from the default slot set, so
+  // every other market's sidebar is unchanged.
+  | 'liveSite'
+  | 'permits'
+  | 'muster'
   | 'dataSources';
 
 export interface PersonaIdentity {
@@ -57,6 +63,14 @@ export interface PersonaFeatures {
    * Platform Admin's governance capabilities, which have no bespoke diagram).
    */
   staticCapabilityBadges?: boolean;
+  /**
+   * Let an AI message's inline components span the full conversation column
+   * instead of the 85% cap that keeps prose bubbles readable. For personas whose
+   * answers carry wide artefacts — site plans, roll-up tables, process rails —
+   * that cap is what forces horizontal scrolling inside the component. The text
+   * bubble stays narrow either way; only the component block widens.
+   */
+  wideInlineComponents?: boolean;
 }
 
 /** A KPI tile shown in the persona's data-overview row. */
@@ -93,6 +107,20 @@ export interface PersonaUiConfig {
   signalToChip: Record<string, string>;
   /** Capability-callout definitions (opened from AI-message capability chips). */
   capabilityCallouts: Array<{ trigger?: string; [key: string]: unknown }>;
+  /**
+   * Query-bar placeholder. Optional — the default speaks of "members", which is
+   * right for the financial-services tenants and wrong everywhere else.
+   */
+  inputPlaceholder?: string;
+  /**
+   * Tailwind max-width class for the conversation column. Defaults to
+   * `max-w-3xl` (768px), which is the right measure for a text-first persona.
+   * Personas whose answers render wide artefacts need more room, or the
+   * artefact scrolls horizontally inside a column that has spare space either
+   * side of it. Applies to the thread and the query bar together so they stay
+   * aligned.
+   */
+  contentMaxWidth?: string;
 }
 
 /** Maps a conversation turn number → the right-rail component (or 'actions'). */

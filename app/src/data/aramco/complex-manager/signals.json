@@ -1,0 +1,80 @@
+[
+  {
+    "id": "SIG-ARAMCO-CM-001",
+    "type": "exposure_concentration",
+    "title": "Safety Exposure and Schedule Pressure Land on the Same Two Units",
+    "description": "All three jobs running outside their permit conditions are in Unit 2 and Unit 3 — the same two units carrying the turnaround critical path. Those units hold a third of the site population and two thirds of the high-risk permit load.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "safety",
+    "action": "Treat schedule recovery on Unit 2 and Unit 3 as a safety decision, not a scheduling one. Re-issue with live-verified conditions rather than accepting quiet overruns.",
+    "sources": ["Permit-to-work system", "Location and tag data (vendor-agnostic)", "Maintenance work orders"],
+    "timestamp": "2026-08-05T06:50:00Z",
+    "freshness": "3 minutes ago",
+    "trend": "worsening",
+    "related_segment": "UNIT-2-3-EXPOSURE",
+    "metrics": { "flagged_jobs": 3, "units_involved": 2, "share_of_high_risk_permits": "about two thirds", "turnaround_day": "11 of 24" },
+    "illustrative": true,
+    "confidence": {
+      "score": 92,
+      "rationale": "Permit and location inputs are direct reads. The schedule-criticality overlay comes from the turnaround plan and carries the plan's own uncertainty.",
+      "signals_used": ["Permit-to-work system", "Location and tag data (vendor-agnostic)", "Maintenance work orders"],
+      "threshold": 70,
+      "model_version": "hse-rollup-v1.0",
+      "validated_at": "2026-08-05T06:50:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-CM-002",
+    "type": "regulator_facing_headcount",
+    "title": "Reported Headcount Has Disagreed With the Gate Every Day This Week",
+    "description": "Gate, permit and contractor timesheet figures have diverged on every day of the current turnaround week. This is a regulator-facing and board-facing exposure rather than an operational one: the site cannot currently defend a single population number without reconstructing it.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "compliance",
+    "action": "Adopt the reconciled figure with its logged exception list as the reported number, so the figure that leaves the site has a document behind it.",
+    "sources": ["Gate access-control", "Permit-to-work system", "Contractor timesheets"],
+    "timestamp": "2026-08-05T06:41:00Z",
+    "freshness": "12 minutes ago",
+    "trend": "persistent",
+    "related_segment": "SITE-HEADCOUNT-001",
+    "metrics": { "gate": "2,440", "permit": "2,400", "timesheets": "2,380", "reconciled": "2,412", "held": 28 },
+    "illustrative": true,
+    "confidence": {
+      "score": 97,
+      "rationale": "All three source figures are direct system reads and the resolved figure is a deterministic match rather than an estimate. Exceptions are held rather than assumed.",
+      "signals_used": ["Gate access-control", "Location and tag data (vendor-agnostic)", "Contractor timesheets"],
+      "threshold": 70,
+      "model_version": "hse-reconcile-v1.0",
+      "validated_at": "2026-08-05T06:41:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-CM-003",
+    "type": "verification_capacity_gap",
+    "title": "Verification Coverage Falls as the Next Surge Lands",
+    "description": "At the projected contractor peak of about 3,000, daily permit volume roughly doubles while verification capacity does not. The exposure scales with the gap between permits issued and permits verified, and that gap widens fastest exactly when contractor density peaks.",
+    "impact": "high",
+    "severity": "warning",
+    "bucket": "equipment",
+    "action": "Stand the live permit-and-location view up before the surge rather than during it, and pre-stage verification capacity on the highest-consequence units.",
+    "sources": ["Turnaround resource plan", "Permit-to-work system", "Gate access-control"],
+    "timestamp": "2026-08-05T06:15:00Z",
+    "freshness": "38 minutes ago",
+    "trend": "worsening",
+    "related_segment": "TURNAROUND-SURGE-001",
+    "metrics": { "contractors_now": "2,400", "contractors_projected": "3,000", "permits_now": 450, "permits_projected": "about 900" },
+    "illustrative": true,
+    "confidence": {
+      "score": 86,
+      "rationale": "Headcount and permit projections come from the turnaround resource plan and gate history. The coverage inference is a modelled ratio and carries more uncertainty than the counts.",
+      "signals_used": ["Turnaround resource plan", "Permit-to-work system", "Gate access-control"],
+      "threshold": 70,
+      "model_version": "hse-surge-v1.0",
+      "validated_at": "2026-08-05T06:15:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

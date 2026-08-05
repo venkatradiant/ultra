@@ -20,6 +20,8 @@ import ussfcuCeoDataSources from '../data/ussfcu/ceo/dataSources.json';
 import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
 import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
+import aramcoDataSources from '../data/aramco/_shared/dataSources.json';
+import AramcoBackdropPanel from '../components/aramco/AramcoBackdropPanel';
 import { useBranding } from '../context/BrandingContext';
 
 const personaDataSources = {
@@ -46,6 +48,12 @@ const personaDataSources = {
   // Marketing, IT, Snowflake).
   newfold_director: newfoldDataSources,
   newfold_ops: newfoldDataSources,
+  // Oil & Gas market — Aramco (TrackLynk.AI). Eight sources; location and
+  // presence telemetry is deliberately vendor-agnostic.
+  aramco_hse_gm: aramcoDataSources,
+  aramco_complex_manager: aramcoDataSources,
+  aramco_shift_supervisor: aramcoDataSources,
+  aramco_permit_issuer: aramcoDataSources,
 };
 
 const penfedPersonaDataSources = {
@@ -91,18 +99,48 @@ function formatRecordCount(count) {
   return count.toString();
 }
 
+// Oil & Gas / TrackLynk.AI data posture. Aramco is an archetypal target, not a
+// customer, and the demo must say so on the screen that lists its "sources".
+const ARAMCO_DISCLOSURES = [
+  'Aramco is used here as an illustrative target example — an archetypal downstream refining and petrochemical operator. It is not a current customer.',
+  'This prototype does not use confidential Aramco data. No proprietary, internal, or restricted information is present in any view.',
+  'All operational figures — permit counts, headcounts, near-misses, muster times — are mock and illustrative. Company-level facts shown elsewhere are public and sourced to the Aramco FY2025 Annual Report.',
+  'Tracking and telemetry integrations are vendor-agnostic. TrackLynk reads whatever tags, beacons, readers and cameras a site already runs; no specific tracking vendor is named or required.',
+];
+
 export default function DataSources() {
   const persona = usePersona();
   const { clientId } = useBranding();
   const sourcesMap = clientId === 'penfed' ? penfedPersonaDataSources : personaDataSources;
   const dataSources = sourcesMap[persona.id] || sourcesMap.ops;
+  const isAramco = persona.id?.startsWith('aramco_');
 
   return (
-    <div className="flex-1 py-8 px-8 overflow-y-auto">
+    <div className="flex-1 py-8 px-4 sm:px-6 lg:px-8 overflow-y-auto scrollbar-sleek">
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-text mb-1">Connected Data Sources</h2>
         <p className="text-sm text-text-subtle">{dataSources.length} integrations powering the AI intelligence layer</p>
       </div>
+
+      {/* Spec §2 — the real, public, sourced frame the whole demo sits on. */}
+      {isAramco && <AramcoBackdropPanel />}
+
+      {isAramco && (
+        <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+          <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-amber-800 mb-3">
+            <AlertTriangle className="w-3.5 h-3.5" />
+            Data posture — read before demoing
+          </p>
+          <ul className="space-y-2">
+            {ARAMCO_DISCLOSURES.map((line, i) => (
+              <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-5">
         {dataSources.map((ds, idx) => {
@@ -132,6 +170,11 @@ export default function DataSources() {
 
               {/* Name + Description */}
               <h3 className="text-sm font-semibold text-text mb-1.5 leading-tight">{ds.name}</h3>
+              {ds.vendorAgnostic && (
+                <span className="inline-block mb-1.5 rounded-full border border-border bg-surface-2 px-2 py-0.5 text-[9.5px] font-semibold uppercase tracking-wide text-text-muted">
+                  Vendor-agnostic
+                </span>
+              )}
               <p className="text-xs text-text-muted leading-relaxed mb-4">{ds.description}</p>
 
               {/* Metrics */}
@@ -140,7 +183,9 @@ export default function DataSources() {
                   <span className="font-medium text-text-muted">{formatRecordCount(ds.recordCount)}</span> records
                 </div>
                 <div className="text-[10px] text-text-subtle">
-                  Last sync: <span className="font-medium text-text-muted">{formatSyncTime(ds.lastSync)}</span>
+                  {/* Prefer an authored freshness string when the fixture supplies
+                      one — a scripted demo shouldn't drift as the wall clock moves. */}
+                  Last sync: <span className="font-medium text-text-muted">{ds.freshness || formatSyncTime(ds.lastSync)}</span>
                 </div>
               </div>
             </motion.div>

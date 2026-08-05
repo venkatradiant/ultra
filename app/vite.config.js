@@ -67,6 +67,11 @@ export default defineConfig(({ mode }) => {
     server: {
       port: process.env.PORT ? parseInt(process.env.PORT) : undefined,
     },
+    // Vitest transforms .jsx through a different pipeline than the app build,
+    // where it defaults to the classic JSX runtime — module-scope JSX in a .jsx
+    // file then throws "React is not defined" under test but works in the app.
+    // Pinning the automatic runtime makes the two pipelines agree.
+    esbuild: { jsx: 'automatic', jsxImportSource: 'react' },
     test: {
       globals: true,
       environment: 'jsdom',

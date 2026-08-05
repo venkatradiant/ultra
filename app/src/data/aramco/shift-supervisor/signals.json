@@ -1,0 +1,80 @@
+[
+  {
+    "id": "SIG-ARAMCO-SUP-001",
+    "type": "expired_permit_live_occupancy",
+    "title": "Two Expired Hot-Work Permits — Seven People Still On Location",
+    "description": "HW-4471 and HW-4468 on the Unit 2 hydrocracker both lapsed within the last hour. Seven workers still show an active location signal inside the hazard zone. Neither issuer logged an extension and both are off site with the night shift.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "safety",
+    "action": "Extend with documented fresh conditions, or stop the work and confirm the zone is clear.",
+    "sources": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+    "timestamp": "2026-08-05T06:47:00Z",
+    "freshness": "6 minutes ago",
+    "trend": "worsening",
+    "related_segment": "UNIT-2-HOTWORK",
+    "metrics": { "permits": 2, "workers": 7, "minutes_past_expiry": "47 and 35" },
+    "illustrative": true,
+    "confidence": {
+      "score": 96,
+      "rationale": "Permit expiry is a direct system read and occupancy is a live location signal updated within the last minute. No inference involved — the only judgement is what to do about it.",
+      "signals_used": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+      "threshold": 70,
+      "model_version": "hse-permit-breach-v1.0",
+      "validated_at": "2026-08-05T06:47:00Z",
+      "escalation": { "triggered": true, "reason": "Live occupancy inside a hazard zone on a lapsed hot-work permit", "route_to": "Unit 2 shift supervisor and permit issuer", "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-SUP-002",
+    "type": "permit_condition_due",
+    "title": "CS-1182 Gas Test Due — Two Entrants Inside",
+    "description": "The Unit 3 confined-space entry is compliant on every condition except the gas-test interval, which is due in about a minute. Two entrants are inside and the standby attendant is confirmed at the entry point by location and camera.",
+    "impact": "medium",
+    "severity": "warning",
+    "bucket": "health",
+    "action": "Confirm the next gas test lands inside the interval, or stop the entry and clear the space.",
+    "sources": ["Permit-to-work system", "Location and tag data (vendor-agnostic)", "CCTV and presence"],
+    "timestamp": "2026-08-05T06:52:00Z",
+    "freshness": "1 minute ago",
+    "trend": "stable",
+    "related_segment": "UNIT-3-CS-1182",
+    "metrics": { "entrants": 2, "max_entrants": 2, "last_test_minutes": 14, "interval_minutes": 15 },
+    "illustrative": true,
+    "confidence": {
+      "score": 95,
+      "rationale": "Gas-test timestamps and occupancy are direct reads; the standby confirmation is corroborated by two independent sources (location geofence and camera presence).",
+      "signals_used": ["Permit-to-work system", "Location and tag data (vendor-agnostic)", "CCTV and presence"],
+      "threshold": 70,
+      "model_version": "hse-condition-v1.0",
+      "validated_at": "2026-08-05T06:52:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-SUP-003",
+    "type": "shift_fatigue_exposure",
+    "title": "Two Crew on a Second Consecutive Shift in a Hazard Zone",
+    "description": "Two of the seven workers on the flagged Unit 2 jobs are on their second consecutive shift, matched from gate badge history against contractor timesheets. Worth knowing before choosing between extending the permit and stopping the work.",
+    "impact": "medium",
+    "severity": "info",
+    "bucket": "health",
+    "action": "Factor consecutive-shift exposure into the extend-or-stop decision, and rotate if the work continues.",
+    "sources": ["Gate access-control", "Contractor timesheets"],
+    "timestamp": "2026-08-05T06:30:00Z",
+    "freshness": "23 minutes ago",
+    "trend": "watch",
+    "related_segment": "UNIT-2-CREW",
+    "metrics": { "crew_on_second_shift": 2, "of_total": 7 },
+    "illustrative": true,
+    "confidence": {
+      "score": 82,
+      "rationale": "Derived by matching gate badge history to contractor timesheets, and timesheets lag by hours. Directionally reliable, but confirm with the crew lead before acting on it alone.",
+      "signals_used": ["Gate access-control", "Contractor timesheets"],
+      "threshold": 70,
+      "model_version": "hse-fatigue-v0.9",
+      "validated_at": "2026-08-05T06:30:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

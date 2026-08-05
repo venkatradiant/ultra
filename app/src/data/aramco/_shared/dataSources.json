@@ -1,0 +1,98 @@
+[
+  {
+    "id": "ds-aramco-01",
+    "name": "Permit-to-Work System (electronic)",
+    "status": "connected",
+    "description": "System of record for every permit: hot work, confined space, work at height, and general. Validity windows, conditions, issuers, and sign-offs. Paper permits still appear in some units and are reconciled on ingest.",
+    "icon": "shield",
+    "lastSync": "2026-08-05T06:52:00",
+    "recordCount": 450,
+    "freshness": "2 minutes ago",
+    "vendorAgnostic": false,
+    "illustrative": true
+  },
+  {
+    "id": "ds-aramco-02",
+    "name": "Gate Access-Control",
+    "status": "connected",
+    "description": "Badge-in and badge-out events at every gate and turnstile. The live on-site headcount baseline before reconciliation against location and timesheets.",
+    "icon": "users",
+    "lastSync": "2026-08-05T06:53:00",
+    "recordCount": 2440,
+    "freshness": "under 1 minute ago",
+    "vendorAgnostic": false,
+    "illustrative": true
+  },
+  {
+    "id": "ds-aramco-03",
+    "name": "Location and Tag Data",
+    "status": "connected",
+    "description": "Worker and asset position from whatever tags, beacons, and readers the site already runs. Deliberately vendor-agnostic — TrackLynk reads the customer's existing telemetry rather than requiring a specific tracking vendor.",
+    "icon": "cpu",
+    "lastSync": "2026-08-05T06:53:00",
+    "recordCount": 2412,
+    "freshness": "under 1 minute ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-aramco-04",
+    "name": "CCTV and Presence",
+    "status": "connected",
+    "description": "Camera presence confirmation at entry points and high-risk work locations. Used to corroborate standby-person confirmation and to give eyes-on for anyone without a location signal.",
+    "icon": "monitor",
+    "lastSync": "2026-08-05T06:51:00",
+    "recordCount": 118,
+    "freshness": "3 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-aramco-05",
+    "name": "Contractor Timesheets",
+    "status": "partial",
+    "description": "Contractor company submissions of who is working, on which job, for which shift. The third headcount source, and typically the laggiest — submitted per company on their own cadence.",
+    "icon": "database",
+    "lastSync": "2026-08-05T04:10:00",
+    "recordCount": 2380,
+    "freshness": "2 hours 45 minutes ago",
+    "vendorAgnostic": false,
+    "illustrative": true
+  },
+  {
+    "id": "ds-aramco-06",
+    "name": "HSE Action Tracker",
+    "status": "partial",
+    "description": "Corrective and preventive actions from audits, near-misses, and incident investigations. Currently a spreadsheet in practice, which is why overdue actions accumulate unseen.",
+    "icon": "alert-triangle",
+    "lastSync": "2026-08-04T17:00:00",
+    "recordCount": 120,
+    "freshness": "yesterday, 17:00",
+    "vendorAgnostic": false,
+    "illustrative": true
+  },
+  {
+    "id": "ds-aramco-07",
+    "name": "Maintenance Work Orders",
+    "status": "connected",
+    "description": "Turnaround scope, job cards, and equipment history. Links a permit to the work order and asset it authorizes, so an equipment-bucket finding can be traced to the job that caused it.",
+    "icon": "cog",
+    "lastSync": "2026-08-05T06:20:00",
+    "recordCount": 3860,
+    "freshness": "33 minutes ago",
+    "vendorAgnostic": false,
+    "illustrative": true
+  },
+  {
+    "id": "ds-aramco-08",
+    "name": "HSE Reporting and Statistics",
+    "status": "partial",
+    "description": "Near-miss reports, recordable cases, and the weekly HSE statistics pack. Compiled by hand today, which is the reason the numbers in it disagree with the systems they came from.",
+    "icon": "trending-up",
+    "lastSync": "2026-08-03T09:00:00",
+    "recordCount": 35,
+    "freshness": "2 days ago",
+    "vendorAgnostic": false,
+    "illustrative": true
+  }
+]

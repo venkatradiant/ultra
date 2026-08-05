@@ -1,0 +1,155 @@
+{
+  "aramco_iss_greeting": {
+    "user_query": "What is the state of my permit book this morning?",
+    "ai_message": "Good morning. 450 permits are open against today's validity window, 60 of them high-risk, and you have issued 118 since 05:00. Three need a decision from you. Two hot-work permits on Unit 2 lapsed within the last hour and still show workers on location — the night-shift issuer never logged an extension. One crew on a general permit has moved into the Unit 3 confined-space envelope, which their permit does not authorize. Beyond those, 14 permits expire within the next hour and 24 are queued waiting on verification. Where do you want to start?",
+    "suggested_chips": [
+      "Show me the permits that lapsed with workers still on location",
+      "Which permits expire in the next hour?",
+      "Show me the general permit in the confined-space zone"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "Maintenance work orders"
+    ],
+    "capability": "Proactive Intelligence",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "aramco_iss_lapsed": {
+    "user_query": "Show me the permits that lapsed with workers still on location",
+    "ai_message": "Two, both hot work on the Unit 2 hydrocracker, both issued on the night shift. HW-4471 was valid 05:30 to 06:00 and has four workers inside the zone 47 minutes past expiry. HW-4468 was valid 05:12 to 06:12 with three workers, 35 minutes past. Neither has an extension request against it, and the issuing authority on both records is off site. This is the failure mode your book cannot show you on its own: from inside the permit system both records simply read closed. Only putting live location beside them reveals the work never stopped.",
+    "suggested_chips": [
+      "Issue an extension with fresh conditions",
+      "Why did the night shift not log an extension?",
+      "Which permits expire in the next hour?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Anomaly Detection",
+    "confidence": 96,
+    "illustrative": true
+  },
+
+  "aramco_iss_extension": {
+    "user_query": "Issue an extension with fresh conditions",
+    "ai_message": "Extension drafted for both permits, pre-filled from the originals with today's conditions restated: fresh gas test before work resumes, fire watch confirmed on location by tag and camera, and a hard stop at 14:00. TrackLynk will hold both permits expired until the gas test is logged, so the extension cannot authorize work that has not been re-verified — the paperwork and the physical condition move together. The Unit 2 shift supervisor and the HSE GM are copied. Ready to issue.",
+    "suggested_chips": [
+      "Show me the general permit in the confined-space zone",
+      "Which permits expire in the next hour?",
+      "Where is my issue-to-verify time going?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "HSE action tracker"
+    ],
+    "capability": "Automated Action",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "aramco_iss_night_shift": {
+    "user_query": "Why did the night shift not log an extension?",
+    "ai_message": "The pattern, not the person: 61% of permits issued between 02:00 and 06:00 are closed or extended more than fifteen minutes after their validity window, against 12% on day shift. The night issuer covers four units alone and the extension flow requires walking back to a terminal. Both of this morning's lapses fit that shape exactly. This is a process finding rather than a discipline one — a mobile extension path, or an automatic prompt fifteen minutes before expiry when a permit still shows live occupancy, would close most of it.",
+    "suggested_chips": [
+      "Show me the permits that lapsed with workers still on location",
+      "Where is my issue-to-verify time going?",
+      "Which permits expire in the next hour?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Gate access-control",
+      "HSE reporting and statistics"
+    ],
+    "capability": "Friction Observability",
+    "confidence": 87,
+    "illustrative": true
+  },
+
+  "aramco_iss_expiring": {
+    "user_query": "Which permits expire in the next hour?",
+    "ai_message": "Fourteen, and nine of them still show live occupancy inside their work area — those are the ones that become this morning's problem if nobody acts. Five are high-risk: three hot work on Unit 1, one work-at-height on the Utilities flare structure, and CS-1182 on Unit 3, which is on a gas-test clock rather than an expiry clock. I have ranked them by consequence rather than by clock: a low-risk permit expiring in ten minutes with nobody on location does not need you, and a hot-work permit expiring in fifty with four people inside does.",
+    "suggested_chips": [
+      "Issue an extension with fresh conditions",
+      "Show me the general permit in the confined-space zone",
+      "Where is my issue-to-verify time going?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "Maintenance work orders"
+    ],
+    "capability": "Predictive Intelligence",
+    "confidence": 91,
+    "illustrative": true
+  },
+
+  "aramco_iss_general_permit": {
+    "user_query": "Show me the general permit in the confined-space zone",
+    "ai_message": "GP-9033, issued 06:05 by the Unit 3 issuer, valid to 14:00 for general work only. Three tags entered the Unit 3 general work area at 06:09 and crossed into the confined-space envelope at 06:44 — nine minutes inside, last fix 20 seconds ago. The permit itself is perfectly valid; what is invalid is where the crew took it. A general permit does not authorize confined-space entry, and nothing in the permit system would ever have told you the crew had moved, because the permit has not changed. This is a zone breach, not a paperwork breach, and it sits in the compliance bucket.",
+    "suggested_chips": [
+      "Notify the crew and the supervisor",
+      "Show me the permits that lapsed with workers still on location",
+      "Where is my issue-to-verify time going?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Anomaly Detection",
+    "confidence": 95,
+    "illustrative": true
+  },
+
+  "aramco_iss_notify": {
+    "user_query": "Notify the crew and the supervisor",
+    "ai_message": "Sent. The crew lead on GP-9033 has an instruction to withdraw from the confined-space envelope and hold, and the Unit 3 shift supervisor has the same notice with the location trail attached. If the crew needs to enter, that is a new confined-space permit with gas monitoring, a standby attendant and an entrant limit — I can start that record from GP-9033's work order so nothing is retyped. TrackLynk will confirm when the envelope is clear.",
+    "suggested_chips": [
+      "Which permits expire in the next hour?",
+      "Where is my issue-to-verify time going?",
+      "Show me the permits that lapsed with workers still on location"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "HSE action tracker"
+    ],
+    "capability": "Automated Action",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "aramco_iss_cycle_time": {
+    "user_query": "Where is my issue-to-verify time going?",
+    "ai_message": "Twenty-four permits are queued waiting on verification, and the queue is not sorted by risk — it is sorted by arrival. A routine low-risk permit can sit most of a morning behind a hot-work check that needs a physical inspection, which is where the crews' idle time comes from. Roughly 70% of verifier time goes to high-risk work that is about 13% of the permit volume, which is correct; the waste is the other 87% waiting in the same line. Clearing low-risk permits on location evidence instead of a walk-out would take the queue down without moving a single verifier off the jobs that matter.",
+    "suggested_chips": [
+      "Which permits expire in the next hour?",
+      "Why did the night shift not log an extension?",
+      "Show me the permits that lapsed with workers still on location"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Gate access-control",
+      "Maintenance work orders"
+    ],
+    "capability": "Friction Observability",
+    "confidence": 88,
+    "illustrative": true
+  },
+
+  "__default__": {
+    "ai_message": "I can answer that against the live permit book, but this reference demo is scripted around one turnaround morning. Try one of the paths below — each is sourced, and every figure carries its origin and freshness.",
+    "suggested_chips": [
+      "Show me the permits that lapsed with workers still on location",
+      "Which permits expire in the next hour?",
+      "Show me the general permit in the confined-space zone",
+      "Where is my issue-to-verify time going?"
+    ],
+    "data_sources_used": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+    "illustrative": true
+  }
+}

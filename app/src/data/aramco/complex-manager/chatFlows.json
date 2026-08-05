@@ -1,0 +1,143 @@
+{
+  "aramco_cm_greeting": {
+    "user_query": "Where does the complex stand this morning?",
+    "ai_message": "Good morning. The complex is at turnaround load: 2,412 people reconciled on site against 450 open permits, with the turnaround on day 11 of 24. Three things sit at your level. First, safety exposure is concentrated — three jobs are running outside their permit conditions and all three are in Unit 2 and Unit 3, which are also your two schedule-critical units. Second, the headcount your site reports and the headcount the gate reports have disagreed every day this week, which is a regulator-facing problem rather than an operational one. Third, at the projected contractor surge the current verification model covers a falling share of high-risk work. Where do you want to go first?",
+    "suggested_chips": [
+      "Show me safety exposure by unit",
+      "What is the schedule versus safety trade-off?",
+      "What would I tell the board's safety committee today?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Gate access-control",
+      "Location and tag data (vendor-agnostic)",
+      "Maintenance work orders"
+    ],
+    "capability": "Proactive Intelligence",
+    "confidence": 92,
+    "illustrative": true
+  },
+
+  "aramco_cm_unit_rollup": {
+    "user_query": "Show me safety exposure by unit",
+    "ai_message": "Rolled up across all eleven zones. Unit 2 carries the highest exposure: 420 people, 88 permits, 16 of them high-risk, and two of the three flagged jobs. Unit 3 is second with 385 people, 79 permits and the confined-space entry plus a zone breach. Together those two units hold a third of the site population and two thirds of the high-risk permit load. Unit 1 and Unit 4 are heavier on headcount than their permit load implies, which usually means support and scaffolding crews rather than authorized work — worth confirming. The tank farms and marine loading are quiet. This is the same intelligence your HSE GM and shift supervisors are working from, aggregated to the complex.",
+    "suggested_chips": [
+      "What is the schedule versus safety trade-off?",
+      "Why are the headcounts disagreeing?",
+      "What would I tell the board's safety committee today?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "Gate access-control"
+    ],
+    "capability": "Converged Conversation",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "aramco_cm_schedule_safety": {
+    "user_query": "What is the schedule versus safety trade-off?",
+    "ai_message": "The honest version: your two schedule-critical units are also your two highest-exposure units, so pressure on the schedule lands exactly where the risk already is. The turnaround is on day 11 of 24 and running about a day and a half behind on the Unit 2 hydrocracker. This morning's two expired hot-work permits are a symptom of that — the night shift kept working past a validity window rather than stopping to re-issue. Stopping that work costs hours against a critical path. Not stopping it costs a hot-work job running unauthorized in a high-hazard zone. The third option is the one TrackLynk makes available: re-issue in minutes with conditions held against a live gas test, so the work continues legitimately instead of continuing quietly.",
+    "suggested_chips": [
+      "Show me safety exposure by unit",
+      "What happens at the next surge?",
+      "What would I tell the board's safety committee today?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Maintenance work orders",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Predictive Intelligence",
+    "confidence": 88,
+    "illustrative": true
+  },
+
+  "aramco_cm_headcount": {
+    "user_query": "Why are the headcounts disagreeing?",
+    "ai_message": "Because three systems are measuring three different things and none of them is wrong. The gate counts badge-ins and cannot tell that a tag was left in a locker, so it over-reports — 2,440 today. The permit system only counts people working under an open permit, so it never sees support and logistics — 2,400. Contractor timesheets arrive on each company's own cadence and lag by hours — 2,380. TrackLynk resolves to 2,412 by matching badge-ins to live location, and holds the 28 it cannot match rather than counting or discarding them. That last part is what makes the figure defensible: the exceptions are visible, not absorbed. The reconciliation is logged, so the number you give the regulator has a document behind it.",
+    "suggested_chips": [
+      "What would I tell the board's safety committee today?",
+      "Show me safety exposure by unit",
+      "What happens at the next surge?"
+    ],
+    "data_sources_used": [
+      "Gate access-control",
+      "Permit-to-work system",
+      "Contractor timesheets",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Friction Observability",
+    "confidence": 96,
+    "illustrative": true
+  },
+
+  "aramco_cm_surge": {
+    "user_query": "What happens at the next surge?",
+    "ai_message": "Contractor headcount goes toward 3,000 and daily permit volume roughly doubles. Verification capacity does not double, so the share of high-risk work that actually gets checked falls — and today, at 2,400 people, you are already producing three jobs outside their permit conditions in a single morning. The exposure does not scale linearly with headcount; it scales with the gap between permits issued and permits verified, and that gap widens fastest exactly when contractor density peaks. Standing the live permit-and-location view up before the surge, rather than during it, is the difference between adding verifiers and not needing to.",
+    "suggested_chips": [
+      "What is the schedule versus safety trade-off?",
+      "What would I tell the board's safety committee today?",
+      "Show me safety exposure by unit"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Gate access-control",
+      "Maintenance work orders"
+    ],
+    "capability": "Predictive Intelligence",
+    "confidence": 86,
+    "illustrative": true
+  },
+
+  "aramco_cm_board": {
+    "user_query": "What would I tell the board's safety committee today?",
+    "ai_message": "Four things, and each one has a document behind it. One: the site's recordable case rate is 0.03 per 200,000 hours against a company rate of 0.028 — in line, and traceable to the monthly HSE compilation. Two: three jobs were found running outside their permit conditions this morning and all three were caught in the moment rather than in an audit, with the evidence trail attached to each. Three: on-site headcount is reconciled to a single figure of 2,412 with 28 exceptions held and logged, so the number you report is defensible rather than reconstructed. Four: the muster drill completed in 2 minutes 47 seconds to full accounting, which is the first measured figure this site has had. I can assemble that as a committee pack with the evidence appended.",
+    "suggested_chips": [
+      "Assemble the committee pack",
+      "Why are the headcounts disagreeing?",
+      "What happens at the next surge?"
+    ],
+    "data_sources_used": [
+      "HSE reporting and statistics",
+      "Permit-to-work system",
+      "Gate access-control",
+      "HSE action tracker"
+    ],
+    "capability": "Automated Action",
+    "confidence": 91,
+    "illustrative": true
+  },
+
+  "aramco_cm_committee_pack": {
+    "user_query": "Assemble the committee pack",
+    "ai_message": "Assembled. Four sections, each with its source and freshness on the page: safety performance against the company rate, the three permit-condition findings with their full evidence trails, the headcount reconciliation including the exception list, and the measured muster result against target. Anything illustrative is labeled as such. The pack is timestamped and immutable, so when the committee asks in three months where a number came from, the answer is a document rather than a recollection. Ready to export.",
+    "suggested_chips": [
+      "What would I tell the board's safety committee today?",
+      "Show me safety exposure by unit",
+      "Why are the headcounts disagreeing?"
+    ],
+    "data_sources_used": [
+      "HSE reporting and statistics",
+      "Permit-to-work system",
+      "Gate access-control",
+      "HSE action tracker"
+    ],
+    "capability": "Automated Action",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "__default__": {
+    "ai_message": "I can answer that against the complex-wide picture, but this reference demo is scripted around one turnaround morning. Try one of the paths below — each is sourced, and every figure carries its origin and freshness.",
+    "suggested_chips": [
+      "Show me safety exposure by unit",
+      "Why are the headcounts disagreeing?",
+      "What happens at the next surge?",
+      "What would I tell the board's safety committee today?"
+    ],
+    "data_sources_used": ["Permit-to-work system", "Gate access-control", "Location and tag data (vendor-agnostic)"],
+    "illustrative": true
+  }
+}

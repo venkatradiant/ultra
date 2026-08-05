@@ -26,10 +26,17 @@ function renderInline(text) {
   });
 }
 
-export default function ChatMessage({ message, inlineComponents, capability, onCapabilityClick }) {
+export default function ChatMessage({ message, inlineComponents, capability, onCapabilityClick, wideInlineComponents = false }) {
   const persona = usePersona();
   const isUser = message.role === 'user';
   const confidence = !isUser ? message.confidence : null;
+
+  // An AI answer that carries a site plan or a roll-up table needs the whole
+  // column; the 85% cap that keeps prose readable is what pushes those artefacts
+  // into a horizontal scroll. Widen the wrapper only for messages that actually
+  // have components, and hold the text bubble at its readable measure so the
+  // prose does not stretch with it.
+  const isWide = wideInlineComponents && !isUser && inlineComponents?.length > 0;
 
   return (
     <motion.div
@@ -45,10 +52,10 @@ export default function ChatMessage({ message, inlineComponents, capability, onC
         </div>
       )}
 
-      <div className={`max-w-[85%] ${isUser ? 'order-first' : ''}`}>
+      <div className={`min-w-0 ${isWide ? 'flex-1' : 'max-w-[85%]'} ${isUser ? 'order-first' : ''}`}>
         {/* Message bubble */}
         <div
-          className={`rounded-2xl px-5 py-3.5 text-sm leading-relaxed ${
+          className={`rounded-2xl px-5 py-3.5 text-sm leading-relaxed ${isWide ? 'max-w-3xl' : ''} ${
             isUser
               ? 'bg-gradient-to-br from-brand to-[#0045b0] text-white rounded-tr-md shadow-[0_2px_8px_rgba(0,48,135,0.2)]'
               : 'bg-surface text-text rounded-tl-md border border-gray-200/70'

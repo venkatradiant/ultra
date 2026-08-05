@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useBranding } from '../../context/BrandingContext';
 import ProactiveIntelligenceDiagram from '../capabilities/ProactiveIntelligenceDiagram';
 import TalkToDataDiagram from '../capabilities/TalkToDataDiagram';
 import BehavioralSegmentationDiagram from '../capabilities/BehavioralSegmentationDiagram';
@@ -18,6 +19,7 @@ const capabilityNameToDiagram = {
 };
 
 export default function CapabilityCalloutModal({ isOpen, onClose, capability, callouts = [] }) {
+  const { client } = useBranding();
   const [activeCapability, setActiveCapability] = useState(capability);
 
   useEffect(() => {
@@ -106,14 +108,19 @@ export default function CapabilityCalloutModal({ isOpen, onClose, capability, ca
                 })}
               </div>
 
-              {/* Powered by — bottom of sidebar */}
+              {/* Powered by — bottom of sidebar. Radiant by default; a client
+                  that supplies `footerMark` leads with its own product brand
+                  here too, matching the sidebar footer. */}
               <div className="mt-auto px-5 pt-6">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-text-subtle font-medium">Powered by</span>
+                  <span className="text-[10px] text-text-subtle font-medium">
+                    {client?.footerMark?.label ?? 'Powered by'}
+                  </span>
                   <img
-                    src="/radiant-logo.svg"
-                    alt="Radiant Digital"
-                    className="h-3.5 opacity-60"
+                    src={client?.footerMark?.logo ?? '/radiant-logo.svg'}
+                    alt={client?.footerMark?.alt ?? 'Radiant Digital'}
+                    // Client lockups are stacked; Radiant's is horizontal.
+                    className={client?.footerMark ? 'h-7 opacity-90' : 'h-3.5 opacity-60'}
                   />
                 </div>
               </div>

@@ -32,8 +32,26 @@ export default function PredictiveIntelligenceDiagram() {
 
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
+  const isAramco = persona.id.startsWith('aramco_');
 
-  const clientConfig = isNewfold ? {
+  const clientConfig = isAramco ? {
+    sourcesLabel: 'ARAMCO DATA SOURCES',
+    primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
+    secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Projects muster completion from the live check-in rate, models the turnaround surge that will outrun manual verification, and predicts where the next permit-versus-location mismatch is likely — so the intervention lands before the exposure does.',
+    predCards: [
+      { name: 'Muster Completion Forecast', desc: 'Projects time to full accounting from the live per-zone check-in rate' },
+      { name: 'Surge Load Model', desc: 'Contractor headcount and permit volume against available verification capacity' },
+      { name: 'Mismatch Prediction', desc: 'Which units and shifts are most likely to produce the next permit-versus-location gap' },
+    ],
+    signalSubtitle: 'Permit-to-work and gate history extended by the Agentic Data Platform across location, timesheets and turnaround plans',
+    existingCard: { title: 'Permit-to-Work System (site existing)', desc: 'Permit issue, validity windows, conditions and sign-off in the system of record' },
+    agenticCardDesc: 'Extends permit and gate signals with live location, turnaround resource plans and dwell history',
+    gapText: 'A mismatch surfaces only after a near-miss, an incident, or an audit finding. By then the exposure has already happened.',
+    withText: 'Muster completion, surge load, and the next likely mismatch projected while there is still time to act.',
+  } : isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],

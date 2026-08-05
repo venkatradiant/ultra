@@ -16,6 +16,17 @@ export interface ClientBranding {
   favicon: string;
   primaryColor: string;
   navLabels?: Partial<Record<NavKey, string>>;
+  /**
+   * Replaces the default "Powered by Radiant Digital" mark in the sidebar footer
+   * and the capability deep-dive modal. Set when a client's demo leads with a
+   * product brand of its own rather than with Radiant's.
+   */
+  footerMark?: {
+    logo: string;
+    alt: string;
+    /** Optional lead-in, e.g. "Powered by". Omit for a bare mark. */
+    label?: string;
+  };
 }
 
 export interface ClientManifest {

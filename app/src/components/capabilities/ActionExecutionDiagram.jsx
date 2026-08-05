@@ -42,8 +42,18 @@ export default function ActionExecutionDiagram() {
 
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
+  const isAramco = persona.id.startsWith('aramco_');
 
-  const clientConfig = isNewfold ? {
+  const clientConfig = isAramco ? {
+    targetsLabel: 'ARAMCO EXECUTION TARGETS',
+    primaryTargets: ['Permit-to-Work', 'HSE Action Tracker', 'Shift Supervisors', 'Zone Wardens'],
+    secondaryTargets: ['Maintenance Work Orders', 'Incident Log', 'Shift Handover Report', 'Audit Export'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Drafts the two or three actions that matter before the next shift, ranks them by risk bucket, attaches the evidence to each, and hands them to the named shift supervisors — plus permit-issuer notifications, warden messages, audit exports and the incident log.',
+    gapText: 'Permits live in one system and people\'s real locations are unknown or on paper. The gap between authorized work and actual work is invisible exactly when contractor density, and therefore risk, is highest.',
+    withText: 'Prioritized actions handed to supervisors with the evidence attached — and anything unacknowledged escalates back.',
+  } : isNewfold ? {
     targetsLabel: 'NEWFOLD EXECUTION TARGETS',
     primaryTargets: ['Genesys Cloud', 'Billing & Subscriptions', 'Hosting Control Panel', 'Marketing Cloud'],
     secondaryTargets: ['Domain Registrar', 'Loyalty Engine', 'IT / Incident', 'Email'],

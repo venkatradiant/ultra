@@ -1,0 +1,80 @@
+{
+  "asOf": "2026-08-05T06:53:00Z",
+  "freshness": "under 1 minute ago",
+  "illustrative": true,
+  "featured": "CS-1182",
+  "confinedSpace": {
+    "id": "CS-1182",
+    "type": "confined-space",
+    "title": "Confined-space entry — Unit 3 Coker",
+    "zoneId": "Z3",
+    "zoneName": "Unit 3 — Coker",
+    "location": "Coker drum, north manway",
+    "status": "valid",
+    "bucket": "safety",
+    "validFrom": "06:00",
+    "validTo": "14:00",
+    "issuer": "Unit 3 permit issuer",
+    "workOrder": "WO-772140",
+    "conditions": [
+      {
+        "id": "cond-gas",
+        "label": "Continuous gas monitoring",
+        "state": "attention",
+        "detail": "Last gas test within limits, taken 14 minutes ago. Next test due in about 1 minute.",
+        "sources": ["Permit-to-work system"],
+        "freshness": "14 minutes ago"
+      },
+      {
+        "id": "cond-standby",
+        "label": "Standby person at the entry point",
+        "state": "compliant",
+        "detail": "Confirmed at the entry point by location and camera. Stationary inside the entry-point geofence for 26 minutes.",
+        "sources": ["Location and tag data (vendor-agnostic)", "CCTV and presence"],
+        "freshness": "under 1 minute ago"
+      },
+      {
+        "id": "cond-entrants",
+        "label": "Maximum two entrants",
+        "state": "compliant",
+        "detail": "Two entrants inside. Occupancy has not exceeded the permitted maximum since the permit opened.",
+        "sources": ["Location and tag data (vendor-agnostic)"],
+        "freshness": "under 1 minute ago"
+      }
+    ],
+    "occupancy": { "inside": 2, "max": 2 },
+    "gasTest": {
+      "lastTestMinutesAgo": 14,
+      "intervalMinutes": 15,
+      "dueInMinutes": 1,
+      "lastReading": "Within limits",
+      "readings": [
+        { "time": "06:03", "result": "Within limits" },
+        { "time": "06:24", "result": "Within limits" },
+        { "time": "06:39", "result": "Within limits" }
+      ]
+    },
+    "standby": {
+      "role": "Standby attendant",
+      "confirmedBy": ["Location — stationary in entry-point geofence, 26 minutes", "CCTV — presence confirmed at Unit 3 entry camera"],
+      "state": "confirmed"
+    },
+    "entrants": [
+      { "id": "E-1", "label": "Entrant 1", "company": "Contractor company A", "enteredAt": "06:06", "inside": true },
+      { "id": "E-2", "label": "Entrant 2", "company": "Contractor company A", "enteredAt": "06:07", "inside": true }
+    ],
+    "entryExitLog": [
+      { "time": "06:03", "actor": "Standby attendant", "event": "Gas test logged — within limits" },
+      { "time": "06:06", "actor": "Entrant 1", "event": "Entry" },
+      { "time": "06:07", "actor": "Entrant 2", "event": "Entry" },
+      { "time": "06:24", "actor": "Standby attendant", "event": "Gas test logged — within limits" },
+      { "time": "05:58", "actor": "Standby attendant", "event": "Entry — equipment pass, 4 minutes", "note": "Logged rather than lost; exited 06:02." },
+      { "time": "06:39", "actor": "Standby attendant", "event": "Gas test logged — within limits" }
+    ]
+  },
+  "relatedPermits": [
+    { "id": "HW-4471", "type": "hot-work", "zoneName": "Unit 2 — Hydrocracker", "status": "expired", "validTo": "06:00", "bucket": "safety", "flaggedJobId": "FJ-001" },
+    { "id": "HW-4468", "type": "hot-work", "zoneName": "Unit 2 — Hydrocracker", "status": "expired", "validTo": "06:12", "bucket": "safety", "flaggedJobId": "FJ-002" },
+    { "id": "GP-9033", "type": "general", "zoneName": "Unit 3 — Coker", "status": "breached", "validTo": "14:00", "bucket": "compliance", "flaggedJobId": "FJ-003" }
+  ]
+}

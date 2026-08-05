@@ -32,8 +32,20 @@ export default function TalkToDataDiagram() {
 
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
+  const isAramco = persona.id.startsWith('aramco_');
 
-  const clientConfig = isNewfold ? {
+  const clientConfig = isAramco ? {
+    sourcesLabel: 'ARAMCO DATA SOURCES',
+    primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
+    secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    connectorDesc: 'Permits, gate, location, CCTV, timesheets',
+    piiDesc: 'Worker and contractor data masking',
+    bodyText: 'Ask one question in plain language and get a sourced answer drawn at once from permits, location, gate, CCTV and timesheets — permit conditions and real conditions in the same view, without a radio call or a walk to the unit.',
+    gapText: 'Permits live in one system and people\'s real locations are unknown or on paper. Verifying whether a job is running where and how the permit says takes phone calls, radio checks, and walking the unit.',
+    withText: 'Natural-language querying across every HSE source — occupancy, gas-test status and standby confirmation next to the permit that authorized them.',
+  } : isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],

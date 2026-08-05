@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The AI watches every open permit, every worker position, and every gate event overnight — surfacing the riskiest jobs, permit gaps, and headcount conflicts before the GM asks, already grouped by risk bucket. The morning question that used to take hours of phone calls, radio checks and walking the unit is answered before the first coffee.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Anomaly Detection",
+    "description": "Any job running in a hazard zone without a valid permit is flagged the moment it happens, with the evidence behind the flag — the permit record, the location trail, and the time stamps. An expired permit looks like a closed record in the permit system; only fusing it with live location shows the work never stopped.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask one question in plain language and get a sourced answer drawn at once from permits, location, gate, CCTV and timesheets. Permit conditions and real conditions arrive in the same view — occupancy, gas-test status and standby confirmation next to the permit that authorized them, rather than in five systems and a radio call.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Friction Observability",
+    "description": "The AI shows where sources disagree and reconciles them rather than picking a favourite. Gate, permit and contractor timesheets each measure something different; TrackLynk resolves them to one defensible figure, holds the exceptions it cannot match, and logs the reconciliation for audit.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "The AI drafts the two or three actions that matter before the next shift, ranks them by risk bucket, attaches the evidence to each, and hands them to the named shift supervisors. Nothing is escalated without the proof that justified it, and anything unacknowledged escalates back.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Predictive Intelligence",
+    "description": "The AI projects muster completion from the live check-in rate and models where the next mismatch is likely — the surge load that will outrun manual verification, the zones where accounting will lag. In a muster, knowing full accounting is three minutes out is the difference between a decision and a wait.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

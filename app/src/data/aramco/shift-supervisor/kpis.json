@@ -1,0 +1,10 @@
+[
+  { "id": "my_people", "label": "People On My Units", "value": "805", "trend": "Unit 2 and Unit 3 combined", "positive": true, "chipText": "Who is on location right now?" },
+  { "id": "my_permits", "label": "Open Permits On My Units", "value": "167", "trend": "30 of them high-risk", "positive": false, "chipText": "Show me the expired hot-work permits" },
+  { "id": "my_flagged", "label": "My Jobs Outside Permit Conditions", "value": "3", "trend": "2 expired hot work, 1 zone breach", "positive": false, "chipText": "Show me the expired hot-work permits" },
+  { "id": "conditions_due", "label": "Permit Conditions Due Within 15 Min", "value": "1", "trend": "CS-1182 gas test", "positive": false, "chipText": "What is the status on the Unit 3 confined space?" },
+  { "id": "assigned", "label": "Actions Assigned To Me", "value": "2", "trend": "Both due before the night shift", "positive": false, "chipText": "What has been assigned to me?" },
+  { "id": "muster_point", "label": "My Muster Point", "value": "624 / 630", "trend": "Point C — East, 6 outstanding", "positive": true, "chipText": "How is my muster point looking?" },
+  { "id": "awaiting_verification", "label": "Permits Awaiting Verification", "value": "24", "trend": "Queued behind high-risk checks", "positive": false, "chipText": null },
+  { "id": "consecutive_shift", "label": "Crew On A Second Consecutive Shift", "value": "2", "trend": "Both inside a hazard zone", "positive": false, "chipText": "Who is on location right now?" }
+]

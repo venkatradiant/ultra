@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+import { useClient } from './ClientContext';
+import { STORAGE_KEY } from '../config/clients';
 import personas from '../data/personas';
 
 const PersonaContext = createContext(null);
@@ -31,6 +32,10 @@ const CLIENT_PERSONAS = {
     'newfold_director',
     'newfold_ops',
   ],
+  // Oil & Gas market — Aramco (TrackLynk.AI). Four altitudes on one live
+  // picture: complex manager (roll-up), HSE GM (the reference demo), shift
+  // supervisor and permit issuer (ground level).
+  aramco: ['aramco_complex_manager', 'aramco_hse_gm', 'aramco_shift_supervisor', 'aramco_permit_issuer'],
 };
 
 // Default (primary) persona per client
@@ -39,15 +44,18 @@ const CLIENT_DEFAULT_PERSONA = {
   ussfcu: 'ussfcu_evelyn',
   riverside_health: 'care_ops',
   newfold_digital: 'newfold_director',
+  aramco: 'aramco_hse_gm',
 };
 
 const GENERIC_PERSONAS = ['ops', 'cx', 'retention', 'risk'];
 const GENERIC_DEFAULT = 'ops';
 
 function getClientIdFromStorage() {
+  // Reads the same `selected_client` key ClientContext and BrandingContext use.
+  // Needed because the initial persona is resolved in a useState initialiser,
+  // where hooks are not available yet.
   try {
-    const auth = JSON.parse(localStorage.getItem('auth_state') || 'null');
-    return auth?.clientId || null;
+    return localStorage.getItem(STORAGE_KEY);
   } catch {
     return null;
   }
@@ -63,8 +71,7 @@ function getDefaultId(clientId) {
 
 export function PersonaProvider({ children }) {
   const location = useLocation();
-  const { auth } = useAuth();
-  const clientId = auth?.clientId || null;
+  const { clientId } = useClient();
 
   const allowedIds = useMemo(() => getAllowedIds(clientId), [clientId]);
   const defaultId = useMemo(() => getDefaultId(clientId), [clientId]);

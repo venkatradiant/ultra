@@ -1,0 +1,149 @@
+{
+  "asOf": "2026-08-05T06:53:00Z",
+  "freshness": "under 1 minute ago",
+  "illustrative": true,
+  "viewBox": { "width": 1200, "height": 700 },
+  "perimeter": { "x": 40, "y": 62, "w": 1120, "h": 600 },
+  "scaleBar": { "x": 44, "y": 676, "w": 150, "label": "250 m" },
+  "gates": [
+    { "id": "G1", "label": "Main Gate", "x": 600, "y": 62 },
+    { "id": "G2", "label": "West Gate", "x": 40, "y": 552 }
+  ],
+  "legend": {
+    "hazard": {
+      "high": "High-hazard process area — hot work and confined-space permits required",
+      "medium": "Medium-hazard storage and transfer area",
+      "low": "Low-hazard administrative, gate and assembly area"
+    }
+  },
+  "zones": [
+    { "id": "Z1", "name": "Unit 1 — Crude Distillation", "labelLines": ["Unit 1", "Crude Distillation"], "short": "Unit 1", "hazard": "high", "x": 70, "y": 96, "w": 250, "h": 170, "people": 310, "permits": 62, "highRiskPermits": 9 },
+    { "id": "Z2", "name": "Unit 2 — Hydrocracker", "labelLines": ["Unit 2", "Hydrocracker"], "short": "Unit 2", "hazard": "high", "x": 340, "y": 96, "w": 250, "h": 170, "people": 420, "permits": 88, "highRiskPermits": 16 },
+    { "id": "Z3", "name": "Unit 3 — Coker", "labelLines": ["Unit 3", "Coker"], "short": "Unit 3", "hazard": "high", "x": 610, "y": 96, "w": 250, "h": 170, "people": 385, "permits": 79, "highRiskPermits": 14 },
+    { "id": "Z4", "name": "Unit 4 — Sulphur Recovery", "labelLines": ["Unit 4", "Sulphur Recovery"], "short": "Unit 4", "hazard": "high", "x": 880, "y": 96, "w": 250, "h": 170, "people": 245, "permits": 54, "highRiskPermits": 8 },
+    { "id": "Z5", "name": "Tank Farm North", "labelLines": ["Tank Farm North"], "short": "Tank N", "hazard": "medium", "x": 70, "y": 296, "w": 340, "h": 150, "people": 180, "permits": 41, "highRiskPermits": 5 },
+    { "id": "Z7", "name": "Utilities and Flare", "labelLines": ["Utilities and Flare"], "short": "Utilities", "hazard": "high", "x": 430, "y": 296, "w": 290, "h": 150, "people": 265, "permits": 47, "highRiskPermits": 5 },
+    { "id": "Z8", "name": "Marine Loading", "labelLines": ["Marine Loading"], "short": "Marine", "hazard": "medium", "x": 740, "y": 296, "w": 390, "h": 150, "people": 120, "permits": 26, "highRiskPermits": 0 },
+    { "id": "Z6", "name": "Tank Farm South", "labelLines": ["Tank Farm South"], "short": "Tank S", "hazard": "medium", "x": 70, "y": 476, "w": 340, "h": 150, "people": 140, "permits": 33, "highRiskPermits": 3 },
+    { "id": "Z9", "name": "Central Admin and Control", "labelLines": ["Central Admin", "and Control"], "short": "Admin", "hazard": "low", "x": 430, "y": 476, "w": 290, "h": 150, "people": 210, "permits": 12, "highRiskPermits": 0 },
+    { "id": "Z10", "name": "West Gate", "labelLines": ["West Gate"], "short": "West Gate", "hazard": "low", "x": 740, "y": 476, "w": 180, "h": 150, "people": 97, "permits": 5, "highRiskPermits": 0 },
+    { "id": "Z11", "name": "Parking Muster Point", "labelLines": ["Parking", "Muster Point"], "short": "Muster", "hazard": "low", "x": 940, "y": 476, "w": 190, "h": 150, "people": 40, "permits": 3, "highRiskPermits": 0 }
+  ],
+  "flaggedJobs": [
+    {
+      "id": "FJ-001",
+      "rank": 1,
+      "permitId": "HW-4471",
+      "permitType": "hot-work",
+      "title": "Hot work continuing on an expired permit",
+      "zoneId": "Z2",
+      "zoneName": "Unit 2 — Hydrocracker",
+      "location": "Hydrocracker platform, level 3",
+      "x": 522,
+      "y": 140,
+      "bucket": "safety",
+      "severity": "critical",
+      "workersOnSite": 4,
+      "reason": "Permit expired 47 minutes ago; four workers still show active on location inside the hazard zone.",
+      "detectedAt": "2026-08-05T06:47:00Z",
+      "evidence": {
+        "permitRecord": {
+          "id": "HW-4471",
+          "type": "Hot work",
+          "issuedAt": "05:30",
+          "validTo": "06:00",
+          "extensionRequested": false,
+          "issuer": "Unit 2 permit issuer (night shift, now off site)",
+          "status": "expired"
+        },
+        "locationTrail": [
+          { "time": "05:34", "event": "4 tags entered Unit 2 hazard zone" },
+          { "time": "06:00", "event": "Permit HW-4471 lapsed — no extension logged" },
+          { "time": "06:31", "event": "All 4 tags still inside the zone" },
+          { "time": "06:52", "event": "Last position fix — 4 tags present, 40 seconds ago" }
+        ],
+        "timeStamps": {
+          "permitExpiry": "06:00",
+          "minutesPastExpiry": 47,
+          "lastLocationFix": "40 seconds ago"
+        }
+      }
+    },
+    {
+      "id": "FJ-002",
+      "rank": 2,
+      "permitId": "HW-4468",
+      "permitType": "hot-work",
+      "title": "Hot work continuing on an expired permit",
+      "zoneId": "Z2",
+      "zoneName": "Unit 2 — Hydrocracker",
+      "location": "Hydrocracker pipe rack, north face",
+      "x": 556,
+      "y": 198,
+      "bucket": "safety",
+      "severity": "critical",
+      "workersOnSite": 3,
+      "reason": "Permit expired 35 minutes ago; three workers still show active on location roughly 40 metres from FJ-001.",
+      "detectedAt": "2026-08-05T06:47:00Z",
+      "evidence": {
+        "permitRecord": {
+          "id": "HW-4468",
+          "type": "Hot work",
+          "issuedAt": "05:12",
+          "validTo": "06:12",
+          "extensionRequested": false,
+          "issuer": "Unit 2 permit issuer (night shift, now off site)",
+          "status": "expired"
+        },
+        "locationTrail": [
+          { "time": "05:18", "event": "3 tags entered Unit 2 hazard zone" },
+          { "time": "06:12", "event": "Permit HW-4468 lapsed — no extension logged" },
+          { "time": "06:52", "event": "Last position fix — 3 tags present, 1 minute ago" }
+        ],
+        "timeStamps": {
+          "permitExpiry": "06:12",
+          "minutesPastExpiry": 35,
+          "lastLocationFix": "1 minute ago"
+        }
+      }
+    },
+    {
+      "id": "FJ-003",
+      "rank": 3,
+      "permitId": "GP-9033",
+      "permitType": "general",
+      "title": "Crew in a confined-space zone on a general permit",
+      "zoneId": "Z3",
+      "zoneName": "Unit 3 — Coker",
+      "location": "Coker drum skirt, confined-space envelope",
+      "x": 806,
+      "y": 148,
+      "bucket": "compliance",
+      "severity": "critical",
+      "workersOnSite": 3,
+      "reason": "A crew holding a general permit has moved inside the Unit 3 confined-space envelope. A general permit does not authorize confined-space entry.",
+      "detectedAt": "2026-08-05T06:44:00Z",
+      "evidence": {
+        "permitRecord": {
+          "id": "GP-9033",
+          "type": "General",
+          "issuedAt": "06:05",
+          "validTo": "14:00",
+          "extensionRequested": false,
+          "issuer": "Unit 3 permit issuer",
+          "status": "valid for general work only"
+        },
+        "locationTrail": [
+          { "time": "06:09", "event": "3 tags entered Unit 3 general work area" },
+          { "time": "06:44", "event": "3 tags crossed into the confined-space envelope" },
+          { "time": "06:52", "event": "Last position fix — 3 tags still inside, 20 seconds ago" }
+        ],
+        "timeStamps": {
+          "zoneBreach": "06:44",
+          "minutesInsideEnvelope": 9,
+          "lastLocationFix": "20 seconds ago"
+        }
+      }
+    }
+  ]
+}

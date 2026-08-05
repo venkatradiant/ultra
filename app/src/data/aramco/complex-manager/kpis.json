@@ -1,0 +1,10 @@
+[
+  { "id": "site_population", "label": "Reconciled Site Population", "value": "2,412", "trend": "3 sources resolved, 28 held", "positive": true, "chipText": "Why are the headcounts disagreeing?" },
+  { "id": "open_exposures", "label": "Open High-Consequence Exposures", "value": "3", "trend": "All in Unit 2 and Unit 3", "positive": false, "chipText": "Show me safety exposure by unit" },
+  { "id": "trcr", "label": "Site Recordable Case Rate", "value": "0.03", "trend": "Company rate 0.028", "positive": true, "chipText": "What would I tell the board's safety committee today?" },
+  { "id": "turnaround", "label": "Turnaround Progress", "value": "Day 11 / 24", "trend": "Unit 2 about 1.5 days behind", "positive": false, "chipText": "What is the schedule versus safety trade-off?" },
+  { "id": "muster_time", "label": "Muster Completion, Last Drill", "value": "2:47", "trend": "First measured — target under 5:00", "positive": true, "chipText": "What would I tell the board's safety committee today?" },
+  { "id": "surge", "label": "Projected Contractor Peak", "value": "3,000", "trend": "Permit volume roughly doubles", "positive": false, "chipText": "What happens at the next surge?" },
+  { "id": "overdue_actions", "label": "Overdue Safety Actions", "value": "120", "trend": "Past due and still open", "positive": false, "chipText": "What would I tell the board's safety committee today?" },
+  { "id": "audit_ready", "label": "Figures With A Logged Evidence Trail", "value": "100%", "trend": "Every reported number is traceable", "positive": true, "chipText": "Why are the headcounts disagreeing?" }
+]

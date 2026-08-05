@@ -55,6 +55,39 @@ export const CLIENTS = {
     primaryColor: '#F27121',
     navLabels: { journey: 'Workforce Intelligence', risk: 'Quality Signals' },
   },
+  // ─── Oil & Gas market — Aramco (TrackLynk.AI HSE reference demo) ──
+  // Aramco carries the client identity and the palette; TrackLynk is the
+  // product and sits bottom-left where Radiant's mark normally goes. Aramco is
+  // an illustrative target example, not a customer — the Data Sources screen
+  // carries that statement. Keep in sync with
+  // markets/oil-gas/clients/aramco/client.manifest.ts — BrandingContext reads
+  // THIS map, not the manifest.
+  aramco: {
+    id: 'aramco',
+    name: 'Aramco',
+    shortName: 'Aramco',
+    nameLines: ['Aramco'],
+    tagline: 'HSE Intelligence',
+    // The emblem square cropped from the official lockup — it carries its own
+    // green-to-blue field, so it reads on the light sidebar surface. The full
+    // white lockup is kept for dark fields (see AramcoBackdropPanel).
+    logo: '/logos/aramco-emblem.png',
+    favicon: '/logos/aramco-emblem.png',
+    primaryColor: '#0071CE',
+    // Official TrackLynk lockup (coral mark over the wordmark), taken from
+    // TrackLynk's own deck rather than recreated.
+    footerMark: {
+      logo: '/logos/tracklynk-logo.png',
+      alt: 'TrackLynk',
+      label: 'Powered by',
+    },
+    navLabels: {
+      ask: 'Ask TrackLynk',
+      liveSite: 'Live Site Picture',
+      permits: 'Permit and Job Detail',
+      muster: 'Muster Status',
+    },
+  },
   // ─── Healthcare market (proves the platform is multi-market) ────
   riverside_health: {
     id: 'riverside_health',

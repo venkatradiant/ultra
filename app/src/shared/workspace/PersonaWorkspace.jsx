@@ -209,6 +209,10 @@ export default function PersonaWorkspace({ manifest }) {
 
   const contextContent = renderContextPanel();
   const hasContextPanel = contextContent !== null;
+  // Conversation measure. `max-w-3xl` is right for a text-first persona; one
+  // whose answers render site plans or roll-up tables needs more, or the
+  // artefact scrolls sideways inside a column with spare room either side.
+  const contentMaxWidth = ui.contentMaxWidth || 'max-w-3xl';
   const chipsToShow = messages.length === 0 ? ui.initialChips : currentChips;
   const recommendedChip = currentFlowKey
     ? ui.goldenPathChip[currentFlowKey] || null
@@ -243,7 +247,7 @@ export default function PersonaWorkspace({ manifest }) {
               : 'var(--color-surface)',
           }}
         >
-          <div className={`w-full min-w-0 ${!hasContextPanel ? 'max-w-3xl mx-auto' : ''} px-4 sm:px-6 ${centerInitialView ? 'lg:my-auto' : ''}`}>
+          <div className={`w-full min-w-0 ${!hasContextPanel ? `${contentMaxWidth} mx-auto` : ''} px-4 sm:px-6 ${centerInitialView ? 'lg:my-auto' : ''}`}>
             {/* Back to the briefing — sits where the greeting does, but only once the
                 conversation has started (there's nowhere to go back to before that).
                 Sticky, because the thread auto-scrolls to the newest message and an
@@ -330,13 +334,14 @@ export default function PersonaWorkspace({ manifest }) {
               renderInlineComponents={renderInlineComponents}
               getCapability={getCapabilityForMessage}
               onCapabilityClick={setCapabilityModal}
+              wideInlineComponents={features?.wideInlineComponents}
             />
           </div>
         </div>
 
         <div className="relative bg-surface">
           <div className="absolute -top-6 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
-          <div className={`w-full min-w-0 ${!hasContextPanel ? 'max-w-3xl mx-auto' : ''} px-4 sm:px-6 pb-4 pt-2`}>
+          <div className={`w-full min-w-0 ${!hasContextPanel ? `${contentMaxWidth} mx-auto` : ''} px-4 sm:px-6 pb-4 pt-2`}>
             {!isTyping && chipsToShow.length > 0 && (
               <div className="mb-2.5">
                 <div className="flex flex-wrap gap-1.5">
@@ -365,8 +370,12 @@ export default function PersonaWorkspace({ manifest }) {
             <ChatInput
               onSend={handleChipClick}
               disabled={isTyping}
-              suggestions={chipsToShow}
-              placeholder="Ask anything about your members, signals, or operations…"
+              // Typeahead spans this turn's chips PLUS the persona's entry-point
+              // set. `initialChips` are only rendered as buttons for the instant
+              // before the greeting lands, so without this the persona's own
+              // suggested prompts become undiscoverable the moment it loads.
+              suggestions={[...new Set([...chipsToShow, ...ui.initialChips])]}
+              placeholder={ui.inputPlaceholder || 'Ask anything about your members, signals, or operations…'}
             />
           </div>
         </div>

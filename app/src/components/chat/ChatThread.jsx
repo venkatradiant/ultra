@@ -4,7 +4,7 @@ import ChatMessage from './ChatMessage';
 import TypingIndicator from './TypingIndicator';
 import SuggestedChips from './SuggestedChips';
 
-export default function ChatThread({ messages, isTyping, chips, onChipClick, renderInlineComponents, getCapability, onCapabilityClick }) {
+export default function ChatThread({ messages, isTyping, chips, onChipClick, renderInlineComponents, getCapability, onCapabilityClick, wideInlineComponents = false }) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -28,6 +28,7 @@ export default function ChatThread({ messages, isTyping, chips, onChipClick, ren
               inlineComponents={renderInlineComponents ? renderInlineComponents(msg) : undefined}
               capability={getCapability ? getCapability(msg) : undefined}
               onCapabilityClick={onCapabilityClick}
+              wideInlineComponents={wideInlineComponents}
             />
           ))}
         </AnimatePresence>

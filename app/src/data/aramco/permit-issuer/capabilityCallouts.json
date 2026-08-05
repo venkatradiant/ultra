@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "450 open permits, and the AI opens with the three that need a decision. Your book cannot rank itself by consequence — it only knows clocks. TrackLynk ranks by what happens if nobody acts, so a low-risk permit expiring in ten minutes with nobody on location stays quiet.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Anomaly Detection",
+    "description": "The two failures the permit book structurally cannot show you: a permit that reads closed while the work continues, and a permit that is perfectly valid while the crew holding it has walked somewhere it does not authorize. Neither changes the permit record, so neither can be found by reading permits.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Predictive Intelligence",
+    "description": "The next hour's expiries ranked by consequence rather than by clock — which permits will still have people inside them when they lapse, and which will not. The queue you should work is not the one sorted by time remaining.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Friction Observability",
+    "description": "Where the permit process itself leaks: a verification queue sorted by arrival rather than risk, and a night-shift extension path that requires walking back to a terminal. These are process findings, not people findings, and they are visible only when permit timestamps sit next to gate dwell and shift rosters.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "Extensions, withdrawal notices and new permit records drafted from the conversation, pre-filled from the original permit and its work order. Conditions are held against physical verification — an extension cannot authorize work until the fresh gas test is actually logged.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Converged Conversation",
+    "description": "One question spans the permit record, the work order, the location trail and the crew's shift history. Deciding whether to extend or stop stops being four system lookups and a radio call.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

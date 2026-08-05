@@ -311,6 +311,68 @@ const personas = {
       'Automated Action',
     ],
   },
+  // Oil & Gas — Aramco (TrackLynk.AI). Title only, no name, at the intake's
+  // request. Keep in sync with the persona module and manifest identity.
+  aramco_hse_gm: {
+    id: 'aramco_hse_gm',
+    name: 'HSE General Manager',
+    initials: 'GM',
+    role: 'General Manager, Health, Safety and Environment',
+    greeting: 'General Manager',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Converged Conversation',
+      'Friction Observability',
+      'Automated Action',
+      'Predictive Intelligence',
+    ],
+  },
+  aramco_complex_manager: {
+    id: 'aramco_complex_manager',
+    name: 'Complex Manager',
+    initials: 'CM',
+    role: 'Complex Manager, Refining and Petrochemical Site',
+    greeting: 'Complex Manager',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Predictive Intelligence',
+      'Friction Observability',
+      'Automated Action',
+      'Anomaly Detection',
+    ],
+  },
+  aramco_shift_supervisor: {
+    id: 'aramco_shift_supervisor',
+    name: 'Shift Supervisor',
+    initials: 'SS',
+    role: 'Shift Supervisor, Units 2 and 3',
+    greeting: 'Supervisor',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Converged Conversation',
+      'Friction Observability',
+      'Automated Action',
+      'Predictive Intelligence',
+    ],
+  },
+  aramco_permit_issuer: {
+    id: 'aramco_permit_issuer',
+    name: 'Permit Issuer',
+    initials: 'PI',
+    role: 'Permit Issuing Authority, Turnaround',
+    greeting: 'Permit Issuer',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Predictive Intelligence',
+      'Friction Observability',
+      'Automated Action',
+      'Converged Conversation',
+    ],
+  },
 };
 
 export default personas;

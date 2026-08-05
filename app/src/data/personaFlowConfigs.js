@@ -26,6 +26,10 @@ import ussfcuEvelynChatFlows from './ussfcu/evelyn/chatFlows.json';
 import ussfcuNadiaChatFlows from './ussfcu/nadia/chatFlows.json';
 import newfoldDirChatFlows from './newfold-digital/director/chatFlows.json';
 import newfoldOpsChatFlows from './newfold-digital/ops/chatFlows.json';
+import aramcoHseChatFlows from './aramco/hse-gm/chatFlows.json';
+import aramcoSupChatFlows from './aramco/shift-supervisor/chatFlows.json';
+import aramcoIssChatFlows from './aramco/permit-issuer/chatFlows.json';
+import aramcoCmChatFlows from './aramco/complex-manager/chatFlows.json';
 
 // ─── Operations & Analytics (Maya J.) ────────────────────────────
 const opsConfig = {
@@ -1359,6 +1363,142 @@ const newfoldOpsConfig = {
   actionTurnKey: 'newfold_ops_act_agents',
 };
 
+// ─── Aramco (TrackLynk.AI): General Manager, HSE ──────────────────
+// The six scripted turns are the spec's demo flow verbatim. Chip labels are
+// taken from the spec's own follow-up options and suggested prompts, so every
+// clickable string in the demo traces back to the specification.
+const aramcoHseConfig = {
+  chatFlows: aramcoHseChatFlows,
+  chipToFlowKey: {
+    // Step 1 — situational briefing follow-ups
+    'Show the three flagged jobs': 'aramco_hse_flagged_jobs',
+    'Show the Unit 3 confined-space entry': 'aramco_hse_confined_space',
+    'Why do the headcounts disagree?': 'aramco_hse_trust',
+    'Next signal': '__next_signal__',
+    // Suggested query prompts (spec §11) — the query-bar entry points
+    'What is the riskiest job on site right now?': 'aramco_hse_riskiest_job',
+    'Show me every job in a hazard zone without a valid permit.': 'aramco_hse_flagged_jobs',
+    'Show me every job running in a hazardous zone without a valid permit.': 'aramco_hse_flagged_jobs',
+    'Walk me through the confined-space entry on Unit 3.': 'aramco_hse_confined_space',
+    "Can I trust today's headcount, and where does it come from?": 'aramco_hse_trust',
+    'Can I trust these numbers?': 'aramco_hse_trust',
+    'What are the top three actions to take before the night shift?': 'aramco_hse_actions',
+    'What should I act on before the night shift?': 'aramco_hse_actions',
+    'During a muster, who is unaccounted for?': 'aramco_hse_muster',
+    // Step 2 — permit violation follow-ups
+    'Open the evidence for job 1': 'aramco_hse_evidence_job1',
+    'Notify the permit issuer': 'aramco_hse_notify_issuer',
+    'Show these on the site map': 'aramco_hse_site_map',
+    // Step 3 — confined-space follow-ups
+    'Remind the crew of the gas test': 'aramco_hse_gas_test_reminder',
+    'Who is the standby person?': 'aramco_hse_standby_person',
+    'Show the entry and exit log': 'aramco_hse_entry_exit_log',
+    // Step 4 — trust and reconciliation follow-ups
+    'Show the 28 unmatched people': 'aramco_hse_unmatched_28',
+    'Export the reconciliation for audit': 'aramco_hse_export_recon',
+    'Which source is usually off?': 'aramco_hse_source_reliability',
+    // Step 5 — action follow-ups
+    'Hand all three to supervisors': 'aramco_hse_hand_off',
+    'Edit action 1': 'aramco_hse_edit_action_1',
+    'Add to the shift handover report': 'aramco_hse_handover_report',
+    // Step 6 — muster follow-ups
+    'Show the 2 with no signal': 'aramco_hse_no_signal_2',
+    'Message the zone wardens': 'aramco_hse_message_wardens',
+    'Start the incident log': 'aramco_hse_incident_log',
+    // Priority signal cards
+    'Show me the contractor surge exposure': 'aramco_hse_surge_exposure',
+    'Where is verification idle time coming from?': 'aramco_hse_idle_time',
+    // Current state, future state and the journey map (spec §8 and §9)
+    'How does this work today, without TrackLynk?': 'aramco_hse_current_state',
+    'Where does TrackLynk change the picture?': 'aramco_hse_future_state',
+    'Walk me through my turnaround day': 'aramco_hse_journey',
+    'How long did the last muster actually take?': 'aramco_hse_muster_benchmark',
+  },
+  // The three priority signal cards, risk-ranked (critical → warning → info).
+  signalSequence: ['aramco_hse_trust', 'aramco_hse_surge_exposure', 'aramco_hse_idle_time'],
+  // The six-turn guided demo, in spec order.
+  askTurnSequence: [
+    'aramco_hse_flagged_jobs',
+    'aramco_hse_confined_space',
+    'aramco_hse_trust',
+    'aramco_hse_actions',
+    'aramco_hse_muster',
+  ],
+  actionTurnKey: 'aramco_hse_actions',
+};
+
+// ─── Aramco (TrackLynk.AI): Shift Supervisor, Units 2 and 3 ───────
+const aramcoSupConfig = {
+  chatFlows: aramcoSupChatFlows,
+  chipToFlowKey: {
+    'Show me the expired hot-work permits': 'aramco_sup_expired_permits',
+    'What is the status on the Unit 3 confined space?': 'aramco_sup_confined_space',
+    'What has been assigned to me?': 'aramco_sup_assigned',
+    'Draft the stop-work notice': 'aramco_sup_stop_work',
+    'Request an extension with fresh conditions': 'aramco_sup_extension',
+    'Who is on location right now?': 'aramco_sup_on_location',
+    'Remind the crew of the gas test': 'aramco_sup_gas_reminder',
+    'How is my muster point looking?': 'aramco_sup_muster',
+    'Next signal': '__next_signal__',
+  },
+  signalSequence: ['aramco_sup_expired_permits', 'aramco_sup_confined_space', 'aramco_sup_on_location'],
+  askTurnSequence: [
+    'aramco_sup_expired_permits',
+    'aramco_sup_stop_work',
+    'aramco_sup_confined_space',
+    'aramco_sup_assigned',
+    'aramco_sup_muster',
+  ],
+  actionTurnKey: 'aramco_sup_assigned',
+};
+
+// ─── Aramco (TrackLynk.AI): Permit Issuing Authority ──────────────
+const aramcoIssConfig = {
+  chatFlows: aramcoIssChatFlows,
+  chipToFlowKey: {
+    'Show me the permits that lapsed with workers still on location': 'aramco_iss_lapsed',
+    'Which permits expire in the next hour?': 'aramco_iss_expiring',
+    'Show me the general permit in the confined-space zone': 'aramco_iss_general_permit',
+    'Issue an extension with fresh conditions': 'aramco_iss_extension',
+    'Why did the night shift not log an extension?': 'aramco_iss_night_shift',
+    'Notify the crew and the supervisor': 'aramco_iss_notify',
+    'Where is my issue-to-verify time going?': 'aramco_iss_cycle_time',
+    'Next signal': '__next_signal__',
+  },
+  signalSequence: ['aramco_iss_lapsed', 'aramco_iss_general_permit', 'aramco_iss_night_shift'],
+  askTurnSequence: [
+    'aramco_iss_lapsed',
+    'aramco_iss_extension',
+    'aramco_iss_general_permit',
+    'aramco_iss_notify',
+    'aramco_iss_cycle_time',
+  ],
+  actionTurnKey: 'aramco_iss_extension',
+};
+
+// ─── Aramco (TrackLynk.AI): Complex Manager (site VP) ─────────────
+const aramcoCmConfig = {
+  chatFlows: aramcoCmChatFlows,
+  chipToFlowKey: {
+    'Show me safety exposure by unit': 'aramco_cm_unit_rollup',
+    'What is the schedule versus safety trade-off?': 'aramco_cm_schedule_safety',
+    'Why are the headcounts disagreeing?': 'aramco_cm_headcount',
+    'What happens at the next surge?': 'aramco_cm_surge',
+    "What would I tell the board's safety committee today?": 'aramco_cm_board',
+    'Assemble the committee pack': 'aramco_cm_committee_pack',
+    'Next signal': '__next_signal__',
+  },
+  signalSequence: ['aramco_cm_unit_rollup', 'aramco_cm_headcount', 'aramco_cm_surge'],
+  askTurnSequence: [
+    'aramco_cm_unit_rollup',
+    'aramco_cm_schedule_safety',
+    'aramco_cm_surge',
+    'aramco_cm_board',
+    'aramco_cm_committee_pack',
+  ],
+  actionTurnKey: 'aramco_cm_committee_pack',
+};
+
 // ─── Export registry ─────────────────────────────────────────────
 const personaFlowConfigs = {
   ops: opsConfig,
@@ -1378,6 +1518,10 @@ const personaFlowConfigs = {
   ussfcu_nadia: ussfcuNadiaConfig,
   newfold_director: newfoldDirConfig,
   newfold_ops: newfoldOpsConfig,
+  aramco_hse_gm: aramcoHseConfig,
+  aramco_shift_supervisor: aramcoSupConfig,
+  aramco_permit_issuer: aramcoIssConfig,
+  aramco_complex_manager: aramcoCmConfig,
 };
 
 // PenFed gets its own chatFlows for the generic personas (ops/cx/retention),

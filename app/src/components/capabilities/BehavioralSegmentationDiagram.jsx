@@ -32,8 +32,21 @@ export default function BehavioralSegmentationDiagram() {
 
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
+  const isAramco = persona.id.startsWith('aramco_');
 
-  const clientConfig = isNewfold ? {
+  const clientConfig = isAramco ? {
+    sourcesLabel: 'ARAMCO DATA SOURCES',
+    primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
+    secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'This capability shows where sources disagree and reconciles them rather than picking a favourite — the headcount gap, the permit-versus-location gap, the verification queues where crews wait — instead of reporting one system\'s number as if it were the truth.',
+    adpSubtitle: 'Unified HSE data across permits, gate, location, CCTV, timesheets and the action tracker',
+    ontologyDesc: "'On site' means one thing",
+    enrichmentDesc: 'Adds permit, zone and evidence context',
+    gapText: 'Headcount from the gate, the permit system, and the contractor timesheets can tell three different stories on the same day, and reconciling them is somebody\'s afternoon.',
+    withText: 'One defensible figure for muster and audit, with every unmatched record held as an exception rather than quietly counted or dropped.',
+  } : isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],

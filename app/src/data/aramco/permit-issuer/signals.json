@@ -1,0 +1,80 @@
+[
+  {
+    "id": "SIG-ARAMCO-ISS-001",
+    "type": "permit_lapsed_live_occupancy",
+    "title": "Two Permits Closed On Paper, Still Occupied On Site",
+    "description": "HW-4471 and HW-4468 both lapsed without an extension and still show seven workers inside the Unit 2 hazard zone. From inside the permit book both records simply read closed — only live location reveals the work never stopped.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "safety",
+    "action": "Issue an extension with fresh conditions held against a new gas test, or confirm the zone is cleared.",
+    "sources": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+    "timestamp": "2026-08-05T06:47:00Z",
+    "freshness": "6 minutes ago",
+    "trend": "worsening",
+    "related_segment": "PERMIT-LAPSE",
+    "metrics": { "permits": 2, "workers": 7, "extensions_logged": 0 },
+    "illustrative": true,
+    "confidence": {
+      "score": 96,
+      "rationale": "Both inputs are direct system reads — permit validity windows and live location fixes updated within the last minute.",
+      "signals_used": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+      "threshold": 70,
+      "model_version": "hse-permit-breach-v1.0",
+      "validated_at": "2026-08-05T06:47:00Z",
+      "escalation": { "triggered": true, "reason": "Live occupancy on a lapsed hot-work permit", "route_to": "Unit 2 permit issuer and shift supervisor", "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-ISS-002",
+    "type": "zone_scope_breach",
+    "title": "General Permit Used Inside a Confined-Space Envelope",
+    "description": "GP-9033 is a valid general permit, but the crew holding it crossed into the Unit 3 confined-space envelope at 06:44. The permit record has not changed, so nothing in the permit system would ever surface this.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "compliance",
+    "action": "Withdraw the crew from the envelope and raise a confined-space permit from the same work order if entry is genuinely required.",
+    "sources": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+    "timestamp": "2026-08-05T06:44:00Z",
+    "freshness": "9 minutes ago",
+    "trend": "worsening",
+    "related_segment": "UNIT-3-GP-9033",
+    "metrics": { "crew": 3, "minutes_inside": 9, "permit_type": "general" },
+    "illustrative": true,
+    "confidence": {
+      "score": 95,
+      "rationale": "Permit scope is a system read and the envelope crossing is a geofence event with a timestamp. The only assumption is that the tags are being worn.",
+      "signals_used": ["Permit-to-work system", "Location and tag data (vendor-agnostic)"],
+      "threshold": 70,
+      "model_version": "hse-zone-scope-v1.0",
+      "validated_at": "2026-08-05T06:44:00Z",
+      "escalation": { "triggered": true, "reason": "Confined-space envelope entered without a confined-space permit", "route_to": "Unit 3 permit issuer and shift supervisor", "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-ISS-003",
+    "type": "night_shift_extension_pattern",
+    "title": "Night-Shift Extensions Are Logged Late, Systematically",
+    "description": "61% of permits issued between 02:00 and 06:00 are closed or extended more than fifteen minutes after their validity window, against 12% on day shift. Both of this morning's lapses fit the pattern. A process finding, not a discipline one.",
+    "impact": "medium",
+    "severity": "warning",
+    "bucket": "compliance",
+    "action": "Add a mobile extension path, or an automatic prompt fifteen minutes before expiry when a permit still shows live occupancy.",
+    "sources": ["Permit-to-work system", "Gate access-control", "HSE reporting and statistics"],
+    "timestamp": "2026-08-05T06:20:00Z",
+    "freshness": "33 minutes ago",
+    "trend": "persistent",
+    "related_segment": "NIGHT-SHIFT-PTW",
+    "metrics": { "night_late_rate": "61%", "day_late_rate": "12%", "units_per_issuer_night": 4 },
+    "illustrative": true,
+    "confidence": {
+      "score": 87,
+      "rationale": "The rates come from permit timestamps and are reliable. Attributing the cause to issuer coverage and terminal access is inferred from shift rosters and gate dwell, and should be confirmed with the night issuer.",
+      "signals_used": ["Permit-to-work system", "Gate access-control"],
+      "threshold": 70,
+      "model_version": "hse-ptw-pattern-v1.0",
+      "validated_at": "2026-08-05T06:20:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

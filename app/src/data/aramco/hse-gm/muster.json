@@ -1,0 +1,64 @@
+{
+  "asOf": "2026-08-05T06:53:00Z",
+  "freshness": "live",
+  "illustrative": true,
+  "state": "drill",
+  "stateLabel": "Muster drill in progress",
+  "elapsedSeconds": 90,
+  "accounted": 2384,
+  "total": 2412,
+  "unaccounted": 28,
+  "projection": {
+    "fullAccountingMinutes": 3,
+    "basis": "Current check-in rate across all muster points",
+    "confidence": 90
+  },
+  "measuredCompletion": {
+    "label": "2:47",
+    "seconds": 167,
+    "target": "Under 5:00, all accounted",
+    "basis": "Time from alarm to all personnel accounted, measured by TrackLynk across all five muster points.",
+    "priorDrill": "Not measured — the site had no instrumented figure before this drill.",
+    "note": "This closes an open follow-up from the intake: the last drill's completion time was recorded only as \"felt too long\". A measured, defensible number is the point — a muster that cannot be timed cannot be improved."
+  },
+  "zones": [
+    { "id": "M1", "name": "Muster Point A — North", "accounted": 612, "expected": 618, "coversZones": ["Unit 1 — Crude Distillation", "Tank Farm North"] },
+    { "id": "M2", "name": "Muster Point B — Central", "accounted": 681, "expected": 685, "coversZones": ["Unit 2 — Hydrocracker", "Utilities and Flare"] },
+    { "id": "M3", "name": "Muster Point C — East", "accounted": 624, "expected": 630, "coversZones": ["Unit 3 — Coker", "Unit 4 — Sulphur Recovery"] },
+    { "id": "M4", "name": "Muster Point D — South", "accounted": 256, "expected": 260, "coversZones": ["Tank Farm South", "Marine Loading"] },
+    { "id": "M5", "name": "Muster Point E — Admin and Gate", "accounted": 211, "expected": 219, "coversZones": ["Central Admin and Control", "West Gate", "Parking Muster Point"] }
+  ],
+  "unaccountedGroups": [
+    {
+      "id": "un-west",
+      "count": 19,
+      "label": "Near the west gate",
+      "lastKnown": "West Gate perimeter",
+      "priority": "low",
+      "detail": "Location signal stale over 10 minutes. Most likely tags left in vehicles.",
+      "exceptionGroupId": "exc-stale"
+    },
+    {
+      "id": "un-parking",
+      "count": 7,
+      "label": "At the parking muster point, not yet checked in",
+      "lastKnown": "Parking Muster Point",
+      "priority": "medium",
+      "detail": "Present at the muster point but not yet registered by a warden.",
+      "exceptionGroupId": "exc-nofix"
+    },
+    {
+      "id": "un-nosignal",
+      "count": 2,
+      "label": "No signal in the last 10 minutes",
+      "lastKnown": "Unit 4 sulphur recovery boundary, last fix 06:41",
+      "priority": "high",
+      "detail": "Need eyes on them first. Nearest camera shows no presence in that area since 06:44.",
+      "exceptionGroupId": "exc-nosignal"
+    }
+  ],
+  "wardens": [
+    { "zone": "West Gate", "owns": ["un-west", "un-nosignal"] },
+    { "zone": "Parking Muster Point", "owns": ["un-parking"] }
+  ]
+}

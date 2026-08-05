@@ -32,8 +32,25 @@ export default function AnomalyDetectionDiagram() {
 
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
+  const isAramco = persona.id.startsWith('aramco_');
 
-  const clientConfig = isNewfold ? {
+  const clientConfig = isAramco ? {
+    sourcesLabel: 'ARAMCO SIGNAL SOURCES',
+    primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
+    secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Flags any job running in a hazard zone without a valid permit, the moment it happens, with the evidence behind each flag — the permit record, the location trail, and the time stamps. An expired permit looks like a closed record until live location sits next to it.',
+    monitorAgents: [
+      { name: 'Permit Validity Monitor', desc: 'Watches expiry, extension and zone-scope breaches on open permits' },
+      { name: 'Hazard Zone Monitor', desc: 'Detects entry into a hazard envelope without matching authorization' },
+      { name: 'Condition Monitor', desc: 'Gas-test intervals, standby presence, occupancy limits' },
+      { name: 'Pattern Correlator', desc: 'Links permit, location and camera evidence into one flag' },
+      { name: 'Evidence Assembler', desc: 'Packages the trail behind every flag for audit' },
+    ],
+    gapText: 'Permits live in one system and people\'s real locations are unknown or on paper. The gap between authorized work and actual work is invisible exactly when contractor density, and therefore risk, is highest.',
+    withText: 'Every job outside its permit conditions flagged in the moment, not after a near-miss or an audit finding.',
+  } : isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],

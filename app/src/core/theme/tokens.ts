@@ -22,6 +22,17 @@ export interface ThemeTokens {
   confHigh?: string;
   confMed?: string;
   confLow?: string;
+  /**
+   * Semantic state colors. Normally left alone — the defaults in index.css are
+   * right for most brands. Override when a brand's own palette would collide
+   * with a state color and blunt its meaning: TrackLynk's coral brand sits close
+   * to the default critical red, so the Oil & Gas market deepens `critical` to
+   * keep "hazard" unmistakably distinct from ordinary brand chrome.
+   */
+  critical?: string;
+  warning?: string;
+  success?: string;
+  info?: string;
 }
 
 export interface BrandTheme {
@@ -45,6 +56,12 @@ const VAR_MAP: Record<Exclude<keyof ThemeTokens, 'chart'>, string> = {
   confHigh: '--color-conf-high',
   confMed: '--color-conf-med',
   confLow: '--color-conf-low',
+  // The `-subtle` companions in index.css are color-mix()'d off these, so
+  // overriding the base propagates to every tinted surface for free.
+  critical: '--color-critical',
+  warning: '--color-warning',
+  success: '--color-success',
+  info: '--color-info',
 };
 
 /** Every CSS var the ThemeProvider manages — cleared before each apply so a

@@ -1,0 +1,10 @@
+[
+  { "id": "open_permits", "label": "Open Permits Today", "value": "450", "trend": "Turnaround day — 150 on a normal day", "positive": false, "chipText": "Which permits expire in the next hour?" },
+  { "id": "issued_today", "label": "Issued Since 05:00", "value": "118", "trend": "Peak issue window", "positive": true, "chipText": null },
+  { "id": "expiring", "label": "Expiring Within The Hour", "value": "14", "trend": "9 still show live occupancy", "positive": false, "chipText": "Which permits expire in the next hour?" },
+  { "id": "lapsed_occupied", "label": "Lapsed With Workers On Location", "value": "2", "trend": "Both hot work, Unit 2", "positive": false, "chipText": "Show me the permits that lapsed with workers still on location" },
+  { "id": "scope_breach", "label": "Permits Used Outside Their Scope", "value": "1", "trend": "General permit in a confined space", "positive": false, "chipText": "Show me the general permit in the confined-space zone" },
+  { "id": "awaiting_verification", "label": "Awaiting Verification", "value": "24", "trend": "Queued by arrival, not by risk", "positive": false, "chipText": "Where is my issue-to-verify time going?" },
+  { "id": "late_close_rate", "label": "Late Close Or Extend Rate", "value": "61% / 12%", "trend": "Night shift versus day shift", "positive": false, "chipText": "Why did the night shift not log an extension?" },
+  { "id": "high_risk_open", "label": "High-Risk Permits Open", "value": "60", "trend": "Hot work, confined space, work at height", "positive": false, "chipText": "Which permits expire in the next hour?" }
+]

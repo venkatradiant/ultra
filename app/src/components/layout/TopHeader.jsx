@@ -5,14 +5,14 @@ import { RUN_GUIDED_DEMO } from '../../demo.config';
 import DemoRunner from '../../demo/DemoRunner';
 import DemoOverlay from '../../demo/DemoOverlay';
 import { usePersona, usePersonaList } from '../../context/PersonaContext';
-import { useAuth } from '../../context/AuthContext';
+import { useClient } from '../../context/ClientContext';
 import { useBranding } from '../../context/BrandingContext';
 import BrandSelector from '../newfold/BrandSelector';
 
 export default function TopHeader({ onMenuClick }) {
   const persona = usePersona();
   const personaList = usePersonaList();
-  const { logout } = useAuth();
+  const { clearClient } = useClient();
   const { client, clientId } = useBranding();
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,16 +39,20 @@ export default function TopHeader({ onMenuClick }) {
   };
   const labels = personaNavLabels[persona?.id] ?? client?.navLabels ?? { journey: 'Member Journey', risk: 'Risk Signals' };
   const pageTitles = {
-    '/': 'Ask the AI',
-    '/ask': 'Ask the AI',
+    '/': labels.ask || 'Ask the AI',
+    '/ask': labels.ask || 'Ask the AI',
     '/journey': labels.journey,
     '/risk': labels.risk,
     '/governance': labels.governance || client?.navLabels?.governance || 'Model Governance',
     '/agent-observability': labels.agentObservability || 'Agent Observability',
     '/agent-inventory': labels.agentInventory || 'Agent Inventory',
+    // Oil & Gas / HSE routes — labels come from the client's navLabels.
+    '/live-site': labels.liveSite || 'Live Site Picture',
+    '/permits': labels.permits || 'Permit and Job Detail',
+    '/muster': labels.muster || 'Muster Status',
     '/data-sources': 'Data Sources',
   };
-  const title = pageTitles[location.pathname] || 'Ask the AI';
+  const title = pageTitles[location.pathname] || labels.ask || 'Ask the AI';
   const [demoRunning, setDemoRunning] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -83,9 +87,12 @@ export default function TopHeader({ onMenuClick }) {
     DemoRunner.stop();
   }, []);
 
-  const handleLogout = () => {
+  // Labelled "Sign Out" for familiarity, but there are no credentials to clear:
+  // it drops the selected client and returns to the picker, which is the app's
+  // entry screen.
+  const handleSignOut = () => {
     setDropdownOpen(false);
-    logout();
+    clearClient();
   };
 
   return (
@@ -184,10 +191,10 @@ export default function TopHeader({ onMenuClick }) {
                   })}
                 </div>
 
-                {/* Sign Out */}
+                {/* Sign Out — returns to the client picker. */}
                 <div className="border-t border-border-subtle p-1.5">
                   <button
-                    onClick={handleLogout}
+                    onClick={handleSignOut}
                     className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left hover:bg-red-50 transition-colors group cursor-pointer"
                   >
                     <div className="w-8 h-8 rounded-lg bg-surface-2 group-hover:bg-red-100 flex items-center justify-center flex-shrink-0 transition-colors">

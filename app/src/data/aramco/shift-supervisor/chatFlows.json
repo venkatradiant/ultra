@@ -1,0 +1,175 @@
+{
+  "aramco_sup_greeting": {
+    "user_query": "What do I need to deal with on my units this shift?",
+    "ai_message": "Good morning. You have 805 people across Unit 2 and Unit 3, working 167 open permits, 30 of them high-risk. Two things need you now. First, two hot-work permits on the Unit 2 hydrocracker expired within the last hour and seven of your people are still on location — the GM has assigned that to you jointly with the permit issuer. Second, the confined-space entry on Unit 3 has a gas test due in about a minute. Everything else on your units is inside its permit conditions. Where do you want to start?",
+    "suggested_chips": [
+      "Show me the expired hot-work permits",
+      "What is the status on the Unit 3 confined space?",
+      "What has been assigned to me?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "Gate access-control"
+    ],
+    "capability": "Proactive Intelligence",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "aramco_sup_expired_permits": {
+    "user_query": "Show me the expired hot-work permits",
+    "ai_message": "Both on the Unit 2 hydrocracker, both yours. HW-4471 lapsed at 06:00 with four workers still inside the hazard zone — 47 minutes past expiry, last position fix 40 seconds ago. HW-4468 lapsed at 06:12 with three workers, about 40 metres away, which is why the control room reads them as one job. Neither issuer requested an extension and both are off site with the night shift. Your call is the same for both: get a documented extension with fresh conditions, or stop the work and clear the zone. I can draft the stop-work notice, or the extension request, whichever you decide.",
+    "suggested_chips": [
+      "Draft the stop-work notice",
+      "Request an extension with fresh conditions",
+      "Who is on location right now?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Anomaly Detection",
+    "confidence": 96,
+    "illustrative": true
+  },
+
+  "aramco_sup_stop_work": {
+    "user_query": "Draft the stop-work notice",
+    "ai_message": "Drafted for both permits, with the evidence attached: the permit records showing no extension logged, the location trail placing seven workers inside the zone, and the expiry timestamps. It routes to the two crew leads and copies the permit issuer and the HSE GM. On send, TrackLynk watches the zone and confirms occupancy has reached zero — you get a confirmation rather than having to walk back out and check. Ready to send.",
+    "suggested_chips": [
+      "What is the status on the Unit 3 confined space?",
+      "Request an extension with fresh conditions",
+      "What has been assigned to me?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "HSE action tracker"
+    ],
+    "capability": "Automated Action",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "aramco_sup_extension": {
+    "user_query": "Request an extension with fresh conditions",
+    "ai_message": "Extension request drafted for HW-4471 and HW-4468, pre-filled from the original permits with today's conditions re-stated: fresh gas test before work resumes, fire watch confirmed on location, and a hard stop at 14:00. It routes to the Unit 2 permit issuer with the HSE GM copied, because the original issuer is off site and this cannot wait for a shift change. Until it is approved, both permits stay expired and the work stays stopped — the request does not authorize anything on its own.",
+    "suggested_chips": [
+      "Draft the stop-work notice",
+      "Who is on location right now?",
+      "What has been assigned to me?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "HSE action tracker"
+    ],
+    "capability": "Automated Action",
+    "confidence": 91,
+    "illustrative": true
+  },
+
+  "aramco_sup_on_location": {
+    "user_query": "Who is on location right now?",
+    "ai_message": "Seven people across the two flagged jobs, all illustrative. Four on HW-4471 at the hydrocracker platform level 3, entered 05:34 and never left. Three on HW-4468 at the pipe rack north face, entered 05:18. All seven carry an active location signal updated within the last minute, so this is not a stale-tag question — they are physically there. Two of the seven are on their second consecutive shift, which is worth knowing before you decide between extending and stopping.",
+    "suggested_chips": [
+      "Draft the stop-work notice",
+      "Show me the expired hot-work permits",
+      "What is the status on the Unit 3 confined space?"
+    ],
+    "data_sources_used": [
+      "Location and tag data (vendor-agnostic)",
+      "Gate access-control",
+      "Contractor timesheets"
+    ],
+    "capability": "Converged Conversation",
+    "confidence": 92,
+    "illustrative": true
+  },
+
+  "aramco_sup_confined_space": {
+    "user_query": "What is the status on the Unit 3 confined space?",
+    "ai_message": "CS-1182 is compliant, with one condition on the clock. Two entrants inside against a permitted maximum of two. Last gas test within limits, taken 14 minutes ago, next due in about a minute. The standby attendant is confirmed at the entry point by both location and camera — stationary inside the entry-point geofence for 26 minutes. That standby confirmation is the condition that most often fails quietly, and here it is verified continuously rather than signed once. If no fresh gas reading lands within five minutes of the due time, the permit moves to breached and you and the HSE GM are both alerted.",
+    "suggested_chips": [
+      "Remind the crew of the gas test",
+      "Show me the expired hot-work permits",
+      "What has been assigned to me?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)",
+      "CCTV and presence"
+    ],
+    "capability": "Converged Conversation",
+    "confidence": 95,
+    "illustrative": true
+  },
+
+  "aramco_sup_gas_reminder": {
+    "user_query": "Remind the crew of the gas test",
+    "ai_message": "Sent to the standby attendant with both entrants copied, showing the due time. I have armed the five-minute follow-up: no reading logged by then and CS-1182 moves to breached with you and the HSE GM alerted automatically. You do not need to hold this one in your head for the rest of the shift.",
+    "suggested_chips": [
+      "What is the status on the Unit 3 confined space?",
+      "What has been assigned to me?",
+      "How is my muster point looking?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Automated Action",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "aramco_sup_assigned": {
+    "user_query": "What has been assigned to me?",
+    "ai_message": "Two actions from the HSE GM's morning review, both with the evidence already attached. One, clear the two expired hot-work permits or stop the work — safety bucket, highest priority, due before the night shift, and shared with the Unit 2 permit issuer because the extend-or-stop call needs them both. Two, confirm the Unit 3 gas test so CS-1182 stays compliant — health bucket, due within five minutes. Nothing else is waiting on you. Acknowledge either one and the GM sees it; leave one unacknowledged for fifteen minutes and it escalates back to them.",
+    "suggested_chips": [
+      "Draft the stop-work notice",
+      "Remind the crew of the gas test",
+      "How is my muster point looking?"
+    ],
+    "data_sources_used": [
+      "HSE action tracker",
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Automated Action",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "aramco_sup_muster": {
+    "user_query": "How is my muster point looking?",
+    "ai_message": "Muster Point C — East covers your two units and is at 624 of 630, so six outstanding. Site-wide the drill is at 2,384 of 2,412 in the first 90 seconds. None of your six are in the high-priority group: the two people with no signal at all badged in at the west gate and were last seen near the Unit 4 boundary, which is not yours. Your six are stale-signal cases at the west gate perimeter. At the current check-in rate your point clears in about a minute and a half.",
+    "suggested_chips": [
+      "What has been assigned to me?",
+      "What is the status on the Unit 3 confined space?",
+      "Show me the expired hot-work permits"
+    ],
+    "data_sources_used": [
+      "Gate access-control",
+      "Location and tag data (vendor-agnostic)",
+      "CCTV and presence"
+    ],
+    "capability": "Predictive Intelligence",
+    "confidence": 90,
+    "illustrative": true
+  },
+
+  "__default__": {
+    "ai_message": "I can answer that against your units' live picture, but this reference demo is scripted around one turnaround morning on Unit 2 and Unit 3. Try one of the paths below — each is sourced, and every figure carries its origin and freshness.",
+    "suggested_chips": [
+      "Show me the expired hot-work permits",
+      "What is the status on the Unit 3 confined space?",
+      "What has been assigned to me?",
+      "How is my muster point looking?"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "illustrative": true
+  }
+}

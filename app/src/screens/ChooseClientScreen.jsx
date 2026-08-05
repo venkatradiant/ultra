@@ -1,15 +1,24 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Landmark, HeartPulse, Building2, Globe, ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { Landmark, HeartPulse, Building2, Globe, Factory, ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { useClient } from '../context/ClientContext';
 import { getMarkets } from '@core/runtime/registry';
 
 // Per-market accent + icon for the landing tiles. Falls back gracefully so a
 // newly-registered market shows up without any edit here.
+//
+// These are wayfinding colours, NOT client brand colours — a market tile has to
+// be told apart from its neighbours at a glance, which matters more than
+// matching the tenant inside it. Keep every entry in a distinct hue family:
+// blue, green, warm, and dark-to-gold are taken.
 const MARKET_META = {
-  'financial-services': { icon: Landmark, from: '#3b82f6', to: '#6366f1' },
-  healthcare: { icon: HeartPulse, from: '#10b981', to: '#0ea5e9' },
-  commercial: { icon: Globe, from: '#F27121', to: '#E94057' },
+  'financial-services': { icon: Landmark, from: '#3b82f6', to: '#6366f1' }, // blue → indigo
+  healthcare: { icon: HeartPulse, from: '#10b981', to: '#0ea5e9' }, // emerald → sky
+  commercial: { icon: Globe, from: '#F27121', to: '#E94057' }, // orange → red
+  // Graphite → amber. Reads industrial, and stays clear of Healthcare's
+  // emerald→sky (Aramco's own green→blue was near-identical to it here) and of
+  // Commercial's warm orange.
+  oil_gas: { icon: Factory, from: '#475569', to: '#F59E0B' },
 };
 const marketMeta = (id) => MARKET_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
 
@@ -38,7 +47,7 @@ function UltraMark() {
 }
 
 export default function ChooseClientScreen() {
-  const { adminSelectClient } = useAuth();
+  const { selectClient } = useClient();
   const markets = getMarkets();
   const [activeMarketId, setActiveMarketId] = useState(null);
   const activeMarket = markets.find((d) => d.id === activeMarketId) || null;
@@ -130,7 +139,7 @@ export default function ChooseClientScreen() {
                 {activeMarket.clients.map(({ id, branding }) => (
                   <button
                     key={id}
-                    onClick={() => adminSelectClient(id)}
+                    onClick={() => selectClient(id)}
                     className="group relative rounded-[22px] p-6 flex flex-col items-center gap-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-22px_rgba(37,99,235,0.6)] cursor-pointer"
                   >
                     <div className="w-[60px] h-[60px] rounded-2xl bg-white flex items-center justify-center overflow-hidden shadow-md ring-1 ring-black/[0.04]">

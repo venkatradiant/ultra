@@ -33,8 +33,18 @@ export default function ProactiveIntelligenceDiagram() {
   // Client-specific config
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
+  const isAramco = persona.id.startsWith('aramco_');
 
-  const clientConfig = isNewfold ? {
+  const clientConfig = isAramco ? {
+    sourcesLabel: 'ARAMCO DATA SOURCES',
+    primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
+    secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Your permit system reasons within its own data. This capability reads across permits, gate, location, CCTV, timesheets and the action tracker — surfacing the riskiest jobs, permit gaps and headcount conflicts, grouped by risk bucket, before you ask.',
+    gapText: 'The morning question — where do things stand, and what is the riskiest thing happening right now? — takes hours to assemble by hand from phone calls, radio checks, and walking the unit.',
+    withText: 'One validated briefing before the first coffee: the riskiest jobs first, every figure sourced, and the two or three actions that matter already drafted.',
+  } : isNewfold ? {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
@@ -113,7 +123,11 @@ export default function ProactiveIntelligenceDiagram() {
               <span style={{ fontSize: fs.labelSm, color: '#666666', fontWeight: 400 }}>Scoring, correlation, and prioritization</span>
             </div>
             <div className="flex flex-1 min-h-0" style={{ gap: 'min(0.6vw, 8px)' }}>
-              {(isNewfold ? [
+              {(isAramco ? [
+                { name: 'Signal Correlation', desc: 'Fuses permit validity with live worker and asset location, gate events, and camera presence' },
+                { name: 'Anomaly Scoring', desc: 'Scores permit breaches, condition lapses, and headcount divergence by consequence' },
+                { name: 'Priority Ranking', desc: 'Risk-bucket weighting — safety, health, equipment, compliance — with live occupancy as the multiplier' },
+              ] : isNewfold ? [
                 { name: 'Signal Correlation', desc: 'Cross-brand, cross-system pattern detection across Genesys Cloud, Billing, Domains, Hosting, Marketing, and IT' },
                 { name: 'Anomaly Scoring', desc: 'Time-series analysis on queue metrics, billing and dunning, sentiment, and compliance' },
                 { name: 'Priority Ranking', desc: 'Business-impact weighting for care operations, including revenue-at-risk and churn' },
@@ -141,7 +155,9 @@ export default function ProactiveIntelligenceDiagram() {
           >
             <p className="flex-shrink-0" style={{ fontSize: fs.label, color: '#00897B', fontWeight: 700, letterSpacing: '1.5px', margin: '0 0 min(1.2vh, 10px) 0' }}>RESPONSIBLE AI</p>
             <div className="flex-1 flex flex-col justify-around">
-              {(isNewfold
+              {(isAramco
+                ? ['Data Observability', 'Compliance & Regulation (permit-to-work regime, national regulator, board safety committee)', 'Role-Based Access Control', 'Bias Removal']
+                : isNewfold
                 ? ['Data Observability', 'Compliance & Regulation (PCI-DSS, auto-renewal & negative-option, GDPR/WHOIS)', 'Role-Based Access Control', 'Bias Removal']
                 : ['Data Observability', 'Compliance and Regulation', 'Role-Based Access Control', 'Bias Removal']).map((item) => (
                 <p key={item} style={{ fontSize: fs.cardDesc, color: '#333333', fontWeight: 600, margin: 0, lineHeight: 1.35 }}>{item}</p>
