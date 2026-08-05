@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Landmark, HeartPulse, Building2, Globe, Factory, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { useClient } from '../context/ClientContext';
 import { getMarkets } from '@core/runtime/registry';
+import UltraMark from '../components/brand/UltraMark';
 
 // Per-market accent + icon for the landing tiles. Falls back gracefully so a
 // newly-registered market shows up without any edit here.
@@ -21,30 +22,6 @@ const MARKET_META = {
   oil_gas: { icon: Factory, from: '#475569', to: '#F59E0B' },
 };
 const marketMeta = (id) => MARKET_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
-
-// Premium product monogram — a gradient badge with a layered "signal" mark.
-function UltraMark() {
-  return (
-    <div className="relative">
-      <div
-        className="absolute inset-0 rounded-[20px] blur-xl opacity-60"
-        style={{ background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)' }}
-      />
-      <div
-        className="relative w-[68px] h-[68px] rounded-[20px] flex items-center justify-center shadow-[0_8px_30px_-6px_rgba(59,130,246,0.6)] ring-1 ring-white/20"
-        style={{ background: 'linear-gradient(135deg,#60a5fa 0%,#3b82f6 45%,#6366f1 100%)' }}
-      >
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-          <rect x="6" y="18" width="4.5" height="10" rx="2.25" fill="white" fillOpacity="0.55" />
-          <rect x="14.75" y="12" width="4.5" height="16" rx="2.25" fill="white" fillOpacity="0.8" />
-          <rect x="23.5" y="6" width="4.5" height="22" rx="2.25" fill="white" />
-          <path d="M7 16.5 L16 10.5 L25 5.5" stroke="white" strokeOpacity="0.7" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="25" cy="5.5" r="2.4" fill="white" />
-        </svg>
-      </div>
-    </div>
-  );
-}
 
 export default function ChooseClientScreen() {
   const { selectClient } = useClient();

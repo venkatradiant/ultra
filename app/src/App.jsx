@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
+import { SessionProvider, useSession } from './context/SessionContext';
 import { ClientProvider, useClient } from './context/ClientContext';
 import { PersonaProvider } from './context/PersonaContext';
 import { BrandingProvider } from './context/BrandingContext';
 import { BrandProvider } from './context/BrandContext';
 import { ThemeProvider } from '@core/providers/ThemeProvider';
 import AppShell from './components/layout/AppShell';
+import LoginScreen from './screens/LoginScreen';
 import ChooseClientScreen from './screens/ChooseClientScreen';
 import AskTheAI from './screens/AskTheAI';
 import MemberJourney from './screens/MemberJourney';
@@ -36,21 +38,21 @@ function DemoNavigateBridge() {
 }
 
 function AppContent() {
+  const { isUnlocked } = useSession();
   const { hasClient } = useClient();
 
-  // Default document title is "Ultra App" (the home/landing identity). Once a
-  // client is selected, BrandingProvider overrides it with that client's name;
-  // returning to the picker resets it back to "Ultra App".
+  // Default document title is "Ultra App" (the platform identity, used by both
+  // pre-app screens). Once a client is selected, BrandingProvider overrides it
+  // with that client's name; signing out resets it back.
   useEffect(() => {
     if (!hasClient) document.title = 'Ultra App';
   }, [hasClient]);
 
-  // No client chosen yet → the picker is the entry screen. There is no sign-in
-  // step: this is a demo prototype with no backend, so a credential form would
-  // have gated nothing.
-  if (!hasClient) {
-    return <ChooseClientScreen />;
-  }
+  // Two gates, in order. Signing in gets you through the door; choosing a
+  // market and client is the separate step after it. `?access=` skips the
+  // first gate only — it still lands on the picker.
+  if (!isUnlocked) return <LoginScreen />;
+  if (!hasClient) return <ChooseClientScreen />;
 
   return (
     <BrowserRouter>
@@ -119,8 +121,14 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ClientProvider>
-      <AppContent />
-    </ClientProvider>
+    // SessionProvider sits above ClientProvider on purpose: its initialiser
+    // runs first, so an `?access=` unlock can drop the stored client id before
+    // ClientProvider reads it — which is what makes the admin key land on the
+    // picker rather than resuming whichever client was open last.
+    <SessionProvider>
+      <ClientProvider>
+        <AppContent />
+      </ClientProvider>
+    </SessionProvider>
   );
 }

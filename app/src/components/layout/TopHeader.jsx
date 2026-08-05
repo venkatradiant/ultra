@@ -6,6 +6,7 @@ import DemoRunner from '../../demo/DemoRunner';
 import DemoOverlay from '../../demo/DemoOverlay';
 import { usePersona, usePersonaList } from '../../context/PersonaContext';
 import { useClient } from '../../context/ClientContext';
+import { useSession } from '../../context/SessionContext';
 import { useBranding } from '../../context/BrandingContext';
 import BrandSelector from '../newfold/BrandSelector';
 
@@ -13,6 +14,7 @@ export default function TopHeader({ onMenuClick }) {
   const persona = usePersona();
   const personaList = usePersonaList();
   const { clearClient } = useClient();
+  const { signOut } = useSession();
   const { client, clientId } = useBranding();
   const location = useLocation();
   const navigate = useNavigate();
@@ -87,12 +89,13 @@ export default function TopHeader({ onMenuClick }) {
     DemoRunner.stop();
   }, []);
 
-  // Labelled "Sign Out" for familiarity, but there are no credentials to clear:
-  // it drops the selected client and returns to the picker, which is the app's
-  // entry screen.
+  // A real sign out: drop the session AND the selected client, landing back on
+  // the login screen. Both are needed — clearing only the client would return
+  // to the picker while still signed in.
   const handleSignOut = () => {
     setDropdownOpen(false);
     clearClient();
+    signOut();
   };
 
   return (

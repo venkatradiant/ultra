@@ -67,10 +67,11 @@ so a misconfigured tenant fails loudly instead of blank-rendering.
    `branding` + the `personas` it exposes (reuse shared factories or add
    client-specific persona folders under `clients/<client>/personas/`).
 2. Add the client to its domain manifest's `clients: [...]`.
-3. To make it loginable: add branding to `src/config/clients.js`, a mock
-   credential to `src/config/access.ts`, its persona allowlist to
-   `src/context/PersonaContext.jsx`, and (if it has a non-generic default) an
-   entry in that file's `CLIENT_DEFAULT_PERSONA`.
+3. To make it reachable: add branding to `src/config/clients.js`, its persona
+   allowlist to `src/context/PersonaContext.jsx`, and (if it has a non-generic
+   default) an entry in that file's `CLIENT_DEFAULT_PERSONA`. No credential is
+   needed — sign-in is a single platform-wide gate (`src/config/access.ts`), and
+   every registered client is reachable from the picker once you are through it.
 
 ## Playbook: add a new **domain**
 

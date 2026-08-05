@@ -37,8 +37,14 @@ npm run scaffold:persona <domain> <client> <personaId>   # generate a persona st
 | `src/core/` | Domain-agnostic runtime — types, registry, resolver, chat engine, validation |
 | `src/shared/` | Reusable UI (the generic `PersonaWorkspace`) |
 | `src/domains/` | **All** tenant/persona specifics + `index.ts` domain registry |
-| `src/config/` | Client branding + mock demo credentials (`access.ts`) |
+| `src/config/` | Client branding + the platform gate credential (`access.ts`) |
 | `api/` | Vercel serverless functions (ElevenLabs TTS proxy) |
 
-Demo logins live in `src/config/access.ts` (this is a demo, not a security
-boundary). Persona is selectable via `?persona=<id>`.
+Sign-in is a **single parent gate** in front of the whole platform, not one
+credential per client: `ultra` / `ultra@9705` gets you to the market and client
+picker, and you choose a tenant from there. Appending `?access=rdvr@9705` to any
+URL skips sign-in and opens the picker directly. Both are scoped to the browser
+tab. See `src/config/access.ts` — this is a demo, not a security boundary; the
+credential ships in the client bundle.
+
+Persona is selectable via `?persona=<id>`.
