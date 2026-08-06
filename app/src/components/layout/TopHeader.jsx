@@ -8,6 +8,7 @@ import { usePersona, usePersonaList } from '../../context/PersonaContext';
 import { useClient } from '../../context/ClientContext';
 import { useSession } from '../../context/SessionContext';
 import { useBranding } from '../../context/BrandingContext';
+import { loginPathForClientId } from '../../config/access';
 import BrandSelector from '../newfold/BrandSelector';
 
 export default function TopHeader({ onMenuClick }) {
@@ -97,10 +98,17 @@ export default function TopHeader({ onMenuClick }) {
   // A real sign out: drop the session AND the selected client, landing back on
   // the login screen. Both are needed — clearing only the client would return
   // to the picker while still signed in.
+  //
+  // The destination is *this client's* door, not the platform's, and that holds
+  // even if you arrived through the Ultra picker. Someone signing out of an NFCU
+  // demo should be looking at NFCU's sign-in page; the platform door is a URL
+  // you have to know.
   const handleSignOut = () => {
     setDropdownOpen(false);
+    const destination = loginPathForClientId(clientId);
     clearClient();
     signOut();
+    navigate(destination, { replace: true });
   };
 
   return (

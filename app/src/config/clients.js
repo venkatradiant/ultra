@@ -1,6 +1,11 @@
+// `loginSlug` is this client's front door: `/login/<slug>`, and the username on
+// that page. It is mirrored in config/access.ts, which holds the matching
+// password and is the module the gate actually reads — a test asserts the two
+// agree, so neither can drift.
 export const CLIENTS = {
   financial_services: {
     id: 'financial_services',
+    loginSlug: 'fs',
     name: 'Financial Services',
     shortName: 'FS',
     nameLines: ['Financial Services'],
@@ -12,6 +17,7 @@ export const CLIENTS = {
   },
   ussfcu: {
     id: 'ussfcu',
+    loginSlug: 'ussfcu',
     name: 'United States Senate Federal Credit Union',
     shortName: 'USSFCU',
     nameLines: ['United States Senate', 'Federal Credit Union'],
@@ -23,6 +29,7 @@ export const CLIENTS = {
   },
   penfed: {
     id: 'penfed',
+    loginSlug: 'penfed',
     name: 'Pentagon Federal Credit Union',
     shortName: 'PenFed',
     nameLines: ['Pentagon Federal', 'Credit Union'],
@@ -34,6 +41,7 @@ export const CLIENTS = {
   },
   nfcu: {
     id: 'nfcu',
+    loginSlug: 'nfcu',
     name: 'Navy Federal Credit Union',
     shortName: 'NFCU',
     nameLines: ['Navy Federal', 'Credit Union'],
@@ -46,6 +54,7 @@ export const CLIENTS = {
   // ─── Commercial market — Newfold Digital (cross-brand SMB care) ──
   newfold_digital: {
     id: 'newfold_digital',
+    loginSlug: 'newfold',
     name: 'Newfold Digital',
     shortName: 'Newfold',
     nameLines: ['Newfold', 'Digital'],
@@ -64,6 +73,7 @@ export const CLIENTS = {
   // THIS map, not the manifest.
   aramco: {
     id: 'aramco',
+    loginSlug: 'aramco',
     name: 'Aramco',
     shortName: 'Aramco',
     nameLines: ['Aramco'],
@@ -94,6 +104,7 @@ export const CLIENTS = {
   // src/markets/telecom/clients/att/client.manifest.ts.
   att: {
     id: 'att',
+    loginSlug: 'att',
     name: 'AT&T',
     shortName: 'AT&T',
     nameLines: ['AT&T'],
@@ -113,6 +124,7 @@ export const CLIENTS = {
   // ─── Healthcare market (proves the platform is multi-market) ────
   riverside_health: {
     id: 'riverside_health',
+    loginSlug: 'riverside',
     name: 'Riverside Health System',
     shortName: 'Riverside',
     nameLines: ['Riverside', 'Health System'],

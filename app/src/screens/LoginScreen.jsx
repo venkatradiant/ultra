@@ -4,10 +4,12 @@ import { useClient } from '../context/ClientContext';
 import UltraMark from '../components/brand/UltraMark';
 
 /**
- * Sign-in — the platform gate.
+ * Sign-in — the platform gate, at `/login/ultra`.
  *
- * One credential for the whole platform, not one per client: you sign in to
- * reach the market picker, and choosing a market and client is the next step.
+ * The platform credential, not a client's: you sign in to reach the market
+ * picker, and choosing a market and client is the next step. Each client also
+ * has its own door at `/login/<slug>` (see ClientLoginScreen) which this
+ * credential deliberately does not open.
  *
  * Renders ABOVE BrandingProvider/ThemeProvider, so every colour here is a
  * literal value. Using `bg-brand` on this screen is what made the old sign-in
@@ -17,7 +19,7 @@ import UltraMark from '../components/brand/UltraMark';
  * ⚠️  Not a security boundary. See config/access.ts.
  */
 export default function LoginScreen() {
-  const { signIn } = useSession();
+  const { signInAsUltra } = useSession();
   const { clearClient } = useClient();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +33,7 @@ export default function LoginScreen() {
 
     // Small delay for perceived security
     setTimeout(() => {
-      if (signIn(username, password)) {
+      if (signInAsUltra(username, password)) {
         // Signing in always lands on the picker, never on whichever client was
         // open last time. SessionContext drops the stored id; this drops the
         // provider's in-memory copy of it.
