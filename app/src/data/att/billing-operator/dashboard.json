@@ -1,0 +1,49 @@
+{
+  "kpis": [
+    { "id": "accounts_processed", "title": "Total Accounts Processed", "value": "12,487,233", "icon": "users", "source": "Billing system", "note": "Accounts under management in the active cycle" },
+    { "id": "anomalies_detected", "title": "Anomalies Detected", "value": "18,742", "icon": "alert-triangle", "delta": "+1.7% vs Jan", "positive": false, "source": "Anomaly-detection engine", "note": "Cycle-wide detections before grouping — the 207 in patterns are what reached an operator" },
+    { "id": "auto_corrected", "title": "Auto-Corrected", "value": "11,396", "icon": "check-circle", "delta": "+4.8% vs Jan", "positive": true, "source": "Bulk-resolution agent", "note": "Resolved above the auto-resolve threshold without a human touch" },
+    { "id": "pending_review", "title": "Pending Human Review", "value": "3,221", "icon": "clock", "delta": "-12.3% vs Jan", "positive": true, "source": "Workbench queue", "note": "Routed to an operator by the medium-confidence tier" },
+    { "id": "revenue_risk", "title": "Revenue Risk Identified", "value": "$4,328,912", "icon": "dollar-sign", "source": "Billing system", "note": "Cycle-wide exposure; $4,850 of it sits in the six open patterns" },
+    { "id": "detection_accuracy", "title": "Detection Accuracy", "value": "92.4%", "icon": "target", "delta": "+1.4% vs Jan", "positive": true, "source": "Model eval / observability", "note": "Correct detections vs total, post-validation" }
+  ],
+  "anomalyTrend": [
+    { "cycle": "Sep 25", "detected": 16842, "autoFixed": 9812, "escalated": 1204, "falsePositive": 892 },
+    { "cycle": "Oct 25", "detected": 17231, "autoFixed": 10421, "escalated": 1102, "falsePositive": 1021 },
+    { "cycle": "Nov 25", "detected": 15987, "autoFixed": 9654, "escalated": 987, "falsePositive": 876 },
+    { "cycle": "Dec 25", "detected": 19102, "autoFixed": 11876, "escalated": 1432, "falsePositive": 1198 },
+    { "cycle": "Jan 26", "detected": 18421, "autoFixed": 11102, "escalated": 1287, "falsePositive": 1087 },
+    { "cycle": "Feb 26", "detected": 18742, "autoFixed": 11396, "escalated": 1221, "falsePositive": 1125 }
+  ],
+  "confidenceDistribution": [
+    { "range": ">95%", "count": 48 },
+    { "range": "90-95%", "count": 67 },
+    { "range": "85-90%", "count": 41 },
+    { "range": "80-85%", "count": 28 },
+    { "range": "70-80%", "count": 14 },
+    { "range": "<70%", "count": 4 }
+  ],
+  "byChargeType": [
+    { "name": "Discount", "value": 6042 },
+    { "name": "MRC", "value": 3560 },
+    { "name": "Streaming", "value": 1709 },
+    { "name": "OCC", "value": 1322 },
+    { "name": "Loan", "value": 811 },
+    { "name": "Tax", "value": 547 }
+  ],
+  "riskHeatmap": [
+    { "chargeType": "MRC", "low": 2134, "medium": 1004, "high": 422 },
+    { "chargeType": "Discount", "low": 3452, "medium": 1978, "high": 612 },
+    { "chargeType": "Loan", "low": 487, "medium": 221, "high": 103 },
+    { "chargeType": "Streaming", "low": 1102, "medium": 398, "high": 209 },
+    { "chargeType": "OCC", "low": 882, "medium": 321, "high": 119 },
+    { "chargeType": "Tax", "low": 344, "medium": 142, "high": 61 }
+  ],
+  "microAgents": [
+    { "id": "mrc", "agent": "MRC Agent", "coverage": "100%", "accuracy": "95.2%", "avgConfidence": "89%", "processingTime": "6m 12s", "status": "healthy" },
+    { "id": "discount", "agent": "Discount Agent", "coverage": "100%", "accuracy": "93.7%", "avgConfidence": "86%", "processingTime": "5m 48s", "status": "healthy" },
+    { "id": "loan", "agent": "Loan Agent", "coverage": "100%", "accuracy": "91.3%", "avgConfidence": "82%", "processingTime": "3m 11s", "status": "healthy" },
+    { "id": "streaming", "agent": "Streaming Agent", "coverage": "100%", "accuracy": "94.1%", "avgConfidence": "88%", "processingTime": "2m 44s", "status": "healthy" },
+    { "id": "tax", "agent": "Tax Agent", "coverage": "100%", "accuracy": "89.5%", "avgConfidence": "79%", "processingTime": "1m 32s", "status": "warning" }
+  ]
+}

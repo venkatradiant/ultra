@@ -1,33 +1,49 @@
 /**
- * CurrentStateDiagram — how high-risk work runs today, and where TrackLynk changes it.
+ * CurrentStateDiagram — how the work runs today, and where the product changes it.
  *
- * Specification §8, rendered top-down to match the spec's own `flowchart TD`.
+ * Tenant-agnostic: it renders whatever `getter` returns, and the only
+ * tenant-specific string is `productName`. Two markets use it (TrackLynk's HSE
+ * spec §8, the Workbench's billing spec §8A/§8B) over the same fixture shape.
  *
- * Vertical rather than a horizontal rail on purpose: eight steps across forces
- * every card to the width of the narrowest column, so a step like "Is the job
- * running where and how the permit says?" wraps to seven lines while "Work
- * proceeds" takes two — and equal-height cards then leave most of them empty.
- * Stacking gives each step the full width for its text, reads in the order the
- * work actually happens, and needs no horizontal scroll at any viewport.
+ * Rendered top-down to match the specs' own `flowchart TD`. Vertical rather
+ * than a horizontal rail on purpose: eight or nine steps across forces every
+ * card to the width of the narrowest column, so a step like "Is the job running
+ * where and how the permit says?" wraps to seven lines while "Work proceeds"
+ * takes two — and equal-height cards then leave most of them empty. Stacking
+ * gives each step the full width for its text, reads in the order the work
+ * actually happens, and needs no horizontal scroll at any viewport.
  *
- * Each intervention is attached directly beneath the step it repairs rather than
- * listed in a separate table below. The argument of this section is "this step
- * is broken, and here is the fix" — putting the two side by side is the point.
+ * Each intervention is attached directly beneath the step it repairs rather
+ * than listed in a separate table below. The argument of this section is "this
+ * step is broken, and here is the fix" — putting the two side by side is the
+ * point.
  */
 import { motion } from 'framer-motion';
-import { AlertTriangle, HelpCircle, Sparkles, ArrowDown } from 'lucide-react';
+import { AlertTriangle, HelpCircle, Sparkles, ArrowDown, Info } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getCurrentState } from '../../data/aramco/hse-gm';
-import IllustrativeDataChip from './IllustrativeDataChip';
 
 const CAPABILITY_TINT = {
   'Converged Conversation': 'bg-sky-50 text-sky-800 border-sky-200',
   'Anomaly Detection': 'bg-rose-50 text-rose-800 border-rose-200',
   'Friction Observability': 'bg-violet-50 text-violet-800 border-violet-200',
   'Automated Action': 'bg-emerald-50 text-emerald-800 border-emerald-200',
+  'Proactive Intelligence': 'bg-amber-50 text-amber-800 border-amber-200',
+  'Predictive Intelligence': 'bg-indigo-50 text-indigo-800 border-indigo-200',
 };
 
-function StepRow({ step, index, total, intervention }) {
+function Chip({ note }) {
+  return (
+    <span
+      title={note || 'Illustrative figure.'}
+      className="inline-flex items-center gap-1 rounded-full border border-border bg-surface-2 px-2 py-0.5 text-[10px] font-medium text-text-subtle whitespace-nowrap"
+    >
+      <Info className="w-3 h-3" />
+      Illustrative data
+    </span>
+  );
+}
+
+function StepRow({ step, index, total, intervention, productName }) {
   const isGap = step.state === 'gap';
   const isLast = index === total - 1;
   const Marker = step.isDecision ? HelpCircle : AlertTriangle;
@@ -85,7 +101,7 @@ function StepRow({ step, index, total, intervention }) {
           <div className="mt-1.5 rounded-xl border border-brand/25 bg-brand/[0.045] p-3 min-w-0">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
               <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-brand">
-                <Sparkles className="w-3 h-3" /> TrackLynk.AI
+                <Sparkles className="w-3 h-3" /> {productName}
               </span>
               <span
                 className={`rounded-full border px-2 py-0.5 text-[9.5px] font-semibold whitespace-nowrap ${
@@ -104,7 +120,11 @@ function StepRow({ step, index, total, intervention }) {
   );
 }
 
-export default function CurrentStateDiagram({ getter = getCurrentState }) {
+export default function CurrentStateDiagram({
+  getter,
+  productName = 'the platform',
+  gapLegend = 'Outside any system — the verification gap',
+}) {
   const data = useAsyncData(getter);
   if (!data) return null;
 
@@ -118,7 +138,7 @@ export default function CurrentStateDiagram({ getter = getCurrentState }) {
           <h3 className="text-sm font-semibold text-text">{data.title}</h3>
           <p className="text-[11.5px] text-text-muted mt-1 leading-relaxed max-w-3xl">{data.subtitle}</p>
         </div>
-        <IllustrativeDataChip note={data.cycleTimeNote} />
+        <Chip note={data.cycleTimeNote} />
       </div>
 
       {/* Legend */}
@@ -129,11 +149,11 @@ export default function CurrentStateDiagram({ getter = getCurrentState }) {
         </span>
         <span className="inline-flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-rose-600" />
-          Outside any system — the verification gap
+          {gapLegend}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <Sparkles className="w-3 h-3 text-brand" />
-          Where TrackLynk.AI changes it
+          Where {productName} changes it
         </span>
       </div>
 
@@ -146,6 +166,7 @@ export default function CurrentStateDiagram({ getter = getCurrentState }) {
             index={i}
             total={data.steps.length}
             intervention={byStepId[step.id]}
+            productName={productName}
           />
         ))}
       </div>

@@ -26,7 +26,8 @@ import SiteMap from '@/components/aramco/SiteMap';
 import HeadcountReconciliationPanel from '@/components/aramco/HeadcountReconciliationPanel';
 import EvidenceTrustPanel from '@/components/aramco/EvidenceTrustPanel';
 import MusterBoard from '@/components/aramco/MusterBoard';
-import CurrentStateDiagram from '@/components/aramco/CurrentStateDiagram';
+import CurrentStateDiagram from '@/components/process/CurrentStateDiagram';
+import { getCurrentState } from '@/data/aramco/hse-gm';
 
 const flows = (getPersonaFlowConfigs('aramco') as unknown as Record<string, PersonaManifest['flows']>)
   .aramco_complex_manager;
@@ -139,7 +140,7 @@ const manifest: PersonaManifest = {
       out.push(<SiteMap key="site-map" />);
     }
     if (k === 'aramco_cm_schedule_safety' || k === 'aramco_cm_surge') {
-      out.push(<CurrentStateDiagram key="current-state" />);
+      out.push(<CurrentStateDiagram key="current-state" getter={getCurrentState} productName="TrackLynk.AI" />);
     }
     if (k === 'aramco_cm_headcount') {
       out.push(<HeadcountReconciliationPanel key="recon" />);

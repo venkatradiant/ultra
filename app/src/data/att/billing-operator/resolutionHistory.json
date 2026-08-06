@@ -1,0 +1,81 @@
+{
+  "summary": {
+    "totalResolutions": 5,
+    "executed": 3,
+    "escalations": 1,
+    "falsePositives": 1,
+    "successRate": 60
+  },
+  "records": [
+    {
+      "id": "RES-001",
+      "accountId": "ACC-918273",
+      "issue": "Missing AutoPay discount",
+      "pattern": "PATTERN-001",
+      "action": "Approved & Executed",
+      "confidenceTier": "High",
+      "user": "J.Smith",
+      "timestamp": "2026-02-16 10:32 AM",
+      "rebillId": "RB-87921",
+      "beforeAmount": "$80",
+      "afterAmount": "$70",
+      "status": "Completed"
+    },
+    {
+      "id": "RES-002",
+      "accountId": "ACC-442198",
+      "issue": "Streaming service price error",
+      "pattern": "PATTERN-006",
+      "action": "Approved & Executed",
+      "confidenceTier": "Medium",
+      "user": "M.Johnson",
+      "timestamp": "2026-02-16 09:58 AM",
+      "rebillId": "RB-87918",
+      "beforeAmount": "$20",
+      "afterAmount": "$10",
+      "status": "Completed"
+    },
+    {
+      "id": "RES-003",
+      "accountId": "ACC-112943",
+      "issue": "Unexpected activation fee",
+      "pattern": "PATTERN-006",
+      "action": "Marked False Positive",
+      "confidenceTier": "Medium",
+      "user": "K.Lee",
+      "timestamp": "2026-02-16 10:15 AM",
+      "rebillId": "N/A",
+      "beforeAmount": "$35",
+      "afterAmount": "$35",
+      "status": "Closed"
+    },
+    {
+      "id": "RES-004",
+      "accountId": "ACC-776512",
+      "issue": "Duplicate device installment",
+      "pattern": "PATTERN-002",
+      "action": "Approved & Executed",
+      "confidenceTier": "High",
+      "user": "M.Johnson",
+      "timestamp": "2026-02-16 09:18 AM",
+      "rebillId": "RB-87912",
+      "beforeAmount": "$60",
+      "afterAmount": "$30",
+      "status": "Completed"
+    },
+    {
+      "id": "RES-005",
+      "accountId": "ACC-239881",
+      "issue": "Plan price mismatch",
+      "pattern": "PATTERN-004",
+      "action": "Escalated to SME",
+      "confidenceTier": "Medium",
+      "user": "J.Smith",
+      "timestamp": "2026-02-16 10:28 AM",
+      "rebillId": "N/A",
+      "beforeAmount": "$80",
+      "afterAmount": "Pending",
+      "status": "Escalated"
+    }
+  ]
+}

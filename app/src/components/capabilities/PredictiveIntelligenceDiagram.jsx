@@ -33,8 +33,26 @@ export default function PredictiveIntelligenceDiagram() {
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
+  const isAtt = persona.id.startsWith('att_');
 
-  const clientConfig = isAramco ? {
+  const clientConfig = isAtt ? {
+    sourcesLabel: 'BILLING DATA SOURCES',
+    primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
+    secondarySources: ['Historical Call-Driver Data', 'SLA Clock', 'Model Registry', 'Retraining Feedback Loop'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Projects what deferring costs — roughly 63 support calls and 19 hours of customer hold time on the hero pattern alone — against the SLA time remaining, and forecasts the accuracy lift the next model retrain will deliver. The point is preventing the downstream event rather than discovering it next cycle.',
+    predCards: [
+      { name: 'Downstream Impact Model', desc: 'Support calls and hold time a deferred pattern will generate, from historical call-driver data' },
+      { name: 'SLA Completion Forecast', desc: 'Whether the remaining patterns fit the hours left in the 36-hour BRN window' },
+      { name: 'Retraining Lift Forecast', desc: 'Projected +6–8% confidence from 1,847 captured corrections, shown beside four retrains of history' },
+    ],
+    signalSubtitle: 'Billing and cycle history extended by the Agentic Data Platform across call drivers, SLA state and model performance',
+    existingCard: { title: 'Billing System of Record (existing)', desc: 'Charges as billed for the active cycle, per account and per charge type' },
+    agenticCardDesc: 'Extends billing signals with call-driver history, SLA state and the model registry',
+    gapText: 'You find out downstream, when call volume spikes or a supervisor asks why 87 customers were overbilled. By then the cycle is closed and you are issuing credits instead of preventing the problem.',
+    withText: 'Calls prevented, hold time avoided and dollars at risk projected against the hours remaining — while the correction is still cheaper than the credit.',
+  } : isAramco ? {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],

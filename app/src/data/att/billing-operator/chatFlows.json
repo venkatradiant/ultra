@@ -1,0 +1,354 @@
+{
+  "att_op_greeting": {
+    "user_query": "Where does cycle 2026-02 stand?",
+    "ai_message": "You are in cycle 2026-02 for Consumer-East-02 with 11.7 hours left on the 36-hour SLA. I am tracking 207 anomalies across 12.4M accounts, $4,850 in revenue at risk, and average confidence of 91.6%. All 207 anomalies are already grouped into six resolvable patterns, so this cycle is in good shape to close on time. Want to review the patterns?",
+    "suggested_chips": [
+      "Show me the patterns",
+      "What is the biggest dollar risk?",
+      "How much time do I have left?"
+    ],
+    "data_sources_used": [
+      "Anomaly-detection engine",
+      "Billing system",
+      "Confidence-scoring agent"
+    ],
+    "capability": "Proactive Intelligence",
+    "confidence": 92,
+    "illustrative": true
+  },
+
+  "att_op_patterns": {
+    "user_query": "Show me the patterns",
+    "ai_message": "I grouped the 207 anomalies into six patterns. Missing AutoPay Discount, 87 accounts, 94% confidence, $870. Duplicate Device Installments, 34 accounts, 92%, $1,020. Incorrect State Tax Calculation, 24 accounts, 91%, $76.80. Plan Migration Rate Mismatch, 41 accounts, 85%, $615. International Roaming Overcharge, 16 accounts, 96%, $1,200. And 5 edge-case anomalies that do not fit a pattern. Click any pattern to review and apply bulk fixes.",
+    "suggested_chips": [
+      "Open Missing AutoPay Discount",
+      "Sort by dollar impact",
+      "Which has the highest confidence?"
+    ],
+    "data_sources_used": [
+      "Pattern-detection agent",
+      "Billing system",
+      "Rate-card and tax tables",
+      "Usage-rating engine"
+    ],
+    "capability": "Anomaly Detection",
+    "confidence": 91,
+    "illustrative": true
+  },
+
+  "att_op_hero_pattern": {
+    "user_query": "Open the Missing AutoPay Discount pattern",
+    "ai_message": "I detected 87 accounts with the autopay discount not applied despite customer eligibility and no payment-method change. Root cause: a CGCM system sync failure during the Feb 12 maintenance window. Applying this fix will correct all 87 accounts, return $870 to customers, and prevent an estimated 63 support calls. Here is every impacted account with its current and corrected amount.",
+    "suggested_chips": [
+      "Can I trust these corrections?",
+      "What happens if I wait?",
+      "Show only accounts below 90% confidence"
+    ],
+    "data_sources_used": [
+      "Billing system",
+      "Account payment-method history",
+      "Discount-eligibility rules",
+      "CGCM sync log"
+    ],
+    "capability": "Converged Conversation",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "att_op_trust": {
+    "user_query": "Can I trust these corrections?",
+    "ai_message": "Yes, with visibility. Average confidence on this pattern is 93%, and every account shows its own score. The correction is not a guess: it reverses the exact discount that failed to apply when CGCM did not sync, so current minus corrected equals the missing autopay discount for each account. Seventeen accounts sit below 90%; you can exclude those and apply to the rest, or escalate them to SME review.",
+    "suggested_chips": [
+      "Apply to accounts above 90% only",
+      "Escalate the low-confidence accounts",
+      "Apply Fix to All"
+    ],
+    "data_sources_used": [
+      "Confidence-scoring agent",
+      "Discount-eligibility rules",
+      "CGCM sync log"
+    ],
+    "capability": "Friction Observability",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "att_op_look_ahead": {
+    "user_query": "What happens if I do not fix these this cycle?",
+    "ai_message": "If these 87 roll into next cycle, I project roughly 63 additional support calls and about 19 hours of customer hold time, plus $870 in credits you would issue later instead of correcting now. Across all six patterns you have $4,850 at risk. You have 11.7 hours of SLA left, which is enough to clear every pattern if you act on the bulk fixes now.",
+    "suggested_chips": [
+      "Apply Fix to All",
+      "Show the next-highest-impact pattern",
+      "What is my fastest path to close the cycle?"
+    ],
+    "data_sources_used": [
+      "Predictive impact model",
+      "Historical call-driver data",
+      "SLA clock"
+    ],
+    "capability": "Predictive Intelligence",
+    "confidence": 88,
+    "illustrative": true
+  },
+
+  "att_op_apply_fix": {
+    "user_query": "Apply the fix to all 87 accounts",
+    "ai_message": "Done. I corrected all 87 accounts for a total of $850.14 through the rebilling API, and wrote each correction to Resolution History with its rebill ID. Confidence held at 93% average, zero failures. That pattern is cleared. Five patterns remain; Duplicate Device Installments is next at $1,020. Want to continue?",
+    "suggested_chips": [
+      "Open Duplicate Device Installments",
+      "Export the audit report",
+      "Summarize what I have resolved"
+    ],
+    "data_sources_used": [
+      "Bulk-resolution agent",
+      "Rebilling API",
+      "Resolution History log"
+    ],
+    "capability": "Automated Action",
+    "confidence": 96,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_op_close_and_prove": {
+    "user_query": "Summarize what I have resolved and export the audit report",
+    "ai_message": "This session you approved and executed three patterns, marked one anomaly a false positive, and escalated one to SME, a 60% direct-resolution rate with the rest in flight. Every action is logged with a rebill ID, before and after amounts, confidence, and timestamp. I generated the audit report for cycle 2026-02, Consumer-East-02, ready to export for governance.",
+    "suggested_chips": [
+      "Export as PDF",
+      "Show escalated items",
+      "Return to cycle overview"
+    ],
+    "data_sources_used": ["Resolution History log", "Governance export"],
+    "capability": "Automated Action",
+    "confidence": 97,
+    "illustrative": true
+  },
+
+  "att_op_biggest_risk": {
+    "user_query": "What is the biggest dollar risk?",
+    "ai_message": "International Roaming Overcharge, at $1,200 across 16 accounts — the largest single-pattern exposure, and at 96% the highest confidence of the six. Duplicate Device Installments is close behind at $1,020 across 34 accounts. The five edge cases carry $1,068.20 between them, but those do not share a root cause, so there is no bulk fix for that money. Ranked by dollars you can clear in one action, roaming is where to start; ranked by customers affected, Missing AutoPay Discount at 87 accounts is the bigger story.",
+    "suggested_chips": [
+      "Show me the patterns",
+      "Open Missing AutoPay Discount",
+      "How much time do I have left?"
+    ],
+    "data_sources_used": ["Pattern-detection agent", "Billing system"],
+    "capability": "Anomaly Detection",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "att_op_sla_remaining": {
+    "user_query": "How much time do I have left?",
+    "ai_message": "11.7 hours of the 36-hour BRN window, with 24.3 hours elapsed — 67.5% through. The six patterns carry estimated resolution times between 8 and 30 minutes each, so about 95 minutes of reviewed action clears everything bulk-resolvable. The five edge cases are the constraint, not the clock: they need individual investigation, and if any escalates to SME it will not come back inside this window. Start those first if you want them closed this cycle.",
+    "suggested_chips": [
+      "Show me the patterns",
+      "What is my fastest path to close the cycle?",
+      "What is the biggest dollar risk?"
+    ],
+    "data_sources_used": ["SLA clock", "Pattern-detection agent"],
+    "capability": "Predictive Intelligence",
+    "confidence": 90,
+    "illustrative": true
+  },
+
+  "att_op_sort_by_impact": {
+    "user_query": "Sort by dollar impact",
+    "ai_message": "By dollar impact: International Roaming Overcharge $1,200 (16 accounts), Edge Cases $1,068.20 (5 accounts), Duplicate Device Installments $1,020 (34 accounts), Missing AutoPay Discount $870 (87 accounts), Plan Migration Rate Mismatch $615 (41 accounts), Incorrect State Tax Calculation $76.80 (24 accounts). Note that the dollar order and the customer-impact order disagree: tax is last on money and fourth on accounts, but it is a compliance exposure rather than a revenue one, so I would not defer it on size alone.",
+    "suggested_chips": [
+      "Open Missing AutoPay Discount",
+      "Which has the highest confidence?",
+      "Show me the patterns"
+    ],
+    "data_sources_used": ["Pattern-detection agent", "Billing system"],
+    "capability": "Anomaly Detection",
+    "confidence": 92,
+    "illustrative": true
+  },
+
+  "att_op_highest_confidence": {
+    "user_query": "Which has the highest confidence?",
+    "ai_message": "International Roaming Overcharge at 96%, then Missing AutoPay Discount at 94%, Duplicate Device Installments at 92%, Incorrect State Tax Calculation at 91%, Plan Migration Rate Mismatch at 85%, and the edge cases at 72%. The top four sit above the 90% auto-resolve threshold, so they are safe to apply in bulk. Plan Migration at 85% falls in the operator-review tier — the effective dates are what make it uncertain, so check those before you apply. The edge cases are below 70% by design: the system can tell you the charge is wrong without being able to tell you why.",
+    "suggested_chips": [
+      "Open Missing AutoPay Discount",
+      "Sort by dollar impact",
+      "Show me the patterns"
+    ],
+    "data_sources_used": ["Confidence-scoring agent", "Platform configuration"],
+    "capability": "Friction Observability",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "att_op_low_confidence_rows": {
+    "user_query": "Show only accounts below 90% confidence",
+    "ai_message": "Seventeen of the 87 score below 90%, averaging 87%. They are not a different kind of error — every one is the same missing autopay discount — but their eligibility records were touched closer to the sync window, so the evidence that the discount should have applied is thinner. You have three ways forward: apply to the 70 above 90% and leave these, escalate all 17 to SME review, or apply everything and accept that a small number may need a second look next cycle.",
+    "suggested_chips": [
+      "Apply to accounts above 90% only",
+      "Escalate the low-confidence accounts",
+      "Can I trust these corrections?"
+    ],
+    "data_sources_used": ["Confidence-scoring agent", "Discount-eligibility rules"],
+    "capability": "Friction Observability",
+    "confidence": 91,
+    "illustrative": true
+  },
+
+  "att_op_apply_above_90": {
+    "user_query": "Apply to accounts above 90% only",
+    "ai_message": "Applied to the 70 accounts scoring 90% or above, for $683.29 through the rebilling API, each written to Resolution History with its rebill ID. Zero failures. The 17 below 90% are still open — they are held, not dropped, so they carry into your escalation queue rather than quietly disappearing from the cycle. You still have $4,850 at risk across the other five patterns.",
+    "suggested_chips": [
+      "Escalate the low-confidence accounts",
+      "Open Duplicate Device Installments",
+      "Summarize what I have resolved"
+    ],
+    "data_sources_used": ["Bulk-resolution agent", "Rebilling API", "Resolution History log"],
+    "capability": "Automated Action",
+    "confidence": 95,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_op_escalate_low": {
+    "user_query": "Escalate the low-confidence accounts",
+    "ai_message": "Escalated the 17 sub-90% accounts to SME review with the CGCM sync log, the eligibility record, and the per-account confidence attached, so the reviewer starts from the evidence rather than from the flag. Logged to Resolution History as Escalated with your ID and timestamp. Expect these back outside this cycle — SME review does not fit a 36-hour window, which is worth saying out loud before the cycle closes.",
+    "suggested_chips": [
+      "Apply to accounts above 90% only",
+      "Open Duplicate Device Installments",
+      "Summarize what I have resolved"
+    ],
+    "data_sources_used": ["Resolution History log", "Governance export"],
+    "capability": "Automated Action",
+    "confidence": 93,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_op_next_pattern": {
+    "user_query": "Open Duplicate Device Installments",
+    "ai_message": "Thirty-four accounts charged twice for the same device-loan installment in this cycle, $1,020 in total, 92% confidence. Root cause: a LoanSys database replication timing issue that wrote each installment row twice. A duplicate is matched on IMEI plus installment sequence, not on amount, so a genuine second device on the same account is not caught here. Estimated resolution time is 10 minutes — the fastest bulk fix of the six.",
+    "suggested_chips": [
+      "Show me the patterns",
+      "Summarize what I have resolved",
+      "Export the audit report"
+    ],
+    "data_sources_used": ["Device-loan / installment ledger", "IMEI records", "Billing system"],
+    "capability": "Anomaly Detection",
+    "confidence": 92,
+    "illustrative": true
+  },
+
+  "att_op_fastest_path": {
+    "user_query": "What is my fastest path to close the cycle?",
+    "ai_message": "Four patterns sit above the 90% auto-resolve threshold — roaming, autopay, duplicates and tax — totalling 161 accounts and $3,166.80. Apply those in bulk and you clear 78% of the accounts and 65% of the dollars in about 45 minutes. That leaves Plan Migration at 85% for review and the five edge cases for individual investigation, which is roughly where the remaining 11.7 hours should go. The sequencing matters more than the speed: do the bulk fixes first so the edge cases get real attention rather than the last twenty minutes.",
+    "suggested_chips": [
+      "Apply Fix to All",
+      "Show me the patterns",
+      "Summarize what I have resolved"
+    ],
+    "data_sources_used": ["Pattern-detection agent", "SLA clock", "Confidence-scoring agent"],
+    "capability": "Predictive Intelligence",
+    "confidence": 89,
+    "illustrative": true
+  },
+
+  "att_op_export_audit": {
+    "user_query": "Export the audit report",
+    "ai_message": "The audit report for cycle 2026-02, Consumer-East-02 is staged: five resolutions, three executed, one marked false positive, one escalated to SME, with rebill IDs, before and after amounts, confidence tier, operator ID and timestamp on every row. In this demo the export is staged rather than generated — the point is that the log is written as you act, not reconstructed afterwards.",
+    "suggested_chips": [
+      "Export as PDF",
+      "Show escalated items",
+      "Return to cycle overview"
+    ],
+    "data_sources_used": ["Resolution History log", "Governance export"],
+    "capability": "Automated Action",
+    "confidence": 96,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_op_export_pdf": {
+    "user_query": "Export as PDF",
+    "ai_message": "PDF staged for cycle 2026-02, Consumer-East-02 — five resolution rows, the summary tiles, and the confidence tier behind each decision. Governance gets the same record you acted from, which is the whole difference from the old world where the audit trail was assembled after the fact from three systems that did not agree.",
+    "suggested_chips": [
+      "Show escalated items",
+      "Return to cycle overview",
+      "Summarize what I have resolved"
+    ],
+    "data_sources_used": ["Resolution History log", "Governance export"],
+    "capability": "Automated Action",
+    "confidence": 96,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_op_escalated_items": {
+    "user_query": "Show escalated items",
+    "ai_message": "One escalation this session: ACC-239881, a plan-price mismatch at Medium confidence, routed to SME because the migration effective date is ambiguous and repricing on the wrong date creates a new dispute rather than closing one. No rebill ID — nothing was written to the customer's bill. It sits at Escalated in Resolution History with the evidence attached, and it will not resolve inside this cycle's window.",
+    "suggested_chips": [
+      "Return to cycle overview",
+      "Export the audit report",
+      "Show me the patterns"
+    ],
+    "data_sources_used": ["Resolution History log"],
+    "capability": "Friction Observability",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "att_op_return_overview": {
+    "user_query": "Return to cycle overview",
+    "ai_message": "Back on cycle 2026-02 for Consumer-East-02. Three patterns executed, one anomaly marked a false positive, one escalated — a 60% direct-resolution rate with the rest in flight, and 11.7 hours still on the clock. Every action is logged with its rebill ID and confidence tier. Want to pick up the next pattern?",
+    "suggested_chips": [
+      "Show me the patterns",
+      "Open Duplicate Device Installments",
+      "What is my fastest path to close the cycle?"
+    ],
+    "data_sources_used": ["Anomaly-detection engine", "Resolution History log", "SLA clock"],
+    "capability": "Proactive Intelligence",
+    "confidence": 92,
+    "illustrative": true
+  },
+
+  "att_op_current_state": {
+    "user_query": "How does this work today, without the workbench?",
+    "ai_message": "Today the cycle opens with 207 anomalies and no grouping. You pull the billing, rate-card, tax and account reports, and they do not reconcile with each other, so every anomaly becomes a small investigation: is this a real error or a legitimate change the customer made? Real ones get corrected one account at a time; unclear ones get escalated and lose a day. Then the 36-hour window closes and whatever did not fit becomes next cycle's credits, calls and disputes. The friction is not detection — it is that trusting a fix costs more time than making it.",
+    "suggested_chips": [
+      "Where does the workbench change the picture?",
+      "Walk me through my cycle",
+      "Show me the patterns"
+    ],
+    "data_sources_used": ["Process baseline (illustrative)"],
+    "capability": "Friction Observability",
+    "confidence": 90,
+    "illustrative": true
+  },
+
+  "att_op_future_state": {
+    "user_query": "Where does the workbench change the picture?",
+    "ai_message": "Five interventions. Reconciling disagreeing reports becomes one fused cycle view you can ask questions of. Investigating each anomaly by hand becomes six pattern decisions with a named root cause. Deciding whether a correction is safe becomes per-account confidence plus current-versus-corrected reconciliation. Correcting one account at a time becomes Apply Fix to All with rebill IDs written as you act. And finding out downstream that you were late becomes a projection of calls prevented against the SLA clock. The investigation moves to the system; the decision stays with you.",
+    "suggested_chips": [
+      "How does this work today, without the workbench?",
+      "Walk me through my cycle",
+      "Show me the patterns"
+    ],
+    "data_sources_used": ["Process baseline (illustrative)"],
+    "capability": "Converged Conversation",
+    "confidence": 91,
+    "illustrative": true
+  },
+
+  "att_op_journey": {
+    "user_query": "Walk me through my cycle",
+    "ai_message": "Four phases. The cycle opens and you need scope and a clock — 207 anomalies, $4,850 at risk, 91.6% confidence, 11.7 hours left. Then you need the anomalies to stop feeling random: six patterns, each with a cause you can act on. Then the hard part, trusting the fix: named root cause, 94% confidence, and a per-account preview of current versus corrected. Then you act and prove it: Apply Fix to All for 87 accounts and $850.14, with rebill IDs and a governance log written as you go. The moments that matter are 207 becoming 6, the root cause making a bulk fix feel safe, and one click landing in an audit trail.",
+    "suggested_chips": [
+      "Show me the patterns",
+      "How does this work today, without the workbench?",
+      "Where does the workbench change the picture?"
+    ],
+    "data_sources_used": ["Journey baseline (illustrative)"],
+    "capability": "Converged Conversation",
+    "confidence": 90,
+    "illustrative": true
+  }
+}

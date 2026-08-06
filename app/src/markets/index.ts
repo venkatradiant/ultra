@@ -11,10 +11,12 @@ import { financialServicesMarket } from './financial-services/market.manifest';
 import { healthcareMarket } from './healthcare/market.manifest';
 import { commercialMarket } from './commercial/market.manifest';
 import { oilGasMarket } from './oil-gas/market.manifest';
+import { telecomMarket } from './telecom/market.manifest';
 
 export const marketRegistry: MarketRegistry = [
   financialServicesMarket,
   healthcareMarket,
   commercialMarket,
   oilGasMarket,
+  telecomMarket,
 ];

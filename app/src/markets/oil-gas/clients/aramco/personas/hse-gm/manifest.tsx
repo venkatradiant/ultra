@@ -26,8 +26,10 @@ import EvidenceTrustPanel from '@/components/aramco/EvidenceTrustPanel';
 import HeadcountReconciliationPanel from '@/components/aramco/HeadcountReconciliationPanel';
 import PrioritizedActionCards from '@/components/aramco/PrioritizedActionCards';
 import MusterBoard from '@/components/aramco/MusterBoard';
-import CurrentStateDiagram from '@/components/aramco/CurrentStateDiagram';
-import HseJourneyMap from '@/components/aramco/HseJourneyMap';
+import CurrentStateDiagram from '@/components/process/CurrentStateDiagram';
+import { getCurrentState } from '@/data/aramco/hse-gm';
+import JourneyMap from '@/components/process/JourneyMap';
+import { getJourney } from '@/data/aramco/hse-gm';
 
 const flows = (getPersonaFlowConfigs('aramco') as unknown as Record<string, PersonaManifest['flows']>).aramco_hse_gm;
 
@@ -217,12 +219,12 @@ const manifest: PersonaManifest = {
 
     // Spec §8 — how high-risk work runs today, and the four interventions.
     if (k === 'aramco_hse_current_state' || k === 'aramco_hse_future_state') {
-      out.push(<CurrentStateDiagram key="current-state" />);
+      out.push(<CurrentStateDiagram key="current-state" getter={getCurrentState} productName="TrackLynk.AI" />);
     }
 
     // Spec §9 — the turnaround-day journey and its traceability to signals.
     if (k === 'aramco_hse_journey') {
-      out.push(<HseJourneyMap key="journey" />);
+      out.push(<JourneyMap key="journey" getter={getJourney} title="HSE General Manager — Turnaround Day Journey" idleHint="Hover a phase for its pain points, the GM's own words, and the opportunity that answers them. The emotional low is Phase 4 — the muster — which is where this demo's payoff sits." />);
     }
 
     return out.length ? out : undefined;

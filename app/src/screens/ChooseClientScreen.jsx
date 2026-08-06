@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Landmark, HeartPulse, Building2, Globe, Factory, ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Landmark, HeartPulse, Building2, Globe, Factory, RadioTower, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { useClient } from '../context/ClientContext';
 import { getMarkets } from '@core/runtime/registry';
 import UltraMark from '../components/brand/UltraMark';
@@ -20,6 +20,12 @@ const MARKET_META = {
   // emerald→sky (Aramco's own green→blue was near-identical to it here) and of
   // Commercial's warm orange.
   oil_gas: { icon: Factory, from: '#475569', to: '#F59E0B' },
+  // AT&T's globe blue → its deep interface blue. This one deliberately breaks
+  // the "distinct hue per market" rule: the only client in it is AT&T, and a
+  // violet tile in front of an AT&T-blue app was a wayfinding win that cost a
+  // recognition win. It stays apart from Financial Services' blue→indigo by
+  // running light→dark rather than mid→purple.
+  telecom: { icon: RadioTower, from: '#3EB1EA', to: '#00388F' },
 };
 const marketMeta = (id) => MARKET_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
 

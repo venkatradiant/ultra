@@ -33,8 +33,21 @@ export default function BehavioralSegmentationDiagram() {
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
+  const isAtt = persona.id.startsWith('att_');
 
-  const clientConfig = isAramco ? {
+  const clientConfig = isAtt ? {
+    sourcesLabel: 'BILLING DATA SOURCES',
+    primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
+    secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'CGCM Sync Log', 'Resolution History'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'This capability shows where the sources disagree and reconciles them rather than picking a favourite. Current minus corrected equals the exact charge that should not have applied — per account, with its own confidence — so a bulk correction is a reversal of a named failure, not a model\'s opinion about the right amount.',
+    adpSubtitle: 'Unified billing view across charges, rate cards, tax versions, entitlements and payment-method history',
+    ontologyDesc: "'Overcharged' means one thing",
+    enrichmentDesc: 'Adds eligibility, rate-card version and sync-window context',
+    gapText: 'The billing system says one charge, the rate card implies another, the tax table is on a different version, and the account\'s payment-method history has to be checked by hand to know whether a missing discount is an error or a legitimate change.',
+    withText: 'One reconciled figure per account with its own confidence score, and the weakest rows surfaced as a choice — exclude, escalate, or accept — rather than buried inside a bulk action.',
+  } : isAramco ? {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ds-att-01",
+    "name": "Billing System of Record",
+    "status": "connected",
+    "description": "The charges as billed for the active cycle: monthly recurring, one-time, device-loan installments, discounts and tax lines. Every 'current amount' on an impacted-accounts row is read from here.",
+    "icon": "database",
+    "lastSync": "2026-02-16T10:34:00",
+    "recordCount": 12487233,
+    "freshness": "under 1 minute ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-02",
+    "name": "Anomaly-Detection Engine",
+    "status": "connected",
+    "description": "The rule and ML layers that flag out-of-policy charges, plus the grouping agent that collapses them into patterns with a shared root cause. Produces the 207 anomalies and the six groups.",
+    "icon": "activity",
+    "lastSync": "2026-02-16T10:31:00",
+    "recordCount": 207,
+    "freshness": "3 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-03",
+    "name": "Rate-Card and Plan Catalog",
+    "status": "connected",
+    "description": "Plan pricing, promotional rates and migration effective dates. What a charge should have been, against which the billed amount is reconciled.",
+    "icon": "file-text",
+    "lastSync": "2026-02-16T09:50:00",
+    "recordCount": 4182,
+    "freshness": "44 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-04",
+    "name": "Tax-Rule Engine and Jurisdiction Tables",
+    "status": "syncing",
+    "description": "State and local rate tables by jurisdiction, versioned. The Incorrect State Tax pattern exists because this source was still on the pre-January version when the cycle ran — the gap is visible here rather than inferred.",
+    "icon": "shield",
+    "lastSync": "2026-02-16T02:15:00",
+    "recordCount": 1147,
+    "freshness": "8 hours ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-05",
+    "name": "Account and Payment-Method History",
+    "status": "connected",
+    "description": "Enrollment state and payment-method changes per account. This is what separates a real missing-discount error from a legitimate change the customer made themselves.",
+    "icon": "users",
+    "lastSync": "2026-02-16T10:30:00",
+    "recordCount": 12487233,
+    "freshness": "4 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-06",
+    "name": "Rebilling API",
+    "status": "connected",
+    "description": "Executes approved bulk corrections and returns a rebill ID per account. Write path — nothing reaches a customer's bill without a reviewed action, and every call is logged to Resolution History.",
+    "icon": "zap",
+    "lastSync": "2026-02-16T10:32:00",
+    "recordCount": 3,
+    "freshness": "2 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-07",
+    "name": "Confidence-Scoring Agent",
+    "status": "connected",
+    "description": "Scores every detected anomaly against the tier thresholds the Platform Admin sets. The per-account score on an impacted-accounts row comes from here, not from the pattern average.",
+    "icon": "target",
+    "lastSync": "2026-02-16T10:29:00",
+    "recordCount": 207,
+    "freshness": "5 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-08",
+    "name": "Agent Observability Runtime",
+    "status": "connected",
+    "description": "Accuracy, latency (mean, P95, P99), error rate and inference counts for the four pipeline agents. The Root Cause Analysis warning is a reading from this source, not a heuristic.",
+    "icon": "gauge",
+    "lastSync": "2026-02-16T10:22:00",
+    "recordCount": 124863,
+    "freshness": "12 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-09",
+    "name": "Model Registry and Retraining Feedback Loop",
+    "status": "connected",
+    "description": "The deployed model tag (v2.4.1) and the operator corrections captured as labeled training data. Every correction an operator makes here becomes next month's detection.",
+    "icon": "brain",
+    "lastSync": "2026-02-15T18:00:00",
+    "recordCount": 1847,
+    "freshness": "yesterday",
+    "vendorAgnostic": true,
+    "illustrative": true
+  },
+  {
+    "id": "ds-att-10",
+    "name": "Resolution History and Governance Log",
+    "status": "connected",
+    "description": "The audit trail: who approved what, at which confidence tier, before and after amounts, rebill ID and timestamp. Written as the operator acts rather than reconstructed afterwards.",
+    "icon": "history",
+    "lastSync": "2026-02-16T10:32:00",
+    "recordCount": 5,
+    "freshness": "2 minutes ago",
+    "vendorAgnostic": true,
+    "illustrative": true
+  }
+]

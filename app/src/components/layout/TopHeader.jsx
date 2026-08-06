@@ -52,6 +52,11 @@ export default function TopHeader({ onMenuClick }) {
     '/live-site': labels.liveSite || 'Live Site Picture',
     '/permits': labels.permits || 'Permit and Job Detail',
     '/muster': labels.muster || 'Muster Status',
+    // Telecom / AI Billing Workbench routes — labels come from navLabels.
+    '/patterns': labels.patterns || 'Patterns',
+    '/dashboard': labels.dashboard || 'Dashboard',
+    '/history': labels.history || 'Resolution History',
+    '/admin': labels.adminConsole || 'Platform Administration',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || labels.ask || 'Ask the AI';

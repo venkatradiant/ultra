@@ -34,8 +34,18 @@ export default function ProactiveIntelligenceDiagram() {
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
+  const isAtt = persona.id.startsWith('att_');
 
-  const clientConfig = isAramco ? {
+  const clientConfig = isAtt ? {
+    sourcesLabel: 'BILLING DATA SOURCES',
+    primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
+    secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'Confidence-Scoring Agent', 'Rebilling API'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Your billing system reasons within its own charges. This capability reads across billing, the rate card, the tax tables, account payment-method history and the usage-rating engine — surfacing 207 anomalies already grouped into six resolvable patterns, ranked by dollar impact and confidence, before you ask.',
+    gapText: 'The cycle opens with a few hundred anomalies buried in 12.4 million accounts, and no grouping. Four reports that do not reconcile with each other, and a 36-hour window to make sense of them.',
+    withText: 'One briefing at cycle open: 207 anomalies in six patterns, $4,850 at risk, 91.6% average confidence, and the SLA clock in the same frame.',
+  } : isAramco ? {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
@@ -123,7 +133,11 @@ export default function ProactiveIntelligenceDiagram() {
               <span style={{ fontSize: fs.labelSm, color: '#666666', fontWeight: 400 }}>Scoring, correlation, and prioritization</span>
             </div>
             <div className="flex flex-1 min-h-0" style={{ gap: 'min(0.6vw, 8px)' }}>
-              {(isAramco ? [
+              {(isAtt ? [
+                { name: 'Signal Correlation', desc: 'Groups anomalies by shared root cause across billing, rate card, tax tables and payment-method history' },
+                { name: 'Anomaly Scoring', desc: 'Per-account confidence against the tier thresholds that decide auto-resolve, review or SME escalation' },
+                { name: 'Priority Ranking', desc: 'Dollar impact against accounts affected — the two orders disagree, and both are shown' },
+              ] : isAramco ? [
                 { name: 'Signal Correlation', desc: 'Fuses permit validity with live worker and asset location, gate events, and camera presence' },
                 { name: 'Anomaly Scoring', desc: 'Scores permit breaches, condition lapses, and headcount divergence by consequence' },
                 { name: 'Priority Ranking', desc: 'Risk-bucket weighting — safety, health, equipment, compliance — with live occupancy as the multiplier' },
@@ -155,7 +169,9 @@ export default function ProactiveIntelligenceDiagram() {
           >
             <p className="flex-shrink-0" style={{ fontSize: fs.label, color: '#00897B', fontWeight: 700, letterSpacing: '1.5px', margin: '0 0 min(1.2vh, 10px) 0' }}>RESPONSIBLE AI</p>
             <div className="flex-1 flex flex-col justify-around">
-              {(isAramco
+              {(isAtt
+                ? ['Data Observability', 'Compliance & Regulation (billing accuracy, state tax jurisdictions, consumer-protection rules)', 'Role-Based Access Control', 'Bias Removal']
+                : isAramco
                 ? ['Data Observability', 'Compliance & Regulation (permit-to-work regime, national regulator, board safety committee)', 'Role-Based Access Control', 'Bias Removal']
                 : isNewfold
                 ? ['Data Observability', 'Compliance & Regulation (PCI-DSS, auto-renewal & negative-option, GDPR/WHOIS)', 'Role-Based Access Control', 'Bias Removal']

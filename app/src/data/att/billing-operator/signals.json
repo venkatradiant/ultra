@@ -1,0 +1,188 @@
+[
+  {
+    "id": "SIG-ATT-OPS-001",
+    "type": "missing_discount_pattern",
+    "title": "Missing AutoPay Discount — 87 Accounts, One Root Cause",
+    "description": "AutoPay discount not applied despite customer eligibility and no payment-method change detected. Root cause: a CGCM system sync failure during the Feb 12 maintenance window. The errors are not random — one failed sync produced all 87.",
+    "impact": "high",
+    "severity": "warning",
+    "bucket": "revenue_leakage",
+    "primary": true,
+    "action": "Review the 87 impacted accounts and Apply Fix to All — returns $870 to customers and prevents an estimated 63 support calls.",
+    "sources": [
+      "Billing system",
+      "Account payment-method history",
+      "Discount-eligibility rules"
+    ],
+    "timestamp": "2026-02-16T10:31:00Z",
+    "freshness": "3 minutes ago",
+    "trend": "new this cycle",
+    "related_segment": "PATTERN-001",
+    "metrics": {
+      "accounts": 87,
+      "confidence": "94%",
+      "impact": "$870",
+      "callsPrevented": 63
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 94,
+      "rationale": "The correction is not an estimate: current minus corrected equals the exact autopay discount that failed to apply, read from the eligibility rules the sync should have honoured. Seventeen of the 87 score below 90% and can be excluded or escalated rather than assumed.",
+      "signals_used": ["Billing system", "Account payment-method history", "CGCM sync log"],
+      "threshold": 90,
+      "model_version": "billing-anomaly-v2.4.1",
+      "validated_at": "2026-02-16T10:31:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ATT-OPS-002",
+    "type": "duplicate_charge_pattern",
+    "title": "Duplicate Device Installments — Highest Dollar Impact",
+    "description": "Device-loan installment charges appearing twice for the same IMEI in the current billing cycle. A LoanSys replication timing issue wrote each installment twice; the ledger shows both, and the customer is billed for both.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "revenue_leakage",
+    "action": "Bulk-correct the duplicates — the largest per-pattern dollar impact in this cycle.",
+    "sources": ["Device-loan / installment ledger", "IMEI records"],
+    "timestamp": "2026-02-16T10:31:00Z",
+    "freshness": "3 minutes ago",
+    "trend": "new this cycle",
+    "related_segment": "PATTERN-002",
+    "metrics": {
+      "accounts": 34,
+      "confidence": "92%",
+      "impact": "$1,020"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 92,
+      "rationale": "A duplicate is identified by matching IMEI plus installment sequence within the cycle, not by amount similarity — so a legitimate second device on the same account is not caught by this pattern.",
+      "signals_used": ["Device-loan / installment ledger", "IMEI records"],
+      "threshold": 90,
+      "model_version": "billing-anomaly-v2.4.1",
+      "validated_at": "2026-02-16T10:31:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ATT-OPS-003",
+    "type": "roaming_overcharge_pattern",
+    "title": "International Roaming Overcharge — Highest Confidence",
+    "description": "Mexico and Canada roaming charges applied despite the plan including free roaming in those countries. The roaming feature flag was not mapped after the plan-update rollout, so entitlements the customer already has were never consulted.",
+    "impact": "high",
+    "severity": "critical",
+    "bucket": "customer_impact",
+    "action": "Reverse the overcharges in bulk — 96% confidence, the highest of the six patterns.",
+    "sources": ["Roaming / usage-rating engine", "Plan-feature entitlements"],
+    "timestamp": "2026-02-16T10:31:00Z",
+    "freshness": "3 minutes ago",
+    "trend": "new this cycle",
+    "related_segment": "PATTERN-005",
+    "metrics": {
+      "accounts": 16,
+      "confidence": "96%",
+      "impact": "$1,200"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 96,
+      "rationale": "Entitlement is a boolean on the plan record, and the usage-rating engine logs the country per session. The check is a direct comparison rather than an inference, which is why this pattern scores highest.",
+      "signals_used": ["Roaming / usage-rating engine", "Plan-feature entitlements"],
+      "threshold": 90,
+      "model_version": "billing-anomaly-v2.4.1",
+      "validated_at": "2026-02-16T10:31:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ATT-OPS-004",
+    "type": "tax_rule_pattern",
+    "title": "Incorrect State Tax Calculation — Stale Rate Table",
+    "description": "State tax calculated using an outdated rate table: 12% applied where the updated jurisdiction rate is 7%. The tax engine never picked up the January 2026 rate changes, so the error is systematic rather than per-account.",
+    "impact": "medium",
+    "severity": "warning",
+    "bucket": "compliance",
+    "action": "Apply the corrected tax rate in bulk, and escalate the rule-version fix to Platform Admin so next cycle does not repeat it.",
+    "sources": ["Tax-rule engine", "Jurisdiction rate tables"],
+    "timestamp": "2026-02-16T10:31:00Z",
+    "freshness": "3 minutes ago",
+    "trend": "recurring",
+    "related_segment": "PATTERN-003",
+    "metrics": {
+      "accounts": 24,
+      "confidence": "91%",
+      "impact": "$76.80"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 91,
+      "rationale": "The rate table carries a version stamp, so the comparison is between two known versions rather than a judgment about which rate is correct. The dollar impact is small; the compliance exposure is not.",
+      "signals_used": ["Tax-rule engine", "Jurisdiction rate tables"],
+      "threshold": 90,
+      "model_version": "billing-anomaly-v2.4.1",
+      "validated_at": "2026-02-16T10:31:00Z",
+      "escalation": { "triggered": true, "reason": "Rule-version fix is a platform change, not a billing correction", "route_to": "Platform Admin", "review_queue": "Configuration" }
+    }
+  },
+  {
+    "id": "SIG-ATT-OPS-005",
+    "type": "migration_pattern",
+    "title": "Plan Migration Rate Mismatch — Lowest-Confidence Bulk Pattern",
+    "description": "Customers migrated to a new unlimited plan are still charged old rate-card pricing. A rate-card sync delay between ORBPM and the billing system means the migration landed in one system and not the other.",
+    "impact": "medium",
+    "severity": "warning",
+    "bucket": "revenue_leakage",
+    "action": "Reprice to the correct rate card after confirming migration effective dates — at 85% this is the one bulk pattern worth checking before applying.",
+    "sources": ["Plan catalog", "Rate-card table", "Migration records"],
+    "timestamp": "2026-02-15T18:04:00Z",
+    "freshness": "yesterday",
+    "trend": "persistent",
+    "related_segment": "PATTERN-004",
+    "metrics": {
+      "accounts": 41,
+      "confidence": "85%",
+      "impact": "$615"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 85,
+      "rationale": "Effective dates are the weak link: where a migration date is ambiguous the correct rate is genuinely uncertain, so this pattern sits in the operator-review tier rather than the auto-resolve one.",
+      "signals_used": ["Plan catalog", "Rate-card table", "Migration records"],
+      "threshold": 90,
+      "model_version": "billing-anomaly-v2.4.1",
+      "validated_at": "2026-02-15T18:04:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ATT-OPS-006",
+    "type": "edge_case_residue",
+    "title": "Five Edge Cases That Fit No Pattern",
+    "description": "Unique billing anomalies with no shared root cause — the residue after grouping. Five accounts, $1,068.20, and the highest dollar-per-account of the cycle. These are the ones worth an operator's actual attention.",
+    "impact": "medium",
+    "severity": "info",
+    "bucket": "investigation",
+    "action": "Investigate individually and escalate to SME where the cause is not established.",
+    "sources": ["Cross-source; no single pattern match"],
+    "timestamp": "2026-02-16T10:31:00Z",
+    "freshness": "3 minutes ago",
+    "trend": "new this cycle",
+    "related_segment": "PATTERN-006",
+    "metrics": {
+      "accounts": 5,
+      "confidence": "72%",
+      "impact": "$1,068.20"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 72,
+      "rationale": "Deliberately low. These did not group because nothing explains them yet; the score reflects that the system can say a charge is wrong without being able to say why. That is what makes them individual work.",
+      "signals_used": ["Billing system", "Cross-source reconciliation"],
+      "threshold": 70,
+      "model_version": "billing-anomaly-v2.4.1",
+      "validated_at": "2026-02-16T10:31:00Z",
+      "escalation": { "triggered": true, "reason": "No established root cause", "route_to": "SME review", "review_queue": "Edge cases" }
+    }
+  }
+]

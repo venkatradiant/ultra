@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The cycle opens and the work is already sorted. 207 anomalies across 12.4 million accounts arrive pre-grouped into six resolvable patterns, ranked by dollar impact and confidence, with the SLA clock already counting. Nobody had to pull a report or ask a question — the briefing that used to take a morning of reconciling four systems is the first thing on screen.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Anomaly Detection",
+    "description": "The core engine. Rule and ML layers detect out-of-policy charges — missing discounts, duplicate installments, stale tax rates, roaming overcharges — and the grouping agent collapses them by shared root cause. What makes this useful is not the detection but the grouping: 207 individual investigations become six decisions, and the residue that fits no pattern is separated out rather than hidden inside an average.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Converged Conversation",
+    "description": "One query bar answers across the billing system, the account payment-method history, the discount-eligibility rules and the CGCM sync log at once, over a single fused cycle view. In the old world these four sources were four reports that did not reconcile, and the reconciliation was the job. Here the question 'why is this charge wrong?' is answered in one sentence with the sources named.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Friction Observability",
+    "description": "This is the 'can I trust this correction?' moment made visible. Every account carries its own confidence score, not just the pattern average; current versus corrected reconciles to the exact discount that failed to apply; and the 17 accounts below 90% are surfaced as a choice — exclude, escalate, or accept — rather than buried in a bulk action. The system shows you where it is least sure instead of presenting one number and hoping.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Projects what happens if the work slips: roughly 63 additional support calls, about 19 hours of customer hold time, and $870 issued later as credits instead of corrected now. Set against 11.7 hours of remaining SLA, that turns 'should I do this today?' from a judgment call into an arithmetic one. The point is preventing the downstream event rather than discovering it next cycle.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "Executes the reviewed decision through the rebilling API — 87 accounts, $850.14, one action — and writes each correction to Resolution History with its rebill ID, before and after amounts, confidence tier, operator ID and timestamp. Escalate and defer write the same trail. The audit record is produced as the operator acts, which is the difference between standing behind a bulk correction and reconstructing one afterwards.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

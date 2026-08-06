@@ -33,8 +33,25 @@ export default function AnomalyDetectionDiagram() {
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
+  const isAtt = persona.id.startsWith('att_');
 
-  const clientConfig = isAramco ? {
+  const clientConfig = isAtt ? {
+    sourcesLabel: 'BILLING SIGNAL SOURCES',
+    primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
+    secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'CGCM Sync Log', 'Plan-Feature Entitlements'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Detects out-of-policy charges — missing discounts, duplicate installments, stale tax rates, roaming overcharges — and groups them by shared root cause. The grouping is what matters: 207 individual investigations become six decisions, and the residue that fits no pattern is separated out rather than averaged in.',
+    monitorAgents: [
+      { name: 'Rule Layer', desc: 'Deterministic policy checks on discounts, tax rates and entitlements — 40% of detections' },
+      { name: 'ML Layer', desc: 'Learned detection for the breaks no rule was written for — 30%' },
+      { name: 'LLM Edge Review', desc: 'The residue neither layer resolves: edge cases needing a written explanation — 12%' },
+      { name: 'Pattern Grouping', desc: 'Collapses anomalies into groups by shared root cause, not by charge type' },
+      { name: 'Root Cause Analysis', desc: 'Names the cause in plain language — a CGCM sync failure, a stale tax-rule version' },
+    ],
+    gapText: 'Detection was never the hard part. Anomalies arrive individually flagged with no shared cause, so every one becomes a small investigation across four systems that do not reconcile — and there are more anomalies than hours in the window.',
+    withText: 'Six patterns with a named root cause, a confidence score and a dollar figure each — plus the five edge cases held out where they can get real attention.',
+  } : isAramco ? {
     sourcesLabel: 'ARAMCO SIGNAL SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],

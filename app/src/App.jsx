@@ -27,6 +27,14 @@ const LiveSitePicture = lazy(() => import('./screens/LiveSitePicture'));
 const PermitJobDetail = lazy(() => import('./screens/PermitJobDetail'));
 const MusterStatus = lazy(() => import('./screens/MusterStatus'));
 
+// Telecom / AI Billing Workbench routes. Lazy for the same reason again: the
+// Dashboard alone pulls recharts plus the heatmap, explorer and micro-agent
+// tables that only this market renders.
+const PatternResolution = lazy(() => import('./screens/PatternResolution'));
+const BillingDashboard = lazy(() => import('./screens/BillingDashboard'));
+const ResolutionHistory = lazy(() => import('./screens/ResolutionHistory'));
+const PlatformAdminConsole = lazy(() => import('./screens/PlatformAdminConsole'));
+
 // Expose navigate() for the demo runner
 function DemoNavigateBridge() {
   const navigate = useNavigate();
@@ -105,6 +113,38 @@ function AppContent() {
                   element={(
                     <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
                       <MusterStatus />
+                    </Suspense>
+                  )}
+                />
+                <Route
+                  path="/patterns"
+                  element={(
+                    <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                      <PatternResolution />
+                    </Suspense>
+                  )}
+                />
+                <Route
+                  path="/dashboard"
+                  element={(
+                    <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                      <BillingDashboard />
+                    </Suspense>
+                  )}
+                />
+                <Route
+                  path="/history"
+                  element={(
+                    <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                      <ResolutionHistory />
+                    </Suspense>
+                  )}
+                />
+                <Route
+                  path="/admin"
+                  element={(
+                    <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                      <PlatformAdminConsole />
                     </Suspense>
                   )}
                 />

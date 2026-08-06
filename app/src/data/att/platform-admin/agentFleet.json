@@ -1,0 +1,46 @@
+[
+  {
+    "id": "pattern-detection",
+    "name": "Pattern Detection Agent",
+    "description": "Identifies billing anomaly patterns across accounts",
+    "status": "healthy",
+    "accuracy": 98.3,
+    "latencyMs": 245,
+    "errorRate": 0.4,
+    "lastRunLabel": "2 min ago",
+    "note": "Highest-volume agent in the fleet. Its accuracy is what makes the six-pattern grouping credible at 12.4M accounts."
+  },
+  {
+    "id": "confidence-scoring",
+    "name": "Confidence Scoring Agent",
+    "description": "Calculates confidence levels for detected anomalies",
+    "status": "healthy",
+    "accuracy": 96.7,
+    "latencyMs": 189,
+    "errorRate": 0.8,
+    "lastRunLabel": "5 min ago",
+    "note": "Scores against the tier thresholds set on this console. A change to the High threshold changes what this agent's output routes to."
+  },
+  {
+    "id": "root-cause-analysis",
+    "name": "Root Cause Analysis Agent",
+    "description": "Determines underlying causes of billing discrepancies",
+    "status": "warning",
+    "accuracy": 92.1,
+    "latencyMs": 1250,
+    "errorRate": 2.3,
+    "lastRunLabel": "12 min ago",
+    "note": "In Warning on latency, not accuracy: 1250ms against a 499ms fleet average. Operators feel this as slower root-cause explanations, not wrong ones."
+  },
+  {
+    "id": "bulk-resolution",
+    "name": "Bulk Resolution Agent",
+    "description": "Processes pattern-based bulk corrections",
+    "status": "healthy",
+    "accuracy": 99.8,
+    "latencyMs": 312,
+    "errorRate": 0.1,
+    "lastRunLabel": "1 min ago",
+    "note": "The write path to the rebilling API. Its 0.10% error rate is the one that matters most — every failure here is a customer's bill."
+  }
+]

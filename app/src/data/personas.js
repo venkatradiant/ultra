@@ -373,6 +373,41 @@ const personas = {
       'Converged Conversation',
     ],
   },
+
+  // ─── Telecommunications — AT&T, AI Billing Workbench ───────────
+  // Names are representative and illustrative (spec §3). Must stay identical
+  // to the PersonaModule identity in each persona's index.ts — manifests.test
+  // asserts they do not drift.
+  att_billing_operator: {
+    id: 'att_billing_operator',
+    name: 'Bianca R.',
+    initials: 'BR',
+    role: 'Billing Operator — Anomaly Resolution',
+    greeting: 'Bianca',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Converged Conversation',
+      'Friction Observability',
+      'Predictive Intelligence',
+      'Automated Action',
+    ],
+  },
+  att_platform_admin: {
+    id: 'att_platform_admin',
+    name: 'Aria N.',
+    initials: 'AN',
+    role: 'Platform Admin — System Configuration',
+    greeting: 'Aria',
+    capabilities: [
+      'Proactive Intelligence',
+      'Friction Observability',
+      'Converged Conversation',
+      'Predictive Intelligence',
+      'Automated Action',
+      'Anomaly Detection',
+    ],
+  },
 };
 
 export default personas;

@@ -43,8 +43,18 @@ export default function ActionExecutionDiagram() {
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
+  const isAtt = persona.id.startsWith('att_');
 
-  const clientConfig = isAramco ? {
+  const clientConfig = isAtt ? {
+    targetsLabel: 'BILLING EXECUTION TARGETS',
+    primaryTargets: ['Rebilling API', 'Resolution History', 'SME Review Queue', 'Governance Log'],
+    secondaryTargets: ['Model Registry', 'Retraining Feedback Loop', 'Platform Configuration', 'Operator Notifications'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Executes the reviewed decision — 87 accounts, $850.14, one action — through the rebilling API, and writes each correction to Resolution History with its rebill ID, before and after amounts, confidence tier, operator ID and timestamp. Escalate, defer and mark-false-positive write the same trail; a decision not to act is still a decision.',
+    gapText: 'Corrections are made one account at a time, and the audit trail is reconstructed afterwards from systems that do not agree — so nobody can answer "who corrected what, and why?" a week later.',
+    withText: 'Bulk correction in one reviewed action, with the governance record produced as the operator acts rather than assembled after the fact.',
+  } : isAramco ? {
     targetsLabel: 'ARAMCO EXECUTION TARGETS',
     primaryTargets: ['Permit-to-Work', 'HSE Action Tracker', 'Shift Supervisors', 'Zone Wardens'],
     secondaryTargets: ['Maintenance Work Orders', 'Incident Log', 'Shift Handover Report', 'Audit Export'],

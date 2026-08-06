@@ -1,0 +1,304 @@
+{
+  "att_adm_greeting": {
+    "user_query": "Are all the AI agents healthy right now?",
+    "ai_message": "Three of four agents are healthy. Pattern Detection is at 98.3% accuracy, Confidence Scoring at 96.7%, and Bulk Resolution at 99.8% with a 0.10% error rate. One agent, Root Cause Analysis, is in Warning: response time is elevated. Overall fleet accuracy is 96.7% and average latency is 499ms across 124,863 inferences at 99.7% uptime.",
+    "suggested_chips": [
+      "Why is Root Cause Analysis degraded?",
+      "Show latency trends",
+      "What is driving anomalies this cycle?"
+    ],
+    "data_sources_used": ["Agent Observability runtime metrics"],
+    "capability": "Proactive Intelligence",
+    "confidence": 96,
+    "illustrative": true
+  },
+
+  "att_adm_diagnose": {
+    "user_query": "Why is the Root Cause Analysis agent degraded?",
+    "ai_message": "It is a latency issue, not an accuracy collapse. That agent is running at 1250ms average response time against a fleet average of 499ms, with a 2.30% error rate versus 0.62% fleet-wide. Accuracy is still 92.1%. Operators will feel this as slower root-cause explanations, not wrong ones. The P95 and P99 latency show the tail is what moved.",
+    "suggested_chips": [
+      "What is causing the anomalies themselves?",
+      "Should I retrain early?",
+      "Show error-rate history"
+    ],
+    "data_sources_used": ["Agent Observability latency and error trends"],
+    "capability": "Friction Observability",
+    "confidence": 95,
+    "illustrative": true
+  },
+
+  "att_adm_root_causes": {
+    "user_query": "What is driving anomalies this cycle?",
+    "ai_message": "System Sync Issues are the dominant root cause at 45.0%, 91 of 202 anomalies. Tax Rule Change is next at 28.2%, then Rate Card Error at 17.8%, Promo Code Mismatch at 5.9%, and Migration Issue at 3.0%. The Missing AutoPay pattern operators are resolving traces back to that same sync category.",
+    "suggested_chips": [
+      "Will retraining improve tax detection?",
+      "Harden sync detection",
+      "Show which agents handle each cause"
+    ],
+    "data_sources_used": ["Root-cause distribution analytics", "Operator resolutions"],
+    "capability": "Converged Conversation",
+    "confidence": 93,
+    "illustrative": true
+  },
+
+  "att_adm_forecast": {
+    "user_query": "Will retraining improve detection, and by how much?",
+    "ai_message": "Yes. You have captured 1,847 operator corrections this month at Excellent (94%) training-data quality. The top improvement areas are Tax Rule Detection at plus 5.2%, Promo Code Accuracy at plus 3.8%, and MRC Pattern Recognition at plus 2.1%. The next scheduled retraining is March 1, 2026, with an estimated plus 6 to 8% confidence overall. Your last four retrainings averaged plus 4.9%.",
+    "suggested_chips": [
+      "Trigger early retraining",
+      "Keep the March 1 schedule",
+      "Raise the auto-resolve threshold"
+    ],
+    "data_sources_used": ["Model-retraining feedback loop", "Retraining history"],
+    "capability": "Predictive Intelligence",
+    "confidence": 82,
+    "illustrative": true
+  },
+
+  "att_adm_threshold": {
+    "user_query": "Raise the high-confidence auto-resolve threshold to 92%",
+    "ai_message": "Setting the High Confidence Threshold to 92% means only anomalies at or above 92% auto-resolve; 70 to 91% routes to operator review, and below 70% goes to SME. At current distributions that shifts a small share of borderline patterns like Plan Migration Rate Mismatch (85% confidence) into operator review, trading a little throughput for tighter safety. Confirm to save this configuration.",
+    "suggested_chips": [
+      "Confirm and save",
+      "Keep it at 90%",
+      "Require SME approval for high-risk"
+    ],
+    "data_sources_used": [
+      "Platform configuration",
+      "Confidence-scoring agent",
+      "Current pattern confidences"
+    ],
+    "capability": "Automated Action",
+    "confidence": 91,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_adm_retrain": {
+    "user_query": "Trigger early retraining now",
+    "ai_message": "Early retraining started on model v2.4.1 with the 1,847 captured corrections, weighted toward tax-rule and sync detection. Estimated improvement is plus 6 to 8% confidence, and I will version the result and log the trigger with your ID and timestamp for governance. The current cycle continues on v2.4.1 until the new version is validated.",
+    "suggested_chips": [
+      "Notify operators",
+      "Return to agent health",
+      "Save all configuration"
+    ],
+    "data_sources_used": ["ML model registry", "Retraining feedback loop", "Governance log"],
+    "capability": "Automated Action",
+    "confidence": 88,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_adm_latency_trends": {
+    "user_query": "Show latency trends",
+    "ai_message": "Fleet latency has fallen steadily across the window — 520ms on Feb 1 to 365ms on Feb 19, down 12.5%. The P95 tracks it down from 850ms to 610ms and the P99 from 1200ms to 830ms, so the whole distribution improved rather than just the middle. That is what makes the Root Cause Analysis agent's 1250ms stand out: it now sits above the fleet P99, which it did not at the start of the month. The fleet got faster and one agent did not move with it.",
+    "suggested_chips": [
+      "Why is Root Cause Analysis degraded?",
+      "Show error-rate history",
+      "Should I retrain early?"
+    ],
+    "data_sources_used": ["Agent Observability latency trends"],
+    "capability": "Friction Observability",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "att_adm_error_history": {
+    "user_query": "Show error-rate history",
+    "ai_message": "Fleet failure rate has come down from 1.03% on Feb 1 to 0.33% on Feb 19, with 766 failures across 124,921 requests in the current window — 0.61%. Root Cause Analysis carries 2.30% of that on its own, roughly four times the fleet rate, and its errors are timeouts rather than wrong answers. Bulk Resolution, the agent that actually writes to customer bills, sits at 0.10%, which is the number I would watch hardest.",
+    "suggested_chips": [
+      "Should I retrain early?",
+      "What is causing the anomalies themselves?",
+      "Return to agent health"
+    ],
+    "data_sources_used": ["Agent Observability error trends"],
+    "capability": "Friction Observability",
+    "confidence": 95,
+    "illustrative": true
+  },
+
+  "att_adm_should_retrain": {
+    "user_query": "Should I retrain early?",
+    "ai_message": "Retraining will not fix this one. The Root Cause Analysis warning is latency — the agent is slow, not wrong, and its accuracy is 92.1%. A retrain improves what the model concludes, not how fast it concludes it, so the honest answer is that the two decisions are separate. Retrain early because 1,847 corrections are sitting there and tax-rule detection would gain 5.2%; do it for that reason, not to clear this warning. The latency needs a runtime look.",
+    "suggested_chips": [
+      "Trigger early retraining",
+      "Keep the March 1 schedule",
+      "Show latency trends"
+    ],
+    "data_sources_used": ["Agent Observability runtime metrics", "Retraining feedback loop"],
+    "capability": "Predictive Intelligence",
+    "confidence": 86,
+    "illustrative": true
+  },
+
+  "att_adm_harden_sync": {
+    "user_query": "Harden sync detection",
+    "ai_message": "Weighting the next retrain toward sync detection targets the 45% of root causes that are System Sync Issues — 91 of 202 — and it is the category the operators' largest pattern traces back to. Two things worth saying: the weighting comes at the expense of the other categories in the same pass, and the sync failures themselves happen upstream in CGCM, so better detection finds them faster without stopping them. Detection tuning is the right lever here; a maintenance-window fix is the actual repair.",
+    "suggested_chips": [
+      "Trigger early retraining",
+      "Will retraining improve tax detection?",
+      "Show which agents handle each cause"
+    ],
+    "data_sources_used": ["Root-cause distribution analytics", "Retraining feedback loop"],
+    "capability": "Predictive Intelligence",
+    "confidence": 84,
+    "illustrative": true
+  },
+
+  "att_adm_agents_by_cause": {
+    "user_query": "Show which agents handle each cause",
+    "ai_message": "Pattern Detection finds all five categories and is the reason they group at all. Root Cause Analysis is what assigns the category — which matters here, because that is the agent in Warning: the distribution you are reading is produced by the degraded agent. Confidence Scoring tiers each one against your thresholds, and Bulk Resolution executes whatever clears the High tier. On the operator side, five charge-type micro-agents work the same anomalies by charge type — MRC, Discount, Loan, Streaming and Tax — and Tax runs the lowest confidence of the five at 79%, which lines up with Tax Rule Change being the second-largest cause.",
+    "suggested_chips": [
+      "Why is Root Cause Analysis degraded?",
+      "Will retraining improve tax detection?",
+      "Return to agent health"
+    ],
+    "data_sources_used": ["Agent Observability runtime metrics", "Root-cause distribution analytics"],
+    "capability": "Converged Conversation",
+    "confidence": 90,
+    "illustrative": true
+  },
+
+  "att_adm_keep_schedule": {
+    "user_query": "Keep the March 1 schedule",
+    "ai_message": "Held at March 1, 2026 on v2.4.1. The 1,847 corrections keep accumulating until then, so the training set will be larger and the projected lift no smaller. The cost of waiting is two more weeks of the current tax-rule detection, which is where the 5.2% improvement sits — and Tax Rule Change is 28.2% of this cycle's root causes. Nothing is logged as a change, since this is the existing configuration.",
+    "suggested_chips": [
+      "Trigger early retraining",
+      "Raise the auto-resolve threshold",
+      "Return to agent health"
+    ],
+    "data_sources_used": ["ML model registry", "Retraining feedback loop"],
+    "capability": "Predictive Intelligence",
+    "confidence": 87,
+    "illustrative": true
+  },
+
+  "att_adm_confirm_save": {
+    "user_query": "Confirm and save",
+    "ai_message": "Saved. The High Confidence Threshold is now 92%, Medium is 70 to 91%, and below 70% still routes to SME. Logged to the governance record with your ID and timestamp. The change applies to anomalies scored from now on, not retroactively to this cycle's 207 — operators mid-cycle keep the tiering they started under, which is deliberate: re-tiering work already in review would move items out from under an operator who has already looked at them.",
+    "suggested_chips": [
+      "Keep it at 90%",
+      "Require SME approval for high-risk",
+      "Return to agent health"
+    ],
+    "data_sources_used": ["Platform configuration", "Governance log"],
+    "capability": "Automated Action",
+    "confidence": 96,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_adm_keep_90": {
+    "user_query": "Keep it at 90%",
+    "ai_message": "Left at 90%. Nothing logged, since nothing changed. For what it is worth, 90% is where the current distribution works: four of the six patterns clear it, average confidence is 94.2%, and review load is manageable at 3,221 pending. Moving to 92% would pull Duplicate Device Installments at 92% right onto the boundary, which is a fragile place for a pattern that carries $1,020.",
+    "suggested_chips": [
+      "Raise the auto-resolve threshold",
+      "Require SME approval for high-risk",
+      "Return to agent health"
+    ],
+    "data_sources_used": ["Platform configuration", "Confidence-scoring agent"],
+    "capability": "Friction Observability",
+    "confidence": 92,
+    "illustrative": true
+  },
+
+  "att_adm_sme_high_risk": {
+    "user_query": "Require SME approval for high-risk",
+    "ai_message": "Already enabled under Resolution Controls, alongside bulk operations and micro-hold. It puts a second signature on the highest-consequence corrections regardless of confidence tier — so a 96% roaming reversal still gets reviewed if it is flagged high-risk. That is the setting that keeps a high threshold from meaning 'unsupervised': the confidence tier decides what needs a human, and this decides what needs two.",
+    "suggested_chips": [
+      "Confirm and save",
+      "Save all configuration",
+      "Return to agent health"
+    ],
+    "data_sources_used": ["Platform configuration"],
+    "capability": "Automated Action",
+    "confidence": 94,
+    "illustrative": true
+  },
+
+  "att_adm_notify_operators": {
+    "user_query": "Notify operators",
+    "ai_message": "Notified all 12 operators across the three instances: retraining is running on v2.4.1, the current cycle continues on the existing model until the new version validates, and the Root Cause Analysis agent is degraded on latency so root-cause explanations will be slower than usual today. That last line is the one that matters — an operator who knows why the system is slow does not open a ticket about it.",
+    "suggested_chips": [
+      "Return to agent health",
+      "Save all configuration",
+      "What is driving anomalies this cycle?"
+    ],
+    "data_sources_used": ["Workbench sessions", "Governance log"],
+    "capability": "Automated Action",
+    "confidence": 95,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_adm_save_all": {
+    "user_query": "Save all configuration",
+    "ai_message": "All configuration saved: confidence thresholds, the 36-hour BRN SLA window, the active instance, and the nine advanced settings across pattern detection, resolution controls and the learning loop. Written to the governance record with your ID and timestamp so a later audit can see what the guardrails were on the day a correction was made — which is the question that actually gets asked.",
+    "suggested_chips": [
+      "Return to agent health",
+      "Trigger early retraining",
+      "Raise the auto-resolve threshold"
+    ],
+    "data_sources_used": ["Platform configuration", "Governance log"],
+    "capability": "Automated Action",
+    "confidence": 97,
+    "is_action": true,
+    "illustrative": true
+  },
+
+  "att_adm_return_health": {
+    "user_query": "Return to agent health",
+    "ai_message": "Back on the fleet. Three of four healthy: Pattern Detection 98.3%, Confidence Scoring 96.7%, Bulk Resolution 99.8%. Root Cause Analysis still in Warning at 1250ms and 2.30% error, accuracy holding at 92.1%. Fleet accuracy 96.7%, average latency 499ms, 99.7% uptime across 124,863 inferences.",
+    "suggested_chips": [
+      "Why is Root Cause Analysis degraded?",
+      "Show latency trends",
+      "What is driving anomalies this cycle?"
+    ],
+    "data_sources_used": ["Agent Observability runtime metrics"],
+    "capability": "Proactive Intelligence",
+    "confidence": 96,
+    "illustrative": true
+  },
+
+  "att_adm_current_state": {
+    "user_query": "How does platform tuning work today, without the console?",
+    "ai_message": "Operators report slow cycles or bad corrections, anecdotally. You hunt through per-agent logs with no single view, then guess which threshold or which agent is at fault. You push a change and wait a cycle to see whether operator accuracy moved — and when it does move, you cannot say which change moved it, so you guess again. It is a loop with lagging feedback and no attribution, which means the tuning is intuition wearing the clothes of evidence.",
+    "suggested_chips": [
+      "Where does the console change the picture?",
+      "Walk me through the decision",
+      "Are all the AI agents healthy right now?"
+    ],
+    "data_sources_used": ["Process baseline (illustrative)"],
+    "capability": "Friction Observability",
+    "confidence": 90,
+    "illustrative": true
+  },
+
+  "att_adm_future_state": {
+    "user_query": "Where does the console change the picture?",
+    "ai_message": "Four interventions. Hunting per-agent logs becomes one health console with accuracy, latency, error and status side by side. Guessing the fault becomes a root-cause distribution and a P95/P99 tail that explain the warning. Changing blindly and waiting a cycle becomes a retraining panel that projects the lift before you commit. And the lagging feedback loop becomes operator corrections captured automatically as labeled training data — 1,847 this month. The judgment stays yours; what changes is that it is made against evidence rather than against the last complaint you heard.",
+    "suggested_chips": [
+      "How does platform tuning work today, without the console?",
+      "Walk me through the decision",
+      "Are all the AI agents healthy right now?"
+    ],
+    "data_sources_used": ["Process baseline (illustrative)"],
+    "capability": "Converged Conversation",
+    "confidence": 91,
+    "illustrative": true
+  },
+
+  "att_adm_journey": {
+    "user_query": "Walk me through the decision",
+    "ai_message": "Three phases. Notice: three of four agents healthy, Root Cause Analysis flagged Warning — and the first question is whether operators are feeling it right now. Diagnose: 1250ms and 2.30% on that agent, and system sync is 45% of what is actually breaking, so the warning explains itself instead of just alarming. Decide: a projected plus 6 to 8% lift from 1,847 captured corrections, weighted toward tax-rule and sync, with the review-load trade-off of a threshold change visible before you commit. The moments that matter are a warning that explains itself, a retraining decision backed by a forecast, and a threshold change whose cost you can see first.",
+    "suggested_chips": [
+      "Why is Root Cause Analysis degraded?",
+      "Will retraining improve detection, and by how much?",
+      "Raise the auto-resolve threshold"
+    ],
+    "data_sources_used": ["Journey baseline (illustrative)"],
+    "capability": "Converged Conversation",
+    "confidence": 90,
+    "illustrative": true
+  }
+}

@@ -33,8 +33,20 @@ export default function TalkToDataDiagram() {
   const isCfo = persona.id === 'ussfcu_cfo';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
+  const isAtt = persona.id.startsWith('att_');
 
-  const clientConfig = isAramco ? {
+  const clientConfig = isAtt ? {
+    sourcesLabel: 'BILLING DATA SOURCES',
+    primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
+    secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'CGCM Sync Log', 'Agent Observability'],
+    deployedAt: 'Verizon',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    connectorDesc: 'Billing, rate cards, tax tables, entitlements, rebilling',
+    piiDesc: 'Customer account and payment data masking',
+    bodyText: 'Ask in plain language and get a sourced answer drawn at once from billing, the account\'s payment-method history, the discount-eligibility rules and the CGCM sync log. "Why is this charge wrong?" is answered in one sentence with the systems named — the reconciliation that used to be the job.',
+    gapText: 'Four exports that were never designed to reconcile with each other. Answering one question about one account means opening all of them and holding the differences in your head.',
+    withText: 'Natural-language querying across every billing source at once — the charge as billed, the charge as it should have been, and the reason for the gap in the same answer.',
+  } : isAramco ? {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],

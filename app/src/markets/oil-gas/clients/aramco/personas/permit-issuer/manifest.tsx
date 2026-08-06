@@ -21,7 +21,8 @@ import kpis from '@/data/aramco/permit-issuer/kpis.json';
 import FlaggedJobsTable from '@/components/aramco/FlaggedJobsTable';
 import PermitDetailCard from '@/components/aramco/PermitDetailCard';
 import SiteMap from '@/components/aramco/SiteMap';
-import CurrentStateDiagram from '@/components/aramco/CurrentStateDiagram';
+import CurrentStateDiagram from '@/components/process/CurrentStateDiagram';
+import { getCurrentState } from '@/data/aramco/hse-gm';
 
 const flows = (getPersonaFlowConfigs('aramco') as unknown as Record<string, PersonaManifest['flows']>)
   .aramco_permit_issuer;
@@ -133,7 +134,7 @@ const manifest: PersonaManifest = {
     }
     if (k === 'aramco_iss_expiring') out.push(<PermitDetailCard key="permit" compact />);
     if (k === 'aramco_iss_night_shift' || k === 'aramco_iss_cycle_time') {
-      out.push(<CurrentStateDiagram key="current-state" />);
+      out.push(<CurrentStateDiagram key="current-state" getter={getCurrentState} productName="TrackLynk.AI" />);
     }
 
     return out.length ? out : undefined;

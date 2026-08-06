@@ -1,0 +1,102 @@
+{
+  "kpis": [
+    {
+      "id": "uptime",
+      "label": "System Uptime",
+      "value": "99.7%",
+      "sub": "All agents operational",
+      "icon": "activity",
+      "source": "Agent runtime",
+      "target": "≥ 99.5%"
+    },
+    {
+      "id": "avg_confidence",
+      "label": "Avg Confidence",
+      "value": "94.2%",
+      "sub": "+2.3% vs last month",
+      "icon": "target",
+      "source": "Confidence-scoring agent",
+      "target": "Above the auto-resolve threshold"
+    },
+    {
+      "id": "active_operators",
+      "label": "Active Operators",
+      "value": "12",
+      "sub": "Across 3 instances",
+      "icon": "users",
+      "source": "Workbench sessions",
+      "target": "Matched to cycle load"
+    },
+    {
+      "id": "model_version",
+      "label": "Model Version",
+      "value": "v2.4.1",
+      "sub": "Last updated 2/15/26",
+      "icon": "database",
+      "source": "ML model registry",
+      "target": "Latest stable"
+    }
+  ],
+  "thresholds": {
+    "high": 90,
+    "medium": 70,
+    "highRange": { "min": 85, "max": 99 },
+    "mediumRange": { "min": 60, "max": 85 },
+    "copy": {
+      "high": "Anomalies at or above this threshold can be auto-resolved.",
+      "medium": "Requires operator review before resolution.",
+      "low": "Requires SME escalation or manual investigation."
+    }
+  },
+  "cycleConfig": {
+    "cycle": "2026-02",
+    "slaHours": 36,
+    "instance": "Consumer East-02",
+    "instances": ["Consumer East-01", "Consumer East-02", "Consumer West-01"],
+    "copy": {
+      "cycle": "Active billing period for anomaly detection.",
+      "sla": "Time window for billing-run review completion.",
+      "instance": "Current working instance for operator sessions."
+    }
+  },
+  "retraining": {
+    "dataQualityLabel": "Excellent",
+    "dataQualityScore": 94,
+    "correctionsCaptured": 1847,
+    "correctionsNote": "operator corrections captured this month",
+    "improvementAreas": [
+      { "area": "Tax Rule Detection", "lift": 5.2 },
+      { "area": "Promo Code Accuracy", "lift": 3.8 },
+      { "area": "MRC Pattern Recognition", "lift": 2.1 }
+    ],
+    "nextSchedule": "March 1, 2026",
+    "estimatedImprovement": "+6–8% confidence",
+    "lastFourAverage": 4.9
+  },
+  "advancedSettings": [
+    {
+      "group": "Pattern Detection",
+      "settings": [
+        { "id": "pattern_grouping", "label": "Enable Pattern Grouping", "enabled": true, "note": "Off, 207 anomalies arrive ungrouped and the operator is back to individual investigation." },
+        { "id": "auto_group", "label": "Auto-Group Similar Anomalies", "enabled": true, "note": "Groups by shared root cause rather than by charge type." },
+        { "id": "preview_mode", "label": "Pattern Preview Mode", "enabled": false, "note": "Shows candidate patterns before they are confirmed. Noisy — off by default." }
+      ]
+    },
+    {
+      "group": "Resolution Controls",
+      "settings": [
+        { "id": "bulk_ops", "label": "Enable Bulk Operations", "enabled": true, "note": "The Apply Fix to All path. Off, every correction is per-account." },
+        { "id": "micro_hold", "label": "Allow Micro-Hold on Accounts", "enabled": true, "note": "Holds an individual account out of a bulk action without dropping it from the cycle." },
+        { "id": "sme_high_risk", "label": "Require SME Approval for High Risk", "enabled": true, "note": "A second signature on the highest-consequence corrections." }
+      ]
+    },
+    {
+      "group": "Learning & Feedback",
+      "settings": [
+        { "id": "continuous_learning", "label": "Continuous Learning Mode", "enabled": true, "note": "Feeds resolved anomalies back as labeled data between scheduled retrains." },
+        { "id": "capture_corrections", "label": "Capture Operator Corrections", "enabled": true, "note": "The 1,847 corrections behind the next retrain come from here." },
+        { "id": "track_ml_errors", "label": "Track ML Error Patterns", "enabled": true, "note": "Records where the model was wrong, not only where it was right." }
+      ]
+    }
+  ]
+}

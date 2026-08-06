@@ -30,6 +30,8 @@ import aramcoHseChatFlows from './aramco/hse-gm/chatFlows.json';
 import aramcoSupChatFlows from './aramco/shift-supervisor/chatFlows.json';
 import aramcoIssChatFlows from './aramco/permit-issuer/chatFlows.json';
 import aramcoCmChatFlows from './aramco/complex-manager/chatFlows.json';
+import attOpChatFlows from './att/billing-operator/chatFlows.json';
+import attAdmChatFlows from './att/platform-admin/chatFlows.json';
 
 // ─── Operations & Analytics (Maya J.) ────────────────────────────
 const opsConfig = {
@@ -1499,6 +1501,125 @@ const aramcoCmConfig = {
   actionTurnKey: 'aramco_cm_committee_pack',
 };
 
+// ─── AT&T — Billing Operator (Bianca), AI Billing Workbench ──────
+const attOpConfig = {
+  chatFlows: attOpChatFlows,
+  chipToFlowKey: {
+    // Step 1 — situational briefing follow-ups
+    'Show me the patterns': 'att_op_patterns',
+    'What is the biggest dollar risk?': 'att_op_biggest_risk',
+    'How much time do I have left?': 'att_op_sla_remaining',
+    'Next signal': '__next_signal__',
+    // Suggested query prompts (spec §11A) — the query-bar entry points
+    'Where does this cycle stand and how much time do I have?': 'att_op_greeting',
+    'Where does cycle 2026-02 stand?': 'att_op_greeting',
+    'Show me the anomaly patterns by dollar impact': 'att_op_sort_by_impact',
+    'Open the Missing AutoPay Discount pattern and explain the root cause': 'att_op_hero_pattern',
+    'Can I trust these corrections before I apply them?': 'att_op_trust',
+    'Apply the fix to all eligible accounts and log it for audit': 'att_op_apply_fix',
+    // Step 2 — pattern grid follow-ups
+    'Open Missing AutoPay Discount': 'att_op_hero_pattern',
+    'Sort by dollar impact': 'att_op_sort_by_impact',
+    'Which has the highest confidence?': 'att_op_highest_confidence',
+    // Step 3 — hero pattern follow-ups
+    'Can I trust these corrections?': 'att_op_trust',
+    'What happens if I wait?': 'att_op_look_ahead',
+    'What happens if I do not fix these this cycle?': 'att_op_look_ahead',
+    'Show only accounts below 90% confidence': 'att_op_low_confidence_rows',
+    // Step 4 — trust follow-ups
+    'Apply to accounts above 90% only': 'att_op_apply_above_90',
+    'Escalate the low-confidence accounts': 'att_op_escalate_low',
+    'Apply Fix to All': 'att_op_apply_fix',
+    'Apply the fix to all 87 accounts': 'att_op_apply_fix',
+    // Step 5 — look-ahead follow-ups
+    'Show the next-highest-impact pattern': 'att_op_next_pattern',
+    'What is my fastest path to close the cycle?': 'att_op_fastest_path',
+    // Step 6 — action follow-ups
+    'Open Duplicate Device Installments': 'att_op_next_pattern',
+    'Export the audit report': 'att_op_export_audit',
+    'Summarize what I have resolved': 'att_op_close_and_prove',
+    'Summarize what I have resolved and export the audit report': 'att_op_close_and_prove',
+    // Step 7 — close-and-prove follow-ups
+    'Export as PDF': 'att_op_export_pdf',
+    'Show escalated items': 'att_op_escalated_items',
+    'Return to cycle overview': 'att_op_return_overview',
+    // Current state, future state and the journey map (spec §8A and §9A)
+    'How does this work today, without the workbench?': 'att_op_current_state',
+    'Where does the workbench change the picture?': 'att_op_future_state',
+    'Walk me through my cycle': 'att_op_journey',
+  },
+  // The three signal cards shown on the briefing, in the order the demo ranks
+  // them: the hero pattern, then the two critical-severity ones.
+  signalSequence: ['att_op_hero_pattern', 'att_op_next_pattern', 'att_op_biggest_risk'],
+  // The seven-turn guided demo, in spec §10A order.
+  askTurnSequence: [
+    'att_op_patterns',
+    'att_op_hero_pattern',
+    'att_op_trust',
+    'att_op_look_ahead',
+    'att_op_apply_fix',
+    'att_op_close_and_prove',
+  ],
+  actionTurnKey: 'att_op_apply_fix',
+};
+
+// ─── AT&T — Platform Admin (Aria), AI Billing Workbench ──────────
+const attAdmConfig = {
+  chatFlows: attAdmChatFlows,
+  chipToFlowKey: {
+    // Step 1 — fleet health follow-ups
+    'Why is Root Cause Analysis degraded?': 'att_adm_diagnose',
+    'Why is the Root Cause Analysis agent degraded?': 'att_adm_diagnose',
+    'Show latency trends': 'att_adm_latency_trends',
+    'What is driving anomalies this cycle?': 'att_adm_root_causes',
+    'Next signal': '__next_signal__',
+    // Suggested query prompts (spec §11B)
+    'Are all the AI agents healthy right now?': 'att_adm_greeting',
+    'Why is response time elevated on the Root Cause Analysis agent?': 'att_adm_diagnose',
+    'What is the dominant root cause of anomalies this cycle?': 'att_adm_root_causes',
+    'Will the next retraining improve tax-rule detection, and by how much?': 'att_adm_forecast',
+    'Raise the auto-resolve threshold and show me the review-load trade-off': 'att_adm_threshold',
+    // Step 2 — diagnosis follow-ups
+    'What is causing the anomalies themselves?': 'att_adm_root_causes',
+    'Should I retrain early?': 'att_adm_should_retrain',
+    'Show error-rate history': 'att_adm_error_history',
+    // Step 3 — root-cause follow-ups
+    'Will retraining improve tax detection?': 'att_adm_forecast',
+    'Will retraining improve detection, and by how much?': 'att_adm_forecast',
+    'Harden sync detection': 'att_adm_harden_sync',
+    'Show which agents handle each cause': 'att_adm_agents_by_cause',
+    // Step 4 — forecast follow-ups
+    'Trigger early retraining': 'att_adm_retrain',
+    'Trigger early retraining now': 'att_adm_retrain',
+    'Keep the March 1 schedule': 'att_adm_keep_schedule',
+    'Raise the auto-resolve threshold': 'att_adm_threshold',
+    'Raise the high-confidence auto-resolve threshold to 92%': 'att_adm_threshold',
+    // Step 5 — threshold follow-ups
+    'Confirm and save': 'att_adm_confirm_save',
+    'Keep it at 90%': 'att_adm_keep_90',
+    'Require SME approval for high-risk': 'att_adm_sme_high_risk',
+    // Step 6 — commit follow-ups
+    'Notify operators': 'att_adm_notify_operators',
+    'Return to agent health': 'att_adm_return_health',
+    'Save all configuration': 'att_adm_save_all',
+    // Current state, future state and the journey map (spec §8B and §9B)
+    'How does platform tuning work today, without the console?': 'att_adm_current_state',
+    'Where does the console change the picture?': 'att_adm_future_state',
+    'Walk me through the decision': 'att_adm_journey',
+  },
+  // The five admin signal cards; the briefing renders the first three.
+  signalSequence: ['att_adm_diagnose', 'att_adm_root_causes', 'att_adm_forecast'],
+  // The six-turn guided demo, in spec §10B order.
+  askTurnSequence: [
+    'att_adm_diagnose',
+    'att_adm_root_causes',
+    'att_adm_forecast',
+    'att_adm_threshold',
+    'att_adm_retrain',
+  ],
+  actionTurnKey: 'att_adm_retrain',
+};
+
 // ─── Export registry ─────────────────────────────────────────────
 const personaFlowConfigs = {
   ops: opsConfig,
@@ -1522,6 +1643,8 @@ const personaFlowConfigs = {
   aramco_shift_supervisor: aramcoSupConfig,
   aramco_permit_issuer: aramcoIssConfig,
   aramco_complex_manager: aramcoCmConfig,
+  att_billing_operator: attOpConfig,
+  att_platform_admin: attAdmConfig,
 };
 
 // PenFed gets its own chatFlows for the generic personas (ops/cx/retention),

@@ -1,0 +1,157 @@
+[
+  {
+    "id": "SIG-ATT-ADM-001",
+    "type": "agent_degradation",
+    "title": "Root Cause Analysis Agent Degraded — Latency, Not Accuracy",
+    "description": "Response time elevated: 1250ms against a 499ms fleet average, with a 2.30% error rate versus 0.62% fleet-wide. Accuracy is still 92.1% and the other three agents are healthy. Operators will feel this as slower root-cause explanations, not wrong ones.",
+    "impact": "high",
+    "severity": "warning",
+    "bucket": "agent_health",
+    "primary": true,
+    "action": "Inspect the P95/P99 latency tail, then decide between retraining early and riding it out.",
+    "sources": ["Agent Observability runtime metrics"],
+    "timestamp": "2026-02-16T10:22:00Z",
+    "freshness": "12 minutes ago",
+    "trend": "worsening",
+    "related_segment": "root-cause-analysis",
+    "metrics": {
+      "accuracy": "92.1%",
+      "latency": "1250ms",
+      "errorRate": "2.30%",
+      "lastRun": "12 min ago"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 96,
+      "rationale": "These are direct runtime readings, not an inference about health. What the reading does not settle is the cause — the tail moved, and whether that is load or a model problem is the judgment call this console exists to inform.",
+      "signals_used": ["Agent runtime latency histogram", "Error counters"],
+      "threshold": 90,
+      "model_version": "observability-v1.4",
+      "validated_at": "2026-02-16T10:22:00Z",
+      "escalation": { "triggered": true, "reason": "Latency above fleet baseline for 3 consecutive windows", "route_to": "Platform Admin", "review_queue": "Agent health" }
+    }
+  },
+  {
+    "id": "SIG-ATT-ADM-002",
+    "type": "root_cause_concentration",
+    "title": "System Sync Is 45% of Every Anomaly",
+    "description": "System Sync Issue accounts for 45.0% — 91 of 202 anomaly root causes — ahead of Tax Rule Change at 28.2% and Rate Card Error at 17.8%. The Missing AutoPay pattern operators are clearing right now traces back to that same category.",
+    "impact": "high",
+    "severity": "info",
+    "bucket": "detection_quality",
+    "action": "Weight the next retrain toward sync-hardening and tax-rule detection rather than spreading it evenly.",
+    "sources": ["Root-cause distribution analytics", "Operator resolutions"],
+    "timestamp": "2026-02-16T10:20:00Z",
+    "freshness": "14 minutes ago",
+    "trend": "persistent",
+    "related_segment": "system-sync",
+    "metrics": {
+      "share": "45.0%",
+      "count": 91,
+      "total": 202
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 93,
+      "rationale": "Categories are assigned by the RCA agent, which is the agent currently in Warning — so the distribution is trustworthy on volume and slightly less so on the boundary between Rate Card Error and Migration Issue, where the two causes overlap.",
+      "signals_used": ["RCA agent output", "Operator correction labels"],
+      "threshold": 90,
+      "model_version": "billing-anomaly-v2.4.1",
+      "validated_at": "2026-02-16T10:20:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ATT-ADM-003",
+    "type": "retraining_opportunity",
+    "title": "Retraining Opportunity Ready — 1,847 Corrections Captured",
+    "description": "1,847 operator corrections captured this month at Excellent (94%) training-data quality. The next scheduled retrain is March 1, 2026 with an estimated +6–8% confidence. Your last four retrainings averaged +4.9%.",
+    "impact": "medium",
+    "severity": "info",
+    "bucket": "model_lifecycle",
+    "action": "Confirm the March 1 schedule, or trigger early retraining while the RCA agent is already degraded.",
+    "sources": ["Model-retraining feedback loop", "Retraining history"],
+    "timestamp": "2026-02-15T18:00:00Z",
+    "freshness": "yesterday",
+    "trend": "improving",
+    "related_segment": "v2.4.1",
+    "metrics": {
+      "corrections": 1847,
+      "quality": "94%",
+      "estimated": "+6–8%",
+      "lastFourAvg": "+4.9%"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 82,
+      "rationale": "The +6–8% is a projection from four prior retrains, not a measurement — and the prior four ranged +3.8% to +6.4%, so the honest read is 'probably in that band'. That spread is why the console shows the history next to the forecast.",
+      "signals_used": ["Retraining history", "Correction volume and quality score"],
+      "threshold": 70,
+      "model_version": "retrain-forecast-v1.2",
+      "validated_at": "2026-02-15T18:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ATT-ADM-004",
+    "type": "threshold_configuration",
+    "title": "Confidence Thresholds Govern Every Auto-Resolution",
+    "description": "High ≥90% auto-resolves, Medium 70–89% requires operator review, Low <70% requires SME escalation. Current average confidence is 94.2%, up 2.3% on last month. Every anomaly an operator auto-resolves does so because these numbers said it was safe.",
+    "impact": "high",
+    "severity": "info",
+    "bucket": "guardrails",
+    "action": "Tune against the accuracy-versus-review-load trade-off, with the projected shift visible before you commit.",
+    "sources": ["Platform configuration", "Confidence-scoring agent"],
+    "timestamp": "2026-02-16T08:00:00Z",
+    "freshness": "2 hours ago",
+    "trend": "stable",
+    "related_segment": "thresholds",
+    "metrics": {
+      "high": "≥90%",
+      "medium": "70–89%",
+      "low": "<70%",
+      "avgConfidence": "94.2%"
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 99,
+      "rationale": "Configuration, not a measurement. The uncertainty is entirely in what a change does downstream — which is what the review-load projection beside the sliders is for.",
+      "signals_used": ["Platform configuration"],
+      "threshold": 90,
+      "model_version": "n/a",
+      "validated_at": "2026-02-16T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  },
+  {
+    "id": "SIG-ATT-ADM-005",
+    "type": "sla_configuration",
+    "title": "SLA and Instance Configuration",
+    "description": "The BRN SLA window is set to 36 hours; the active instance is Consumer East-02, with 12 operators working across 3 instances. Shortening the window tightens every operator's cycle at once — it is the single setting with the broadest blast radius on this console.",
+    "impact": "medium",
+    "severity": "info",
+    "bucket": "guardrails",
+    "action": "Adjust the SLA window or instance assignment as load shifts between cycles.",
+    "sources": ["Billing-cycle configuration"],
+    "timestamp": "2026-02-16T08:00:00Z",
+    "freshness": "2 hours ago",
+    "trend": "stable",
+    "related_segment": "cycle-config",
+    "metrics": {
+      "slaHours": 36,
+      "instance": "Consumer East-02",
+      "operators": 12,
+      "instances": 3
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 99,
+      "rationale": "Configuration read directly from the platform. Illustrative, like everything else in this demo.",
+      "signals_used": ["Billing-cycle configuration"],
+      "threshold": 90,
+      "model_version": "n/a",
+      "validated_at": "2026-02-16T08:00:00Z",
+      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The console opens already knowing which of the four agents is in trouble. Three healthy, one in Warning, with accuracy, latency, error rate and last-run freshness on every card — no log hunting and no waiting for an operator to complain. Degradation is visible at a glance rather than inferred from the fact that cycles feel slow this week.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Friction Observability",
+    "description": "A warning that explains itself. The Root Cause Analysis agent is at 1250ms against a 499ms fleet average with a 2.30% error rate, and the P95/P99 tail shows the distribution moved rather than the mean drifting. That distinction is the whole diagnosis: it is a latency problem, not an accuracy collapse, and operators will feel it as slow explanations rather than wrong ones.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Converged Conversation",
+    "description": "One query bar spans the agent runtime, the root-cause distribution and the operator resolution feed at once. Asking what is actually breaking returns System Sync at 45.0% (91 of 202) with the link back to the pattern operators are clearing right now — a correlation that used to mean opening three consoles and trusting your memory of what the third one said.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Forecasts the change before it is made. 1,847 captured corrections at 94% quality project a plus 6 to 8% confidence lift, broken out by improvement area — tax-rule detection +5.2%, promo-code accuracy +3.8%, MRC pattern recognition +2.1% — against four prior retrains that averaged +4.9%. Showing the history next to the forecast is what makes the forecast usable rather than decorative.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "Executes the guardrail changes and the model action, and logs both. Moving the High threshold to 92% reprices the whole auto-resolve envelope, so the projected review-load shift is shown before the save; triggering early retraining versions the result and writes the trigger with an operator ID and timestamp. Every configuration change is auditable for the same reason every correction is — someone will ask later what the rules were on the day.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Anomaly Detection",
+    "description": "The engine the admin is tuning. Rule and ML layers detect out-of-policy charges across 12.4M accounts; the five charge-type micro-agents work them by charge type and the four pipeline agents detect, score, explain and resolve. The Tax agent runs the lowest average confidence of the five at 79%, which is exactly why Tax Rule Change is the second-largest root cause and where the next retrain is weighted.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

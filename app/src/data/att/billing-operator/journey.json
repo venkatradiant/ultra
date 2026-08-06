@@ -1,0 +1,121 @@
+{
+  "scenario": "Clear cycle 2026-02 for Consumer-East-02 before the 36-hour SLA closes.",
+  "timeframe": "One cycle, a 36-hour window — 11.7 hours remaining at the demo state.",
+  "baselineSatisfaction": 4,
+  "baselineNote": "Out of 10, in the manual world.",
+  "illustrative": true,
+  "phases": [
+    {
+      "id": "P1",
+      "index": 1,
+      "name": "Cycle opens",
+      "emotion": 3,
+      "emotionLabel": "Bracing — how bad is this one?",
+      "touchpoints": ["Workbench home", "Billing Cycle Overview", "SLA countdown"],
+      "action": "Read the cycle state: how many anomalies, how much money, how long is left.",
+      "thought": "How bad is this cycle and how long do I have?",
+      "painPoints": [
+        "In the old world there is no single view of scope",
+        "Scale and clock live in different systems"
+      ],
+      "opportunity": "One overview: 207 anomalies, $4,850 at risk, 91.6% confidence, and the SLA countdown in the same frame.",
+      "momentOfTruth": false,
+      "demoStep": "Step 1",
+      "flowKey": "att_op_greeting"
+    },
+    {
+      "id": "P2",
+      "index": 2,
+      "name": "Understand the anomalies",
+      "emotion": 4,
+      "emotionLabel": "Relieved — they are not random",
+      "touchpoints": ["AI Conversation", "Pattern cards"],
+      "action": "Ask for the patterns and scan the six groups by accounts, confidence and dollar impact.",
+      "thought": "Are these random, or is there a cause I can act on?",
+      "painPoints": [
+        "Manual grouping was impossible at 12.4M accounts",
+        "Every anomaly felt like a separate problem"
+      ],
+      "opportunity": "Six patterns, each with a root cause, a confidence score and a dollar figure — and the edge cases set apart rather than averaged in.",
+      "momentOfTruth": true,
+      "momentLabel": "The moment 207 anomalies become 6 decisions.",
+      "demoStep": "Step 2",
+      "flowKey": "att_op_patterns"
+    },
+    {
+      "id": "P3",
+      "index": 3,
+      "name": "Trust the fix",
+      "emotion": 4,
+      "emotionLabel": "Cautious, then convinced",
+      "touchpoints": ["Pattern detail", "Impacted-accounts table", "Confidence distribution"],
+      "action": "Open Missing AutoPay Discount; review all 87 accounts, their confidence, and current versus corrected.",
+      "thought": "Can I stand behind correcting all of these?",
+      "painPoints": [
+        "Fear of creating new disputes",
+        "One pattern-level score told her nothing about the weakest row"
+      ],
+      "opportunity": "A named root cause (CGCM sync failure), 94% confidence, a per-account preview, and the 17 weakest rows surfaced as a choice.",
+      "momentOfTruth": true,
+      "momentLabel": "The moment the root cause and the confidence make a bulk fix feel safe.",
+      "demoStep": "Steps 3 and 4",
+      "flowKey": "att_op_hero_pattern"
+    },
+    {
+      "id": "P4",
+      "index": 4,
+      "name": "Act and prove it",
+      "emotion": 5,
+      "emotionLabel": "Done, and defensible",
+      "touchpoints": ["Action bar", "Resolution History"],
+      "action": "Apply Fix to All for 87 accounts and $850.14; escalate or defer the ambiguous ones.",
+      "thought": "Done — and I can show exactly what I did.",
+      "painPoints": [
+        "Old audit trails were reconstructed after the fact",
+        "Nobody could answer 'who corrected what, and why?' a week later"
+      ],
+      "opportunity": "Rebill IDs and a governance log written as she acts, not assembled afterwards.",
+      "momentOfTruth": true,
+      "momentLabel": "One click landing in an audit log with a rebill ID per account.",
+      "demoStep": "Steps 5, 6 and 7",
+      "flowKey": "att_op_apply_fix"
+    }
+  ],
+  "traceability": [
+    {
+      "phase": "1 Cycle opens",
+      "painPoint": "No single view of scope",
+      "signal": "Cycle overview KPIs",
+      "signalId": "SIG-ATT-OPS-001",
+      "demoStep": "Step 1"
+    },
+    {
+      "phase": "2 Understand",
+      "painPoint": "Anomalies feel random and endless",
+      "signal": "All six pattern signals",
+      "signalId": "SIG-ATT-OPS-002",
+      "demoStep": "Step 2"
+    },
+    {
+      "phase": "3 Trust the fix",
+      "painPoint": "Fear of causing new disputes",
+      "signal": "Missing AutoPay Discount",
+      "signalId": "SIG-ATT-OPS-001",
+      "demoStep": "Steps 3 and 4"
+    },
+    {
+      "phase": "4 Act and prove",
+      "painPoint": "Late discovery, weak audit trail",
+      "signal": "Missing AutoPay Discount + Resolution History",
+      "signalId": "SIG-ATT-OPS-001",
+      "demoStep": "Steps 5, 6 and 7"
+    },
+    {
+      "phase": "4 Act and prove",
+      "painPoint": "Edge cases get the last twenty minutes",
+      "signal": "Five edge cases that fit no pattern",
+      "signalId": "SIG-ATT-OPS-006",
+      "demoStep": "Step 7"
+    }
+  ]
+}

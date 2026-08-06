@@ -1,20 +1,18 @@
 /**
- * HseJourneyMap — the GM's experience across a turnaround day.
+ * JourneyMap — one persona's experience across the scenario the demo covers.
  *
- * Specification §9. Five phases from first coffee to end-of-shift handover, each
- * with its emotional low, its pain points and the opportunity that answers them.
+ * Tenant-agnostic: it renders whatever `getter` returns. Three specs use the
+ * same fixture shape (TrackLynk's HSE §9, the Workbench's operator §9A and
+ * admin §9B), so the only per-tenant strings are the title and the idle hint.
  *
- * The emotion line is the spine: it dips to 1 at the muster, which is exactly
- * where the demo's payoff sits. The traceability table underneath is the claim
- * that nothing in this demo was invented — every pain point maps to a signal
- * card and a demo step.
+ * The emotion line is the spine — its low point is where the demo's payoff
+ * sits. The traceability table underneath is the claim that nothing here was
+ * invented: every pain point maps to a signal card and a demo step.
  */
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Frown, Meh, Lightbulb, AlertCircle } from 'lucide-react';
+import { Star, Frown, Meh, Lightbulb, AlertCircle, Info } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getJourney } from '../../data/aramco/hse-gm';
-import IllustrativeDataChip from './IllustrativeDataChip';
 
 const EMOTION_TONE = {
   1: { dot: '#9F1239', text: 'text-rose-800', wrap: 'border-rose-300 bg-rose-50', Icon: Frown },
@@ -24,7 +22,19 @@ const EMOTION_TONE = {
   5: { dot: '#059669', text: 'text-emerald-700', wrap: 'border-emerald-200 bg-emerald-50/60', Icon: Meh },
 };
 
-/** Emotion sparkline across the five phases — the shape IS the story. */
+function Chip() {
+  return (
+    <span
+      title="Illustrative figure."
+      className="inline-flex items-center gap-1 rounded-full border border-border bg-surface-2 px-2 py-0.5 text-[10px] font-medium text-text-subtle whitespace-nowrap"
+    >
+      <Info className="w-3 h-3" />
+      Illustrative data
+    </span>
+  );
+}
+
+/** Emotion sparkline across the phases — the shape IS the story. */
 function EmotionLine({ phases, activeId, onSelect }) {
   const w = 100;
   const h = 34;
@@ -53,24 +63,25 @@ function EmotionLine({ phases, activeId, onSelect }) {
   );
 }
 
-export default function HseJourneyMap({ getter = getJourney }) {
+export default function JourneyMap({ getter, title = 'Journey', idleHint = '' }) {
   const journey = useAsyncData(getter);
   const [activeId, setActiveId] = useState(null);
 
   if (!journey) return null;
 
   const active = journey.phases.find((p) => p.id === activeId) || null;
+  const railCols = journey.phases.length >= 5 ? 'xl:grid-cols-5' : 'xl:grid-cols-4';
 
   return (
     <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
       <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
         <div className="min-w-0">
-          <h3 className="text-sm font-semibold text-text">HSE General Manager — Turnaround Day Journey</h3>
+          <h3 className="text-sm font-semibold text-text">{title}</h3>
           <p className="text-[11.5px] text-text-muted mt-1 leading-relaxed max-w-3xl">
             {journey.scenario} {journey.timeframe}
           </p>
         </div>
-        <IllustrativeDataChip />
+        <Chip />
       </div>
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-4 text-[11px]">
@@ -88,7 +99,7 @@ export default function HseJourneyMap({ getter = getJourney }) {
       <EmotionLine phases={journey.phases} activeId={activeId} onSelect={setActiveId} />
 
       {/* Phase rail */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-2.5 mt-2 mb-4">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 ${railCols} gap-2.5 mt-2 mb-4`}>
         {journey.phases.map((phase, i) => {
           const tone = EMOTION_TONE[phase.emotion] || EMOTION_TONE[3];
           const Icon = tone.Icon;
@@ -168,8 +179,7 @@ export default function HseJourneyMap({ getter = getJourney }) {
           </motion.div>
         ) : (
           <p className="text-xs text-text-muted leading-relaxed">
-            Hover a phase for its pain points, the GM's own words, and the opportunity that answers them. The emotional
-            low is Phase 4 — the muster — which is where this demo's payoff sits.
+            {idleHint || 'Hover a phase for its pain points, the persona’s own words, and the opportunity that answers them.'}
           </p>
         )}
       </div>

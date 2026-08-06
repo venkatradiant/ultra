@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { MessageSquare, Route, ShieldAlert, Database, Gauge, Activity, Boxes, MapPin, FileCheck, Users, X } from 'lucide-react';
+import { MessageSquare, Route, ShieldAlert, Database, Gauge, Activity, Boxes, MapPin, FileCheck, Users, Layers, LayoutDashboard, History, SlidersHorizontal, X } from 'lucide-react';
 import { useBranding } from '../../context/BrandingContext';
 import { usePersona } from '../../context/PersonaContext';
 import { useActivePersona } from '@core/runtime/useActivePersona';
@@ -33,6 +33,10 @@ export default function Sidebar({ open = false, onClose }) {
     liveSite: { to: '/live-site', icon: MapPin, label: labels.liveSite ?? 'Live Site Picture' },
     permits: { to: '/permits', icon: FileCheck, label: labels.permits ?? 'Permit and Job Detail' },
     muster: { to: '/muster', icon: Users, label: labels.muster ?? 'Muster Status' },
+    patterns: { to: '/patterns', icon: Layers, label: labels.patterns ?? 'Patterns' },
+    dashboard: { to: '/dashboard', icon: LayoutDashboard, label: labels.dashboard ?? 'Dashboard' },
+    history: { to: '/history', icon: History, label: labels.history ?? 'Resolution History' },
+    adminConsole: { to: '/admin', icon: SlidersHorizontal, label: labels.adminConsole ?? 'Platform Administration' },
     dataSources: { to: '/data-sources', icon: Database, label: 'Data Sources' },
   };
 

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "AI Conversation",
+    "percentage": 100,
+    "status": "complete",
+    "description": "The operator's entry point. Every question is answered over one fused cycle view rather than four reports that disagree."
+  },
+  {
+    "name": "Data Ingest",
+    "percentage": 100,
+    "status": "complete",
+    "description": "Billing system, rate-card and tax tables, account payment-method history and the usage-rating engine land in one cycle snapshot."
+  },
+  {
+    "name": "Rule Layer",
+    "percentage": 40,
+    "status": "complete",
+    "description": "Deterministic policy checks catch the unambiguous breaks — a discount that should have applied, a tax rate off its jurisdiction table."
+  },
+  {
+    "name": "ML Layer",
+    "percentage": 30,
+    "status": "complete",
+    "description": "Learned detection finds the breaks no rule was written for, and groups them into patterns by shared root cause."
+  },
+  {
+    "name": "LLM Edge Review",
+    "percentage": 12,
+    "status": "complete",
+    "description": "The residue the rules and the model both leave behind — the edge cases that fit no pattern and need a written explanation."
+  },
+  {
+    "name": "RCA",
+    "percentage": 100,
+    "status": "complete",
+    "description": "Root-cause analysis names the cause in plain language (a CGCM sync failure, a stale tax-rule version) instead of leaving a confidence score to speak for itself."
+  },
+  {
+    "name": "Human Review",
+    "percentage": 100,
+    "status": "active",
+    "description": "The operator decides. Everything above this line is investigation; nothing reaches a customer's bill without a reviewed action here."
+  },
+  {
+    "name": "Rebilling API",
+    "percentage": 0,
+    "status": "pending",
+    "description": "Executes the approved corrections in bulk and returns a rebill ID per account, which is what makes the audit trail defensible."
+  },
+  {
+    "name": "BRN",
+    "percentage": 0,
+    "status": "pending",
+    "description": "The billing run number closes against the 36-hour SLA. Anything unresolved here becomes next cycle's credits and support calls."
+  }
+]

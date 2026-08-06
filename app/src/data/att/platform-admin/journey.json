@@ -1,0 +1,95 @@
+{
+  "scenario": "An agent warning appears mid-cycle; decide whether to retrain early or adjust thresholds.",
+  "timeframe": "Minutes to a decision, one cycle to confirm the impact.",
+  "baselineSatisfaction": 5,
+  "baselineNote": "Out of 10, in the manual world.",
+  "illustrative": true,
+  "phases": [
+    {
+      "id": "P1",
+      "index": 1,
+      "name": "Notice",
+      "emotion": 3,
+      "emotionLabel": "Alert, but without context",
+      "touchpoints": ["Agent Observability", "Agent Health Status"],
+      "action": "See three of four healthy and Root Cause Analysis flagged Warning.",
+      "thought": "Is this affecting operators right now?",
+      "painPoints": [
+        "Warnings without context",
+        "No way to tell a slow agent from a wrong one"
+      ],
+      "opportunity": "Status, accuracy, latency and error rate on one card, with last-run freshness.",
+      "momentOfTruth": true,
+      "momentLabel": "A warning that explains itself rather than one that just alarms.",
+      "demoStep": "Steps 1 and 2",
+      "flowKey": "att_adm_greeting"
+    },
+    {
+      "id": "P2",
+      "index": 2,
+      "name": "Diagnose",
+      "emotion": 4,
+      "emotionLabel": "Following the evidence",
+      "touchpoints": ["Latency trends (P95/P99)", "Root-cause distribution"],
+      "action": "Confirm 1250ms and 2.30% on that agent; see that system sync is 45% of causes.",
+      "thought": "The warning is latency, and sync is what is breaking.",
+      "painPoints": [
+        "Correlating cause and effect used to be manual",
+        "Three consoles and a good memory"
+      ],
+      "opportunity": "An evidence trail from symptom to cause, in one place.",
+      "momentOfTruth": false,
+      "demoStep": "Steps 2 and 3",
+      "flowKey": "att_adm_diagnose"
+    },
+    {
+      "id": "P3",
+      "index": 3,
+      "name": "Decide and act",
+      "emotion": 5,
+      "emotionLabel": "Committing with the cost in view",
+      "touchpoints": ["Model Retraining Insights", "Confidence Threshold Settings", "Advanced Settings"],
+      "action": "Review the projected +6–8% lift; trigger early retraining or move a threshold.",
+      "thought": "I can see the expected impact before I commit.",
+      "painPoints": [
+        "Blind changes with lagging feedback",
+        "No attribution from change to outcome"
+      ],
+      "opportunity": "A forecast beside four retrains of history, a review-load projection beside the slider, and every change logged.",
+      "momentOfTruth": true,
+      "momentLabel": "A threshold change whose review-load trade-off is visible before commit.",
+      "demoStep": "Steps 4, 5 and 6",
+      "flowKey": "att_adm_forecast"
+    }
+  ],
+  "traceability": [
+    {
+      "phase": "1 Notice",
+      "painPoint": "Warnings without context",
+      "signal": "Root Cause Analysis agent degraded",
+      "signalId": "SIG-ATT-ADM-001",
+      "demoStep": "Steps 1 and 2"
+    },
+    {
+      "phase": "2 Diagnose",
+      "painPoint": "Manual cause-effect correlation",
+      "signal": "System Sync is the dominant root cause",
+      "signalId": "SIG-ATT-ADM-002",
+      "demoStep": "Step 3"
+    },
+    {
+      "phase": "3 Decide and act",
+      "painPoint": "Blind changes, lagging feedback",
+      "signal": "Retraining opportunity ready",
+      "signalId": "SIG-ATT-ADM-003",
+      "demoStep": "Steps 4 and 6"
+    },
+    {
+      "phase": "3 Decide and act",
+      "painPoint": "Threshold effects invisible until a cycle later",
+      "signal": "Confidence thresholds govern auto-resolution",
+      "signalId": "SIG-ATT-ADM-004",
+      "demoStep": "Step 5"
+    }
+  ]
+}

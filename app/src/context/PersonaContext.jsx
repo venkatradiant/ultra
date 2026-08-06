@@ -36,6 +36,10 @@ const CLIENT_PERSONAS = {
   // picture: complex manager (roll-up), HSE GM (the reference demo), shift
   // supervisor and permit issuer (ground level).
   aramco: ['aramco_complex_manager', 'aramco_hse_gm', 'aramco_shift_supervisor', 'aramco_permit_issuer'],
+  // Telecommunications market — AT&T (AI Billing Workbench). Two roles: the
+  // Billing Operator clearing a cycle (the default and the demo that has to
+  // land) and the Platform Admin who sets the guardrails that make it safe.
+  att: ['att_billing_operator', 'att_platform_admin'],
 };
 
 // Default (primary) persona per client
@@ -45,6 +49,7 @@ const CLIENT_DEFAULT_PERSONA = {
   riverside_health: 'care_ops',
   newfold_digital: 'newfold_director',
   aramco: 'aramco_hse_gm',
+  att: 'att_billing_operator',
 };
 
 const GENERIC_PERSONAS = ['ops', 'cx', 'retention', 'risk'];

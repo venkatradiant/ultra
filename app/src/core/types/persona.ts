@@ -27,6 +27,12 @@ export type NavKey =
   | 'liveSite'
   | 'permits'
   | 'muster'
+  // Telecom / AI Billing Workbench slots. Additive in the same way: absent from
+  // the default slot set and from every other persona's `features.navSlots`.
+  | 'patterns'
+  | 'dashboard'
+  | 'history'
+  | 'adminConsole'
   | 'dataSources';
 
 export interface PersonaIdentity {

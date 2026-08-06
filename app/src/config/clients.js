@@ -88,6 +88,28 @@ export const CLIENTS = {
       muster: 'Muster Status',
     },
   },
+  // ─── Telecommunications market — AT&T (AI Billing Workbench) ────
+  // AT&T-branded: the official globe and AT&T's blues. The data is still
+  // illustrative and says so on the Data Sources screen. Keep in sync with
+  // src/markets/telecom/clients/att/client.manifest.ts.
+  att: {
+    id: 'att',
+    name: 'AT&T',
+    shortName: 'AT&T',
+    nameLines: ['AT&T'],
+    tagline: 'AI Billing Workbench',
+    logo: '/logos/att-globe.png',
+    favicon: '/logos/att-globe.png',
+    primaryColor: '#0568AE',
+    navLabels: {
+      ask: 'AI Conversation',
+      patterns: 'Patterns',
+      dashboard: 'Dashboard',
+      history: 'Resolution History',
+      adminConsole: 'Platform Administration',
+      agentObservability: 'Agent Observability',
+    },
+  },
   // ─── Healthcare market (proves the platform is multi-market) ────
   riverside_health: {
     id: 'riverside_health',

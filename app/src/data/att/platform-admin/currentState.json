@@ -1,0 +1,93 @@
+{
+  "title": "Current State — Manual Platform Tuning",
+  "subtitle": "How thresholds and agent health are managed without the console. The attribution gap — where a change is made and nothing connects it to the outcome — is marked in red.",
+  "illustrative": true,
+  "cycleTimeNote": "Cycle times are labeled and illustrative.",
+  "steps": [
+    {
+      "id": "A",
+      "label": "Operators report slow cycles or bad corrections",
+      "detail": "Anecdotal, and always after the fact",
+      "state": "normal",
+      "system": "Word of mouth, tickets"
+    },
+    {
+      "id": "B",
+      "label": "Hunt through logs, per agent",
+      "detail": "Four agents, four log surfaces, no single view",
+      "state": "gap",
+      "system": "Agent runtime logs"
+    },
+    {
+      "id": "C",
+      "label": "Guess which threshold or agent is at fault",
+      "detail": "Latency, accuracy and threshold effects are indistinguishable from here",
+      "state": "gap",
+      "system": "No system correlates them"
+    },
+    {
+      "id": "D",
+      "label": "Retrain, or adjust a threshold?",
+      "detail": "Two different fixes for symptoms that look identical",
+      "state": "normal",
+      "system": "Judgment",
+      "isDecision": true
+    },
+    {
+      "id": "E",
+      "label": "Push the change and wait a cycle",
+      "detail": "No projection of what the change will cost in review load",
+      "state": "normal",
+      "system": "Platform configuration"
+    },
+    {
+      "id": "F",
+      "label": "See whether operator accuracy moved",
+      "detail": "A cycle later, with no way to attribute the movement to the change",
+      "state": "gap",
+      "system": "Lagging reports"
+    },
+    {
+      "id": "G",
+      "label": "Back to guessing",
+      "detail": "The loop closes on itself — intuition wearing the clothes of evidence",
+      "state": "gap",
+      "system": "—"
+    }
+  ],
+  "gapSummary": "That is the attribution gap: the changes are reversible and cheap, but nothing connects a change to its effect, so every tuning decision restarts from the same place the last one did.",
+  "interventions": [
+    {
+      "id": "INT-1",
+      "currentStep": "Hunt through per-agent logs",
+      "stepId": "B",
+      "intervention": "One agent-health console: accuracy, latency, error rate and status side by side",
+      "capability": "Proactive Intelligence",
+      "impact": "Degradation visible at a glance instead of after an operator complains"
+    },
+    {
+      "id": "INT-2",
+      "currentStep": "Guess which agent or threshold is at fault",
+      "stepId": "C",
+      "intervention": "Root-cause distribution plus a P95/P99 tail that explains the warning",
+      "capability": "Friction Observability",
+      "impact": "Tuning on evidence — and knowing when retraining is the wrong fix"
+    },
+    {
+      "id": "INT-3",
+      "currentStep": "Change blindly and wait a cycle",
+      "stepId": "E",
+      "intervention": "Retraining panel projects the accuracy lift, and threshold sliders project the review-load shift, before commit",
+      "capability": "Predictive Intelligence",
+      "impact": "The cost of a change is visible while it is still reversible"
+    },
+    {
+      "id": "INT-4",
+      "currentStep": "Lagging, unattributable feedback",
+      "stepId": "F",
+      "intervention": "Operator corrections captured automatically as labeled training data",
+      "capability": "Automated Action",
+      "impact": "1,847 corrections a month feeding the next retrain, without anyone curating them"
+    }
+  ]
+}

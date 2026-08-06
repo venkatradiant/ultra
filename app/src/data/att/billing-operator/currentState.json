@@ -1,0 +1,116 @@
+{
+  "title": "Current State — Manual Anomaly Resolution, Per Cycle",
+  "subtitle": "How a billing cycle is cleared today, before the workbench. The trust gap — where deciding whether a correction is safe costs more time than making it — is marked in red.",
+  "illustrative": true,
+  "cycleTimeNote": "Cycle times are labeled and illustrative.",
+  "steps": [
+    {
+      "id": "A",
+      "label": "Cycle opens",
+      "detail": "207 anomalies across 12.4M accounts, ungrouped",
+      "state": "normal",
+      "system": "Anomaly-detection engine"
+    },
+    {
+      "id": "B",
+      "label": "Pull billing, rate-card, tax and account reports",
+      "detail": "Four exports that were never designed to reconcile with each other",
+      "state": "gap",
+      "system": "Billing system, rate card, tax tables, account history"
+    },
+    {
+      "id": "C",
+      "label": "Reconcile each anomaly by hand",
+      "detail": "Hours, and the sources disagree — every anomaly is a small investigation",
+      "state": "gap",
+      "system": "Spreadsheets"
+    },
+    {
+      "id": "D",
+      "label": "Real error, or a legitimate change?",
+      "detail": "The question that decides whether a customer gets a credit or a new dispute",
+      "state": "gap",
+      "system": "No system holds the answer",
+      "isDecision": true
+    },
+    {
+      "id": "E",
+      "label": "Correct one account at a time",
+      "detail": "Manual rebill per account; the volume never fits the window",
+      "state": "gap",
+      "system": "Rebilling, by hand"
+    },
+    {
+      "id": "F",
+      "label": "Escalate the unclear ones",
+      "detail": "A day lost per escalation, and it does not come back inside the cycle",
+      "state": "normal",
+      "system": "SME queue"
+    },
+    {
+      "id": "G",
+      "label": "Rebill and hope it is right",
+      "detail": "No per-account confidence, no preview of the corrected amount",
+      "state": "normal",
+      "system": "Rebilling API"
+    },
+    {
+      "id": "H",
+      "label": "36-hour SLA met?",
+      "detail": "Often not — and the answer arrives after the window has closed",
+      "state": "normal",
+      "system": "BRN",
+      "isDecision": true
+    },
+    {
+      "id": "I",
+      "label": "Spillover into next cycle",
+      "detail": "Credits, adjustments, support calls, and an audit trail reconstructed after the fact",
+      "state": "gap",
+      "system": "Support, finance, governance"
+    }
+  ],
+  "gapSummary": "That is the trust gap: detection was never the hard part. Deciding whether a correction is safe — and being able to stand behind it afterwards — is what does not fit in 36 hours.",
+  "interventions": [
+    {
+      "id": "INT-1",
+      "currentStep": "Pull and reconcile four reports that disagree",
+      "stepId": "B",
+      "intervention": "Fuse every source into one cycle view and answer questions across all of them at once",
+      "capability": "Converged Conversation",
+      "impact": "Hours of reconciliation removed before the first decision"
+    },
+    {
+      "id": "INT-2",
+      "currentStep": "Investigate each anomaly by hand",
+      "stepId": "C",
+      "intervention": "Pre-group 207 anomalies into 6 patterns, each with a named root cause",
+      "capability": "Anomaly Detection",
+      "impact": "Investigation collapses from 207 items to 6 decisions"
+    },
+    {
+      "id": "INT-3",
+      "currentStep": "Decide whether a correction is safe",
+      "stepId": "D",
+      "intervention": "Per-account confidence plus a current-versus-corrected reconciliation for every row",
+      "capability": "Friction Observability",
+      "impact": "Bulk action becomes defensible; fewer new disputes created by the fix"
+    },
+    {
+      "id": "INT-4",
+      "currentStep": "Correct one account at a time",
+      "stepId": "E",
+      "intervention": "Apply Fix to All through the rebilling API, with a rebill ID and audit row per account",
+      "capability": "Automated Action",
+      "impact": "87 accounts corrected in one reviewed action, logged as it happens"
+    },
+    {
+      "id": "INT-5",
+      "currentStep": "Find out downstream that it was late",
+      "stepId": "I",
+      "intervention": "Project calls prevented and hold time avoided against the remaining SLA",
+      "capability": "Predictive Intelligence",
+      "impact": "Problems prevented inside the window rather than discovered next cycle"
+    }
+  ]
+}

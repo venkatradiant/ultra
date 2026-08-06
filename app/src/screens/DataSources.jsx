@@ -21,6 +21,7 @@ import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
 import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
 import aramcoDataSources from '../data/aramco/_shared/dataSources.json';
+import attDataSources from '../data/att/_shared/dataSources.json';
 import AramcoBackdropPanel from '../components/aramco/AramcoBackdropPanel';
 import { useBranding } from '../context/BrandingContext';
 
@@ -54,6 +55,10 @@ const personaDataSources = {
   aramco_complex_manager: aramcoDataSources,
   aramco_shift_supervisor: aramcoDataSources,
   aramco_permit_issuer: aramcoDataSources,
+  // Telecom — AT&T (AI Billing Workbench). Both personas read the same ten
+  // systems; the operator acts on them and the admin tunes the agents over them.
+  att_billing_operator: attDataSources,
+  att_platform_admin: attDataSources,
 };
 
 const penfedPersonaDataSources = {
@@ -108,12 +113,24 @@ const ARAMCO_DISCLOSURES = [
   'Tracking and telemetry integrations are vendor-agnostic. TrackLynk reads whatever tags, beacons, readers and cameras a site already runs; no specific tracking vendor is named or required.',
 ];
 
+// Telecom / AI Billing Workbench data posture. The chrome is AT&T-branded but
+// the data is not AT&T's, and that gap is exactly what this panel exists to
+// close — spec §2 states the demo models a representative consumer telecom.
+// This is the one screen a presenter must read before demoing.
+const ATT_DISCLOSURES = [
+  'The interface is AT&T-branded; the data is not AT&T data. This demo models a representative consumer telecom billing operation, and no figure on any screen describes AT&T\'s actual billing, systems, or error rates.',
+  'Every value is illustrative: account numbers, customer names, dollar amounts, confidence scores, agent metrics and KPIs are representative and were authored for this prototype.',
+  'The subject matter is billing errors. Say the previous two points out loud when presenting — an AT&T-branded screen showing 207 anomalies and $4,850 at risk will otherwise be read as a claim about AT&T rather than a demonstration of the workbench.',
+  'Source-system naming is vendor-agnostic. The workbench reads whatever billing, rate-card, tax and rebilling systems an operation already runs; no specific vendor is named or required.',
+];
+
 export default function DataSources() {
   const persona = usePersona();
   const { clientId } = useBranding();
   const sourcesMap = clientId === 'penfed' ? penfedPersonaDataSources : personaDataSources;
   const dataSources = sourcesMap[persona.id] || sourcesMap.ops;
   const isAramco = persona.id?.startsWith('aramco_');
+  const isAtt = persona.id?.startsWith('att_');
 
   return (
     <div className="flex-1 py-8 px-4 sm:px-6 lg:px-8 overflow-y-auto scrollbar-sleek">
@@ -133,6 +150,23 @@ export default function DataSources() {
           </p>
           <ul className="space-y-2">
             {ARAMCO_DISCLOSURES.map((line, i) => (
+              <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {isAtt && (
+        <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+          <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-amber-800 mb-3">
+            <AlertTriangle className="w-3.5 h-3.5" />
+            Data posture — read before demoing
+          </p>
+          <ul className="space-y-2">
+            {ATT_DISCLOSURES.map((line, i) => (
               <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
                 {line}

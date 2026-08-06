@@ -1,0 +1,1463 @@
+{
+  "PATTERN-001": [
+    {
+      "id": "ACC-918273",
+      "name": "John Peterson",
+      "currentAmount": 123.5,
+      "correctedAmount": 113.5,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-918274",
+      "name": "Michael Chen",
+      "currentAmount": 114.34,
+      "correctedAmount": 104.84,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-918275",
+      "name": "Robert Taylor",
+      "currentAmount": 106.81,
+      "correctedAmount": 93.94,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-918276",
+      "name": "Emily Davis",
+      "currentAmount": 105.06,
+      "correctedAmount": 97.53,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-918277",
+      "name": "Lisa Anderson",
+      "currentAmount": 109.13,
+      "correctedAmount": 96.45,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918278",
+      "name": "Jennifer White",
+      "currentAmount": 108.66,
+      "correctedAmount": 100.87,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-918279",
+      "name": "David Martinez",
+      "currentAmount": 118.74,
+      "correctedAmount": 110.96,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-918280",
+      "name": "Sarah Johnson",
+      "currentAmount": 112.48,
+      "correctedAmount": 99.93,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-918281",
+      "name": "James Wilson",
+      "currentAmount": 130.5,
+      "correctedAmount": 123.06,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-918282",
+      "name": "Maria Garcia",
+      "currentAmount": 107.37,
+      "correctedAmount": 94.51,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918283",
+      "name": "Christopher Lee",
+      "currentAmount": 120.39,
+      "correctedAmount": 109.89,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918284",
+      "name": "Amanda Brown",
+      "currentAmount": 118.9,
+      "correctedAmount": 106.23,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-918285",
+      "name": "Daniel Kim",
+      "currentAmount": 138.35,
+      "correctedAmount": 128.52,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-918286",
+      "name": "Jessica Moore",
+      "currentAmount": 131.97,
+      "correctedAmount": 121.2,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918287",
+      "name": "Matthew Clark",
+      "currentAmount": 128.67,
+      "correctedAmount": 117.44,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918288",
+      "name": "Ashley Rodriguez",
+      "currentAmount": 137.01,
+      "correctedAmount": 124.69,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918289",
+      "name": "Andrew Lewis",
+      "currentAmount": 142.66,
+      "correctedAmount": 131.37,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918290",
+      "name": "Stephanie Walker",
+      "currentAmount": 137.47,
+      "correctedAmount": 128.57,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-918291",
+      "name": "Joshua Hall",
+      "currentAmount": 140.87,
+      "correctedAmount": 130.28,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-918292",
+      "name": "Nicole Allen",
+      "currentAmount": 132.97,
+      "correctedAmount": 121.14,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918293",
+      "name": "Ryan Young",
+      "currentAmount": 127.49,
+      "correctedAmount": 116.94,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-918294",
+      "name": "Megan King",
+      "currentAmount": 110.29,
+      "correctedAmount": 101.59,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918295",
+      "name": "Brandon Wright",
+      "currentAmount": 114.97,
+      "correctedAmount": 104.33,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918296",
+      "name": "Rachel Scott",
+      "currentAmount": 143.4,
+      "correctedAmount": 133.87,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-918297",
+      "name": "Justin Green",
+      "currentAmount": 106.18,
+      "correctedAmount": 94.87,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918298",
+      "name": "Lauren Adams",
+      "currentAmount": 139.97,
+      "correctedAmount": 132.69,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918299",
+      "name": "Kevin Baker",
+      "currentAmount": 137.47,
+      "correctedAmount": 125.81,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918300",
+      "name": "Amber Nelson",
+      "currentAmount": 140.42,
+      "correctedAmount": 130.62,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-918301",
+      "name": "Brian Hill",
+      "currentAmount": 131.18,
+      "correctedAmount": 123.3,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-918302",
+      "name": "Samantha Campbell",
+      "currentAmount": 113.52,
+      "correctedAmount": 106.41,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918303",
+      "name": "Tyler Mitchell",
+      "currentAmount": 118.62,
+      "correctedAmount": 108.37,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918304",
+      "name": "Heather Roberts",
+      "currentAmount": 129.86,
+      "correctedAmount": 120.57,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918305",
+      "name": "Jonathan Carter",
+      "currentAmount": 138.27,
+      "correctedAmount": 128.17,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918306",
+      "name": "Danielle Phillips",
+      "currentAmount": 105.94,
+      "correctedAmount": 97.45,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-918307",
+      "name": "Nathan Evans",
+      "currentAmount": 131.71,
+      "correctedAmount": 123.91,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-918308",
+      "name": "Michelle Turner",
+      "currentAmount": 105.45,
+      "correctedAmount": 94.56,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-918309",
+      "name": "Eric Torres",
+      "currentAmount": 124.36,
+      "correctedAmount": 111.93,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918310",
+      "name": "Tiffany Parker",
+      "currentAmount": 137.81,
+      "correctedAmount": 129.02,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-918311",
+      "name": "Sean Collins",
+      "currentAmount": 120.81,
+      "correctedAmount": 108.79,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918312",
+      "name": "Christina Edwards",
+      "currentAmount": 131.98,
+      "correctedAmount": 119.45,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918313",
+      "name": "Adam Stewart",
+      "currentAmount": 117.53,
+      "correctedAmount": 107.58,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918314",
+      "name": "Katherine Sanchez",
+      "currentAmount": 107.89,
+      "correctedAmount": 99.75,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918315",
+      "name": "Mark Morris",
+      "currentAmount": 134.43,
+      "correctedAmount": 123.81,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-918316",
+      "name": "Elizabeth Rogers",
+      "currentAmount": 141.72,
+      "correctedAmount": 132.63,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-918317",
+      "name": "Patrick Reed",
+      "currentAmount": 121.21,
+      "correctedAmount": 113.66,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918318",
+      "name": "Kimberly Cook",
+      "currentAmount": 116.85,
+      "correctedAmount": 105.7,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-918319",
+      "name": "Gregory Morgan",
+      "currentAmount": 139.63,
+      "correctedAmount": 128.71,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918320",
+      "name": "Brittany Bell",
+      "currentAmount": 114.57,
+      "correctedAmount": 107.21,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-918321",
+      "name": "Derek Murphy",
+      "currentAmount": 113.26,
+      "correctedAmount": 102.44,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-918322",
+      "name": "Angela Bailey",
+      "currentAmount": 142.72,
+      "correctedAmount": 131.99,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918323",
+      "name": "Travis Rivera",
+      "currentAmount": 135.19,
+      "correctedAmount": 123.78,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918324",
+      "name": "Mia Cooper",
+      "currentAmount": 121.62,
+      "correctedAmount": 114.45,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-918325",
+      "name": "Chad Richardson",
+      "currentAmount": 121.52,
+      "correctedAmount": 112.13,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918326",
+      "name": "Diana Cox",
+      "currentAmount": 105.41,
+      "correctedAmount": 95.24,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918327",
+      "name": "Russell Howard",
+      "currentAmount": 115.11,
+      "correctedAmount": 105.62,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-918328",
+      "name": "Courtney Ward",
+      "currentAmount": 131.33,
+      "correctedAmount": 123.88,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-918329",
+      "name": "Jeremy Torres",
+      "currentAmount": 110.51,
+      "correctedAmount": 101.94,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-918330",
+      "name": "Allison Watson",
+      "currentAmount": 106.65,
+      "correctedAmount": 99.4,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-918331",
+      "name": "Marcus Brooks",
+      "currentAmount": 126.07,
+      "correctedAmount": 118.63,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918332",
+      "name": "Vanessa Kelly",
+      "currentAmount": 112.61,
+      "correctedAmount": 103.72,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-918333",
+      "name": "Shane Sanders",
+      "currentAmount": 125.99,
+      "correctedAmount": 114.83,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-918334",
+      "name": "Natalie Price",
+      "currentAmount": 105.19,
+      "correctedAmount": 97.97,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918335",
+      "name": "Wesley Bennett",
+      "currentAmount": 135.87,
+      "correctedAmount": 125.51,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918336",
+      "name": "Brooke Wood",
+      "currentAmount": 114.99,
+      "correctedAmount": 107.89,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-918337",
+      "name": "Victor Barnes",
+      "currentAmount": 131.55,
+      "correctedAmount": 120.28,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918338",
+      "name": "Casey Ross",
+      "currentAmount": 123.97,
+      "correctedAmount": 114.41,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-918339",
+      "name": "Dustin Henderson",
+      "currentAmount": 121.07,
+      "correctedAmount": 114,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-918340",
+      "name": "Monica Coleman",
+      "currentAmount": 107.76,
+      "correctedAmount": 99.38,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918341",
+      "name": "Dale Jenkins",
+      "currentAmount": 107.31,
+      "correctedAmount": 98.43,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918342",
+      "name": "Leslie Perry",
+      "currentAmount": 107.28,
+      "correctedAmount": 97.24,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-918343",
+      "name": "Raymond Powell",
+      "currentAmount": 141.47,
+      "correctedAmount": 131.7,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918344",
+      "name": "Carmen Long",
+      "currentAmount": 135.78,
+      "correctedAmount": 128.11,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-918345",
+      "name": "Derrick Patterson",
+      "currentAmount": 137.94,
+      "correctedAmount": 128.8,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918346",
+      "name": "Rosa Hughes",
+      "currentAmount": 112.22,
+      "correctedAmount": 104.22,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918347",
+      "name": "Grant Flores",
+      "currentAmount": 136.43,
+      "correctedAmount": 127.05,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-918348",
+      "name": "Kelly Washington",
+      "currentAmount": 117.83,
+      "correctedAmount": 109.63,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918349",
+      "name": "Leon Butler",
+      "currentAmount": 115.64,
+      "correctedAmount": 103.89,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918350",
+      "name": "Nina Simmons",
+      "currentAmount": 110.96,
+      "correctedAmount": 102.23,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918351",
+      "name": "Oscar Foster",
+      "currentAmount": 135.14,
+      "correctedAmount": 127.7,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-918352",
+      "name": "Tamara Gonzales",
+      "currentAmount": 134.61,
+      "correctedAmount": 124.46,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-918353",
+      "name": "Phillip Bryant",
+      "currentAmount": 127.79,
+      "correctedAmount": 116.28,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918354",
+      "name": "Wendy Alexander",
+      "currentAmount": 119.92,
+      "correctedAmount": 108.66,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-918355",
+      "name": "Carlton Russell",
+      "currentAmount": 124.8,
+      "correctedAmount": 113.49,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-918356",
+      "name": "Irene Griffin",
+      "currentAmount": 121.24,
+      "correctedAmount": 109.24,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-918357",
+      "name": "Hugo Diaz",
+      "currentAmount": 118.47,
+      "correctedAmount": 106.73,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-918358",
+      "name": "Denise Hayes",
+      "currentAmount": 117.49,
+      "correctedAmount": 107.6,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-918359",
+      "name": "Felix Myers",
+      "currentAmount": 106.66,
+      "correctedAmount": 97.04,
+      "confidence": 95
+    }
+  ],
+  "PATTERN-002": [
+    {
+      "id": "ACC-776512",
+      "name": "John Peterson",
+      "currentAmount": 178.72,
+      "correctedAmount": 142.61,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-776513",
+      "name": "Michael Chen",
+      "currentAmount": 199.8,
+      "correctedAmount": 170.2,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-776514",
+      "name": "Robert Taylor",
+      "currentAmount": 152.37,
+      "correctedAmount": 118.72,
+      "confidence": 85
+    },
+    {
+      "id": "ACC-776515",
+      "name": "Emily Davis",
+      "currentAmount": 185.95,
+      "correctedAmount": 156.84,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-776516",
+      "name": "Lisa Anderson",
+      "currentAmount": 207.75,
+      "correctedAmount": 172.72,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-776517",
+      "name": "Jennifer White",
+      "currentAmount": 181.92,
+      "correctedAmount": 144.21,
+      "confidence": 85
+    },
+    {
+      "id": "ACC-776518",
+      "name": "David Martinez",
+      "currentAmount": 152.75,
+      "correctedAmount": 125.94,
+      "confidence": 87
+    },
+    {
+      "id": "ACC-776519",
+      "name": "Sarah Johnson",
+      "currentAmount": 166.89,
+      "correctedAmount": 137.7,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-776520",
+      "name": "James Wilson",
+      "currentAmount": 160.2,
+      "correctedAmount": 130.97,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-776521",
+      "name": "Maria Garcia",
+      "currentAmount": 142.81,
+      "correctedAmount": 117.5,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-776522",
+      "name": "Christopher Lee",
+      "currentAmount": 160.08,
+      "correctedAmount": 130.69,
+      "confidence": 85
+    },
+    {
+      "id": "ACC-776523",
+      "name": "Amanda Brown",
+      "currentAmount": 143.96,
+      "correctedAmount": 114.59,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-776524",
+      "name": "Daniel Kim",
+      "currentAmount": 209.39,
+      "correctedAmount": 171.1,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-776525",
+      "name": "Jessica Moore",
+      "currentAmount": 192.32,
+      "correctedAmount": 166.63,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-776526",
+      "name": "Matthew Clark",
+      "currentAmount": 195.2,
+      "correctedAmount": 174.1,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-776527",
+      "name": "Ashley Rodriguez",
+      "currentAmount": 143.13,
+      "correctedAmount": 105.85,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-776528",
+      "name": "Andrew Lewis",
+      "currentAmount": 194.43,
+      "correctedAmount": 164.66,
+      "confidence": 87
+    },
+    {
+      "id": "ACC-776529",
+      "name": "Stephanie Walker",
+      "currentAmount": 141.12,
+      "correctedAmount": 116.8,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-776530",
+      "name": "Joshua Hall",
+      "currentAmount": 201.77,
+      "correctedAmount": 165.61,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-776531",
+      "name": "Nicole Allen",
+      "currentAmount": 192.35,
+      "correctedAmount": 159.54,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-776532",
+      "name": "Ryan Young",
+      "currentAmount": 185.94,
+      "correctedAmount": 147.95,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-776533",
+      "name": "Megan King",
+      "currentAmount": 163.29,
+      "correctedAmount": 128.65,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-776534",
+      "name": "Brandon Wright",
+      "currentAmount": 147.63,
+      "correctedAmount": 121.02,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-776535",
+      "name": "Rachel Scott",
+      "currentAmount": 166.14,
+      "correctedAmount": 132.85,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-776536",
+      "name": "Justin Green",
+      "currentAmount": 143.32,
+      "correctedAmount": 117.28,
+      "confidence": 85
+    },
+    {
+      "id": "ACC-776537",
+      "name": "Lauren Adams",
+      "currentAmount": 203.3,
+      "correctedAmount": 180.91,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-776538",
+      "name": "Kevin Baker",
+      "currentAmount": 144.81,
+      "correctedAmount": 119.85,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-776539",
+      "name": "Amber Nelson",
+      "currentAmount": 186.21,
+      "correctedAmount": 155.09,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-776540",
+      "name": "Brian Hill",
+      "currentAmount": 199.98,
+      "correctedAmount": 169.83,
+      "confidence": 85
+    },
+    {
+      "id": "ACC-776541",
+      "name": "Samantha Campbell",
+      "currentAmount": 159.49,
+      "correctedAmount": 126.34,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-776542",
+      "name": "Tyler Mitchell",
+      "currentAmount": 192.59,
+      "correctedAmount": 153.93,
+      "confidence": 87
+    },
+    {
+      "id": "ACC-776543",
+      "name": "Heather Roberts",
+      "currentAmount": 162.32,
+      "correctedAmount": 134.39,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-776544",
+      "name": "Jonathan Carter",
+      "currentAmount": 186.39,
+      "correctedAmount": 159.03,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-776545",
+      "name": "Danielle Phillips",
+      "currentAmount": 188.23,
+      "correctedAmount": 151.7,
+      "confidence": 94
+    }
+  ],
+  "PATTERN-003": [
+    {
+      "id": "ACC-554321",
+      "name": "John Peterson",
+      "currentAmount": 115.09,
+      "correctedAmount": 111.34,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-554322",
+      "name": "Michael Chen",
+      "currentAmount": 101.68,
+      "correctedAmount": 97.71,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-554323",
+      "name": "Robert Taylor",
+      "currentAmount": 121.69,
+      "correctedAmount": 117.58,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-554324",
+      "name": "Emily Davis",
+      "currentAmount": 115.53,
+      "correctedAmount": 112.14,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-554325",
+      "name": "Lisa Anderson",
+      "currentAmount": 102.31,
+      "correctedAmount": 99.24,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-554326",
+      "name": "Jennifer White",
+      "currentAmount": 110.57,
+      "correctedAmount": 107.97,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-554327",
+      "name": "David Martinez",
+      "currentAmount": 100.66,
+      "correctedAmount": 96.55,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-554328",
+      "name": "Sarah Johnson",
+      "currentAmount": 95.54,
+      "correctedAmount": 92.83,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-554329",
+      "name": "James Wilson",
+      "currentAmount": 106.65,
+      "correctedAmount": 102.73,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-554330",
+      "name": "Maria Garcia",
+      "currentAmount": 124.06,
+      "correctedAmount": 121.59,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-554331",
+      "name": "Christopher Lee",
+      "currentAmount": 115.16,
+      "correctedAmount": 111.22,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-554332",
+      "name": "Amanda Brown",
+      "currentAmount": 119.9,
+      "correctedAmount": 117.22,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-554333",
+      "name": "Daniel Kim",
+      "currentAmount": 90.68,
+      "correctedAmount": 86.96,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-554334",
+      "name": "Jessica Moore",
+      "currentAmount": 126.16,
+      "correctedAmount": 123.84,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-554335",
+      "name": "Matthew Clark",
+      "currentAmount": 112.09,
+      "correctedAmount": 108.8,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-554336",
+      "name": "Ashley Rodriguez",
+      "currentAmount": 103.87,
+      "correctedAmount": 101.55,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-554337",
+      "name": "Andrew Lewis",
+      "currentAmount": 106.39,
+      "correctedAmount": 102.53,
+      "confidence": 85
+    },
+    {
+      "id": "ACC-554338",
+      "name": "Stephanie Walker",
+      "currentAmount": 116.41,
+      "correctedAmount": 113.94,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-554339",
+      "name": "Joshua Hall",
+      "currentAmount": 103.45,
+      "correctedAmount": 100.42,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-554340",
+      "name": "Nicole Allen",
+      "currentAmount": 98.23,
+      "correctedAmount": 94.55,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-554341",
+      "name": "Ryan Young",
+      "currentAmount": 124.35,
+      "correctedAmount": 121.8,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-554342",
+      "name": "Megan King",
+      "currentAmount": 126.1,
+      "correctedAmount": 122.58,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-554343",
+      "name": "Brandon Wright",
+      "currentAmount": 115.14,
+      "correctedAmount": 111.84,
+      "confidence": 87
+    },
+    {
+      "id": "ACC-554344",
+      "name": "Rachel Scott",
+      "currentAmount": 129.52,
+      "correctedAmount": 126.47,
+      "confidence": 86
+    }
+  ],
+  "PATTERN-004": [
+    {
+      "id": "ACC-239881",
+      "name": "John Peterson",
+      "currentAmount": 114.57,
+      "correctedAmount": 103.87,
+      "confidence": 87
+    },
+    {
+      "id": "ACC-239882",
+      "name": "Michael Chen",
+      "currentAmount": 135,
+      "correctedAmount": 124.37,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-239883",
+      "name": "Robert Taylor",
+      "currentAmount": 105.69,
+      "correctedAmount": 93,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-239884",
+      "name": "Emily Davis",
+      "currentAmount": 100.14,
+      "correctedAmount": 80.71,
+      "confidence": 78
+    },
+    {
+      "id": "ACC-239885",
+      "name": "Lisa Anderson",
+      "currentAmount": 115.51,
+      "correctedAmount": 100.79,
+      "confidence": 85
+    },
+    {
+      "id": "ACC-239886",
+      "name": "Jennifer White",
+      "currentAmount": 131.1,
+      "correctedAmount": 117.96,
+      "confidence": 81
+    },
+    {
+      "id": "ACC-239887",
+      "name": "David Martinez",
+      "currentAmount": 107.89,
+      "correctedAmount": 95.08,
+      "confidence": 78
+    },
+    {
+      "id": "ACC-239888",
+      "name": "Sarah Johnson",
+      "currentAmount": 111.3,
+      "correctedAmount": 95.44,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-239889",
+      "name": "James Wilson",
+      "currentAmount": 133.95,
+      "correctedAmount": 121.81,
+      "confidence": 87
+    },
+    {
+      "id": "ACC-239890",
+      "name": "Maria Garcia",
+      "currentAmount": 100.62,
+      "correctedAmount": 84.45,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-239891",
+      "name": "Christopher Lee",
+      "currentAmount": 97.75,
+      "correctedAmount": 81.43,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-239892",
+      "name": "Amanda Brown",
+      "currentAmount": 102.33,
+      "correctedAmount": 90.49,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-239893",
+      "name": "Daniel Kim",
+      "currentAmount": 130.78,
+      "correctedAmount": 118.44,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-239894",
+      "name": "Jessica Moore",
+      "currentAmount": 119.72,
+      "correctedAmount": 106.65,
+      "confidence": 77
+    },
+    {
+      "id": "ACC-239895",
+      "name": "Matthew Clark",
+      "currentAmount": 107.79,
+      "correctedAmount": 88.54,
+      "confidence": 80
+    },
+    {
+      "id": "ACC-239896",
+      "name": "Ashley Rodriguez",
+      "currentAmount": 99.53,
+      "correctedAmount": 80.11,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-239897",
+      "name": "Andrew Lewis",
+      "currentAmount": 127.69,
+      "correctedAmount": 116.66,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-239898",
+      "name": "Stephanie Walker",
+      "currentAmount": 126.42,
+      "correctedAmount": 108.15,
+      "confidence": 82
+    },
+    {
+      "id": "ACC-239899",
+      "name": "Joshua Hall",
+      "currentAmount": 101.95,
+      "correctedAmount": 90.06,
+      "confidence": 87
+    },
+    {
+      "id": "ACC-239900",
+      "name": "Nicole Allen",
+      "currentAmount": 125.15,
+      "correctedAmount": 107.36,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-239901",
+      "name": "Ryan Young",
+      "currentAmount": 95.15,
+      "correctedAmount": 80.73,
+      "confidence": 79
+    },
+    {
+      "id": "ACC-239902",
+      "name": "Megan King",
+      "currentAmount": 131.49,
+      "correctedAmount": 119.42,
+      "confidence": 77
+    },
+    {
+      "id": "ACC-239903",
+      "name": "Brandon Wright",
+      "currentAmount": 102.99,
+      "correctedAmount": 88.54,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-239904",
+      "name": "Rachel Scott",
+      "currentAmount": 122.61,
+      "correctedAmount": 108.34,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-239905",
+      "name": "Justin Green",
+      "currentAmount": 129.35,
+      "correctedAmount": 113.66,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-239906",
+      "name": "Lauren Adams",
+      "currentAmount": 113.94,
+      "correctedAmount": 101.66,
+      "confidence": 77
+    },
+    {
+      "id": "ACC-239907",
+      "name": "Kevin Baker",
+      "currentAmount": 104.8,
+      "correctedAmount": 88.55,
+      "confidence": 80
+    },
+    {
+      "id": "ACC-239908",
+      "name": "Amber Nelson",
+      "currentAmount": 107.79,
+      "correctedAmount": 96.2,
+      "confidence": 78
+    },
+    {
+      "id": "ACC-239909",
+      "name": "Brian Hill",
+      "currentAmount": 95.69,
+      "correctedAmount": 80.42,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-239910",
+      "name": "Samantha Campbell",
+      "currentAmount": 127.71,
+      "correctedAmount": 112.95,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-239911",
+      "name": "Tyler Mitchell",
+      "currentAmount": 138.59,
+      "correctedAmount": 120.83,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-239912",
+      "name": "Heather Roberts",
+      "currentAmount": 126.33,
+      "correctedAmount": 114.46,
+      "confidence": 84
+    },
+    {
+      "id": "ACC-239913",
+      "name": "Jonathan Carter",
+      "currentAmount": 136.4,
+      "correctedAmount": 121.79,
+      "confidence": 84
+    },
+    {
+      "id": "ACC-239914",
+      "name": "Danielle Phillips",
+      "currentAmount": 125.45,
+      "correctedAmount": 106.1,
+      "confidence": 82
+    },
+    {
+      "id": "ACC-239915",
+      "name": "Nathan Evans",
+      "currentAmount": 95.69,
+      "correctedAmount": 83.4,
+      "confidence": 90
+    },
+    {
+      "id": "ACC-239916",
+      "name": "Michelle Turner",
+      "currentAmount": 118.88,
+      "correctedAmount": 99.56,
+      "confidence": 81
+    },
+    {
+      "id": "ACC-239917",
+      "name": "Eric Torres",
+      "currentAmount": 114.74,
+      "correctedAmount": 96.52,
+      "confidence": 91
+    },
+    {
+      "id": "ACC-239918",
+      "name": "Tiffany Parker",
+      "currentAmount": 113.85,
+      "correctedAmount": 100.02,
+      "confidence": 88
+    },
+    {
+      "id": "ACC-239919",
+      "name": "Sean Collins",
+      "currentAmount": 135.26,
+      "correctedAmount": 119.78,
+      "confidence": 86
+    },
+    {
+      "id": "ACC-239920",
+      "name": "Christina Edwards",
+      "currentAmount": 131.11,
+      "correctedAmount": 112.07,
+      "confidence": 89
+    },
+    {
+      "id": "ACC-239921",
+      "name": "Adam Stewart",
+      "currentAmount": 101.96,
+      "correctedAmount": 90.26,
+      "confidence": 79
+    }
+  ],
+  "PATTERN-005": [
+    {
+      "id": "ACC-223344",
+      "name": "John Peterson",
+      "currentAmount": 203.59,
+      "correctedAmount": 123.19,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-223345",
+      "name": "Michael Chen",
+      "currentAmount": 194.84,
+      "correctedAmount": 132.43,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-223346",
+      "name": "Robert Taylor",
+      "currentAmount": 162.01,
+      "correctedAmount": 77,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-223347",
+      "name": "Emily Davis",
+      "currentAmount": 175.72,
+      "correctedAmount": 116.17,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-223348",
+      "name": "Lisa Anderson",
+      "currentAmount": 226.8,
+      "correctedAmount": 167.7,
+      "confidence": 98
+    },
+    {
+      "id": "ACC-223349",
+      "name": "Jennifer White",
+      "currentAmount": 227.41,
+      "correctedAmount": 144.61,
+      "confidence": 95
+    },
+    {
+      "id": "ACC-223350",
+      "name": "David Martinez",
+      "currentAmount": 198.01,
+      "correctedAmount": 112.6,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-223351",
+      "name": "Sarah Johnson",
+      "currentAmount": 174.99,
+      "correctedAmount": 92.95,
+      "confidence": 92
+    },
+    {
+      "id": "ACC-223352",
+      "name": "James Wilson",
+      "currentAmount": 171.69,
+      "correctedAmount": 88.6,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-223353",
+      "name": "Maria Garcia",
+      "currentAmount": 209.91,
+      "correctedAmount": 126.05,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-223354",
+      "name": "Christopher Lee",
+      "currentAmount": 209.96,
+      "correctedAmount": 116.45,
+      "confidence": 93
+    },
+    {
+      "id": "ACC-223355",
+      "name": "Amanda Brown",
+      "currentAmount": 160.38,
+      "correctedAmount": 97.4,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-223356",
+      "name": "Daniel Kim",
+      "currentAmount": 163.85,
+      "correctedAmount": 79.89,
+      "confidence": 94
+    },
+    {
+      "id": "ACC-223357",
+      "name": "Jessica Moore",
+      "currentAmount": 157.15,
+      "correctedAmount": 94.52,
+      "confidence": 97
+    },
+    {
+      "id": "ACC-223358",
+      "name": "Matthew Clark",
+      "currentAmount": 204.35,
+      "correctedAmount": 135.3,
+      "confidence": 96
+    },
+    {
+      "id": "ACC-223359",
+      "name": "Ashley Rodriguez",
+      "currentAmount": 171.52,
+      "correctedAmount": 86.82,
+      "confidence": 97
+    }
+  ],
+  "PATTERN-006": [
+    {
+      "id": "ACC-992847",
+      "name": "John Peterson",
+      "currentAmount": 252.27,
+      "correctedAmount": 99.57,
+      "confidence": 74
+    },
+    {
+      "id": "ACC-883221",
+      "name": "Maria Garcia",
+      "currentAmount": 345.8,
+      "correctedAmount": 118.45,
+      "confidence": 71
+    },
+    {
+      "id": "ACC-776543",
+      "name": "Daniel Kim",
+      "currentAmount": 342.1,
+      "correctedAmount": 95.3,
+      "confidence": 68
+    },
+    {
+      "id": "ACC-665432",
+      "name": "Ashley Rodriguez",
+      "currentAmount": 289.5,
+      "correctedAmount": 112.8,
+      "confidence": 76
+    },
+    {
+      "id": "ACC-554398",
+      "name": "Brandon Wright",
+      "currentAmount": 410.62,
+      "correctedAmount": 145.97,
+      "confidence": 72
+    }
+  ]
+}
