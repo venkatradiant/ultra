@@ -15,12 +15,29 @@ import { Siren, MapPin, TrendingUp, Users, CheckCircle2, Timer } from 'lucide-re
 import useAsyncData from '../../hooks/useAsyncData';
 import { getMuster } from '../../data/aramco/hse-gm';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
+import MusterControlCenter from './MusterControlCenter';
 
 const PRIORITY_STYLE = {
   high: { wrap: 'border-rose-300 bg-rose-50', tone: 'text-rose-800', num: 'text-rose-800', dot: 'bg-rose-600' },
   medium: { wrap: 'border-amber-300 bg-amber-50', tone: 'text-amber-800', num: 'text-amber-800', dot: 'bg-amber-500' },
   low: { wrap: 'border-border bg-surface-2', tone: 'text-text-muted', num: 'text-text', dot: 'bg-slate-400' },
 };
+
+/**
+ * Entity–muster-zone allocation bands, exactly as the deployed console defines
+ * them. They answer a different question from "is this point complete": a point
+ * at 96% of *capacity* is a crush risk even when every expected person has
+ * arrived, and that is a decision the incident commander has to make while the
+ * drill is still running rather than in the debrief.
+ */
+const LOAD_BANDS = [
+  { max: 50, label: 'Optimal', swatch: 'bg-emerald-500', bar: 'bg-emerald-500', text: 'text-emerald-700' },
+  { max: 80, label: 'Moderate', swatch: 'bg-amber-400', bar: 'bg-amber-400', text: 'text-amber-700' },
+  { max: 100, label: 'High', swatch: 'bg-orange-500', bar: 'bg-orange-500', text: 'text-orange-700' },
+  { max: Infinity, label: 'Overloaded', swatch: 'bg-rose-600', bar: 'bg-rose-600', text: 'text-rose-700' },
+];
+
+const bandFor = (loadPct) => LOAD_BANDS.find((b) => loadPct <= b.max);
 
 export default function MusterBoard({ getter = getMuster, embedded = false }) {
   const muster = useAsyncData(getter);
@@ -82,12 +99,30 @@ export default function MusterBoard({ getter = getMuster, embedded = false }) {
         </div>
       </div>
 
+      <div className="mb-5">
+        <MusterControlCenter muster={muster} />
+      </div>
+
       {/* Per-zone accounting */}
-      <p className="text-[10px] font-bold uppercase tracking-wider text-text-subtle mb-2">Muster points</p>
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 mb-2">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-text-subtle">
+          Entity — muster zone allocation
+        </p>
+        <span className="inline-flex flex-wrap items-center gap-x-3 gap-y-1">
+          {LOAD_BANDS.map((b, i) => (
+            <span key={b.label} className="inline-flex items-center gap-1.5 text-[10px] text-text-muted">
+              <span className={`w-2.5 h-2.5 rounded-sm ${b.swatch}`} />
+              {i === 0 ? '0–50%' : i === 1 ? '51–80%' : i === 2 ? '81–100%' : '>100%'} ({b.label})
+            </span>
+          ))}
+        </span>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 mb-5">
         {muster.zones.map((z, i) => {
           const zonePct = Math.round((z.accounted / z.expected) * 100);
           const complete = z.accounted === z.expected;
+          const loadPct = z.capacity ? Math.round((z.accounted / z.capacity) * 100) : null;
+          const band = loadPct === null ? null : bandFor(loadPct);
           return (
             <motion.div
               key={z.id}
@@ -118,6 +153,28 @@ export default function MusterBoard({ getter = getMuster, embedded = false }) {
               <p className="text-[10.5px] text-text-muted mt-1.5">
                 {complete ? 'All accounted' : `${z.expected - z.accounted} outstanding`}
               </p>
+
+              {/* Assigned / capacity / available, and the load band. */}
+              {band && (
+                <div className="mt-2.5 pt-2.5 border-t border-border-subtle">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="text-[10px] text-text-subtle">
+                      {z.accounted.toLocaleString()} assigned · {z.capacity.toLocaleString()} capacity ·{' '}
+                      {(z.capacity - z.accounted).toLocaleString()} available
+                    </span>
+                    <span className={`text-[10.5px] font-bold ${band.text}`}>{loadPct}%</span>
+                  </div>
+                  <div className="mt-1 h-1 rounded-full bg-border overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${Math.min(loadPct, 100)}%` }}
+                      transition={{ duration: 0.8, delay: 0.1 + i * 0.06, ease: 'easeOut' }}
+                      className={`h-full rounded-full ${band.bar}`}
+                    />
+                  </div>
+                  <p className={`text-[10px] font-semibold mt-1 ${band.text}`}>{band.label} load</p>
+                </div>
+              )}
             </motion.div>
           );
         })}

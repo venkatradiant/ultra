@@ -1,0 +1,444 @@
+{
+ "type": "FeatureCollection",
+ "metadata": {
+  "illustrative": true,
+  "permitId": "CS-1182",
+  "zoneId": "Z3",
+  "levelId": "L0",
+  "extentMetres": {
+   "w": 34,
+   "h": 34
+  },
+  "note": "Authored in IMDF feature shape (level / unit / opening / fixture / occupant) at true metre scale, so a real IMDF export could replace it without a component change. Geometry is invented.",
+  "generatedBy": "scripts/generate-aramco-geo.mjs"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       50.020343,
+       26.513297
+      ],
+      [
+       50.020684,
+       26.513297
+      ],
+      [
+       50.020684,
+       26.513604
+      ],
+      [
+       50.020343,
+       26.513604
+      ],
+      [
+       50.020343,
+       26.513297
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "footprint",
+    "feature_type": "footprint",
+    "category": "ground",
+    "name": "Coker drum structure",
+    "widthMetres": 34,
+    "depthMetres": 34
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       50.020343,
+       26.513297
+      ],
+      [
+       50.020684,
+       26.513297
+      ],
+      [
+       50.020684,
+       26.513604
+      ],
+      [
+       50.020343,
+       26.513604
+      ],
+      [
+       50.020343,
+       26.513297
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "level",
+    "feature_type": "level",
+    "level_id": "L0",
+    "ordinal": 0,
+    "name": "Drum deck (grade + 18 m)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       50.020433,
+       26.513378
+      ],
+      [
+       50.020594,
+       26.513378
+      ],
+      [
+       50.020594,
+       26.513523
+      ],
+      [
+       50.020433,
+       26.513523
+      ],
+      [
+       50.020433,
+       26.513378
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "unit",
+    "feature_type": "unit",
+    "level_id": "L0",
+    "id": "U-DRUM",
+    "category": "vessel",
+    "name": "Coker drum C-301 (confined space)",
+    "restricted": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       50.020363,
+       26.513541
+      ],
+      [
+       50.020664,
+       26.513541
+      ],
+      [
+       50.020664,
+       26.513586
+      ],
+      [
+       50.020363,
+       26.513586
+      ],
+      [
+       50.020363,
+       26.513541
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "unit",
+    "feature_type": "unit",
+    "level_id": "L0",
+    "id": "U-DECK",
+    "category": "walkway",
+    "name": "Access deck",
+    "restricted": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       50.020363,
+       26.513378
+      ],
+      [
+       50.020413,
+       26.513378
+      ],
+      [
+       50.020413,
+       26.513523
+      ],
+      [
+       50.020363,
+       26.513523
+      ],
+      [
+       50.020363,
+       26.513378
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "unit",
+    "feature_type": "unit",
+    "level_id": "L0",
+    "id": "U-STAIR",
+    "category": "stairs",
+    "name": "Stair tower",
+    "restricted": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       50.020363,
+       26.513315
+      ],
+      [
+       50.020464,
+       26.513315
+      ],
+      [
+       50.020464,
+       26.51336
+      ],
+      [
+       50.020363,
+       26.51336
+      ],
+      [
+       50.020363,
+       26.513315
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "unit",
+    "feature_type": "unit",
+    "level_id": "L0",
+    "id": "U-CABIN",
+    "category": "room",
+    "name": "Permit cabin",
+    "restricted": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       50.020494,
+       26.513315
+      ],
+      [
+       50.020664,
+       26.513315
+      ],
+      [
+       50.020664,
+       26.51336
+      ],
+      [
+       50.020494,
+       26.51336
+      ],
+      [
+       50.020494,
+       26.513315
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "unit",
+    "feature_type": "unit",
+    "level_id": "L0",
+    "id": "U-LAYDOWN",
+    "category": "nonpublic",
+    "name": "Laydown area",
+    "restricted": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     50.020433,
+     26.513478
+    ]
+   },
+   "properties": {
+    "kind": "opening",
+    "feature_type": "opening",
+    "level_id": "L0",
+    "id": "O-MANWAY",
+    "category": "manway",
+    "name": "North manway",
+    "accessible": true,
+    "labelOffset": [
+     0,
+     -14
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     50.020418,
+     26.513478
+    ]
+   },
+   "properties": {
+    "kind": "fixture",
+    "feature_type": "fixture",
+    "level_id": "L0",
+    "id": "F-STANDBY",
+    "category": "standby-post",
+    "name": "Standby person post",
+    "state": "compliant",
+    "detail": "Confirmed at the entry point by location and camera.",
+    "labelOffset": [
+     -96,
+     0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     50.020454,
+     26.5135
+    ]
+   },
+   "properties": {
+    "kind": "fixture",
+    "feature_type": "fixture",
+    "level_id": "L0",
+    "id": "F-GAS",
+    "category": "gas-monitor",
+    "name": "Continuous gas monitor",
+    "state": "attention",
+    "detail": "Within limits, last test 14 min ago. Next due in about 1 minute.",
+    "labelOffset": [
+     0,
+     -16
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     50.020393,
+     26.513545
+    ]
+   },
+   "properties": {
+    "kind": "fixture",
+    "feature_type": "fixture",
+    "level_id": "L0",
+    "id": "F-CAM",
+    "category": "camera",
+    "name": "Entry camera",
+    "state": "compliant",
+    "detail": "Presence confirmed at the manway.",
+    "labelOffset": [
+     0,
+     -14
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     50.020403,
+     26.513432
+    ]
+   },
+   "properties": {
+    "kind": "fixture",
+    "feature_type": "fixture",
+    "level_id": "L0",
+    "id": "F-WINCH",
+    "category": "rescue",
+    "name": "Rescue tripod and winch",
+    "state": "compliant",
+    "detail": "Rigged over the manway.",
+    "labelOffset": [
+     -104,
+     0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     50.020484,
+     26.513441
+    ]
+   },
+   "properties": {
+    "kind": "occupant",
+    "feature_type": "occupant",
+    "level_id": "L0",
+    "id": "E-1",
+    "name": "Entrant 1",
+    "label": "Contractor crew, tag 41822",
+    "inside": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     50.020539,
+     26.513414
+    ]
+   },
+   "properties": {
+    "kind": "occupant",
+    "feature_type": "occupant",
+    "level_id": "L0",
+    "id": "E-2",
+    "name": "Entrant 2",
+    "label": "Contractor crew, tag 41823",
+    "inside": true
+   }
+  }
+ ]
+}

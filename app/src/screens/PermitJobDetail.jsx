@@ -9,6 +9,7 @@ import { usePersona } from '../context/PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
 import { getPermits } from '../data/aramco/hse-gm';
 import HsePageHeader from '../components/aramco/HsePageHeader';
+import LazyIndoorViewer from '../components/aramco/LazyIndoorViewer';
 import PermitDetailCard from '../components/aramco/PermitDetailCard';
 import EvidenceTrustPanel from '../components/aramco/EvidenceTrustPanel';
 
@@ -36,7 +37,14 @@ export default function PermitJobDetail() {
         asOf={permits.freshness}
       />
 
-      <PermitDetailCard />
+      {/* The space before the paperwork: where the entrants, the standby post
+          and the gas monitor actually are, then the permit record that says
+          where they should be. */}
+      <LazyIndoorViewer height="min(52vh, 500px)" />
+
+      <div className="mt-5">
+        <PermitDetailCard />
+      </div>
 
       <div className="mt-5">
         <EvidenceTrustPanel scope="permit" />

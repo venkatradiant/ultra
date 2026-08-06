@@ -47,7 +47,11 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
     plugins: [react(), tailwindcss(), ttsDevServer(env)],
-    resolve: { alias },
+    // Kept after the R3F experiment: dedupe is cheap insurance against a second
+    // React instance reaching any library that reads React internals.
+    // Kept after the R3F experiment: dedupe is cheap insurance against a second
+    // React instance reaching any library that reads React internals.
+    resolve: { alias, dedupe: ['react', 'react-dom'] },
     build: {
       rolldownOptions: {
         output: {
@@ -59,6 +63,14 @@ export default defineConfig(({ mode }) => {
               // at which point it inlined it into the eager entry. Pin it so the
               // initial bundle doesn't carry every persona's script.
               { name: 'personaFlowConfigs', test: /src[\\/]data[\\/]personaFlowConfigs/ },
+              // MapLibre and three are reached only through lazy boundaries
+              // (LazySiteMap, IndoorScene3D). Pinned for the same reason as
+              // above: Rolldown's automatic chunker has already been observed
+              // folding a lazily-reached module into the eager entry once a
+              // second dynamic route joined the graph, and the entry is the one
+              // chunk that must not grow. ~245 KB and ~178 KB gzipped.
+              { name: 'maplibre', test: /node_modules[\\/]maplibre-gl/ },
+              { name: 'three', test: /node_modules[\\/]three[\\/]/ },
             ],
           },
         },

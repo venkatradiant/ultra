@@ -9,7 +9,7 @@ import { usePersona } from '../context/PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
 import { getSiteData } from '../data/aramco/hse-gm';
 import HsePageHeader from '../components/aramco/HsePageHeader';
-import SiteMap from '../components/aramco/SiteMap';
+import LazySiteMap from '../components/aramco/LazySiteMap';
 import FlaggedJobsTable from '../components/aramco/FlaggedJobsTable';
 
 export default function LiveSitePicture() {
@@ -37,7 +37,9 @@ export default function LiveSitePicture() {
         asOf={site.freshness}
       />
 
-      <SiteMap />
+      {/* The route gets the full-height map — this is the view that has to read
+          at investor distance, so it is given the room the chat turns cannot. */}
+      <LazySiteMap height="min(62vh, 620px)" />
 
       <div className="mt-5">
         <FlaggedJobsTable />

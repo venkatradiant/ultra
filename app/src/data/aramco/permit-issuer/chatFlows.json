@@ -1,7 +1,7 @@
 {
   "aramco_iss_greeting": {
     "user_query": "What is the state of my permit book this morning?",
-    "ai_message": "Good morning. 450 permits are open against today's validity window, 60 of them high-risk, and you have issued 118 since 05:00. Three need a decision from you. Two hot-work permits on Unit 2 lapsed within the last hour and still show workers on location — the night-shift issuer never logged an extension. One crew on a general permit has moved into the Unit 3 confined-space envelope, which their permit does not authorize. Beyond those, 14 permits expire within the next hour and 24 are queued waiting on verification. Where do you want to start?",
+    "ai_message": "450 permits are open against today's validity window, 60 of them high-risk, and you have issued 118 since 05:00. Three need a decision from you. Two hot-work permits on Unit 2 lapsed within the last hour and still show workers on location — the night-shift issuer never logged an extension. One crew on a general permit has moved into the Unit 3 confined-space envelope, which their permit does not authorize. Beyond those, 14 permits expire within the next hour and 24 are queued waiting on verification. Where do you want to start?",
     "suggested_chips": [
       "Show me the permits that lapsed with workers still on location",
       "Which permits expire in the next hour?",

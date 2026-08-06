@@ -1,7 +1,7 @@
 {
   "aramco_cm_greeting": {
     "user_query": "Where does the complex stand this morning?",
-    "ai_message": "Good morning. The complex is at turnaround load: 2,412 people reconciled on site against 450 open permits, with the turnaround on day 11 of 24. Three things sit at your level. First, safety exposure is concentrated — three jobs are running outside their permit conditions and all three are in Unit 2 and Unit 3, which are also your two schedule-critical units. Second, the headcount your site reports and the headcount the gate reports have disagreed every day this week, which is a regulator-facing problem rather than an operational one. Third, at the projected contractor surge the current verification model covers a falling share of high-risk work. Where do you want to go first?",
+    "ai_message": "The complex is at turnaround load: 2,412 people reconciled on site against 450 open permits, with the turnaround on day 11 of 24. Three things sit at your level. First, safety exposure is concentrated — three jobs are running outside their permit conditions and all three are in Unit 2 and Unit 3, which are also your two schedule-critical units. Second, the headcount your site reports and the headcount the gate reports have disagreed every day this week, which is a regulator-facing problem rather than an operational one. Third, at the projected contractor surge the current verification model covers a falling share of high-risk work. Where do you want to go first?",
     "suggested_chips": [
       "Show me safety exposure by unit",
       "What is the schedule versus safety trade-off?",

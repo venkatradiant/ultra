@@ -315,10 +315,10 @@ const personas = {
   // request. Keep in sync with the persona module and manifest identity.
   aramco_hse_gm: {
     id: 'aramco_hse_gm',
-    name: 'HSE General Manager',
+    name: 'Gina "GM"',
     initials: 'GM',
     role: 'General Manager, Health, Safety and Environment',
-    greeting: 'General Manager',
+    greeting: 'Gina',
     capabilities: [
       'Proactive Intelligence',
       'Anomaly Detection',
@@ -330,10 +330,10 @@ const personas = {
   },
   aramco_complex_manager: {
     id: 'aramco_complex_manager',
-    name: 'Complex Manager',
-    initials: 'CM',
+    name: 'Connor "Complex"',
+    initials: 'CC',
     role: 'Complex Manager, Refining and Petrochemical Site',
-    greeting: 'Complex Manager',
+    greeting: 'Connor',
     capabilities: [
       'Proactive Intelligence',
       'Converged Conversation',
@@ -345,10 +345,10 @@ const personas = {
   },
   aramco_shift_supervisor: {
     id: 'aramco_shift_supervisor',
-    name: 'Shift Supervisor',
+    name: 'Sally "Shift Super"',
     initials: 'SS',
     role: 'Shift Supervisor, Units 2 and 3',
-    greeting: 'Supervisor',
+    greeting: 'Sally',
     capabilities: [
       'Proactive Intelligence',
       'Anomaly Detection',
@@ -360,10 +360,10 @@ const personas = {
   },
   aramco_permit_issuer: {
     id: 'aramco_permit_issuer',
-    name: 'Permit Issuer',
-    initials: 'PI',
+    name: 'Penny "Permit"',
+    initials: 'PP',
     role: 'Permit Issuing Authority, Turnaround',
-    greeting: 'Permit Issuer',
+    greeting: 'Penny',
     capabilities: [
       'Proactive Intelligence',
       'Anomaly Detection',

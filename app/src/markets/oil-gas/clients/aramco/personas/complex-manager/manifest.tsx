@@ -21,8 +21,8 @@ import dataSources from '@/data/aramco/_shared/dataSources.json';
 import capabilityCallouts from '@/data/aramco/complex-manager/capabilityCallouts.json';
 import kpis from '@/data/aramco/complex-manager/kpis.json';
 
+import LazySiteMap from '@/components/aramco/LazySiteMap';
 import UnitRollupTable from '@/components/aramco/UnitRollupTable';
-import SiteMap from '@/components/aramco/SiteMap';
 import HeadcountReconciliationPanel from '@/components/aramco/HeadcountReconciliationPanel';
 import EvidenceTrustPanel from '@/components/aramco/EvidenceTrustPanel';
 import MusterBoard from '@/components/aramco/MusterBoard';
@@ -59,10 +59,10 @@ const manifest: PersonaManifest = {
   marketId: 'oil_gas',
 
   identity: {
-    name: 'Complex Manager',
-    initials: 'CM',
+    name: 'Connor "Complex"',
+    initials: 'CC',
     role: 'Complex Manager, Refining and Petrochemical Site',
-    greeting: 'Complex Manager',
+    greeting: 'Connor',
   },
   capabilities: [
     'Proactive Intelligence',
@@ -132,12 +132,11 @@ const manifest: PersonaManifest = {
     const out = [];
     const k = msg.flowKey as string | undefined;
 
-    if (k === 'aramco_cm_greeting') {
-      out.push(<UnitRollupTable key="rollup" />);
-    }
+    // The greeting is text only. Connor's roll-up table arrives on the turn that
+    // actually asks for exposure by unit, not under the brief.
     if (k === 'aramco_cm_unit_rollup') {
       out.push(<UnitRollupTable key="rollup-detail" />);
-      out.push(<SiteMap key="site-map" />);
+      out.push(<LazySiteMap key="site-map" />);
     }
     if (k === 'aramco_cm_schedule_safety' || k === 'aramco_cm_surge') {
       out.push(<CurrentStateDiagram key="current-state" getter={getCurrentState} productName="TrackLynk.AI" />);

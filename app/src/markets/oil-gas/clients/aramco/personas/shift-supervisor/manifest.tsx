@@ -21,9 +21,9 @@ import kpis from '@/data/aramco/shift-supervisor/kpis.json';
 
 import FlaggedJobsTable from '@/components/aramco/FlaggedJobsTable';
 import PermitDetailCard from '@/components/aramco/PermitDetailCard';
+import LazyIndoorViewer from '@/components/aramco/LazyIndoorViewer';
 import PrioritizedActionCards from '@/components/aramco/PrioritizedActionCards';
 import MusterBoard from '@/components/aramco/MusterBoard';
-import SiteMap from '@/components/aramco/SiteMap';
 
 const flows = (getPersonaFlowConfigs('aramco') as unknown as Record<string, PersonaManifest['flows']>)
   .aramco_shift_supervisor;
@@ -55,10 +55,10 @@ const manifest: PersonaManifest = {
   marketId: 'oil_gas',
 
   identity: {
-    name: 'Shift Supervisor',
+    name: 'Sally "Shift Super"',
     initials: 'SS',
     role: 'Shift Supervisor, Units 2 and 3',
-    greeting: 'Supervisor',
+    greeting: 'Sally',
   },
   capabilities: [
     'Proactive Intelligence',
@@ -130,11 +130,13 @@ const manifest: PersonaManifest = {
     const out = [];
     const k = msg.flowKey as string | undefined;
 
-    if (k === 'aramco_sup_greeting') out.push(<SiteMap key="site-map" />);
+    // The greeting is text only — an executive brief, with visuals revealed as
+    // Sally drills in. Same rule across all four Aramco personas.
     if (k === 'aramco_sup_expired_permits' || k === 'aramco_sup_on_location') {
       out.push(<FlaggedJobsTable key="flagged" />);
     }
     if (k === 'aramco_sup_confined_space' || k === 'aramco_sup_gas_reminder') {
+      out.push(<LazyIndoorViewer key="indoor" />);
       out.push(<PermitDetailCard key="permit" compact={k === 'aramco_sup_gas_reminder'} />);
     }
     if (k === 'aramco_sup_assigned' || k === 'aramco_sup_stop_work' || k === 'aramco_sup_extension') {

@@ -1,7 +1,7 @@
 {
   "aramco_hse_greeting": {
     "user_query": "Who is on site right now, and where are the high-risk jobs?",
-    "ai_message": "Good morning. The site is at turnaround load: about 2,400 people on site, 450 active permits, 60 of them high-risk. Three things need your attention, ranked by risk. First, three jobs are in a hazardous zone without a valid permit. Second, a confined-space entry on Unit 3 is missing a standby confirmation. Third, the gate and permit headcounts disagree by about 40. Want to start with the three flagged jobs?",
+    "ai_message": "The site is at turnaround load: about 2,400 people on site, 450 active permits, 60 of them high-risk. Three things need your attention, ranked by risk. First, three jobs are in a hazardous zone without a valid permit. Second, a confined-space entry on Unit 3 is missing a standby confirmation. Third, the gate and permit headcounts disagree by about 40. Want to start with the three flagged jobs?",
     "suggested_chips": [
       "Show the three flagged jobs",
       "Show the Unit 3 confined-space entry",
@@ -16,7 +16,6 @@
     "confidence": 93,
     "illustrative": true
   },
-
   "aramco_hse_flagged_jobs": {
     "user_query": "Show me every job running in a hazardous zone without a valid permit.",
     "ai_message": "Three jobs are in a hazardous zone without a valid permit right now, all illustrative. Two are hot-work permits that expired within the last hour and still show active workers on location. One is a crew that has moved into a confined-space zone on a general permit. Each row shows the permit record, the location trail, and the time stamps behind the flag. None of these would surface in the permit system alone.",
@@ -34,7 +33,6 @@
     "confidence": 96,
     "illustrative": true
   },
-
   "aramco_hse_confined_space": {
     "user_query": "Walk me through the confined-space entry on Unit 3.",
     "ai_message": "Here is Unit 3, confined-space entry CS-1182. Permit conditions: continuous gas monitoring, a standby person at the entry point, maximum two entrants. Right now two entrants are inside, the last gas test reads within limits and was taken 14 minutes ago, and the standby person is confirmed at the entry point by location and camera. One condition needs attention: the next gas test is due in about a minute. Everything else is compliant.",
@@ -53,7 +51,6 @@
     "confidence": 94,
     "illustrative": true
   },
-
   "aramco_hse_trust": {
     "user_query": "Can I trust these numbers?",
     "ai_message": "Yes, and here is why. Every figure on your screen shows its source and its freshness. The one number that disagreed, on-site headcount, is reconciled for you: the gate system reads 2,440, the permit system 2,400, and contractor timesheets 2,380. TrackLynk resolves to 2,412 by matching badge-ins to live location, and flags the 28 people the gate counted who have no active location signal. That reconciliation is logged for audit.",
@@ -73,7 +70,6 @@
     "confidence": 97,
     "illustrative": true
   },
-
   "aramco_hse_actions": {
     "user_query": "What should I act on before the night shift?",
     "ai_message": "Three actions, in priority order. One, clear the two expired hot-work permits on the flagged jobs or stop the work; safety bucket, highest risk. Two, confirm the Unit 3 gas test so the confined-space entry stays compliant. Three, reconcile the 28 unmatched people before the shift-change muster so the next count starts clean. I can draft each as a task with the evidence attached and hand them to the shift supervisors now.",
@@ -92,7 +88,6 @@
     "confidence": 92,
     "illustrative": true
   },
-
   "aramco_hse_muster": {
     "user_query": "During a muster, who is unaccounted for?",
     "ai_message": "Muster status is live by zone. 2,384 of 2,412 accounted for in the first 90 seconds, illustrative. 28 are unaccounted, all from the earlier reconciliation gap, and here are their last-known locations: 19 near the west gate, 7 at the parking muster point not yet checked in, and 2 with no signal in the last 10 minutes, who need eyes on them first. At the current check-in rate, full accounting is about 3 minutes out.",
@@ -110,7 +105,6 @@
     "confidence": 90,
     "illustrative": true
   },
-
   "aramco_hse_riskiest_job": {
     "user_query": "What is the riskiest job on site right now?",
     "ai_message": "Job FJ-001, illustrative: hot work on the Unit 2 hydrocracker platform under permit HW-4471, which expired 47 minutes ago. Four workers are still showing on location inside the hazard zone. That combination — expired hot-work permit, live occupancy, high-hazard zone — is the highest-consequence exposure on site right now, and it sits in the safety bucket. The confined-space entry on Unit 3 is second, but it is currently compliant with one condition due. The headcount gap is third: it is a compliance exposure rather than an immediate physical one.",
@@ -128,7 +122,6 @@
     "confidence": 95,
     "illustrative": true
   },
-
   "aramco_hse_evidence_job1": {
     "user_query": "Open the evidence for job 1",
     "ai_message": "Job FJ-001, hot work on the Unit 2 hydrocracker platform. The permit record: HW-4471, issued 05:30, valid to 06:00, no extension requested, issuer on the night shift and now off site. The location trail: four tags entered the zone at 05:34 and have not left; last position fix 40 seconds ago. The time stamps: the permit lapsed at 06:00 and work has continued for 47 minutes past expiry. Nothing in the permit system alone would show you the second and third of those — expiry looks like a closed record until you put live location next to it.",
@@ -146,7 +139,6 @@
     "confidence": 96,
     "illustrative": true
   },
-
   "aramco_hse_notify_issuer": {
     "user_query": "Notify the permit issuer",
     "ai_message": "Drafted. Three notifications, one per flagged job, each addressed to the issuing authority on record with the permit id, the zone, the current occupancy, and the evidence trail attached. The two expired hot-work permits route to the Unit 2 permit issuer and the shift supervisor together, because the issuer is off site and the decision to extend or stop the work cannot wait for a shift change. Say the word and I will send all three.",
@@ -163,7 +155,6 @@
     "confidence": 91,
     "illustrative": true
   },
-
   "aramco_hse_site_map": {
     "user_query": "Show these on the site map",
     "ai_message": "All three flagged jobs are on the map, with the hazard zones behind them. Two sit inside the Unit 2 hydrocracker high-hazard envelope, roughly 40 metres apart, which is why they read as one cluster from the control room and as two separate permits in the system. The third is in the Unit 3 coker confined-space zone. Worker density around each marker is live, so you can see how many people are near a flag, not just that the flag exists.",
@@ -180,7 +171,6 @@
     "confidence": 93,
     "illustrative": true
   },
-
   "aramco_hse_gas_test_reminder": {
     "user_query": "Remind the crew of the gas test",
     "ai_message": "Sent. The standby person on CS-1182 has the reminder, with the two entrants copied and the next test due time on it. I have also set a follow-up: if no new gas reading is logged within five minutes of the due time, the permit moves to a breached state and both you and the Unit 3 supervisor are alerted. Right now the entry stays compliant.",
@@ -197,7 +187,6 @@
     "confidence": 92,
     "illustrative": true
   },
-
   "aramco_hse_standby_person": {
     "user_query": "Who is the standby person?",
     "ai_message": "The standby attendant named on CS-1182 is confirmed at the entry point by two independent sources, illustrative: their tag has been stationary within the entry-point geofence for 26 minutes, and the Unit 3 entry camera confirms presence. That is the condition that most often fails silently on a confined-space permit — the name is on the paper, but nobody checks the person is still standing there. Here it is verified continuously, and it drops to a breach the moment they leave the geofence.",
@@ -215,7 +204,6 @@
     "confidence": 94,
     "illustrative": true
   },
-
   "aramco_hse_entry_exit_log": {
     "user_query": "Show the entry and exit log",
     "ai_message": "The full entry and exit log for CS-1182, illustrative. Two entrants in, none out, occupancy never above the permitted maximum of two. Three gas tests logged since the permit opened, each within limits, at a consistent interval. One prior entry and exit at 05:58 that lasted four minutes — that was the standby attendant stepping in to pass equipment, which is logged rather than lost. This log is the audit trail: it answers the auditor's question without anyone reconstructing the shift afterwards.",
@@ -233,7 +221,6 @@
     "confidence": 95,
     "illustrative": true
   },
-
   "aramco_hse_unmatched_28": {
     "user_query": "Show the 28 unmatched people",
     "ai_message": "The 28, grouped by why they are unmatched, all illustrative. Nineteen badged in at the west gate and have a location signal that has not updated in over ten minutes — most likely tags left in a vehicle or a locker. Seven badged in but have never produced a location fix, which usually means an unassigned or unworn tag. Two have an active badge-in and no signal at all since 06:41, and those are the two that matter: they are the only ones where the gap could mean a person rather than a tag. Each row carries the badge-in time, gate, contractor company, and last known position.",
@@ -251,7 +238,6 @@
     "confidence": 93,
     "illustrative": true
   },
-
   "aramco_hse_export_recon": {
     "user_query": "Export the reconciliation for audit",
     "ai_message": "Reconciliation package prepared. It contains the three source figures with their timestamps, the matching rule applied, the resolved figure of 2,412, the full exception list of 28 with the reason each was held, and the time the reconciliation ran. It is immutable and timestamped, so when the auditor asks where the headcount came from, the answer is a document rather than a recollection. Ready to export.",
@@ -270,7 +256,6 @@
     "confidence": 96,
     "illustrative": true
   },
-
   "aramco_hse_source_reliability": {
     "user_query": "Which source is usually off?",
     "ai_message": "Contractor timesheets, consistently, and predictably so, illustrative. They are submitted per contractor company on each company's own cadence, so they lag the gate by hours and under-report during a surge — they read 2,380 against the gate's 2,440 today. The gate over-reports instead: it counts badge-ins and cannot tell you a tag was left in a locker. The permit system is the most stable of the three but only covers people working under a permit, so it never sees the support and logistics population. None of the three is wrong; each is measuring a different thing, which is exactly why reconciling them beats picking a favourite.",
@@ -288,7 +273,6 @@
     "confidence": 91,
     "illustrative": true
   },
-
   "aramco_hse_hand_off": {
     "user_query": "Hand all three to supervisors",
     "ai_message": "Handed off. All three actions are with the named shift supervisors, each with its evidence attached, its risk bucket, and a due time before the shift-change muster. Action one is with the Unit 2 supervisor and the permit issuer jointly. Action two is with the Unit 3 supervisor. Action three is with the gate and muster coordinator. You will see acknowledgements as they come in, and anything not acknowledged within fifteen minutes escalates back to you.",
@@ -305,7 +289,6 @@
     "confidence": 94,
     "illustrative": true
   },
-
   "aramco_hse_edit_action_1": {
     "user_query": "Edit action 1",
     "ai_message": "Action one is open for editing: clear the two expired hot-work permits on the flagged jobs, or stop the work. Safety bucket, highest priority, due before the night shift. The evidence attached is the permit record, the location trail, and the expiry timestamps for both jobs. You can change the instruction, the owner, or the due time — the evidence stays attached either way, so whoever picks it up gets the same proof you are looking at.",
@@ -323,7 +306,6 @@
     "confidence": 90,
     "illustrative": true
   },
-
   "aramco_hse_handover_report": {
     "user_query": "Add to the shift handover report",
     "ai_message": "Added. The handover report now opens with the three actions and their status, followed by the flagged-job evidence, the headcount reconciliation with its exception list, and the open conditions on CS-1182. The night-shift GM starts from your picture rather than rebuilding it. Every figure in the report carries its source and freshness, so it is defensible on its own if it ends up in front of an auditor.",
@@ -342,7 +324,6 @@
     "confidence": 93,
     "illustrative": true
   },
-
   "aramco_hse_no_signal_2": {
     "user_query": "Show the 2 with no signal",
     "ai_message": "Two people, and these are the ones to send someone to first, illustrative. Both badged in at the west gate on the same contractor company, and both last produced a position fix at 06:41 near the Unit 4 sulphur recovery boundary — a known coverage shadow on this site, which makes a tag issue the most likely explanation. The nearest camera has no presence in that area since 06:44. I have their badge photos, contractor company, and last known position ready for the zone warden, and I would treat them as unaccounted until someone has eyes on them.",
@@ -360,7 +341,6 @@
     "confidence": 88,
     "illustrative": true
   },
-
   "aramco_hse_message_wardens": {
     "user_query": "Message the zone wardens",
     "ai_message": "Message sent to all zone wardens, with the per-zone unaccounted count and the two priority names at the top. The west gate warden has the nineteen with stale signals and the two with no signal, since both groups badged in there. The parking muster point warden has the seven not yet checked in. Each warden sees only their own zone, so nobody is reading a site-wide list looking for their bit.",
@@ -377,7 +357,6 @@
     "confidence": 92,
     "illustrative": true
   },
-
   "aramco_hse_incident_log": {
     "user_query": "Start the incident log",
     "ai_message": "Incident log started and timestamped. It is capturing the muster from the alarm forward: per-zone accounting as it changes, every warden message, the two priority names and when eyes-on is confirmed, and the projection to full accounting. Nothing has to be reconstructed afterwards — the investigation and the regulator both get a contemporaneous record rather than a memory. The log stays open until you close it.",
@@ -396,7 +375,6 @@
     "confidence": 94,
     "illustrative": true
   },
-
   "aramco_hse_surge_exposure": {
     "user_query": "Show me the contractor surge exposure",
     "ai_message": "The next turnaround pushes contractor headcount toward 3,000 and roughly doubles daily permit volume, illustrative. Today's 450 permits and 2,400 people are already at the limit of what manual verification can cover — the three flagged jobs this morning are what that limit looks like in practice. At double the volume, the verification effort you have available covers a smaller and smaller share of the highest-risk work, so the gap between authorized work and actual work widens exactly when contractor density is highest. Standing up the live permit-and-location view before the surge, and pre-staging extra verification capacity on the riskiest units, is the intervention that scales.",
@@ -414,7 +392,6 @@
     "confidence": 87,
     "illustrative": true
   },
-
   "aramco_hse_idle_time": {
     "user_query": "Where is verification idle time coming from?",
     "ai_message": "Crews spend a large share of a shift waiting on permit checks and manual verifications, illustrative. The pattern in the permit timestamps and gate dwell data is that low-risk permits queue behind high-risk ones for the same verifier, so a routine job can wait most of a morning for a check that takes minutes. Connecting permits with live location lets low-risk permits clear on evidence rather than on a walk-out, and concentrates the verification effort on the jobs where being wrong actually costs something. That is idle time off the turnaround critical path, in the equipment bucket.",
@@ -432,7 +409,6 @@
     "confidence": 85,
     "illustrative": true
   },
-
   "aramco_hse_current_state": {
     "user_query": "How does this work today, without TrackLynk?",
     "ai_message": "Eight steps, and three of them sit outside any system. A contractor badges in, a permit is issued, a paper copy goes to the crew, and then the question that matters — is the job running where and how the permit says? — has no system that can answer it. Verification is a radio call, a phone call, or a walk to the unit, and it takes hours. Work usually proceeds unverified. The weekly HSE statistics are compiled by hand, the numbers disagree, and the mismatch surfaces after the fact. Every one of the three red steps is a place where authorized work and actual work can drift apart with nothing recording either one.",
@@ -450,7 +426,6 @@
     "confidence": 89,
     "illustrative": true
   },
-
   "aramco_hse_future_state": {
     "user_query": "Where does TrackLynk change the picture?",
     "ai_message": "Four interventions, one per broken step. The manual spot check becomes a live view that fuses permit status with worker and asset location, so hours of verification collapse into a question you can ask. Checking whether a job matches its permit becomes an automatic flag the moment it does not, so mismatches are caught in the moment rather than after a near-miss. Reconciling the disagreeing headcounts becomes one trusted number with an evidence trail, defensible in front of a regulator. And deciding what to fix before the next shift becomes two or three recommended actions handed to your supervisors with the evidence attached. The steps that stay unchanged are the ones that already work.",
@@ -469,7 +444,6 @@
     "confidence": 91,
     "illustrative": true
   },
-
   "aramco_hse_journey": {
     "user_query": "Walk me through my turnaround day",
     "ai_message": "Five phases across a twelve-hour shift, and the emotional line tells you where to spend the money. It starts at 2 out of 5 — anxious, working blind, assembling the morning answer by hand. It stays at 2 through high-risk authorization, because permit conditions and real conditions are not connected. It recovers only to 3 during in-shift monitoring, where you are managing reactively and finding problems by accident. Then it drops to 1 at the muster: highest stress, slowest information. It ends at 3, accountable and wanting proof you cannot easily produce. Baseline satisfaction on a turnaround day is 4 out of 10. Three moments of truth decide it — the first-coffee question, the confined-space authorization, and the muster.",
@@ -487,7 +461,6 @@
     "confidence": 86,
     "illustrative": true
   },
-
   "aramco_hse_muster_benchmark": {
     "user_query": "How long did the last muster actually take?",
     "ai_message": "2 minutes 47 seconds from alarm to all personnel accounted, across all five muster points — and that is the first time this site has had a number rather than an impression. Before today the honest answer was \"not sure, it felt too long\", because a manual muster produces a list, not a measurement. The target is under five minutes with everyone accounted, so this drill clears it, but the figure that matters more is the 28 held exceptions: they are the difference between a fast muster and a defensible one. Reconciling those before the shift-change muster is action three on your list.",
@@ -505,7 +478,6 @@
     "confidence": 92,
     "illustrative": true
   },
-
   "__default__": {
     "ai_message": "I can answer that against the live site picture, but this reference demo is scripted around one turnaround morning. Try one of the paths below — each is sourced, and every figure carries its origin and freshness.",
     "suggested_chips": [
@@ -519,6 +491,59 @@
       "Gate access-control",
       "Location and tag data (vendor-agnostic)"
     ],
+    "illustrative": true
+  },
+  "aramco_hse_asset_health": {
+    "user_query": "How is the compressor on Unit 2?",
+    "ai_message": "C-2101, the hydrocracker recycle gas compressor, is degraded — health score 62 and in alarm on stage 2 bearing vibration. Overall vibration is 5.8 mm/s against a 4.5 alert and a 7.1 trip, up 41% in fourteen days, and the step change lines up with the turnaround restart. Bearing temperature is at 84°C against an 82 alert. On the current trend it reaches the trip threshold in about 21 days, ahead of the planned inspection on 19 August. The reason this is your problem and not just maintenance's: six of the 88 open permits on Unit 2 sit inside the compressor's exclusion radius, and two of them are hot work. If it trips, those two are the ones to pull first.",
+    "suggested_chips": [
+      "Which permits are inside the exclusion radius?",
+      "Show me the whole equipment fleet",
+      "What should I act on before the night shift?"
+    ],
+    "data_sources_used": [
+      "Condition-monitoring system",
+      "Distributed control system",
+      "Maintenance work orders",
+      "Permit-to-work system"
+    ],
+    "capability": "Predictive Intelligence",
+    "confidence": 71,
+    "illustrative": true
+  },
+  "aramco_hse_asset_fleet": {
+    "user_query": "Show me the whole equipment fleet",
+    "ai_message": "Three monitored assets carry an HSE consequence today. C-2101 on Unit 2 is degraded and in vibration alarm, with six permits inside its exclusion radius. GD-3307, the Unit 3 coker deck gas detector, is on watch: readings are normal but calibration is due in two days, and that detector is the one satisfying the continuous gas monitoring condition on CS-1182 — if it lapses, that permit's condition lapses with it. P-1042A on Unit 1 is healthy at 88 and included so you can see what a clean baseline looks like. Equipment condition matters here because it changes the risk of the permits around it, not because the equipment is interesting on its own.",
+    "suggested_chips": [
+      "Walk me through the confined-space entry on Unit 3.",
+      "What should I act on before the night shift?",
+      "How is the compressor on Unit 2?"
+    ],
+    "data_sources_used": [
+      "Condition-monitoring system",
+      "Fire and gas system",
+      "Maintenance work orders",
+      "Permit-to-work system"
+    ],
+    "capability": "Converged Conversation",
+    "confidence": 84,
+    "illustrative": true
+  },
+  "aramco_hse_exclusion_permits": {
+    "user_query": "Which permits are inside the exclusion radius?",
+    "ai_message": "Six of Unit 2's 88 open permits sit inside C-2101's exclusion radius. Two are hot work — the same two already flagged as running past expiry with workers still on location, which is the awkward part: they are simultaneously your permit problem and your equipment problem. Three are general maintenance permits with no ignition source, and one is a work-at-height permit on the adjacent rack. If the compressor trips you stop the two hot-work jobs first; the other four can stand down in an orderly way.",
+    "suggested_chips": [
+      "Show me every job in a hazard zone without a valid permit.",
+      "What should I act on before the night shift?",
+      "Show me the whole equipment fleet"
+    ],
+    "data_sources_used": [
+      "Permit-to-work system",
+      "Condition-monitoring system",
+      "Location and tag data (vendor-agnostic)"
+    ],
+    "capability": "Anomaly Detection",
+    "confidence": 88,
     "illustrative": true
   }
 }

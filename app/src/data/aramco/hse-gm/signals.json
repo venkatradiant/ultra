@@ -28,11 +28,20 @@
     "confidence": {
       "score": 97,
       "rationale": "All three source figures are direct system reads; the resolved figure is a deterministic match of badge-ins to live location signal, not a model estimate. The 28 exceptions are held rather than assumed.",
-      "signals_used": ["Gate access-control", "Location and tag data (vendor-agnostic)", "Contractor timesheets"],
+      "signals_used": [
+        "Gate access-control",
+        "Location and tag data (vendor-agnostic)",
+        "Contractor timesheets"
+      ],
       "threshold": 70,
       "model_version": "hse-reconcile-v1.0",
       "validated_at": "2026-08-05T06:41:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
     }
   },
   {
@@ -63,11 +72,65 @@
     "confidence": {
       "score": 87,
       "rationale": "Headcount and permit projections come from the turnaround resource plan and gate history; the control-coverage inference is a modelled ratio of verification capacity to permit volume, so it carries more uncertainty than the counts themselves.",
-      "signals_used": ["Turnaround resource plan", "Gate access-control", "Permit-to-work system"],
+      "signals_used": [
+        "Turnaround resource plan",
+        "Gate access-control",
+        "Permit-to-work system"
+      ],
       "threshold": 70,
       "model_version": "hse-surge-v1.0",
       "validated_at": "2026-08-05T06:15:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    }
+  },
+  {
+    "id": "SIG-ARAMCO-HSE-004",
+    "type": "equipment_condition",
+    "title": "Unit 2 Compressor Degraded — Hot Work Inside Its Radius",
+    "description": "C-2101 is in vibration alarm at 5.8 mm/s against a 7.1 trip, up 41% in fourteen days, with about 21 days of remaining useful life on the current trend. Six open permits sit inside its exclusion radius and two of them are hot work — the same two already running past expiry.",
+    "impact": "high",
+    "severity": "warning",
+    "bucket": "equipment",
+    "action": "Decide the stop order now, while it is a plan rather than a reaction: the two hot-work permits come out first if it trips.",
+    "sources": [
+      "Condition-monitoring system",
+      "Distributed control system",
+      "Permit-to-work system"
+    ],
+    "timestamp": "2026-08-05T06:50:00Z",
+    "freshness": "3 minutes ago",
+    "trend": "worsening",
+    "related_segment": "AST-C2101",
+    "metrics": {
+      "healthScore": 62,
+      "vibration": "5.8 mm/s",
+      "rulDays": 21,
+      "permitsInRadius": 6,
+      "hotWorkInRadius": 2
+    },
+    "illustrative": true,
+    "confidence": {
+      "score": 71,
+      "rationale": "The readings are direct instrument reads and are reliable. The 21-day figure is an extrapolation of a 14-day vibration trend to a fixed threshold, which is the weakest link — it assumes the trend holds, and a bearing can fail faster than a straight line predicts.",
+      "signals_used": [
+        "Condition-monitoring system",
+        "Distributed control system",
+        "Maintenance work orders"
+      ],
+      "threshold": 70,
+      "model_version": "asset-rul-v1.1",
+      "validated_at": "2026-08-05T06:50:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
     }
   },
   {
@@ -96,11 +159,19 @@
     "confidence": {
       "score": 85,
       "rationale": "Derived from permit-to-work timestamps and gate dwell data. The idle-time attribution is inferred from queueing patterns rather than directly observed, and the site has not yet instrumented a median wait figure.",
-      "signals_used": ["Permit-to-work system", "Gate access-control"],
+      "signals_used": [
+        "Permit-to-work system",
+        "Gate access-control"
+      ],
       "threshold": 70,
       "model_version": "hse-idle-v1.0",
       "validated_at": "2026-08-05T05:50:00Z",
-      "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
     }
   }
 ]

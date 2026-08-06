@@ -22,11 +22,62 @@
     "note": "This closes an open follow-up from the intake: the last drill's completion time was recorded only as \"felt too long\". A measured, defensible number is the point — a muster that cannot be timed cannot be improved."
   },
   "zones": [
-    { "id": "M1", "name": "Muster Point A — North", "accounted": 612, "expected": 618, "coversZones": ["Unit 1 — Crude Distillation", "Tank Farm North"] },
-    { "id": "M2", "name": "Muster Point B — Central", "accounted": 681, "expected": 685, "coversZones": ["Unit 2 — Hydrocracker", "Utilities and Flare"] },
-    { "id": "M3", "name": "Muster Point C — East", "accounted": 624, "expected": 630, "coversZones": ["Unit 3 — Coker", "Unit 4 — Sulphur Recovery"] },
-    { "id": "M4", "name": "Muster Point D — South", "accounted": 256, "expected": 260, "coversZones": ["Tank Farm South", "Marine Loading"] },
-    { "id": "M5", "name": "Muster Point E — Admin and Gate", "accounted": 211, "expected": 219, "coversZones": ["Central Admin and Control", "West Gate", "Parking Muster Point"] }
+    {
+      "id": "M1",
+      "name": "Muster Point A — North",
+      "accounted": 612,
+      "expected": 618,
+      "coversZones": [
+        "Unit 1 — Crude Distillation",
+        "Tank Farm North"
+      ],
+      "capacity": 800
+    },
+    {
+      "id": "M2",
+      "name": "Muster Point B — Central",
+      "accounted": 681,
+      "expected": 685,
+      "coversZones": [
+        "Unit 2 — Hydrocracker",
+        "Utilities and Flare"
+      ],
+      "capacity": 800
+    },
+    {
+      "id": "M3",
+      "name": "Muster Point C — East",
+      "accounted": 624,
+      "expected": 630,
+      "coversZones": [
+        "Unit 3 — Coker",
+        "Unit 4 — Sulphur Recovery"
+      ],
+      "capacity": 800
+    },
+    {
+      "id": "M4",
+      "name": "Muster Point D — South",
+      "accounted": 256,
+      "expected": 260,
+      "coversZones": [
+        "Tank Farm South",
+        "Marine Loading"
+      ],
+      "capacity": 400
+    },
+    {
+      "id": "M5",
+      "name": "Muster Point E — Admin and Gate",
+      "accounted": 211,
+      "expected": 219,
+      "coversZones": [
+        "Central Admin and Control",
+        "West Gate",
+        "Parking Muster Point"
+      ],
+      "capacity": 400
+    }
   ],
   "unaccountedGroups": [
     {
@@ -36,7 +87,11 @@
       "lastKnown": "West Gate perimeter",
       "priority": "low",
       "detail": "Location signal stale over 10 minutes. Most likely tags left in vehicles.",
-      "exceptionGroupId": "exc-stale"
+      "exceptionGroupId": "exc-stale",
+      "lastKnownPoint": [
+        50.020343,
+        26.503739
+      ]
     },
     {
       "id": "un-parking",
@@ -45,7 +100,11 @@
       "lastKnown": "Parking Muster Point",
       "priority": "medium",
       "detail": "Present at the muster point but not yet registered by a warden.",
-      "exceptionGroupId": "exc-nofix"
+      "exceptionGroupId": "exc-nofix",
+      "lastKnownPoint": [
+        50.027704,
+        26.503618
+      ]
     },
     {
       "id": "un-nosignal",
@@ -54,11 +113,36 @@
       "lastKnown": "Unit 4 sulphur recovery boundary, last fix 06:41",
       "priority": "high",
       "detail": "Need eyes on them first. Nearest camera shows no presence in that area since 06:44.",
-      "exceptionGroupId": "exc-nosignal"
+      "exceptionGroupId": "exc-nosignal",
+      "lastKnownPoint": [
+        50.029578,
+        26.510661
+      ]
     }
   ],
   "wardens": [
-    { "zone": "West Gate", "owns": ["un-west", "un-nosignal"] },
-    { "zone": "Parking Muster Point", "owns": ["un-parking"] }
-  ]
+    {
+      "zone": "West Gate",
+      "owns": [
+        "un-west",
+        "un-nosignal"
+      ]
+    },
+    {
+      "zone": "Parking Muster Point",
+      "owns": [
+        "un-parking"
+      ]
+    }
+  ],
+  "control": {
+    "mustered": 2384,
+    "mustering": 19,
+    "notStarted": 9,
+    "gateMovementsIn": 0,
+    "gateMovementsOut": 0,
+    "lockdownNote": "the site is locked down, so the population being counted is closed.",
+    "durationLabel": "01:30",
+    "status": "running"
+  }
 }

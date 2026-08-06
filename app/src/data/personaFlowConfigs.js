@@ -1410,6 +1410,11 @@ const aramcoHseConfig = {
     // Priority signal cards
     'Show me the contractor surge exposure': 'aramco_hse_surge_exposure',
     'Where is verification idle time coming from?': 'aramco_hse_idle_time',
+    // Equipment and device health — the third domain pattern. Off the golden
+    // path on purpose: the six canonical spec turns stay the walkthrough.
+    'How is the compressor on Unit 2?': 'aramco_hse_asset_health',
+    'Show me the whole equipment fleet': 'aramco_hse_asset_fleet',
+    'Which permits are inside the exclusion radius?': 'aramco_hse_exclusion_permits',
     // Current state, future state and the journey map (spec §8 and §9)
     'How does this work today, without TrackLynk?': 'aramco_hse_current_state',
     'Where does TrackLynk change the picture?': 'aramco_hse_future_state',

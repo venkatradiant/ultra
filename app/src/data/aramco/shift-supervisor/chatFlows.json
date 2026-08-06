@@ -1,7 +1,7 @@
 {
   "aramco_sup_greeting": {
     "user_query": "What do I need to deal with on my units this shift?",
-    "ai_message": "Good morning. You have 805 people across Unit 2 and Unit 3, working 167 open permits, 30 of them high-risk. Two things need you now. First, two hot-work permits on the Unit 2 hydrocracker expired within the last hour and seven of your people are still on location — the GM has assigned that to you jointly with the permit issuer. Second, the confined-space entry on Unit 3 has a gas test due in about a minute. Everything else on your units is inside its permit conditions. Where do you want to start?",
+    "ai_message": "You have 805 people across Unit 2 and Unit 3, working 167 open permits, 30 of them high-risk. Two things need you now. First, two hot-work permits on the Unit 2 hydrocracker expired within the last hour and seven of your people are still on location — the GM has assigned that to you jointly with the permit issuer. Second, the confined-space entry on Unit 3 has a gas test due in about a minute. Everything else on your units is inside its permit conditions. Where do you want to start?",
     "suggested_chips": [
       "Show me the expired hot-work permits",
       "What is the status on the Unit 3 confined space?",

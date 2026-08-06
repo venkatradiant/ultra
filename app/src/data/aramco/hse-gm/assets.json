@@ -1,0 +1,126 @@
+{
+  "asOf": "2026-08-05T06:53:00Z",
+  "freshness": "3 minutes ago",
+  "illustrative": true,
+  "note": "Asset condition is the third source this demo fuses, alongside permits and location. It matters to HSE because equipment condition is what turns a routine permit into a high-consequence one — a compressor running hot changes the risk of the hot-work permit next to it.",
+  "featured": "AST-C2101",
+  "assets": [
+    {
+      "id": "AST-C2101",
+      "tag": "C-2101",
+      "name": "Hydrocracker recycle gas compressor",
+      "zoneId": "Z2",
+      "zoneName": "Unit 2 — Hydrocracker",
+      "type": "Centrifugal compressor",
+      "criticality": "high",
+      "healthScore": 62,
+      "healthBand": "degraded",
+      "alarmState": "alarm",
+      "alarmLabel": "Vibration high — stage 2 bearing",
+      "trend": "worsening",
+      "trendNote": "Overall vibration up 41% in 14 days; the step change lines up with the Feb turnaround restart.",
+      "remainingUsefulLife": { "value": 21, "unit": "days", "confidence": 71, "basis": "Vibration trend extrapolated to the 7.1 mm/s trip threshold." },
+      "nextService": { "due": "2026-08-19", "type": "Planned bearing inspection", "window": "Turnaround window T-3" },
+      "hseImplication": "Six of the 88 open permits on Unit 2 are within the compressor's exclusion radius, two of them hot work. If this trips, the hot-work permits are the ones to pull first.",
+      "linkedPermits": 6,
+      "linkedHighRiskPermits": 2,
+      "readings": [
+        {
+          "id": "vib",
+          "label": "Overall vibration",
+          "value": "5.8",
+          "unit": "mm/s",
+          "state": "alarm",
+          "threshold": "Alert 4.5 · Trip 7.1",
+          "series": [3.9, 4.0, 3.9, 4.1, 4.3, 4.2, 4.6, 4.9, 5.0, 5.2, 5.1, 5.4, 5.6, 5.8],
+          "source": "Condition-monitoring system",
+          "freshness": "3 minutes ago"
+        },
+        {
+          "id": "bearing-temp",
+          "label": "Bearing temperature",
+          "value": "84",
+          "unit": "°C",
+          "state": "attention",
+          "threshold": "Alert 82 · Trip 95",
+          "series": [71, 72, 72, 73, 74, 74, 76, 78, 79, 80, 81, 82, 83, 84],
+          "source": "Condition-monitoring system",
+          "freshness": "3 minutes ago"
+        },
+        {
+          "id": "seal-gas",
+          "label": "Seal gas differential",
+          "value": "0.42",
+          "unit": "bar",
+          "state": "compliant",
+          "threshold": "Minimum 0.35",
+          "series": [0.46, 0.45, 0.46, 0.44, 0.45, 0.43, 0.44, 0.43, 0.44, 0.42, 0.43, 0.42, 0.43, 0.42],
+          "source": "Distributed control system",
+          "freshness": "under 1 minute ago"
+        },
+        {
+          "id": "runtime",
+          "label": "Runtime since overhaul",
+          "value": "7,120",
+          "unit": "hours",
+          "state": "compliant",
+          "threshold": "Overhaul interval 8,000",
+          "series": [6600, 6640, 6680, 6720, 6760, 6800, 6840, 6880, 6920, 6960, 7000, 7040, 7080, 7120],
+          "source": "Maintenance work orders",
+          "freshness": "1 hour ago"
+        }
+      ],
+      "sources": ["Condition-monitoring system", "Distributed control system", "Maintenance work orders"]
+    },
+    {
+      "id": "AST-P1042",
+      "tag": "P-1042A",
+      "name": "Crude charge pump A",
+      "zoneId": "Z1",
+      "zoneName": "Unit 1 — Crude Distillation",
+      "type": "Centrifugal pump",
+      "criticality": "high",
+      "healthScore": 88,
+      "healthBand": "healthy",
+      "alarmState": "normal",
+      "alarmLabel": "No active alarms",
+      "trend": "stable",
+      "trendNote": "Flat for 30 days.",
+      "remainingUsefulLife": { "value": 6, "unit": "months", "confidence": 84, "basis": "Seal wear model against duty hours." },
+      "nextService": { "due": "2026-11-02", "type": "Seal replacement", "window": "Routine" },
+      "hseImplication": "No permit interaction. Included so the fleet shows a healthy baseline against the compressor.",
+      "linkedPermits": 2,
+      "linkedHighRiskPermits": 0,
+      "readings": [
+        { "id": "vib", "label": "Overall vibration", "value": "2.1", "unit": "mm/s", "state": "compliant", "threshold": "Alert 4.5", "series": [2.0, 2.1, 2.0, 2.2, 2.1, 2.0, 2.1, 2.2, 2.1, 2.0, 2.1, 2.1, 2.0, 2.1], "source": "Condition-monitoring system", "freshness": "4 minutes ago" },
+        { "id": "disch", "label": "Discharge pressure", "value": "18.4", "unit": "bar", "state": "compliant", "threshold": "Range 17–20", "series": [18.3, 18.4, 18.2, 18.5, 18.4, 18.3, 18.4, 18.5, 18.3, 18.4, 18.4, 18.3, 18.5, 18.4], "source": "Distributed control system", "freshness": "under 1 minute ago" }
+      ],
+      "sources": ["Condition-monitoring system", "Distributed control system"]
+    },
+    {
+      "id": "AST-GD3307",
+      "tag": "GD-3307",
+      "name": "Coker deck gas detector",
+      "zoneId": "Z3",
+      "zoneName": "Unit 3 — Coker",
+      "type": "Fixed gas detector",
+      "criticality": "high",
+      "healthScore": 74,
+      "healthBand": "watch",
+      "alarmState": "attention",
+      "alarmLabel": "Calibration due in 2 days",
+      "trend": "stable",
+      "trendNote": "Readings normal; the flag is calibration age, not a gas event.",
+      "remainingUsefulLife": { "value": 2, "unit": "days", "confidence": 99, "basis": "Calibration interval, not a condition estimate." },
+      "nextService": { "due": "2026-08-07", "type": "Bump test and calibration", "window": "Before the next confined-space entry" },
+      "hseImplication": "This is the detector covering the CS-1182 confined-space entry. A calibration lapse would invalidate the continuous gas monitoring condition on that permit.",
+      "linkedPermits": 1,
+      "linkedHighRiskPermits": 1,
+      "readings": [
+        { "id": "lel", "label": "Combustible gas", "value": "0", "unit": "% LEL", "state": "compliant", "threshold": "Alarm 10", "series": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0], "source": "Fire and gas system", "freshness": "under 1 minute ago" },
+        { "id": "cal", "label": "Days since calibration", "value": "88", "unit": "days", "state": "attention", "threshold": "Interval 90", "series": [75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88], "source": "Maintenance work orders", "freshness": "1 hour ago" }
+      ],
+      "sources": ["Fire and gas system", "Maintenance work orders"]
+    }
+  ]
+}

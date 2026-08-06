@@ -20,7 +20,8 @@ import kpis from '@/data/aramco/permit-issuer/kpis.json';
 
 import FlaggedJobsTable from '@/components/aramco/FlaggedJobsTable';
 import PermitDetailCard from '@/components/aramco/PermitDetailCard';
-import SiteMap from '@/components/aramco/SiteMap';
+import LazyIndoorViewer from '@/components/aramco/LazyIndoorViewer';
+import LazySiteMap from '@/components/aramco/LazySiteMap';
 import CurrentStateDiagram from '@/components/process/CurrentStateDiagram';
 import { getCurrentState } from '@/data/aramco/hse-gm';
 
@@ -54,10 +55,10 @@ const manifest: PersonaManifest = {
   marketId: 'oil_gas',
 
   identity: {
-    name: 'Permit Issuer',
-    initials: 'PI',
+    name: 'Penny "Permit"',
+    initials: 'PP',
     role: 'Permit Issuing Authority, Turnaround',
-    greeting: 'Permit Issuer',
+    greeting: 'Penny',
   },
   capabilities: [
     'Proactive Intelligence',
@@ -128,11 +129,15 @@ const manifest: PersonaManifest = {
     const out = [];
     const k = msg.flowKey as string | undefined;
 
-    if (k === 'aramco_iss_greeting' || k === 'aramco_iss_expiring') out.push(<SiteMap key="site-map" />);
+    // The greeting is text only; the map arrives when Penny asks for a location.
+    if (k === 'aramco_iss_expiring') out.push(<LazySiteMap key="site-map" />);
     if (k === 'aramco_iss_lapsed' || k === 'aramco_iss_general_permit' || k === 'aramco_iss_notify' || k === 'aramco_iss_extension') {
       out.push(<FlaggedJobsTable key="flagged" />);
     }
-    if (k === 'aramco_iss_expiring') out.push(<PermitDetailCard key="permit" compact />);
+    if (k === 'aramco_iss_expiring') {
+      out.push(<LazyIndoorViewer key="indoor" />);
+      out.push(<PermitDetailCard key="permit" compact />);
+    }
     if (k === 'aramco_iss_night_shift' || k === 'aramco_iss_cycle_time') {
       out.push(<CurrentStateDiagram key="current-state" getter={getCurrentState} productName="TrackLynk.AI" />);
     }
