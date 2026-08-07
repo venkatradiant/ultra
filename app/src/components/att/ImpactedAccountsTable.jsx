@@ -20,6 +20,7 @@ import { ArrowUpDown, Check, Search } from 'lucide-react';
 import ConfidencePill from './ConfidencePill';
 import IllustrativeChip from './IllustrativeChip';
 import { THRESHOLD_DEFAULTS } from '../../data/att/_shared/constants';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const FILTERS = [
   { id: 'all', label: 'All' },
@@ -109,7 +110,9 @@ export default function ImpactedAccountsTable({
   if (!rows.length) return null;
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface overflow-hidden">
+    <MaximizablePanel className="overflow-hidden" label="Impacted accounts">
+      {({ maximized }) => (
+        <>
       {/* Controls */}
       <div className="flex flex-wrap items-center gap-2 p-3.5 border-b border-border-subtle">
         <span className="text-[13px] font-bold text-text tracking-tight mr-auto">
@@ -146,11 +149,13 @@ export default function ImpactedAccountsTable({
           ))}
         </div>
 
-        <IllustrativeChip />
+        <span className="flex items-center gap-2"><IllustrativeChip /><MaximizeButton /></span>
       </div>
 
       {/* Rows */}
-      <div className={`overflow-auto scrollbar-sleek ${maxHeight}`}>
+      {/* Maximized, the point is to see more rows at once — the caller's row
+          cap is what the panel is escaping from. */}
+      <div className={`overflow-auto scrollbar-sleek ${maximized ? 'max-h-[calc(100vh-190px)]' : maxHeight}`}>
         <table className="w-full min-w-[640px]">
           <thead className="sticky top-0 z-10 bg-surface-2/90 backdrop-blur-sm">
             <tr className="border-b border-border-subtle">
@@ -232,6 +237,8 @@ export default function ImpactedAccountsTable({
           <span className="font-bold text-text">{avgConf}%</span>
         </span>
       </div>
-    </div>
+        </>
+      )}
+    </MaximizablePanel>
   );
 }

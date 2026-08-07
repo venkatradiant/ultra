@@ -11,6 +11,7 @@
  * cycle that disagreed would undo the whole argument.
  */
 import IllustrativeChip from './IllustrativeChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 export default function RiskHeatmap({ rows = [] }) {
   if (!rows.length) return null;
@@ -39,12 +40,12 @@ export default function RiskHeatmap({ rows = [] }) {
   };
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Risk heatmap">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <h3 className="text-[13px] font-bold text-text tracking-tight">
           Risk Heatmap — Charge Type vs Severity
         </h3>
-        <IllustrativeChip />
+        <span className="flex items-center gap-2"><IllustrativeChip /><MaximizeButton /></span>
       </div>
 
       <div className="overflow-x-auto scrollbar-sleek">
@@ -89,6 +90,6 @@ export default function RiskHeatmap({ rows = [] }) {
         pattern is a discount failure. Tax is the smallest column and still the one to watch — its exposure
         is regulatory, not financial.
       </p>
-    </div>
+    </MaximizablePanel>
   );
 }

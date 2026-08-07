@@ -15,6 +15,7 @@
 import { useMemo, useState } from 'react';
 import { Search, Download } from 'lucide-react';
 import IllustrativeChip from './IllustrativeChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const STATUS_STYLE = {
   Completed: 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -57,7 +58,7 @@ export default function AuditTable({ records = [], onExport }) {
   if (!records.length) return null;
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface overflow-hidden">
+    <MaximizablePanel className="overflow-hidden" label="Audit log">
       <div className="flex flex-wrap items-center gap-2 p-3.5 border-b border-border-subtle">
         <span className="text-[13px] font-bold text-text tracking-tight mr-auto">
           Audit Log
@@ -101,7 +102,7 @@ export default function AuditTable({ records = [], onExport }) {
           </button>
         )}
 
-        <IllustrativeChip />
+        <span className="flex items-center gap-2"><IllustrativeChip /><MaximizeButton /></span>
       </div>
 
       <div className="overflow-x-auto scrollbar-sleek">
@@ -155,6 +156,6 @@ export default function AuditTable({ records = [], onExport }) {
           </tbody>
         </table>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

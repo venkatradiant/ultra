@@ -20,6 +20,7 @@ import { Box, Map as MapIcon, Loader2 } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
 import { getIndoorGeo, getPermits } from '../../data/aramco/hse-gm';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 import MapCanvas from './MapCanvas';
 
 const IndoorScene3D = lazy(() => import('./IndoorScene3D'));
@@ -109,7 +110,14 @@ export default function IndoorViewer({
   const level = indoor.features.find((f) => f.properties.kind === 'level');
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Confined-space entry">
+      {({ maximized }) => {
+      // The confined space is the one view where the vertical relationship —
+      // entrants below the deck, standby above at the manway — is the whole
+      // point, and it is the first thing a 380-pixel frame flattens away.
+      const frameHeight = maximized ? 'min(74vh, 900px)' : height;
+      return (
+        <>
       <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
         <div className="min-w-0">
           <h3 className="text-[13px] font-bold text-text tracking-tight">
@@ -139,6 +147,7 @@ export default function IndoorViewer({
             ))}
           </div>
           <IllustrativeDataChip note="Invented interior geometry. Authored in IMDF feature shape." />
+          <MaximizeButton />
         </div>
       </div>
 
@@ -147,14 +156,14 @@ export default function IndoorViewer({
           site={indoor}
           indoor={indoor}
           markers={markers}
-          height={height}
+          height={frameHeight}
           showWorkers={false}
         />
       ) : (
         <Suspense
           fallback={
             <div
-              style={{ height }}
+              style={{ height: frameHeight }}
               className="w-full rounded-xl border border-border-subtle bg-surface-2 flex items-center justify-center gap-2"
             >
               <Loader2 className="w-4 h-4 animate-spin text-text-subtle" />
@@ -162,7 +171,7 @@ export default function IndoorViewer({
             </div>
           }
         >
-          <IndoorScene3D indoor={indoor} height={height} />
+          <IndoorScene3D indoor={indoor} height={frameHeight} />
         </Suspense>
       )}
 
@@ -188,6 +197,9 @@ export default function IndoorViewer({
         freshness="under 1 minute ago"
         note="Interior authored in IMDF feature shape (level / unit / opening / fixture / occupant) and rendered through the same map engine as the site view."
       />
-    </div>
+        </>
+      );
+      }}
+    </MaximizablePanel>
   );
 }

@@ -8,10 +8,14 @@
  * own reconciler that reads React internals through `its-fine`, and against
  * React 19.2 it threw "Invalid hook call … more than one copy of React" and
  * rendered nothing — `resolve.dedupe`, a cleared dep cache and a full reload all
- * failed to shift it. This scene is static apart from one orbiting camera, so
- * R3F's declarative syntax was buying almost nothing while costing a
- * reconciler-compatibility risk on every React upgrade. One `useEffect` that
- * builds, renders and disposes is the whole thing.
+ * failed to shift it. The geometry here is static and the only moving parts are
+ * the camera and two bobbing entrants, so R3F's declarative syntax was buying
+ * almost nothing while costing a reconciler-compatibility risk on every React
+ * upgrade. One `useEffect` that builds, renders and disposes is the whole thing.
+ *
+ * The camera is a real one: drag to orbit, right-drag to pan, scroll to zoom.
+ * It turns on its own until someone takes hold of it and not afterwards — see
+ * the note on `controlled` below.
  *
  * Built from the *same* IMDF fixture the 2D plan renders, by extruding the unit
  * polygons — so the two views cannot disagree, and adding a room to the fixture
@@ -24,34 +28,10 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RotateCcw } from 'lucide-react';
 import { resolveColors } from '../../lib/resolveColor';
-
-/**
- * Project lon/lat to local metres, centred on the fixture's own bounds.
- *
- * Also returns the scene's half-extent in metres, so the camera can be placed
- * from the geometry rather than from a constant — a fixture with a second unit
- * or a bigger drum then frames itself instead of overflowing the viewport.
- */
-function projector(features) {
-  let minX = 180, minY = 90, maxX = -180, maxY = -90;
-  const visit = (c) => {
-    if (typeof c[0] === 'number') {
-      minX = Math.min(minX, c[0]); maxX = Math.max(maxX, c[0]);
-      minY = Math.min(minY, c[1]); maxY = Math.max(maxY, c[1]);
-      return;
-    }
-    c.forEach(visit);
-  };
-  features.forEach((f) => visit(f.geometry.coordinates));
-  const cx = (minX + maxX) / 2;
-  const cy = (minY + maxY) / 2;
-  const mPerLat = 110574;
-  const mPerLon = 111320 * Math.cos((cy * Math.PI) / 180);
-  const project = ([lon, lat]) => [(lon - cx) * mPerLon, (lat - cy) * mPerLat];
-  project.extent = Math.max((maxX - minX) * mPerLon, (maxY - minY) * mPerLat) / 2;
-  return project;
-}
+import projector from '../../lib/geoProject';
 
 /** Height in metres for each IMDF unit category. */
 function heightOf({ restricted, category }) {
@@ -65,8 +45,19 @@ function heightOf({ restricted, category }) {
 export default function IndoorScene3D({ indoor, height = '380px' }) {
   const holder = useRef(null);
   const [paused, setPaused] = useState(false);
+  // Auto-rotation is the opening move, not the only one. The first drag, zoom
+  // or pan hands the camera over for good — a view that swung back to its own
+  // orbit every time the pointer left could not be aimed at anything.
+  const [controlled, setControlled] = useState(false);
+  // Two separate holds, because they answer different questions: hovering
+  // pauses the motion you are trying to read, while taking control ends the
+  // orbit for good. The entrants keep bobbing either way — they are the live
+  // part of the scene, not decoration.
   const pausedRef = useRef(false);
   pausedRef.current = paused;
+  const controlledRef = useRef(false);
+  controlledRef.current = controlled;
+  const api = useRef(null);
 
   useEffect(() => {
     const node = holder.current;
@@ -79,6 +70,18 @@ export default function IndoorScene3D({ indoor, height = '380px' }) {
     });
 
     const project = projector(indoor.features);
+    /**
+     * lon/lat → scene metres, with north on −Z.
+     *
+     * The sign matters and used to be wrong. `rotateX(-90°)` lands an extruded
+     * polygon's northing on −Z, but the point features were placed with their
+     * northing straight onto +Z — so every fixture, opening and entrant was
+     * mirrored north-to-south against the room it stood in. It read as
+     * plausible because the drum is symmetric, but the standby post sat on the
+     * wrong side of the manway, which is precisely the relationship this view
+     * exists to show.
+     */
+    const xz = (lngLat) => { const [e, n] = project(lngLat); return [e, -n]; };
     const width = node.clientWidth || 800;
     const heightPx = node.clientHeight || 380;
 
@@ -160,7 +163,7 @@ export default function IndoorScene3D({ indoor, height = '380px' }) {
     indoor.features
       .filter((f) => f.properties.kind === 'occupant')
       .forEach((f) => {
-        const [x, z] = project(f.geometry.coordinates);
+        const [x, z] = xz(f.geometry.coordinates);
         const mesh = new THREE.Mesh(bodyGeo, bodyMat);
         mesh.position.set(x, 3.2, z);
         mesh.castShadow = true;
@@ -173,7 +176,7 @@ export default function IndoorScene3D({ indoor, height = '380px' }) {
     indoor.features
       .filter((f) => f.properties.kind === 'fixture' || f.properties.kind === 'opening')
       .forEach((f) => {
-        const [x, z] = project(f.geometry.coordinates);
+        const [x, z] = xz(f.geometry.coordinates);
         const state = f.properties.state;
         const color = f.properties.kind === 'opening'
           ? 0x334155
@@ -187,21 +190,48 @@ export default function IndoorScene3D({ indoor, height = '380px' }) {
         disposables.push(geo, mat);
       });
 
+    // The camera used to be driven straight from an angle each frame, which
+    // looked right and meant the scene could not be touched. OrbitControls owns
+    // it now: the same slow turn when nobody is holding it, and a real camera
+    // the moment somebody is.
+    const target = new THREE.Vector3(0, 3, 0);
+    const openingShot = () => {
+      const r = extent * 2.0;
+      camera.position.set(Math.cos(0.7) * r, extent * 1.3, Math.sin(0.7) * r);
+      camera.lookAt(target);
+    };
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.copy(target);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.07;
+    controls.maxPolarAngle = 1.45;        // never duck below the deck
+    controls.minDistance = extent * 0.6;
+    controls.maxDistance = extent * 6;
+    // Matches the 0.16 rad/s the hand-rolled orbit used, so the scene keeps the
+    // pace it was tuned to: OrbitControls counts in 2π/60 units per second.
+    controls.autoRotateSpeed = 1.5;
+    openingShot();
+    controls.update();
+    controls.addEventListener('start', () => setControlled(true));
+
+    api.current = {
+      reset: () => {
+        setControlled(false);
+        openingShot();
+        controls.update();
+      },
+    };
+
     let raf = 0;
-    let angle = 0.7;
-    let last = performance.now();
     const tick = (now) => {
-      const delta = (now - last) / 1000;
-      last = now;
       if (!pausedRef.current) {
-        angle += delta * 0.16;
         bobbers.forEach((b, i) => {
           b.position.y = 3.2 + Math.sin(now / 700 + i) * 0.1;
         });
       }
-      const r = extent * 2.0;
-      camera.position.set(Math.cos(angle) * r, extent * 1.3, Math.sin(angle) * r);
-      camera.lookAt(0, 3, 0);
+      controls.autoRotate = !pausedRef.current && !controlledRef.current;
+      controls.update();
       renderer.render(scene, camera);
       raf = requestAnimationFrame(tick);
     };
@@ -221,6 +251,8 @@ export default function IndoorScene3D({ indoor, height = '380px' }) {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      controls.dispose();
+      api.current = null;
       disposables.forEach((d) => d.dispose?.());
       renderer.dispose();
       // Releases the WebGL context rather than leaving it to the GC — the same
@@ -238,9 +270,24 @@ export default function IndoorScene3D({ indoor, height = '380px' }) {
       onMouseLeave={() => setPaused(false)}
     >
       <div ref={holder} className="absolute inset-0" />
-      <p className="absolute bottom-2 left-3 text-[10px] text-text-subtle bg-surface/85 rounded px-1.5 py-0.5 border border-border-subtle pointer-events-none">
-        {paused ? 'Rotation paused' : 'Auto-rotating'} · hover to hold · authored geometry, not a scan
-      </p>
+      <div className="absolute bottom-2 left-3 flex items-center gap-1.5">
+        <p className="text-[10px] text-text-subtle bg-surface/85 rounded px-1.5 py-0.5 border border-border-subtle pointer-events-none">
+          {controlled ? 'Your view' : paused ? 'Rotation held' : 'Auto-rotating'}
+          {' · '}
+          drag to orbit, right-drag to pan, scroll to zoom
+          {' · '}
+          authored geometry, not a scan
+        </p>
+        {controlled && (
+          <button
+            type="button"
+            onClick={() => api.current?.reset()}
+            className="inline-flex items-center gap-1 text-[10px] font-semibold text-text-muted hover:text-brand bg-surface/85 rounded px-1.5 py-0.5 border border-border-subtle hover:border-brand/35 transition-colors cursor-pointer"
+          >
+            <RotateCcw className="w-3 h-3" /> Reset view
+          </button>
+        )}
+      </div>
     </div>
   );
 }

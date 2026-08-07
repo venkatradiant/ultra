@@ -21,6 +21,7 @@
 import { motion } from 'framer-motion';
 import { AlertTriangle, HelpCircle, Sparkles, ArrowDown, Info } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const CAPABILITY_TINT = {
   'Converged Conversation': 'bg-sky-50 text-sky-800 border-sky-200',
@@ -132,13 +133,13 @@ export default function CurrentStateDiagram({
   const byStepId = Object.fromEntries(data.interventions.map((i) => [i.stepId, i]));
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Current state">
       <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold text-text">{data.title}</h3>
           <p className="text-[11.5px] text-text-muted mt-1 leading-relaxed max-w-3xl">{data.subtitle}</p>
         </div>
-        <Chip note={data.cycleTimeNote} />
+        <span className="flex items-center gap-2"><Chip note={data.cycleTimeNote} /><MaximizeButton /></span>
       </div>
 
       {/* Legend */}
@@ -192,6 +193,6 @@ export default function CurrentStateDiagram({
           The steps without one are the steps that already work — they are left alone.
         </span>
       </p>
-    </div>
+    </MaximizablePanel>
   );
 }

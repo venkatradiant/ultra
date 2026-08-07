@@ -11,6 +11,7 @@ import useAsyncData from '../../hooks/useAsyncData';
 import { getPermits } from '../../data/aramco/hse-gm';
 import RiskBucketBadge from './RiskBucketBadge';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const CONDITION_STATE = {
   compliant: { icon: CheckCircle2, wrap: 'border-emerald-200 bg-emerald-50/50', tone: 'text-emerald-700', label: 'Compliant' },
@@ -26,7 +27,7 @@ export default function PermitDetailCard({ getter = getPermits, compact = false 
   const { occupancy, gasTest, standby } = cs;
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Permit detail">
       <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -39,7 +40,7 @@ export default function PermitDetailCard({ getter = getPermits, compact = false 
             {cs.location} · valid {cs.validFrom}–{cs.validTo} · issued by {cs.issuer} · work order {cs.workOrder}
           </p>
         </div>
-        <IllustrativeDataChip />
+        <span className="flex items-center gap-2"><IllustrativeDataChip /><MaximizeButton /></span>
       </div>
 
       {/* Live status strip — occupancy, gas test, standby */}
@@ -158,6 +159,6 @@ export default function PermitDetailCard({ getter = getPermits, compact = false 
           </div>
         </>
       )}
-    </div>
+    </MaximizablePanel>
   );
 }

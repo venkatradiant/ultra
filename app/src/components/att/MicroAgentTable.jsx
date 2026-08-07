@@ -10,6 +10,7 @@
  */
 import { Activity } from 'lucide-react';
 import IllustrativeChip from './IllustrativeChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const STATUS_STYLE = {
   healthy: 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -21,14 +22,14 @@ export default function MicroAgentTable({ agents = [] }) {
   if (!agents.length) return null;
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Micro-agent performance">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <h3 className="inline-flex items-center gap-1.5 text-[13px] font-bold text-text tracking-tight">
           <Activity className="w-4 h-4 text-brand" /> Micro-Agent Performance
         </h3>
         <div className="flex items-center gap-2">
           <span className="text-[10.5px] text-text-subtle">All agents active · current cycle</span>
-          <IllustrativeChip />
+          <span className="flex items-center gap-2"><IllustrativeChip /><MaximizeButton /></span>
         </div>
       </div>
 
@@ -71,6 +72,6 @@ export default function MicroAgentTable({ agents = [] }) {
         The Tax agent runs 89.5% accuracy at 79% average confidence — the weakest of the five, and the
         reason Tax Rule Change is the second-largest root cause this cycle.
       </p>
-    </div>
+    </MaximizablePanel>
   );
 }

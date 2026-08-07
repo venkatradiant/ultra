@@ -10,6 +10,7 @@
 import { useMemo, useState } from 'react';
 import { Download, Search, Filter } from 'lucide-react';
 import IllustrativeChip from './IllustrativeChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const SEVERITY_STYLE = {
   High: 'bg-rose-50 text-rose-700 border-rose-200',
@@ -87,7 +88,7 @@ export default function AnomalyExplorer({ rows = [] }) {
   if (!rows.length) return null;
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface overflow-hidden">
+    <MaximizablePanel className="overflow-hidden" label="Anomaly explorer">
       <div className="flex flex-wrap items-center gap-2 p-3.5 border-b border-border-subtle">
         <span className="inline-flex items-center gap-1.5 text-[13px] font-bold text-text tracking-tight mr-auto">
           <Filter className="w-4 h-4 text-brand" /> Anomaly Explorer
@@ -118,7 +119,7 @@ export default function AnomalyExplorer({ rows = [] }) {
           <Download className="w-3.5 h-3.5" /> Export
         </button>
 
-        <IllustrativeChip />
+        <span className="flex items-center gap-2"><IllustrativeChip /><MaximizeButton /></span>
       </div>
 
       {exported && (
@@ -191,6 +192,6 @@ export default function AnomalyExplorer({ rows = [] }) {
           </tbody>
         </table>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

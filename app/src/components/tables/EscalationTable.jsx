@@ -1,4 +1,5 @@
 import escalationData from '../../data/risk/escalation_log.json';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const PRIORITY_STYLES = {
   Critical: 'bg-red-50 text-red-700',
@@ -17,8 +18,11 @@ export default function EscalationTable() {
   const { escalations, summary } = escalationData;
 
   return (
-    <div className="bg-surface rounded-xl border border-border-subtle p-4" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
-      <h3 className="text-sm font-bold text-text mb-1">Escalation Pipeline</h3>
+    <MaximizablePanel className="p-4" shell="bg-surface rounded-xl border border-border-subtle" label="Escalation pipeline">
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <h3 className="text-sm font-bold text-text">Escalation Pipeline</h3>
+        <MaximizeButton />
+      </div>
       <p className="text-[11px] text-text-subtle mb-3">
         {summary.total_open} open | {summary.total_escalated} escalated | Avg resolution: {summary.avg_resolution_days} days
       </p>
@@ -53,6 +57,6 @@ export default function EscalationTable() {
         <span>Closed this month: {summary.total_closed_this_month}</span>
         <span>Avg resolution: {summary.avg_resolution_days} days</span>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

@@ -23,14 +23,19 @@
  * people, breaches, labels and the RTLS estate — is taken from the deployed
  * TrackLynk (Synapse) console's Site View rather than invented here.
  */
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Layers, Users, AlertTriangle, MapPin, Radio } from 'lucide-react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { Layers, Users, AlertTriangle, MapPin, Radio, Box, Map as MapIcon, Loader2 } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
 import { getSiteGeo, getWorkerPositions } from '../../data/aramco/hse-gm';
 import { entityFromTag } from '../../lib/rtlsIdentity';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 import MapCanvas from './MapCanvas';
 import MapFeatureCard from './MapFeatureCard';
+
+// Same discipline as the interior view: three.js is downloaded only if someone
+// presses 3D, which most of the time nobody does.
+const SiteScene3D = lazy(() => import('./SiteScene3D'));
 
 const HAZARD_SWATCH = { high: 'bg-rose-500', medium: 'bg-amber-500', low: 'bg-slate-400' };
 
@@ -93,21 +98,27 @@ export default function SiteMapPanel({
   const [hoverZone, setHoverZone] = useState(null);
   const [selected, setSelected] = useState(null);
   const [cursor, setCursor] = useState(null);
+  const [mode, setMode] = useState('2d');
 
   // Freeze when off-screen: releases the GL context so a scrolling conversation
   // with several maps never exhausts the browser's context pool.
-  const wrap = useRef(null);
+  //
+  // Held as a callback ref rather than a `useRef`, because maximizing moves this
+  // subtree into a portal and remounts it. A ref set once at mount would leave
+  // the observer watching a node that is no longer in the document, which
+  // reports as "not intersecting" — the map would go to its paused placeholder
+  // the moment it filled the screen.
+  const [wrapNode, setWrapNode] = useState(null);
   const [visible, setVisible] = useState(true);
   useEffect(() => {
-    const node = wrap.current;
-    if (!node || typeof IntersectionObserver === 'undefined') return undefined;
+    if (!wrapNode || typeof IntersectionObserver === 'undefined') return undefined;
     const io = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
       { rootMargin: '200px' },
     );
-    io.observe(node);
+    io.observe(wrapNode);
     return () => io.disconnect();
-  }, []);
+  }, [wrapNode]);
 
   // Zone lookup by id, so a clicked worker can name the zone it stands in — the
   // console's entity card always answers "inside which zone", and a position
@@ -258,7 +269,14 @@ export default function SiteMapPanel({
   );
 
   return (
-    <div ref={wrap} className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label={title}>
+      {({ maximized }) => {
+      // Full-screen is worth having here for one reason: this map carries eleven
+      // zones, 2,412 positions and three flagged jobs, and inside a chat column
+      // it renders about 340 pixels tall. Given the screen, it can be read.
+      const frameHeight = maximized ? 'min(74vh, 900px)' : height;
+      return (
+        <div ref={setWrapNode}>
       <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
         <div className="min-w-0">
           <h3 className="text-[13px] font-bold text-text tracking-tight">{title}</h3>
@@ -267,7 +285,27 @@ export default function SiteMapPanel({
             {totals.high} high-risk · 11 zones
           </p>
         </div>
-        <IllustrativeDataChip note="Invented facility layout. Not a real Aramco site." />
+        <div className="flex items-center gap-2">
+          <div className="inline-flex rounded-lg border border-border overflow-hidden">
+            {[
+              { id: '2d', label: 'Plan', icon: MapIcon },
+              { id: '3d', label: '3D', icon: Box },
+            ].map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                type="button"
+                onClick={() => setMode(id)}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-semibold transition-colors cursor-pointer ${
+                  mode === id ? 'bg-brand text-white' : 'bg-surface-2 text-text-muted hover:text-text'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" /> {label}
+              </button>
+            ))}
+          </div>
+          <IllustrativeDataChip note="Invented facility layout. Not a real Aramco site." />
+          <MaximizeButton />
+        </div>
       </div>
 
       {!compact && (
@@ -309,21 +347,62 @@ export default function SiteMapPanel({
       )}
 
       <div className="relative">
-        <MapCanvas
-          site={site}
-          workers={workers}
-          markers={markers}
-          fitTo={fitTo}
-          showWorkers={showWorkers}
-          showInfra={showInfra}
-          showMusterRadius={variant === 'muster'}
-          selectedZoneId={selected?.type === 'zone' ? selected.id : null}
-          height={height}
-          paused={!visible}
-          onZoneHover={setHoverZone}
-          onSelect={handleSelect}
-          onCursor={setCursor}
-        />
+        {mode === '2d' ? (
+          <MapCanvas
+            site={site}
+            workers={workers}
+            markers={markers}
+            fitTo={fitTo}
+            showWorkers={showWorkers}
+            showInfra={showInfra}
+            showMusterRadius={variant === 'muster'}
+            selectedZoneId={selected?.type === 'zone' ? selected.id : null}
+            height={frameHeight}
+            paused={!visible}
+            onZoneHover={setHoverZone}
+            onSelect={handleSelect}
+            onCursor={setCursor}
+          />
+        ) : !visible ? (
+          // The same freeze the 2D map takes when it scrolls away, and for the
+          // same reason: a WebGL context released is a context the next map in
+          // the conversation gets to keep.
+          <div
+            style={{ height: frameHeight }}
+            className="w-full rounded-xl border border-border-subtle bg-surface-2 flex items-center justify-center"
+          >
+            <p className="text-[11px] text-text-subtle">Scene paused — scroll back to resume</p>
+          </div>
+        ) : (
+          <Suspense
+            fallback={
+              <div
+                style={{ height: frameHeight }}
+                className="w-full rounded-xl border border-border-subtle bg-surface-2 flex items-center justify-center gap-2"
+              >
+                <Loader2 className="w-4 h-4 animate-spin text-text-subtle" />
+                <span className="text-[11px] text-text-subtle">Loading the 3D view…</span>
+              </div>
+            }
+          >
+            <SiteScene3D
+              site={site}
+              workers={workers}
+              variant={variant}
+              lastKnown={lastKnown}
+              fitTo={fitTo}
+              showWorkers={showWorkers}
+              showFlagged={showFlagged}
+              showLabels={showLabels}
+              showInfra={showInfra}
+              selectedZoneId={selected?.type === 'zone' ? selected.id : null}
+              height={frameHeight}
+              onZoneHover={setHoverZone}
+              onSelect={handleSelect}
+              onCursor={setCursor}
+            />
+          </Suspense>
+        )}
 
         {/* The clicked-feature card. Pinned to the frame's top-left rather than
             tethered to the point: a tethered popup on a 3 km site spends half
@@ -359,8 +438,15 @@ export default function SiteMapPanel({
         ) : (
           <p className="text-[11px] text-text-subtle leading-snug">
             <Layers className="inline w-3 h-3 mr-1 -mt-0.5" />
-            Click a zone, a person or a device for its record. Drag to pan, scroll to zoom, right-drag to rotate and tilt.
-            {showWorkers ? ' Zoom past the density heat to resolve individual positions.' : ''}
+            Click a zone, a person or a device for its record.{' '}
+            {mode === '3d'
+              ? 'Drag to orbit, scroll to zoom, right-drag to pan. Heights are authored in the site fixture.'
+              : 'Drag to pan, scroll to zoom, right-drag to rotate and tilt.'}
+            {showWorkers
+              ? mode === '3d'
+                ? ' Zoom in past the headcount columns to resolve individual positions.'
+                : ' Zoom past the density heat to resolve individual positions.'
+              : ''}
           </p>
         )}
       </div>
@@ -370,6 +456,9 @@ export default function SiteMapPanel({
         source="Permit-to-work system, gate access-control, location and tag data (vendor-agnostic)"
         freshness="under 1 minute ago"
       />
-    </div>
+        </div>
+      );
+      }}
+    </MaximizablePanel>
   );
 }

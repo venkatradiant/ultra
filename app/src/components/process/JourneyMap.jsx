@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Frown, Meh, Lightbulb, AlertCircle, Info } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const EMOTION_TONE = {
   1: { dot: '#9F1239', text: 'text-rose-800', wrap: 'border-rose-300 bg-rose-50', Icon: Frown },
@@ -73,7 +74,7 @@ export default function JourneyMap({ getter, title = 'Journey', idleHint = '' })
   const railCols = journey.phases.length >= 5 ? 'xl:grid-cols-5' : 'xl:grid-cols-4';
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Journey map">
       <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold text-text">{title}</h3>
@@ -81,7 +82,7 @@ export default function JourneyMap({ getter, title = 'Journey', idleHint = '' })
             {journey.scenario} {journey.timeframe}
           </p>
         </div>
-        <Chip />
+        <span className="flex items-center gap-2"><Chip /><MaximizeButton /></span>
       </div>
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-4 text-[11px]">
@@ -210,6 +211,6 @@ export default function JourneyMap({ getter, title = 'Journey', idleHint = '' })
           </tbody>
         </table>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

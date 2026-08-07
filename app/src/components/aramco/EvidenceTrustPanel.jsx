@@ -12,6 +12,7 @@ import useAsyncData from '../../hooks/useAsyncData';
 import { getReconciliation } from '../../data/aramco/hse-gm';
 import IllustrativeDataChip from './IllustrativeDataChip';
 import HeadcountReconciliationPanel from './HeadcountReconciliationPanel';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 export default function EvidenceTrustPanel({ getter = getReconciliation, scope = 'all', showReconciliation = false }) {
   const rec = useAsyncData(getter);
@@ -24,7 +25,7 @@ export default function EvidenceTrustPanel({ getter = getReconciliation, scope =
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+      <MaximizablePanel className="p-4 sm:p-5" label="Evidence and trust">
         <div className="flex flex-wrap items-start justify-between gap-3 mb-3.5">
           <div className="min-w-0">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-text">
@@ -36,7 +37,7 @@ export default function EvidenceTrustPanel({ getter = getReconciliation, scope =
               and the reconciliation is logged for audit.
             </p>
           </div>
-          <IllustrativeDataChip />
+          <span className="flex items-center gap-2"><IllustrativeDataChip /><MaximizeButton /></span>
         </div>
 
         <div className="overflow-x-auto scrollbar-sleek">
@@ -77,7 +78,7 @@ export default function EvidenceTrustPanel({ getter = getReconciliation, scope =
             </tbody>
           </table>
         </div>
-      </div>
+      </MaximizablePanel>
 
       {showReconciliation && <HeadcountReconciliationPanel />}
     </div>

@@ -1,11 +1,15 @@
 import churnData from '../../data/retention/churn_model.json';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const segments = churnData.by_segment.sort((a, b) => b.avg_probability - a.avg_probability);
 
 export default function RetentionRiskTable() {
   return (
-    <div className="bg-surface rounded-xl border border-border-subtle p-4" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
-      <h3 className="text-sm font-bold text-text mb-1">Retention Risk Segments</h3>
+    <MaximizablePanel className="p-4" shell="bg-surface rounded-xl border border-border-subtle" label="Retention risk">
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <h3 className="text-sm font-bold text-text">Retention Risk Segments</h3>
+        <MaximizeButton />
+      </div>
       <p className="text-[11px] text-text-subtle mb-3">Ranked by churn probability — Einstein Churn Predictor v3.2</p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
@@ -42,6 +46,6 @@ export default function RetentionRiskTable() {
         <span>Total at risk: {churnData.summary.total_at_risk.toLocaleString()} members</span>
         <span>Total LTV: {churnData.summary.total_ltv_at_risk}</span>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

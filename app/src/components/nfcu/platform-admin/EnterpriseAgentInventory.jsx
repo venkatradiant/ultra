@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Boxes, ShieldCheck, ShieldAlert, HelpCircle } from 'lucide-react';
 import { useAsyncData } from '@/hooks/useAsyncData';
 import { getAgentRegistry } from '@/data/nfcu/platform-admin/agentRegistryData';
+import MaximizablePanel, { MaximizeButton } from '../../common/MaximizablePanel';
 
 /**
  * Turn 9 + the Agent Inventory page — Enterprise Agent Inventory / Governance
@@ -121,15 +122,22 @@ export default function EnterpriseAgentInventory({ getter = getAgentRegistry }) 
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="bg-surface rounded-xl border border-border-subtle p-5"
     >
+      <MaximizablePanel
+        className="p-5"
+        shell="bg-surface rounded-xl border border-border-subtle"
+        label="Enterprise agent inventory"
+      >
       <div className="flex items-start justify-between gap-3 mb-0.5">
         <div className="flex items-center gap-2">
           <Boxes className="w-4 h-4 text-brand" />
           <h3 className="text-sm font-semibold text-text">Enterprise Agent Inventory</h3>
         </div>
-        <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full whitespace-nowrap">
-          {data.ungoverned} not yet governed
+        <span className="flex items-center gap-2 flex-shrink-0">
+          <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full whitespace-nowrap">
+            {data.ungoverned} not yet governed
+          </span>
+          <MaximizeButton />
         </span>
       </div>
       <p className="text-xs text-text-subtle mb-3">
@@ -187,6 +195,7 @@ export default function EnterpriseAgentInventory({ getter = getAgentRegistry }) 
         through the same layer for PII, cost and audit. The {data.ungoverned} shadow agents are the exception, and
         why their PII and budget columns read “—”: outside the layer, those answers don’t exist.
       </p>
+      </MaximizablePanel>
     </motion.div>
   );
 }

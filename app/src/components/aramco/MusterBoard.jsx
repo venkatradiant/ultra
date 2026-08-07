@@ -16,6 +16,7 @@ import useAsyncData from '../../hooks/useAsyncData';
 import { getMuster } from '../../data/aramco/hse-gm';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MusterControlCenter from './MusterControlCenter';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const PRIORITY_STYLE = {
   high: { wrap: 'border-rose-300 bg-rose-50', tone: 'text-rose-800', num: 'text-rose-800', dot: 'bg-rose-600' },
@@ -39,14 +40,14 @@ const LOAD_BANDS = [
 
 const bandFor = (loadPct) => LOAD_BANDS.find((b) => loadPct <= b.max);
 
-export default function MusterBoard({ getter = getMuster, embedded = false }) {
+export default function MusterBoard({ getter = getMuster }) {
   const muster = useAsyncData(getter);
   if (!muster) return null;
 
   const pct = Math.round((muster.accounted / muster.total) * 100);
 
   return (
-    <div className={`rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5 ${embedded ? '' : ''}`}>
+    <MaximizablePanel className="p-4 sm:p-5" label="Muster status">
       {/* Header — the alarm state is stated, not painted across the whole page. */}
       <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
@@ -63,7 +64,7 @@ export default function MusterBoard({ getter = getMuster, embedded = false }) {
             note={`Counting against the reconciled headcount of ${muster.total.toLocaleString()}, not the gate figure.`}
           />
         </div>
-        <IllustrativeDataChip />
+        <span className="flex items-center gap-2"><IllustrativeDataChip /><MaximizeButton /></span>
       </div>
 
       {/* Headline accounting */}
@@ -239,6 +240,6 @@ export default function MusterBoard({ getter = getMuster, embedded = false }) {
           </p>
         </div>
       )}
-    </div>
+    </MaximizablePanel>
   );
 }

@@ -11,6 +11,7 @@ import { AlertTriangle } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
 import { getSiteData } from '../../data/aramco/hse-gm';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const HAZARD_LABEL = { high: 'High', medium: 'Medium', low: 'Low' };
 const HAZARD_TINT = {
@@ -50,7 +51,7 @@ export default function UnitRollupTable({ getter = getSiteData }) {
   const totalHighRisk = rows.reduce((s, r) => s + r.highRiskPermits, 0);
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Unit roll-up">
       <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold text-text">Safety Exposure by Unit — Complex Roll-Up</h3>
@@ -62,7 +63,7 @@ export default function UnitRollupTable({ getter = getSiteData }) {
             note="Aggregated from the same live data the HSE GM and shift supervisors work from — no separate management dataset."
           />
         </div>
-        <IllustrativeDataChip />
+        <span className="flex items-center gap-2"><IllustrativeDataChip /><MaximizeButton /></span>
       </div>
 
       <div className="overflow-x-auto scrollbar-sleek">
@@ -136,6 +137,6 @@ export default function UnitRollupTable({ getter = getSiteData }) {
         ranks high-risk permit load weighted by live occupancy, with a heavy penalty for any job already outside its
         permit conditions — simple enough to defend to an auditor in one sentence.
       </p>
-    </div>
+    </MaximizablePanel>
   );
 }

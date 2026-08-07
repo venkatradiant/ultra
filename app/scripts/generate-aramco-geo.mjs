@@ -76,6 +76,26 @@ function circle(cx, cy, r, sides = 24) {
   return [ring];
 }
 
+// ─── Heights ────────────────────────────────────────────────────
+// Every solid on site carries a `heightM` in real metres, because the 3D view
+// extrudes the *fixture* rather than guessing from `kind` at render time. Two
+// reasons that matters: a real GIS export would carry its own heights and must
+// be able to override these, and a height buried in a renderer is a number no
+// one can review. The figures below are ordinary refinery proportions, not
+// surveyed ones — the facility is invented, and so is its skyline.
+const HEIGHT = {
+  fence: 3,          // perimeter fence
+  road: 0,           // painted on grade
+  piperack: 6,       // rack deck above grade
+  tankNorth: 18,     // crude storage, the taller farm
+  tankSouth: 14,     // product storage
+  buildingLow: 8,    // admin blocks
+  buildingTall: 12,  // control room
+  jetty: 2,
+  berth: 4,
+  flare: 90,         // the stack, visible from anywhere on site
+};
+
 const feat = (geometry, properties) => ({ type: 'Feature', geometry, properties });
 const poly = (coordinates, properties) => feat({ type: 'Polygon', coordinates }, properties);
 const line = (pts, properties) => feat({ type: 'LineString', coordinates: pts.map(([x, y]) => pt(x, y)) }, properties);
@@ -150,7 +170,9 @@ function buildSite() {
   const r = rng(20260805);
   const features = [];
 
-  features.push(poly(rect(40, 62, 1120, 600), { kind: 'perimeter', name: 'Site perimeter' }));
+  features.push(poly(rect(40, 62, 1120, 600), {
+    kind: 'perimeter', name: 'Site perimeter', heightM: HEIGHT.fence,
+  }));
 
   // Roads — the spine and the cross streets that make a plan read as a plant
   // rather than a bar chart.
@@ -163,10 +185,11 @@ function buildSite() {
 
   // Pipe racks — drawn as their own kind so they can be styled as the dashed
   // steel corridors they are, not as roads.
-  features.push(line([[70, 271], [1130, 271]], { kind: 'piperack', name: 'Main pipe rack' }));
-  features.push(line([[430, 271], [430, 96]], { kind: 'piperack', name: 'Unit 2 rack tie-in' }));
-  features.push(line([[700, 271], [700, 96]], { kind: 'piperack', name: 'Unit 3 rack tie-in' }));
-  features.push(line([[930, 296], [930, 271]], { kind: 'piperack', name: 'Marine rack' }));
+  const rack = HEIGHT.piperack;
+  features.push(line([[70, 271], [1130, 271]], { kind: 'piperack', name: 'Main pipe rack', heightM: rack }));
+  features.push(line([[430, 271], [430, 96]], { kind: 'piperack', name: 'Unit 2 rack tie-in', heightM: rack }));
+  features.push(line([[700, 271], [700, 96]], { kind: 'piperack', name: 'Unit 3 rack tie-in', heightM: rack }));
+  features.push(line([[930, 296], [930, 271]], { kind: 'piperack', name: 'Marine rack', heightM: rack }));
 
   // Unit polygons carry the operational figures the conversation quotes.
   ZONES.forEach((z) => {
@@ -188,8 +211,8 @@ function buildSite() {
   // Storage tanks inside the two tank farms — the single most recognisable
   // feature of a refinery from above, and what the old grid of boxes lacked.
   const tankFarms = [
-    { zone: 'Z5', cols: 5, rows: 2, x: 105, y: 330, dx: 66, dy: 62, r: 24 },
-    { zone: 'Z6', cols: 5, rows: 2, x: 105, y: 510, dx: 66, dy: 62, r: 22 },
+    { zone: 'Z5', cols: 5, rows: 2, x: 105, y: 330, dx: 66, dy: 62, r: 24, h: HEIGHT.tankNorth },
+    { zone: 'Z6', cols: 5, rows: 2, x: 105, y: 510, dx: 66, dy: 62, r: 22, h: HEIGHT.tankSouth },
   ];
   tankFarms.forEach((tf) => {
     for (let c = 0; c < tf.cols; c++) {
@@ -197,7 +220,14 @@ function buildSite() {
         const jitter = (r() - 0.5) * 3;
         features.push(poly(
           circle(tf.x + c * tf.dx + jitter, tf.y + row * tf.dy + jitter, tf.r),
-          { kind: 'tank', zoneId: tf.zone, id: `TK-${tf.zone}-${c}${row}` },
+          {
+            kind: 'tank', zoneId: tf.zone, id: `TK-${tf.zone}-${c}${row}`,
+            // Radius in metres travels with the tank so the 3D view can raise a
+            // true cylinder instead of re-measuring the 24-gon that approximates
+            // one in plan.
+            radiusM: +(tf.r * (SITE_M.w / VIEW.w)).toFixed(1),
+            heightM: tf.h,
+          },
         ));
       }
     }
@@ -211,23 +241,36 @@ function buildSite() {
       for (let i = 0; i < n; i++) {
         const cx = z.x + 30 + r() * (z.w - 60);
         const cy = z.y + 30 + r() * (z.h - 60);
-        features.push(poly(circle(cx, cy, 7 + r() * 7, 12), {
+        const rad = 7 + r() * 7;
+        features.push(poly(circle(cx, cy, rad, 12), {
           kind: 'structure', zoneId: z.id, id: `ST-${z.id}-${i}`,
+          radiusM: +(rad * (SITE_M.w / VIEW.w)).toFixed(1),
+          // Slim things are fractionation columns and stand tall; fat things are
+          // drums and squat. Deriving height from the footprint rather than
+          // rolling for it keeps the skyline in step with the plan — a wide
+          // circle that towered over a narrow one would read as a mistake.
+          heightM: Math.round(45 - (rad - 7) * 2.7),
         }));
       }
     });
 
   // Flare stack — Utilities. The one point everyone looks for on a refinery plan.
-  features.push(point(690, 330, { kind: 'flare', name: 'Flare stack', zoneId: 'Z7' }));
+  features.push(point(690, 330, {
+    kind: 'flare', name: 'Flare stack', zoneId: 'Z7', heightM: HEIGHT.flare,
+  }));
 
   // Marine jetty reaching off the quay.
-  features.push(line([[1090, 371], [1155, 371]], { kind: 'jetty', name: 'Loading jetty', zoneId: 'Z8' }));
-  features.push(poly(rect(1148, 356, 12, 30), { kind: 'berth', name: 'Berth 1', zoneId: 'Z8' }));
+  features.push(line([[1090, 371], [1155, 371]], { kind: 'jetty', name: 'Loading jetty', zoneId: 'Z8', heightM: HEIGHT.jetty }));
+  features.push(poly(rect(1148, 356, 12, 30), { kind: 'berth', name: 'Berth 1', zoneId: 'Z8', heightM: HEIGHT.berth }));
 
-  // Admin and control buildings.
+  // Admin and control buildings. The last one is the control room — the tallest
+  // thing in a low-hazard zone, and the building the GM is standing in.
   [[455, 500, 90, 46], [560, 500, 70, 46], [455, 560, 60, 40], [530, 560, 100, 40], [645, 500, 55, 100]]
     .forEach(([x, y, w, h], i) => {
-      features.push(poly(rect(x, y, w, h), { kind: 'building', zoneId: 'Z9', id: `B-${i + 1}` }));
+      features.push(poly(rect(x, y, w, h), {
+        kind: 'building', zoneId: 'Z9', id: `B-${i + 1}`,
+        heightM: i === 4 ? HEIGHT.buildingTall : HEIGHT.buildingLow,
+      }));
     });
 
   features.push(point(600, 62, { kind: 'gate', id: 'G1', name: 'Main Gate' }));

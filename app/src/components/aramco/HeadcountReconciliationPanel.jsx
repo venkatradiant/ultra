@@ -12,6 +12,7 @@ import { ArrowRight, FileCheck2, AlertTriangle } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
 import { getReconciliation } from '../../data/aramco/hse-gm';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const PRIORITY_STYLE = {
   high: 'border-rose-200 bg-rose-50/60 text-rose-800',
@@ -24,13 +25,13 @@ export default function HeadcountReconciliationPanel({ getter = getReconciliatio
   if (!rec) return null;
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Headcount reconciliation">
       <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold text-text">Headcount Reconciliation — {rec.metric}</h3>
           <ProvenanceLine className="mt-1" source="Gate access-control, Permit-to-work system, Contractor timesheets, Location and tag data (vendor-agnostic)" freshness={rec.freshness} reconciled />
         </div>
-        <IllustrativeDataChip />
+        <span className="flex items-center gap-2"><IllustrativeDataChip /><MaximizeButton /></span>
       </div>
 
       {/* Three sources → one figure */}
@@ -106,6 +107,6 @@ export default function HeadcountReconciliationPanel({ getter = getReconciliatio
 
         {rec.auditNote && <p className="text-[10.5px] text-text-subtle italic mt-2.5">{rec.auditNote}</p>}
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

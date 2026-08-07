@@ -1,14 +1,18 @@
 import chatFlows from '../../data/chatFlows.json';
 import penfedChatFlows from '../../data/penfed/chatFlows.json';
 import { useBranding } from '../../context/BrandingContext';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 export default function ChurnRiskTable() {
   const { clientId } = useBranding();
   const flows = clientId === 'penfed' ? penfedChatFlows : chatFlows;
   const tableData = flows.turn_3_predictive.ui_components_to_render[0];
   return (
-    <div className="bg-surface rounded-xl border border-border-subtle p-5">
-      <h3 className="text-sm font-semibold text-text mb-1">{tableData.title}</h3>
+    <MaximizablePanel className="p-5" shell="bg-surface rounded-xl border border-border-subtle" label="Churn risk">
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <h3 className="text-sm font-semibold text-text">{tableData.title}</h3>
+        <MaximizeButton />
+      </div>
       <p className="text-xs text-text-subtle mb-4">Einstein churn model + behavioral signals</p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
@@ -56,6 +60,6 @@ export default function ChurnRiskTable() {
           </tbody>
         </table>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

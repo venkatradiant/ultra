@@ -13,6 +13,7 @@ import useAsyncData from '../../hooks/useAsyncData';
 import { getSiteData } from '../../data/aramco/hse-gm';
 import RiskBucketBadge from './RiskBucketBadge';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 function EvidenceBlock({ evidence }) {
   return (
@@ -73,7 +74,7 @@ export default function FlaggedJobsTable({ getter = getSiteData }) {
   const jobs = site.flaggedJobs;
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5">
+    <MaximizablePanel className="p-4 sm:p-5" label="Flagged jobs">
       <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <h3 className="flex items-center gap-2 text-sm font-semibold text-text">
@@ -88,7 +89,7 @@ export default function FlaggedJobsTable({ getter = getSiteData }) {
             note="Detected by fusing permit validity with live worker position. Neither source produces this on its own."
           />
         </div>
-        <IllustrativeDataChip />
+        <span className="flex items-center gap-2"><IllustrativeDataChip /><MaximizeButton /></span>
       </div>
 
       <div className="space-y-2">
@@ -143,6 +144,6 @@ export default function FlaggedJobsTable({ getter = getSiteData }) {
           );
         })}
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

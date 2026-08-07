@@ -1,14 +1,18 @@
 import chatFlows from '../../data/chatFlows.json';
 import penfedChatFlows from '../../data/penfed/chatFlows.json';
 import { useBranding } from '../../context/BrandingContext';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 export default function AnomalyResultsTable() {
   const { clientId } = useBranding();
   const flows = clientId === 'penfed' ? penfedChatFlows : chatFlows;
   const tableData = flows.turn_5_anomaly_detection.ui_components_to_render[0];
   return (
-    <div className="bg-surface rounded-xl border border-border-subtle p-5">
-      <h3 className="text-sm font-semibold text-text mb-1">{tableData.title}</h3>
+    <MaximizablePanel className="p-5" shell="bg-surface rounded-xl border border-border-subtle" label="Anomaly results">
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <h3 className="text-sm font-semibold text-text">{tableData.title}</h3>
+        <MaximizeButton />
+      </div>
       <p className="text-xs text-text-subtle mb-4">Predictive AI + Agentic Data Platform</p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
@@ -57,6 +61,6 @@ export default function AnomalyResultsTable() {
         <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
         <span className="text-[10px] text-text-subtle">Live monitoring active across all connected systems</span>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

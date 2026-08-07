@@ -1,4 +1,5 @@
 import frictionData from '../../data/cx/cx_journey_friction.json';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const trendColors = {
   worsening: 'text-red-600 bg-red-50',
@@ -10,8 +11,11 @@ export default function JourneyFrictionTable() {
   const journeys = frictionData.journeys.sort((a, b) => b.drop_off_rate - a.drop_off_rate);
 
   return (
-    <div className="bg-surface rounded-xl border border-border-subtle p-4" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
-      <h3 className="text-sm font-bold text-text mb-1">Journey Friction Breakdown</h3>
+    <MaximizablePanel className="p-4" shell="bg-surface rounded-xl border border-border-subtle" label="Journey friction">
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <h3 className="text-sm font-bold text-text">Journey Friction Breakdown</h3>
+        <MaximizeButton />
+      </div>
       <p className="text-[11px] text-text-subtle mb-3">All active journeys ranked by drop-off rate</p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
@@ -48,6 +52,6 @@ export default function JourneyFrictionTable() {
           </tbody>
         </table>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }

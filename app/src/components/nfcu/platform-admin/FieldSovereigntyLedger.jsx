@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, Cpu, Sparkles } from 'lucide-react';
 import { useAsyncData } from '@/hooks/useAsyncData';
 import { getFieldLedger } from '@/data/nfcu/platform-admin/governanceData';
+import MaximizablePanel, { MaximizeButton } from '../../common/MaximizablePanel';
 
 /**
  * Turn 2 — Field Sovereignty Ledger.
@@ -28,12 +29,19 @@ export default function FieldSovereigntyLedger({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="bg-surface rounded-xl border border-border-subtle p-5"
     >
+      <MaximizablePanel
+        className="p-5"
+        shell="bg-surface rounded-xl border border-border-subtle"
+        label="Field sovereignty ledger"
+      >
       <div className="flex items-start justify-between gap-3 mb-1">
         <h3 className="text-sm font-semibold text-text">Field Sovereignty Ledger</h3>
-        <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full flex-shrink-0">
-          <ShieldCheck className="w-3 h-3" /> {data.badge}
+        <span className="flex items-center gap-2 flex-shrink-0">
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+            <ShieldCheck className="w-3 h-3" /> {data.badge}
+          </span>
+          <MaximizeButton />
         </span>
       </div>
       <p className="text-xs text-text-subtle mb-4">
@@ -108,6 +116,7 @@ export default function FieldSovereigntyLedger({
           the single frontier task ran on non-PII signals only.
         </p>
       </div>
+      </MaximizablePanel>
     </motion.div>
   );
 }

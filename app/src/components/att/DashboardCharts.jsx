@@ -15,6 +15,7 @@ import {
 } from 'recharts';
 import { TrendingUp, Target, Zap } from 'lucide-react';
 import IllustrativeChip from './IllustrativeChip';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const TOOLTIP = {
   contentStyle: {
@@ -45,18 +46,18 @@ const CHARGE_FILL = [
 
 function Panel({ title, icon: Icon, note, children }) {
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-5 min-w-0">
+    <MaximizablePanel className="p-4 sm:p-5 min-w-0" label="Chart">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <h3 className="inline-flex items-center gap-1.5 text-[13px] font-bold text-text tracking-tight">
           <Icon className="w-4 h-4 text-brand" /> {title}
         </h3>
         <div className="flex items-center gap-2">
           {note && <span className="text-[10.5px] text-text-subtle">{note}</span>}
-          <IllustrativeChip />
+          <span className="flex items-center gap-2"><IllustrativeChip /><MaximizeButton /></span>
         </div>
       </div>
       {children}
-    </div>
+    </MaximizablePanel>
   );
 }
 

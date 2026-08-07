@@ -1,4 +1,5 @@
 import anomalyData from '../../data/risk/transaction_anomalies.json';
+import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
 const anomalies = anomalyData.anomalies.sort((a, b) => b.risk_score - a.risk_score);
 
@@ -16,8 +17,11 @@ function RiskBadge({ score }) {
 
 export default function TransactionAnomalyDetailTable() {
   return (
-    <div className="bg-surface rounded-xl border border-border-subtle p-4" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
-      <h3 className="text-sm font-bold text-text mb-1">Transaction Anomalies — Overnight Scan</h3>
+    <MaximizablePanel className="p-4" shell="bg-surface rounded-xl border border-border-subtle" label="Transaction anomalies">
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <h3 className="text-sm font-bold text-text">Transaction Anomalies — Overnight Scan</h3>
+        <MaximizeButton />
+      </div>
       <p className="text-[11px] text-text-subtle mb-3">
         {anomalyData.summary.total_anomalies} anomalies | {anomalyData.summary.total_accounts_involved} accounts | {anomalyData.summary.total_suspicious_amount} suspicious
       </p>
@@ -58,6 +62,6 @@ export default function TransactionAnomalyDetailTable() {
         <span>SARs filed: {anomalyData.summary.sars_filed} | Pending: {anomalyData.summary.sars_pending}</span>
         <span>Scan: {new Date(anomalyData.summary.scan_timestamp).toLocaleDateString()}</span>
       </div>
-    </div>
+    </MaximizablePanel>
   );
 }
