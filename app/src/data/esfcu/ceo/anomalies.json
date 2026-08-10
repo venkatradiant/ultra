@@ -20,7 +20,7 @@
     {
       "id": "ANOM-ESFCU-002",
       "title": "Branch deposit figure breaking its own trend",
-      "severity": "warning",
+      "severity": "info",
       "category": "Deposits",
       "description": "One branch shows a share balance that breaks its own trend by enough to warrant a look — a drop well outside its normal fortnightly range. The pattern reads as a single large member outflow rather than a data error, but it is the kind of thing you want to see before the board does.",
       "detail": "Branch 07. Share balance fell $4.2M over eleven days against a typical fortnightly range of ±$0.6M. No corresponding loan activity, and the source feed loaded cleanly, which is what points at a real outflow rather than a bad extract.",
@@ -29,7 +29,19 @@
       "evidence_target": "branch",
       "policy_breach": false,
       "policy_note": "Not a policy breach — concentration remains inside limits even with the outflow.",
-      "sparkline": [38.9, 39.2, 39.0, 39.4, 39.1, 39.3, 39.2, 38.8, 37.1, 35.6, 35.0],
+      "sparkline": [
+        38.9,
+        39.2,
+        39.0,
+        39.4,
+        39.1,
+        39.3,
+        39.2,
+        38.8,
+        37.1,
+        35.6,
+        35.0
+      ],
       "sparkline_unit": "$M share balance, fortnightly"
     }
   ]

@@ -9,7 +9,17 @@
     "real": true,
     "real_note": "NCUA call report, Dec 2025",
     "growth_yoy_pct": 2.8,
-    "sparkline": [80100, 80700, 81300, 81900, 82500, 83000, 83500, 84000]
+    "sparkline": [
+      81850,
+      82200,
+      82550,
+      82900,
+      83250,
+      83570,
+      83850,
+      84120
+    ],
+    "sparkline_note": "Smooth by necessity: the Howard University merger's member and balance figures were never publicly disclosed, so no step is modelled at Q4 2024."
   },
   "capital": {
     "net_worth_ratio_pct": 9.62,
@@ -35,15 +45,29 @@
     "field_of_membership": "Howard University employees, students, alumni, and hospital staff"
   },
   "segments": [
-    { "segment": "Educators & school staff", "members": 51200 },
-    { "segment": "Family members", "members": 19800 },
-    { "segment": "Retired educators", "members": 9090 },
-    { "segment": "Howard University division", "members": 3910 }
+    {
+      "segment": "Educators & school staff",
+      "members": 51500
+    },
+    {
+      "segment": "Family members",
+      "members": 19900
+    },
+    {
+      "segment": "Retired educators",
+      "members": 9300
+    },
+    {
+      "segment": "Howard University division (mapped)",
+      "members": 3420
+    }
   ],
   "footprint": {
     "branches": 13,
     "state": "Maryland",
     "real": true,
     "real_note": "13 branches across Maryland (esfcu.org)"
-  }
+  },
+  "segments_total": 84120,
+  "segments_note": "Enterprise data warehouse view: 84,120 mapped members. The division shows the 3,420 members the warehouse actually carries, not the 3,910 on the division ledger — the other 490 are the unmapped gap the reconciliation panel flags, and folding them in here would be citing the very figure the briefing says not to cite."
 }

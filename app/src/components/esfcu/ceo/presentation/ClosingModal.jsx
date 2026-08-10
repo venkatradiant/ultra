@@ -1,16 +1,33 @@
 import { useEffect, useState } from 'react';
+import { askAbout } from './askAbout';
 import pres from '../../../../data/esfcu/ceo/presentation.json';
 
 // Detail modal for the three recommended Leadership Next Steps. One modal, three
 // contents — opens on the clicked step and can switch between all three.
 // Dismissing (X / backdrop / Escape) returns to the slide; the "Return to
 // briefing home" button exits the whole deck (onReturnHome = the deck's onClose).
+// Spec §15a: each recommended action must be "actionable in the real build
+// (assign, schedule, or generate a memo)" — "this closes the loop from the AI
+// noticing the signal to a human owning the response." The modal used to be
+// read-only, so the loop the spec says must close, did not.
+//
+// Scripted like everything else here: the control acknowledges in place rather
+// than pretending to reach a calendar or a mail server it has no connection to.
+const ACTIONS = [
+  { id: 'assign', label: 'Assign the owner', done: 'Assigned — the owner set now holds this action.' },
+  { id: 'schedule', label: 'Schedule it', done: 'Scheduled against the response timeframe above.' },
+  { id: 'memo', label: 'Generate the memo', done: 'Memo drafted with the figures and their lineage attached.' },
+];
+
 export default function ClosingModal({ open, stepIndex = 0, onDismiss, onReturnHome, onDownload }) {
   const c = pres.closing;
   const [active, setActive] = useState(stepIndex);
+  // Keyed by step so acknowledgements do not bleed across the three actions.
+  const [taken, setTaken] = useState({});
 
   // Sync to the clicked step each time the modal opens.
   useEffect(() => { if (open) setActive(stepIndex); }, [open, stepIndex]);
+  useEffect(() => { if (!open) setTaken({}); }, [open]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -54,6 +71,35 @@ export default function ClosingModal({ open, stepIndex = 0, onDismiss, onReturnH
             </div>
           ))}
         </div>
+
+        {/* Assign / schedule / memo — the loop-closing controls. */}
+        <div className="pm-close-do">
+          {ACTIONS.map((a) => {
+            const key = `${active}:${a.id}`;
+            const isDone = !!taken[key];
+            return (
+              <button
+                key={a.id}
+                type="button"
+                className={`pm-close-do-btn${isDone ? ' on' : ''}`}
+                onClick={() => setTaken((t) => ({ ...t, [key]: true }))}
+                aria-pressed={isDone}
+              >
+                {isDone ? '✓ ' : ''}{a.label}
+              </button>
+            );
+          })}
+          <button
+            type="button"
+            className="pm-close-do-btn ghost"
+            onClick={() => askAbout('g_owners')}
+          >
+            Ask about the owners
+          </button>
+        </div>
+        {ACTIONS.filter((a) => taken[`${active}:${a.id}`]).map((a) => (
+          <p key={a.id} className="pm-close-done">{a.done}</p>
+        ))}
 
         <div className="pm-close-actions">
           {onDownload ? (

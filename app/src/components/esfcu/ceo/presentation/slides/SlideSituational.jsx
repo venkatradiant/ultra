@@ -4,10 +4,11 @@ import { askProps } from '../askAbout';
 
 const TILE_SEEDS = ['sit_assets', 'sit_members', 'sit_capital'];
 
-// No ESFCU member photography is licensed for this build, so the cover leans on
-// DeckPhoto's duotone-navy fallback rather than borrowing an image from the
-// public site. Point `src` at a brand-kit asset when one is supplied.
-const COVER_PHOTO = null;
+// Girado Smith's own portrait, from ESFCU's President/CEO page. Served from
+// /public rather than hotlinked off esfcu.org so the deck still renders in a
+// boardroom with no network — and so the client's CDN is not carrying load for
+// our demo.
+const COVER_PHOTO = '/esfcu/ceo-portrait.webp';
 
 export default function SlideSituational({ active }) {
   const s = pres.slides.situational;
@@ -38,7 +39,7 @@ export default function SlideSituational({ active }) {
           <DeckPhoto
             className="cphoto"
             src={COVER_PHOTO}
-            alt="Educational Systems Federal Credit Union — serving Maryland's education community"
+            alt="Girado Smith, CPA — President and Chief Executive Officer, Educational Systems Federal Credit Union"
             caption={pres.meta.photoCaption}
             capClass="ccap"
           />

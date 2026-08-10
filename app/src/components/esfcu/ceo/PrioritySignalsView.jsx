@@ -111,7 +111,7 @@ export default function PrioritySignalsView() {
           <div className="space-y-3 lg:col-span-2">
             <HeroSignal onBriefing={() => setPresentationOpen(true)} onTrace={() => setTraceOpen(true)} />
             {secondary.map((s) => (
-              <SignalCard key={s.id} signal={s} />
+              <SignalCard key={s.id} signal={s} showAction />
             ))}
           </div>
 

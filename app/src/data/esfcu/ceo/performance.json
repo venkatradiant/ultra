@@ -1,10 +1,78 @@
 {
   "note": "Business Performance exhibits. Total assets, members, net worth ratio and loan-to-share terminate on the real NCUA anchors (Dec 2025). Composition splits, the deposit mix, the seasonality shape and the outlook milestones are illustrative.",
   "kpis": [
-    { "id": "assets", "label": "Total Assets", "value": "≈$1.36B", "delta": "Real · NCUA Dec 2025", "positive": true, "real": true, "spark": [1.28, 1.30, 1.31, 1.32, 1.33, 1.34, 1.35, 1.36] },
-    { "id": "members", "label": "Members", "value": "≈84,000", "delta": "Real · NCUA Dec 2025", "positive": true, "real": true, "spark": [80100, 80700, 81300, 81900, 82500, 83000, 83500, 84000] },
-    { "id": "net_worth", "label": "Net Worth Ratio", "value": "9.62%", "delta": "Well capitalized", "positive": true, "real": true, "spark": [9.44, 9.48, 9.51, 9.54, 9.56, 9.58, 9.60, 9.62] },
-    { "id": "loan_to_share", "label": "Loan-to-Share Ratio", "value": "89.7%", "delta": "+5.3 pts over 8 qtrs", "positive": false, "real": true, "spark": [84.4, 85.2, 86.0, 86.8, 87.6, 88.3, 89.0, 89.7] }
+    {
+      "id": "assets",
+      "label": "Total Assets",
+      "value": "≈$1.36B",
+      "delta": "Real · NCUA Dec 2025",
+      "positive": true,
+      "real": true,
+      "spark": [
+        1.28,
+        1.3,
+        1.31,
+        1.32,
+        1.33,
+        1.34,
+        1.35,
+        1.36
+      ]
+    },
+    {
+      "id": "members",
+      "label": "Members",
+      "value": "≈84,000",
+      "delta": "Real · NCUA Dec 2025",
+      "positive": true,
+      "real": true,
+      "spark": [
+        80100,
+        80700,
+        81300,
+        81900,
+        82500,
+        83000,
+        83500,
+        84000
+      ]
+    },
+    {
+      "id": "net_worth",
+      "label": "Net Worth Ratio",
+      "value": "9.62%",
+      "delta": "Well capitalized",
+      "positive": true,
+      "real": true,
+      "spark": [
+        9.44,
+        9.48,
+        9.51,
+        9.54,
+        9.56,
+        9.58,
+        9.6,
+        9.62
+      ]
+    },
+    {
+      "id": "loan_to_share",
+      "label": "Loan-to-Share Ratio",
+      "value": "89.7%",
+      "delta": "+5.3 pts over 8 qtrs",
+      "positive": false,
+      "real": true,
+      "spark": [
+        84.4,
+        85.2,
+        86.0,
+        86.8,
+        87.6,
+        88.3,
+        89.0,
+        89.7
+      ]
+    }
   ],
   "assetGrowth": {
     "title": "Total assets — trailing 8 quarters",
@@ -12,18 +80,45 @@
     "source": "Core Banking · Finance & Call Report",
     "asOf": "Dec 31, 2025",
     "confidence": 97,
-    "domain": [1.24, 1.40],
+    "domain": [
+      1.24,
+      1.4
+    ],
     "inflectionPeriod": "Q4'24",
     "inflectionLabel": "Howard Univ. merger",
     "series": [
-      { "q": "Q1'24", "assets": 1.28 },
-      { "q": "Q2'24", "assets": 1.30 },
-      { "q": "Q3'24", "assets": 1.31 },
-      { "q": "Q4'24", "assets": 1.32 },
-      { "q": "Q1'25", "assets": 1.33 },
-      { "q": "Q2'25", "assets": 1.34 },
-      { "q": "Q3'25", "assets": 1.35 },
-      { "q": "Q4'25", "assets": 1.36 }
+      {
+        "q": "Q1'24",
+        "assets": 1.28
+      },
+      {
+        "q": "Q2'24",
+        "assets": 1.3
+      },
+      {
+        "q": "Q3'24",
+        "assets": 1.31
+      },
+      {
+        "q": "Q4'24",
+        "assets": 1.32
+      },
+      {
+        "q": "Q1'25",
+        "assets": 1.33
+      },
+      {
+        "q": "Q2'25",
+        "assets": 1.34
+      },
+      {
+        "q": "Q3'25",
+        "assets": 1.35
+      },
+      {
+        "q": "Q4'25",
+        "assets": 1.36
+      }
     ]
   },
   "loanPortfolio": {
@@ -35,11 +130,26 @@
     "total": "$1.04B",
     "totalLabel": "Net loans",
     "segments": [
-      { "name": "First mortgage", "pct": 38 },
-      { "name": "Auto", "pct": 29 },
-      { "name": "Home equity", "pct": 14 },
-      { "name": "Personal & share-secured", "pct": 11 },
-      { "name": "Credit card", "pct": 8 }
+      {
+        "name": "First mortgage",
+        "pct": 38
+      },
+      {
+        "name": "Auto",
+        "pct": 29
+      },
+      {
+        "name": "Home equity",
+        "pct": 14
+      },
+      {
+        "name": "Personal & share-secured",
+        "pct": 11
+      },
+      {
+        "name": "Credit card",
+        "pct": 8
+      }
     ]
   },
   "deposits": {
@@ -50,23 +160,47 @@
     "confidence": 93,
     "total": "$1.16B",
     "segments": [
-      { "name": "Regular shares", "pct": 36 },
-      { "name": "Checking", "pct": 24 },
-      { "name": "Certificates", "pct": 23 },
-      { "name": "Money market", "pct": 17 }
+      {
+        "name": "Regular shares",
+        "pct": 36
+      },
+      {
+        "name": "Checking",
+        "pct": 24
+      },
+      {
+        "name": "Certificates",
+        "pct": 23
+      },
+      {
+        "name": "Money market",
+        "pct": 17
+      }
     ]
   },
   "membership": {
     "title": "Members by field of membership",
-    "note": "Education community across 13 Maryland branches, plus the Howard University division.",
+    "note": "Enterprise warehouse view — 84,120 mapped members across 13 Maryland branches. The division line is the 3,420 the warehouse carries; 490 more sit unmapped on the division ledger pending reconciliation.",
     "source": "Membership System · Howard University Division Ledger",
     "asOf": "Dec 31, 2025",
     "confidence": 90,
     "segments": [
-      { "region": "Educators & school staff", "members": 51200 },
-      { "region": "Family members", "members": 19800 },
-      { "region": "Retired educators", "members": 9090 },
-      { "region": "Howard University division", "members": 3910 }
+      {
+        "region": "Educators & school staff",
+        "members": 51500
+      },
+      {
+        "region": "Family members",
+        "members": 19900
+      },
+      {
+        "region": "Retired educators",
+        "members": 9300
+      },
+      {
+        "region": "Howard University division (mapped)",
+        "members": 3420
+      }
     ]
   },
   "seasonality": {
@@ -78,18 +212,54 @@
     "inflowMonth": "Sep",
     "drawMonth": "Jul",
     "series": [
-      { "m": "Jan", "index": 100.4 },
-      { "m": "Feb", "index": 100.9 },
-      { "m": "Mar", "index": 101.2 },
-      { "m": "Apr", "index": 101.0 },
-      { "m": "May", "index": 100.2 },
-      { "m": "Jun", "index": 98.6 },
-      { "m": "Jul", "index": 97.6 },
-      { "m": "Aug", "index": 98.1 },
-      { "m": "Sep", "index": 100.8 },
-      { "m": "Oct", "index": 101.4 },
-      { "m": "Nov", "index": 101.1 },
-      { "m": "Dec", "index": 100.7 }
+      {
+        "m": "Jan",
+        "index": 100.4
+      },
+      {
+        "m": "Feb",
+        "index": 100.9
+      },
+      {
+        "m": "Mar",
+        "index": 101.2
+      },
+      {
+        "m": "Apr",
+        "index": 101.0
+      },
+      {
+        "m": "May",
+        "index": 100.2
+      },
+      {
+        "m": "Jun",
+        "index": 98.6
+      },
+      {
+        "m": "Jul",
+        "index": 97.6
+      },
+      {
+        "m": "Aug",
+        "index": 98.1
+      },
+      {
+        "m": "Sep",
+        "index": 100.8
+      },
+      {
+        "m": "Oct",
+        "index": 101.4
+      },
+      {
+        "m": "Nov",
+        "index": 101.1
+      },
+      {
+        "m": "Dec",
+        "index": 100.7
+      }
     ]
   },
   "capital": {
@@ -109,11 +279,31 @@
     "asOf": "Feb 10, 2026",
     "confidence": 86,
     "milestones": [
-      { "label": "Q4 close", "when": "Dec", "state": "done" },
-      { "label": "Board pre-read", "when": "Feb", "state": "current" },
-      { "label": "Division reconciliation", "when": "Mar", "state": "upcoming" },
-      { "label": "Deposit campaign", "when": "Aug", "state": "upcoming" },
-      { "label": "Fall inflow window", "when": "Sep", "state": "upcoming" }
+      {
+        "label": "Q4 close",
+        "when": "Dec",
+        "state": "done"
+      },
+      {
+        "label": "Board pre-read",
+        "when": "Feb",
+        "state": "current"
+      },
+      {
+        "label": "Division reconciliation",
+        "when": "Mar",
+        "state": "upcoming"
+      },
+      {
+        "label": "Deposit campaign",
+        "when": "Aug",
+        "state": "upcoming"
+      },
+      {
+        "label": "Fall inflow window",
+        "when": "Sep",
+        "state": "upcoming"
+      }
     ]
   }
 }

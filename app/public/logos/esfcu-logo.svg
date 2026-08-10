@@ -1,12 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="none">
-  <!-- ESFCU navy field. #003768 is sampled from the mark on esfcu.org. -->
-  <rect width="44" height="44" rx="10" fill="#003768"/>
-  <!-- Four-triangle diamond, echoing the geometric mark in the real lockup.
-       Authored in the same house style as fs-logo.svg / penfed-logo.svg — a
-       simplified stand-in, not the trademarked artwork. -->
-  <polygon points="22,8 32,20 22,20" fill="white"/>
-  <polygon points="22,8 12,20 22,20" fill="white" opacity="0.62"/>
-  <polygon points="12,20 22,20 22,34" fill="white" opacity="0.34"/>
-  <!-- Warm accent quarter — the emphasis colour the brand carries alongside navy. -->
-  <polygon points="32,20 22,20 22,34" fill="#E8A33D"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176.3 135.5" fill="#003768">
+  <!--
+    ESFCU's official mark — a mortarboard and tassel — cropped from the lockup at
+    https://www.esfcu.org/images/logo.svg (the wordmark paths are dropped; only
+    the icon remains). Geometry and the #003768 navy are unmodified.
+
+    Deliberately transparent rather than sitting on its own field: every place
+    this renders (sidebar, /login/esfcu, the market picker, the deck header, the
+    cover slide) already puts it on a white plate, so a navy-on-transparent mark
+    reads correctly on all of them and would be invisible on none.
+  -->
+  <polygon points="5 34 87.699997 64.099998 171.300003 33.200001 88.300003 2.9 5 34"/>
+  <polygon points="87.699997 68.800003 37.200001 50.5 37.200001 81.5 139.899994 81.5 139.899994 49.599998 87.699997 68.800003"/>
+  <path d="m21.1,44.599998v80s0,4.700005-5.5,7.900002h18.700003c-5.5-3.100006-5.5-7.900002-5.5-7.900002V47.299999l-7.700003-2.700001Z"/>
 </svg>

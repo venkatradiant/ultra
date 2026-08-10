@@ -151,7 +151,7 @@ const ESFCU_DISCLOSURES = [
   'Everything operational is illustrative: the priority-signal values, the reconciliation delta and member gap, the trust and pipeline states, the internal policy ceiling and liquidity floor, the deposit and loan composition, the seasonality shape, the owner names, and every figure on the projection.',
   'Platform names are deliberately vendor-neutral. ESFCU\'s actual core banking, lending, data warehouse and BI platforms are not public, so this build names capabilities rather than vendors — confirm them with ESFCU technology leadership before the working session.',
   'The Howard University merger\'s asset and member figures were never publicly disclosed. The $2.7M share delta and 490-member gap that drive the reconciliation centerpiece are illustrative constructions on a real merger.',
-  'ESFCU branding is illustrative for this build. The navy is sampled from the mark on esfcu.org; exact hex values, typography and the logo lockup need confirming against the ESFCU brand kit. The logo mark shown here is an authored stand-in, not the trademarked artwork.',
+  'Brand assets are ESFCU\'s own, used to make the demo recognisable: the mortarboard mark is cropped from the lockup at esfcu.org, the navy (#003768) is sampled from it, and the two photographs in the board briefing are the President/CEO portrait and the member image published on esfcu.org. They are reproduced here for an ESFCU-facing demonstration only. Exact hex values, typography and the approved lockup still need confirming against the ESFCU brand kit.',
 ];
 
 export default function DataSources() {

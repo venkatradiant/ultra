@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle2, AlertTriangle } from 'lucide-react';
 import kpiMeta from '../../../data/esfcu/ceo/kpis.json';
+import { tierFor, colorFor } from '../../../utils/confidence';
 
 // Forked from CapmKpiCarousel for ESFCU. The one addition is the honest-data
 // marker: every tile says whether its figure is public and sourced or
@@ -41,15 +42,37 @@ function StatCard({ stat, onClick }) {
         </div>
       </div>
       {meta ? (
-        <div className="mt-1.5 flex items-center gap-1 border-t border-border-subtle pt-1.5">
-          <span
-            className={`rounded px-1 py-px text-[8px] font-bold uppercase tracking-wide ${
-              meta.real ? 'bg-[#00897B]/10 text-[#00897B]' : 'bg-surface-2 text-text-subtle'
-            }`}
-          >
-            {meta.real ? 'Real' : 'Illustrative'}
-          </span>
-          <span className="min-w-0 flex-1 truncate text-[8.5px] text-text-subtle">{meta.sourceLabel}</span>
+        <div className="mt-1.5 space-y-1 border-t border-border-subtle pt-1.5">
+          <div className="flex items-center gap-1">
+            <span
+              className={`rounded px-1 py-px text-[8px] font-bold uppercase tracking-wide ${
+                meta.real ? 'bg-[#00897B]/10 text-[#00897B]' : 'bg-surface-2 text-text-subtle'
+              }`}
+            >
+              {meta.real ? 'Real' : 'Illustrative'}
+            </span>
+            {/* Spec §13: a confidence badge on EVERY business figure, not just
+                every exhibit — and the CEO's mental model of what it means
+                ("validated" vs "reconcile before you cite this"). */}
+            <span
+              className="inline-flex items-center gap-0.5 text-[8.5px] font-bold tabular-nums"
+              style={{ color: colorFor(tierFor(meta.confidence)) }}
+              title={meta.state === 'pending' ? 'Reconcile before you cite this' : 'Current, validated and traceable'}
+            >
+              {meta.state === 'pending'
+                ? <AlertTriangle className="h-2.5 w-2.5" />
+                : <CheckCircle2 className="h-2.5 w-2.5" />}
+              {meta.confidence}%
+            </span>
+            <span className="min-w-0 flex-1 truncate text-right text-[8.5px] text-text-subtle">{meta.sourceLabel}</span>
+          </div>
+          {/* Spec §7 gives every KPI a Target and a calculation. Both used to
+              live only in a `title` tooltip, which is invisible on a projector
+              and on touch — the two places this demo actually gets shown. */}
+          <p className="truncate text-[8.5px] leading-tight text-text-subtle">
+            <span className="font-semibold">Target:</span> {meta.target}
+          </p>
+          <p className="truncate text-[8.5px] leading-tight text-text-subtle">{meta.calc}</p>
         </div>
       ) : null}
     </div>

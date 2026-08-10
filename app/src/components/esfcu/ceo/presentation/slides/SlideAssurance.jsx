@@ -1,5 +1,6 @@
 import pres from '../../../../../data/esfcu/ceo/presentation.json';
 import DataTrustStrip from '../../DataTrustStrip';
+import { askProps } from '../askAbout';
 
 export default function SlideAssurance({ active }) {
   const s = pres.slides.assurance;
@@ -8,7 +9,9 @@ export default function SlideAssurance({ active }) {
       <div className="shead">
         <div><div className="eyebrow">{s.eyebrow}</div><h2 style={{ marginTop: 14 }}>{s.title}</h2></div>
       </div>
-      <p className="assur-lead">{s.lead}</p>
+      {/* Every other slide has an "ask about this" affordance; this one had
+          none, so the deck's one governance slide was also its one dead end. */}
+      <p {...askProps('assur_pipeline', 'assur-lead')}>{s.lead}</p>
       <div className="sbody" style={{ justifyContent: 'flex-start' }}>
         {/* The same trust-strip component as Conversation Mode, rendered as the
             full-width board ribbon. Single source of truth (trustStrip.json).

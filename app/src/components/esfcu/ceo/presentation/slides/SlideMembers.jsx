@@ -2,10 +2,9 @@ import pres from '../../../../../data/esfcu/ceo/presentation.json';
 import DeckPhoto from './DeckPhoto';
 import { askProps } from '../askAbout';
 
-// As on the cover: no ESFCU member photography is licensed for this build, so
-// the panel uses DeckPhoto's duotone fallback. Point this at a brand-kit asset
-// when one is supplied.
-const MEMBER_PHOTO = null;
+// ESFCU's own member photography, from the "Why ESFCU" panel on esfcu.org.
+// Served from /public for the same reasons as the cover portrait.
+const MEMBER_PHOTO = '/esfcu/members.webp';
 
 // Render the pull-quote with its emphasized word styled in the warm accent.
 function Quote({ text, em }) {
@@ -27,7 +26,7 @@ export default function SlideMembers({ active }) {
           <DeckPhoto
             className="mphoto"
             src={MEMBER_PHOTO}
-            alt="Educational Systems Federal Credit Union members — Maryland's education community"
+            alt="Educational Systems Federal Credit Union members at home reviewing their accounts"
             caption={s.photoCaption}
             capClass="mcap"
           />

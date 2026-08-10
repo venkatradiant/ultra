@@ -17,7 +17,7 @@ const alias = {
 // and kept server-side (process.env) — it is NOT exposed to the client bundle.
 function ttsDevServer(env) {
   return {
-    name: 'ussfcu-tts-dev-proxy',
+    name: 'tts-dev-proxy',
     apply: 'serve',
     configureServer(server) {
       for (const k of ['ELEVENLABS_API_KEY', 'ELEVENLABS_VOICE_ID', 'ELEVENLABS_MODEL_ID']) {
@@ -26,9 +26,13 @@ function ttsDevServer(env) {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url || !req.url.startsWith('/api/tts')) return next();
         try {
-          const slide = new URL(req.url, 'http://localhost').searchParams.get('slide');
+          const params = new URL(req.url, 'http://localhost').searchParams;
+          const slide = params.get('slide');
+          // `tenant` selects the narration bank; absent means USSFCU, matching
+          // the serverless function's default.
+          const tenant = params.get('tenant');
           const { synthesize } = await import('./api/_tts.js');
-          const { buffer, contentType } = await synthesize(slide);
+          const { buffer, contentType } = await synthesize(slide, tenant);
           res.setHeader('Content-Type', contentType);
           res.setHeader('Cache-Control', 'no-store');
           res.statusCode = 200;

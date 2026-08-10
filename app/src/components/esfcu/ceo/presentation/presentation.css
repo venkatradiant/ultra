@@ -368,3 +368,32 @@
   .esfcu-pm-root .slide{ position:relative !important; inset:auto !important; opacity:1 !important; visibility:visible !important; height:720px !important; border-bottom:0 !important; break-after:page; page-break-after:always; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .esfcu-pm-root .slide:last-child{ break-after:auto; page-break-after:auto; }
 }
+
+/* ── Transcript (spec §15a bottom-bar control) ────────────────────
+   The spoken briefing as text. Sits above the control bar, scrolls, and lets a
+   row double as navigation — reading a slide's notes is usually a prelude to
+   going to that slide. */
+.esfcu-pm-root .transcriptbtn.on{ color:var(--gold-soft); border-color:var(--gold); background:#123a5c; }
+.esfcu-pm-root .pm-transcript{ position:absolute; left:0; right:0; bottom:78px; z-index:45; max-height:52vh; display:flex; flex-direction:column; background:var(--navy-deep); border-top:1px solid var(--navy-line); box-shadow:0 -18px 40px rgba(0,0,0,.45); }
+.esfcu-pm-root .pm-transcript-head{ display:flex; align-items:center; justify-content:space-between; padding:12px 26px; border-bottom:1px solid var(--navy-line); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-soft); }
+.esfcu-pm-root .pm-transcript-head button{ width:26px; height:26px; border-radius:7px; border:1px solid var(--navy-line); background:transparent; color:#9fb4c8; cursor:pointer; }
+.esfcu-pm-root .pm-transcript-head button:hover{ background:#0e2f4f; color:#fff; }
+.esfcu-pm-root .pm-transcript-body{ overflow-y:auto; padding:10px 18px 16px; }
+.esfcu-pm-root .pm-transcript-row{ display:flex; gap:14px; width:100%; text-align:left; padding:11px 12px; border:1px solid transparent; border-radius:12px; background:transparent; cursor:pointer; }
+.esfcu-pm-root .pm-transcript-row:hover{ background:#0e2f4f; }
+.esfcu-pm-root .pm-transcript-row.on{ background:#0e2f4f; border-color:var(--navy-line); }
+.esfcu-pm-root .pm-transcript-n{ flex:none; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#00243F; background:var(--gold-soft); }
+.esfcu-pm-root .pm-transcript-row:not(.on) .pm-transcript-n{ background:#0a2540; color:#9fb4c8; }
+.esfcu-pm-root .pm-transcript-txt{ font-size:13px; line-height:1.6; color:#cddcea; }
+.esfcu-pm-root.printmode .pm-transcript{ display:none; }
+
+/* ── Closing modal: assign / schedule / generate-memo controls ────
+   Spec §15a requires each recommended action to be actionable, so the loop from
+   "the platform noticed" to "a human owns it" closes inside the deck. */
+.esfcu-pm-root .pm-close-do{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.esfcu-pm-root .pm-close-do-btn{ font-size:12px; font-weight:600; color:#00243F; background:var(--gold-soft); border:1px solid var(--gold); border-radius:9px; padding:8px 13px; cursor:pointer; transition:opacity .18s ease; }
+.esfcu-pm-root .pm-close-do-btn:hover{ opacity:.88; }
+.esfcu-pm-root .pm-close-do-btn.on{ background:#0e2f4f; border-color:var(--navy-line); color:#7fd3a6; cursor:default; }
+.esfcu-pm-root .pm-close-do-btn.ghost{ background:transparent; border-color:var(--navy-line); color:#cddcea; }
+.esfcu-pm-root .pm-close-do-btn.ghost:hover{ background:#0e2f4f; }
+.esfcu-pm-root .pm-close-done{ margin-top:9px; font-size:12px; color:#7fd3a6; }

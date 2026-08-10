@@ -46,8 +46,17 @@ const countWords = (t) => String(t).trim().split(/\s+/).filter(Boolean).length |
 // Bump when the voice or scripts change — the proxy responses are CDN/browser
 // cached by URL (which doesn't include the voice), so a version token forces the
 // audio to regenerate with the current voice instead of serving stale clips.
-const NARRATION_VERSION = 'v2-D3VC';
-const ttsUrl = (slideId) => `/api/tts?slide=${encodeURIComponent(slideId)}&v=${NARRATION_VERSION}`;
+// The narration bank to read from, server-side. Without this the proxy falls
+// back to its default tenant (USSFCU) and serves Tim's script for ESFCU's slide
+// ids — the correct voice reading the wrong briefing. It also keeps the two
+// tenants' audio on separate cache keys: the response is CDN/browser cached by
+// URL, and ESFCU and USSFCU share slide ids, so a URL without the tenant would
+// let one tenant's clip be served for the other's slide.
+const TTS_TENANT = 'esfcu';
+const NARRATION_VERSION = 'v1-D3VC';
+const ttsUrl = (slideId) => (
+  `/api/tts?slide=${encodeURIComponent(slideId)}&tenant=${TTS_TENANT}&v=${NARRATION_VERSION}`
+);
 const AUDIO_LOAD_TIMEOUT = 6000; // ms to wait for the proxy MP3 before falling back
 
 // Narration controller. Prefers the ElevenLabs voiceover served by our /api/tts

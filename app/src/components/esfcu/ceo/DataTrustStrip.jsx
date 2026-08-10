@@ -26,11 +26,16 @@ const RibbonIcons = {
   ncua: <svg viewBox="0 0 24 24" fill="none" stroke={ACCENT_SOFT} strokeWidth="2"><path d="M12 3a9 9 0 109 9" /><path d="M12 12l5-3" /></svg>,
 };
 
+// Spec §13: "status always text plus icon, never color alone". These give the
+// ribbon a word to sit beside its colour; the card variants already have
+// StatePill for the same purpose.
+const STATE_WORD = { good: 'Good', warning: 'Attention', critical: 'Critical' };
+const STATE_WORD_CLASS = { good: 'good', warning: 'warn', critical: 'warn' };
+
 // Presentation Mode ribbon. Uses the scoped .trust/.tw classes defined in
 // presentation.css, which only exist inside .esfcu-pm-root.
 function TrustRibbon({ onTrace }) {
   const w = trust.widgets;
-  const validatedTime = trust.validated_at?.slice(11, 16);
   const sources = w.pipeline_health.sources || [];
   const loaded = sources.filter((s) => s.state !== 'critical').length;
   const R = 26;
@@ -44,11 +49,11 @@ function TrustRibbon({ onTrace }) {
       <div className="tw">
         <div className="ic">{RibbonIcons.pipeline}</div>
         <div className="th">Pipeline &amp; freshness</div>
-        <div className="big good">{loaded} / {sources.length}</div>
-        <div className="st">
-          Six sources loaded and reconciled at <b style={{ color: '#cddcea' }}>{validatedTime} ET</b>. The Howard University
-          division nightly job stalled — shown, not hidden.
-        </div>
+        {/* The count alone was colour-coded and wordless. The state word rides
+            with it so the tile still reads correctly in greyscale, in print,
+            and to anyone who cannot separate the green from the amber. */}
+        <div className="big"><span className={STATE_WORD_CLASS[w.pipeline_health.state]}>{loaded} / {sources.length}</span> <span style={{ fontSize: 15, color: '#93aabf' }}>{STATE_WORD[w.pipeline_health.state]}</span></div>
+        <div className="st">{w.pipeline_health.detail}</div>
         <div className="srcl"><span className="d" />{sources.slice(0, 3).map((s) => s.name).join(' · ')}</div>
       </div>
 
@@ -68,7 +73,7 @@ function TrustRibbon({ onTrace }) {
       <div className="tw">
         <div className="ic">{RibbonIcons.audit}</div>
         <div className="th">Open audit &amp; exam issues</div>
-        <div className="big"><span className="good">{w.open_audit_issues.open_count}</span> <span style={{ fontSize: 15, color: '#93aabf' }}>open</span></div>
+        <div className="big"><span className={STATE_WORD_CLASS[w.open_audit_issues.state]}>{w.open_audit_issues.open_count}</span> <span style={{ fontSize: 15, color: '#93aabf' }}>open · {STATE_WORD[w.open_audit_issues.state]}</span></div>
         <div className="st">{w.open_audit_issues.detail}</div>
       </div>
 
@@ -155,7 +160,15 @@ function CompactStat({ name, value, state, onClick }) {
   );
 }
 
-export default function DataTrustStrip({ expanded = false, compact = false, variant = 'card', onTrace }) {
+/**
+ * `highlight` is spec §10 Step 3's second AI Response row — "trust strip
+ * updates: Howard University division shows 'reconcile before you cite this'".
+ * The underlying state was already pending from first load (Step 1 says so out
+ * loud), so what Step 3 owes the CEO is not a data change but a visible one:
+ * the reconciliation widget lifts, pulses once, and promotes the cite-warning
+ * from a detail line to the headline.
+ */
+export default function DataTrustStrip({ expanded = false, compact = false, variant = 'card', onTrace, highlight = false }) {
   const w = trust.widgets;
   const recon = w.post_merger_reconciliation;
   const validatedTime = trust.validated_at?.slice(11, 16);
@@ -245,12 +258,18 @@ export default function DataTrustStrip({ expanded = false, compact = false, vari
             </div>
           </WidgetTile>
 
+          <motion.div
+            initial={highlight ? { boxShadow: '0 0 0 0 rgba(180,83,9,0)' } : false}
+            animate={highlight ? { boxShadow: ['0 0 0 0 rgba(180,83,9,0)', '0 0 0 6px rgba(180,83,9,0.18)', '0 0 0 0 rgba(180,83,9,0)'] } : {}}
+            transition={{ duration: 1.6, times: [0, 0.4, 1], delay: 0.25 }}
+            className="rounded-xl"
+          >
           <WidgetTile
             roomy
             icon={GitMerge}
             name="Post-Merger Reconciliation"
-            value={recon.summary}
-            sub={recon.detail}
+            value={highlight ? recon.cite_warning : recon.summary}
+            sub={highlight ? `${recon.summary} — ${recon.detail}` : recon.detail}
             state={recon.state}
             onClick={openTrace}
             hint="Trace the figure to source"
@@ -263,6 +282,7 @@ export default function DataTrustStrip({ expanded = false, compact = false, vari
               <span className="text-[10px] text-text-subtle">{recon.figure} · Howard University division</span>
             </div>
           </WidgetTile>
+          </motion.div>
 
           <WidgetTile
             roomy

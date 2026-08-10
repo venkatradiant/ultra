@@ -30,6 +30,7 @@ import AnomalyList from '@/components/esfcu/ceo/AnomalyList';
 import MembershipPanel from '@/components/esfcu/ceo/MembershipPanel';
 import DepositLineageTrace from '@/components/esfcu/ceo/DepositLineageTrace';
 import BoardBriefingPreview from '@/components/esfcu/ceo/BoardBriefingPreview';
+import LaunchPresentation from '@/components/esfcu/ceo/LaunchPresentation';
 import PresentationMode from '@/components/esfcu/ceo/presentation/PresentationMode';
 
 const flows = (getPersonaFlowConfigs('esfcu') as unknown as Record<string, PersonaManifest['flows']>).esfcu_ceo;
@@ -146,7 +147,7 @@ const manifest: PersonaManifest = {
     const k = msg.flowKey;
     const pushSignal = (id: string, key: string) => {
       const s = sigs.find((x) => x.id === id);
-      if (s) out.push(<SignalCard key={key} signal={s} />);
+      if (s) out.push(<SignalCard key={key} signal={s} showAction />);
     };
     // Legacy JSX components take extra callbacks; no-op handlers keep behaviour
     // identical and satisfy TS.
@@ -163,7 +164,8 @@ const manifest: PersonaManifest = {
     // Step 3 — the reconciliation panel, plus the trust strip flipping to pending.
     if (k === 'esfcu_ceo_turn_trust') {
       out.push(<ReconciliationPanel key="turn-recon" />);
-      out.push(<DataTrustStrip key="turn-trust-strip" expanded onTrace={noop} />);
+      // `highlight` is the spec's "trust strip updates" beat for this turn.
+      out.push(<DataTrustStrip key="turn-trust-strip" expanded highlight onTrace={noop} />);
     }
     if (k === 'esfcu_ceo_reconcile_division') out.push(<ReconciliationPanel key="reconcile-recon" />);
     if (k === 'esfcu_ceo_trace_deposit') out.push(<DepositLineageTrace key="trace-deposit" />);
@@ -173,9 +175,11 @@ const manifest: PersonaManifest = {
     if (k === 'esfcu_ceo_turn_anomalies') out.push(<AnomalyList key="anomalies" />);
     if (k === 'esfcu_ceo_turn_membership') out.push(<MembershipPanel key="membership" />);
     // Step 6/7 — the drafted briefing with owners, timeframes and the deck.
+    // Step 7's visualization IS the deck, per spec — it launches rather than
+    // offering a button that launches.
+    if (k === 'esfcu_ceo_turn_full_briefing') out.push(<LaunchPresentation key="launch-deck" />);
     if (
       k === 'esfcu_ceo_turn_board_briefing'
-      || k === 'esfcu_ceo_turn_full_briefing'
       || k === 'esfcu_ceo_adjust_action'
       || k === 'esfcu_ceo_assign_owners'
     ) {

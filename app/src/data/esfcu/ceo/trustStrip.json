@@ -1,5 +1,5 @@
 {
-  "validated_at": "2026-08-10T06:02:00",
+  "validated_at": "2026-02-10T06:02:00",
   "data_trust_score": 92,
   "widgets": {
     "pipeline_health": {
@@ -7,13 +7,42 @@
       "summary": "6 of 7 sources loaded · 1 stalled",
       "detail": "Six sources loaded and reconciled by 6:02 AM. The Howard University division nightly job stalled — the second failure this month — which is why the division reconciliation is pending and held out of the consolidated figure.",
       "sources": [
-        { "name": "Core Banking", "state": "good", "loaded_at": "05:52" },
-        { "name": "Lending System", "state": "good", "loaded_at": "05:56" },
-        { "name": "Finance & ALM Workbook", "state": "good", "loaded_at": "05:58" },
-        { "name": "Membership System", "state": "good", "loaded_at": "05:59" },
-        { "name": "Enterprise Data Warehouse", "state": "good", "loaded_at": "06:01" },
-        { "name": "BI & Reporting Layer", "state": "good", "loaded_at": "06:02" },
-        { "name": "Howard University Division Ledger", "state": "critical", "loaded_at": "—", "note": "nightly mapping stalled" }
+        {
+          "name": "Core Banking",
+          "state": "good",
+          "loaded_at": "05:52"
+        },
+        {
+          "name": "Lending System",
+          "state": "good",
+          "loaded_at": "05:56"
+        },
+        {
+          "name": "Finance & ALM Workbook",
+          "state": "good",
+          "loaded_at": "05:58"
+        },
+        {
+          "name": "Membership System",
+          "state": "good",
+          "loaded_at": "05:59"
+        },
+        {
+          "name": "Enterprise Data Warehouse",
+          "state": "good",
+          "loaded_at": "06:01"
+        },
+        {
+          "name": "BI & Reporting Layer",
+          "state": "good",
+          "loaded_at": "06:02"
+        },
+        {
+          "name": "Howard University Division Ledger",
+          "state": "critical",
+          "loaded_at": "—",
+          "note": "nightly mapping stalled"
+        }
       ]
     },
     "post_merger_reconciliation": {
@@ -40,12 +69,7 @@
       "status_label": "Attention",
       "next_window": "Q4 2026",
       "detail": "Composite posture across governed reporting, lineage coverage, and control documentation. The single open item is the post-merger reconciliation — close it and the score clears the ready threshold."
-    },
-    "lineage_on_demand": {
-      "state": "good",
-      "summary": "Trace any figure to source",
-      "detail": "Click any figure to trace it from the core through the nightly extract and the warehouse to this screen and the board package — the chain you can hand to the board or an NCUA examiner.",
-      "example_path": ["Core Banking", "Nightly Extract", "Finance & ALM Workbook", "Enterprise Data Warehouse", "Board Brief"]
     }
-  }
+  },
+  "note": "Spec §13's four widgets, and only those four. Lineage is not a fifth tile — it is the action on the reconciliation tile, which is where a CEO reaches for it: the figure he cannot yet cite. The trace path itself lives in lineage.json."
 }

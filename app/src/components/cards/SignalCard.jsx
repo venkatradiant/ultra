@@ -1,4 +1,4 @@
-import { AlertTriangle, TrendingDown, Users, LineChart, ClipboardCheck, CheckCircle2 } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Users, LineChart, ClipboardCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 import SourceBadge from '../chat/SourceBadge';
 import { tierFor, colorFor } from '../../utils/confidence';
 
@@ -77,7 +77,15 @@ function CompactCard({ signal, style, tone }) {
   );
 }
 
-export default function SignalCard({ signal, tone = 'urgent', compact = false }) {
+/**
+ * `showAction` surfaces the signal's recommended action as its own labelled
+ * line. Opt-in rather than automatic: several tenants already carry an `action`
+ * field that has never been rendered, and switching it on globally would change
+ * how their cards look. ESFCU asks for it because its spec types `action` as a
+ * first-class part of a signal — a signal without its recommended action is an
+ * observation, not a decision.
+ */
+export default function SignalCard({ signal, tone = 'urgent', compact = false, showAction = false }) {
   const isCalm = tone === 'calm';
   const style = isCalm ? calmStyle : styleForSeverity(signal.severity);
 
@@ -116,6 +124,16 @@ export default function SignalCard({ signal, tone = 'urgent', compact = false })
                   {signal.trend}
                 </span>
               ) : null}
+            </div>
+          ) : null}
+          {showAction && signal.action ? (
+            <div className="mt-2 flex items-start gap-1.5 rounded-lg border border-black/[0.06] bg-white/70 px-2.5 py-1.5">
+              <ArrowRight className="mt-[3px] h-3 w-3 flex-shrink-0 text-text-subtle" />
+              <p className="text-[11px] leading-snug text-text-muted">
+                <span className="font-semibold uppercase tracking-wide text-[9.5px] text-text-subtle">Action</span>
+                {' · '}
+                {signal.action}
+              </p>
             </div>
           ) : null}
           {(signal.sources || signal.confidence) && (

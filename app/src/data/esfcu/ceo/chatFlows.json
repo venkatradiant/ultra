@@ -6,12 +6,19 @@
       "Can I trust these numbers?",
       "Show me membership and growth"
     ],
-    "data_sources_used": ["Core Banking", "Finance & Call Report", "Membership System", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Core Banking",
+      "Finance & Call Report",
+      "Membership System",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["signals", "trustStrip"],
+    "related_dataset_keys": [
+      "signals",
+      "trustStrip"
+    ],
     "capability": "Proactive Intelligence"
   },
-
   "esfcu_ceo_signal_1_liquidity": {
     "ai_message": "Primary issue — Liquidity Watch. Loan-to-share is near 89% and rising as loan growth outpaces share growth: loans up about 6.4% year over year against shares up about 3.1%. Correlated across the core snapshot, the lending system, and the finance and ALM workbook, the trajectory approaches your internal policy ceiling by Q1. The move is a targeted education-community deposit campaign paired with a standby funding line, arranged before the gap widens.",
     "suggested_chips": [
@@ -19,12 +26,18 @@
       "What happens if this continues?",
       "Open the full briefing"
     ],
-    "data_sources_used": ["Core Banking", "Lending System", "Finance & ALM Workbook"],
+    "data_sources_used": [
+      "Core Banking",
+      "Lending System",
+      "Finance & ALM Workbook"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["signals", "loansVsShares"],
+    "related_dataset_keys": [
+      "signals",
+      "loansVsShares"
+    ],
     "capability": "Proactive Intelligence"
   },
-
   "esfcu_ceo_signal_2_reconciliation": {
     "ai_message": "This is the one I want you to see before the board does. Howard University division balances have not fully reconciled into the enterprise deposit and membership totals — share balances and member counts differ between the merged ledger and the enterprise data warehouse, because the nightly mapping for that division has not completed. It is flagged, not hidden. Reconcile the division balances and confirm the consolidated deposit figure before it goes to the board.",
     "suggested_chips": [
@@ -32,12 +45,18 @@
       "Reconcile the Howard University division",
       "Next signal"
     ],
-    "data_sources_used": ["Enterprise Data Warehouse", "Howard University Division Ledger", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Enterprise Data Warehouse",
+      "Howard University Division Ledger",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["signals", "reconciliation"],
+    "related_dataset_keys": [
+      "signals",
+      "reconciliation"
+    ],
     "capability": "Friction Observability"
   },
-
   "esfcu_ceo_signal_3_seasonality": {
     "ai_message": "The education field of membership drives a predictable rhythm: a summer deposit drawdown as the academic year ends, then payroll-cycle inflows as it resumes. The next favorable inflow window is approaching. That is timing you can use — a deposit campaign that lands ahead of the window works with the calendar instead of against it. Launch it after the summer draw and you have paid for the campaign and missed the inflow.",
     "suggested_chips": [
@@ -45,12 +64,17 @@
       "Show me membership and growth",
       "Next signal"
     ],
-    "data_sources_used": ["Historical Deposit Patterns", "Membership System"],
+    "data_sources_used": [
+      "Historical Deposit Patterns",
+      "Membership System"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["signals", "projection"],
+    "related_dataset_keys": [
+      "signals",
+      "projection"
+    ],
     "capability": "Predictive Intelligence"
   },
-
   "esfcu_ceo_where_stands": {
     "user_query": "Where does the business stand this morning?",
     "ai_response": "Good morning, Girado. The credit union is well capitalized at a 9.62% net worth ratio, with approximately $1.36B in assets and approximately 84,000 members. One signal needs your attention: loan demand is outpacing deposit growth, and the loan-to-share ratio is near 89% and rising. Two items sit behind it: the Howard University division balances have not fully reconciled into the enterprise total, and the summer deposit drawdown is approaching. Everything on this screen is current and validated except the Howard University division, which is pending reconciliation.",
@@ -59,12 +83,19 @@
       "Can I trust these numbers?",
       "Show me membership and growth"
     ],
-    "data_sources_used": ["Core Banking", "Finance & Call Report", "Membership System", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Core Banking",
+      "Finance & Call Report",
+      "Membership System",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["businessHealth", "trustStrip"],
+    "related_dataset_keys": [
+      "businessHealth",
+      "trustStrip"
+    ],
     "capability": "Proactive Intelligence"
   },
-
   "esfcu_ceo_turn_liquidity": {
     "user_query": "Walk me through the liquidity signal",
     "ai_response": "Loans have grown about 6.4% year over year while shares have grown about 3.1%, so the loan-to-share ratio has climbed to near 89%. That is high for a credit union and it is thinning your on-hand liquidity, now around 11.2%. The trend, not the level, is the story: if it continues, you approach your internal policy ceiling by Q1. This view fuses your core, lending, and finance sources into one picture.",
@@ -73,12 +104,17 @@
       "What happens if this continues?",
       "Is anything out of policy?"
     ],
-    "data_sources_used": ["Core Banking", "Lending System", "Finance & ALM Workbook"],
+    "data_sources_used": [
+      "Core Banking",
+      "Lending System",
+      "Finance & ALM Workbook"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["loansVsShares"],
+    "related_dataset_keys": [
+      "loansVsShares"
+    ],
     "capability": "Converged Conversation"
   },
-
   "esfcu_ceo_turn_trust": {
     "user_query": "Can I trust these numbers, especially after the Howard University merger?",
     "ai_response": "Mostly yes, with one exception I want you to see. Enterprise deposits reconcile cleanly across core and finance. The Howard University division is the gap: the merged ledger shows a share balance that differs from the enterprise data warehouse by a small but material amount, because the nightly mapping for that division has not completed. I have flagged it, not hidden it. Here is the lineage for the enterprise figure, traceable to source, and here is exactly where the division reconciliation breaks. Reconcile this before you cite the consolidated deposit total to the board.",
@@ -87,12 +123,18 @@
       "What happens to liquidity if this continues?",
       "Reconcile the Howard University division"
     ],
-    "data_sources_used": ["Enterprise Data Warehouse", "Howard University Division Ledger", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Enterprise Data Warehouse",
+      "Howard University Division Ledger",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["reconciliation", "trustStrip"],
+    "related_dataset_keys": [
+      "reconciliation",
+      "trustStrip"
+    ],
     "capability": "Friction Observability"
   },
-
   "esfcu_ceo_trace_deposit": {
     "user_query": "Trace the enterprise deposit figure to source",
     "ai_response": "Here is the full chain for the enterprise share balance. Member deposits post in the core banking system, roll into the nightly extract, aggregate through the finance and ALM workbook, land in the enterprise data warehouse, and render on this screen and in the board package. Each hop carries its load time and its record count. The Howard University division ledger is the one branch of this chain that has not completed its mapping — which is why the enterprise figure is traceable and the consolidated figure is not, yet. You can hand this trace to the board or to an NCUA examiner as it stands.",
@@ -101,12 +143,18 @@
       "What happens to liquidity if this continues?",
       "Draft the board briefing"
     ],
-    "data_sources_used": ["Core Banking", "Finance & ALM Workbook", "Enterprise Data Warehouse", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Core Banking",
+      "Finance & ALM Workbook",
+      "Enterprise Data Warehouse",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["lineage"],
+    "related_dataset_keys": [
+      "lineage"
+    ],
     "capability": "Friction Observability"
   },
-
   "esfcu_ceo_reconcile_division": {
     "user_query": "Reconcile the Howard University division",
     "ai_response": "Reconciliation queued. I have matched the division ledger to the enterprise warehouse line by line and isolated the break to the share-balance mapping that the stalled nightly job never applied — the member-count difference falls out of the same gap. The delta is identified and attributable, not a mystery. Once the mapping runs, the consolidated deposit total is safe to cite; until then the trust strip will keep marking it pending, and the board figure stays the enterprise number with the division shown separately.",
@@ -115,12 +163,17 @@
       "Draft the board briefing",
       "What happens to liquidity if this continues?"
     ],
-    "data_sources_used": ["Enterprise Data Warehouse", "Howard University Division Ledger", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Enterprise Data Warehouse",
+      "Howard University Division Ledger",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["reconciliation"],
+    "related_dataset_keys": [
+      "reconciliation"
+    ],
     "capability": "Friction Observability"
   },
-
   "esfcu_ceo_turn_projection": {
     "user_query": "What happens to liquidity if loan demand keeps outpacing deposits?",
     "ai_response": "On the current trend, loan-to-share reaches your internal policy ceiling early in Q1, and on-hand liquidity drifts below your comfort floor before then. But the education calendar helps you: an inflow window is approaching, and a targeted deposit campaign timed to it could add enough share growth to hold the ratio flat. I have modeled three paths. The recommended one pairs a deposit campaign with a standby funding line so you close the gap now and hold a buffer through Q1.",
@@ -129,12 +182,18 @@
       "Draft the board briefing",
       "Is anything out of policy?"
     ],
-    "data_sources_used": ["Core Banking", "Lending System", "Historical Deposit Patterns", "Finance & ALM Workbook"],
+    "data_sources_used": [
+      "Core Banking",
+      "Lending System",
+      "Historical Deposit Patterns",
+      "Finance & ALM Workbook"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["projection"],
+    "related_dataset_keys": [
+      "projection"
+    ],
     "capability": "Predictive Intelligence"
   },
-
   "esfcu_ceo_show_options": {
     "user_query": "Show me the three options",
     "ai_response": "Three paths, and they are not mutually exclusive. One: the education-community deposit campaign alone — fastest to launch, lowest cost, closes most of the gap if it lands ahead of the inflow window. Two: the standby funding line alone — immediate certainty and a hard buffer, but it is purchased liquidity and it does nothing for the underlying trend. Three: both together, which is the recommendation — the campaign moves the trend while the line holds the buffer through Q1 in case the campaign under-delivers. Option three is the only one that both closes the gap now and protects you if the seasonality runs against you.",
@@ -143,12 +202,17 @@
       "Is anything out of policy?",
       "Open the full briefing"
     ],
-    "data_sources_used": ["Finance & ALM Workbook", "Historical Deposit Patterns", "Core Banking"],
+    "data_sources_used": [
+      "Finance & ALM Workbook",
+      "Historical Deposit Patterns",
+      "Core Banking"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["projection"],
+    "related_dataset_keys": [
+      "projection"
+    ],
     "capability": "Predictive Intelligence"
   },
-
   "esfcu_ceo_turn_anomalies": {
     "user_query": "Is anything out of policy or unusual?",
     "ai_response": "Two things. First, a nightly data refresh for the Howard University division stalled twice this month, which is why that reconciliation is pending: that is the silent kind of gap that used to surface only at month-end. Second, one branch shows a deposit figure that breaks its own trend by enough to warrant a look, likely a large member outflow rather than an error. Neither is a policy breach today, but both are the kind of thing you want to see before the board does.",
@@ -157,12 +221,17 @@
       "Reconcile the Howard University division",
       "Walk me through the liquidity signal"
     ],
-    "data_sources_used": ["Governance & Lineage Layer", "Core Banking", "Branch Deposit Data"],
+    "data_sources_used": [
+      "Governance & Lineage Layer",
+      "Core Banking",
+      "Branch Deposit Data"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["anomalies"],
+    "related_dataset_keys": [
+      "anomalies"
+    ],
     "capability": "Anomaly Detection"
   },
-
   "esfcu_ceo_turn_membership": {
     "user_query": "Show me membership and growth",
     "ai_response": "Membership has grown to approximately 84,000, and the Howard University merger expands the field of membership to Howard employees, students, alumni, and hospital staff. That is the growth story and the funding story in one move: the new members are not yet primary depositors, and converting them is the cheapest share growth available to you. Capital is the assurance line underneath it — a 9.62% net worth ratio, well capitalized, which is the room the board has to act on the liquidity plan.",
@@ -171,12 +240,17 @@
       "Can I trust these numbers?",
       "Draft the board briefing"
     ],
-    "data_sources_used": ["Membership System", "Howard University Division Ledger", "Finance & Call Report"],
+    "data_sources_used": [
+      "Membership System",
+      "Howard University Division Ledger",
+      "Finance & Call Report"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["businessHealth"],
+    "related_dataset_keys": [
+      "businessHealth"
+    ],
     "capability": "Converged Conversation"
   },
-
   "esfcu_ceo_turn_board_briefing": {
     "user_query": "Draft the board briefing and recommend an action",
     "ai_response": "Done. The briefing opens with the position (well capitalized, growing membership), names the issue (loan-to-share near 89% and rising), makes the merger and seasonality effects explicit, and closes on the recommended action: launch a targeted education-community deposit campaign timed to the fall inflow window, and arrange a standby funding line as a buffer. I have set owners and a timeframe, and every figure carries its lineage. You can open the full briefing as a board-ready deck.",
@@ -185,7 +259,13 @@
       "Adjust the recommended action",
       "Assign the owners"
     ],
-    "data_sources_used": ["Core Banking", "Lending System", "Finance & ALM Workbook", "Enterprise Data Warehouse", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Core Banking",
+      "Lending System",
+      "Finance & ALM Workbook",
+      "Enterprise Data Warehouse",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [
       {
         "type": "action_cards",
@@ -212,10 +292,12 @@
       "ACT-ESFCU-CEO-001": "Launched. The deposit campaign is scoped to the education field of membership and the Howard University division, sequenced to land ahead of the inflow window. Owner set and the response timeframe is on the briefing's closing slide.",
       "ACT-ESFCU-CEO-002": "Arranged. The standby funding line is queued for the board's approval as the buffer behind the campaign. Together the two are the recommended path — the ratio holds flat through Q1 on the modeled case."
     },
-    "related_dataset_keys": ["boardBriefing", "projection"],
+    "related_dataset_keys": [
+      "boardBriefing",
+      "projection"
+    ],
     "capability": "Automated Action"
   },
-
   "esfcu_ceo_adjust_action": {
     "user_query": "Adjust the recommended action",
     "ai_response": "Adjusted. I have widened the campaign window so it opens before the payroll-cycle inflow rather than at it, which buys you two weeks of runway if uptake is slow, and I have sized the standby line to the shortfall in the pessimistic seasonality case rather than the modeled one. The recommendation still pairs both moves — the change is timing and buffer size, not direction. The briefing's resolution slide now reflects it.",
@@ -224,12 +306,17 @@
       "Assign the owners",
       "Show me the three options"
     ],
-    "data_sources_used": ["Finance & ALM Workbook", "Historical Deposit Patterns"],
+    "data_sources_used": [
+      "Finance & ALM Workbook",
+      "Historical Deposit Patterns"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["boardBriefing", "projection"],
+    "related_dataset_keys": [
+      "boardBriefing",
+      "projection"
+    ],
     "capability": "Automated Action"
   },
-
   "esfcu_ceo_assign_owners": {
     "user_query": "Assign the owners",
     "ai_response": "Owners assigned. Each recommended action on the closing slide now carries a named owner set and a response-timeframe chip, so the board sees who holds it and by when, not just what was recommended. That closes the loop from the platform noticing the signal to a human owning the response. Owner names in this build are illustrative placeholders pending your leadership roster.",
@@ -238,23 +325,35 @@
       "Adjust the recommended action",
       "Draft the board briefing"
     ],
-    "data_sources_used": ["Radiant Intelligence Layer"],
+    "data_sources_used": [
+      "Radiant Intelligence Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["boardBriefing"],
+    "related_dataset_keys": [
+      "boardBriefing"
+    ],
     "capability": "Automated Action"
   },
-
   "esfcu_ceo_turn_full_briefing": {
     "user_query": "Open the full briefing",
-    "ai_response": "Opening the board-ready briefing. This is the same intelligence you just walked through, rendered as a presentation you can take into the boardroom, with the trust ribbon showing every number is traceable. Use View Full Briefing below to present it, or Download PDF for the long-form leave-behind. The close control returns you here.",
+    "ai_response": "Opening the board-ready briefing. This is the same intelligence you just walked through, rendered as a presentation you can take into the boardroom, with the trust ribbon showing every number is traceable.",
     "suggested_chips": [
+      "Open the full briefing",
       "Draft the board briefing",
-      "Where does the business stand this morning?",
-      "Walk me through the liquidity signal"
+      "Where does the business stand this morning?"
     ],
-    "data_sources_used": ["Radiant Intelligence Layer", "Governance & Lineage Layer"],
+    "data_sources_used": [
+      "Core Banking",
+      "Lending System",
+      "Finance & ALM Workbook",
+      "Enterprise Data Warehouse",
+      "Governance & Lineage Layer"
+    ],
     "ui_components_to_render": [],
-    "related_dataset_keys": ["boardBriefing", "trustStrip"],
+    "related_dataset_keys": [
+      "boardBriefing",
+      "trustStrip"
+    ],
     "capability": "Automated Action"
   }
 }

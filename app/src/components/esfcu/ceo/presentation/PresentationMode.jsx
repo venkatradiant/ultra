@@ -65,6 +65,11 @@ export default function PresentationMode({ onClose }) {
   const [chatInput, setChatInput] = useState('');
   const [closingOpen, setClosingOpen] = useState(false);
   const [closingStep, setClosingStep] = useState(0);
+  // Spec §15a names a Transcript control in the bottom bar. It was missing, and
+  // the speaker notes it should show were already loaded — they only ever went
+  // to the TTS engine, never to the screen. That left the briefing's spoken
+  // content unavailable to anyone who cannot or would rather not listen.
+  const [transcriptOpen, setTranscriptOpen] = useState(false);
   // Long-form report view (the Download PDF leave-behind).
   const [reportOpen, setReportOpen] = useState(false);
   const [reportScale, setReportScale] = useState(1);
@@ -77,6 +82,11 @@ export default function PresentationMode({ onClose }) {
   const openChatRef = useRef(null);
   const playingRef = useRef(false);
   const audioOnRef = useRef(true);
+  // `go` is defined below but the narration callback closes over it, so it is
+  // reached through a ref; `autoAdvancedRef` tells the slide-change effect that
+  // the deck moved itself and narration should continue rather than stop.
+  const goRef = useRef(null);
+  const autoAdvancedRef = useRef(false);
 
   useEffect(() => { playingRef.current = playing; }, [playing]);
   useEffect(() => { audioOnRef.current = audioOn; }, [audioOn]);
@@ -89,6 +99,11 @@ export default function PresentationMode({ onClose }) {
     progRef.current = 0;
     setProgress(0);
   }, [N]);
+
+  // Auto-advance goes through here so the slide-change effect can tell it apart
+  // from a click.
+  const autoAdvance = useCallback((i) => { autoAdvancedRef.current = true; go(i); }, [go]);
+  goRef.current = autoAdvance;
 
   // The Leadership Next Steps (final) slide ends in the closing modal.
   const openClosing = useCallback((step = 0) => {
@@ -117,7 +132,14 @@ export default function PresentationMode({ onClose }) {
     narr.speak(slideIdForIndex(i), narrationForIndex(i), {
       nextSlideId: i + 1 < N ? slideIdForIndex(i + 1) : undefined,
       onProgress: (p) => setProgress(Math.round(p * 100)),
-      onEnd: () => { setPlaying(false); },
+      // Spec §15a: "A play control auto-advances with a progress bar." Narration
+      // end is the cue — the deck moves on and keeps speaking until the last
+      // slide, where it stops rather than looping.
+      onEnd: () => {
+        if (!playingRef.current) return;
+        if (idxRef.current >= N - 1) { setPlaying(false); return; }
+        goRef.current?.(idxRef.current + 1);
+      },
     });
   }, [narr, N]);
 
@@ -202,7 +224,11 @@ export default function PresentationMode({ onClose }) {
     timerRef.current = setInterval(() => {
       progRef.current += 100;
       setProgress(Math.min(100, (progRef.current / DUR) * 100));
-      if (progRef.current >= DUR) setPlaying(false); // stop on the slide — no auto-advance
+      if (progRef.current >= DUR) {
+        // Same contract as the narration path, for when TTS is unavailable.
+        if (idxRef.current >= N - 1) setPlaying(false);
+        else { progRef.current = 0; goRef.current?.(idxRef.current + 1); }
+      }
     }, 100);
     return () => clearInterval(timerRef.current);
   }, [playing, N, audioOn, narr.supported]);
@@ -210,10 +236,17 @@ export default function PresentationMode({ onClose }) {
   // Navigating between slides stops any playing narration and resets to paused —
   // audio never auto-plays on a slide change; the CEO must click Play each time.
   useEffect(() => {
-    narr.cancel();
-    setPlaying(false);
     progRef.current = 0;
     setProgress(0);
+    // A manual jump stops the briefing; an auto-advance keeps it running and
+    // starts the next slide's narration.
+    if (autoAdvancedRef.current) {
+      autoAdvancedRef.current = false;
+      if (playingRef.current) speakSlide(idxRef.current);
+      return undefined;
+    }
+    narr.cancel();
+    setPlaying(false);
     return undefined;
   }, [idx]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -421,6 +454,16 @@ export default function PresentationMode({ onClose }) {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z" /><path d="M22 9l-6 6M16 9l6 6" /></svg>
           )}
         </button>
+        <button
+          type="button"
+          className={`navbtn transcriptbtn${transcriptOpen ? ' on' : ''}`}
+          onClick={() => { setChatOpen(false); setLineageOpen(false); setTranscriptOpen((o) => !o); }}
+          aria-pressed={transcriptOpen}
+          aria-label={transcriptOpen ? 'Hide transcript' : 'Show transcript'}
+          title="Transcript"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 6h16M4 10h16M4 14h10M4 18h7" /></svg>
+        </button>
         <div className="askinput">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
           <input
@@ -445,6 +488,33 @@ export default function PresentationMode({ onClose }) {
           <div className="cnum">{idx + 1} / {N}</div>
         </div>
       </div>
+
+      {/* Transcript — the spoken briefing as text, for the current slide and
+          every other. Sibling of the scaled stage so it renders at full size. */}
+      {transcriptOpen ? (
+        <div className="pm-transcript" role="dialog" aria-label="Briefing transcript">
+          <div className="pm-transcript-head">
+            <span>Transcript — {pres.meta.eyebrow}</span>
+            <button type="button" onClick={() => setTranscriptOpen(false)} aria-label="Close transcript">&#10005;</button>
+          </div>
+          <div className="pm-transcript-body">
+            {SLIDES.map((_, i) => {
+              const sid = slideIdForIndex(i);
+              return (
+                <button
+                  key={sid}
+                  type="button"
+                  className={`pm-transcript-row${i === idx ? ' on' : ''}`}
+                  onClick={() => { go(i); }}
+                >
+                  <span className="pm-transcript-n">{i + 1}</span>
+                  <span className="pm-transcript-txt">{narrationData.narration[sid]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
 
       {/* Lineage overlay — sibling of the scaled stage so it renders full-size. */}
       <DeckLineageOverlay open={lineageOpen} onClose={() => setLineageOpen(false)} />

@@ -5,6 +5,7 @@ import { AlertTriangle, Activity, TrendingDown, ExternalLink } from 'lucide-reac
 import anomalies from '../../../data/esfcu/ceo/anomalies.json';
 import ExhibitCard from './ExhibitCard';
 import LineageTraceModal from './LineageTraceModal';
+import BranchDetailModal from './BranchDetailModal';
 
 // Step 5 — "Is anything out of policy or unusual?"
 // Two flagged items, each with a severity tag and an evidence link; the branch
@@ -12,8 +13,20 @@ import LineageTraceModal from './LineageTraceModal';
 
 const CATEGORY_ICON = { Pipeline: Activity, Deposits: TrendingDown };
 
+// Severity is icon + word, never colour alone — and it comes from the item, not
+// a constant. The two anomalies genuinely differ in kind, and a board that sees
+// "Attention" stamped on everything stops reading it.
+const SEVERITY = {
+  critical: { label: 'Critical', cls: 'bg-[#DC2626]/10 text-[#DC2626]' },
+  warning: { label: 'Attention', cls: 'bg-[#B45309]/10 text-[#B45309]' },
+  info: { label: 'For information', cls: 'bg-blue-500/10 text-blue-700' },
+};
+
 export default function AnomalyList() {
-  const [traceOpen, setTraceOpen] = useState(false);
+  // `evidence_target` decides which evidence surface a row opens. It used to be
+  // dead data: both rows opened the same deposit-lineage modal, so "Open the
+  // branch detail" promised a branch and delivered a warehouse trace.
+  const [evidence, setEvidence] = useState(null);
 
   return (
     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
@@ -29,6 +42,7 @@ export default function AnomalyList() {
           {anomalies.items.map((a) => {
             const Icon = CATEGORY_ICON[a.category] || AlertTriangle;
             const spark = a.sparkline?.map((v, i) => ({ i, v }));
+            const sev = SEVERITY[a.severity] || SEVERITY.warning;
             return (
               <div key={a.id} className="rounded-xl border border-border-subtle bg-surface-2 p-3.5">
                 <div className="mb-1.5 flex flex-wrap items-start justify-between gap-2">
@@ -41,9 +55,8 @@ export default function AnomalyList() {
                       <p className="text-[9.5px] uppercase tracking-wide text-text-subtle">{a.category}</p>
                     </div>
                   </div>
-                  {/* Severity is icon + word, never colour alone. */}
-                  <span className="inline-flex flex-shrink-0 items-center gap-1 rounded bg-[#B45309]/10 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#B45309]">
-                    <AlertTriangle className="h-2.5 w-2.5" /> Attention
+                  <span className={`inline-flex flex-shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide ${sev.cls}`}>
+                    <AlertTriangle className="h-2.5 w-2.5" /> {sev.label}
                   </span>
                 </div>
 
@@ -72,7 +85,7 @@ export default function AnomalyList() {
                   <span className="text-[10px] text-text-subtle">{a.policy_note}</span>
                   <button
                     type="button"
-                    onClick={() => setTraceOpen(true)}
+                    onClick={() => setEvidence(a)}
                     className="inline-flex flex-shrink-0 items-center gap-1 text-[10px] font-semibold text-brand hover:underline"
                   >
                     <ExternalLink className="h-3 w-3" /> {a.evidence_label}
@@ -84,7 +97,19 @@ export default function AnomalyList() {
         </div>
         <p className="mt-2.5 text-[10px] leading-snug text-text-subtle">{anomalies.note}</p>
 
-        <LineageTraceModal open={traceOpen} onClose={() => setTraceOpen(false)} initialFigureId="consolidated_deposits" />
+        {/* Pipeline evidence is a lineage question, so it opens the trace on the
+            figure the stalled job blocks. Branch evidence is not — it gets its
+            own panel rather than a modal that answers a different question. */}
+        <LineageTraceModal
+          open={evidence?.evidence_target === 'reconciliation'}
+          onClose={() => setEvidence(null)}
+          initialFigureId="consolidated_deposits"
+        />
+        <BranchDetailModal
+          open={evidence?.evidence_target === 'branch'}
+          anomaly={evidence}
+          onClose={() => setEvidence(null)}
+        />
       </ExhibitCard>
     </motion.div>
   );
