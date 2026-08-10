@@ -33,10 +33,10 @@
     "id": "ds-esfcu-ceo-04",
     "name": "Membership System",
     "status": "connected",
-    "description": "Active member counts and field-of-membership segmentation across the education community and the merged Howard University division.",
+    "description": "Active member counts and field-of-membership segmentation across the education community. Holds the legacy enterprise base; the merged division's members sit on the division ledger until the nightly mapping folds them in.",
     "icon": "users",
     "lastSync": "2026-02-10T05:59:00",
-    "recordCount": 84120,
+    "recordCount": 80700,
     "vendorAgnostic": true
   },
   {

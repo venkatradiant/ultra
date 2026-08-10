@@ -27,13 +27,13 @@
       "positive": true,
       "real": true,
       "spark": [
-        80100,
+        80200,
         80700,
-        81300,
-        81900,
-        82500,
-        83000,
-        83500,
+        81200,
+        81700,
+        82300,
+        82900,
+        83450,
         84000
       ]
     },
@@ -290,12 +290,17 @@
         "state": "current"
       },
       {
+        "label": "Campaign approval",
+        "when": "Mar",
+        "state": "upcoming"
+      },
+      {
         "label": "Division reconciliation",
         "when": "Mar",
         "state": "upcoming"
       },
       {
-        "label": "Deposit campaign",
+        "label": "Campaign launch",
         "when": "Aug",
         "state": "upcoming"
       },

@@ -84,7 +84,7 @@
     "description": "The education field of membership drives a predictable summer deposit drawdown and payroll-cycle inflows tied to the academic calendar. The next favorable inflow window is approaching. (Illustrative pattern on a real membership base.)",
     "impact": "medium",
     "severity": "info",
-    "metric_text": "Inflow window opens in ~5 weeks",
+    "metric_text": "Summer draw ~Jul · inflow window ~Sep",
     "sources": [
       "Historical Deposit Patterns",
       "Membership System"
@@ -94,7 +94,8 @@
     "real": false,
     "data_note": "Illustrative pattern on a real education-sector membership base.",
     "metrics": {
-      "weeks_to_inflow_window": 5,
+      "weeks_to_summer_draw": 20,
+      "weeks_to_inflow_window": 30,
       "summer_draw_pct": 2.4
     },
     "confidence": {

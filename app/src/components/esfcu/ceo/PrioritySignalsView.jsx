@@ -68,7 +68,16 @@ function HeroSignal({ onBriefing, onTrace }) {
           <Route className="h-3.5 w-3.5" /> Trace to source
         </button>
       </div>
-      <p className="mt-3 text-[10px] text-white/45">{primary.data_note}</p>
+      {/* The four secondary cards get their Action line from SignalCard; the
+          hero has its own layout, so without this the one signal that most
+          needs a recommended action was the only one not showing it. */}
+      {primary.action ? (
+        <p className="mt-3 flex items-start gap-1.5 text-[11.5px] leading-snug text-white/75">
+          <span className="font-semibold uppercase tracking-wide text-[9.5px]" style={{ color: ACCENT_SOFT }}>Action</span>
+          <span>{primary.action}</span>
+        </p>
+      ) : null}
+      <p className="mt-2 text-[10px] text-white/45">{primary.data_note}</p>
     </motion.div>
   );
 }

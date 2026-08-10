@@ -10,14 +10,14 @@
     "real_note": "NCUA call report, Dec 2025",
     "growth_yoy_pct": 2.8,
     "sparkline": [
-      81850,
-      82200,
-      82550,
+      80200,
+      80700,
+      81200,
+      81700,
+      82300,
       82900,
-      83250,
-      83570,
-      83850,
-      84120
+      83450,
+      84000
     ],
     "sparkline_note": "Smooth by necessity: the Howard University merger's member and balance figures were never publicly disclosed, so no step is modelled at Q4 2024."
   },

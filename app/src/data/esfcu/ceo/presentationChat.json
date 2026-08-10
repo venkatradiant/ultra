@@ -73,7 +73,7 @@
         "q": "Who owns each action?",
         "aliases": ["owners", "who is responsible", "accountability", "who does what"],
         "keywords": ["owns", "owner", "responsible", "accountable", "who"],
-        "a": "The deposit campaign sits with Marketing & Member Growth alongside Finance & ALM, to launch within six weeks. The standby funding line sits with Finance & ALM and the Board Finance Committee for approval at the next meeting. The Howard University reconciliation sits with Data Governance and Technology, to close before the next pre-read. Owner names in this build are illustrative placeholders pending your leadership roster.",
+        "a": "The deposit campaign sits with Marketing & Member Growth alongside Finance & ALM, to approve it now so it launches in August, ahead of the September inflow. The standby funding line sits with Finance & ALM and the Board Finance Committee for approval at the next meeting. The Howard University reconciliation sits with Data Governance and Technology, to close before the next pre-read. Owner names in this build are illustrative placeholders pending your leadership roster.",
         "sources": ["Radiant Intelligence Layer"],
         "confidence": 90,
         "followups": ["What do you recommend?", "What exactly is the reconciliation gap?"]
@@ -340,7 +340,7 @@
           "q": "What is the first thing to do?",
           "aliases": ["first step", "start", "where do we begin", "priority"],
           "keywords": ["first", "start", "begin", "priority", "immediately"],
-          "a": "Two things in parallel. Get the deposit campaign scoped and launched within six weeks so it lands ahead of the inflow window — timing is the whole value of it. And put the Howard University reconciliation on someone's desk today, because until it closes you cannot cite the consolidated deposit total to the board or an examiner.",
+          "a": "Two things in parallel. Get the deposit campaign scoped and launched ahead of the September inflow window so it lands ahead of the inflow window — timing is the whole value of it. And put the Howard University reconciliation on someone's desk today, because until it closes you cannot cite the consolidated deposit total to the board or an examiner.",
           "sources": ["Radiant Intelligence Layer"],
           "confidence": 90,
           "followups": ["Who owns each action?", "What do you need from the board?"]

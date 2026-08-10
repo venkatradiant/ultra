@@ -4,7 +4,7 @@
   "validated_at": "2026-02-10T06:02:00",
   "state": "pending",
   "cite_warning": "Reconcile before you cite this",
-  "cause": "The nightly mapping job for the Howard University division has not completed — it stalled twice this month — so the division's share balances and member counts have not folded into the enterprise totals.",
+  "cause": "The nightly mapping job for the Howard University division has not completed — it stalled twice this month, most recently on 9 February — so the division's share balances and member counts have not folded into the enterprise totals.",
   "items": [
     {
       "id": "recon-shares",
@@ -24,10 +24,30 @@
       "trueConsolidatedDisplay": "$1,163.1M",
       "state": "pending",
       "lineage": [
-        { "stage": "Source", "system": "Howard University Division Ledger", "note": "Division share balances, $47.6M", "state": "good" },
-        { "stage": "Mapping", "system": "Nightly Division Mapping", "note": "Stalled — last successful run 9 days ago", "state": "critical" },
-        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Carries $44.9M of the division — $2.7M unmapped", "state": "warning" },
-        { "stage": "Brief", "system": "Board Package", "note": "Consolidated total held back; enterprise figure shown instead", "state": "warning" }
+        {
+          "stage": "Source",
+          "system": "Howard University Division Ledger",
+          "note": "Division share balances, $47.6M",
+          "state": "good"
+        },
+        {
+          "stage": "Mapping",
+          "system": "Nightly Division Mapping",
+          "note": "Stalled — last completed run 8 February",
+          "state": "critical"
+        },
+        {
+          "stage": "Warehouse",
+          "system": "Enterprise Data Warehouse",
+          "note": "Carries $44.9M of the division — $2.7M unmapped",
+          "state": "warning"
+        },
+        {
+          "stage": "Brief",
+          "system": "Board Package",
+          "note": "Consolidated total held back; enterprise figure shown instead",
+          "state": "warning"
+        }
       ]
     },
     {
@@ -48,10 +68,30 @@
       "trueConsolidatedDisplay": "84,610",
       "state": "pending",
       "lineage": [
-        { "stage": "Source", "system": "Howard University Division Ledger", "note": "Division members, 3,910", "state": "good" },
-        { "stage": "Mapping", "system": "Nightly Division Mapping", "note": "Same stalled job — member counts follow the share mapping", "state": "critical" },
-        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Carries 3,420 division members — 490 unmapped", "state": "warning" },
-        { "stage": "Brief", "system": "Board Package", "note": "Membership cited as ≈84,000 (NCUA, Dec 2025)", "state": "good" }
+        {
+          "stage": "Source",
+          "system": "Howard University Division Ledger",
+          "note": "Division members, 3,910",
+          "state": "good"
+        },
+        {
+          "stage": "Mapping",
+          "system": "Nightly Division Mapping",
+          "note": "Stalled — last completed run 8 February",
+          "state": "critical"
+        },
+        {
+          "stage": "Warehouse",
+          "system": "Enterprise Data Warehouse",
+          "note": "Carries 3,420 division members — 490 unmapped",
+          "state": "warning"
+        },
+        {
+          "stage": "Brief",
+          "system": "Board Package",
+          "note": "Membership cited as ≈84,000 (NCUA, Dec 2025)",
+          "state": "good"
+        }
       ]
     }
   ],

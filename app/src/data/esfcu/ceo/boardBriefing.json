@@ -7,11 +7,31 @@
   "confidence": 92,
   "confidence_line": "92% of figures current, validated and traceable · Howard University division pending",
   "sections": [
-    { "id": "position", "label": "The position", "text": "Well capitalized at a 9.62% net worth ratio, ≈$1.36B in assets, ≈84,000 members across 13 Maryland branches and the Howard University division." },
-    { "id": "issue", "label": "The issue", "text": "Loan-to-share is near 89% and rising — loans up 6.4% year over year against shares up 3.1%. On-hand liquidity is around 11.2% and drifting." },
-    { "id": "merger", "label": "The merger effect", "text": "Howard University division balances have not fully reconciled into the enterprise totals. The enterprise figure is safe to cite; the consolidated figure is not, yet." },
-    { "id": "seasonality", "label": "The seasonality effect", "text": "The education field of membership drives a summer deposit drawdown and payroll-cycle inflows. The next favorable inflow window is the timing lever." },
-    { "id": "recommendation", "label": "The recommendation", "text": "Launch a targeted education-community deposit campaign timed to the fall inflow window, and arrange a standby funding line as a buffer." }
+    {
+      "id": "position",
+      "label": "The position",
+      "text": "Well capitalized at a 9.62% net worth ratio, ≈$1.36B in assets, ≈84,000 members across 13 Maryland branches and the Howard University division."
+    },
+    {
+      "id": "issue",
+      "label": "The issue",
+      "text": "Loan-to-share is near 89% and rising — loans up 6.4% year over year against shares up 3.1%. On-hand liquidity is around 11.2% and drifting."
+    },
+    {
+      "id": "merger",
+      "label": "The merger effect",
+      "text": "Howard University division balances have not fully reconciled into the enterprise totals. The enterprise figure is safe to cite; the consolidated figure is not, yet."
+    },
+    {
+      "id": "seasonality",
+      "label": "The seasonality effect",
+      "text": "The education field of membership drives a summer deposit drawdown and payroll-cycle inflows. The next favorable inflow window is the timing lever."
+    },
+    {
+      "id": "recommendation",
+      "label": "The recommendation",
+      "text": "Launch a targeted education-community deposit campaign timed to the fall inflow window, and arrange a standby funding line as a buffer."
+    }
   ],
   "recommended_actions": [
     {
@@ -21,7 +41,7 @@
       "description": "Target the education field of membership and the newly merged Howard University members, sequenced to land ahead of the fall payroll-cycle inflow window.",
       "owner": "Marketing & Member Growth",
       "owner_note": "Illustrative owner set — pending the ESFCU leadership roster",
-      "timeframe": "Launch within 6 weeks",
+      "timeframe": "Approve now · launch by August",
       "system": "Radiant Intelligence Layer"
     },
     {
