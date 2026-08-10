@@ -15,3 +15,4 @@ app/.vercel/
 .env
 .env.*
 !.env.example
+.vercel
