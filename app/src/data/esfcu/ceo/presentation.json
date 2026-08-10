@@ -1,0 +1,199 @@
+{
+  "note": "Presentation Mode content — the seven board slides of spec §15a. Real public facts (assets, members, net worth, branches, founding year, the Howard University merger, the AACUC and Washington Business Journal recognitions) carry their source. Everything operational is illustrative and marked as such on the slide it appears on.",
+  "meta": {
+    "eyebrow": "Board Briefing · Funding & Liquidity",
+    "confidenceLine": "92% of figures validated & traceable · Howard University division pending",
+    "photoCaption": "Serving Maryland's education community since 1955"
+  },
+  "slides": {
+    "situational": {
+      "eyebrow": "Educational Systems Federal Credit Union",
+      "severity": "One board-level call this morning",
+      "title": "A strong institution with one thing to",
+      "titleEm": "manage",
+      "subtitle": "Well capitalized and growing — with loan demand now outpacing deposits.",
+      "tiles": [
+        { "l": "Total assets", "k": "≈$1.36B", "s": "Real · NCUA, Dec 2025" },
+        { "l": "Members", "k": "≈84,000", "s": "13 branches across Maryland" },
+        { "l": "Net worth ratio", "k": "9.62%", "s": "Well capitalized" }
+      ],
+      "callout": "Loan-to-share is near 89% and rising. The trend, not the level, is the story — and the merger and the academic calendar are what make it hard to see."
+    },
+    "evidence": {
+      "eyebrow": "The issue",
+      "note": "Loans are growing twice as fast as shares. Three sources, one governed ratio.",
+      "rows": [
+        { "rs": "Core banking — net loans", "rv": "$1.04B", "rg": "+6.4% YoY", "tone": "warn" },
+        { "rs": "Finance & ALM — total shares", "rv": "$1.16B", "rg": "+3.1% YoY", "tone": "" },
+        { "rs": "Finance & ALM — on-hand liquidity", "rv": "11.2%", "rg": "drifting", "tone": "warn" }
+      ],
+      "result": {
+        "k": "89.7%",
+        "l": "Loan-to-share — one governed figure, not three that disagree",
+        "conf": "94% confidence · derived from the filed Dec 2025 call report"
+      },
+      "lineage": ["Core Banking", "Nightly Extract", "Finance & ALM", "Enterprise DW", "Board Brief"],
+      "trendTitle": "Loan-to-share, trailing eight quarters",
+      "trendAnnotation": "+5.3 pts",
+      "trendAria": "Loan-to-share rose from 84.4 percent to 89.7 percent across eight quarters",
+      "source": "Core Banking · Lending System · Finance & ALM Workbook · as of Dec 31, 2025",
+      "trend": [
+        { "q": "Q1'24", "v": 84.4 },
+        { "q": "Q2'24", "v": 85.2 },
+        { "q": "Q3'24", "v": 86.0 },
+        { "q": "Q4'24", "v": 86.8 },
+        { "q": "Q1'25", "v": 87.6 },
+        { "q": "Q2'25", "v": 88.3 },
+        { "q": "Q3'25", "v": 89.0 },
+        { "q": "Q4'25", "v": 89.7 }
+      ]
+    },
+    "trajectory": {
+      "eyebrow": "Performance",
+      "note": "Loans versus shares, with the ratio annotated against the internal policy ceiling. Prior quarters and the ceiling are illustrative; Q4 2025 is the filed figure.",
+      "chartTitle": "Loans versus shares — and the ratio between them",
+      "confidence": "94% confidence",
+      "ceiling": 92,
+      "ceilingLabel": "internal policy ceiling",
+      "endAnnotation": "89.7% and rising",
+      "warning": "Approaches the ceiling by Q1 on the current trend",
+      "aria": "Loans grew faster than shares across eight quarters, lifting loan-to-share from 84.4 to 89.7 percent against a 92 percent internal policy ceiling",
+      "source": "Core Banking · Lending System · Finance & ALM Workbook · as of Dec 31, 2025",
+      "series": [
+        { "q": "Q1'24", "loans": 924, "shares": 1095, "ratio": 84.4 },
+        { "q": "Q2'24", "loans": 941, "shares": 1105, "ratio": 85.2 },
+        { "q": "Q3'24", "loans": 959, "shares": 1115, "ratio": 86.0 },
+        { "q": "Q4'24", "loans": 977, "shares": 1125, "ratio": 86.8 },
+        { "q": "Q1'25", "loans": 993, "shares": 1134, "ratio": 87.6 },
+        { "q": "Q2'25", "loans": 1008, "shares": 1142, "ratio": 88.3 },
+        { "q": "Q3'25", "loans": 1024, "shares": 1151, "ratio": 89.0 },
+        { "q": "Q4'25", "loans": 1040, "shares": 1160, "ratio": 89.7 }
+      ]
+    },
+    "members": {
+      "eyebrow": "Members & mission",
+      "note": "≈84,000 members across 13 Maryland branches, plus the Howard University division that joined in the 2024 merger.",
+      "photoCaption": "The education community — teachers, staff, and their families",
+      "quote": "We are built for the people who educate. That mission is why the funding question matters: it is their money, and their credit union.",
+      "quoteEm": "the people who educate",
+      "attribution": "The ESFCU mission, in the CEO's framing",
+      "line": "Founded 1955 · 13 branches across Maryland · Howard University Federal Credit Union, a division of ESFCU since November 30, 2024, extending the field of membership to Howard employees, students, alumni, and hospital staff.",
+      "marks": [
+        "AACUC Hall of Fame — Girado Smith, March 2025",
+        "Washington Business Journal 2025 Diversity in Business Award"
+      ]
+    },
+    "assurance": {
+      "eyebrow": "Assurance",
+      "title": "Every number, traceable — and the one that is not, shown",
+      "lead": "This is the difference from the reports you have today. Each figure carries whether it is current, validated and traceable — and the Howard University division reconciliation is flagged, not smoothed over, because a number you cannot defend to an examiner is worse than no number at all."
+    },
+    "resolution": {
+      "eyebrow": "Resolution options",
+      "note": "Three paths to close the funding gap. One is recommended.",
+      "note2": "These options are not mutually exclusive. The recommended path pairs the education-community deposit campaign with a standby funding line to close the gap now and hold a buffer through Q1.",
+      "options": [
+        {
+          "num": "1",
+          "title": "Education-community deposit campaign",
+          "desc": "Targeted share-gathering across the education field of membership and the newly merged Howard University members, timed to land ahead of the fall payroll-cycle inflow window.",
+          "recommended": false,
+          "attrs": [
+            { "l": "Timeline", "v": "Fast", "tone": "good" },
+            { "l": "Cost", "v": "Low", "tone": "good" },
+            { "l": "Liquidity impact", "v": "Moderate", "tone": "warn" }
+          ]
+        },
+        {
+          "num": "2",
+          "title": "Standby funding line",
+          "desc": "A committed facility held in reserve. Immediate certainty and a hard buffer, but it is purchased liquidity and it does not move the underlying trend.",
+          "recommended": false,
+          "attrs": [
+            { "l": "Timeline", "v": "Moderate", "tone": "warn" },
+            { "l": "Cost", "v": "High", "tone": "bad" },
+            { "l": "Liquidity impact", "v": "Strong", "tone": "good" }
+          ]
+        },
+        {
+          "num": "3",
+          "title": "Campaign paired with a standby line",
+          "desc": "The campaign moves the trend while the line holds the buffer through Q1 in case uptake lands at the low edge of the seasonality band.",
+          "recommended": true,
+          "attrs": [
+            { "l": "Timeline", "v": "Fast", "tone": "good" },
+            { "l": "Cost", "v": "Moderate", "tone": "warn" },
+            { "l": "Liquidity impact", "v": "Strong", "tone": "good" }
+          ]
+        }
+      ]
+    },
+    "nextSteps": {
+      "eyebrow": "Leadership next steps",
+      "note": "Each item has an owner set and a response timeframe. Owner names are illustrative pending the ESFCU leadership roster.",
+      "steps": [
+        {
+          "n": "1",
+          "title": "Launch the education-community deposit campaign",
+          "desc": "Scope it to the education field of membership and the Howard University division, sequenced to land ahead of the fall inflow window rather than after the summer draw.",
+          "owners": ["Marketing & Member Growth", "Finance & ALM"],
+          "chip": "Launch within 6 weeks",
+          "chipIcon": "calendar"
+        },
+        {
+          "n": "2",
+          "title": "Arrange the standby funding line",
+          "desc": "Put a committed facility in place as the buffer behind the campaign, sized to the pessimistic edge of the seasonality band.",
+          "owners": ["Finance & ALM", "Board Finance Committee"],
+          "chip": "Board approval next meeting",
+          "chipIcon": "clock"
+        },
+        {
+          "n": "3",
+          "title": "Close the Howard University division reconciliation",
+          "desc": "Restore the stalled nightly mapping and confirm the consolidated deposit and membership figures before they are cited to the board or an examiner.",
+          "owners": ["Data Governance", "Technology"],
+          "chip": "Before the next pre-read",
+          "chipIcon": "clock"
+        }
+      ]
+    }
+  },
+  "closing": {
+    "signoff": "The position is strong. The trend is the thing to manage — and now you can see it, prove it, and act on it in the same session.",
+    "primaryCta": "Return to the briefing home",
+    "secondaryCta": "Save the long-form report",
+    "steps": [
+      {
+        "eyebrow": "Recommended action 1",
+        "title": "Launch the education-community deposit campaign",
+        "body": "Marketing & Member Growth own the campaign with Finance & ALM. It is scoped to the education field of membership and the Howard University division and sequenced to land ahead of the fall payroll-cycle inflow window, not after the summer draw. Modeled to hold loan-to-share roughly flat through Q4.",
+        "marks": [
+          { "l": "Owner set", "v": "Marketing & Member Growth · Finance & ALM" },
+          { "l": "Response timeframe", "v": "Launch within 6 weeks" },
+          { "l": "Modeled confidence", "v": "84%" }
+        ]
+      },
+      {
+        "eyebrow": "Recommended action 2",
+        "title": "Arrange the standby funding line",
+        "body": "Finance & ALM bring the facility to the Board Finance Committee as the buffer behind the campaign, sized to the shortfall in the pessimistic seasonality case rather than the modeled one. This is purchased liquidity: it buys certainty, not trend — which is why it is paired with the campaign rather than chosen instead of it.",
+        "marks": [
+          { "l": "Owner set", "v": "Finance & ALM · Board Finance Committee" },
+          { "l": "Response timeframe", "v": "Board approval next meeting" },
+          { "l": "Modeled confidence", "v": "92%" }
+        ]
+      },
+      {
+        "eyebrow": "Recommended action 3",
+        "title": "Close the Howard University division reconciliation",
+        "body": "Data Governance and Technology restore the stalled nightly mapping, close the $2.7M share and 490-member gap, and confirm the consolidated figures. Until it closes, the board sees the enterprise figure with the division shown separately — flagged, never smoothed.",
+        "marks": [
+          { "l": "Owner set", "v": "Data Governance · Technology" },
+          { "l": "Response timeframe", "v": "Before the next pre-read" },
+          { "l": "Open delta", "v": "$2.7M · 490 members" }
+        ]
+      }
+    ]
+  }
+}

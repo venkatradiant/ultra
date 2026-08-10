@@ -24,6 +24,7 @@ import ussfcuCfoChatFlows from './ussfcu/cfo/chatFlows.json';
 import ussfcuCeoChatFlows from './ussfcu/ceo/chatFlows.json';
 import ussfcuEvelynChatFlows from './ussfcu/evelyn/chatFlows.json';
 import ussfcuNadiaChatFlows from './ussfcu/nadia/chatFlows.json';
+import esfcuCeoChatFlows from './esfcu/ceo/chatFlows.json';
 import newfoldDirChatFlows from './newfold-digital/director/chatFlows.json';
 import newfoldOpsChatFlows from './newfold-digital/ops/chatFlows.json';
 import aramcoHseChatFlows from './aramco/hse-gm/chatFlows.json';
@@ -1158,6 +1159,64 @@ const ussfcuCeoConfig = {
   },
 };
 
+// ESFCU CEO (Girado Smith) — the funding-and-liquidity executive briefing.
+// Gated to clientId === 'esfcu' in PersonaContext, so this config is safe to
+// keep in the base registry (it cannot be selected under any other client).
+//
+// The chip map carries both phrasings of each question on purpose: the always-
+// visible query bar uses spec §11's long forms ("Can I trust these numbers after
+// the Howard University merger?") while a turn's own follow-ups use spec §10's
+// shorter ones ("Can I trust these numbers?"). Both must resolve to the same turn.
+const esfcuCeoConfig = {
+  chatFlows: esfcuCeoChatFlows,
+  chipToFlowKey: {
+    'Next signal': '__next_signal__',
+
+    // Suggested query bar (spec §11) + greeting drill chips
+    'Where does the business stand this morning?': 'esfcu_ceo_where_stands',
+    'Where does the credit union stand this morning?': 'esfcu_ceo_where_stands',
+    'Walk me through the liquidity signal': 'esfcu_ceo_turn_liquidity',
+    'Can I trust these numbers after the Howard University merger?': 'esfcu_ceo_turn_trust',
+    'Can I trust these numbers?': 'esfcu_ceo_turn_trust',
+    'What happens to liquidity if loan demand keeps outpacing deposits?': 'esfcu_ceo_turn_projection',
+    'What happens to liquidity if this continues?': 'esfcu_ceo_turn_projection',
+    'What happens if this continues?': 'esfcu_ceo_turn_projection',
+    'Show me membership and growth': 'esfcu_ceo_turn_membership',
+    'Trace the deposit figure back to source': 'esfcu_ceo_trace_deposit',
+    'Trace the enterprise deposit figure to source': 'esfcu_ceo_trace_deposit',
+    'Reconcile the Howard University division': 'esfcu_ceo_reconcile_division',
+    'Show me the three options': 'esfcu_ceo_show_options',
+    'Is anything out of policy?': 'esfcu_ceo_turn_anomalies',
+    'Is anything out of policy or unusual?': 'esfcu_ceo_turn_anomalies',
+    'Draft the board briefing': 'esfcu_ceo_turn_board_briefing',
+    'Draft the board briefing and recommend an action': 'esfcu_ceo_turn_board_briefing',
+
+    // Briefing / Presentation Mode
+    'Open the full briefing': 'esfcu_ceo_turn_full_briefing',
+    'Adjust the recommended action': 'esfcu_ceo_adjust_action',
+    'Assign the owners': 'esfcu_ceo_assign_owners',
+  },
+  signalSequence: [
+    'esfcu_ceo_signal_1_liquidity',
+    'esfcu_ceo_signal_2_reconciliation',
+    'esfcu_ceo_signal_3_seasonality',
+  ],
+  // Spec §10's seven turns, in order.
+  askTurnSequence: [
+    'esfcu_ceo_turn_liquidity',
+    'esfcu_ceo_turn_trust',
+    'esfcu_ceo_turn_projection',
+    'esfcu_ceo_turn_anomalies',
+    'esfcu_ceo_turn_board_briefing',
+    'esfcu_ceo_turn_full_briefing',
+  ],
+  actionTurnKey: 'esfcu_ceo_turn_board_briefing',
+  actionConfirmMap: {
+    'ACT-ESFCU-CEO-001': { responseKey: 'ACT-ESFCU-CEO-001', nextChips: ['Open the full briefing', 'Adjust the recommended action', 'Assign the owners'] },
+    'ACT-ESFCU-CEO-002': { responseKey: 'ACT-ESFCU-CEO-002', nextChips: ['Open the full briefing', 'Adjust the recommended action', 'Assign the owners'] },
+  },
+};
+
 // USSFCU Evelyn Marsh — VP Compliance & Public Policy. The signature deep
 // compliance query and the disclosure checklist/calendar, at population altitude.
 // Gated to clientId === 'ussfcu' in PersonaContext.
@@ -1642,6 +1701,7 @@ const personaFlowConfigs = {
   ussfcu_ceo: ussfcuCeoConfig,
   ussfcu_evelyn: ussfcuEvelynConfig,
   ussfcu_nadia: ussfcuNadiaConfig,
+  esfcu_ceo: esfcuCeoConfig,
   newfold_director: newfoldDirConfig,
   newfold_ops: newfoldOpsConfig,
   aramco_hse_gm: aramcoHseConfig,

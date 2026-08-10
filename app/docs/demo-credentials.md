@@ -28,6 +28,7 @@ another client. Signing out returns to the same page.
 |---|---|---|---|
 | Navy Federal Credit Union | `<host>/login/nfcu` | `nfcu` | `nfcu@9705` |
 | United States Senate FCU | `<host>/login/ussfcu` | `ussfcu` | `ussfcu@9705` |
+| Educational Systems FCU | `<host>/login/esfcu` | `esfcu` | `esfcu@9705` |
 | Pentagon Federal Credit Union | `<host>/login/penfed` | `penfed` | `penfed@9705` |
 | Newfold Digital | `<host>/login/newfold` | `newfold` | `newfold@9705` |
 | Aramco — TrackLynk.AI | `<host>/login/aramco` | `aramco` | `aramco@9705` |

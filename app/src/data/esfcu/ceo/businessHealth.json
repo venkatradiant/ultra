@@ -1,0 +1,49 @@
+{
+  "note": "Membership, the Howard University division, and capital. The membership base, net worth ratio and merger are real; the quarterly shape, the division split and the conversion rate are illustrative.",
+  "as_of": "Dec 31, 2025",
+  "source": "Membership System · Howard University Division Ledger · Finance & Call Report",
+  "confidence": 90,
+  "membership": {
+    "value": 84000,
+    "display": "≈84,000",
+    "real": true,
+    "real_note": "NCUA call report, Dec 2025",
+    "growth_yoy_pct": 2.8,
+    "sparkline": [80100, 80700, 81300, 81900, 82500, 83000, 83500, 84000]
+  },
+  "capital": {
+    "net_worth_ratio_pct": 9.62,
+    "status": "Well capitalized",
+    "threshold_pct": 7,
+    "real": true,
+    "real_note": "NCUA call report, Dec 2025"
+  },
+  "assets": {
+    "value_usd": 1360000000,
+    "display": "≈$1.36B",
+    "real": true,
+    "real_note": "NCUA call report, Dec 2025"
+  },
+  "division": {
+    "name": "Howard University Federal Credit Union",
+    "subtitle": "A division of ESFCU",
+    "merged_effective": "November 30, 2024",
+    "real": true,
+    "real_note": "Merger and division status are real (esfcu.org, MD|DC CUA, CU Times). Member and balance splits below are illustrative — merger figures were never publicly disclosed.",
+    "members": 3910,
+    "primary_depositor_rate_pct": 34,
+    "field_of_membership": "Howard University employees, students, alumni, and hospital staff"
+  },
+  "segments": [
+    { "segment": "Educators & school staff", "members": 51200 },
+    { "segment": "Family members", "members": 19800 },
+    { "segment": "Retired educators", "members": 9090 },
+    { "segment": "Howard University division", "members": 3910 }
+  ],
+  "footprint": {
+    "branches": 13,
+    "state": "Maryland",
+    "real": true,
+    "real_note": "13 branches across Maryland (esfcu.org)"
+  }
+}

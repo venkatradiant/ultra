@@ -1,0 +1,141 @@
+[
+  {
+    "id": "SIG-ESFCU-CEO-001",
+    "type": "liquidity_watch",
+    "primary": true,
+    "title": "Liquidity Watch: Loan Demand Outpacing Deposit Growth",
+    "description": "Loan-to-share is near 89% and rising as loan growth outpaces share growth — loans up about 6.4% year over year against shares up about 3.1%. Projected to approach the internal policy ceiling by Q1 on the current trend. Recommended: launch a targeted education-community deposit campaign and arrange a standby funding line before the gap widens.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "Loan-to-share ≈89% · rising",
+    "sources": ["Core Banking", "Lending System", "Finance & ALM Workbook"],
+    "timestamp": "2026-08-10T06:00:00",
+    "trend": "tightening",
+    "real": false,
+    "data_note": "Real ratio from the NCUA call report (Dec 2025); the projection and the policy ceiling are illustrative.",
+    "metrics": {
+      "loan_to_share_pct": 89,
+      "loan_growth_yoy_pct": 6.4,
+      "share_growth_yoy_pct": 3.1,
+      "on_hand_liquidity_pct": 11.2,
+      "policy_ceiling_pct": 92
+    },
+    "confidence": {
+      "score": 94,
+      "rationale": "Loan balances from the core snapshot, share balances from the finance and ALM workbook, and origination volume from the lending system reconcile to a single governed loan-to-share ratio, validated overnight. Confidence is held below 100 because the Howard University division has not folded into the consolidated view.",
+      "signals_used": ["Core Banking", "Lending System", "Finance & ALM Workbook"],
+      "threshold": 80,
+      "model_version": "exec-liquidity-v1.0",
+      "validated_at": "2026-08-10T05:58:00"
+    }
+  },
+  {
+    "id": "SIG-ESFCU-CEO-002",
+    "type": "post_merger_reconciliation",
+    "primary": false,
+    "title": "Post-Merger Reconciliation Gap: Howard University Division",
+    "description": "Howard University division balances have not fully reconciled into the enterprise deposit and membership totals. Share balances and member counts differ between the merged ledger and the enterprise data warehouse because the nightly mapping for that division has not completed. Reconcile before citing consolidated numbers to the board.",
+    "impact": "high",
+    "severity": "critical",
+    "metric_text": "Division pending · reconcile before citing",
+    "sources": ["Howard University Division Ledger", "Enterprise Data Warehouse"],
+    "timestamp": "2026-08-10T06:02:00",
+    "trend": "pending",
+    "real": false,
+    "data_note": "The merger is real (effective Nov 30, 2024). The reconciliation state and the delta are illustrative — merger balances were never publicly disclosed.",
+    "metrics": {
+      "share_delta_usd": 2700000,
+      "member_delta": 490,
+      "nightly_job_failures_this_month": 2
+    },
+    "confidence": {
+      "score": 71,
+      "rationale": "The enterprise figure reconciles cleanly across core and finance and traces to source. The consolidated figure does not: the division mapping is incomplete, so the delta is identified and attributable but not yet closed.",
+      "signals_used": ["Enterprise Data Warehouse", "Howard University Division Ledger", "Governance & Lineage Layer"],
+      "threshold": 80,
+      "model_version": "exec-recon-v1.0",
+      "validated_at": "2026-08-10T06:02:00"
+    }
+  },
+  {
+    "id": "SIG-ESFCU-CEO-003",
+    "type": "deposit_seasonality",
+    "primary": false,
+    "title": "Deposit Seasonality Window Approaching",
+    "description": "The education field of membership drives a predictable summer deposit drawdown and payroll-cycle inflows tied to the academic calendar. The next favorable inflow window is approaching. Time the deposit campaign to the calendar so it lands ahead of the inflow window, not after the summer draw.",
+    "impact": "medium",
+    "severity": "info",
+    "metric_text": "Inflow window opens in ~5 weeks",
+    "sources": ["Historical Deposit Patterns", "Membership System"],
+    "timestamp": "2026-08-10T06:00:00",
+    "trend": "seasonal",
+    "real": false,
+    "data_note": "Illustrative pattern on a real education-sector membership base.",
+    "metrics": {
+      "weeks_to_inflow_window": 5,
+      "summer_draw_pct": 2.4
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Seasonal shape is drawn from historical deposit patterns by member segment across prior academic years; the amplitude varies year to year, which is why the forecast carries a band rather than a line.",
+      "signals_used": ["Historical Deposit Patterns"],
+      "threshold": 80,
+      "model_version": "exec-seasonality-v1.0",
+      "validated_at": "2026-08-10T05:57:00"
+    }
+  },
+  {
+    "id": "SIG-ESFCU-CEO-004",
+    "type": "membership_growth",
+    "primary": false,
+    "title": "Membership Growth and Howard University Conversion",
+    "description": "Membership has grown to approximately 84,000, and the Howard University merger expands the field of membership to Howard employees, students, alumni, and hospital staff. New members are not yet primary depositors. Converting them is the cheapest share growth available and it strengthens the funding base directly.",
+    "impact": "medium",
+    "severity": "info",
+    "metric_text": "≈84,000 members · conversion opportunity",
+    "sources": ["Membership System", "Howard University Division Ledger"],
+    "timestamp": "2026-08-10T06:00:00",
+    "trend": "growing",
+    "real": false,
+    "data_note": "Membership base is real (NCUA, Dec 2025). Conversion figures are illustrative.",
+    "metrics": {
+      "members": 84000,
+      "primary_depositor_rate_division_pct": 34
+    },
+    "confidence": {
+      "score": 90,
+      "rationale": "Member counts reconcile between the membership system and the enterprise warehouse for the legacy base; the division count carries the same pending flag as the deposit reconciliation.",
+      "signals_used": ["Membership System", "Howard University Division Ledger"],
+      "threshold": 80,
+      "model_version": "exec-membership-v1.0",
+      "validated_at": "2026-08-10T05:59:00"
+    }
+  },
+  {
+    "id": "SIG-ESFCU-CEO-005",
+    "type": "capital_strength",
+    "primary": false,
+    "title": "Capital Strength — Carry It as the Assurance Line",
+    "description": "Net worth ratio is approximately 9.62%, well capitalized, a healthy buffer that gives the board room to act on the liquidity plan. No action required. This is the assurance line in the board story: the institution is strong, and the liquidity question is a trend to manage, not a condition to fix.",
+    "impact": "info",
+    "severity": "healthy",
+    "metric_text": "Net worth 9.62% · well capitalized",
+    "sources": ["Finance & Call Report"],
+    "timestamp": "2026-08-10T06:00:00",
+    "trend": "stable",
+    "real": true,
+    "data_note": "Ratio is real (NCUA call report, Dec 2025). The commentary is illustrative.",
+    "metrics": {
+      "net_worth_ratio_pct": 9.62,
+      "well_capitalized_threshold_pct": 7
+    },
+    "confidence": {
+      "score": 99,
+      "rationale": "Net worth ratio is taken directly from the filed call report and requires no cross-source reconciliation.",
+      "signals_used": ["Finance & Call Report"],
+      "threshold": 80,
+      "model_version": "exec-capital-v1.0",
+      "validated_at": "2026-08-10T05:55:00"
+    }
+  }
+]

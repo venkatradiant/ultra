@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="none">
+  <!-- ESFCU navy field. #003768 is sampled from the mark on esfcu.org. -->
+  <rect width="44" height="44" rx="10" fill="#003768"/>
+  <!-- Four-triangle diamond, echoing the geometric mark in the real lockup.
+       Authored in the same house style as fs-logo.svg / penfed-logo.svg — a
+       simplified stand-in, not the trademarked artwork. -->
+  <polygon points="22,8 32,20 22,20" fill="white"/>
+  <polygon points="22,8 12,20 22,20" fill="white" opacity="0.62"/>
+  <polygon points="12,20 22,20 22,34" fill="white" opacity="0.34"/>
+  <!-- Warm accent quarter — the emphasis colour the brand carries alongside navy. -->
+  <polygon points="32,20 22,20 22,34" fill="#E8A33D"/>
+</svg>

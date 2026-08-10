@@ -1,0 +1,51 @@
+{
+  "validated_at": "2026-08-10T06:02:00",
+  "data_trust_score": 92,
+  "widgets": {
+    "pipeline_health": {
+      "state": "warning",
+      "summary": "6 of 7 sources loaded · 1 stalled",
+      "detail": "Six sources loaded and reconciled by 6:02 AM. The Howard University division nightly job stalled — the second failure this month — which is why the division reconciliation is pending and held out of the consolidated figure.",
+      "sources": [
+        { "name": "Core Banking", "state": "good", "loaded_at": "05:52" },
+        { "name": "Lending System", "state": "good", "loaded_at": "05:56" },
+        { "name": "Finance & ALM Workbook", "state": "good", "loaded_at": "05:58" },
+        { "name": "Membership System", "state": "good", "loaded_at": "05:59" },
+        { "name": "Enterprise Data Warehouse", "state": "good", "loaded_at": "06:01" },
+        { "name": "BI & Reporting Layer", "state": "good", "loaded_at": "06:02" },
+        { "name": "Howard University Division Ledger", "state": "critical", "loaded_at": "—", "note": "nightly mapping stalled" }
+      ]
+    },
+    "post_merger_reconciliation": {
+      "state": "warning",
+      "status_label": "Pending",
+      "summary": "Division pending · $2.7M delta",
+      "detail": "Enterprise deposits reconcile cleanly across core and finance. The Howard University division share balance differs from the enterprise data warehouse by $2.7M, and the member count by 490, because the nightly mapping has not completed. Reconcile before you cite the consolidated deposit total.",
+      "cite_warning": "Reconcile before you cite this",
+      "share_delta_usd": 2700000,
+      "member_delta": 490,
+      "figure": "Consolidated share balance"
+    },
+    "open_audit_issues": {
+      "state": "good",
+      "summary": "4 open · none aging",
+      "detail": "Four open audit and exam items, none aging past threshold. Segregation-of-duties and access changes are logged with initiator, approver, and validator.",
+      "open_count": 4,
+      "aging_flag": false,
+      "sod_changes_logged": true
+    },
+    "ncua_exam_readiness": {
+      "state": "warning",
+      "score": 84,
+      "status_label": "Attention",
+      "next_window": "Q4 2026",
+      "detail": "Composite posture across governed reporting, lineage coverage, and control documentation. The single open item is the post-merger reconciliation — close it and the score clears the ready threshold."
+    },
+    "lineage_on_demand": {
+      "state": "good",
+      "summary": "Trace any figure to source",
+      "detail": "Click any figure to trace it from the core through the nightly extract and the warehouse to this screen and the board package — the chain you can hand to the board or an NCUA examiner.",
+      "example_path": ["Core Banking", "Nightly Extract", "Finance & ALM Workbook", "Enterprise Data Warehouse", "Board Brief"]
+    }
+  }
+}

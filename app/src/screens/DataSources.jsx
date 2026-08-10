@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Database, Brain, Headphones, Cog, Users, Monitor, MessageCircle, Shield, TrendingUp, Cpu, Star, AlertTriangle } from 'lucide-react';
+import { Database, Brain, Headphones, Cog, Users, Monitor, MessageCircle, Shield, TrendingUp, Cpu, Star, AlertTriangle, Route, FileText, ShieldCheck } from 'lucide-react';
 import { usePersona } from '../context/PersonaContext';
 import opsDataSources from '../data/dataSources.json';
 import cxDataSources from '../data/cx/dataSources.json';
@@ -19,6 +19,7 @@ import ussfcuCfoDataSources from '../data/ussfcu/cfo/dataSources.json';
 import ussfcuCeoDataSources from '../data/ussfcu/ceo/dataSources.json';
 import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
 import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
+import esfcuCeoDataSources from '../data/esfcu/ceo/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
 import aramcoDataSources from '../data/aramco/_shared/dataSources.json';
 import attDataSources from '../data/att/_shared/dataSources.json';
@@ -44,6 +45,10 @@ const personaDataSources = {
   // USSFCU-only Risk & Compliance personas (gated to clientId === 'ussfcu').
   ussfcu_evelyn: ussfcuEvelynDataSources,
   ussfcu_nadia: ussfcuNadiaDataSources,
+  // ESFCU-only CEO persona (gated to clientId === 'esfcu' in PersonaContext).
+  // Seven vendor-neutral sources; the Howard University division ledger is the
+  // one that is only partially connected, which is the whole point of it.
+  esfcu_ceo: esfcuCeoDataSources,
   // Commercial market — Newfold Digital. Both personas share the same eight
   // connected sources (Genesys Cloud primary + Billing, Domains, Hosting, CRM,
   // Marketing, IT, Snowflake).
@@ -85,6 +90,10 @@ const iconMap = {
   cpu: Cpu,
   star: Star,
   'alert-triangle': AlertTriangle,
+  // Additional icons used by the ESFCU CEO data sources.
+  route: Route,
+  'file-text': FileText,
+  'shield-check': ShieldCheck,
 };
 
 function formatSyncTime(isoString) {
@@ -124,6 +133,27 @@ const ATT_DISCLOSURES = [
   'Source-system naming is vendor-agnostic. The workbench reads whatever billing, rate-card, tax and rebilling systems an operation already runs; no specific vendor is named or required.',
 ];
 
+// ESFCU data posture. The public backdrop is real and sourced; everything
+// operational is illustrative. Spec §15 asks for the illustrative-branding note
+// to live on this screen specifically.
+const ESFCU_REAL_FACTS = [
+  ['CEO', 'Girado Smith, CPA — President & CEO since January 2023; 27 years at ESFCU, 18 as EVP & CFO'],
+  ['Organization', 'Educational Systems Federal Credit Union, Greenbelt, Maryland — founded 1955'],
+  ['Field of membership', 'Maryland\'s education community — teachers, educators, staff and their families'],
+  ['Scale (NCUA, Dec 2025)', '≈$1.36B assets · ≈84,000 members · 9.62% net worth ratio · ≈89% loan-to-share · 13 branches'],
+  ['Merger', 'Howard University Employees FCU merged effective November 30, 2024; operates as Howard University Federal Credit Union, a division of ESFCU'],
+  ['Governance', 'Volunteer Board of Directors, Chair Alonia C. Sharps · federally insured by NCUA'],
+  ['Recognition', 'AACUC Hall of Fame (March 2025) · Washington Business Journal 2025 Diversity in Business Award'],
+];
+
+const ESFCU_DISCLOSURES = [
+  'The public backdrop is real and sourced: the CEO\'s biography, ESFCU\'s assets, membership, net worth ratio, loan-to-share ratio, branch count, founding year, governance and the Howard University merger all come from esfcu.org, NCUA call report data, and public announcements.',
+  'Everything operational is illustrative: the priority-signal values, the reconciliation delta and member gap, the trust and pipeline states, the internal policy ceiling and liquidity floor, the deposit and loan composition, the seasonality shape, the owner names, and every figure on the projection.',
+  'Platform names are deliberately vendor-neutral. ESFCU\'s actual core banking, lending, data warehouse and BI platforms are not public, so this build names capabilities rather than vendors — confirm them with ESFCU technology leadership before the working session.',
+  'The Howard University merger\'s asset and member figures were never publicly disclosed. The $2.7M share delta and 490-member gap that drive the reconciliation centerpiece are illustrative constructions on a real merger.',
+  'ESFCU branding is illustrative for this build. The navy is sampled from the mark on esfcu.org; exact hex values, typography and the logo lockup need confirming against the ESFCU brand kit. The logo mark shown here is an authored stand-in, not the trademarked artwork.',
+];
+
 export default function DataSources() {
   const persona = usePersona();
   const { clientId } = useBranding();
@@ -131,6 +161,7 @@ export default function DataSources() {
   const dataSources = sourcesMap[persona.id] || sourcesMap.ops;
   const isAramco = persona.id?.startsWith('aramco_');
   const isAtt = persona.id?.startsWith('att_');
+  const isEsfcu = persona.id?.startsWith('esfcu_');
 
   return (
     <div className="flex-1 py-8 px-4 sm:px-6 lg:px-8 overflow-y-auto scrollbar-sleek">
@@ -152,6 +183,44 @@ export default function DataSources() {
             {ARAMCO_DISCLOSURES.map((line, i) => (
               <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Spec §2 — the real, public, sourced frame the ESFCU demo sits on. */}
+      {isEsfcu && (
+        <div className="mb-6 rounded-2xl border border-border-subtle bg-surface p-5">
+          <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-brand">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            Real public backdrop — verified and safe to show
+          </p>
+          <dl className="grid grid-cols-1 gap-x-6 gap-y-2 lg:grid-cols-2">
+            {ESFCU_REAL_FACTS.map(([label, value]) => (
+              <div key={label} className="flex flex-col gap-0.5 border-b border-border-subtle pb-2 last:border-0">
+                <dt className="text-[10px] font-semibold uppercase tracking-wide text-text-subtle">{label}</dt>
+                <dd className="text-[12.5px] leading-relaxed text-text-muted">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-3 text-[11px] text-text-subtle">
+            Sources: esfcu.org · NCUA call report data via public aggregators · CUInsight · MD|DC Credit Union Association · CU Times · AACUC
+          </p>
+        </div>
+      )}
+
+      {isEsfcu && (
+        <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+          <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-amber-800">
+            <AlertTriangle className="h-3.5 w-3.5" />
+            Data posture — read before demoing
+          </p>
+          <ul className="space-y-2">
+            {ESFCU_DISCLOSURES.map((line, i) => (
+              <li key={i} className="flex items-start gap-2 text-[12.5px] leading-relaxed text-amber-900">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600" />
                 {line}
               </li>
             ))}

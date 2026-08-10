@@ -22,6 +22,11 @@ const CLIENT_PERSONAS = {
   // ussfcu_* personas are intentionally absent from every other client's
   // allowlist so they cannot be selected outside USSFCU.
   ussfcu: ['ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_cfo', 'ussfcu_ceo', 'ops', 'cx', 'retention', 'risk'],
+  // ESFCU: single-persona Tier 1 — Girado Smith, President & CEO. The switcher
+  // is present but single-entry by design; a CFO or VP Finance is added here
+  // later with no other change. Deliberately no generic personas: this tenant is
+  // one executive briefing, not a persona sampler.
+  esfcu: ['esfcu_ceo'],
   // Healthcare market — Riverside Health System (care-ops persona).
   riverside_health: ['care_ops'],
   // Commercial market — Newfold Digital. Two CCaaS personas; Marisol (director)
@@ -46,6 +51,7 @@ const CLIENT_PERSONAS = {
 const CLIENT_DEFAULT_PERSONA = {
   nfcu: 'nfcu_supervisor',
   ussfcu: 'ussfcu_evelyn',
+  esfcu: 'esfcu_ceo',
   riverside_health: 'care_ops',
   newfold_digital: 'newfold_director',
   aramco: 'aramco_hse_gm',

@@ -1,0 +1,62 @@
+{
+  "note": "Loan-to-share projected forward from the Q4 2025 close: baseline versus a with-campaign path, with the academic-calendar seasonality band overlaid and the internal policy ceiling marked. Every value here is illustrative — ESFCU's actual policy ceiling and liquidity floor are an open follow-up.",
+  "as_of": "Dec 31, 2025",
+  "source": "Core Banking · Lending System · Historical Deposit Patterns · Finance & ALM Workbook",
+  "confidence": 86,
+  "unit_note": "Loan-to-share ratio, percent. The shaded band is the seasonality range around the with-campaign path.",
+  "ceiling_pct": 92,
+  "ceiling_label": "Internal policy ceiling",
+  "crossing_label": "Baseline reaches the ceiling early in Q1",
+  "crossing_period": "Q1 2027",
+  "series": [
+    { "period": "Q4 2025", "base": 89.7, "campaign": 89.7, "band_low": 89.7, "band_high": 89.7, "actual": true },
+    { "period": "Q1 2026", "base": 90.3, "campaign": 90.1, "band_low": 89.7, "band_high": 90.5 },
+    { "period": "Q2 2026", "base": 90.9, "campaign": 90.2, "band_low": 89.6, "band_high": 90.8 },
+    { "period": "Q3 2026", "base": 91.3, "campaign": 89.9, "band_low": 89.1, "band_high": 90.7 },
+    { "period": "Q4 2026", "base": 91.8, "campaign": 89.6, "band_low": 88.7, "band_high": 90.5 },
+    { "period": "Q1 2027", "base": 92.4, "campaign": 89.8, "band_low": 88.8, "band_high": 90.8 }
+  ],
+  "liquidity": {
+    "label": "On-hand liquidity",
+    "floor_pct": 10.0,
+    "floor_label": "Internal comfort floor",
+    "series": [
+      { "period": "Q4 2025", "base": 11.2, "campaign": 11.2 },
+      { "period": "Q1 2026", "base": 10.8, "campaign": 10.9 },
+      { "period": "Q2 2026", "base": 10.3, "campaign": 10.7 },
+      { "period": "Q3 2026", "base": 9.9, "campaign": 10.9 },
+      { "period": "Q4 2026", "base": 9.6, "campaign": 11.1 },
+      { "period": "Q1 2027", "base": 9.3, "campaign": 11.0 }
+    ]
+  },
+  "options": [
+    {
+      "id": "opt-campaign",
+      "title": "Education-Community Deposit Campaign",
+      "description": "Targeted share-gathering across the education field of membership and the newly merged Howard University members, timed to land ahead of the fall payroll-cycle inflow window.",
+      "attributes": { "timeline": "Fast", "cost": "Low", "liquidity_impact": "Moderate" },
+      "recommended": false,
+      "projected_impact": "Holds the ratio roughly flat through Q4",
+      "confidence": 84
+    },
+    {
+      "id": "opt-standby-line",
+      "title": "Standby Funding Line",
+      "description": "A committed facility held in reserve. Immediate certainty and a hard buffer, but it is purchased liquidity and it does not move the underlying trend.",
+      "attributes": { "timeline": "Moderate", "cost": "High", "liquidity_impact": "Strong" },
+      "recommended": false,
+      "projected_impact": "Buffer available on demand; trend unchanged",
+      "confidence": 92
+    },
+    {
+      "id": "opt-both",
+      "title": "Campaign Paired with a Standby Line",
+      "description": "The campaign moves the trend while the line holds the buffer through Q1 in case uptake lands at the low edge of the seasonality band.",
+      "attributes": { "timeline": "Fast", "cost": "Moderate", "liquidity_impact": "Strong" },
+      "recommended": true,
+      "projected_impact": "Ratio held flat and a buffer retained through Q1",
+      "confidence": 88
+    }
+  ],
+  "closing_note": "These options are not mutually exclusive. The recommended path pairs the education-community deposit campaign with a standby funding line to close the gap now and hold a buffer through Q1."
+}

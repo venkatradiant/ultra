@@ -1,0 +1,71 @@
+[
+  {
+    "id": "ds-esfcu-ceo-01",
+    "name": "Core Banking System",
+    "status": "connected",
+    "description": "System of record for members, share balances and loan servicing. Vendor-neutral in this build — ESFCU's actual core platform is an open follow-up. The intelligence layer sits over it rather than replacing it.",
+    "icon": "database",
+    "lastSync": "2026-02-10T05:52:00",
+    "recordCount": 2100000,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-ceo-02",
+    "name": "Loan Origination & Servicing",
+    "status": "connected",
+    "description": "Origination pipeline and servicing balances behind the loan side of the loan-to-share ratio. Named vendor-neutrally pending confirmation from ESFCU technology leadership.",
+    "icon": "trending-up",
+    "lastSync": "2026-02-10T05:56:00",
+    "recordCount": 38400,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-ceo-03",
+    "name": "Finance & ALM Workbook",
+    "status": "connected",
+    "description": "The finance and asset-liability workbook set that carries share balances, the on-hand liquidity ratio and the internal policy thresholds. Today this is a spreadsheet estate assembled by hand each month.",
+    "icon": "file-text",
+    "lastSync": "2026-02-10T05:58:00",
+    "recordCount": null,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-ceo-04",
+    "name": "Membership System",
+    "status": "connected",
+    "description": "Active member counts and field-of-membership segmentation across the education community and the merged Howard University division.",
+    "icon": "users",
+    "lastSync": "2026-02-10T05:59:00",
+    "recordCount": 84120,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-ceo-05",
+    "name": "Enterprise Data Warehouse",
+    "status": "connected",
+    "description": "Where the sources converge into governed reporting figures. The enterprise share balance reconciles here cleanly; the Howard University division does not, yet.",
+    "icon": "route",
+    "lastSync": "2026-02-10T06:01:00",
+    "recordCount": null,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-ceo-06",
+    "name": "Howard University Division Ledger",
+    "status": "partial",
+    "description": "The merged division's own ledger, from the November 2024 merger with Howard University Employees FCU. The nightly mapping into the enterprise warehouse has stalled twice this month, which is why the consolidated deposit and membership figures are pending reconciliation.",
+    "icon": "alert-triangle",
+    "lastSync": null,
+    "recordCount": 3910,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-ceo-07",
+    "name": "Governance & Lineage Layer",
+    "status": "connected",
+    "description": "Pipeline freshness, reconciliation state, audit and exam posture, and the source-to-brief trace behind every figure. This is what turns a number into a number the CEO can defend to the board or an NCUA examiner.",
+    "icon": "shield-check",
+    "lastSync": "2026-02-10T06:02:00",
+    "recordCount": null
+  }
+]

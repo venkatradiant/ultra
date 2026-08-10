@@ -8,10 +8,11 @@ import { financialServicesClient } from './clients/financial-services/client.man
 import { penfedClient } from './clients/penfed/client.manifest';
 import { ussfcuClient } from './clients/ussfcu/client.manifest';
 import { nfcuClient } from './clients/nfcu/client.manifest';
+import { esfcuClient } from './clients/esfcu/client.manifest';
 
 export const financialServicesMarket: MarketManifest = {
   id: 'financial-services',
   name: 'Financial Services',
-  clients: [financialServicesClient, penfedClient, ussfcuClient, nfcuClient],
+  clients: [financialServicesClient, penfedClient, ussfcuClient, nfcuClient, esfcuClient],
   defaultClientId: 'financial_services',
 };

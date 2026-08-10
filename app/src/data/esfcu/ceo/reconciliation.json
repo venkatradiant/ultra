@@ -1,0 +1,63 @@
+{
+  "note": "The Howard University division reconciliation — the ESFCU-specific trust centerpiece. The merger is real (Howard University Employees FCU, effective November 30, 2024, now operating as Howard University Federal Credit Union, a division of ESFCU). Every balance, count and delta below is illustrative: the merger's asset and member figures were never publicly disclosed.",
+  "as_of": "Dec 31, 2025",
+  "validated_at": "2026-02-10T06:02:00",
+  "state": "pending",
+  "cite_warning": "Reconcile before you cite this",
+  "cause": "The nightly mapping job for the Howard University division has not completed — it stalled twice this month — so the division's share balances and member counts have not folded into the enterprise totals.",
+  "items": [
+    {
+      "id": "recon-shares",
+      "figure": "Share balances",
+      "unit": "usd",
+      "enterpriseLabel": "Enterprise data warehouse",
+      "enterpriseValue": 1160400000,
+      "enterpriseDisplay": "$1,160.4M",
+      "divisionLabel": "Howard University division ledger",
+      "divisionValue": 47600000,
+      "divisionDisplay": "$47.6M",
+      "mappedValue": 44900000,
+      "mappedDisplay": "$44.9M",
+      "delta": 2700000,
+      "deltaDisplay": "$2.7M",
+      "deltaLabel": "unmapped",
+      "trueConsolidatedDisplay": "$1,163.1M",
+      "state": "pending",
+      "lineage": [
+        { "stage": "Source", "system": "Howard University Division Ledger", "note": "Division share balances, $47.6M", "state": "good" },
+        { "stage": "Mapping", "system": "Nightly Division Mapping", "note": "Stalled — last successful run 9 days ago", "state": "critical" },
+        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Carries $44.9M of the division — $2.7M unmapped", "state": "warning" },
+        { "stage": "Brief", "system": "Board Package", "note": "Consolidated total held back; enterprise figure shown instead", "state": "warning" }
+      ]
+    },
+    {
+      "id": "recon-members",
+      "figure": "Member counts",
+      "unit": "count",
+      "enterpriseLabel": "Enterprise data warehouse",
+      "enterpriseValue": 84120,
+      "enterpriseDisplay": "84,120",
+      "divisionLabel": "Howard University division ledger",
+      "divisionValue": 3910,
+      "divisionDisplay": "3,910",
+      "mappedValue": 3420,
+      "mappedDisplay": "3,420",
+      "delta": 490,
+      "deltaDisplay": "490",
+      "deltaLabel": "unmapped",
+      "trueConsolidatedDisplay": "84,610",
+      "state": "pending",
+      "lineage": [
+        { "stage": "Source", "system": "Howard University Division Ledger", "note": "Division members, 3,910", "state": "good" },
+        { "stage": "Mapping", "system": "Nightly Division Mapping", "note": "Same stalled job — member counts follow the share mapping", "state": "critical" },
+        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Carries 3,420 division members — 490 unmapped", "state": "warning" },
+        { "stage": "Brief", "system": "Board Package", "note": "Membership cited as ≈84,000 (NCUA, Dec 2025)", "state": "good" }
+      ]
+    }
+  ],
+  "enterprise_clean": {
+    "state": "good",
+    "summary": "Enterprise deposits reconcile cleanly",
+    "detail": "The enterprise share balance matches across the core snapshot and the finance and ALM workbook with no divergence, and traces end to end. It is the figure that is safe to cite today."
+  }
+}

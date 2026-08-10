@@ -26,6 +26,8 @@ export default function TopHeader({ onMenuClick }) {
     // USSFCU CEO — pure executive altitude. Business Performance is the roll-up
     // view; Priority Signals is the state-of-the-business signal set.
     ussfcu_ceo: { journey: 'Business Performance', risk: 'Priority Signals' },
+    // ESFCU CEO — same executive altitude, same two reframes.
+    esfcu_ceo: { journey: 'Business Performance', risk: 'Priority Signals' },
     // USSFCU Risk & Compliance — Evelyn (VP) and Nadia (Analyst) reframe journey
     // as the Compliance Query workbench and risk as the Disclosure Calendar.
     // Keep in sync with each persona manifest's navLabels.

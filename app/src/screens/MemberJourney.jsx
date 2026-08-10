@@ -9,6 +9,7 @@ import penfedJourneyMap from '../data/penfed/journeyMap.json';
 import nfcuWorkforceMap from '../data/nfcu/nfcuWorkforceMap.json';
 import DataFlowLineageMap from '../components/ussfcu/cfo/DataFlowLineageMap';
 import BusinessPerformanceView from '../components/ussfcu/ceo/performance/BusinessPerformanceView';
+import EsfcuBusinessPerformanceView from '../components/esfcu/ceo/performance/BusinessPerformanceView';
 import ComplianceQueryWorkbench from '../components/ussfcu/evelyn/ComplianceQueryWorkbench';
 import FileExceptionQueue from '../components/ussfcu/nadia/FileExceptionQueue';
 import WorkforceIntelligencePage from '../components/newfold/workforce/WorkforceIntelligencePage';
@@ -56,6 +57,7 @@ export default function MemberJourney() {
   const isNewfold = persona?.id?.startsWith('newfold_');
   const isCfo = persona?.id === 'ussfcu_cfo';
   const isCeo = persona?.id === 'ussfcu_ceo';
+  const isEsfcuCeo = persona?.id === 'esfcu_ceo';
   const isEvelyn = persona?.id === 'ussfcu_evelyn';
   const isNadia = persona?.id === 'ussfcu_nadia';
   const baseJourneyMap = clientId === 'penfed' ? penfedJourneyMap : journeyMap;
@@ -74,6 +76,13 @@ export default function MemberJourney() {
   // each exhibit shown with its source, as-of date, and confidence.
   if (isCeo) {
     return <BusinessPerformanceView />;
+  }
+
+  // ESFCU CEO — the same executive roll-up on ESFCU's numbers: assets and
+  // capital, loan and deposit composition, the education-calendar deposit
+  // cycle, membership, and the funding-plan outlook.
+  if (isEsfcuCeo) {
+    return <EsfcuBusinessPerformanceView />;
   }
 
   // USSFCU CFO — the journey page becomes the Data Flow & Lineage view: how

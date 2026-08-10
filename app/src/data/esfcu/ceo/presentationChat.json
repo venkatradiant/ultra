@@ -1,0 +1,361 @@
+{
+  "note": "Scripted Q&A bank for the Presentation Mode 'Ask AI about this briefing' sheet. Deterministic, no live model. Question ids beginning sit_/ev_/traj_/mem_/res_ are the click-seeds attached to slide elements.",
+  "global": {
+    "greeting": "Good morning, Girado. Ask me anything about this briefing — the funding picture, the numbers behind it, how far you can trust them after the merger, or the recommendation. You can also click any figure, chart, or card to ask about it.",
+    "default": {
+      "a": "I can speak to anything in this briefing — the position, the loan-to-share issue, the eight-quarter trend, the Howard University reconciliation, members and mission, or the recommended plan. Try one of these:",
+      "followups": ["Walk me through the liquidity issue", "Can I trust these numbers?", "What do you recommend?"]
+    },
+    "questions": [
+      {
+        "id": "g_summary",
+        "q": "Where does the credit union stand?",
+        "aliases": ["state of the business", "overall", "summary", "how are we doing", "bottom line", "where do we stand"],
+        "keywords": ["stand", "overall", "summary", "bottom", "state", "position"],
+        "a": "A strong institution with one thing to manage. Assets are approximately $1.36B, membership approximately 84,000, and capital is healthy at a 9.62% net worth ratio — all real figures from the December 2025 call report. The item that needs a decision is funding: loan demand is outpacing deposit growth and loan-to-share is near 89% and rising.",
+        "sources": ["Core Banking", "Finance & Call Report", "Membership System"],
+        "confidence": 96,
+        "followups": ["Walk me through the liquidity issue", "Can I trust these numbers?", "What do you recommend?"]
+      },
+      {
+        "id": "g_liquidity",
+        "q": "Walk me through the liquidity issue",
+        "aliases": ["liquidity", "the funding picture", "what's the issue", "walk me through it", "the watch"],
+        "keywords": ["liquidity", "funding", "issue", "picture", "loan-to-share", "deposit", "watch"],
+        "a": "Loans grew about 6.4% year over year while shares grew about 3.1%. That gap lifted loan-to-share to 89.7%, high for a credit union, and it is thinning on-hand liquidity to around 11.2%. On the current trend the ratio approaches your internal policy ceiling by Q1. The trend, not the level, is what makes it a board item.",
+        "sources": ["Core Banking", "Lending System", "Finance & ALM Workbook"],
+        "confidence": 94,
+        "followups": ["What happens if we don't act?", "What do you recommend?", "How is the 89.7% reconciled?"]
+      },
+      {
+        "id": "g_trust",
+        "q": "Can I trust these numbers?",
+        "aliases": ["can i trust this", "is this validated", "are these numbers right", "how reliable", "trustworthy", "after the merger"],
+        "keywords": ["trust", "reliable", "validated", "accurate", "right", "confidence", "merger"],
+        "a": "Mostly yes, with one exception you should see. Six of seven sources loaded and reconciled by 6:02 this morning, and every enterprise figure traces to source. The seventh is the Howard University division ledger: its nightly mapping stalled, so $2.7M of share balances and 490 members have not folded into the enterprise totals. The consolidated deposit figure is held back rather than cited. It is flagged, not hidden.",
+        "sources": ["Governance & Lineage Layer", "Enterprise Data Warehouse", "Howard University Division Ledger"],
+        "confidence": 92,
+        "followups": ["What exactly is the reconciliation gap?", "Trace the deposit figure to source", "What's the NCUA readiness?"]
+      },
+      {
+        "id": "g_recon",
+        "q": "What exactly is the reconciliation gap?",
+        "aliases": ["the howard university gap", "what is the delta", "reconciliation", "the division gap", "howard"],
+        "keywords": ["reconciliation", "howard", "division", "gap", "delta", "merger", "unmapped"],
+        "a": "The Howard University division ledger reports $47.6M in share balances; the enterprise warehouse carries $44.9M of that, leaving $2.7M unmapped. Member counts follow the same break — 3,910 on the division ledger against 3,420 mapped, so 490 members are unaccounted for in the consolidated view. The cause is a nightly mapping job that has stalled twice this month. The delta is identified and attributable, not a mystery — but it must close before the consolidated total is cited.",
+        "sources": ["Enterprise Data Warehouse", "Howard University Division Ledger"],
+        "confidence": 88,
+        "action": "lineage",
+        "followups": ["What do you recommend?", "Can I trust these numbers?", "Where does the credit union stand?"]
+      },
+      {
+        "id": "g_recommend",
+        "q": "What do you recommend?",
+        "aliases": ["recommendation", "what should we do", "the plan", "what's the move", "next steps"],
+        "keywords": ["recommend", "should", "plan", "move", "action", "options"],
+        "a": "Pair the two moves. Launch a targeted education-community deposit campaign timed to land ahead of the fall payroll-cycle inflow window, and arrange a standby funding line as a buffer. The campaign moves the underlying trend; the line holds the buffer through Q1 if uptake lands at the low edge of the seasonality band. Either alone leaves a gap — the campaign may under-deliver, and the line does nothing for the trend.",
+        "sources": ["Finance & ALM Workbook", "Historical Deposit Patterns"],
+        "confidence": 88,
+        "followups": ["What happens if we don't act?", "Who owns each action?", "Walk me through the liquidity issue"]
+      },
+      {
+        "id": "g_donothing",
+        "q": "What happens if we don't act?",
+        "aliases": ["do nothing", "base case", "no action", "if this continues", "what if we wait"],
+        "keywords": ["nothing", "base", "case", "continues", "wait", "act"],
+        "a": "On the baseline, loan-to-share reaches the internal policy ceiling early in Q1 and on-hand liquidity drifts below the comfort floor before then — around 9.6% by Q4 against a 10% floor. The everyday cost is worse than the worst case: the campaign that could have closed the gap gets launched a quarter too late, after the summer draw rather than ahead of the inflow window.",
+        "sources": ["Finance & ALM Workbook", "Historical Deposit Patterns"],
+        "confidence": 86,
+        "followups": ["What do you recommend?", "Show me the three options", "Walk me through the liquidity issue"]
+      },
+      {
+        "id": "g_owners",
+        "q": "Who owns each action?",
+        "aliases": ["owners", "who is responsible", "accountability", "who does what"],
+        "keywords": ["owns", "owner", "responsible", "accountable", "who"],
+        "a": "The deposit campaign sits with Marketing & Member Growth alongside Finance & ALM, to launch within six weeks. The standby funding line sits with Finance & ALM and the Board Finance Committee for approval at the next meeting. The Howard University reconciliation sits with Data Governance and Technology, to close before the next pre-read. Owner names in this build are illustrative placeholders pending your leadership roster.",
+        "sources": ["Radiant Intelligence Layer"],
+        "confidence": 90,
+        "followups": ["What do you recommend?", "What exactly is the reconciliation gap?"]
+      },
+      {
+        "id": "g_ncua",
+        "q": "What's the NCUA readiness?",
+        "aliases": ["exam readiness", "ncua", "examiner", "are we exam ready"],
+        "keywords": ["ncua", "exam", "readiness", "examiner", "regulator"],
+        "a": "84 out of 100, with the posture marked as needing attention rather than clear. The single open item driving that is the post-merger reconciliation — close it and the score clears the ready threshold. Four audit and exam items are open, none aging past threshold. Next exam window is Q4 2026. These posture figures are illustrative for this build.",
+        "sources": ["Governance & Lineage Layer"],
+        "confidence": 84,
+        "followups": ["What exactly is the reconciliation gap?", "Can I trust these numbers?"]
+      }
+    ]
+  },
+  "slides": {
+    "situational": {
+      "suggested": ["Where does the credit union stand?", "Why is this the board-level item?", "What are the assets built on?"],
+      "questions": [
+        {
+          "id": "sit_assets",
+          "q": "What are the assets built on?",
+          "aliases": ["total assets", "1.36 billion", "the asset figure", "assets"],
+          "keywords": ["assets", "billion", "balance", "sheet", "size"],
+          "a": "Approximately $1.36B as of the December 2025 call report — a real, filed figure, not a modelled one. It is the sum of all asset accounts, and roughly $1.04B of it is net loans. That loan concentration is exactly why the funding question matters at this size.",
+          "sources": ["Core Banking", "Finance & Call Report"],
+          "confidence": 98,
+          "followups": ["Walk me through the liquidity issue", "Where does the credit union stand?"]
+        },
+        {
+          "id": "sit_members",
+          "q": "Tell me about the membership base",
+          "aliases": ["members", "84000 members", "84,000", "membership"],
+          "keywords": ["members", "membership", "base", "84000", "education"],
+          "a": "Approximately 84,000 members as of December 2025 — real and sourced. The field of membership is Maryland's education community: teachers, educators, school staff and their families, served from 13 branches, plus the Howard University division that joined in the 2024 merger. That composition is what drives the deposit seasonality.",
+          "sources": ["Membership System"],
+          "confidence": 96,
+          "followups": ["What is the Howard University division?", "Where does the credit union stand?"]
+        },
+        {
+          "id": "sit_capital",
+          "q": "How strong is capital?",
+          "aliases": ["net worth", "9.62", "capital", "well capitalized"],
+          "keywords": ["capital", "worth", "ratio", "capitalized", "9.62", "buffer"],
+          "a": "A 9.62% net worth ratio, well above the 7% well-capitalized threshold. Real, from the December 2025 call report. Carry it as the assurance line: the institution is strong, which is precisely what gives the board room to act on the funding plan rather than react to it later.",
+          "sources": ["Finance & Call Report"],
+          "confidence": 99,
+          "followups": ["Walk me through the liquidity issue", "What do you recommend?"]
+        },
+        {
+          "id": "sit_why",
+          "q": "Why is this the board-level item?",
+          "aliases": ["why does this matter", "why now", "why is this important"],
+          "keywords": ["why", "board", "matter", "important", "level"],
+          "a": "Because funding and liquidity are forward-looking and structural, not operational. At a loan-to-share near 89%, loans are consuming most of the deposit base, so the funding cushion is thinner than the headline capital ratio suggests. And it is exactly the question an examiner will ask you to defend — which is why the confidence and lineage on each figure matter as much as the figure.",
+          "sources": ["Finance & ALM Workbook"],
+          "confidence": 92,
+          "followups": ["Walk me through the liquidity issue", "Can I trust these numbers?"]
+        }
+      ]
+    },
+    "evidence": {
+      "suggested": ["How is the 89.7% reconciled?", "Why are loans growing faster?", "What is on-hand liquidity?"],
+      "questions": [
+        {
+          "id": "ev_l2s",
+          "q": "How is the 89.7% reconciled?",
+          "aliases": ["the ratio", "89.7", "loan to share", "how is it calculated"],
+          "keywords": ["reconciled", "ratio", "89", "calculated", "derived"],
+          "a": "Total loans divided by total shares: $1.04B over $1.16B. Loan balances come from the core, origination and servicing volume from the lending system, and share balances from the finance and ALM workbook — three sources reconciled into one governed figure rather than three that disagree. 94% confidence, and traceable from core to board brief.",
+          "sources": ["Core Banking", "Lending System", "Finance & ALM Workbook"],
+          "confidence": 94,
+          "followups": ["Trace it to source", "Why are loans growing faster?"]
+        },
+        {
+          "id": "ev_loans",
+          "q": "Why are loans growing faster?",
+          "aliases": ["loan growth", "6.4", "loans", "why loans"],
+          "keywords": ["loans", "growth", "faster", "6.4", "demand"],
+          "a": "Loan demand has run at about 6.4% year over year — healthy demand, and in itself good news. The problem is the denominator: shares grew only 3.1% over the same period. Growth on the lending side is not the thing to slow; the funding side is the thing to lift.",
+          "sources": ["Lending System", "Core Banking"],
+          "confidence": 93,
+          "followups": ["What is holding deposits back?", "What do you recommend?"]
+        },
+        {
+          "id": "ev_shares",
+          "q": "What is holding deposits back?",
+          "aliases": ["share growth", "3.1", "deposits", "shares", "why deposits"],
+          "keywords": ["deposits", "shares", "growth", "3.1", "holding"],
+          "a": "Two things. The academic calendar drives a predictable summer drawdown as the school year ends, and the newly merged Howard University members are not yet primary depositors — roughly a third of them are. Converting that group is the cheapest share growth available, and it strengthens the funding base directly rather than by buying liquidity.",
+          "sources": ["Core Banking", "Historical Deposit Patterns", "Howard University Division Ledger"],
+          "confidence": 87,
+          "followups": ["What do you recommend?", "What is the Howard University division?"]
+        },
+        {
+          "id": "ev_liquidity",
+          "q": "What is on-hand liquidity?",
+          "aliases": ["11.2", "liquidity ratio", "on hand", "liquid assets"],
+          "keywords": ["liquidity", "hand", "11.2", "liquid", "floor"],
+          "a": "Around 11.2% — liquid assets over total assets — against an internal comfort floor of 10%. It is above the floor today but drifting, and on the baseline it slips under by Q4. This figure is illustrative: your actual internal floor is one of the open items to confirm with Finance.",
+          "sources": ["Finance & ALM Workbook"],
+          "confidence": 86,
+          "followups": ["What happens if we don't act?", "What do you recommend?"]
+        },
+        {
+          "id": "ev_trend",
+          "q": "What does the trend show?",
+          "aliases": ["the trend", "eight quarters", "trend line", "5.3 points"],
+          "keywords": ["trend", "quarters", "eight", "rising", "history"],
+          "a": "Loan-to-share has risen 5.3 points across eight quarters — 84.4% to 89.7% — with no quarter reversing it. That consistency is what makes it a trend rather than a fluctuation, and it is why the projection is worth acting on now rather than watching for another quarter.",
+          "sources": ["Core Banking", "Lending System"],
+          "confidence": 94,
+          "followups": ["What happens if we don't act?", "Trace it to source"]
+        },
+        {
+          "id": "ev_trace",
+          "q": "Trace it to source",
+          "aliases": ["lineage", "trace", "source to screen", "prove it", "evidence"],
+          "keywords": ["trace", "lineage", "source", "prove", "evidence", "chain"],
+          "a": "The chain runs core banking, nightly extract, finance and ALM workbook, enterprise data warehouse, board brief — with a load time and record count at each hop. That is the trace you can hand to the board or an NCUA examiner. Opening it now.",
+          "sources": ["Governance & Lineage Layer"],
+          "confidence": 96,
+          "action": "lineage",
+          "followups": ["Can I trust these numbers?", "What exactly is the reconciliation gap?"]
+        }
+      ]
+    },
+    "trajectory": {
+      "suggested": ["What happens if we don't act?", "How confident is this projection?", "Where is the policy ceiling from?"],
+      "questions": [
+        {
+          "id": "traj_project",
+          "q": "How does the projection work?",
+          "aliases": ["the projection", "forecast", "how is this projected", "the model"],
+          "keywords": ["projection", "forecast", "model", "projected", "trajectory"],
+          "a": "It carries the eight-quarter trend forward and overlays the academic-calendar seasonality as a band rather than a line, because the amplitude of the summer draw varies year to year. The baseline assumes no intervention; the with-campaign path assumes the deposit campaign lands ahead of the inflow window. Both are illustrative.",
+          "sources": ["Historical Deposit Patterns", "Finance & ALM Workbook"],
+          "confidence": 86,
+          "followups": ["How confident is this projection?", "What do you recommend?"]
+        },
+        {
+          "id": "traj_conf",
+          "q": "How confident is this projection?",
+          "aliases": ["confidence", "how sure", "reliability of the forecast"],
+          "keywords": ["confident", "confidence", "sure", "reliable", "certainty"],
+          "a": "94% on the historical series, which is measured, and 86% on the forward path, which is modelled. The gap between those two numbers is the honest part: the history is reconciled from source, the projection is a model with a seasonality band around it. I would defend the first to an examiner and present the second as a plan.",
+          "sources": ["Finance & ALM Workbook"],
+          "confidence": 86,
+          "followups": ["What happens if we don't act?", "Where is the policy ceiling from?"]
+        },
+        {
+          "id": "traj_ceiling",
+          "q": "Where is the policy ceiling from?",
+          "aliases": ["the ceiling", "92 percent", "policy limit", "internal ceiling"],
+          "keywords": ["ceiling", "policy", "limit", "92", "threshold"],
+          "a": "It is illustrative in this build — 92% stands in for your internal policy ceiling. Confirming the real ceiling, and the real on-hand liquidity floor, with ESFCU Finance is one of the open items, and it is the single change that would most sharpen this projection.",
+          "sources": ["Finance & ALM Workbook"],
+          "confidence": 70,
+          "followups": ["How confident is this projection?", "What do you recommend?"]
+        }
+      ]
+    },
+    "members": {
+      "suggested": ["What is the Howard University division?", "Why does the mission matter here?", "Tell me about the recognitions"],
+      "questions": [
+        {
+          "id": "mem_mission",
+          "q": "Why does the mission matter here?",
+          "aliases": ["the mission", "why mission", "education community", "member first"],
+          "keywords": ["mission", "education", "community", "members", "purpose"],
+          "a": "Because the deposits under discussion are members' savings — teachers, school staff and their families across Maryland, served since 1955. The funding question is not an abstraction on a balance sheet; it is whether the credit union stays strong for the people it was built for. That is also why the campaign is framed as a member offer rather than a rate grab.",
+          "sources": ["Membership System"],
+          "confidence": 94,
+          "followups": ["What is the Howard University division?", "What do you recommend?"]
+        },
+        {
+          "id": "mem_division",
+          "q": "What is the Howard University division?",
+          "aliases": ["howard university", "the merger", "the division", "howard"],
+          "keywords": ["howard", "division", "merger", "university", "merged"],
+          "a": "Howard University Employees FCU merged into ESFCU effective November 30, 2024, and now operates as Howard University Federal Credit Union, a division of ESFCU. It extends the field of membership to Howard employees, students, alumni and hospital staff. That is real and public. What is illustrative here is the division's balances and member counts — the merger figures were never publicly disclosed.",
+          "sources": ["Howard University Division Ledger", "Membership System"],
+          "confidence": 88,
+          "followups": ["What exactly is the reconciliation gap?", "Why does the mission matter here?"]
+        },
+        {
+          "id": "mem_awards",
+          "q": "Tell me about the recognitions",
+          "aliases": ["awards", "recognition", "aacuc", "hall of fame", "washington business journal"],
+          "keywords": ["awards", "recognition", "aacuc", "hall", "fame", "journal"],
+          "a": "Both are real and sourced: induction into the AACUC Hall of Fame in March 2025, and the Washington Business Journal's 2025 Diversity in Business Award. They belong in the board story because they are external evidence of the institution's standing — the assurance beat, alongside capital.",
+          "sources": ["Public record"],
+          "confidence": 99,
+          "followups": ["Why does the mission matter here?", "Where does the credit union stand?"]
+        }
+      ]
+    },
+    "assurance": {
+      "suggested": ["Can I trust these numbers?", "What exactly is the reconciliation gap?", "What's the NCUA readiness?"],
+      "questions": [
+        {
+          "id": "assur_pipeline",
+          "q": "Which sources loaded this morning?",
+          "aliases": ["pipeline", "data freshness", "sources", "refresh", "loads"],
+          "keywords": ["pipeline", "sources", "loaded", "freshness", "refresh", "morning"],
+          "a": "Six of seven, reconciled by 6:02 — core banking, lending, finance and ALM, membership, the enterprise warehouse and the reporting layer. The seventh is the Howard University division ledger, whose nightly mapping stalled for the second time this month. That failure is silent by nature, which is exactly why it is on this slide.",
+          "sources": ["Governance & Lineage Layer"],
+          "confidence": 96,
+          "followups": ["What exactly is the reconciliation gap?", "Can I trust these numbers?"]
+        }
+      ]
+    },
+    "resolution": {
+      "suggested": ["Why is option three recommended?", "What does the campaign cost?", "Why not just the funding line?"],
+      "questions": [
+        {
+          "id": "res_opt1",
+          "q": "What does the campaign cost?",
+          "aliases": ["option one", "the campaign", "deposit campaign", "campaign cost"],
+          "keywords": ["campaign", "cost", "option", "deposit", "one"],
+          "a": "Low cost and fast to launch — it is a member offer to an existing field of membership, not an acquisition spend. Its weakness is that its impact is only moderate and depends on timing: land it ahead of the fall inflow window and it holds the ratio roughly flat; land it after the summer draw and you have paid for it and missed the window.",
+          "sources": ["Finance & ALM Workbook"],
+          "confidence": 84,
+          "followups": ["Why is option three recommended?", "Why not just the funding line?"]
+        },
+        {
+          "id": "res_opt2",
+          "q": "Why not just the funding line?",
+          "aliases": ["option two", "standby line", "funding line", "wholesale funding"],
+          "keywords": ["funding", "line", "standby", "option", "two", "wholesale"],
+          "a": "Because it treats the symptom. A standby facility gives immediate certainty and a hard buffer, but it is purchased liquidity at a real cost and it leaves loan-to-share climbing underneath. You would arrive at the same conversation a quarter later, having paid for the delay.",
+          "sources": ["Finance & ALM Workbook"],
+          "confidence": 92,
+          "followups": ["Why is option three recommended?", "What does the campaign cost?"]
+        },
+        {
+          "id": "res_opt3",
+          "q": "Why is option three recommended?",
+          "aliases": ["option three", "the recommendation", "both", "pair them", "recommended"],
+          "keywords": ["three", "recommended", "both", "pair", "combination"],
+          "a": "Because it is the only path that both closes the gap now and protects you if the seasonality runs against you. The campaign moves the underlying trend; the line holds the buffer through Q1 if uptake lands at the low edge of the band. Neither alone does both.",
+          "sources": ["Finance & ALM Workbook", "Historical Deposit Patterns"],
+          "confidence": 88,
+          "followups": ["Who owns each action?", "What happens if we don't act?"]
+        },
+        {
+          "id": "res_combo",
+          "q": "Are these options mutually exclusive?",
+          "aliases": ["can we do both", "combine", "mutually exclusive", "together"],
+          "keywords": ["exclusive", "both", "combine", "together", "mutually"],
+          "a": "No — and that is the point of the note under the cards. The recommended path is explicitly a combination: the education-community deposit campaign paired with a standby funding line, to close the gap now and hold a buffer through Q1.",
+          "sources": ["Finance & ALM Workbook"],
+          "confidence": 90,
+          "followups": ["Why is option three recommended?", "Who owns each action?"]
+        }
+      ]
+    },
+    "nextSteps": {
+      "suggested": ["Who owns each action?", "What is the first thing to do?", "What do you need from the board?"],
+      "questions": [
+        {
+          "id": "ns_first",
+          "q": "What is the first thing to do?",
+          "aliases": ["first step", "start", "where do we begin", "priority"],
+          "keywords": ["first", "start", "begin", "priority", "immediately"],
+          "a": "Two things in parallel. Get the deposit campaign scoped and launched within six weeks so it lands ahead of the inflow window — timing is the whole value of it. And put the Howard University reconciliation on someone's desk today, because until it closes you cannot cite the consolidated deposit total to the board or an examiner.",
+          "sources": ["Radiant Intelligence Layer"],
+          "confidence": 90,
+          "followups": ["Who owns each action?", "What do you need from the board?"]
+        },
+        {
+          "id": "ns_board",
+          "q": "What do you need from the board?",
+          "aliases": ["the ask", "board approval", "what are you asking", "decision"],
+          "keywords": ["board", "need", "ask", "approval", "decision"],
+          "a": "One decision and one acknowledgement. The decision is approval of the standby funding line as the buffer behind the campaign. The acknowledgement is that the consolidated deposit figure is pending reconciliation and the enterprise figure is what is being cited today — said out loud, in the room, before an examiner says it for you.",
+          "sources": ["Radiant Intelligence Layer"],
+          "confidence": 92,
+          "followups": ["Who owns each action?", "What exactly is the reconciliation gap?"]
+        }
+      ]
+    }
+  }
+}

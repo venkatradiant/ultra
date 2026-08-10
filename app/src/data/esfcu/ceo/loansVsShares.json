@@ -1,0 +1,31 @@
+{
+  "note": "Loans versus shares over eight quarters, with loan-to-share as the annotated overlay against the internal policy ceiling. The series terminates on the real NCUA anchor (Q4 2025: $1.04B loans, $1.16B shares). Earlier quarters are back-cast so the terminal year-over-year growth lands on +6.4% loans and +3.1% shares.",
+  "as_of": "Dec 31, 2025",
+  "source": "Core Banking · Lending System · Finance & ALM Workbook",
+  "confidence": 94,
+  "unit_note": "Balances in $ millions. Loan-to-share is total loans divided by total shares.",
+  "policy_ceiling_pct": 92,
+  "policy_ceiling_label": "Internal policy ceiling",
+  "real_anchor_period": "Q4 2025",
+  "real_anchor_note": "Q4 2025 is real: $1.04B loans and $1.16B shares from the NCUA call report. Prior quarters and the policy ceiling are illustrative. Howard University merger balances were never publicly disclosed, so no merger step is modelled in this series.",
+  "series": [
+    { "period": "Q1 2024", "loans": 924, "shares": 1095, "ratio": 84.4 },
+    { "period": "Q2 2024", "loans": 941, "shares": 1105, "ratio": 85.2 },
+    { "period": "Q3 2024", "loans": 959, "shares": 1115, "ratio": 86.0 },
+    { "period": "Q4 2024", "loans": 977, "shares": 1125, "ratio": 86.8 },
+    { "period": "Q1 2025", "loans": 993, "shares": 1134, "ratio": 87.6 },
+    { "period": "Q2 2025", "loans": 1008, "shares": 1142, "ratio": 88.3 },
+    { "period": "Q3 2025", "loans": 1024, "shares": 1151, "ratio": 89.0 },
+    { "period": "Q4 2025", "loans": 1040, "shares": 1160, "ratio": 89.7, "real": true }
+  ],
+  "callouts": [
+    { "period": "Q4 2025", "text": "89.7% — +5.3 pts over eight quarters" }
+  ],
+  "summary": {
+    "loan_growth_yoy_pct": 6.4,
+    "share_growth_yoy_pct": 3.1,
+    "loan_to_share_pct": 89.7,
+    "loan_to_share_delta_pts": 5.3,
+    "on_hand_liquidity_pct": 11.2
+  }
+}

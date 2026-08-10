@@ -1,0 +1,62 @@
+{
+  "note": "Spec §7. `real: true` figures are public and sourced (NCUA call report, Dec 2025); everything else is illustrative and renders with that marker. The KPI carousel reads this file for the real/illustrative flag and the source and calculation strings; the tile visuals come from the manifest's ui.stats.",
+  "validated_at": "2026-02-10T06:02:00",
+  "kpis": {
+    "assets": {
+      "real": true,
+      "sourceLabel": "Core banking + finance",
+      "provenance": "NCUA call report, Dec 2025",
+      "target": "Steady, managed growth",
+      "calc": "Sum of all asset accounts"
+    },
+    "members": {
+      "real": true,
+      "sourceLabel": "Membership system",
+      "provenance": "NCUA call report, Dec 2025",
+      "target": "Grow and deepen",
+      "calc": "Count of active members"
+    },
+    "net_worth": {
+      "real": true,
+      "sourceLabel": "Finance and call report",
+      "provenance": "NCUA call report, Dec 2025",
+      "target": "Above 7% (well capitalized)",
+      "calc": "Net worth divided by total assets"
+    },
+    "loan_to_share": {
+      "real": true,
+      "sourceLabel": "Core + lending",
+      "provenance": "Derived from NCUA call report, Dec 2025 — $1.04B loans ÷ $1.16B shares",
+      "target": "Below internal policy ceiling",
+      "calc": "Total loans divided by total shares"
+    },
+    "share_growth": {
+      "real": false,
+      "sourceLabel": "Core banking",
+      "provenance": "Illustrative",
+      "target": "Ahead of loan growth",
+      "calc": "Year-over-year change in total shares"
+    },
+    "loan_growth": {
+      "real": false,
+      "sourceLabel": "Lending system",
+      "provenance": "Illustrative",
+      "target": "Balanced to funding",
+      "calc": "Year-over-year change in total loans"
+    },
+    "on_hand_liquidity": {
+      "real": false,
+      "sourceLabel": "Finance and ALM workbook",
+      "provenance": "Illustrative",
+      "target": "Above internal floor",
+      "calc": "Liquid assets divided by total assets"
+    },
+    "data_trust": {
+      "real": false,
+      "sourceLabel": "Governance and lineage layer",
+      "provenance": "Illustrative",
+      "target": "100% validated overnight",
+      "calc": "Share of figures current, validated and traceable"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Surfaces the morning briefing and the priority signals before you ask — the liquidity watch, the post-merger reconciliation gap, and the seasonality window — correlated across the core, the lending system, finance, and the merged Howard University ledger.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Answers a business-spanning question across every connected source at once, in one query bar over a fused view. Loans versus deposits pulls balances from the core, origination from the lending system, and shares from the finance workbook, and reconciles them into one governed answer.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "Shows where sources disagree — above all the Howard University division balances that have not reconciled into the enterprise deposit total — and traces both sides to source on demand, so a gap is visible before it reaches the board rather than after.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Forecasts liquidity if loan demand keeps outpacing deposits, overlays the academic-calendar deposit seasonality as a band rather than a line, and models the effect of a deposit campaign against the internal policy ceiling.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Anomaly Detection",
+    "description": "Flags the out-of-pattern: a silent ETL gap that stalled a nightly refresh, a branch deposit figure that breaks its own trend, a concentration drifting past policy. This is the layer catching what used to surface only at month-end.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "Drafts the board briefing and the recommended action — a targeted education-community deposit campaign paired with a standby funding line — with owners, timeframes and the evidence attached, then renders it as a board-ready deck.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

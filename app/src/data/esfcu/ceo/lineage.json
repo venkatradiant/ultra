@@ -1,0 +1,80 @@
+{
+  "note": "Source-to-screen lineage for the executive figures. Every figure traces from the core through the nightly extract and the warehouse to the board brief — the chain the CEO can show the board or an NCUA examiner. Platform names are vendor-neutral: ESFCU's actual core, lending, warehouse and BI platforms are an open follow-up.",
+  "figures": [
+    {
+      "id": "enterprise_deposits",
+      "label": "Enterprise Share Balance",
+      "value": "$1,160.4M",
+      "confidence": 96,
+      "asOf": "Dec 31, 2025",
+      "source": "Core Banking · Finance & ALM Workbook · Enterprise Data Warehouse",
+      "chain": [
+        { "stage": "Core", "system": "Core Banking", "note": "Member share balances posted at close" },
+        { "stage": "Source", "system": "Nightly Extract", "note": "Loaded 05:52 · 2.1M records" },
+        { "stage": "General Ledger", "system": "Finance & ALM Workbook", "note": "Aggregated and tied to the balance sheet" },
+        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Reconciled to one governed figure, $1,160.4M" },
+        { "stage": "Brief", "system": "Board Brief", "note": "Safe to cite — traceable end to end" }
+      ]
+    },
+    {
+      "id": "consolidated_deposits",
+      "label": "Consolidated Share Balance (incl. division)",
+      "value": "Pending",
+      "confidence": 71,
+      "asOf": "Dec 31, 2025",
+      "source": "Enterprise Data Warehouse · Howard University Division Ledger",
+      "warning": "Reconcile before you cite this",
+      "chain": [
+        { "stage": "Core", "system": "Core Banking", "note": "Enterprise share balances — clean" },
+        { "stage": "Source", "system": "Howard University Division Ledger", "note": "Division share balances, $47.6M" },
+        { "stage": "Mapping", "system": "Nightly Division Mapping", "note": "Stalled — $2.7M unmapped", "state": "critical" },
+        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Carries $44.9M of the division" },
+        { "stage": "Brief", "system": "Board Brief", "note": "Held back — enterprise figure cited instead" }
+      ]
+    },
+    {
+      "id": "loan_to_share",
+      "label": "Loan-to-Share Ratio",
+      "value": "89.7%",
+      "confidence": 94,
+      "asOf": "Dec 31, 2025",
+      "source": "Core Banking · Lending System · Finance & ALM Workbook",
+      "chain": [
+        { "stage": "Core", "system": "Core Banking", "note": "Net loan balances, $1.04B" },
+        { "stage": "Source", "system": "Lending System", "note": "Origination and servicing volume" },
+        { "stage": "General Ledger", "system": "Finance & ALM Workbook", "note": "Share balances, $1.16B" },
+        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Reconciled to one governed ratio" },
+        { "stage": "Brief", "system": "Board Brief", "note": "89.7% · loan-to-share (NCUA-derived, Dec 2025)" }
+      ]
+    },
+    {
+      "id": "assets",
+      "label": "Total Assets",
+      "value": "≈$1.36B",
+      "confidence": 98,
+      "asOf": "Dec 31, 2025",
+      "source": "Core Banking · Finance & Call Report",
+      "chain": [
+        { "stage": "Core", "system": "Core Banking", "note": "Member, deposit and loan balances" },
+        { "stage": "General Ledger", "system": "Finance & ALM Workbook", "note": "Aggregated balance sheet" },
+        { "stage": "Source", "system": "Call Report", "note": "Filed with the NCUA, Dec 2025" },
+        { "stage": "Warehouse", "system": "Enterprise Data Warehouse", "note": "Consolidated for reporting" },
+        { "stage": "Brief", "system": "Board Brief", "note": "≈$1.36B · real, sourced" }
+      ]
+    },
+    {
+      "id": "net_worth",
+      "label": "Net Worth Ratio",
+      "value": "9.62%",
+      "confidence": 99,
+      "asOf": "Dec 31, 2025",
+      "source": "Finance & Call Report",
+      "chain": [
+        { "stage": "General Ledger", "system": "Finance & ALM Workbook", "note": "Net worth and total assets" },
+        { "stage": "Source", "system": "Call Report", "note": "Filed with the NCUA, Dec 2025" },
+        { "stage": "Trust Layer", "system": "Governance & Lineage Layer", "note": "No cross-source reconciliation required" },
+        { "stage": "Brief", "system": "Board Brief", "note": "9.62% · well capitalized" }
+      ]
+    }
+  ]
+}

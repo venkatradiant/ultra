@@ -263,6 +263,28 @@ const personas = {
     ],
   },
 
+  // ─── ESFCU — Educational Systems Federal Credit Union ─────────
+  // Girado Smith, President & CEO. Single-persona Tier 1 tenant: the funding and
+  // liquidity board briefing, with the Howard University post-merger
+  // reconciliation as its trust centerpiece. Visible only when
+  // clientId === 'esfcu'. Identity must match the PersonaModule and the
+  // PersonaManifest exactly — manifests.test.ts asserts all three agree.
+  esfcu_ceo: {
+    id: 'esfcu_ceo',
+    name: 'Girado Smith',
+    initials: 'GS',
+    role: 'President & Chief Executive Officer',
+    greeting: 'Girado',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Friction Observability',
+      'Predictive Intelligence',
+      'Anomaly Detection',
+      'Automated Action',
+    ],
+  },
+
   // ─── Healthcare market — Riverside Health System ──────────────
   // Visible only when clientId === 'riverside_health'.
   care_ops: {

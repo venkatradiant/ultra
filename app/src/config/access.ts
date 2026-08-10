@@ -58,6 +58,7 @@ export interface ClientCredential {
 export const CLIENT_CREDENTIALS: Record<string, ClientCredential> = {
   financial_services: { slug: 'fs', password: 'fs@9705' },
   ussfcu: { slug: 'ussfcu', password: 'ussfcu@9705' },
+  esfcu: { slug: 'esfcu', password: 'esfcu@9705' },
   penfed: { slug: 'penfed', password: 'penfed@9705' },
   nfcu: { slug: 'nfcu', password: 'nfcu@9705' },
   newfold_digital: { slug: 'newfold', password: 'newfold@9705' },

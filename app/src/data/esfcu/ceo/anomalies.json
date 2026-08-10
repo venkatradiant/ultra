@@ -1,0 +1,36 @@
+{
+  "note": "Out-of-pattern items surfaced ahead of the board. Both are illustrative. Branch identifiers are generic on purpose — ESFCU's 13 Maryland branches are public, but attributing a deposit outflow to a named branch would be inventing a fact about a real location.",
+  "as_of": "Feb 10, 2026",
+  "source": "Governance & Lineage Layer · Core Banking · Branch Deposit Data",
+  "confidence": 91,
+  "items": [
+    {
+      "id": "ANOM-ESFCU-001",
+      "title": "Nightly refresh stalled — Howard University division",
+      "severity": "warning",
+      "category": "Pipeline",
+      "description": "The nightly mapping job for the Howard University division failed to complete on two occasions this month. This is why the division reconciliation is pending. It is the silent kind of gap that used to surface only at month-end, when a figure looked wrong and nobody could say why.",
+      "detail": "Last successful run 9 days ago. The job exits without raising an alert, so the enterprise warehouse simply carries a stale division balance rather than reporting a failure.",
+      "metric_text": "2 failures this month · 9 days since last success",
+      "evidence_label": "Open the pipeline log",
+      "evidence_target": "reconciliation",
+      "policy_breach": false,
+      "policy_note": "Not a policy breach — a data-integrity gap that would become one if the consolidated figure were cited unreconciled."
+    },
+    {
+      "id": "ANOM-ESFCU-002",
+      "title": "Branch deposit figure breaking its own trend",
+      "severity": "warning",
+      "category": "Deposits",
+      "description": "One branch shows a share balance that breaks its own trend by enough to warrant a look — a drop well outside its normal fortnightly range. The pattern reads as a single large member outflow rather than a data error, but it is the kind of thing you want to see before the board does.",
+      "detail": "Branch 07. Share balance fell $4.2M over eleven days against a typical fortnightly range of ±$0.6M. No corresponding loan activity, and the source feed loaded cleanly, which is what points at a real outflow rather than a bad extract.",
+      "metric_text": "−$4.2M in 11 days · typical range ±$0.6M",
+      "evidence_label": "Open the branch detail",
+      "evidence_target": "branch",
+      "policy_breach": false,
+      "policy_note": "Not a policy breach — concentration remains inside limits even with the outflow.",
+      "sparkline": [38.9, 39.2, 39.0, 39.4, 39.1, 39.3, 39.2, 38.8, 37.1, 35.6, 35.0],
+      "sparkline_unit": "$M share balance, fortnightly"
+    }
+  ]
+}

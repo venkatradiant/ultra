@@ -39,6 +39,24 @@ export const CLIENTS = {
     primaryColor: '#003087',
     navLabels: { journey: 'Member Journey', risk: 'Risk Signals' },
   },
+  // Educational Systems Federal Credit Union — the CEO executive-briefing demo.
+  // Navy is ESFCU's own (#003768, sampled from the mark on esfcu.org); the
+  // brand's maroon is kept out of the UI palette because it collides with the
+  // critical-severity red. Keep in sync with
+  // markets/financial-services/clients/esfcu/client.manifest.ts — BrandingContext
+  // reads THIS map, not the manifest.
+  esfcu: {
+    id: 'esfcu',
+    loginSlug: 'esfcu',
+    name: 'Educational Systems Federal Credit Union',
+    shortName: 'ESFCU',
+    nameLines: ['Educational Systems', 'Federal Credit Union'],
+    tagline: 'Executive Intelligence',
+    logo: '/logos/esfcu-logo.svg',
+    favicon: '/logos/esfcu-logo.svg',
+    primaryColor: '#003768',
+    navLabels: { journey: 'Business Performance', risk: 'Priority Signals' },
+  },
   nfcu: {
     id: 'nfcu',
     loginSlug: 'nfcu',

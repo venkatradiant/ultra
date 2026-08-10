@@ -7,6 +7,7 @@ import { NFCUQualityPostureCard, NFCUComplianceCard, NFCUFCRTrendChart } from '.
 import GovernanceSignalsTable from '../components/ussfcu/cfo/GovernanceSignalsTable';
 import GovernanceKpiCards from '../components/ussfcu/cfo/GovernanceKpiCards';
 import PrioritySignalsView from '../components/ussfcu/ceo/PrioritySignalsView';
+import EsfcuPrioritySignalsView from '../components/esfcu/ceo/PrioritySignalsView';
 import DisclosureCalendarPage from '../components/ussfcu/compliance/DisclosureCalendarPage';
 import QualitySignalsPage from '../components/newfold/quality/QualitySignalsPage';
 import ChatInput from '../components/chat/ChatInput';
@@ -44,6 +45,7 @@ export default function RiskSignals() {
   const isNFCU = persona.id.startsWith('nfcu_');
   const isCfo = persona.id === 'ussfcu_cfo';
   const isCeo = persona.id === 'ussfcu_ceo';
+  const isEsfcuCeo = persona.id === 'esfcu_ceo';
   const isEvelyn = persona.id === 'ussfcu_evelyn';
   const isNadia = persona.id === 'ussfcu_nadia';
   const screenChips = isCfo ? cfoGovernanceChips : isNFCU ? nfcuQualityChips : riskExtras.riskScreenChips;
@@ -63,6 +65,13 @@ export default function RiskSignals() {
   // signals, and the executive posture panel.
   if (isCeo) {
     return <PrioritySignalsView />;
+  }
+
+  // ESFCU CEO — the same executive altitude on ESFCU's own signal set: the
+  // liquidity watch as hero, the Howard University reconciliation gap, the
+  // seasonality window, membership, and capital as the assurance line.
+  if (isEsfcuCeo) {
+    return <EsfcuPrioritySignalsView />;
   }
 
   const openDrawerWithQuery = (query) => {
