@@ -46,7 +46,7 @@ const countWords = (t) => String(t).trim().split(/\s+/).filter(Boolean).length |
 // Bump when the voice or scripts change — the proxy responses are CDN/browser
 // cached by URL (which doesn't include the voice), so a version token forces the
 // audio to regenerate with the current voice instead of serving stale clips.
-const NARRATION_VERSION = 'v2-D3VC';
+const NARRATION_VERSION = 'v3-CZ6N';
 const ttsUrl = (slideId) => `/api/tts?slide=${encodeURIComponent(slideId)}&v=${NARRATION_VERSION}`;
 const AUDIO_LOAD_TIMEOUT = 6000; // ms to wait for the proxy MP3 before falling back
 

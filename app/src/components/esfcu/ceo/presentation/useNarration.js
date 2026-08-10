@@ -43,9 +43,6 @@ function splitSentences(text) {
 
 const countWords = (t) => String(t).trim().split(/\s+/).filter(Boolean).length || 1;
 
-// Bump when the voice or scripts change — the proxy responses are CDN/browser
-// cached by URL (which doesn't include the voice), so a version token forces the
-// audio to regenerate with the current voice instead of serving stale clips.
 // The narration bank to read from, server-side. Without this the proxy falls
 // back to its default tenant (USSFCU) and serves Tim's script for ESFCU's slide
 // ids — the correct voice reading the wrong briefing. It also keeps the two
@@ -53,7 +50,12 @@ const countWords = (t) => String(t).trim().split(/\s+/).filter(Boolean).length |
 // URL, and ESFCU and USSFCU share slide ids, so a URL without the tenant would
 // let one tenant's clip be served for the other's slide.
 const TTS_TENANT = 'esfcu';
-const NARRATION_VERSION = 'v1-D3VC';
+
+// Bump when the voice or scripts change — the proxy responses are CDN/browser
+// cached by URL (which doesn't include the voice), so a version token forces the
+// audio to regenerate with the current voice instead of serving stale clips.
+// The suffix tracks the voice id in use (currently cz6NPALEx…).
+const NARRATION_VERSION = 'v2-CZ6N';
 const ttsUrl = (slideId) => (
   `/api/tts?slide=${encodeURIComponent(slideId)}&tenant=${TTS_TENANT}&v=${NARRATION_VERSION}`
 );

@@ -27,7 +27,15 @@ const DEFAULT_TENANT = 'ussfcu';
 
 // Shared voice for every CEO briefing — ESFCU is deliberately the same voice as
 // USSFCU. Override with ELEVENLABS_VOICE_ID to use any voice from your account.
-const DEFAULT_VOICE_ID = 'D3VCLJOhFBmI8f7VjA5S';
+//
+// A voice id is an identifier, not a credential: it selects a voice and cannot
+// authenticate anything, which is why it can live here while the API key can
+// only ever come from the environment.
+//
+// Changing this REQUIRES bumping NARRATION_VERSION in both decks' useNarration.js
+// — responses are CDN-cached by URL and the URL does not include the voice, so
+// stale clips in the previous voice would keep being served.
+const DEFAULT_VOICE_ID = 'cz6NPALEx89fUgSSZqam';
 const DEFAULT_MODEL_ID = 'eleven_multilingual_v2';
 
 function bankFor(tenant) {
