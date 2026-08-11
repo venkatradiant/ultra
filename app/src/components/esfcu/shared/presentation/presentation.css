@@ -404,19 +404,34 @@
    classes unchanged, which is the point: the two briefings should look like
    they came out of the same house, because they did. */
 
-/* Cover-right panel. The CEO's cover puts his portrait here; Renata is a
-   representative persona, and a stock face beside an invented name reads as a
-   real person to anyone skimming — the one claim this deck must never make. So
-   the space carries the briefing's own posture statement instead. */
+/* Cover-right column: ESFCU's own security photograph above, the briefing's
+   posture statement below. The CEO's cover puts his portrait in this space;
+   Renata is a representative persona, and a stock FACE beside an invented name
+   reads as a real person to anyone skimming — the one claim this deck must
+   never make. A photograph of lockers carries the panel without that risk, and
+   the note underneath states the persona's status rather than leaving it to be
+   inferred from a name. */
+.esfcu-pm-root .cro-coverR{ flex-direction:column; gap:16px; }
+.esfcu-pm-root .cro-cover-photo{
+  flex:1; min-height:180px; border-radius:16px; overflow:hidden; position:relative;
+  border:1px solid var(--navy-line);
+}
+.esfcu-pm-root .cro-cover-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 45%; }
+/* Navy wash so ESFCU's red locker photography sits inside the deck's palette
+   instead of fighting the gold accent beside it. */
+.esfcu-pm-root .cro-cover-photo:after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,36,63,.34), rgba(0,36,63,.72));
+}
 .esfcu-pm-root .cro-cover-note{
-  height:100%; display:flex; flex-direction:column; justify-content:center; gap:14px;
+  flex:0 0 auto; display:flex; flex-direction:column; gap:10px;
   border:1px solid rgba(232,163,61,.28); border-radius:14px;
-  background:rgba(255,255,255,.04); padding:30px 30px 26px;
+  background:rgba(255,255,255,.04); padding:20px 24px 18px;
 }
 .esfcu-pm-root .ccn-eyebrow{
   font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#E8A33D;
 }
-.esfcu-pm-root .ccn-body{ font-size:16px; line-height:1.62; color:#cddcea; }
+.esfcu-pm-root .ccn-body{ font-size:14.5px; line-height:1.58; color:#cddcea; }
 .esfcu-pm-root .ccn-cap{ font-size:12.5px; font-style:italic; color:#93aabf; }
 
 /* Exposure slide — the three outcome marks under the chart. */
