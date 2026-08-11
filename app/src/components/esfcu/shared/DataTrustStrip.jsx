@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Clock } from 'lucide-react';
-import LineageTraceModal from '../ceo/LineageTraceModal';
+import LineageTraceModal from './LineageTraceModal';
 import { ACCENT_SOFT } from '../tokens';
 import { STATE, STATE_WORD, STATE_WORD_CLASS } from './trustTokens';
 
@@ -139,6 +139,7 @@ export default function DataTrustStrip({
   trust,
   widgets,
   lineageFigureId,
+  lineageFigures,
   title = 'Data Trust Strip',
   expanded = false,
   compact = false,
@@ -152,7 +153,12 @@ export default function DataTrustStrip({
   const openTrace = () => setTraceOpen(true);
 
   const lineage = lineageFigureId ? (
-    <LineageTraceModal open={traceOpen} onClose={() => setTraceOpen(false)} initialFigureId={lineageFigureId} />
+    <LineageTraceModal
+      open={traceOpen}
+      onClose={() => setTraceOpen(false)}
+      initialFigureId={lineageFigureId}
+      figures={lineageFigures}
+    />
   ) : null;
 
   if (variant === 'ribbon') {

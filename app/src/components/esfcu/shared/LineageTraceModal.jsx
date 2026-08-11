@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Database, TrendingUp, Route, ShieldCheck, FileText, ChevronDown, GitMerge, AlertTriangle } from 'lucide-react';
-import lineage from '../../../data/esfcu/ceo/lineage.json';
+import { X, Database, TrendingUp, Route, ShieldCheck, FileText, ChevronDown, GitMerge, AlertTriangle, Radar } from 'lucide-react';
+import ceoLineage from '../../../data/esfcu/ceo/lineage.json';
 import { tierFor, colorFor } from '../../../utils/confidence';
 import { ACCENT_SOFT } from '../tokens';
 
@@ -15,15 +15,32 @@ const STAGE_ICON = {
   Warehouse: Route,
   'Trust Layer': ShieldCheck,
   Brief: FileText,
+  // The CRO's chains start at a signal rather than at the core, and end at a
+  // filing or a governance check rather than at the board brief.
+  Signal: Radar,
+  Report: FileText,
+  Case: FileText,
+  Disposition: GitMerge,
+  Derived: TrendingUp,
+  Model: Radar,
+  Scope: AlertTriangle,
+  Filing: ShieldCheck,
+  Governance: ShieldCheck,
 };
 
-// Source-to-screen lineage trace, forked from the USSFCU CEO build for ESFCU.
-// Opened from the trust strip's reconciliation widget and from "Trace the
-// enterprise deposit figure to source". The left rail lets Girado trace any
-// headline figure — including the consolidated total that is NOT yet safe to
-// cite, which is the point: the break is visible in the chain, not hidden.
-export default function LineageTraceModal({ open, onClose, initialFigureId }) {
-  const figures = lineage.figures;
+/**
+ * Source-to-screen lineage trace, forked from the USSFCU CEO build and now
+ * shared by both ESFCU personas. Opened from the trust strip and from the
+ * "trace this to source" affordances.
+ *
+ * The left rail lets the reader trace any headline figure — including the ones
+ * that are NOT yet safe to cite, which is the point: the break shows up in the
+ * chain rather than being hidden behind a clean-looking number.
+ *
+ * `figures` defaults to the CEO's set, so his four call sites are unchanged.
+ */
+export default function LineageTraceModal({ open, onClose, initialFigureId, figures: figuresProp }) {
+  const figures = figuresProp || ceoLineage.figures;
   const [activeId, setActiveId] = useState(initialFigureId || figures[0].id);
 
   useEffect(() => {

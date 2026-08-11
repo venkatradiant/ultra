@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import recon from '../../../data/esfcu/ceo/reconciliation.json';
 import ExhibitCard from '../shared/ExhibitCard';
-import LineageTraceModal from './LineageTraceModal';
+import LineageTraceModal from '../shared/LineageTraceModal';
 
 // ─── Reconciliation Panel — the ESFCU centerpiece ────────────────
 //

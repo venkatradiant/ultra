@@ -15,10 +15,9 @@
  * Howard University book — so real fraud is caught late and a lean team burns
  * hours on false positives.
  *
- * Phase 1 deliberately wires no bespoke components: the shared surfaces are
- * parameterised in phase 2 and the fraud centrepieces arrive in phase 5. Until
- * then this renders through PersonaWorkspace's defaults, which is a genuinely
- * working briefing rather than a placeholder.
+ * The shared ESFCU shell (KPI carousel, hero signals, trust strip, lineage
+ * trace, exhibit chrome) is the CEO's, parameterised rather than forked; only
+ * the fraud surfaces under components/esfcu/cro/ are new.
  */
 
 import { DollarSign, ShieldAlert, ShieldCheck, Filter, Clock, FileText, Activity, UserMinus } from 'lucide-react';
@@ -28,6 +27,18 @@ import { getPersonaFlowConfigs } from '@/data/personaFlowConfigs';
 import signals from '@/data/esfcu/cro/signals.json';
 import dataSources from '@/data/esfcu/cro/dataSources.json';
 import capabilityCallouts from '@/data/esfcu/cro/capabilityCallouts.json';
+
+import SignalCard from '@/components/cards/SignalCard';
+import CroKpiCarousel from '@/components/esfcu/cro/CroKpiCarousel';
+import CroHomeSignals from '@/components/esfcu/cro/CroHomeSignals';
+import CroDataTrustStrip from '@/components/esfcu/cro/CroDataTrustStrip';
+import ScamTrendChart from '@/components/esfcu/cro/ScamTrendChart';
+import FraudLinkGraph from '@/components/esfcu/cro/FraudLinkGraph';
+import FraudReconciliationPanel from '@/components/esfcu/cro/FraudReconciliationPanel';
+import ExposureForecastChart from '@/components/esfcu/cro/ExposureForecastChart';
+import AlertQueue from '@/components/esfcu/cro/AlertQueue';
+import ResponseOptionsPanel from '@/components/esfcu/cro/ResponseOptionsPanel';
+import NextStepsPanel from '@/components/esfcu/cro/NextStepsPanel';
 
 const flows = (getPersonaFlowConfigs('esfcu') as unknown as Record<string, PersonaManifest['flows']>).esfcu_cro;
 
@@ -51,6 +62,9 @@ const manifest: PersonaManifest = {
   dataSources: dataSources as PersonaManifest['dataSources'],
 
   layout: 'inline',
+  statsComponent: CroKpiCarousel as unknown as PersonaManifest['statsComponent'],
+  signalsComponent: CroHomeSignals as unknown as PersonaManifest['signalsComponent'],
+  initialExtras: CroDataTrustStrip as unknown as PersonaManifest['initialExtras'],
   features: {
     topAlignedInitial: true,
     // The link graph, the alert queue and the reconciliation panel all want more
@@ -130,6 +144,67 @@ const manifest: PersonaManifest = {
       'SIG-ESFCU-CRO-005': 'Draft the SAR and the member alert',
     },
     capabilityCallouts: capabilityCallouts as PersonaManifest['ui']['capabilityCallouts'],
+  },
+
+  // Spec §13's response-appropriate rendering table. Each answer generates the
+  // visualization that fits it, not one fixed layout.
+  inlineComponents: (msg, sigs) => {
+    const out = [];
+    const k = msg.flowKey;
+    const pushSignal = (id: string, key: string) => {
+      const s = sigs.find((x) => x.id === id);
+      if (s) out.push(<SignalCard key={key} signal={s} showAction />);
+    };
+    const noop = () => {};
+
+    // Home signal drill-downs — the card, then the exhibit behind it.
+    if (k === 'esfcu_cro_signal_1_surge') { pushSignal('SIG-ESFCU-CRO-001', 'sig1'); out.push(<ScamTrendChart key="sig1-trend" />); }
+    if (k === 'esfcu_cro_signal_2_coverage') { pushSignal('SIG-ESFCU-CRO-002', 'sig2'); out.push(<FraudReconciliationPanel key="sig2-recon" />); }
+    if (k === 'esfcu_cro_signal_3_mule') { pushSignal('SIG-ESFCU-CRO-003', 'sig3'); out.push(<FraudLinkGraph key="sig3-graph" />); }
+
+    // Step 1 — "text briefing card plus the trust strip, no inline chart".
+    if (k === 'esfcu_cro_where_stands') out.push(<CroDataTrustStrip key="stands-trust" compact onTrace={noop} />);
+
+    // Step 2 — "trend chart with channel breakdown plus a receiving-account
+    // link graph". Both, in that order: the trend says how big, the graph says
+    // what to pull on.
+    if (k === 'esfcu_cro_turn_surge') {
+      out.push(<ScamTrendChart key="surge-trend" />);
+      out.push(<FraudLinkGraph key="surge-graph" compact />);
+    }
+
+    // Step 3 — "reconciliation panel with lineage and the coverage gap
+    // highlighted", plus the trust strip's visible flip to pending.
+    if (k === 'esfcu_cro_turn_trust') {
+      out.push(<FraudReconciliationPanel key="trust-recon" />);
+      out.push(<CroDataTrustStrip key="trust-strip" expanded highlight onTrace={noop} />);
+    }
+    if (k === 'esfcu_cro_bring_into_scope') out.push(<FraudReconciliationPanel key="scope-recon" />);
+
+    // Step 4 — "forecast chart, baseline vs with-response, attrition risk
+    // called out".
+    if (k === 'esfcu_cro_turn_exposure') out.push(<ExposureForecastChart key="exposure-forecast" />);
+    if (k === 'esfcu_cro_show_options') out.push(<ResponseOptionsPanel key="options" />);
+
+    // Step 5 — "anomaly cluster (link graph) plus a re-ranked alert queue".
+    if (k === 'esfcu_cro_turn_unusual') {
+      out.push(<FraudLinkGraph key="unusual-graph" />);
+      out.push(<AlertQueue key="unusual-queue" />);
+    }
+    if (k === 'esfcu_cro_rerank_queue') out.push(<AlertQueue key="rerank-queue" />);
+
+    // Step 6 — the action set is rendered by the chat engine from
+    // chatFlows.json's action_cards; what it does not carry is who owns each
+    // one, which is the half of the answer a committee asks about.
+    if (
+      k === 'esfcu_cro_turn_response'
+      || k === 'esfcu_cro_adjust_response'
+      || k === 'esfcu_cro_assign_owners'
+    ) {
+      out.push(<NextStepsPanel key={`steps-${k}`} />);
+    }
+
+    return out.length ? out : undefined;
   },
 };
 

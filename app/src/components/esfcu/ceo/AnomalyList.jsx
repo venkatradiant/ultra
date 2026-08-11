@@ -4,7 +4,7 @@ import { LineChart, Line, ResponsiveContainer } from 'recharts';
 import { AlertTriangle, Activity, TrendingDown, ExternalLink } from 'lucide-react';
 import anomalies from '../../../data/esfcu/ceo/anomalies.json';
 import ExhibitCard from '../shared/ExhibitCard';
-import LineageTraceModal from './LineageTraceModal';
+import LineageTraceModal from '../shared/LineageTraceModal';
 import BranchDetailModal from './BranchDetailModal';
 
 // Step 5 — "Is anything out of policy or unusual?"

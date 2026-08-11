@@ -5,7 +5,7 @@ import signals from '../../../data/esfcu/ceo/signals.json';
 import trust from '../../../data/esfcu/ceo/trustStrip.json';
 import SignalCard from '../../cards/SignalCard';
 import PresentationMode from './presentation/PresentationMode';
-import LineageTraceModal from './LineageTraceModal';
+import LineageTraceModal from '../shared/LineageTraceModal';
 import { ACCENT_SOFT } from '../tokens';
 
 // `/risk`, relabelled "Priority Signals" for this persona. The five spec §6

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Database, TrendingUp, Route, ShieldCheck, FileText, GitMerge, ArrowRight } from 'lucide-react';
 import lineage from '../../../data/esfcu/ceo/lineage.json';
 import { tierFor, colorFor } from '../../../utils/confidence';
-import LineageTraceModal from './LineageTraceModal';
+import LineageTraceModal from '../shared/LineageTraceModal';
 
 // Same stage → icon mapping as LineageTraceModal so the horizontal flow and the
 // drill-in modal stay visually consistent.
