@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import lineage from '../../../../data/esfcu/ceo/lineage.json';
 
 // Deck-native lineage trace, opened from the Assurance slide's Lineage-on-Demand
-// widget. Same lineage.json as Conversation Mode; navy/gold board styling.
-export default function DeckLineageOverlay({ open, onClose }) {
-  const figures = lineage.figures;
-  const [activeId, setActiveId] = useState(figures[0].id);
+// widget. Fed the SAME lineage figures as Conversation Mode, so the two can
+// never tell different stories about where a number came from; navy/gold board
+// styling.
+export default function DeckLineageOverlay({ open, onClose, figures = [] }) {
+  const [activeId, setActiveId] = useState(figures[0]?.id);
 
   useEffect(() => {
     if (!open) return undefined;

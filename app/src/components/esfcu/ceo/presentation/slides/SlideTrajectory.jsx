@@ -1,5 +1,5 @@
 import pres from '../../../../../data/esfcu/ceo/presentation.json';
-import { askProps, askAbout } from '../askAbout';
+import { useDeck } from '../../../shared/presentation/deckContext';
 
 // Slide 3 — performance. The loans-versus-shares exhibit: both balance lines,
 // the loan-to-share ratio annotated, and the internal policy ceiling marked with
@@ -12,6 +12,7 @@ const H = 410;
 const PAD = { l: 92, r: 40, t: 26, b: 52 };
 
 export default function SlideTrajectory({ active }) {
+  const { askProps, askAbout } = useDeck();
   const s = pres.slides.trajectory;
   const pts = s.series;
   const n = pts.length;

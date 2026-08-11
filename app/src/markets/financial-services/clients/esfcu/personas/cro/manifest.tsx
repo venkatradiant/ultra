@@ -39,6 +39,8 @@ import ExposureForecastChart from '@/components/esfcu/cro/ExposureForecastChart'
 import AlertQueue from '@/components/esfcu/cro/AlertQueue';
 import ResponseOptionsPanel from '@/components/esfcu/cro/ResponseOptionsPanel';
 import NextStepsPanel from '@/components/esfcu/cro/NextStepsPanel';
+import LaunchRiskBriefing from '@/components/esfcu/cro/LaunchRiskBriefing';
+import CroPresentationMode from '@/components/esfcu/cro/presentation/PresentationMode';
 
 const flows = (getPersonaFlowConfigs('esfcu') as unknown as Record<string, PersonaManifest['flows']>).esfcu_cro;
 
@@ -65,8 +67,10 @@ const manifest: PersonaManifest = {
   statsComponent: CroKpiCarousel as unknown as PersonaManifest['statsComponent'],
   signalsComponent: CroHomeSignals as unknown as PersonaManifest['signalsComponent'],
   initialExtras: CroDataTrustStrip as unknown as PersonaManifest['initialExtras'],
+  overlayComponent: CroPresentationMode as unknown as PersonaManifest['overlayComponent'],
   features: {
     topAlignedInitial: true,
+    overlayOpenEvent: 'esfcu-cro:open-presentation',
     // The link graph, the alert queue and the reconciliation panel all want more
     // measure than a chat bubble allows.
     wideInlineComponents: true,
@@ -196,6 +200,9 @@ const manifest: PersonaManifest = {
     // Step 6 — the action set is rendered by the chat engine from
     // chatFlows.json's action_cards; what it does not carry is who owns each
     // one, which is the half of the answer a committee asks about.
+    // Step 7's visualization IS the deck, per spec — it launches rather than
+    // offering a button that launches.
+    if (k === 'esfcu_cro_turn_full_briefing') out.push(<LaunchRiskBriefing key="launch-deck" />);
     if (
       k === 'esfcu_cro_turn_response'
       || k === 'esfcu_cro_adjust_response'

@@ -28,11 +28,12 @@ function ttsDevServer(env) {
         try {
           const params = new URL(req.url, 'http://localhost').searchParams;
           const slide = params.get('slide');
-          // `tenant` selects the narration bank; absent means USSFCU, matching
-          // the serverless function's default.
+          // `tenant` and `persona` select the narration bank; absent means
+          // USSFCU/CEO, matching the serverless function's defaults.
           const tenant = params.get('tenant');
+          const persona = params.get('persona');
           const { synthesize } = await import('./api/_tts.js');
-          const { buffer, contentType } = await synthesize(slide, tenant);
+          const { buffer, contentType } = await synthesize(slide, tenant, persona);
           res.setHeader('Content-Type', contentType);
           res.setHeader('Cache-Control', 'no-store');
           res.statusCode = 200;

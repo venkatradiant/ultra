@@ -1,0 +1,911 @@
+{
+  "note": "Scripted Q&A for the CRO deck's Ask-AI sheet. Slide-scoped questions are matched first, then the global set, so nothing is a dead end whichever slide is showing. Seed ids match the askProps calls on the slides, so clicking a figure opens its own answer.",
+  "global": {
+    "greeting": "Good morning, Renata. Ask me anything about this briefing — the campaign, the numbers behind it, how far you can trust them, the coverage gap, or the response. You can also click any figure, chart, or card to ask about it.",
+    "default": {
+      "a": "I can speak to anything in this briefing — the position, the scam campaign, the two-week exposure, the Howard University coverage gap, what it means for members, or the recommended response. Try one of these:",
+      "followups": [
+        "Walk me through the scam surge",
+        "Can I trust this picture?",
+        "What do you recommend?"
+      ]
+    },
+    "questions": [
+      {
+        "id": "g_summary",
+        "q": "Where does our fraud risk stand?",
+        "aliases": [
+          "state of fraud",
+          "overall",
+          "summary",
+          "how are we doing",
+          "bottom line",
+          "where do we stand"
+        ],
+        "keywords": [
+          "stand",
+          "overall",
+          "summary",
+          "bottom",
+          "state",
+          "position",
+          "risk"
+        ],
+        "a": "One thing needs a decision. Impersonation and push-payment scams are surging: 148 cases in the last 30 days against 94 in the 30 before. Net fraud loss is $612K year to date across all fraud types. Behind it sit two items — a card-flagged ring not yet visible in the core, and the Howard University book at 0% fraud-model coverage. All illustrative figures on ESFCU's real frame.",
+        "sources": [
+          "Digital Banking Alerts",
+          "ACH Monitoring",
+          "Case Management"
+        ],
+        "confidence": 93,
+        "followups": [
+          "Walk me through the scam surge",
+          "Can I trust this picture?",
+          "What do you recommend?"
+        ]
+      },
+      {
+        "id": "g_trust",
+        "q": "Can I trust this picture?",
+        "aliases": [
+          "how confident",
+          "is this reliable",
+          "data quality",
+          "can I cite this"
+        ],
+        "keywords": [
+          "trust",
+          "confident",
+          "reliable",
+          "quality",
+          "cite",
+          "defensible"
+        ],
+        "a": "Mostly yes, with one gap shown rather than hidden. Card, ACH and digital reconcile cleanly and each figure traces to source. The exception is coverage: 88% of accounts in scope are actively scored, and the 11,240 Howard University accounts are none of them. Cite the 88%, not a whole-book figure, until that closes.",
+        "sources": [
+          "Fraud-Scoring Model",
+          "Account Master",
+          "Governance & Lineage Layer"
+        ],
+        "confidence": 68,
+        "followups": [
+          "Why is the Howard University book not covered?",
+          "What is our exposure?",
+          "What do you recommend?"
+        ]
+      },
+      {
+        "id": "g_recommend",
+        "q": "What do you recommend?",
+        "aliases": [
+          "recommendation",
+          "what should I do",
+          "the plan",
+          "next steps"
+        ],
+        "keywords": [
+          "recommend",
+          "should",
+          "plan",
+          "advice",
+          "next"
+        ],
+        "a": "Pair the targeted member warning and the transfer step-up — scoped to the campaign's patterns, so most members feel nothing — with closing the Howard University coverage gap. That contains the campaign now and removes the blind spot it is exploiting. Modelled effect: two-week loss falls from $148K to $55K.",
+        "sources": [
+          "Fraud-Scoring Model",
+          "Digital Banking",
+          "BSA & AML Case Management"
+        ],
+        "confidence": 82,
+        "followups": [
+          "Why not a blanket hold?",
+          "Who owns each action?",
+          "What is our exposure?"
+        ]
+      },
+      {
+        "id": "g_persona",
+        "q": "Who is the risk officer here?",
+        "aliases": [
+          "who are you",
+          "is Renata real",
+          "persona"
+        ],
+        "keywords": [
+          "renata",
+          "persona",
+          "officer",
+          "who",
+          "real"
+        ],
+        "a": "Renata Alvarez is a representative persona, not a real named individual — ESFCU's actual risk leader and BSA officer are not public, and confirming them is an open follow-up. Girado Smith, on the CEO briefing, is real and named. Nothing in this deck attributes a quote or a decision to a real risk officer.",
+        "sources": [
+          "Spec §3",
+          "Spec §17"
+        ],
+        "confidence": 99,
+        "followups": [
+          "Walk me through the scam surge",
+          "Can I trust this picture?",
+          "What do you recommend?"
+        ]
+      },
+      {
+        "id": "g_owners",
+        "q": "Who owns each action?",
+        "aliases": [
+          "owners",
+          "who is responsible",
+          "assignments",
+          "who does what"
+        ],
+        "keywords": [
+          "owner",
+          "owns",
+          "responsible",
+          "assign",
+          "who"
+        ],
+        "a": "Member Communications and Digital Banking own the warning and the step-up, today. Fraud Operations and the BSA Officer own the holds and the two SAR filings, this week. Risk Technology and Data Governance own the coverage work, two weeks. Owners are roles rather than named individuals — the ESFCU risk roster is an open follow-up.",
+        "sources": [
+          "BSA & AML Case Management",
+          "Governance & Lineage Layer"
+        ],
+        "confidence": 82,
+        "followups": [
+          "What happens today?",
+          "What about the SARs?",
+          "What do you recommend?"
+        ]
+      }
+    ]
+  },
+  "slides": {
+    "cover": {
+      "suggested": [
+        "Where does our fraud risk stand?",
+        "What is the $612K made of?",
+        "Why is coverage only 88%?"
+      ],
+      "questions": [
+        {
+          "id": "cov_loss",
+          "q": "What is the $612K made of?",
+          "aliases": [
+            "net fraud loss",
+            "612",
+            "the loss figure",
+            "loss ytd"
+          ],
+          "keywords": [
+            "612",
+            "loss",
+            "net",
+            "ytd",
+            "made"
+          ],
+          "a": "$612K is net loss across every fraud type year to date, not scam alone: $268K scam and authorized push payment, $196K card, $104K check and ACH, $44K account takeover and other. Worth separating, because 148 scam cases at a 71% pre-loss catch rate could not produce $612K on their own — if the two figures look like they contradict each other, this is why.",
+          "sources": [
+            "Card + ACH + Core + General Ledger"
+          ],
+          "confidence": 91,
+          "followups": [
+            "What is our exposure?",
+            "Walk me through the scam surge",
+            "Can I trust this picture?"
+          ]
+        },
+        {
+          "id": "cov_cases",
+          "q": "Why 148 cases?",
+          "aliases": [
+            "148",
+            "case count",
+            "scam cases",
+            "thirty days"
+          ],
+          "keywords": [
+            "148",
+            "cases",
+            "count",
+            "scam",
+            "days"
+          ],
+          "a": "148 scam and impersonation cases opened in the trailing 30 days, against 94 in the 30 before — a 57% rise. De-duplicated to one case per member per pattern across digital banking, ACH, member reports and the core, so it is one count rather than four systems each holding a fragment.",
+          "sources": [
+            "Digital Banking Alerts",
+            "ACH Monitoring",
+            "Member-Services Reports"
+          ],
+          "confidence": 93,
+          "followups": [
+            "Walk me through the scam surge",
+            "What is our exposure?",
+            "Can I trust this picture?"
+          ]
+        },
+        {
+          "id": "cov_coverage",
+          "q": "Why is coverage only 88%?",
+          "aliases": [
+            "88 percent",
+            "fraud model coverage",
+            "coverage gap",
+            "howard university"
+          ],
+          "keywords": [
+            "88",
+            "coverage",
+            "model",
+            "howard",
+            "scored",
+            "gap"
+          ],
+          "a": "The fraud model actively scores 98,912 of 112,400 accounts in scope. Of the 13,488 unscored, 11,240 are Howard University division accounts carried over from the merger and never mapped into the model's account master; the other 2,248 are recently opened and awaiting their first scoring cycle. That division book is effectively unmonitored.",
+          "sources": [
+            "Fraud-Scoring Model",
+            "Account Master",
+            "Howard University Division Ledger"
+          ],
+          "confidence": 68,
+          "followups": [
+            "Can I trust this picture?",
+            "What do you recommend?",
+            "What is our exposure?"
+          ]
+        }
+      ]
+    },
+    "issue": {
+      "suggested": [
+        "Why did this get caught late?",
+        "Where is the money moving?",
+        "What is the mule signature?"
+      ],
+      "questions": [
+        {
+          "id": "iss_late",
+          "q": "Why did this get caught late?",
+          "aliases": [
+            "caught late",
+            "why now",
+            "why did controls miss it",
+            "silo"
+          ],
+          "keywords": [
+            "late",
+            "caught",
+            "miss",
+            "silo",
+            "controls",
+            "why"
+          ],
+          "a": "Two reasons. The member authorizes the transfer themselves, so it looks legitimate to every control watching for unauthorized activity. And the signals sat in four systems — card, ACH, digital and core — each holding a fragment, so nobody was looking at the pattern. Mean time to detect is 2.4 days against a target under one.",
+          "sources": [
+            "Digital Banking Alerts",
+            "ACH Monitoring",
+            "Card Fraud System",
+            "Core Banking"
+          ],
+          "confidence": 90,
+          "followups": [
+            "Where is the money moving?",
+            "What is the mule signature?",
+            "Can I trust this picture?"
+          ]
+        },
+        {
+          "id": "iss_channels",
+          "q": "Where is the money moving?",
+          "aliases": [
+            "channels",
+            "digital banking",
+            "ach",
+            "which channel"
+          ],
+          "keywords": [
+            "channel",
+            "digital",
+            "ach",
+            "wire",
+            "card",
+            "moving",
+            "money"
+          ],
+          "a": "Digital banking and ACH carry it: 69 and 50 of the 148 cases in the last 30 days, against 21 on card and 8 across branch and phone. Both of the growing channels are self-service, which is consistent with a pattern that works by convincing the member rather than by defeating a control.",
+          "sources": [
+            "Digital Banking Alerts",
+            "ACH Monitoring"
+          ],
+          "confidence": 93,
+          "followups": [
+            "What is the mule signature?",
+            "What is our exposure?",
+            "Why did this get caught late?"
+          ]
+        },
+        {
+          "id": "iss_trend",
+          "q": "How fast is it growing?",
+          "aliases": [
+            "trend",
+            "growth",
+            "57 percent",
+            "eight weeks"
+          ],
+          "keywords": [
+            "trend",
+            "growth",
+            "growing",
+            "fast",
+            "weeks",
+            "rise"
+          ],
+          "a": "From 18 cases a week eight weeks ago to 46 in the week ending Feb 8. Comparing the two 30-day windows: 148 against 94, a 57% rise. The slope steepened in the last two weeks, which is why this is a decision today rather than a watch item.",
+          "sources": [
+            "Digital Banking Alerts",
+            "ACH Monitoring",
+            "Member-Services Reports"
+          ],
+          "confidence": 93,
+          "followups": [
+            "What is our exposure?",
+            "What is the mule signature?",
+            "What do you recommend?"
+          ]
+        },
+        {
+          "id": "iss_mule",
+          "q": "What is the mule signature?",
+          "aliases": [
+            "mule",
+            "receiving accounts",
+            "link graph",
+            "repeating"
+          ],
+          "keywords": [
+            "mule",
+            "receiver",
+            "receiving",
+            "repeat",
+            "link",
+            "graph",
+            "cluster"
+          ],
+          "a": "Nine receiving accounts repeat across 24 of the cases, and funds move on from them to five second-hop accounts — 14 flagged accounts in all. Repetition across otherwise unrelated victims is the signature: a one-off receiver is a case, a receiver appearing in four is a network.",
+          "sources": [
+            "Account Onboarding",
+            "Transaction Monitoring",
+            "ACH & Wire Monitoring"
+          ],
+          "confidence": 84,
+          "followups": [
+            "What do you recommend?",
+            "What is our exposure?",
+            "Can I trust this picture?"
+          ]
+        },
+        {
+          "id": "iss_trace",
+          "q": "Where does the 148 come from?",
+          "aliases": [
+            "lineage",
+            "trace",
+            "source",
+            "provenance"
+          ],
+          "keywords": [
+            "lineage",
+            "trace",
+            "source",
+            "where",
+            "come",
+            "derive"
+          ],
+          "a": "Digital-banking alerts, ACH monitoring and member-services reports feed case management, which de-duplicates to one case per member per pattern. Every step is dated and every feed's last refresh is on the trust ribbon. That is the chain you can put in front of an examiner.",
+          "sources": [
+            "Governance & Lineage Layer",
+            "Case Management"
+          ],
+          "confidence": 93,
+          "followups": [
+            "Can I trust this picture?",
+            "Why is coverage only 88%?",
+            "What do you recommend?"
+          ]
+        }
+      ]
+    },
+    "exposure": {
+      "suggested": [
+        "What is the exposure if nothing changes?",
+        "Where does the $93K come from?",
+        "How reliable is this forecast?"
+      ],
+      "questions": [
+        {
+          "id": "exp_baseline",
+          "q": "What is the exposure if nothing changes?",
+          "aliases": [
+            "baseline",
+            "do nothing",
+            "148k",
+            "no response"
+          ],
+          "keywords": [
+            "baseline",
+            "nothing",
+            "exposure",
+            "if",
+            "continues"
+          ],
+          "a": "On the current slope, about 110 more cases over two weeks and roughly $148K of loss, at the current 71% pre-loss catch rate. Because these are authorized transfers, more of that lands on the member directly than on the credit union.",
+          "sources": [
+            "Historical Fraud Patterns",
+            "Digital & ACH Monitoring"
+          ],
+          "confidence": 78,
+          "followups": [
+            "Where does the $93K come from?",
+            "What do you recommend?",
+            "What about attrition?"
+          ]
+        },
+        {
+          "id": "exp_avoided",
+          "q": "Where does the $93K come from?",
+          "aliases": [
+            "93k",
+            "avoided",
+            "loss avoided",
+            "the gap between the lines"
+          ],
+          "keywords": [
+            "93",
+            "avoided",
+            "saving",
+            "difference",
+            "gap",
+            "reduction"
+          ],
+          "a": "$148K baseline against $55K with the response. Most of it is the catch rate moving from 71% to 84% rather than the case count falling — the step-up catches transfers that would otherwise clear, which is a bigger lever than deterring the approach.",
+          "sources": [
+            "Fraud-Scoring Model",
+            "Digital & ACH Monitoring"
+          ],
+          "confidence": 78,
+          "followups": [
+            "How reliable is this forecast?",
+            "What do you recommend?",
+            "What about attrition?"
+          ]
+        },
+        {
+          "id": "exp_conf",
+          "q": "How reliable is this forecast?",
+          "aliases": [
+            "confidence",
+            "how sure",
+            "78 percent",
+            "model"
+          ],
+          "keywords": [
+            "reliable",
+            "confidence",
+            "sure",
+            "forecast",
+            "model",
+            "accurate"
+          ],
+          "a": "78% confidence, and the band on the chart is the honest range rather than decoration. It is a two-week horizon on eight weeks of observed slope; the further right you read, the wider the band. Treat the direction as solid and the point estimate as indicative.",
+          "sources": [
+            "Historical Fraud Patterns",
+            "Fraud-Scoring Model"
+          ],
+          "confidence": 78,
+          "followups": [
+            "What do you recommend?",
+            "What about attrition?",
+            "Where does the $93K come from?"
+          ]
+        },
+        {
+          "id": "exp_attrition",
+          "q": "What about attrition?",
+          "aliases": [
+            "31 percent",
+            "members leaving",
+            "retention",
+            "churn"
+          ],
+          "keywords": [
+            "attrition",
+            "leave",
+            "leaving",
+            "retention",
+            "churn",
+            "31"
+          ],
+          "a": "Abrigo's published industry research puts a defrauded member at about 31% more likely to leave. That is a real figure, industry-wide across credit unions — ESFCU has never measured its own, and it is marked that way everywhere it appears. 61 members have carried a realized loss this year.",
+          "sources": [
+            "Abrigo — industry benchmark"
+          ],
+          "confidence": 74,
+          "followups": [
+            "What do you recommend?",
+            "What does this mean for members?",
+            "What is the exposure if nothing changes?"
+          ]
+        }
+      ]
+    },
+    "members": {
+      "suggested": [
+        "What does this mean for members?",
+        "Why is authorized fraud different?",
+        "What is ESFCU's mission?"
+      ],
+      "questions": [
+        {
+          "id": "mem_impact",
+          "q": "What does this mean for members?",
+          "aliases": [
+            "member impact",
+            "who is affected",
+            "61 members"
+          ],
+          "keywords": [
+            "member",
+            "impact",
+            "affected",
+            "people",
+            "mean"
+          ],
+          "a": "61 members have carried a realized loss so far this year, and 31 are linked to the current campaign. Because they authorized the transfers, reimbursement is not automatic the way it is for unauthorized activity — which is exactly why the retention stake is higher here than the dollar figure suggests.",
+          "sources": [
+            "Case Management",
+            "Member-Services Reports"
+          ],
+          "confidence": 88,
+          "followups": [
+            "Why is authorized fraud different?",
+            "What about attrition?",
+            "What do you recommend?"
+          ]
+        },
+        {
+          "id": "mem_authorized",
+          "q": "Why is authorized fraud different?",
+          "aliases": [
+            "authorized",
+            "push payment",
+            "app fraud",
+            "why different"
+          ],
+          "keywords": [
+            "authorized",
+            "push",
+            "payment",
+            "different",
+            "app",
+            "reimburse"
+          ],
+          "a": "Every control we run asks whether the member made this transfer. Here they did — under a false pretext, but genuinely. So the transaction passes, recovery is far harder once funds move through a mule, and the member experiences it as the credit union having let it happen.",
+          "sources": [
+            "ACH & Wire Monitoring",
+            "Case Management"
+          ],
+          "confidence": 90,
+          "followups": [
+            "What do you recommend?",
+            "What does this mean for members?",
+            "What about attrition?"
+          ]
+        },
+        {
+          "id": "mem_mission",
+          "q": "What is ESFCU's mission?",
+          "aliases": [
+            "mission statement",
+            "purpose",
+            "who do we serve"
+          ],
+          "keywords": [
+            "mission",
+            "purpose",
+            "serve",
+            "educators",
+            "teachers"
+          ],
+          "a": "ESFCU's published mission is fostering financial well-being for teachers and educators in Maryland — real and sourced from esfcu.org. Around 84,000 members across 13 Maryland branches plus the Howard University division, which merged in November 2024.",
+          "sources": [
+            "esfcu.org"
+          ],
+          "confidence": 99,
+          "followups": [
+            "What does this mean for members?",
+            "Why is coverage only 88%?",
+            "What do you recommend?"
+          ]
+        }
+      ]
+    },
+    "assurance": {
+      "suggested": [
+        "What is on the trust ribbon?",
+        "Why is exam readiness 81?",
+        "What is pending?"
+      ],
+      "questions": [
+        {
+          "id": "assur_ribbon",
+          "q": "What is on the trust ribbon?",
+          "aliases": [
+            "trust ribbon",
+            "the four widgets",
+            "assurance"
+          ],
+          "keywords": [
+            "ribbon",
+            "trust",
+            "widgets",
+            "assurance",
+            "governance"
+          ],
+          "a": "Four things, each with a state and a source: feed freshness (7 of 8 current), fraud-model coverage (88%, Howard University pending), open regulatory items (9 SARs, 2 due inside a week, 96% on-time), and NCUA and BSA exam readiness (81 of 100). Status is always a word plus an icon, never colour alone.",
+          "sources": [
+            "Governance & Lineage Layer",
+            "BSA & AML Case Management"
+          ],
+          "confidence": 89,
+          "followups": [
+            "Why is exam readiness 81?",
+            "What is pending?",
+            "Can I trust this picture?"
+          ]
+        },
+        {
+          "id": "assur_exam",
+          "q": "Why is exam readiness 81?",
+          "aliases": [
+            "81",
+            "exam readiness",
+            "ncua",
+            "bsa exam"
+          ],
+          "keywords": [
+            "exam",
+            "readiness",
+            "81",
+            "ncua",
+            "bsa",
+            "score"
+          ],
+          "a": "Composite across BSA programme documentation, SAR timeliness, fraud-model governance and lineage coverage. The open item dragging the score is fraud-model coverage — close the Howard University gap and it clears the ready threshold. Next window is Q4 2026.",
+          "sources": [
+            "Governance & Lineage Layer"
+          ],
+          "confidence": 81,
+          "followups": [
+            "What is pending?",
+            "What do you recommend?",
+            "What is on the trust ribbon?"
+          ]
+        },
+        {
+          "id": "assur_pending",
+          "q": "What is pending?",
+          "aliases": [
+            "what is not ready",
+            "the gap",
+            "pending",
+            "cannot cite"
+          ],
+          "keywords": [
+            "pending",
+            "gap",
+            "ready",
+            "cite",
+            "not"
+          ],
+          "a": "One thing: fraud-model coverage. 11,240 Howard University accounts are not scored, so any whole-book coverage claim is unsupported. It is flagged on the ribbon rather than averaged away, because a number you cannot defend to an examiner is worse than no number at all.",
+          "sources": [
+            "Fraud-Scoring Model",
+            "Howard University Division Ledger"
+          ],
+          "confidence": 68,
+          "followups": [
+            "What do you recommend?",
+            "Why is exam readiness 81?",
+            "Can I trust this picture?"
+          ]
+        }
+      ]
+    },
+    "options": {
+      "suggested": [
+        "Why is option 1 recommended?",
+        "Why not a blanket hold?",
+        "Why not fix coverage first?"
+      ],
+      "questions": [
+        {
+          "id": "opt_rec",
+          "q": "Why is option 1 recommended?",
+          "aliases": [
+            "option 1",
+            "recommended",
+            "targeted warning",
+            "step up"
+          ],
+          "keywords": [
+            "option",
+            "recommended",
+            "targeted",
+            "warning",
+            "step",
+            "why"
+          ],
+          "a": "It is the only path that contains the campaign this week without charging the whole membership for it. The warning names the exact pattern, and the step-up is scoped to the transfer patterns the campaign uses — so the friction lands on the attack path. Modelled effect: $148K to $55K over two weeks.",
+          "sources": [
+            "Fraud-Scoring Model",
+            "Digital Banking"
+          ],
+          "confidence": 82,
+          "followups": [
+            "Why not a blanket hold?",
+            "Why not fix coverage first?",
+            "Who owns each action?"
+          ]
+        },
+        {
+          "id": "opt_blanket",
+          "q": "Why not a blanket hold?",
+          "aliases": [
+            "option 2",
+            "blanket hold",
+            "threshold hold",
+            "why not"
+          ],
+          "keywords": [
+            "blanket",
+            "hold",
+            "threshold",
+            "everyone",
+            "friction"
+          ],
+          "a": "It contains fastest and its loss reduction is comparable — the reason it is not recommended is the friction rating, not the containment. Every member making a legitimate transfer would feel it, and a lean fraud team would be clearing the manual-review backlog instead of working the real cases.",
+          "sources": [
+            "Digital Banking",
+            "Fraud Alert & Scoring System"
+          ],
+          "confidence": 82,
+          "followups": [
+            "Why is option 1 recommended?",
+            "Why not fix coverage first?",
+            "What do you recommend?"
+          ]
+        },
+        {
+          "id": "opt_coverage",
+          "q": "Why not fix coverage first?",
+          "aliases": [
+            "option 3",
+            "coverage first",
+            "close the gap first"
+          ],
+          "keywords": [
+            "coverage",
+            "first",
+            "gap",
+            "mapping",
+            "days"
+          ],
+          "a": "Because it is a two-week job and the campaign is running now — it does nothing for the next fourteen days. That is an argument for doing it alongside, not instead: the recommendation pairs option 1 with option 3 so the campaign is contained now and the blind spot is gone afterwards.",
+          "sources": [
+            "Risk Technology",
+            "Data Governance"
+          ],
+          "confidence": 82,
+          "followups": [
+            "Why is option 1 recommended?",
+            "Who owns each action?",
+            "What is pending?"
+          ]
+        }
+      ]
+    },
+    "nextSteps": {
+      "suggested": [
+        "Who owns each action?",
+        "What happens today?",
+        "What about the SARs?"
+      ],
+      "questions": [
+        {
+          "id": "ns_owners",
+          "q": "Who owns each action?",
+          "aliases": [
+            "owners",
+            "who is responsible",
+            "assignments"
+          ],
+          "keywords": [
+            "owner",
+            "owns",
+            "responsible",
+            "assign",
+            "who"
+          ],
+          "a": "Member Communications and Digital Banking own the warning and the step-up, today. Fraud Operations and the BSA Officer own the holds and the two SAR filings, this week. Risk Technology and Data Governance own the coverage work, two weeks. Owners are roles rather than named individuals — the ESFCU risk roster is an open follow-up.",
+          "sources": [
+            "BSA & AML Case Management",
+            "Governance & Lineage Layer"
+          ],
+          "confidence": 82,
+          "followups": [
+            "What happens today?",
+            "What about the SARs?",
+            "What do you recommend?"
+          ]
+        },
+        {
+          "id": "ns_today",
+          "q": "What happens today?",
+          "aliases": [
+            "today",
+            "immediate",
+            "first step",
+            "right now"
+          ],
+          "keywords": [
+            "today",
+            "immediate",
+            "now",
+            "first",
+            "start"
+          ],
+          "a": "Two things. The targeted warning goes to the impacted segment in the language of the pattern in play, aligned to ESFCU's published fraud guidance so members are not getting two competing messages. And transfer step-up goes live on the flagged patterns — scoped, so the rest of the membership is untouched.",
+          "sources": [
+            "Member Communications",
+            "Digital Banking"
+          ],
+          "confidence": 82,
+          "followups": [
+            "What about the SARs?",
+            "Who owns each action?",
+            "What do you recommend?"
+          ]
+        },
+        {
+          "id": "ns_sars",
+          "q": "What about the SARs?",
+          "aliases": [
+            "sar",
+            "filings",
+            "deadline",
+            "bsa"
+          ],
+          "keywords": [
+            "sar",
+            "file",
+            "filing",
+            "deadline",
+            "bsa",
+            "regulatory"
+          ],
+          "a": "Nine are open against the 30-day clock; SAR-0412 and SAR-0409 fall due inside seven days and one of those is tied to the mule cluster, so its evidence is still being assembled. Both narratives are drafted with the lineage for every figure they cite — which is what makes them defensible to an examiner reading them cold.",
+          "sources": [
+            "BSA & AML Case Management"
+          ],
+          "confidence": 95,
+          "followups": [
+            "Who owns each action?",
+            "Why is exam readiness 81?",
+            "What do you recommend?"
+          ]
+        }
+      ]
+    }
+  }
+}

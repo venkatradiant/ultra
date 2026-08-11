@@ -1,29 +1,32 @@
-import pres from '../../../../../data/esfcu/ceo/presentation.json';
+import pres from '../../../../../data/esfcu/cro/presentation.json';
 import { useDeck } from '../../../shared/presentation/deckContext';
 
-const ROW_SEEDS = ['ev_loans', 'ev_shares', 'ev_liquidity'];
-
-// Slide 2 — the issue. Three converged figures resolving to one governed
-// loan-to-share ratio, beside the eight-quarter trend that IS the story.
+// Slide 2 — the issue: four systems each holding a fragment, converged into one
+// count. Same layout as the CEO's evidence slide, because it makes the same
+// argument — sources that each tell part of the story, against one governed
+// figure — and the deck's rhythm depends on that recognition.
 //
-// The trend polyline is computed from the JSON rather than hand-plotted, so the
-// drawing can never drift from the numbers the rest of the demo quotes.
-const W = 380;
-const H = 200;
-const PAD = { l: 46, r: 22, t: 26, b: 34 };
+// Every coordinate is computed from the JSON so the drawing cannot drift from
+// the numbers quoted in Conversation Mode.
+const ROW_SEEDS = ['iss_channels', 'iss_channels', 'iss_channels'];
 
-function plot(series) {
-  const vals = series.map((p) => p.v);
-  const min = Math.min(...vals) - 1.2;
-  const max = Math.max(...vals) + 1.2;
-  const x = (i) => PAD.l + (i * (W - PAD.l - PAD.r)) / Math.max(1, series.length - 1);
+const W = 620;
+const H = 220;
+const PAD = { l: 40, r: 30, t: 30, b: 40 };
+
+function plot(trend) {
+  const n = trend.length;
+  const vals = trend.map((p) => p.v);
+  const min = Math.min(...vals) - 4;
+  const max = Math.max(...vals) + 6;
+  const x = (i) => PAD.l + (i * (W - PAD.l - PAD.r)) / Math.max(1, n - 1);
   const y = (v) => PAD.t + (1 - (v - min) / (max - min)) * (H - PAD.t - PAD.b);
-  return { x, y, points: series.map((p, i) => `${x(i).toFixed(1)},${y(p.v).toFixed(1)}`).join(' ') };
+  return { x, y, points: trend.map((p, i) => `${x(i).toFixed(1)},${y(p.v).toFixed(1)}`).join(' ') };
 }
 
-export default function SlideEvidence({ active }) {
+export default function SlideIssue({ active }) {
   const { askProps, askAbout } = useDeck();
-  const s = pres.slides.evidence;
+  const s = pres.slides.issue;
   const { x, y, points } = plot(s.trend);
   const lastIdx = s.trend.length - 1;
 
@@ -44,7 +47,7 @@ export default function SlideEvidence({ active }) {
                   <span className={`rg ${r.tone}`}>{r.rg}</span>
                 </div>
               ))}
-              <div {...askProps('ev_l2s', 'rresult')}>
+              <div {...askProps('cov_cases', 'rresult')}>
                 <div className="rk">{s.result.k}</div>
                 <div>
                   <div className="rl">{s.result.l}</div>
@@ -62,7 +65,7 @@ export default function SlideEvidence({ active }) {
               ))}
             </div>
           </div>
-          <div {...askProps('ev_trend', 'trendcard')}>
+          <div {...askProps('iss_trend', 'trendcard')}>
             <h3>{s.trendTitle}</h3>
             <svg
               width="100%"
@@ -80,7 +83,7 @@ export default function SlideEvidence({ active }) {
                 <text x={x(lastIdx) - 30} y={H - 12}>{s.trend[lastIdx].q}</text>
               </g>
               <text
-                x={x(lastIdx) - 96}
+                x={x(lastIdx) - 70}
                 y={y(s.trend[lastIdx].v) - 12}
                 className="t"
                 fontSize="12"
@@ -96,8 +99,8 @@ export default function SlideEvidence({ active }) {
                 className="conf pm-ask"
                 role="button"
                 tabIndex={0}
-                onClick={(e) => { e.stopPropagation(); askAbout('ev_trace'); }}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); askAbout('ev_trace'); } }}
+                onClick={(e) => { e.stopPropagation(); askAbout('iss_trace'); }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); askAbout('iss_trace'); } }}
               ><span className="dot" />Traceable</span>
             </div>
           </div>

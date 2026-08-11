@@ -397,3 +397,43 @@
 .esfcu-pm-root .pm-close-do-btn.ghost{ background:transparent; border-color:var(--navy-line); color:#cddcea; }
 .esfcu-pm-root .pm-close-do-btn.ghost:hover{ background:#0e2f4f; }
 .esfcu-pm-root .pm-close-done{ margin-top:9px; font-size:12px; color:#7fd3a6; }
+
+
+/* ── CRO risk deck ──────────────────────────────────────────────────────
+   Two additions only. Everything else on the risk deck reuses the CEO's
+   classes unchanged, which is the point: the two briefings should look like
+   they came out of the same house, because they did. */
+
+/* Cover-right panel. The CEO's cover puts his portrait here; Renata is a
+   representative persona, and a stock face beside an invented name reads as a
+   real person to anyone skimming — the one claim this deck must never make. So
+   the space carries the briefing's own posture statement instead. */
+.esfcu-pm-root .cro-cover-note{
+  height:100%; display:flex; flex-direction:column; justify-content:center; gap:14px;
+  border:1px solid rgba(232,163,61,.28); border-radius:14px;
+  background:rgba(255,255,255,.04); padding:30px 30px 26px;
+}
+.esfcu-pm-root .ccn-eyebrow{
+  font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#E8A33D;
+}
+.esfcu-pm-root .ccn-body{ font-size:16px; line-height:1.62; color:#cddcea; }
+.esfcu-pm-root .ccn-cap{ font-size:12.5px; font-style:italic; color:#93aabf; }
+
+/* Exposure slide — the three outcome marks under the chart. */
+.esfcu-pm-root .expmarks{ display:flex; gap:14px; margin:14px 0 2px; }
+.esfcu-pm-root .expmark{
+  flex:1; min-width:0; border-radius:11px; padding:11px 14px;
+  border:1px solid #E4DED2; background:#FBF8F2;
+}
+.esfcu-pm-root .expmark.good{ border-color:rgba(0,137,123,.32); background:rgba(0,137,123,.06); }
+.esfcu-pm-root .expmark.warn{ border-color:rgba(176,65,58,.28); background:rgba(176,65,58,.05); }
+.esfcu-pm-root .expmark .eml{
+  display:block; font-size:11px; font-weight:600; letter-spacing:.07em;
+  text-transform:uppercase; color:#7A8A99;
+}
+.esfcu-pm-root .expmark .emv{
+  display:block; font-family:Fraunces,serif; font-size:26px; font-weight:600; line-height:1.1; color:#1d2b38;
+}
+.esfcu-pm-root .expmark.good .emv{ color:#00695f; }
+.esfcu-pm-root .expmark.warn .emv{ color:#B0413A; }
+.esfcu-pm-root .expmark .ems{ display:block; font-size:12px; color:#5E6E7C; margin-top:2px; }

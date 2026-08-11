@@ -1,5 +1,6 @@
-// GET /api/tts?slide=<slideId>&tenant=<tenant> → ElevenLabs MP3 for that slide's
-// speaker notes. `tenant` defaults to ussfcu, so older links keep working.
+// GET /api/tts?slide=<slideId>&tenant=<tenant>&persona=<persona> → ElevenLabs
+// MP3 for that slide's speaker notes. `tenant` defaults to ussfcu and `persona`
+// to ceo, so older links — and a year of already-cached audio — keep working.
 // The API key stays server-side (ELEVENLABS_API_KEY). Responses are CDN-cached
 // so ElevenLabs is billed ~once per slide per deploy, not per playback.
 import { synthesize, TtsError } from './_tts.js';
@@ -11,8 +12,9 @@ export default async function handler(req, res) {
   }
   const slide = req.query?.slide;
   const tenant = req.query?.tenant;
+  const persona = req.query?.persona;
   try {
-    const { buffer, contentType } = await synthesize(slide, tenant);
+    const { buffer, contentType } = await synthesize(slide, tenant, persona);
     res.setHeader('Content-Type', contentType);
     res.setHeader('Cache-Control', 'public, s-maxage=31536000, max-age=86400, immutable');
     res.status(200).send(buffer);

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { askAbout } from './askAbout';
-import pres from '../../../../data/esfcu/ceo/presentation.json';
+import { useDeck } from './deckContext';
 
 // Detail modal for the three recommended Leadership Next Steps. One modal, three
 // contents — opens on the clicked step and can switch between all three.
@@ -19,8 +18,9 @@ const ACTIONS = [
   { id: 'memo', label: 'Generate the memo', done: 'Memo drafted with the figures and their lineage attached.' },
 ];
 
-export default function ClosingModal({ open, stepIndex = 0, onDismiss, onReturnHome, onDownload }) {
-  const c = pres.closing;
+export default function ClosingModal({ closing, open, stepIndex = 0, onDismiss, onReturnHome, onDownload }) {
+  const { askAbout } = useDeck();
+  const c = closing;
   const [active, setActive] = useState(stepIndex);
   // Keyed by step so acknowledgements do not bleed across the three actions.
   const [taken, setTaken] = useState({});

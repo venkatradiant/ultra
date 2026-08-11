@@ -1,18 +1,25 @@
-import pres from '../../../../../data/esfcu/ceo/presentation.json';
+import pres from '../../../../../data/esfcu/cro/presentation.json';
 import DeckPhoto from '../../../shared/presentation/DeckPhoto';
 import { useDeck } from '../../../shared/presentation/deckContext';
 
 // ESFCU's own member photography, from the "Why ESFCU" panel on esfcu.org.
-// Served from /public for the same reasons as the cover portrait.
+// Served from /public so the deck renders in a boardroom with no network, and
+// so the client's CDN is not carrying load for our demo.
 const MEMBER_PHOTO = '/esfcu/members.webp';
 
-// Render the pull-quote with its emphasized word styled in the warm accent.
+const MARK_SEEDS = ['mem_impact', 'exp_attrition'];
+
+// Render the pull-quote with its emphasized words styled in the warm accent.
 function Quote({ text, em }) {
   if (!em || !text.includes(em)) return <>&ldquo;{text}&rdquo;</>;
   const [before, after] = text.split(em);
   return (<>&ldquo;{before}<em>{em}</em>{after}&rdquo;</>);
 }
 
+// Slide 4 — members and trust. Spec §15a: "what this means for members
+// (authorized-transfer losses, the retention stake), tied to ESFCU's real
+// member-protection posture". The quote is ESFCU's real published mission
+// statement, attributed — no words are put in anyone's mouth.
 export default function SlideMembers({ active }) {
   const { askProps } = useDeck();
   const s = pres.slides.members;
@@ -34,10 +41,10 @@ export default function SlideMembers({ active }) {
           <div>
             <div {...askProps('mem_mission', 'mquote')}><Quote text={s.quote} em={s.quoteEm} /></div>
             <div className="mattr">{s.attribution}</div>
-            <div className="mline">{s.line}</div>
+            <div {...askProps('mem_authorized', 'mline')}>{s.line}</div>
             <div className="mmarks">
-              {s.marks.map((m) => (
-                <span key={m} {...askProps('mem_awards', 'mmark')}>&#9733; {m}</span>
+              {s.marks.map((m, i) => (
+                <span key={m} {...askProps(MARK_SEEDS[i], 'mmark')}>&#9733; {m}</span>
               ))}
             </div>
           </div>

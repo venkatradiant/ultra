@@ -1,4 +1,4 @@
-import pres from '../../../../../data/esfcu/ceo/presentation.json';
+import pres from '../../../../../data/esfcu/cro/presentation.json';
 import { useDeck } from '../../../shared/presentation/deckContext';
 
 function ChipIcon({ kind }) {
@@ -12,6 +12,9 @@ function ChipIcon({ kind }) {
   );
 }
 
+// Slide 7 — the recommended actions, each with an owner set and a response
+// timeframe, each opening its own detail modal. This is where the loop closes:
+// the AI noticed the pattern, a human owns the response.
 export default function SlideNextSteps({ active }) {
   const { closeProps } = useDeck();
   const s = pres.slides.nextSteps;

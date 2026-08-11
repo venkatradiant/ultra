@@ -43,22 +43,23 @@ function splitSentences(text) {
 
 const countWords = (t) => String(t).trim().split(/\s+/).filter(Boolean).length || 1;
 
-// The narration bank to read from, server-side. Without this the proxy falls
-// back to its default tenant (USSFCU) and serves Tim's script for ESFCU's slide
-// ids — the correct voice reading the wrong briefing. It also keeps the two
-// tenants' audio on separate cache keys: the response is CDN/browser cached by
-// URL, and ESFCU and USSFCU share slide ids, so a URL without the tenant would
-// let one tenant's clip be served for the other's slide.
+// The narration bank to read from, server-side. Without a tenant the proxy
+// falls back to its default (USSFCU) and serves Tim's script for ESFCU's slide
+// ids — the correct voice reading the wrong briefing.
+//
+// `persona` matters for the same reason, one level down. The proxy response is
+// CDN-cached `immutable, s-maxage=31536000`, so the URL IS the cache key, and
+// ESFCU's two decks share slide ids (`assurance`, `nextSteps`). Without the
+// persona in the URL, whichever deck played first would pin its MP3 for a year
+// and the other would narrate the wrong briefing in the right voice — for a
+// year, silently, with no error anywhere.
 const TTS_TENANT = 'esfcu';
 
 // Bump when the voice or scripts change — the proxy responses are CDN/browser
 // cached by URL (which doesn't include the voice), so a version token forces the
 // audio to regenerate with the current voice instead of serving stale clips.
 // The suffix tracks the voice id in use (currently cz6NPALEx…).
-const NARRATION_VERSION = 'v2-CZ6N';
-const ttsUrl = (slideId) => (
-  `/api/tts?slide=${encodeURIComponent(slideId)}&tenant=${TTS_TENANT}&v=${NARRATION_VERSION}`
-);
+const DEFAULT_NARRATION_VERSION = 'v2-CZ6N';
 const AUDIO_LOAD_TIMEOUT = 6000; // ms to wait for the proxy MP3 before falling back
 
 // Narration controller. Prefers the ElevenLabs voiceover served by our /api/tts
@@ -66,8 +67,13 @@ const AUDIO_LOAD_TIMEOUT = 6000; // ms to wait for the proxy MP3 before falling 
 // error, offline, local `vite` without the dev shim — it falls back to the
 // browser-native Web Speech API, then the caller's own timer. A generation guard
 // makes stale callbacks from a superseded/cancelled run no-ops.
-export default function useNarration() {
+export default function useNarration({ persona = 'ceo', version = DEFAULT_NARRATION_VERSION } = {}) {
   const speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window;
+  const ttsUrl = useCallback(
+    (slideId) => `/api/tts?slide=${encodeURIComponent(slideId)}&tenant=${TTS_TENANT}`
+      + `&persona=${encodeURIComponent(persona)}&v=${version}`,
+    [persona, version],
+  );
   const supported = typeof window !== 'undefined' && (typeof Audio !== 'undefined' || speechSupported);
 
   const genRef = useRef(0);
@@ -205,7 +211,7 @@ export default function useNarration() {
 
     // Warm the CDN/browser cache for the next slide.
     if (nextSlideId) { try { const n = new Audio(); n.preload = 'auto'; n.src = ttsUrl(nextSlideId); } catch { /* ignore */ } }
-  }, [cancel, speakWithSpeech]);
+  }, [cancel, speakWithSpeech, ttsUrl]);
 
   const pause = useCallback(() => {
     if (engineRef.current === 'audio') { try { audioRef.current?.pause(); } catch { /* ignore */ } }

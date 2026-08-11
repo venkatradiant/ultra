@@ -1,11 +1,15 @@
-import pres from '../../../../../data/esfcu/ceo/presentation.json';
+import pres from '../../../../../data/esfcu/cro/presentation.json';
 import { useDeck } from '../../../shared/presentation/deckContext';
 
-const OPT_SEEDS = ['res_opt1', 'res_opt2', 'res_opt3'];
+const OPT_SEEDS = ['opt_rec', 'opt_blanket', 'opt_coverage'];
 
-export default function SlideResolution({ active }) {
+// Slide 6 — three response paths, one recommended, each with the same three
+// rated attributes (spec §15a). The ratings are what make this a decision
+// rather than a recommendation to rubber-stamp: option 2 contains fastest and
+// is still not recommended, and the attribute that says why is visible.
+export default function SlideOptions({ active }) {
   const { askProps } = useDeck();
-  const s = pres.slides.resolution;
+  const s = pres.slides.options;
   return (
     <section className={`slide paper${active ? ' active' : ''}`}>
       <div className="shead">
@@ -31,7 +35,7 @@ export default function SlideResolution({ active }) {
             </div>
           ))}
         </div>
-        <div {...askProps('res_combo', 'rnote')}><span className="i">i</span>{s.note2}</div>
+        <div {...askProps('opt_coverage', 'rnote')}><span className="i">i</span>{s.note2}</div>
       </div>
     </section>
   );

@@ -1,0 +1,361 @@
+{
+  "note": "Presentation Mode content — the seven risk slides of spec §15a. Every fraud figure is illustrative and matches the Conversation Mode fixtures exactly; the only real, sourced items are ESFCU's own published facts (assets, membership, the merger, the mission statement) and the Abrigo attrition benchmark, which is real and explicitly NOT an ESFCU measurement.",
+  "meta": {
+    "eyebrow": "Risk Briefing · Fraud & Financial Crime",
+    "confidenceLine": "89% of figures validated & traceable · Howard University book pending",
+    "deckLabel": "ESFCU Chief Risk Officer Risk Briefing",
+    "reportTitle": "Risk briefing — long-form report",
+    "photoCaption": "Renata Alvarez · Chief Risk Officer (representative persona)"
+  },
+  "slides": {
+    "cover": {
+      "eyebrow": "Educational Systems Federal Credit Union",
+      "severity": "One risk call this morning",
+      "title": "Losses are rising where we cannot",
+      "titleEm": "see",
+      "subtitle": "Members authorize the transfers themselves, so the controls that watch for unauthorized activity never fire.",
+      "tiles": [
+        {
+          "l": "Net fraud loss, YTD",
+          "k": "$612K",
+          "s": "Illustrative · all fraud types"
+        },
+        {
+          "l": "Scam cases, 30 days",
+          "k": "148",
+          "s": "Illustrative · up from 94"
+        },
+        {
+          "l": "Fraud-model coverage",
+          "k": "88%",
+          "s": "Howard University book pending"
+        }
+      ],
+      "callout": "Manageable in level, not in direction — and 11,240 accounts are unscored."
+    },
+    "issue": {
+      "eyebrow": "The issue",
+      "note": "Four fraud systems, four separate pictures, and one book that appears in none of them.",
+      "rows": [
+        {
+          "rs": "Digital banking — scam cases",
+          "rv": "69",
+          "rg": "last 30 days",
+          "tone": "warn"
+        },
+        {
+          "rs": "ACH & wire — scam cases",
+          "rv": "50",
+          "rg": "last 30 days",
+          "tone": "warn"
+        },
+        {
+          "rs": "Card & branch — scam cases",
+          "rv": "29",
+          "rg": "last 30 days",
+          "tone": "muted"
+        }
+      ],
+      "result": {
+        "k": "148",
+        "l": "One converged case count — not four systems each holding a fragment",
+        "conf": "93% confidence · de-duplicated to one case per member per pattern"
+      },
+      "lineage": [
+        "Digital Banking",
+        "ACH Monitoring",
+        "Member Reports",
+        "Case Management",
+        "Risk Briefing"
+      ],
+      "trendTitle": "Scam and impersonation cases, trailing eight weeks",
+      "trendAnnotation": "+57%",
+      "trendAria": "Scam cases rose from 18 a week to 46 a week across eight weeks, a 57 percent increase between the two 30-day windows.",
+      "source": "Digital-Banking Alerts · ACH Monitoring · Member-Services Reports · as of Feb 8, 2026",
+      "trend": [
+        {
+          "q": "Dec 21",
+          "v": 18
+        },
+        {
+          "q": "Dec 28",
+          "v": 22
+        },
+        {
+          "q": "Jan 4",
+          "v": 25
+        },
+        {
+          "q": "Jan 11",
+          "v": 29
+        },
+        {
+          "q": "Jan 18",
+          "v": 31
+        },
+        {
+          "q": "Jan 25",
+          "v": 35
+        },
+        {
+          "q": "Feb 1",
+          "v": 36
+        },
+        {
+          "q": "Feb 8",
+          "v": 46
+        }
+      ]
+    },
+    "exposure": {
+      "eyebrow": "Exposure",
+      "note": "Two weeks forward, with and without the response. The gap between the lines is the decision.",
+      "chartTitle": "Projected scam cases — baseline against the modelled response",
+      "confidence": "78% confidence",
+      "ceiling": null,
+      "endAnnotation": "$93K of loss avoided",
+      "warning": "A defrauded member is about 31% more likely to leave — real, industry-wide, not an ESFCU measurement",
+      "aria": "Baseline projects 110 cases over two weeks against 74 with the response, and $148K of loss against $55K.",
+      "source": "Historical Fraud Patterns · Digital & ACH Monitoring · Fraud-Scoring Model · as of Feb 10, 2026",
+      "series": [
+        {
+          "q": "Feb 1",
+          "baseline": 36,
+          "response": 36
+        },
+        {
+          "q": "Feb 8",
+          "baseline": 46,
+          "response": 46
+        },
+        {
+          "q": "Feb 15",
+          "baseline": 52,
+          "response": 41
+        },
+        {
+          "q": "Feb 22",
+          "baseline": 58,
+          "response": 33
+        }
+      ],
+      "marks": [
+        {
+          "l": "If nothing changes",
+          "v": "$148K",
+          "s": "110 cases · 71% caught pre-loss",
+          "tone": "warn"
+        },
+        {
+          "l": "With the response",
+          "v": "$55K",
+          "s": "74 cases · 84% caught pre-loss",
+          "tone": "good"
+        },
+        {
+          "l": "Loss avoided",
+          "v": "$93K",
+          "s": "Over the next two weeks",
+          "tone": "good"
+        }
+      ]
+    },
+    "members": {
+      "eyebrow": "Members & trust",
+      "note": "≈84,000 members across 13 Maryland branches, plus the Howard University division. These losses land on them directly, because they authorized the transfer.",
+      "photoCaption": "Members across Maryland's education community",
+      "quote": "fostering financial well-being for teachers and educators in Maryland",
+      "quoteEm": "teachers and educators",
+      "attribution": "Educational Systems FCU mission statement · esfcu.org",
+      "line": "Authorized-transfer losses are the hardest kind to make a member whole on, and the ones most likely to end the relationship.",
+      "marks": [
+        "61 members have carried a realized loss so far this year (illustrative)",
+        "≈31% more likely to leave after a fraud incident — Abrigo, industry-wide"
+      ]
+    },
+    "assurance": {
+      "eyebrow": "Assurance",
+      "title": "Exam-ready — including the part that is not ready",
+      "lead": "Each figure carries whether it is current, validated and traceable. The Howard University coverage gap is flagged rather than smoothed over, because a number you cannot defend to an examiner is worse than no number at all — and a SAR narrative without lineage is worse still."
+    },
+    "options": {
+      "eyebrow": "Resolution options",
+      "note": "Three paths to bend the curve. One is recommended.",
+      "note2": "These options are not mutually exclusive. The recommended path pairs the targeted member warning and the transfer step-up with closing the Howard University coverage gap — contain the campaign now, and remove the blind spot it is exploiting.",
+      "options": [
+        {
+          "num": "1",
+          "title": "Targeted warning and transfer step-up",
+          "recommended": true,
+          "desc": "Warn the impacted segment in the exact language of the pattern, and step up verification on the transfer patterns the campaign uses. Scoped to the attack path, so most members feel nothing.",
+          "attrs": [
+            {
+              "l": "Speed to contain",
+              "v": "Fast",
+              "tone": "good"
+            },
+            {
+              "l": "Member friction",
+              "v": "Low — scoped",
+              "tone": "good"
+            },
+            {
+              "l": "Loss reduction",
+              "v": "High",
+              "tone": "good"
+            }
+          ]
+        },
+        {
+          "num": "2",
+          "title": "Blanket transfer hold above a threshold",
+          "recommended": false,
+          "desc": "Hold every outbound transfer over a threshold for manual review until the campaign passes. Contains fastest, but the friction lands on every member making a legitimate transfer and a lean team clears the backlog.",
+          "attrs": [
+            {
+              "l": "Speed to contain",
+              "v": "Fastest",
+              "tone": "good"
+            },
+            {
+              "l": "Member friction",
+              "v": "High — all members",
+              "tone": "warn"
+            },
+            {
+              "l": "Loss reduction",
+              "v": "High",
+              "tone": "good"
+            }
+          ]
+        },
+        {
+          "num": "3",
+          "title": "Close the coverage gap first",
+          "recommended": false,
+          "desc": "Bring the Howard University book into fraud-model scope before acting on the campaign. Removes the blind spot permanently, but the mapping work takes days the campaign does not give you.",
+          "attrs": [
+            {
+              "l": "Speed to contain",
+              "v": "Slow — days",
+              "tone": "warn"
+            },
+            {
+              "l": "Member friction",
+              "v": "None",
+              "tone": "good"
+            },
+            {
+              "l": "Loss reduction",
+              "v": "Deferred",
+              "tone": "warn"
+            }
+          ]
+        }
+      ]
+    },
+    "nextSteps": {
+      "eyebrow": "Leadership next steps",
+      "note": "Each item has an owner set and a response timeframe. Owners are roles, not named individuals — the ESFCU risk roster is an open follow-up.",
+      "steps": [
+        {
+          "n": "1",
+          "title": "Send the targeted member warning and step up transfers",
+          "desc": "The warning goes to the impacted segment in the language of the pattern in play, aligned to ESFCU's published fraud guidance so members see one consistent message. The step-up is scoped to the campaign's transfer patterns, not to all transfers.",
+          "owners": [
+            "Member Communications",
+            "Digital Banking"
+          ],
+          "chip": "Today",
+          "chipIcon": "clock"
+        },
+        {
+          "n": "2",
+          "title": "Hold the mule cluster and file the two SARs due this week",
+          "desc": "Holds on the 14 flagged accounts — nine repeating receivers and five second hops. SAR-0412 and SAR-0409 fall due inside seven days; both narratives are drafted with the evidence and lineage attached.",
+          "owners": [
+            "Fraud Operations",
+            "BSA Officer"
+          ],
+          "chip": "This week",
+          "chipIcon": "clock"
+        },
+        {
+          "n": "3",
+          "title": "Bring the Howard University book into fraud-model scope",
+          "desc": "11,240 accounts to map into the model's account master. Until that lands, coverage is cited as 88% and never as a whole-book figure — including to the supervisory committee and to an examiner.",
+          "owners": [
+            "Risk Technology",
+            "Data Governance"
+          ],
+          "chip": "Two weeks",
+          "chipIcon": "calendar"
+        }
+      ]
+    }
+  },
+  "closing": {
+    "signoff": "The exposure is containable and the response is drafted. What changed is that you can see the campaign, prove every figure, and show the one gap honestly — in the same session.",
+    "primaryCta": "Return to the briefing home",
+    "secondaryCta": "Save the long-form report",
+    "steps": [
+      {
+        "eyebrow": "Recommended action 1",
+        "title": "Send the targeted member warning and step up transfers",
+        "body": "Member Communications own the warning with Digital Banking on the step-up. The warning names the exact impersonation pattern rather than giving generic fraud advice, and it is aligned to ESFCU's published guidance so members are not receiving two competing messages. The step-up is scoped to the campaign's transfer patterns: the friction lands on the attack path, not on the membership.",
+        "marks": [
+          {
+            "l": "Owner set",
+            "v": "Member Communications · Digital Banking"
+          },
+          {
+            "l": "Response timeframe",
+            "v": "Today"
+          },
+          {
+            "l": "Modeled loss avoided",
+            "v": "$93K over two weeks"
+          }
+        ]
+      },
+      {
+        "eyebrow": "Recommended action 2",
+        "title": "Hold the mule cluster and file the two SARs due this week",
+        "body": "Fraud Operations place the holds on all 14 flagged accounts; the BSA Officer files SAR-0412 and SAR-0409, which fall due inside seven days. Both narratives are drafted with the evidence attached and the lineage for every figure they cite, which is what makes them defensible to an examiner reading them cold rather than merely complete.",
+        "marks": [
+          {
+            "l": "Owner set",
+            "v": "Fraud Operations · BSA Officer"
+          },
+          {
+            "l": "Response timeframe",
+            "v": "This week"
+          },
+          {
+            "l": "Filing posture",
+            "v": "9 open · 96% on-time"
+          }
+        ]
+      },
+      {
+        "eyebrow": "Recommended action 3",
+        "title": "Bring the Howard University book into fraud-model scope",
+        "body": "Risk Technology and Data Governance map the 11,240 division accounts into the model's account master. This is the item dragging exam readiness, and it is the blind spot the campaign is exploiting. Until it lands, coverage is cited as 88% and never as a whole-book figure — to the supervisory committee or to an examiner.",
+        "marks": [
+          {
+            "l": "Owner set",
+            "v": "Risk Technology · Data Governance"
+          },
+          {
+            "l": "Response timeframe",
+            "v": "Two weeks"
+          },
+          {
+            "l": "Accounts in scope",
+            "v": "11,240"
+          }
+        ]
+      }
+    ]
+  }
+}

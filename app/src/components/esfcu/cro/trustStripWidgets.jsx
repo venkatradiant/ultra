@@ -122,7 +122,13 @@ const croWidgets = [
     ribbon: (w) => (
       <>
         <div className="big"><span className="warn">{w.model_coverage.coverage_pct}%</span> <span style={{ fontSize: 15, color: '#93aabf' }}>scored</span></div>
-        <div className="st">{w.model_coverage.summary}. {w.model_coverage.cite_warning}.</div>
+        {/* Not `summary` + `cite_warning` — both name the Howard University book,
+            so together they say it twice. The ribbon has room for the account
+            arithmetic instead, which is the part a committee will ask for. */}
+        <div className="st">
+          {w.model_coverage.accounts_scored.toLocaleString()} of {w.model_coverage.accounts_in_scope.toLocaleString()} accounts scored.
+          {' '}Howard University book pending — reconcile before you cite this.
+        </div>
         <div className="srcl" style={{ marginTop: 12 }}><span className="d" />Fraud-scoring model vs account master</div>
       </>
     ),

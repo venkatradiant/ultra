@@ -1,6 +1,6 @@
 import pres from '../../../../../data/esfcu/ceo/presentation.json';
-import DeckPhoto from './DeckPhoto';
-import { askProps } from '../askAbout';
+import DeckPhoto from '../../../shared/presentation/DeckPhoto';
+import { useDeck } from '../../../shared/presentation/deckContext';
 
 const TILE_SEEDS = ['sit_assets', 'sit_members', 'sit_capital'];
 
@@ -11,6 +11,7 @@ const TILE_SEEDS = ['sit_assets', 'sit_members', 'sit_capital'];
 const COVER_PHOTO = '/esfcu/ceo-portrait.webp';
 
 export default function SlideSituational({ active }) {
+  const { askProps } = useDeck();
   const s = pres.slides.situational;
   return (
     <section className={`slide navy s1${active ? ' active' : ''}`}>

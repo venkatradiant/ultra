@@ -1,8 +1,9 @@
 import pres from '../../../../../data/esfcu/ceo/presentation.json';
 import DataTrustStrip from '../../DataTrustStrip';
-import { askProps } from '../askAbout';
+import { useDeck } from '../../../shared/presentation/deckContext';
 
 export default function SlideAssurance({ active }) {
+  const { askProps, openLineage } = useDeck();
   const s = pres.slides.assurance;
   return (
     <section className={`slide navyd${active ? ' active' : ''}`}>
@@ -17,10 +18,7 @@ export default function SlideAssurance({ active }) {
             full-width board ribbon. Single source of truth (trustStrip.json).
             The Lineage-on-Demand widget opens the deck lineage overlay, lifted to
             the deck level (PresentationMode) so it renders full-size, not scaled. */}
-        <DataTrustStrip
-          variant="ribbon"
-          onTrace={() => window.dispatchEvent(new CustomEvent('esfcu-ceo-deck:open-lineage'))}
-        />
+        <DataTrustStrip variant="ribbon" onTrace={openLineage} />
       </div>
     </section>
   );
