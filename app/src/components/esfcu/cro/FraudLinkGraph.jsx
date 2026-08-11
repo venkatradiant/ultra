@@ -11,11 +11,13 @@ import { NAVY_HEX, STATE_COLOR } from '../tokens';
  *
  * Hand-rolled SVG rather than a graph library, and that was a decision, not
  * laziness. `@neo4j-nvl` is already in this bundle so it would have been free
- * byte-wise, but it renders to canvas/WebGL: it would come out BLANK in the
- * deck's PDF export (spec §15a requires the briefing to export as a long-form
- * report), it cannot inherit the deck's scoped CSS, and it cannot carry aria
- * labels. This graph appears on a deck slide, so SVG is the only option that
- * satisfies both the export and the accessibility rule.
+ * byte-wise, but it renders to canvas/WebGL, and a canvas cannot carry the aria
+ * labels this needs — every node here is a fact a reader has to be able to get
+ * at without seeing it. It also would not survive the deck's long-form PDF
+ * export, which matters less today than it might: §15a's seven slides do not
+ * include a link graph, so this lives in Conversation Mode and on
+ * /fraud-operations. Building it as SVG means putting it on a slide later is a
+ * placement decision rather than a rewrite.
  *
  * The layout is deterministic rather than force-simulated — three columns,
  * members → receivers → second hop — because the shape of this data IS the
