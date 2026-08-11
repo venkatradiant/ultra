@@ -38,8 +38,11 @@ describe('ESFCU CRO fixtures — the consistency spine', () => {
     expect(prior).toBe(scamTrend.prior_30_days);
     expect(recent).toBe(148);
     expect(prior).toBe(94);
-    // The signal card and the KPI tile both quote 148 in prose.
+    // The signal card and the KPI tile both quote 148 in prose, and the Risk
+    // Signals hero reads its tiles straight off these metrics.
     expect(signals[0].metric_text).toContain('148');
+    expect(signals[0].metrics.cases_30d).toBe(recent);
+    expect(signals[0].metrics.cases_prior_30d).toBe(prior);
     expect(kpis.kpis.scam_cases.calc).toBeTruthy();
   });
 
@@ -54,6 +57,14 @@ describe('ESFCU CRO fixtures — the consistency spine', () => {
       ((scamTrend.recent_30_days - scamTrend.prior_30_days) / scamTrend.prior_30_days) * 100,
     );
     expect(scamTrend.growth_pct).toBe(expected);
+  });
+
+  it('quotes one catch rate across the signal, the forecast and the deck', () => {
+    // The Risk Signals hero, the forecast exhibit and the KPI tile all state
+    // "71% caught before loss". Three files, one number.
+    expect(signals[0].metrics.caught_before_loss_pct).toBe(forecast.catch_rate.baseline_pct);
+    expect(forecast.catch_rate.response_pct).toBeGreaterThan(forecast.catch_rate.baseline_pct);
+    expect(signals[0].metrics.net_loss_ytd_usd).toBe(lossBreakdown.total);
   });
 
   it('makes the loss breakdown sum to the $612K on the KPI tile', () => {

@@ -8,6 +8,7 @@ import GovernanceSignalsTable from '../components/ussfcu/cfo/GovernanceSignalsTa
 import GovernanceKpiCards from '../components/ussfcu/cfo/GovernanceKpiCards';
 import PrioritySignalsView from '../components/ussfcu/ceo/PrioritySignalsView';
 import EsfcuPrioritySignalsView from '../components/esfcu/ceo/PrioritySignalsView';
+import EsfcuRiskSignalsView from '../components/esfcu/cro/RiskSignalsView';
 import DisclosureCalendarPage from '../components/ussfcu/compliance/DisclosureCalendarPage';
 import QualitySignalsPage from '../components/newfold/quality/QualitySignalsPage';
 import ChatInput from '../components/chat/ChatInput';
@@ -46,6 +47,7 @@ export default function RiskSignals() {
   const isCfo = persona.id === 'ussfcu_cfo';
   const isCeo = persona.id === 'ussfcu_ceo';
   const isEsfcuCeo = persona.id === 'esfcu_ceo';
+  const isEsfcuCro = persona.id === 'esfcu_cro';
   const isEvelyn = persona.id === 'ussfcu_evelyn';
   const isNadia = persona.id === 'ussfcu_nadia';
   const screenChips = isCfo ? cfoGovernanceChips : isNFCU ? nfcuQualityChips : riskExtras.riskScreenChips;
@@ -72,6 +74,13 @@ export default function RiskSignals() {
   // seasonality window, membership, and capital as the assurance line.
   if (isEsfcuCeo) {
     return <EsfcuPrioritySignalsView />;
+  }
+
+  // ESFCU CRO — the same page shape at a different altitude: the scam surge as
+  // hero, the coverage gap, the mule cluster, the false-positive load and the
+  // SAR calendar, with an exam-and-filing posture rail instead of a board one.
+  if (isEsfcuCro) {
+    return <EsfcuRiskSignalsView />;
   }
 
   const openDrawerWithQuery = (query) => {

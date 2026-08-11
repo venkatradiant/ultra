@@ -8,7 +8,11 @@
     "impact": "high",
     "severity": "critical",
     "metric_text": "148 cases in 30 days · climbing",
-    "sources": ["Digital Banking Alerts", "ACH Monitoring", "Member-Services Fraud Reports"],
+    "sources": [
+      "Digital Banking Alerts",
+      "ACH Monitoring",
+      "Member-Services Fraud Reports"
+    ],
     "timestamp": "2026-02-10T06:00:00",
     "trend": "worsening",
     "real": false,
@@ -17,12 +21,19 @@
       "cases_30d": 148,
       "cases_prior_30d": 94,
       "net_loss_ytd_usd": 612000,
-      "authorized_share_pct": 78
+      "authorized_share_pct": 78,
+      "caught_before_loss_pct": 71,
+      "time_to_detect_days": 2.4
     },
     "confidence": {
       "score": 93,
       "rationale": "Case counts reconcile across digital-banking alerts, ACH monitoring and the member-services fraud log, with duplicate reports de-duplicated by member and date. Confidence is held below 100 because the Howard University division is not yet scored, so the true denominator may be larger.",
-      "signals_used": ["Digital Banking Alerts", "ACH Monitoring", "Member-Services Fraud Reports", "Core Banking"],
+      "signals_used": [
+        "Digital Banking Alerts",
+        "ACH Monitoring",
+        "Member-Services Fraud Reports",
+        "Core Banking"
+      ],
       "threshold": 80,
       "model_version": "fraud-scam-surge-v1.0",
       "validated_at": "2026-02-10T05:58:00"
@@ -39,7 +50,11 @@
     "impact": "high",
     "severity": "warning",
     "metric_text": "88% scored · 11,240 accounts unmonitored",
-    "sources": ["Card Fraud System", "Core Banking", "Fraud-Scoring Model"],
+    "sources": [
+      "Card Fraud System",
+      "Core Banking",
+      "Fraud-Scoring Model"
+    ],
     "timestamp": "2026-02-10T06:02:00",
     "trend": "pending",
     "real": false,
@@ -55,7 +70,12 @@
     "confidence": {
       "score": 68,
       "rationale": "The scored population reconciles cleanly against the account master. The unscored remainder does not resolve to a single owner system, and the card-flagged ring has no matching core records, so the true exposure inside the gap cannot be stated — only its size.",
-      "signals_used": ["Fraud-Scoring Model", "Account Master", "Card Fraud System", "Core Banking"],
+      "signals_used": [
+        "Fraud-Scoring Model",
+        "Account Master",
+        "Card Fraud System",
+        "Core Banking"
+      ],
       "threshold": 80,
       "model_version": "fraud-coverage-v1.0",
       "validated_at": "2026-02-10T06:02:00"
@@ -72,7 +92,10 @@
     "impact": "high",
     "severity": "warning",
     "metric_text": "14 accounts · 9 repeating receivers",
-    "sources": ["Account Onboarding", "Transaction Monitoring"],
+    "sources": [
+      "Account Onboarding",
+      "Transaction Monitoring"
+    ],
     "timestamp": "2026-02-10T06:01:00",
     "trend": "worsening",
     "real": false,
@@ -86,7 +109,10 @@
     "confidence": {
       "score": 84,
       "rationale": "The fast-in-fast-out pattern and the repeat-receiver overlap across unrelated victim cases are both strong signals. Synthetic-identity attribution is weaker: it rests on onboarding attributes, not confirmed identity fraud, so the cluster is flagged for review rather than asserted.",
-      "signals_used": ["Transaction Monitoring", "Account Onboarding"],
+      "signals_used": [
+        "Transaction Monitoring",
+        "Account Onboarding"
+      ],
       "threshold": 80,
       "model_version": "fraud-cluster-v1.0",
       "validated_at": "2026-02-10T06:01:00"
@@ -103,7 +129,9 @@
     "impact": "medium",
     "severity": "info",
     "metric_text": "62% of the queue is noise",
-    "sources": ["Fraud Alert & Scoring System"],
+    "sources": [
+      "Fraud Alert & Scoring System"
+    ],
     "timestamp": "2026-02-10T06:00:00",
     "trend": "improving",
     "real": false,
@@ -117,7 +145,10 @@
     "confidence": {
       "score": 90,
       "rationale": "The rate is measured against dispositioned alerts over the trailing quarter, so it is backward-looking but well evidenced. Re-ranking changes the order the queue is worked, not the underlying rate.",
-      "signals_used": ["Fraud Alert & Scoring System", "Case Management"],
+      "signals_used": [
+        "Fraud Alert & Scoring System",
+        "Case Management"
+      ],
       "threshold": 80,
       "model_version": "fraud-queue-v1.0",
       "validated_at": "2026-02-10T05:57:00"
@@ -134,7 +165,9 @@
     "impact": "medium",
     "severity": "info",
     "metric_text": "9 open · 96% on-time · 2 due within 7 days",
-    "sources": ["BSA & AML Case Management"],
+    "sources": [
+      "BSA & AML Case Management"
+    ],
     "timestamp": "2026-02-10T06:00:00",
     "trend": "stable",
     "real": false,
@@ -148,7 +181,9 @@
     "confidence": {
       "score": 95,
       "rationale": "SAR counts and filing dates come directly from the BSA case system, which is the system of record for the deadline clock. No cross-source reconciliation is required.",
-      "signals_used": ["BSA & AML Case Management"],
+      "signals_used": [
+        "BSA & AML Case Management"
+      ],
       "threshold": 80,
       "model_version": "bsa-readiness-v1.0",
       "validated_at": "2026-02-10T05:56:00"

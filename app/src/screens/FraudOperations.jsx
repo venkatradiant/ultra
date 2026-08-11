@@ -1,13 +1,13 @@
 import { usePersona } from '../context/PersonaContext';
+import FraudOperationsView from '../components/esfcu/cro/FraudOperationsView';
 
 /**
  * `/fraud-operations` — the ESFCU CRO's queue, case triage and link graph
- * (CRO spec §12). The panels land in a later phase; this is the route and its
- * persona guard.
+ * (spec §12).
  *
- * The guard matters on its own: the sidebar only shows this link for the CRO,
- * but the route resolves for anyone who types the URL, and hiding a link is not
- * access control. Same pattern as `PatternResolution` for the AT&T operator.
+ * The persona guard is not decoration. The sidebar only offers this link to the
+ * CRO, but the route resolves for anyone who types the URL, and hiding a link is
+ * not access control. Same pattern as `PatternResolution` for the AT&T operator.
  */
 export default function FraudOperations() {
   const persona = usePersona();
@@ -20,12 +20,5 @@ export default function FraudOperations() {
     );
   }
 
-  return (
-    <div className="flex-1 overflow-y-auto px-4 py-8 sm:px-6 lg:px-8">
-      <h2 className="mb-1 text-sm font-semibold uppercase tracking-wider text-text-muted">Fraud Operations</h2>
-      <p className="max-w-2xl text-[12px] text-text-muted">
-        The re-ranked alert queue, case triage and the receiving-account link graph.
-      </p>
-    </div>
-  );
+  return <FraudOperationsView />;
 }
