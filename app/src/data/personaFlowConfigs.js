@@ -25,6 +25,7 @@ import ussfcuCeoChatFlows from './ussfcu/ceo/chatFlows.json';
 import ussfcuEvelynChatFlows from './ussfcu/evelyn/chatFlows.json';
 import ussfcuNadiaChatFlows from './ussfcu/nadia/chatFlows.json';
 import esfcuCeoChatFlows from './esfcu/ceo/chatFlows.json';
+import esfcuCroChatFlows from './esfcu/cro/chatFlows.json';
 import newfoldDirChatFlows from './newfold-digital/director/chatFlows.json';
 import newfoldOpsChatFlows from './newfold-digital/ops/chatFlows.json';
 import aramcoHseChatFlows from './aramco/hse-gm/chatFlows.json';
@@ -1217,6 +1218,61 @@ const esfcuCeoConfig = {
   },
 };
 
+// ESFCU CRO (Renata Alvarez) — the fraud, BSA and enterprise-risk briefing, and
+// ESFCU's second persona. Gated to clientId === 'esfcu' in PersonaContext.
+//
+// As with the CEO, the chip map carries both phrasings of each question: the
+// always-visible query bar uses spec §11's long forms ("Can I trust this
+// picture, and is the Howard University book covered?") while a turn's own
+// follow-ups use §10's shorter ones ("Can I trust this picture?"). Both resolve
+// to the same turn.
+const esfcuCroConfig = {
+  chatFlows: esfcuCroChatFlows,
+  chipToFlowKey: {
+    'Next signal': '__next_signal__',
+
+    // Suggested query bar (spec §11) + greeting drill chips
+    'Where does our fraud risk stand this morning?': 'esfcu_cro_where_stands',
+    'Walk me through the scam surge': 'esfcu_cro_turn_surge',
+    'Can I trust this picture, and is the Howard University book covered?': 'esfcu_cro_turn_trust',
+    'Can I trust this picture?': 'esfcu_cro_turn_trust',
+    'Bring the Howard University book into scope': 'esfcu_cro_bring_into_scope',
+    'If this scam campaign continues, what is our exposure?': 'esfcu_cro_turn_exposure',
+    'If this continues, what is our exposure?': 'esfcu_cro_turn_exposure',
+    'Show me the options': 'esfcu_cro_show_options',
+    'What is unusual right now?': 'esfcu_cro_turn_unusual',
+    'Re-rank my alert queue by real-fraud likelihood': 'esfcu_cro_rerank_queue',
+    'Draft the SAR and the member alert': 'esfcu_cro_turn_response',
+    'Draft the response': 'esfcu_cro_turn_response',
+    'Draft the response: member alert, holds, SAR, and a board note': 'esfcu_cro_turn_response',
+
+    // Briefing / Presentation Mode
+    'Open the full risk briefing': 'esfcu_cro_turn_full_briefing',
+    'Adjust the response': 'esfcu_cro_adjust_response',
+    'Assign the owners': 'esfcu_cro_assign_owners',
+  },
+  signalSequence: [
+    'esfcu_cro_signal_1_surge',
+    'esfcu_cro_signal_2_coverage',
+    'esfcu_cro_signal_3_mule',
+  ],
+  // Spec §10's seven turns, in order.
+  askTurnSequence: [
+    'esfcu_cro_turn_surge',
+    'esfcu_cro_turn_trust',
+    'esfcu_cro_turn_exposure',
+    'esfcu_cro_turn_unusual',
+    'esfcu_cro_turn_response',
+    'esfcu_cro_turn_full_briefing',
+  ],
+  actionTurnKey: 'esfcu_cro_turn_response',
+  actionConfirmMap: {
+    'ACT-ESFCU-CRO-001': { responseKey: 'ACT-ESFCU-CRO-001', nextChips: ['Open the full risk briefing', 'Adjust the response', 'Assign the owners'] },
+    'ACT-ESFCU-CRO-002': { responseKey: 'ACT-ESFCU-CRO-002', nextChips: ['Open the full risk briefing', 'Adjust the response', 'Assign the owners'] },
+    'ACT-ESFCU-CRO-003': { responseKey: 'ACT-ESFCU-CRO-003', nextChips: ['Open the full risk briefing', 'Adjust the response', 'Assign the owners'] },
+  },
+};
+
 // USSFCU Evelyn Marsh — VP Compliance & Public Policy. The signature deep
 // compliance query and the disclosure checklist/calendar, at population altitude.
 // Gated to clientId === 'ussfcu' in PersonaContext.
@@ -1702,6 +1758,7 @@ const personaFlowConfigs = {
   ussfcu_evelyn: ussfcuEvelynConfig,
   ussfcu_nadia: ussfcuNadiaConfig,
   esfcu_ceo: esfcuCeoConfig,
+  esfcu_cro: esfcuCroConfig,
   newfold_director: newfoldDirConfig,
   newfold_ops: newfoldOpsConfig,
   aramco_hse_gm: aramcoHseConfig,

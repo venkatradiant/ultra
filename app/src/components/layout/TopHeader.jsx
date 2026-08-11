@@ -28,6 +28,9 @@ export default function TopHeader({ onMenuClick }) {
     ussfcu_ceo: { journey: 'Business Performance', risk: 'Priority Signals' },
     // ESFCU CEO — same executive altitude, same two reframes.
     esfcu_ceo: { journey: 'Business Performance', risk: 'Priority Signals' },
+    // ESFCU CRO — fraud and BSA altitude. Overrides the client-level labels,
+    // which are the CEO's. Keep in sync with the persona manifest's navLabels.
+    esfcu_cro: { fraudOperations: 'Fraud Operations', risk: 'Risk Signals' },
     // USSFCU Risk & Compliance — Evelyn (VP) and Nadia (Analyst) reframe journey
     // as the Compliance Query workbench and risk as the Disclosure Calendar.
     // Keep in sync with each persona manifest's navLabels.
@@ -60,6 +63,8 @@ export default function TopHeader({ onMenuClick }) {
     '/dashboard': labels.dashboard || 'Dashboard',
     '/history': labels.history || 'Resolution History',
     '/admin': labels.adminConsole || 'Platform Administration',
+    // ESFCU risk/fraud route.
+    '/fraud-operations': labels.fraudOperations || 'Fraud Operations',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || labels.ask || 'Ask the AI';

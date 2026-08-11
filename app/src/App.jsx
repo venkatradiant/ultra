@@ -39,6 +39,10 @@ const BillingDashboard = lazy(() => import('./screens/BillingDashboard'));
 const ResolutionHistory = lazy(() => import('./screens/ResolutionHistory'));
 const PlatformAdminConsole = lazy(() => import('./screens/PlatformAdminConsole'));
 
+// ESFCU risk/fraud route. Lazy for the same reason: it pulls the link graph,
+// alert queue and case-triage panels that only the CRO persona renders.
+const FraudOperations = lazy(() => import('./screens/FraudOperations'));
+
 // Expose navigate() for the demo runner
 function DemoNavigateBridge() {
   const navigate = useNavigate();
@@ -239,6 +243,14 @@ function AppRoutes() {
             element={(
               <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
                 <PlatformAdminConsole />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/fraud-operations"
+            element={(
+              <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                <FraudOperations />
               </Suspense>
             )}
           />

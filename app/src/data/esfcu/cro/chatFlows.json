@@ -1,0 +1,254 @@
+{
+  "esfcu_cro_greeting": {
+    "ai_message": "Good morning, Renata. One thing needs you today: member-reported impersonation scams are surging, and they are driving authorized push-payment transfers across digital banking and ACH. Cases are up week over week, and 62% of the broader alert queue is false positive, so the real pattern was getting buried. Two items sit behind it: a card-flagged ring is not showing in the core, and the Howard University book is not yet scored by the fraud model. Everything here is current except that coverage gap, which I have flagged.",
+    "suggested_chips": [
+      "Walk me through the scam surge",
+      "Can I trust this picture?",
+      "What is unusual right now?"
+    ],
+    "data_sources_used": ["Card Fraud System", "ACH Monitoring", "Digital Banking Alerts", "Member-Services Fraud Reports", "Fraud-Scoring Model", "Governance & Lineage Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "trustStrip"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "esfcu_cro_signal_1_surge": {
+    "ai_message": "Primary issue — the scam surge. Member-reported impersonation cases have reached 148 over the last 30 days, up from 94 the month before, and roughly four in five involve a transfer the member authorized themselves. That is why the standard controls are not firing: nothing about the transaction looks unauthorized. The money is moving through digital banking and ACH, and a handful of receiving accounts repeat across otherwise unrelated cases.",
+    "suggested_chips": [
+      "Walk me through the scam surge",
+      "If this continues, what is our exposure?",
+      "Open the full risk briefing"
+    ],
+    "data_sources_used": ["Digital Banking Alerts", "ACH Monitoring", "Member-Services Fraud Reports"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "scamTrend"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "esfcu_cro_signal_2_coverage": {
+    "ai_message": "This is the one to close before you brief the committee. A card-flagged ring of seven accounts has no matching records in the core or the ACH view, so it exists in one channel and nowhere else. Underneath that, the fraud model actively scores 88% of accounts in scope — the 11,240 unscored accounts are predominantly the Howard University division, which means part of that book is effectively unmonitored. It is flagged, not hidden.",
+    "suggested_chips": [
+      "Can I trust this picture?",
+      "Bring the Howard University book into scope",
+      "Next signal"
+    ],
+    "data_sources_used": ["Card Fraud System", "Core Banking", "Fraud-Scoring Model", "Howard University Division Ledger"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "coverage"],
+    "capability": "Friction Observability"
+  },
+
+  "esfcu_cro_signal_3_mule": {
+    "ai_message": "A cluster of 14 newer accounts is behaving like a mule network: funds arrive and leave within a median of six hours, and nine of the receiving accounts repeat across unrelated victim cases, which is the signature that ties the scam reports together. Eleven of the fourteen opened in the last 90 days, several on the post-merger surface, with onboarding attributes consistent with synthetic identity. That last part is a flag for review, not a conclusion.",
+    "suggested_chips": [
+      "What is unusual right now?",
+      "Draft the response",
+      "Next signal"
+    ],
+    "data_sources_used": ["Account Onboarding", "Transaction Monitoring"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "linkGraph"],
+    "capability": "Anomaly Detection"
+  },
+
+  "esfcu_cro_where_stands": {
+    "user_query": "Where does our fraud risk stand this morning?",
+    "ai_response": "Good morning, Renata. One thing needs you today: member-reported impersonation scams are surging, and they are driving authorized push-payment transfers across digital banking and ACH. Cases are up week over week, and 62% of the broader alert queue is false positive, so the real pattern was getting buried. Two items sit behind it: a card-flagged ring is not showing in the core, and the Howard University book is not yet scored by the fraud model. Everything here is current except that coverage gap, which I have flagged.",
+    "suggested_chips": [
+      "Walk me through the scam surge",
+      "Can I trust this picture?",
+      "What is unusual right now?"
+    ],
+    "data_sources_used": ["Card Fraud System", "ACH Monitoring", "Digital Banking Alerts", "Member-Services Fraud Reports", "Fraud-Scoring Model", "Governance & Lineage Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["signals", "trustStrip"],
+    "capability": "Proactive Intelligence"
+  },
+
+  "esfcu_cro_turn_surge": {
+    "user_query": "Walk me through the scam surge",
+    "ai_response": "Over the last 30 days, scam and impersonation cases have risen to 148, concentrated in vishing and smishing that convince members to authorize transfers themselves, which is why standard controls are not firing. The money is moving through digital banking and ACH, and a handful of receiving accounts are repeating across cases, a mule signature. This view fuses your card, ACH, digital, and core sources into one picture, and the linked accounts are the thread to pull.",
+    "suggested_chips": [
+      "Can I trust this picture?",
+      "If this continues, what is our exposure?",
+      "What is unusual right now?"
+    ],
+    "data_sources_used": ["Digital Banking Alerts", "ACH Monitoring", "Member-Services Fraud Reports", "Core Banking"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["scamTrend", "linkGraph"],
+    "capability": "Converged Conversation"
+  },
+
+  "esfcu_cro_turn_trust": {
+    "user_query": "Can I trust this picture, and is the Howard University book covered?",
+    "ai_response": "Mostly yes, with one gap I want you to see. The card, ACH, and digital signals reconcile cleanly and each figure traces to source. The exception is coverage: the Howard University division accounts are only 88% folded into the fraud model, so part of that book is effectively unmonitored, and one card-flagged ring does not yet appear in the core view. I have not hidden it. Here is the lineage for the numbers you can trust, and here is exactly where the coverage breaks. Bring the Howard University book into scope before you brief the committee.",
+    "suggested_chips": [
+      "Bring the Howard University book into scope",
+      "If this continues, what is our exposure?",
+      "Draft the response"
+    ],
+    "data_sources_used": ["Card Fraud System", "Core Banking", "Fraud-Scoring Model", "Howard University Division Ledger", "Governance & Lineage Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["coverage", "trustStrip"],
+    "capability": "Friction Observability"
+  },
+
+  "esfcu_cro_bring_into_scope": {
+    "user_query": "Bring the Howard University book into scope",
+    "ai_response": "Queued. I have staged the 11,240 unscored Howard University division accounts for the next fraud-model scoring cycle and flagged the seven card-only ring accounts for a manual core match in the meantime, so the blind spot is covered by hand until the model catches up. Scoring the division moves coverage from 88% to an estimated 98%; the remaining 2% is recently opened accounts awaiting their first cycle, which is normal. Until the cycle completes, the trust strip will keep marking coverage pending and the committee figure stays the scored population with the gap shown beside it.",
+    "suggested_chips": [
+      "If this continues, what is our exposure?",
+      "Draft the response",
+      "What is unusual right now?"
+    ],
+    "data_sources_used": ["Fraud-Scoring Model", "Howard University Division Ledger", "Account Master"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["coverage"],
+    "capability": "Friction Observability"
+  },
+
+  "esfcu_cro_turn_exposure": {
+    "user_query": "If this scam campaign continues, what is our exposure?",
+    "ai_response": "On the current trajectory, the campaign adds an estimated further loss over the next two weeks if nothing changes, and because these are authorized transfers, more of it lands on members directly, which is where attrition follows: a defrauded member is about 31% more likely to leave. I have modeled the response. A targeted member warning plus a transfer step-up on the flagged patterns bends the curve down materially, and closing the Howard University coverage gap removes the blind spot the campaign is exploiting.",
+    "suggested_chips": [
+      "What is unusual right now?",
+      "Draft the response",
+      "Show me the options"
+    ],
+    "data_sources_used": ["Historical Fraud Patterns", "Digital Banking Alerts", "ACH Monitoring", "Fraud-Scoring Model"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["forecast"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "esfcu_cro_show_options": {
+    "user_query": "Show me the options",
+    "ai_response": "Three paths, and they are not mutually exclusive. One: the targeted member warning alone — fastest to send, no member friction, but it depends on members reading it, so loss reduction is only moderate. Two: transfer step-up verification on the flagged patterns — the strongest single lever on loss, but it adds friction for every member who hits it, and the education community will feel that. Three: both, paired with closing the Howard University coverage gap — the recommendation, because the warning and the step-up contain the campaign while the coverage work removes the blind spot it is exploiting. Doing only one and two leaves the gap open for the next campaign.",
+    "suggested_chips": [
+      "Draft the response",
+      "What is unusual right now?",
+      "Open the full risk briefing"
+    ],
+    "data_sources_used": ["Fraud-Scoring Model", "Historical Fraud Patterns"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["forecast"],
+    "capability": "Predictive Intelligence"
+  },
+
+  "esfcu_cro_turn_unusual": {
+    "user_query": "What is unusual right now?",
+    "ai_response": "Two things. First, a cluster of newer accounts, several on the post-merger surface, shows fast-in-fast-out mule behavior and onboarding attributes consistent with synthetic identity: worth a hold and a review. Second, the false-positive load is masking the real cases, 62% of the queue is noise, so I have re-ranked the queue to put the confirmed-fraud-likely alerts at the top for your team. Neither is a policy breach yet, but both are what you want to see before losses land.",
+    "suggested_chips": [
+      "Draft the response",
+      "Bring the Howard University book into scope",
+      "Walk me through the scam surge"
+    ],
+    "data_sources_used": ["Account Onboarding", "Transaction Monitoring", "Fraud Alert & Scoring System"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["linkGraph", "alertQueue"],
+    "capability": "Anomaly Detection"
+  },
+
+  "esfcu_cro_rerank_queue": {
+    "user_query": "Re-rank my alert queue by real-fraud likelihood",
+    "ai_response": "Re-ranked. The queue holds 214 open alerts and roughly 133 of them are noise on the trailing rate. Scoring by real-fraud likelihood puts 18 alerts above the 70-point line, including six tied to the scam campaign's receiving accounts and four on the mule cluster. The false positives have not been deleted — they are still there, ranked below, so nothing is hidden from an examiner. What changes is the order your three analysts work them in.",
+    "suggested_chips": [
+      "Draft the response",
+      "What is unusual right now?",
+      "Open the full risk briefing"
+    ],
+    "data_sources_used": ["Fraud Alert & Scoring System", "Case Management"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["alertQueue"],
+    "capability": "Anomaly Detection"
+  },
+
+  "esfcu_cro_turn_response": {
+    "user_query": "Draft the response: member alert, holds, SAR, and a board note",
+    "ai_response": "Done. I have drafted a targeted member warning for the impacted segment, a transfer step-up recommendation for the flagged patterns, holds on the mule cluster, a SAR narrative for the confirmed cases with the evidence attached, and a short risk-committee note summarizing the campaign, the exposure, and the response. Owners and timeframes are set, and every figure carries its lineage. You can open the full risk briefing as a board-ready deck.",
+    "suggested_chips": [
+      "Open the full risk briefing",
+      "Adjust the response",
+      "Assign the owners"
+    ],
+    "data_sources_used": ["Digital Banking Alerts", "ACH Monitoring", "Transaction Monitoring", "BSA & AML Case Management", "Governance & Lineage Layer"],
+    "ui_components_to_render": [
+      {
+        "type": "action_cards",
+        "title": "Drafted Response",
+        "actions": [
+          {
+            "id": "ACT-ESFCU-CRO-001",
+            "title": "Send the Targeted Member Warning",
+            "description": "A warning to the impacted segment naming the exact impersonation pattern in play, aligned to ESFCU's published \"we will never ask for\" list so it reinforces the existing guidance rather than competing with it.",
+            "system": "Member Communications",
+            "status": "pending_confirmation"
+          },
+          {
+            "id": "ACT-ESFCU-CRO-002",
+            "title": "Apply Transfer Step-Up on the Flagged Patterns",
+            "description": "Step-up verification scoped to the transfer patterns the campaign is using, not to all transfers, so the friction lands on the attack path rather than on every member.",
+            "system": "Digital Banking",
+            "status": "pending_confirmation"
+          },
+          {
+            "id": "ACT-ESFCU-CRO-003",
+            "title": "Place Holds and File the SAR Narrative",
+            "description": "Holds on the 14-account mule cluster and a drafted SAR narrative for the confirmed cases, with the lineage attached so the filing is exam-defensible.",
+            "system": "BSA & AML Case Management",
+            "status": "pending_confirmation"
+          }
+        ]
+      }
+    ],
+    "post_confirm_response": {
+      "ACT-ESFCU-CRO-001": "Sent. The member warning is queued to the impacted segment and mirrors the language already on the ESFCU Fraud Alert page, so members see one consistent message rather than two.",
+      "ACT-ESFCU-CRO-002": "Applied. Step-up verification is live on the flagged transfer patterns. It is scoped, so the friction lands on the attack path and the rest of the membership is untouched.",
+      "ACT-ESFCU-CRO-003": "Done. Holds are on the mule cluster and the SAR narrative is drafted with its evidence attached. Both are on the case record with the filing clock visible."
+    },
+    "related_dataset_keys": ["response", "forecast"],
+    "capability": "Automated Action"
+  },
+
+  "esfcu_cro_adjust_response": {
+    "user_query": "Adjust the response",
+    "ai_response": "Adjusted. I have narrowed the transfer step-up to the two patterns carrying the most loss rather than all five, which cuts the number of members who hit friction by about two thirds while keeping most of the loss reduction, and I have widened the member warning to the full education-community segment instead of only the members already contacted. The recommendation still pairs the warning, the step-up and the coverage work — the change is scope, not direction.",
+    "suggested_chips": [
+      "Open the full risk briefing",
+      "Assign the owners",
+      "Show me the options"
+    ],
+    "data_sources_used": ["Fraud-Scoring Model", "Digital Banking Alerts"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["response"],
+    "capability": "Automated Action"
+  },
+
+  "esfcu_cro_assign_owners": {
+    "user_query": "Assign the owners",
+    "ai_response": "Owners assigned. Each item on the response now carries a named owner set and a response-timeframe chip, so the committee sees who holds it and by when, not just what was recommended. That closes the loop from the platform noticing the pattern to a human owning the response. Owner names in this build are illustrative placeholders pending your team roster.",
+    "suggested_chips": [
+      "Open the full risk briefing",
+      "Adjust the response",
+      "Draft the response"
+    ],
+    "data_sources_used": ["Radiant Intelligence Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["response"],
+    "capability": "Automated Action"
+  },
+
+  "esfcu_cro_turn_full_briefing": {
+    "user_query": "Open the full risk briefing",
+    "ai_response": "Opening the board-ready risk briefing. This is the same intelligence you just walked through, rendered as a presentation for the supervisory committee, with the trust ribbon showing every number is traceable and the Howard University coverage gap shown honestly.",
+    "suggested_chips": [
+      "Draft the response",
+      "Where does our fraud risk stand this morning?",
+      "Walk me through the scam surge"
+    ],
+    "data_sources_used": ["Radiant Intelligence Layer", "Governance & Lineage Layer"],
+    "ui_components_to_render": [],
+    "related_dataset_keys": ["response", "trustStrip"],
+    "capability": "Automated Action"
+  }
+}

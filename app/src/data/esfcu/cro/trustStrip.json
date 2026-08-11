@@ -1,0 +1,57 @@
+{
+  "note": "Spec §13's four widgets for the risk persona. Two map onto the CEO's shapes (freshness ↔ pipeline, exam readiness ↔ NCUA); coverage and open regulatory items need their own tile bodies, which is why the strip is config-driven rather than a second copy.",
+  "validated_at": "2026-02-10T06:02:00",
+  "data_trust_score": 89,
+  "widgets": {
+    "feed_freshness": {
+      "state": "warning",
+      "summary": "7 of 8 feeds current · 1 stalled",
+      "detail": "Card, ACH, digital banking, member reports, BSA case management, core and the governance layer all refreshed by 6:02 AM. The fraud-scoring model's overnight pass covered only the scored population, so the unscored accounts carry no fresh score at all.",
+      "sources": [
+        { "name": "Card Fraud & Dispute", "state": "good", "loaded_at": "05:51" },
+        { "name": "ACH & Wire Monitoring", "state": "good", "loaded_at": "05:54" },
+        { "name": "Digital Banking Alerts", "state": "good", "loaded_at": "05:56" },
+        { "name": "Member-Services Reports", "state": "good", "loaded_at": "05:58" },
+        { "name": "Fraud-Scoring Model", "state": "critical", "loaded_at": "05:59", "note": "scored population only" },
+        { "name": "BSA & AML Case Management", "state": "good", "loaded_at": "06:00" },
+        { "name": "Core Banking", "state": "good", "loaded_at": "05:52" },
+        { "name": "Governance & Lineage Layer", "state": "good", "loaded_at": "06:02" }
+      ]
+    },
+    "model_coverage": {
+      "state": "warning",
+      "status_label": "88% scored",
+      "summary": "88% scored · Howard University pending",
+      "detail": "The fraud model actively scores 98,912 of 112,400 accounts in scope. Of the 13,488 unscored, 11,240 are Howard University division accounts carried over from the merger and 2,248 are recently opened accounts awaiting their first scoring cycle. Part of that book is effectively unmonitored.",
+      "cite_warning": "Howard University pending — reconcile before you cite this",
+      "coverage_pct": 88,
+      "accounts_in_scope": 112400,
+      "accounts_scored": 98912,
+      "accounts_unscored": 13488,
+      "breakdown": [
+        { "book": "Legacy ESFCU", "in_scope": 101160, "scored": 98912, "pct": 97.8, "state": "good" },
+        { "book": "Howard University division", "in_scope": 11240, "scored": 0, "pct": 0, "state": "critical" }
+      ]
+    },
+    "open_regulatory": {
+      "state": "warning",
+      "summary": "9 open SARs · 2 due within 7 days",
+      "detail": "Nine SAR cases are open against the 30-day filing clock. Two fall due inside a week and one of those is tied to the mule cluster, so its evidence is still being assembled. On-time filing sits at 96% across the trailing year.",
+      "open_count": 9,
+      "due_within_7_days": 2,
+      "on_time_pct": 96,
+      "aging": [
+        { "bucket": "Due ≤ 7 days", "count": 2, "state": "critical" },
+        { "bucket": "8–14 days", "count": 3, "state": "warning" },
+        { "bucket": "15–30 days", "count": 4, "state": "good" }
+      ]
+    },
+    "exam_readiness": {
+      "state": "warning",
+      "score": 81,
+      "status_label": "Attention",
+      "next_window": "Q4 2026",
+      "detail": "Composite posture across BSA programme documentation, SAR timeliness, fraud-model governance and lineage coverage. The open item dragging the score is fraud-model coverage — close the Howard University gap and the score clears the ready threshold."
+    }
+  }
+}

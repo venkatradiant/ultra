@@ -1,0 +1,81 @@
+[
+  {
+    "id": "ds-esfcu-cro-01",
+    "name": "Card Fraud & Dispute System",
+    "status": "connected",
+    "description": "Card authorisation fraud flags, dispute cases and chargeback status. Vendor-neutral in this build — ESFCU's actual card fraud platform is an open follow-up. This is the source that currently sees a seven-account ring the core cannot.",
+    "icon": "credit-card",
+    "lastSync": "2026-02-10T05:51:00",
+    "recordCount": 214000,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-cro-02",
+    "name": "ACH & Wire Monitoring",
+    "status": "connected",
+    "description": "Outbound ACH and wire activity with velocity and beneficiary checks. Carries the push-payment transfers at the centre of the current campaign — the ones members authorise themselves.",
+    "icon": "route",
+    "lastSync": "2026-02-10T05:54:00",
+    "recordCount": 486000,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-cro-03",
+    "name": "Digital Banking Alerts",
+    "status": "connected",
+    "description": "Login, device, payee-add and transfer alerts from the digital channel. The earliest place an impersonation scam becomes visible, because the device and payee change before the money moves.",
+    "icon": "monitor",
+    "lastSync": "2026-02-10T05:56:00",
+    "recordCount": 1240000,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-cro-04",
+    "name": "Member-Services Fraud Reports",
+    "status": "connected",
+    "description": "Member-reported fraud intake, including the downloadable Fraud Packet and calls to member services. ESFCU publishes both routes; this is the human signal that often arrives before the systems agree.",
+    "icon": "headphones",
+    "lastSync": "2026-02-10T05:58:00",
+    "recordCount": 3120,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-cro-05",
+    "name": "Fraud-Scoring Model",
+    "status": "partial",
+    "description": "Transaction and account scoring across the book. Actively scores 88% of accounts in scope; the 11,240 unscored accounts are predominantly the Howard University division, which is why part of that book is effectively unmonitored.",
+    "icon": "alert-triangle",
+    "lastSync": "2026-02-10T05:59:00",
+    "recordCount": 98912,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-cro-06",
+    "name": "BSA & AML Case Management",
+    "status": "connected",
+    "description": "Investigation cases, SAR drafting and the filing clock. System of record for the nine open SAR cases and their deadlines, and the source of the exam-defensible trail behind each one.",
+    "icon": "shield",
+    "lastSync": "2026-02-10T06:00:00",
+    "recordCount": 1470,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-cro-07",
+    "name": "Core Banking",
+    "status": "connected",
+    "description": "Accounts, balances and posted transactions — the system every other fraud signal has to reconcile against. Shared with the CEO briefing, so both personas read the same core figures.",
+    "icon": "database",
+    "lastSync": "2026-02-10T05:52:00",
+    "recordCount": 2100000,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-esfcu-cro-08",
+    "name": "Governance & Lineage Layer",
+    "status": "connected",
+    "description": "Feed freshness, fraud-model coverage, SAR deadlines and exam posture, plus the source-to-screen trace behind every figure. This is what turns a fraud number into one the CRO can defend to a BSA examiner.",
+    "icon": "shield-check",
+    "lastSync": "2026-02-10T06:02:00",
+    "recordCount": null
+  }
+]

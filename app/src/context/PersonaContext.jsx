@@ -9,8 +9,10 @@ const PersonaListContext = createContext([]);
 
 const SESSION_KEY = 'active_persona';
 
-// Personas that belong to each client (non-listed clients get the generic set)
-const CLIENT_PERSONAS = {
+// Personas that belong to each client (non-listed clients get the generic set).
+// Exported so manifests.test.ts can assert it agrees with each client manifest —
+// the two registries used to drift silently.
+export const CLIENT_PERSONAS = {
   nfcu: ['nfcu_supervisor', 'nfcu_analyst', 'nfcu_workforce', 'nfcu_director', 'nfcu_member', 'nfcu_agent', 'nfcu_platform_admin'],
   // PenFed: four generic personas + PenFed-only capmarkets (Sowmya Ha).
   // capmarkets is intentionally absent from every other client's allowlist so it
@@ -22,11 +24,13 @@ const CLIENT_PERSONAS = {
   // ussfcu_* personas are intentionally absent from every other client's
   // allowlist so they cannot be selected outside USSFCU.
   ussfcu: ['ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_cfo', 'ussfcu_ceo', 'ops', 'cx', 'retention', 'risk'],
-  // ESFCU: single-persona Tier 1 — Girado Smith, President & CEO. The switcher
-  // is present but single-entry by design; a CFO or VP Finance is added here
-  // later with no other change. Deliberately no generic personas: this tenant is
-  // one executive briefing, not a persona sampler.
-  esfcu: ['esfcu_ceo'],
+  // ESFCU: two executive personas — Girado Smith (CEO, funding and liquidity)
+  // and Renata Alvarez (CRO, fraud and BSA). Deliberately no generic personas:
+  // this tenant is two briefings that share a shell, not a persona sampler.
+  // MUST stay in step with esfcuClient.personas — a registry-integrity test in
+  // manifests.test.ts asserts the two agree, because registering in only one
+  // gives either an invisible persona or a dropdown entry that renders blank.
+  esfcu: ['esfcu_ceo', 'esfcu_cro'],
   // Healthcare market — Riverside Health System (care-ops persona).
   riverside_health: ['care_ops'],
   // Commercial market — Newfold Digital. Two CCaaS personas; Marisol (director)

@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Surfaces the emerging scam pattern — a spike in impersonation-driven push-payment transfers — before the analyst asks, correlated across card, ACH, digital banking and the core, and ranked above the false-positive noise that was burying it.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "Answers a fraud question across every connected source at once — card, ACH, digital, core, and the merged Howard University book — in one query bar over a fused view, so the receiving accounts that repeat across otherwise unrelated cases become visible as one thread.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Friction Observability",
+    "description": "Shows where the fraud picture disagrees: a ring flagged in the card system but invisible in the core, and the Howard University accounts not yet scored by the fraud model. It reconciles both with lineage that holds up for BSA and exam.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Forecasts the scam campaign's trajectory and the credit union's exposure, and models the member-attrition impact of getting it wrong — because an authorized-transfer loss lands on the member, and a defrauded member is measurably more likely to leave.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Anomaly Detection",
+    "description": "Flags the out-of-pattern: mule-account behavior, synthetic-identity onboarding on the newly expanded book, and transactions that break a member's own pattern — then re-ranks the alert queue so the real cases sit above the noise.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "Drafts the response with evidence attached: a member warning, a transfer step-up recommendation, holds on the mule cluster, a SAR narrative, case assignments, and a board risk note — each with an owner and a timeframe.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

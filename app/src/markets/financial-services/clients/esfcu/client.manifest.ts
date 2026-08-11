@@ -7,9 +7,14 @@
  * education-sector deposit seasonality fragmenting the funding picture across
  * systems.
  *
- * Single-entry persona switcher on purpose (spec §15, "Persona switching"): the
- * CEO is the only persona, and a CFO or VP Finance drops into `personas` later
- * with no other change.
+ * Two personas as of the CRO build: Girado Smith (CEO, the funding story) and
+ * Renata Alvarez (CRO, the fraud and BSA story). Spec §15 of the CRO document
+ * calls for exactly this — one shell, one switcher, each persona landing on its
+ * own Ask the AI briefing over shared chat, trust-strip and KPI plumbing.
+ *
+ * Note the asymmetry the switcher has to carry honestly: Girado is ESFCU's real,
+ * named CEO; Renata is a representative persona because ESFCU's actual risk
+ * leader is not public. The Data Sources posture panel states that on screen.
  *
  * Palette: `#003768` is ESFCU's real navy, sampled from the mark on esfcu.org.
  * The mark's second colour is a deep maroon (#8a0d04) which is NOT used as a UI
@@ -22,6 +27,7 @@
  */
 import type { ClientManifest } from '@core/types';
 import { ceoPersona } from './personas/ceo';
+import { croPersona } from './personas/cro';
 
 export const esfcuClient: ClientManifest = {
   id: 'esfcu',
@@ -39,7 +45,7 @@ export const esfcuClient: ClientManifest = {
     // the persona manifest and in TopHeader's personaNavLabels; all three agree.
     navLabels: { journey: 'Business Performance', risk: 'Priority Signals' },
   },
-  personas: [ceoPersona],
+  personas: [ceoPersona, croPersona],
   defaultPersonaId: 'esfcu_ceo',
   theme: {
     light: {

@@ -285,6 +285,29 @@ const personas = {
     ],
   },
 
+  // Renata Alvarez, Chief Risk Officer — ESFCU's second persona: fraud, BSA/AML
+  // and enterprise risk. REPRESENTATIVE, not real: ESFCU's actual risk leader is
+  // not public (CRO spec §3, §17), unlike Girado Smith who is the real CEO. That
+  // asymmetry is disclosed on the Data Sources posture panel.
+  // Identity must match the PersonaModule and the PersonaManifest exactly —
+  // manifests.test.ts asserts all three agree.
+  esfcu_cro: {
+    id: 'esfcu_cro',
+    name: 'Renata Alvarez',
+    initials: 'RA',
+    role: 'Chief Risk Officer',
+    greeting: 'Renata',
+    illustrativePersona: true,
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Friction Observability',
+      'Predictive Intelligence',
+      'Anomaly Detection',
+      'Automated Action',
+    ],
+  },
+
   // ─── Healthcare market — Riverside Health System ──────────────
   // Visible only when clientId === 'riverside_health'.
   care_ops: {

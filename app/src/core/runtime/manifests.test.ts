@@ -15,6 +15,7 @@ import { describe, it, expect } from 'vitest';
 import { getMarkets } from './registry';
 import { validateManifest } from './validate';
 import legacyPersonas from '@/data/personas';
+import { CLIENT_PERSONAS } from '@/context/PersonaContext';
 import type { PersonaManifest } from '../types';
 
 const markets = getMarkets();
@@ -56,6 +57,41 @@ describe('market registry integrity', () => {
   it('keeps client ids unique across markets (findClient returns the first match)', () => {
     const ids = markets.flatMap((m) => m.clients.map((c) => c.id));
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  /**
+   * The switcher and the workspace read from two different registries:
+   * `CLIENT_PERSONAS` in PersonaContext decides what the dropdown lists, and
+   * `client.personas` decides what `/ask` can actually resolve. Nothing linked
+   * them, so registering in only one gave either a persona nobody could reach
+   * or a dropdown entry that rendered a blank screen — a failure with no test
+   * and no error, found only by clicking.
+   *
+   * Clients absent from CLIENT_PERSONAS intentionally fall back to the generic
+   * persona set, so only clients that opt in are checked.
+   */
+  it('keeps CLIENT_PERSONAS in step with each client manifest', () => {
+    for (const market of markets) {
+      for (const client of market.clients) {
+        const allowed = (CLIENT_PERSONAS as Record<string, string[] | undefined>)[client.id];
+        if (!allowed) continue;
+        const registered = client.personas.map((p) => p.id);
+        expect(
+          registered.filter((id) => !allowed.includes(id)),
+          `${client.id}: registered in client.personas but missing from CLIENT_PERSONAS — reachable by URL, invisible in the switcher`,
+        ).toEqual([]);
+        // The reverse is legal: the shared factory personas (ops/cx/retention/
+        // risk) are allow-listed for several clients without being re-declared
+        // in every manifest.
+        const declaredButUnbuilt = allowed.filter(
+          (id) => !registered.includes(id) && id.startsWith(`${client.id}_`),
+        );
+        expect(
+          declaredButUnbuilt,
+          `${client.id}: allow-listed but absent from client.personas — the switcher offers a persona that renders blank`,
+        ).toEqual([]);
+      }
+    }
   });
 
   it('keeps persona ids unique within each client', () => {

@@ -20,6 +20,7 @@ import ussfcuCeoDataSources from '../data/ussfcu/ceo/dataSources.json';
 import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
 import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
 import esfcuCeoDataSources from '../data/esfcu/ceo/dataSources.json';
+import esfcuCroDataSources from '../data/esfcu/cro/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
 import aramcoDataSources from '../data/aramco/_shared/dataSources.json';
 import attDataSources from '../data/att/_shared/dataSources.json';
@@ -49,6 +50,9 @@ const personaDataSources = {
   // Seven vendor-neutral sources; the Howard University division ledger is the
   // one that is only partially connected, which is the whole point of it.
   esfcu_ceo: esfcuCeoDataSources,
+  // ESFCU-only CRO persona. Eight fraud sources; the fraud-scoring model is the
+  // partially-connected one, which is the coverage gap the briefing is about.
+  esfcu_cro: esfcuCroDataSources,
   // Commercial market — Newfold Digital. Both personas share the same eight
   // connected sources (Genesys Cloud primary + Billing, Domains, Hosting, CRM,
   // Marketing, IT, Snowflake).

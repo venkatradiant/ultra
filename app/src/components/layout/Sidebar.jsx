@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { MessageSquare, Route, ShieldAlert, Database, Gauge, Activity, Boxes, MapPin, FileCheck, Users, Layers, LayoutDashboard, History, SlidersHorizontal, X } from 'lucide-react';
+import { Activity, Boxes, Database, FileCheck, Gauge, History, Layers, LayoutDashboard, MapPin, MessageSquare, Route, ShieldAlert, Siren, SlidersHorizontal, Users, X } from 'lucide-react';
 import { useBranding } from '../../context/BrandingContext';
 import { usePersona } from '../../context/PersonaContext';
 import { useActivePersona } from '@core/runtime/useActivePersona';
@@ -37,6 +37,9 @@ export default function Sidebar({ open = false, onClose }) {
     dashboard: { to: '/dashboard', icon: LayoutDashboard, label: labels.dashboard ?? 'Dashboard' },
     history: { to: '/history', icon: History, label: labels.history ?? 'Resolution History' },
     adminConsole: { to: '/admin', icon: SlidersHorizontal, label: labels.adminConsole ?? 'Platform Administration' },
+    // ESFCU risk/fraud. Siren rather than ShieldAlert: `risk` already owns
+    // ShieldAlert, and the CRO shows both slots at once.
+    fraudOperations: { to: '/fraud-operations', icon: Siren, label: labels.fraudOperations ?? 'Fraud Operations' },
     dataSources: { to: '/data-sources', icon: Database, label: 'Data Sources' },
   };
 

@@ -33,6 +33,9 @@ export type NavKey =
   | 'dashboard'
   | 'history'
   | 'adminConsole'
+  // ESFCU risk/fraud slot. Additive in the same way: absent from the default
+  // slot set and listed only by the persona that owns the page.
+  | 'fraudOperations'
   | 'dataSources';
 
 export interface PersonaIdentity {
