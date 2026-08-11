@@ -1,0 +1,75 @@
+{
+  "note": "Spec §12's CoverageItem and §10 Step 3. Illustrative. The same 112,400 / 98,912 / 13,488 arithmetic as trustStrip.json's model_coverage widget — one set of numbers, two surfaces.",
+  "source": "Fraud-Scoring Model vs Account Master · Howard University Division Ledger",
+  "as_of": "Feb 10, 2026",
+  "confidence": 92,
+  "provenance": "illustrative",
+  "accounts_in_scope": 112400,
+  "accounts_scored": 98912,
+  "coverage_pct": 88,
+  "cite_warning": "Howard University pending — reconcile before you cite this",
+  "items": [
+    {
+      "book": "Legacy ESFCU",
+      "inScope": 101160,
+      "scored": 98912,
+      "pctScored": 97.8,
+      "gap": 2248,
+      "gapReason": "Recently opened — awaiting first scoring cycle",
+      "state": "good",
+      "lineage": [
+        "Core Banking",
+        "Nightly Extract",
+        "Account Master",
+        "Fraud-Scoring Model"
+      ]
+    },
+    {
+      "book": "Howard University division",
+      "inScope": 11240,
+      "scored": 0,
+      "pctScored": 0,
+      "gap": 11240,
+      "gapReason": "Merged book not yet mapped into the model’s account master",
+      "state": "critical",
+      "lineage": [
+        "Howard University Division Ledger",
+        "Nightly Mapping (incomplete)",
+        "Account Master",
+        "Fraud-Scoring Model"
+      ]
+    }
+  ],
+  "channels": [
+    {
+      "channel": "Card fraud & dispute",
+      "reconciled": true,
+      "note": "Reconciles to core, one ring not yet surfaced in the core view",
+      "state": "warning"
+    },
+    {
+      "channel": "ACH & wire monitoring",
+      "reconciled": true,
+      "note": "Reconciles cleanly",
+      "state": "good"
+    },
+    {
+      "channel": "Digital-banking alerts",
+      "reconciled": true,
+      "note": "Reconciles cleanly",
+      "state": "good"
+    },
+    {
+      "channel": "Member-services reports",
+      "reconciled": true,
+      "note": "Reconciles cleanly",
+      "state": "good"
+    },
+    {
+      "channel": "Fraud-scoring model",
+      "reconciled": false,
+      "note": "Covers 88% of accounts in scope",
+      "state": "critical"
+    }
+  ]
+}

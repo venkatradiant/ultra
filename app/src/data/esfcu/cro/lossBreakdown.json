@@ -1,0 +1,37 @@
+{
+  "note": "Spec §7. Illustrative. Reconciles the $612K net-loss KPI against the 148-case scam figure: the KPI covers every fraud type, the case count covers one. Without this the two headline numbers look like they contradict each other.",
+  "source": "Card + ACH + Core + General Ledger",
+  "as_of": "Feb 10, 2026",
+  "confidence": 91,
+  "provenance": "illustrative",
+  "period": "Jan 1 – Feb 10, 2026",
+  "total": 612000,
+  "total_display": "$612K",
+  "segments": [
+    {
+      "name": "Scam & authorized push payment",
+      "amount": 268000,
+      "display": "$268K",
+      "trend": "Rising — the campaign"
+    },
+    {
+      "name": "Card — counterfeit & card-not-present",
+      "amount": 196000,
+      "display": "$196K",
+      "trend": "Flat year on year"
+    },
+    {
+      "name": "Check & ACH",
+      "amount": 104000,
+      "display": "$104K",
+      "trend": "Flat year on year"
+    },
+    {
+      "name": "Account takeover & other",
+      "amount": 44000,
+      "display": "$44K",
+      "trend": "Down slightly"
+    }
+  ],
+  "landed_case_note": "Scam losses land on the 29% of cases that clear before a control fires — about $4,600 per landed case."
+}

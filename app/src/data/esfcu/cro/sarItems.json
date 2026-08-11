@@ -1,0 +1,102 @@
+{
+  "note": "Spec §6 signal 5, §10 Step 6 and §13's open-regulatory widget. Illustrative. Nine open SARs against the 30-day filing clock — the same 2 / 3 / 4 aging split trustStrip.json reports.",
+  "source": "BSA & AML Case Management",
+  "as_of": "Feb 10, 2026",
+  "confidence": 95,
+  "provenance": "illustrative",
+  "open_count": 9,
+  "due_within_7_days": 2,
+  "on_time_pct": 96,
+  "items": [
+    {
+      "id": "SAR-0412",
+      "caseId": "CASE-1184",
+      "type": "Impersonation scam · APP",
+      "daysToDeadline": 3,
+      "state": "critical",
+      "status": "Narrative drafted, evidence attached",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0409",
+      "caseId": "CASE-1201",
+      "type": "Mule / synthetic ID",
+      "daysToDeadline": 6,
+      "state": "critical",
+      "status": "Evidence still assembling",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0415",
+      "caseId": "CASE-1179",
+      "type": "Impersonation scam · APP",
+      "daysToDeadline": 9,
+      "state": "warning",
+      "status": "Narrative drafted",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0417",
+      "caseId": "CASE-1188",
+      "type": "Impersonation scam · APP",
+      "daysToDeadline": 11,
+      "state": "warning",
+      "status": "Narrative drafted",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0418",
+      "caseId": "CASE-1191",
+      "type": "Impersonation scam · APP",
+      "daysToDeadline": 13,
+      "state": "warning",
+      "status": "Under review",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0421",
+      "caseId": "CASE-1195",
+      "type": "Impersonation scam · APP",
+      "daysToDeadline": 18,
+      "state": "good",
+      "status": "Under review",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0423",
+      "caseId": "CASE-1168",
+      "type": "Card ring",
+      "daysToDeadline": 21,
+      "state": "good",
+      "status": "Awaiting cross-channel reconciliation",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0425",
+      "caseId": "CASE-1176",
+      "type": "Impersonation scam · APP",
+      "daysToDeadline": 26,
+      "state": "good",
+      "status": "Ready to file",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "SAR-0427",
+      "caseId": "CASE-1203",
+      "type": "Structuring pattern",
+      "daysToDeadline": 29,
+      "state": "good",
+      "status": "Under review",
+      "source": "BSA & AML Case Management",
+      "asOf": "Feb 10, 2026"
+    }
+  ]
+}

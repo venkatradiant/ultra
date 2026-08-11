@@ -1,0 +1,99 @@
+{
+  "note": "Spec §10 Step 2 and §13. Illustrative. Eight weeks of scam and impersonation cases by channel. The trailing four weeks sum to 148 and the four before them to 94 — the two figures the KPI tile and the signal card both quote, so the chart can never disagree with them.",
+  "source": "Digital-Banking Alerts · ACH Monitoring · Member-Services Reports · Core Banking",
+  "as_of": "Feb 8, 2026",
+  "confidence": 93,
+  "provenance": "illustrative",
+  "recent_30_days": 148,
+  "prior_30_days": 94,
+  "growth_pct": 57,
+  "channels": [
+    {
+      "key": "digital",
+      "label": "Digital banking",
+      "total": 69
+    },
+    {
+      "key": "ach",
+      "label": "ACH & wire",
+      "total": 50
+    },
+    {
+      "key": "card",
+      "label": "Card",
+      "total": 21
+    },
+    {
+      "key": "branch",
+      "label": "Branch & phone",
+      "total": 8
+    }
+  ],
+  "series": [
+    {
+      "week": "Dec 21",
+      "digital": 7,
+      "ach": 6,
+      "card": 3,
+      "branch": 2,
+      "total": 18
+    },
+    {
+      "week": "Dec 28",
+      "digital": 9,
+      "ach": 7,
+      "card": 4,
+      "branch": 2,
+      "total": 22
+    },
+    {
+      "week": "Jan 4",
+      "digital": 11,
+      "ach": 8,
+      "card": 4,
+      "branch": 2,
+      "total": 25
+    },
+    {
+      "week": "Jan 11",
+      "digital": 13,
+      "ach": 9,
+      "card": 5,
+      "branch": 2,
+      "total": 29
+    },
+    {
+      "week": "Jan 18",
+      "digital": 14,
+      "ach": 10,
+      "card": 5,
+      "branch": 2,
+      "total": 31
+    },
+    {
+      "week": "Jan 25",
+      "digital": 16,
+      "ach": 12,
+      "card": 5,
+      "branch": 2,
+      "total": 35
+    },
+    {
+      "week": "Feb 1",
+      "digital": 17,
+      "ach": 12,
+      "card": 5,
+      "branch": 2,
+      "total": 36
+    },
+    {
+      "week": "Feb 8",
+      "digital": 22,
+      "ach": 16,
+      "card": 6,
+      "branch": 2,
+      "total": 46
+    }
+  ],
+  "callout": "Vishing and smishing convince the member to authorize the transfer themselves, so the transaction looks legitimate to every control that watches for an unauthorized one."
+}

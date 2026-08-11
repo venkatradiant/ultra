@@ -1,0 +1,197 @@
+{
+  "note": "Source-to-screen lineage for the risk figures — the chain Renata can put in front of the supervisory committee or an NCUA examiner. Same shape as the CEO's lineage.json so LineageTraceModal renders both. Platform names are vendor-neutral: ESFCU's actual fraud, transaction-monitoring and BSA systems are an open follow-up (§17).",
+  "figures": [
+    {
+      "id": "scam_cases_30d",
+      "label": "Scam & Impersonation Cases, 30 Days",
+      "value": "148",
+      "confidence": 93,
+      "asOf": "Feb 8, 2026",
+      "source": "Digital-Banking Alerts · ACH Monitoring · Member-Services Reports · Case Management",
+      "chain": [
+        {
+          "stage": "Signal",
+          "system": "Digital-Banking Alerts",
+          "note": "Session and payee-change alerts · loaded 05:56"
+        },
+        {
+          "stage": "Signal",
+          "system": "ACH & Wire Monitoring",
+          "note": "Out-of-pattern transfers · loaded 05:54"
+        },
+        {
+          "stage": "Report",
+          "system": "Member-Services Reports",
+          "note": "Member-reported impersonation calls · loaded 05:58"
+        },
+        {
+          "stage": "Case",
+          "system": "Case Management",
+          "note": "De-duplicated to one case per member per pattern"
+        },
+        {
+          "stage": "Brief",
+          "system": "Risk Briefing",
+          "note": "Safe to cite — traceable end to end"
+        }
+      ]
+    },
+    {
+      "id": "net_fraud_loss_ytd",
+      "label": "Net Fraud Loss, Year to Date",
+      "value": "$612K",
+      "confidence": 91,
+      "asOf": "Feb 10, 2026",
+      "source": "Card Fraud & Dispute · ACH Monitoring · Core Banking · General Ledger",
+      "chain": [
+        {
+          "stage": "Source",
+          "system": "Card Fraud & Dispute",
+          "note": "Card losses, gross · $196K"
+        },
+        {
+          "stage": "Source",
+          "system": "ACH & Wire Monitoring",
+          "note": "ACH, check and APP losses, gross · $372K"
+        },
+        {
+          "stage": "Core",
+          "system": "Core Banking",
+          "note": "Account takeover and other · $44K"
+        },
+        {
+          "stage": "General Ledger",
+          "system": "General Ledger",
+          "note": "Less recoveries · net $612K, all fraud types"
+        },
+        {
+          "stage": "Brief",
+          "system": "Risk Briefing",
+          "note": "Safe to cite — traceable end to end"
+        }
+      ]
+    },
+    {
+      "id": "model_coverage",
+      "label": "Fraud-Model Coverage",
+      "value": "Pending",
+      "confidence": 68,
+      "asOf": "Feb 10, 2026",
+      "source": "Fraud-Scoring Model · Account Master · Howard University Division Ledger",
+      "warning": "Reconcile before you cite this",
+      "chain": [
+        {
+          "stage": "Source",
+          "system": "Account Master",
+          "note": "112,400 accounts in scope — clean"
+        },
+        {
+          "stage": "Source",
+          "system": "Howard University Division Ledger",
+          "note": "11,240 division accounts carried over from the merger"
+        },
+        {
+          "stage": "Mapping",
+          "system": "Nightly Mapping",
+          "note": "INCOMPLETE — the division book has no account-master mapping, so the model never sees it"
+        },
+        {
+          "stage": "Model",
+          "system": "Fraud-Scoring Model",
+          "note": "98,912 accounts actively scored · 88% coverage"
+        },
+        {
+          "stage": "Brief",
+          "system": "Risk Briefing",
+          "note": "BLOCKED — cite the 88%, not a whole-book figure"
+        }
+      ]
+    },
+    {
+      "id": "false_positive_rate",
+      "label": "False-Positive Rate",
+      "value": "62%",
+      "confidence": 88,
+      "asOf": "Feb 10, 2026",
+      "source": "Fraud Alert & Scoring System",
+      "chain": [
+        {
+          "stage": "Signal",
+          "system": "Fraud Alert & Scoring System",
+          "note": "240 alerts open at 06:02"
+        },
+        {
+          "stage": "Disposition",
+          "system": "Case Management",
+          "note": "149 dispositioned benign on review"
+        },
+        {
+          "stage": "Derived",
+          "system": "Governance & Lineage Layer",
+          "note": "149 ÷ 240 = 62%"
+        },
+        {
+          "stage": "Brief",
+          "system": "Risk Briefing",
+          "note": "Safe to cite — traceable end to end"
+        }
+      ]
+    },
+    {
+      "id": "open_sars",
+      "label": "Open SAR Cases",
+      "value": "9",
+      "confidence": 95,
+      "asOf": "Feb 10, 2026",
+      "source": "BSA & AML Case Management",
+      "chain": [
+        {
+          "stage": "Case",
+          "system": "Case Management",
+          "note": "Cases referred for BSA review"
+        },
+        {
+          "stage": "Filing",
+          "system": "BSA & AML Case Management",
+          "note": "9 open against the 30-day clock · 2 due inside 7 days"
+        },
+        {
+          "stage": "Governance",
+          "system": "Governance & Lineage Layer",
+          "note": "On-time filing 96% across the trailing year"
+        },
+        {
+          "stage": "Brief",
+          "system": "Risk Briefing",
+          "note": "Safe to cite — traceable end to end"
+        }
+      ]
+    },
+    {
+      "id": "attrition_after_fraud",
+      "label": "Attrition After a Fraud Incident",
+      "value": "~31% more likely to leave",
+      "confidence": 74,
+      "asOf": "Published benchmark",
+      "source": "Abrigo — industry-wide credit union benchmark",
+      "warning": "Industry figure — ESFCU has not measured its own",
+      "chain": [
+        {
+          "stage": "Source",
+          "system": "Abrigo",
+          "note": "Published industry benchmark across credit unions"
+        },
+        {
+          "stage": "Scope",
+          "system": "Not ESFCU",
+          "note": "ESFCU has never measured post-fraud attrition on its own book"
+        },
+        {
+          "stage": "Brief",
+          "system": "Risk Briefing",
+          "note": "Cite as an industry figure, never as an ESFCU one"
+        }
+      ]
+    }
+  ]
+}

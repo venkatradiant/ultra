@@ -1,0 +1,73 @@
+{
+  "note": "Spec §10 Step 4 and §15a slide 3. Illustrative. Two weeks forward, baseline against the modelled response. Loss follows the case count at ~$4,600 per landed case, with the catch rate moving from 71% to 84% under the response — that rate change, not just the case count, is where most of the avoided loss comes from.",
+  "source": "Historical Fraud Patterns · Digital & ACH Monitoring · Fraud-Scoring Model",
+  "as_of": "Feb 10, 2026",
+  "confidence": 78,
+  "provenance": "illustrative",
+  "unit_note": "Projected scam cases per week, with the loss each path implies.",
+  "catch_rate": {
+    "baseline_pct": 71,
+    "response_pct": 84
+  },
+  "series": [
+    {
+      "week": "Feb 1",
+      "actual": 36,
+      "baseline": 36,
+      "response": 36,
+      "band": [
+        36,
+        36
+      ]
+    },
+    {
+      "week": "Feb 8",
+      "actual": 46,
+      "baseline": 46,
+      "response": 46,
+      "band": [
+        46,
+        46
+      ]
+    },
+    {
+      "week": "Feb 15",
+      "actual": null,
+      "baseline": 52,
+      "response": 41,
+      "band": [
+        46,
+        58
+      ]
+    },
+    {
+      "week": "Feb 22",
+      "actual": null,
+      "baseline": 58,
+      "response": 33,
+      "band": [
+        48,
+        68
+      ]
+    }
+  ],
+  "outcome": {
+    "baseline_cases": 110,
+    "response_cases": 74,
+    "baseline_loss": 148000,
+    "baseline_loss_display": "$148K",
+    "response_loss": 55000,
+    "response_loss_display": "$55K",
+    "avoided_loss": 93000,
+    "avoided_loss_display": "$93K",
+    "horizon": "next two weeks"
+  },
+  "attrition": {
+    "provenance": "industry",
+    "relative_uplift_pct": 31,
+    "sourceCitation": "Abrigo, industry-wide — not an ESFCU measurement",
+    "text": "A defrauded member is about 31% more likely to leave. That figure is published and industry-wide; ESFCU has not measured its own.",
+    "members_with_realized_loss": 61,
+    "members_note": "61 members have carried a realized loss so far this year."
+  }
+}

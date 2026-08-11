@@ -1,0 +1,307 @@
+{
+  "note": "Spec §10 Steps 2 and 5, §13. Illustrative. The receiving-account link graph: 9 repeating receivers and 5 second-hop accounts make up the 14 flagged accounts on SIG-ESFCU-CRO-003. Member ids are synthetic and deliberately unresolvable — nothing here maps to a real person.",
+  "source": "Account Onboarding · Transaction Monitoring · ACH & Wire Monitoring",
+  "as_of": "Feb 10, 2026",
+  "confidence": 84,
+  "provenance": "illustrative",
+  "summary": "14 flagged accounts · 9 receivers repeating across 24 cases",
+  "flagged_accounts": 14,
+  "repeating_receivers": 9,
+  "members_shown": 8,
+  "members_total": 31,
+  "members_note": "8 of 31 impacted members shown — the rest follow the same two-hop shape.",
+  "nodes": [
+    {
+      "id": "M-4471",
+      "type": "member",
+      "label": "M-4471",
+      "sublabel": "Member · digital",
+      "amount": 8400,
+      "state": "good"
+    },
+    {
+      "id": "M-5108",
+      "type": "member",
+      "label": "M-5108",
+      "sublabel": "Member · digital",
+      "amount": 12500,
+      "state": "good"
+    },
+    {
+      "id": "M-2263",
+      "type": "member",
+      "label": "M-2263",
+      "sublabel": "Member · ACH",
+      "amount": 6200,
+      "state": "good"
+    },
+    {
+      "id": "M-7734",
+      "type": "member",
+      "label": "M-7734",
+      "sublabel": "Member · digital",
+      "amount": 3100,
+      "state": "good"
+    },
+    {
+      "id": "M-6019",
+      "type": "member",
+      "label": "M-6019",
+      "sublabel": "Member · ACH",
+      "amount": 15000,
+      "state": "good"
+    },
+    {
+      "id": "M-3382",
+      "type": "member",
+      "label": "M-3382",
+      "sublabel": "Member · digital",
+      "amount": 4750,
+      "state": "good"
+    },
+    {
+      "id": "M-8850",
+      "type": "member",
+      "label": "M-8850",
+      "sublabel": "Member · branch",
+      "amount": 9300,
+      "state": "good"
+    },
+    {
+      "id": "M-1197",
+      "type": "member",
+      "label": "M-1197",
+      "sublabel": "Member · digital",
+      "amount": 2600,
+      "state": "good"
+    },
+    {
+      "id": "R-01",
+      "type": "receiver",
+      "label": "R-01",
+      "sublabel": "4 linked cases",
+      "amount": 27500,
+      "state": "critical",
+      "cases": 4,
+      "opened": "Post-merger surface"
+    },
+    {
+      "id": "R-02",
+      "type": "receiver",
+      "label": "R-02",
+      "sublabel": "3 linked cases",
+      "amount": 19200,
+      "state": "critical",
+      "cases": 3,
+      "opened": "Post-merger surface"
+    },
+    {
+      "id": "R-03",
+      "type": "receiver",
+      "label": "R-03",
+      "sublabel": "3 linked cases",
+      "amount": 14800,
+      "state": "critical",
+      "cases": 3,
+      "opened": "Legacy ESFCU"
+    },
+    {
+      "id": "R-04",
+      "type": "receiver",
+      "label": "R-04",
+      "sublabel": "2 linked cases",
+      "amount": 11300,
+      "state": "warning",
+      "cases": 2,
+      "opened": "Post-merger surface"
+    },
+    {
+      "id": "R-05",
+      "type": "receiver",
+      "label": "R-05",
+      "sublabel": "2 linked cases",
+      "amount": 9600,
+      "state": "warning",
+      "cases": 2,
+      "opened": "Legacy ESFCU"
+    },
+    {
+      "id": "R-06",
+      "type": "receiver",
+      "label": "R-06",
+      "sublabel": "2 linked cases",
+      "amount": 8100,
+      "state": "warning",
+      "cases": 2,
+      "opened": "Legacy ESFCU"
+    },
+    {
+      "id": "R-07",
+      "type": "receiver",
+      "label": "R-07",
+      "sublabel": "2 linked cases",
+      "amount": 6400,
+      "state": "warning",
+      "cases": 2,
+      "opened": "Post-merger surface"
+    },
+    {
+      "id": "R-08",
+      "type": "receiver",
+      "label": "R-08",
+      "sublabel": "2 linked cases",
+      "amount": 5200,
+      "state": "warning",
+      "cases": 2,
+      "opened": "Legacy ESFCU"
+    },
+    {
+      "id": "R-09",
+      "type": "receiver",
+      "label": "R-09",
+      "sublabel": "2 linked cases",
+      "amount": 3750,
+      "state": "warning",
+      "cases": 2,
+      "opened": "Legacy ESFCU"
+    },
+    {
+      "id": "H-01",
+      "type": "hop",
+      "label": "H-01",
+      "sublabel": "Second hop",
+      "state": "critical"
+    },
+    {
+      "id": "H-02",
+      "type": "hop",
+      "label": "H-02",
+      "sublabel": "Second hop",
+      "state": "critical"
+    },
+    {
+      "id": "H-03",
+      "type": "hop",
+      "label": "H-03",
+      "sublabel": "Second hop",
+      "state": "warning"
+    },
+    {
+      "id": "H-04",
+      "type": "hop",
+      "label": "H-04",
+      "sublabel": "Second hop",
+      "state": "warning"
+    },
+    {
+      "id": "H-05",
+      "type": "hop",
+      "label": "H-05",
+      "sublabel": "Second hop",
+      "state": "warning"
+    }
+  ],
+  "edges": [
+    {
+      "from": "M-4471",
+      "to": "R-01"
+    },
+    {
+      "from": "M-5108",
+      "to": "R-01"
+    },
+    {
+      "from": "M-5108",
+      "to": "R-02"
+    },
+    {
+      "from": "M-2263",
+      "to": "R-02"
+    },
+    {
+      "from": "M-7734",
+      "to": "R-03"
+    },
+    {
+      "from": "M-6019",
+      "to": "R-03"
+    },
+    {
+      "from": "M-6019",
+      "to": "R-04"
+    },
+    {
+      "from": "M-3382",
+      "to": "R-05"
+    },
+    {
+      "from": "M-8850",
+      "to": "R-06"
+    },
+    {
+      "from": "M-8850",
+      "to": "R-07"
+    },
+    {
+      "from": "M-1197",
+      "to": "R-08"
+    },
+    {
+      "from": "M-1197",
+      "to": "R-09"
+    },
+    {
+      "from": "R-01",
+      "to": "H-01"
+    },
+    {
+      "from": "R-02",
+      "to": "H-01"
+    },
+    {
+      "from": "R-03",
+      "to": "H-02"
+    },
+    {
+      "from": "R-04",
+      "to": "H-02"
+    },
+    {
+      "from": "R-05",
+      "to": "H-03"
+    },
+    {
+      "from": "R-06",
+      "to": "H-03"
+    },
+    {
+      "from": "R-07",
+      "to": "H-04"
+    },
+    {
+      "from": "R-08",
+      "to": "H-05"
+    },
+    {
+      "from": "R-09",
+      "to": "H-05"
+    }
+  ],
+  "legend": [
+    {
+      "type": "member",
+      "label": "Impacted member",
+      "hint": "Authorized the transfer themselves"
+    },
+    {
+      "type": "receiver",
+      "label": "Receiving account",
+      "hint": "Repeats across cases — the mule signature"
+    },
+    {
+      "type": "hop",
+      "label": "Second hop",
+      "hint": "Where the funds move next"
+    }
+  ]
+}

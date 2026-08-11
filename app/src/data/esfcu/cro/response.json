@@ -1,0 +1,132 @@
+{
+  "note": "Spec §15a slides 6 and 7, and §10 Step 6's 'Assign the owners'. Illustrative. Loss figures are forecast.json's, unchanged.",
+  "source": "Fraud-Scoring Model · Digital Banking · BSA & AML Case Management",
+  "as_of": "Feb 10, 2026",
+  "confidence": 82,
+  "provenance": "illustrative",
+  "options": [
+    {
+      "id": "OPT-CRO-A",
+      "title": "Targeted warning and transfer step-up",
+      "recommended": true,
+      "description": "Warn the impacted segment in the exact language of the impersonation pattern, and step up verification on the transfer patterns the campaign uses. Scoped to the attack path, so most members feel nothing.",
+      "attributes": [
+        {
+          "label": "Speed to contain",
+          "rating": "Fast",
+          "state": "good"
+        },
+        {
+          "label": "Member friction",
+          "rating": "Low — scoped",
+          "state": "good"
+        },
+        {
+          "label": "Loss reduction",
+          "rating": "High",
+          "state": "good"
+        }
+      ],
+      "loss_effect": "Bends the two-week curve from $148K to $55K"
+    },
+    {
+      "id": "OPT-CRO-B",
+      "title": "Blanket transfer hold above a threshold",
+      "recommended": false,
+      "description": "Hold every outbound transfer over a threshold for manual review until the campaign passes. Contains fastest, but the friction lands on every member making a legitimate transfer, and a lean team has to clear the backlog.",
+      "attributes": [
+        {
+          "label": "Speed to contain",
+          "rating": "Fastest",
+          "state": "good"
+        },
+        {
+          "label": "Member friction",
+          "rating": "High — all members",
+          "state": "critical"
+        },
+        {
+          "label": "Loss reduction",
+          "rating": "High",
+          "state": "good"
+        }
+      ],
+      "loss_effect": "Similar loss reduction, at a cost the membership feels"
+    },
+    {
+      "id": "OPT-CRO-C",
+      "title": "Close the coverage gap first",
+      "recommended": false,
+      "description": "Bring the Howard University book into fraud-model scope before acting on the campaign. Removes the blind spot permanently, but the mapping work takes days the campaign does not give you.",
+      "attributes": [
+        {
+          "label": "Speed to contain",
+          "rating": "Slow — days",
+          "state": "critical"
+        },
+        {
+          "label": "Member friction",
+          "rating": "None",
+          "state": "good"
+        },
+        {
+          "label": "Loss reduction",
+          "rating": "Deferred",
+          "state": "warning"
+        }
+      ],
+      "loss_effect": "No effect on the next two weeks"
+    }
+  ],
+  "closing_note": "These are not mutually exclusive. The recommended path pairs the targeted warning and the transfer step-up with closing the Howard University coverage gap — contain the campaign now, and remove the blind spot it is exploiting.",
+  "next_steps": [
+    {
+      "n": 1,
+      "title": "Send the targeted member warning",
+      "owner": "Member Communications",
+      "timeframe": "Today",
+      "action": "generate_member_alert",
+      "detail": "Impacted segment only, in the language of the pattern in play."
+    },
+    {
+      "n": 2,
+      "title": "Apply transfer step-up on the flagged patterns",
+      "owner": "Digital Banking",
+      "timeframe": "Today",
+      "action": "apply_step_up",
+      "detail": "Scoped to the campaign’s transfer patterns, not to all transfers."
+    },
+    {
+      "n": 3,
+      "title": "Place holds on the 14-account mule cluster",
+      "owner": "Fraud Operations",
+      "timeframe": "Today",
+      "action": "place_holds",
+      "detail": "Nine repeating receivers and five second-hop accounts."
+    },
+    {
+      "n": 4,
+      "title": "File the two SARs due inside seven days",
+      "owner": "BSA Officer",
+      "timeframe": "This week",
+      "action": "draft_sar",
+      "detail": "SAR-0412 and SAR-0409, evidence and lineage attached."
+    },
+    {
+      "n": 5,
+      "title": "Bring the Howard University book into fraud-model scope",
+      "owner": "Risk Technology · Data Governance",
+      "timeframe": "Two weeks",
+      "action": "schedule_coverage_work",
+      "detail": "11,240 accounts to map into the model’s account master."
+    },
+    {
+      "n": 6,
+      "title": "Take the risk-committee note to the supervisory committee",
+      "owner": "Chief Risk Officer",
+      "timeframe": "Next committee",
+      "action": "schedule_committee",
+      "detail": "Campaign, exposure, response, and the coverage gap shown openly."
+    }
+  ]
+}

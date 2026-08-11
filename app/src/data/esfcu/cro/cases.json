@@ -1,0 +1,151 @@
+{
+  "note": "Spec §12's FraudCase interface. Illustrative. Eight of the 34 cases opened in the campaign window. Amounts and receiving accounts tie back to linkGraph.json, so opening a case from the graph and opening it from the queue land on the same record.",
+  "source": "Case Management · Card Fraud & Dispute · ACH Monitoring",
+  "as_of": "Feb 10, 2026",
+  "confidence": 90,
+  "provenance": "illustrative",
+  "open_total": 34,
+  "shown": 8,
+  "cases": [
+    {
+      "id": "CASE-1188",
+      "type": "Impersonation scam",
+      "channel": "Digital banking",
+      "amount": 15000,
+      "amount_display": "$15,000",
+      "status": "Open · hold placed",
+      "memberId": "M-6019",
+      "linkedAccounts": [
+        "R-03",
+        "R-04"
+      ],
+      "score": 96,
+      "state": "critical",
+      "disposition": "SAR drafted",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "CASE-1184",
+      "type": "Impersonation scam",
+      "channel": "ACH & wire",
+      "amount": 12500,
+      "amount_display": "$12,500",
+      "status": "Open · funds recalled",
+      "memberId": "M-5108",
+      "linkedAccounts": [
+        "R-01",
+        "R-02"
+      ],
+      "score": 94,
+      "state": "critical",
+      "disposition": "SAR drafted",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "CASE-1191",
+      "type": "Impersonation scam",
+      "channel": "Digital banking",
+      "amount": 9300,
+      "amount_display": "$9,300",
+      "status": "Open · under review",
+      "memberId": "M-8850",
+      "linkedAccounts": [
+        "R-06",
+        "R-07"
+      ],
+      "score": 89,
+      "state": "warning",
+      "disposition": "Evidence assembling",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "CASE-1179",
+      "type": "Impersonation scam",
+      "channel": "Digital banking",
+      "amount": 8400,
+      "amount_display": "$8,400",
+      "status": "Open · hold placed",
+      "memberId": "M-4471",
+      "linkedAccounts": [
+        "R-01"
+      ],
+      "score": 91,
+      "state": "critical",
+      "disposition": "SAR drafted",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "CASE-1195",
+      "type": "Impersonation scam",
+      "channel": "ACH & wire",
+      "amount": 6200,
+      "amount_display": "$6,200",
+      "status": "Open · under review",
+      "memberId": "M-2263",
+      "linkedAccounts": [
+        "R-02"
+      ],
+      "score": 86,
+      "state": "warning",
+      "disposition": "Evidence assembling",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "CASE-1201",
+      "type": "Mule / synthetic ID",
+      "channel": "Onboarding",
+      "amount": 5200,
+      "amount_display": "$5,200",
+      "status": "Open · hold placed",
+      "memberId": "M-1197",
+      "linkedAccounts": [
+        "R-08",
+        "R-09"
+      ],
+      "score": 83,
+      "state": "warning",
+      "disposition": "Referred to BSA",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "CASE-1176",
+      "type": "Impersonation scam",
+      "channel": "Digital banking",
+      "amount": 4750,
+      "amount_display": "$4,750",
+      "status": "Recovered",
+      "memberId": "M-3382",
+      "linkedAccounts": [
+        "R-05"
+      ],
+      "score": 81,
+      "state": "good",
+      "disposition": "Closed — member made whole",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    },
+    {
+      "id": "CASE-1168",
+      "type": "Card ring",
+      "channel": "Card",
+      "amount": 3100,
+      "amount_display": "$3,100",
+      "status": "Open · not in core view",
+      "memberId": "M-7734",
+      "linkedAccounts": [
+        "R-03"
+      ],
+      "score": 77,
+      "state": "warning",
+      "disposition": "Cross-channel gap",
+      "source": "Case Management",
+      "asOf": "Feb 10, 2026"
+    }
+  ]
+}
