@@ -201,8 +201,21 @@ export default function TopHeader({ onMenuClick }) {
                           {p.initials}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className={`text-xs font-semibold leading-tight ${isActive ? 'text-brand' : 'text-text'}`}>
+                          <p className={`flex flex-wrap items-center gap-1 text-xs font-semibold leading-tight ${isActive ? 'text-brand' : 'text-text'}`}>
                             {p.name}
+                            {/* Some personas are real, named people (ESFCU's CEO
+                                is) and some are representative stand-ins for a
+                                role whose real holder is not public. Sharing one
+                                dropdown, they are indistinguishable — so the
+                                invented ones say so. */}
+                            {p.illustrativePersona ? (
+                              <span
+                                className="rounded bg-surface-2 px-1 py-px text-[8px] font-bold uppercase tracking-wide text-text-subtle"
+                                title="Representative persona — not a real named individual"
+                              >
+                                Illustrative
+                              </span>
+                            ) : null}
                           </p>
                           <p className="text-[10px] text-text-subtle leading-tight">{p.role}</p>
                         </div>

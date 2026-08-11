@@ -150,6 +150,18 @@ const ESFCU_REAL_FACTS = [
   ['Recognition', 'AACUC Hall of Fame (March 2025) · Washington Business Journal 2025 Diversity in Business Award'],
 ];
 
+// The CRO's own disclosure, prepended for that persona only. Girado Smith is
+// ESFCU's real, named CEO; Renata Alvarez is not a real person, and the two
+// share a switcher — so the difference is stated here rather than left to be
+// inferred from a name.
+const ESFCU_CRO_DISCLOSURES = [
+  'Renata Alvarez is a REPRESENTATIVE persona, not a real individual. ESFCU\'s actual risk leader and BSA officer are not public (spec §17), so this build names a role rather than a person. Nothing here attributes a quote, a decision or an opinion to a real risk officer. Girado Smith, on the CEO briefing, IS real and named — the two personas differ in this respect and the switcher marks it.',
+  'Every fraud figure is illustrative: the 148 scam cases, the $612K net loss, the 71% pre-loss catch rate, the 62% false-positive rate, the 2.4-day time to detect, the nine open SARs, the 88% fraud-model coverage, the 14-account mule cluster, the alert queue and the two-week forecast. They are internally consistent with each other and with the risk briefing, and they are not ESFCU\'s numbers.',
+  'One figure is real and is NOT about ESFCU: a defrauded member being ~31% more likely to leave is Abrigo\'s published, industry-wide research across credit unions. ESFCU has never measured its own post-fraud attrition. It is marked "Real · industry" everywhere it appears, never "Real".',
+  'The impersonation and push-payment scam threat itself is real and sourced — ESFCU publicly warns members about impersonation across phone, text and email. The surge volume and everything downstream of it is illustrative.',
+  'Fraud, transaction-monitoring and BSA/AML platform names are deliberately vendor-neutral, as is the exam calendar. ESFCU\'s actual systems and its real fraud-loss and false-positive baselines are open follow-ups (spec §17) — confirm them before the working session.',
+];
+
 const ESFCU_DISCLOSURES = [
   'The public backdrop is real and sourced: the CEO\'s biography, ESFCU\'s assets, membership, net worth ratio, loan-to-share ratio, branch count, founding year, governance and the Howard University merger all come from esfcu.org, NCUA call report data, and public announcements.',
   'Everything operational is illustrative: the priority-signal values, the reconciliation delta and member gap, the trust and pipeline states, the internal policy ceiling and liquidity floor, the deposit and loan composition, the seasonality shape, the owner names, and every figure on the projection.',
@@ -166,6 +178,9 @@ export default function DataSources() {
   const isAramco = persona.id?.startsWith('aramco_');
   const isAtt = persona.id?.startsWith('att_');
   const isEsfcu = persona.id?.startsWith('esfcu_');
+  const esfcuDisclosures = persona.id === 'esfcu_cro'
+    ? [...ESFCU_CRO_DISCLOSURES, ...ESFCU_DISCLOSURES]
+    : ESFCU_DISCLOSURES;
 
   return (
     <div className="flex-1 py-8 px-4 sm:px-6 lg:px-8 overflow-y-auto scrollbar-sleek">
@@ -222,7 +237,7 @@ export default function DataSources() {
             Data posture — read before demoing
           </p>
           <ul className="space-y-2">
-            {ESFCU_DISCLOSURES.map((line, i) => (
+            {esfcuDisclosures.map((line, i) => (
               <li key={i} className="flex items-start gap-2 text-[12.5px] leading-relaxed text-amber-900">
                 <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600" />
                 {line}
