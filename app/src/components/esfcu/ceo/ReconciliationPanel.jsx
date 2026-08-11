@@ -4,7 +4,7 @@ import {
   AlertTriangle, CheckCircle2, ChevronDown, Database, FileText, GitMerge, Route, ShieldCheck, ArrowRight,
 } from 'lucide-react';
 import recon from '../../../data/esfcu/ceo/reconciliation.json';
-import ExhibitCard from './ExhibitCard';
+import ExhibitCard from '../shared/ExhibitCard';
 import LineageTraceModal from './LineageTraceModal';
 
 // ─── Reconciliation Panel — the ESFCU centerpiece ────────────────
@@ -44,7 +44,7 @@ export default function ReconciliationPanel() {
         source="Enterprise Data Warehouse vs Howard University Division Ledger · Governance & Lineage Layer"
         asOf={recon.as_of}
         confidence={71}
-        illustrative
+        provenance="illustrative"
       >
         {/* The headline verdict, stated before any numbers. */}
         <div className="mb-3 flex flex-wrap items-center gap-2">

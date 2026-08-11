@@ -5,8 +5,8 @@ import {
 } from 'recharts';
 import { ShieldCheck, CheckCircle2, Circle } from 'lucide-react';
 import perf from '../../../../data/esfcu/ceo/performance.json';
-import ExhibitCard from '../ExhibitCard';
-import { NAVY_HEX, ACCENT } from '../tokens';
+import ExhibitCard from '../../shared/ExhibitCard';
+import { NAVY_HEX, ACCENT } from '../../tokens';
 
 // `/journey`, relabelled "Business Performance" for this persona. The executive
 // roll-up: assets and growth, capital, the loan and deposit composition, the
@@ -108,7 +108,7 @@ export default function BusinessPerformanceView() {
 
         {/* Asset growth + capital */}
         <div className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <ExhibitCard className="lg:col-span-2" title={a.title} note={a.note} source={a.source} asOf={a.asOf} confidence={a.confidence}>
+          <ExhibitCard className="lg:col-span-2" title={a.title} note={a.note} source={a.source} asOf={a.asOf} confidence={a.confidence} provenance={a.provenance}>
             <div className="w-full min-w-0" style={{ height: 220 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={a.series} margin={{ top: 16, right: 20, left: -6, bottom: 0 }}>
@@ -140,7 +140,7 @@ export default function BusinessPerformanceView() {
             </div>
           </ExhibitCard>
 
-          <ExhibitCard title={cap.title} note={cap.note} source={cap.source} asOf={cap.asOf} confidence={cap.confidence} real>
+          <ExhibitCard title={cap.title} note={cap.note} source={cap.source} asOf={cap.asOf} confidence={cap.confidence} provenance={cap.provenance}>
             <div className="flex h-full flex-col items-center justify-center py-2">
               <div className="mb-1 flex items-center gap-1.5 text-[#00897B]">
                 <ShieldCheck className="h-4 w-4" />
@@ -172,7 +172,7 @@ export default function BusinessPerformanceView() {
 
         {/* Loan portfolio + deposit mix + membership */}
         <div className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <ExhibitCard title={lp.title} note={lp.note} source={lp.source} asOf={lp.asOf} confidence={lp.confidence}>
+          <ExhibitCard title={lp.title} note={lp.note} source={lp.source} asOf={lp.asOf} confidence={lp.confidence} provenance={lp.provenance}>
             <div className="flex flex-wrap items-center gap-3">
               <div className="relative flex-shrink-0" style={{ width: 130, height: 130 }}>
                 <ResponsiveContainer width="100%" height="100%">
@@ -200,11 +200,11 @@ export default function BusinessPerformanceView() {
             </div>
           </ExhibitCard>
 
-          <ExhibitCard title={dp.title} note={`${dp.note} Total shares ${dp.total}.`} source={dp.source} asOf={dp.asOf} confidence={dp.confidence}>
+          <ExhibitCard title={dp.title} note={`${dp.note} Total shares ${dp.total}.`} source={dp.source} asOf={dp.asOf} confidence={dp.confidence} provenance={dp.provenance}>
             <RampBars items={dp.segments.map((s) => ({ name: s.name, value: s.pct }))} valueFmt={(it) => `${it.value}%`} />
           </ExhibitCard>
 
-          <ExhibitCard title={mem.title} note={mem.note} source={mem.source} asOf={mem.asOf} confidence={mem.confidence}>
+          <ExhibitCard title={mem.title} note={mem.note} source={mem.source} asOf={mem.asOf} confidence={mem.confidence} provenance={mem.provenance}>
             <RampBars items={mem.segments.map((r) => ({ name: r.region, value: r.members }))} valueFmt={(it) => it.value.toLocaleString()} />
           </ExhibitCard>
         </div>
@@ -217,7 +217,7 @@ export default function BusinessPerformanceView() {
           source={seas.source}
           asOf={seas.asOf}
           confidence={seas.confidence}
-          illustrative
+          provenance={seas.provenance}
         >
           <div className="w-full min-w-0" style={{ height: 200 }}>
             <ResponsiveContainer width="100%" height="100%">
@@ -248,7 +248,7 @@ export default function BusinessPerformanceView() {
         </ExhibitCard>
 
         {/* Funding-plan outlook */}
-        <ExhibitCard title={out.title} note={out.note} source={out.source} asOf={out.asOf} confidence={out.confidence} illustrative>
+        <ExhibitCard title={out.title} note={out.note} source={out.source} asOf={out.asOf} confidence={out.confidence} provenance={out.provenance}>
           <div className="px-2 pb-2 pt-4">
             <div className="relative">
               <div className="absolute left-0 right-0 top-[7px] h-1 rounded-full bg-surface-2" />

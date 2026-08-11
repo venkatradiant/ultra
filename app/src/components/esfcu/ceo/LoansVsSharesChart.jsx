@@ -3,8 +3,8 @@ import {
   ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine, ResponsiveContainer,
 } from 'recharts';
 import data from '../../../data/esfcu/ceo/loansVsShares.json';
-import ExhibitCard from './ExhibitCard';
-import { NAVY, ACCENT } from './tokens';
+import ExhibitCard from '../shared/ExhibitCard';
+import { NAVY, ACCENT } from '../tokens';
 
 // Step 2 — "Walk me through the liquidity signal."
 // Dual-line loans versus shares over eight quarters on the left axis, with the
@@ -31,6 +31,9 @@ export default function LoansVsSharesChart() {
         source={data.source}
         asOf={data.as_of}
         confidence={data.confidence}
+        // Mixed: real endpoints, constructed series. The card claims the
+        // weaker of the two, and the per-figure markers carry the rest.
+        provenance="illustrative"
       >
         <div className="mb-3 flex flex-wrap gap-x-5 gap-y-1.5">
           <Stat label="Loan growth, YoY" value={`+${s.loan_growth_yoy_pct}%`} tone="warn" />

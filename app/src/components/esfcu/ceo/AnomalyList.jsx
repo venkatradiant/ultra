@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
 import { AlertTriangle, Activity, TrendingDown, ExternalLink } from 'lucide-react';
 import anomalies from '../../../data/esfcu/ceo/anomalies.json';
-import ExhibitCard from './ExhibitCard';
+import ExhibitCard from '../shared/ExhibitCard';
 import LineageTraceModal from './LineageTraceModal';
 import BranchDetailModal from './BranchDetailModal';
 
@@ -36,7 +36,7 @@ export default function AnomalyList() {
         source={anomalies.source}
         asOf={anomalies.as_of}
         confidence={anomalies.confidence}
-        illustrative
+        provenance="illustrative"
       >
         <div className="space-y-3">
           {anomalies.items.map((a) => {

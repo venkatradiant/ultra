@@ -1,4 +1,5 @@
 import { tierFor, colorFor } from '../../../utils/confidence';
+import { provenanceOf } from './provenance';
 
 /**
  * Exhibit-grade chrome: title, optional note, a confidence pill, and a footer
@@ -10,8 +11,10 @@ import { tierFor, colorFor } from '../../../utils/confidence';
  * surfaces need it — the two conversation charts, the anomaly list, and the
  * Business Performance page.
  *
- * `illustrative` renders the honest-data marker the spec's data posture requires
- * on every figure that is not public and sourced.
+ * `provenance` renders the honest-data marker the spec's data posture requires:
+ * every exhibit says whether its figures are ESFCU's, the industry's, or made up
+ * for the demo. Omitting it marks the exhibit illustrative — the cautious
+ * default, so a forgotten prop can never overclaim.
  */
 export default function ExhibitCard({
   title,
@@ -19,12 +22,12 @@ export default function ExhibitCard({
   source,
   asOf,
   confidence,
-  illustrative = false,
-  real = false,
+  provenance,
   className = '',
   children,
 }) {
   const confColor = confidence != null ? colorFor(tierFor(confidence)) : null;
+  const prov = provenanceOf(provenance);
   return (
     <div
       className={`bg-surface rounded-2xl border border-border-subtle p-4 flex flex-col min-w-0 ${className}`}
@@ -34,16 +37,12 @@ export default function ExhibitCard({
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-1.5">
             <h3 className="text-[13px] font-semibold text-text">{title}</h3>
-            {real ? (
-              <span className="rounded px-1.5 py-0.5 text-[8.5px] font-bold uppercase tracking-wide text-[#00897B] bg-[#00897B]/10">
-                Real · sourced
-              </span>
-            ) : null}
-            {illustrative ? (
-              <span className="rounded px-1.5 py-0.5 text-[8.5px] font-bold uppercase tracking-wide text-text-subtle bg-surface-2">
-                Illustrative
-              </span>
-            ) : null}
+            <span
+              className={`rounded px-1.5 py-0.5 text-[8.5px] font-bold uppercase tracking-wide ${prov.className}`}
+              title={prov.title}
+            >
+              {prov.label}
+            </span>
           </div>
           {note ? <p className="text-[10.5px] text-text-subtle mt-0.5 leading-snug">{note}</p> : null}
         </div>

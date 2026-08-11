@@ -4,8 +4,8 @@
     {
       "id": "assets",
       "label": "Total Assets",
-      "value": "≈$1.36B",
-      "delta": "Real · NCUA Dec 2025",
+      "value": "\u2248$1.36B",
+      "delta": "Real \u00b7 NCUA Dec 2025",
       "positive": true,
       "real": true,
       "spark": [
@@ -22,8 +22,8 @@
     {
       "id": "members",
       "label": "Members",
-      "value": "≈84,000",
-      "delta": "Real · NCUA Dec 2025",
+      "value": "\u224884,000",
+      "delta": "Real \u00b7 NCUA Dec 2025",
       "positive": true,
       "real": true,
       "spark": [
@@ -75,9 +75,9 @@
     }
   ],
   "assetGrowth": {
-    "title": "Total assets — trailing 8 quarters",
+    "title": "Total assets \u2014 trailing 8 quarters",
     "note": "Q4 2025 is the real filed figure; earlier quarters are illustrative.",
-    "source": "Core Banking · Finance & Call Report",
+    "source": "Core Banking \u00b7 Finance & Call Report",
     "asOf": "Dec 31, 2025",
     "confidence": 97,
     "domain": [
@@ -119,12 +119,13 @@
         "q": "Q4'25",
         "assets": 1.36
       }
-    ]
+    ],
+    "provenance": "illustrative"
   },
   "loanPortfolio": {
     "title": "Loan portfolio composition",
     "note": "Composition is illustrative; the $1.04B total is real.",
-    "source": "Core Banking · Lending System",
+    "source": "Core Banking \u00b7 Lending System",
     "asOf": "Dec 31, 2025",
     "confidence": 92,
     "total": "$1.04B",
@@ -150,12 +151,13 @@
         "name": "Credit card",
         "pct": 8
       }
-    ]
+    ],
+    "provenance": "illustrative"
   },
   "deposits": {
     "title": "Deposit mix",
     "note": "Mix is illustrative; the $1.16B total is real.",
-    "source": "Core Banking · Finance & ALM Workbook",
+    "source": "Core Banking \u00b7 Finance & ALM Workbook",
     "asOf": "Dec 31, 2025",
     "confidence": 93,
     "total": "$1.16B",
@@ -176,12 +178,13 @@
         "name": "Money market",
         "pct": 17
       }
-    ]
+    ],
+    "provenance": "illustrative"
   },
   "membership": {
     "title": "Members by field of membership",
-    "note": "Enterprise warehouse view — 84,120 mapped members across 13 Maryland branches. The division line is the 3,420 the warehouse carries; 490 more sit unmapped on the division ledger pending reconciliation.",
-    "source": "Membership System · Howard University Division Ledger",
+    "note": "Enterprise warehouse view \u2014 84,120 mapped members across 13 Maryland branches. The division line is the 3,420 the warehouse carries; 490 more sit unmapped on the division ledger pending reconciliation.",
+    "source": "Membership System \u00b7 Howard University Division Ledger",
     "asOf": "Dec 31, 2025",
     "confidence": 90,
     "segments": [
@@ -201,10 +204,11 @@
         "region": "Howard University division (mapped)",
         "members": 3420
       }
-    ]
+    ],
+    "provenance": "illustrative"
   },
   "seasonality": {
-    "title": "Deposit seasonality — the academic calendar",
+    "title": "Deposit seasonality \u2014 the academic calendar",
     "note": "Share balances index to the annual mean. Summer draw, then payroll-cycle inflow. Illustrative pattern on a real education-sector membership base.",
     "source": "Historical Deposit Patterns",
     "asOf": "Dec 31, 2025",
@@ -260,7 +264,8 @@
         "m": "Dec",
         "index": 100.7
       }
-    ]
+    ],
+    "provenance": "illustrative"
   },
   "capital": {
     "title": "Capital position",
@@ -270,12 +275,13 @@
     "netWorthRatio": 9.62,
     "wellCapThreshold": 7.0,
     "status": "Well capitalized",
-    "note": "Real, filed figure. Comfortably above the 7.00% well-capitalized threshold — the room the board has to act on the liquidity plan."
+    "note": "Real, filed figure. Comfortably above the 7.00% well-capitalized threshold \u2014 the room the board has to act on the liquidity plan.",
+    "provenance": "esfcu"
   },
   "outlook": {
     "title": "Strategic outlook",
     "note": "Illustrative sequencing for the funding plan.",
-    "source": "Finance & ALM Workbook · Predictive Model",
+    "source": "Finance & ALM Workbook \u00b7 Predictive Model",
     "asOf": "Feb 10, 2026",
     "confidence": 86,
     "milestones": [
@@ -309,6 +315,7 @@
         "when": "Sep",
         "state": "upcoming"
       }
-    ]
+    ],
+    "provenance": "illustrative"
   }
 }

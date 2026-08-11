@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Database, TrendingUp, Route, ShieldCheck, FileText, ChevronDown, GitMerge, AlertTriangle } from 'lucide-react';
 import lineage from '../../../data/esfcu/ceo/lineage.json';
 import { tierFor, colorFor } from '../../../utils/confidence';
-import { ACCENT_SOFT } from './tokens';
+import { ACCENT_SOFT } from '../tokens';
 
 const STAGE_ICON = {
   Core: Database,

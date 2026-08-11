@@ -4,9 +4,9 @@ import {
 } from 'recharts';
 import { CheckCircle2 } from 'lucide-react';
 import proj from '../../../data/esfcu/ceo/projection.json';
-import ExhibitCard from './ExhibitCard';
+import ExhibitCard from '../shared/ExhibitCard';
 import { tierFor, colorFor } from '../../../utils/confidence';
-import { NAVY } from './tokens';
+import { NAVY } from '../tokens';
 
 // Step 4 — "What happens to liquidity if loan demand keeps outpacing deposits?"
 //
@@ -35,7 +35,7 @@ export default function LiquidityForecastChart() {
         source={proj.source}
         asOf={proj.as_of}
         confidence={proj.confidence}
-        illustrative
+        provenance="illustrative"
       >
         <div className="w-full min-w-0" style={{ height: 250 }}>
           <ResponsiveContainer width="100%" height="100%">

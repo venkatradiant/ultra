@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceArea, ResponsiveContainer } from 'recharts';
 import { X, Building2, AlertTriangle, ShieldCheck } from 'lucide-react';
-import { ACCENT_SOFT } from './tokens';
+import { ACCENT_SOFT } from '../tokens';
 
 /**
  * "Open the branch detail" — the evidence behind the branch anomaly.

@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
 import { Users, ShieldCheck, GraduationCap, Building2 } from 'lucide-react';
 import bh from '../../../data/esfcu/ceo/businessHealth.json';
-import ExhibitCard from './ExhibitCard';
-import { NAVY } from './tokens';
+import ExhibitCard from '../shared/ExhibitCard';
+import { NAVY } from '../tokens';
 
 // "Show me membership and growth" — the growth story and the funding story in
 // one view: the education-community base, the Howard University division and
@@ -20,6 +20,9 @@ export default function MembershipPanel() {
         source={bh.source}
         asOf={bh.as_of}
         confidence={bh.confidence}
+        // Mixed: real endpoints, constructed series. The card claims the
+        // weaker of the two, and the per-figure markers carry the rest.
+        provenance="illustrative"
       >
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
           {/* Membership + sparkline */}

@@ -1,11 +1,11 @@
 {
-  "note": "Spec §7. Provenance is three-state, not two: `esfcu` means a real ESFCU/NCUA figure, `industry` means a real published benchmark that is NOT about ESFCU, and `illustrative` means authored for this demo. The distinction matters on this persona — the attrition KPI is genuinely real but industry-wide, and rendering it as plain 'Real' beside ESFCU figures would imply ESFCU measured it.",
+  "note": "Spec \u00a77. Provenance is three-state, not two: `esfcu` means a real ESFCU/NCUA figure, `industry` means a real published benchmark that is NOT about ESFCU, and `illustrative` means authored for this demo. The distinction matters on this persona \u2014 the attrition KPI is genuinely real but industry-wide, and rendering it as plain 'Real' beside ESFCU figures would imply ESFCU measured it.",
   "validated_at": "2026-02-10T06:02:00",
   "kpis": {
     "net_fraud_loss": {
       "provenance": "illustrative",
       "sourceLabel": "Card + ACH + core + GL",
-      "detail": "Illustrative",
+      "sourceCitation": "Illustrative",
       "target": "Below prior-year rate",
       "calc": "Gross fraud loss less recoveries",
       "confidence": 91,
@@ -14,7 +14,7 @@
     "scam_cases": {
       "provenance": "illustrative",
       "sourceLabel": "Digital + member reports + cases",
-      "detail": "Illustrative",
+      "sourceCitation": "Illustrative",
       "target": "Bend the curve down",
       "calc": "Count of opened scam-type cases",
       "confidence": 93,
@@ -23,7 +23,7 @@
     "caught_before_loss": {
       "provenance": "illustrative",
       "sourceLabel": "Fraud-scoring model",
-      "detail": "Illustrative",
+      "sourceCitation": "Illustrative",
       "target": "Above 85%",
       "calc": "Share of confirmed fraud stopped pre-settlement",
       "confidence": 88,
@@ -32,7 +32,7 @@
     "false_positive_rate": {
       "provenance": "illustrative",
       "sourceLabel": "Fraud alert system",
-      "detail": "Illustrative",
+      "sourceCitation": "Illustrative",
       "target": "Below 40%",
       "calc": "False alerts divided by total alerts",
       "confidence": 90,
@@ -41,7 +41,7 @@
     "time_to_detect": {
       "provenance": "illustrative",
       "sourceLabel": "Case management",
-      "detail": "Illustrative",
+      "sourceCitation": "Illustrative",
       "target": "Under 1 day",
       "calc": "Mean time from first signal to case open",
       "confidence": 87,
@@ -50,7 +50,7 @@
     "open_sars": {
       "provenance": "illustrative",
       "sourceLabel": "BSA case management",
-      "detail": "Illustrative",
+      "sourceCitation": "Illustrative",
       "target": "100% on-time",
       "calc": "Open SAR count; share filed by deadline",
       "confidence": 95,
@@ -59,7 +59,7 @@
     "model_coverage": {
       "provenance": "illustrative",
       "sourceLabel": "Fraud-scoring model",
-      "detail": "Illustrative · Howard University book pending",
+      "sourceCitation": "Illustrative \u00b7 Howard University book pending",
       "target": "100%",
       "calc": "Share of accounts actively scored",
       "confidence": 68,
@@ -68,7 +68,7 @@
     "attrition_after_fraud": {
       "provenance": "industry",
       "sourceLabel": "Industry benchmark",
-      "detail": "Real · Abrigo, industry-wide — not an ESFCU measurement",
+      "sourceCitation": "Real \u00b7 Abrigo, industry-wide \u2014 not an ESFCU measurement",
       "target": "Retain and make whole",
       "calc": "Relative attrition of defrauded members",
       "confidence": 99,

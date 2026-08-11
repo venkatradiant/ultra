@@ -65,6 +65,11 @@ const manifest: PersonaManifest = {
     // The reconciliation panel, the two exhibit charts and the deck preview all
     // want more measure than a chat bubble allows.
     wideInlineComponents: true,
+    // Explicit rather than inherited. ESFCU now has two personas whose navs
+    // diverge, and the fallback path builds its list from the *client's*
+    // navLabels — which are the CEO's. Left implicit, adding a client-level
+    // label for the CRO would silently appear in the CEO's sidebar too.
+    navSlots: ['ask', 'journey', 'risk', 'dataSources'],
   },
   // Executive altitude — the two detail pages are the business roll-up and the
   // state-of-the-business signal set. Duplicated on the client manifest and in
