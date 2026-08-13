@@ -1,30 +1,102 @@
 {
   "renewalVolume": [
-    { "time": "6:00", "volume": 42, "marker": null },
-    { "time": "7:00", "volume": 55, "marker": null },
-    { "time": "7:15", "volume": 61, "marker": "Marketing send · 240K" },
-    { "time": "8:00", "volume": 128, "marker": "Billing batch charged" },
-    { "time": "9:00", "volume": 171, "marker": null },
-    { "time": "10:00", "volume": 148, "marker": null }
+    {
+      "time": "6:00",
+      "volume": 42,
+      "marker": null
+    },
+    {
+      "time": "7:00",
+      "volume": 55,
+      "marker": null
+    },
+    {
+      "time": "7:15",
+      "volume": 61,
+      "marker": "Marketing send · 240K"
+    },
+    {
+      "time": "8:00",
+      "volume": 128,
+      "marker": "Billing batch charged"
+    },
+    {
+      "time": "9:00",
+      "volume": 171,
+      "marker": null
+    },
+    {
+      "time": "10:00",
+      "volume": 148,
+      "marker": null
+    }
   ],
   "contactReasons": [
-    { "reason": "Cancel my account", "pct": 34 },
-    { "reason": "Why was I charged", "pct": 29 },
-    { "reason": "Refund request", "pct": 22 },
-    { "reason": "Confirm the charge", "pct": 15 }
+    {
+      "reason": "Cancel my account",
+      "pct": 34
+    },
+    {
+      "reason": "Why was I charged",
+      "pct": 29
+    },
+    {
+      "reason": "Refund request",
+      "pct": 22
+    },
+    {
+      "reason": "Confirm the charge",
+      "pct": 15
+    }
   ],
   "cycleComparison": [
-    { "hour": "H1", "april": 62, "today": 98 },
-    { "hour": "H2", "april": 88, "today": 171 },
-    { "hour": "H3", "april": 74, "today": 158 },
-    { "hour": "H4", "april": 51, "today": 132 }
+    {
+      "hour": "H1",
+      "april": 62,
+      "today": 98
+    },
+    {
+      "hour": "H2",
+      "april": 88,
+      "today": 171
+    },
+    {
+      "hour": "H3",
+      "april": 74,
+      "today": 158
+    },
+    {
+      "hour": "H4",
+      "april": 51,
+      "today": 132
+    }
   ],
   "waitForecast": [
-    { "time": "Now", "withAction": 11.3, "withoutAction": 11.3 },
-    { "time": "+15m", "withAction": 7.1, "withoutAction": 12.8 },
-    { "time": "+30m", "withAction": 3.6, "withoutAction": 14.2 },
-    { "time": "+45m", "withAction": 2.4, "withoutAction": 15.0 },
-    { "time": "+60m", "withAction": 2.0, "withoutAction": 14.1 }
+    {
+      "time": "Now",
+      "withAction": 11.3,
+      "withoutAction": 11.3
+    },
+    {
+      "time": "+15m",
+      "withAction": 7.1,
+      "withoutAction": 12.8
+    },
+    {
+      "time": "+30m",
+      "withAction": 3.6,
+      "withoutAction": 14.2
+    },
+    {
+      "time": "+45m",
+      "withAction": 2.4,
+      "withoutAction": 15.0
+    },
+    {
+      "time": "+60m",
+      "withAction": 2.0,
+      "withoutAction": 14.1
+    }
   ],
   "agentAllocation": {
     "moved": 9,
@@ -38,42 +110,216 @@
     "capacityPct": 118,
     "abandonedDelta": "+22%",
     "atRisk": [
-      { "customer": "Petal & Stem Co.", "tenure": "6 yrs", "ltv": "$4,180", "churn": 88, "offer": "Loyalty discount" },
-      { "customer": "Harbor Web Studio", "tenure": "5 yrs", "ltv": "$3,920", "churn": 84, "offer": "Loyalty discount" },
-      { "customer": "Ridgeline Outfitters", "tenure": "2 yrs", "ltv": "$3,450", "churn": 79, "offer": "Plan-fit downgrade" },
-      { "customer": "Cobalt Design LLC", "tenure": "4 yrs", "ltv": "$3,110", "churn": 76, "offer": "Loyalty discount" },
-      { "customer": "Northshore Bakery", "tenure": "1 yr", "ltv": "$2,880", "churn": 74, "offer": "Plan-fit downgrade" }
+      {
+        "customer": "Petal & Stem Co.",
+        "tenure": "6 yrs",
+        "ltv": "$4,180",
+        "churn": 88,
+        "offer": "Loyalty discount"
+      },
+      {
+        "customer": "Harbor Web Studio",
+        "tenure": "5 yrs",
+        "ltv": "$3,920",
+        "churn": 84,
+        "offer": "Loyalty discount"
+      },
+      {
+        "customer": "Ridgeline Outfitters",
+        "tenure": "2 yrs",
+        "ltv": "$3,450",
+        "churn": 79,
+        "offer": "Plan-fit downgrade"
+      },
+      {
+        "customer": "Cobalt Design LLC",
+        "tenure": "4 yrs",
+        "ltv": "$3,110",
+        "churn": 76,
+        "offer": "Loyalty discount"
+      },
+      {
+        "customer": "Northshore Bakery",
+        "tenure": "1 yr",
+        "ltv": "$2,880",
+        "churn": 74,
+        "offer": "Plan-fit downgrade"
+      }
     ]
   },
   "outageTimeline": [
-    { "time": "8:00", "contacts": 18, "event": null },
-    { "time": "8:20", "contacts": 19, "event": "IT logs provisioning incident" },
-    { "time": "8:40", "contacts": 24, "event": null },
-    { "time": "9:00", "contacts": 29, "event": null },
-    { "time": "9:20", "contacts": 31, "event": null }
+    {
+      "time": "8:00",
+      "contacts": 18,
+      "event": null
+    },
+    {
+      "time": "8:20",
+      "contacts": 19,
+      "event": "IT logs provisioning incident"
+    },
+    {
+      "time": "8:40",
+      "contacts": 24,
+      "event": null
+    },
+    {
+      "time": "9:00",
+      "contacts": 29,
+      "event": null
+    },
+    {
+      "time": "9:20",
+      "contacts": 31,
+      "event": null
+    }
   ],
   "handleTimeDiff": [
-    { "type": "Standard billing", "handleTime": 8.83, "savePct": 12 },
-    { "type": "Price-increase (today)", "handleTime": 12.67, "savePct": 41 }
+    {
+      "type": "Standard billing",
+      "handleTime": 8.83,
+      "savePct": 12
+    },
+    {
+      "type": "Price-increase (today)",
+      "handleTime": 12.67,
+      "savePct": 41
+    }
   ],
   "recommendedActions": [
-    { "title": "Activate 9 cross-trained agents", "outcome": "Wait time < 4 min in 30 min", "tradeoff": "Pulls Bluehost toward warning — pair with action 2", "tone": "primary" },
-    { "title": "Enable self-service billing explainer + callback", "outcome": "Deflects 28% of 'why was I charged'", "tradeoff": "Preserves live agents for save conversations", "tone": "primary" },
-    { "title": "Require 48-hour care notification", "outcome": "Prevents the next un-staffed spike", "tradeoff": "For any batch above 20,000 customers", "tone": "policy" }
+    {
+      "title": "Activate 9 cross-trained agents",
+      "outcome": "Wait time < 4 min in 30 min",
+      "tradeoff": "Pulls Bluehost toward warning — pair with action 2",
+      "tone": "primary"
+    },
+    {
+      "title": "Enable self-service billing explainer + callback",
+      "outcome": "Deflects 28% of 'why was I charged'",
+      "tradeoff": "Preserves live agents for save conversations",
+      "tone": "primary"
+    },
+    {
+      "title": "Require 48-hour care notification",
+      "outcome": "Prevents the next un-staffed spike",
+      "tradeoff": "For any batch above 20,000 customers",
+      "tone": "policy"
+    }
   ],
   "outageRegion": {
     "region": "OCI — us-ashburn-1",
     "affectedAccounts": 4200,
     "storePlanShare": 30,
     "nodes": [
-      { "id": "node-a", "status": "down" },
-      { "id": "node-b", "status": "down" },
-      { "id": "node-c", "status": "recovering" },
-      { "id": "node-d", "status": "healthy" }
+      {
+        "id": "node-a",
+        "status": "down"
+      },
+      {
+        "id": "node-b",
+        "status": "down"
+      },
+      {
+        "id": "node-c",
+        "status": "recovering"
+      },
+      {
+        "id": "node-d",
+        "status": "healthy"
+      }
     ]
   },
   "saveRateProjection": [
-    { "approach": "Generic first offer", "saveRate": 41 },
-    { "approach": "Tailored first offer", "saveRate": 50 }
-  ]
+    {
+      "approach": "Generic first offer",
+      "saveRate": 41
+    },
+    {
+      "approach": "Tailored first offer",
+      "saveRate": 50
+    }
+  ],
+  "dailyReport": {
+    "serviceLevel": [
+      {
+        "time": "08:00",
+        "actual": 79.2,
+        "projected": null
+      },
+      {
+        "time": "09:00",
+        "actual": 74.1,
+        "projected": null
+      },
+      {
+        "time": "10:00",
+        "actual": 68.4,
+        "projected": 68.4
+      },
+      {
+        "time": "11:00",
+        "actual": null,
+        "projected": 72.0
+      },
+      {
+        "time": "12:00",
+        "actual": null,
+        "projected": 76.3
+      },
+      {
+        "time": "13:00",
+        "actual": null,
+        "projected": 78.9
+      },
+      {
+        "time": "14:00",
+        "actual": null,
+        "projected": 80.4
+      }
+    ],
+    "target": 80,
+    "nowLabel": "10:00",
+    "workstreams": [
+      {
+        "id": "renewals",
+        "title": "Renewals spike",
+        "detail": "Network Solutions +210%, root cause the un-notified price-increase batch.",
+        "action": "9 agents rerouted · billing explainer live",
+        "metric": "80%",
+        "metricLabel": "projected recovery",
+        "status": "Recovering",
+        "tone": "progress"
+      },
+      {
+        "id": "outage",
+        "title": "Hosting outage",
+        "detail": "One region, +24% site-down contacts. Known-issue macro pushed to all queues.",
+        "action": "IT engaged, fix in flight",
+        "metric": "45–75m",
+        "metricLabel": "ETA",
+        "status": "IT engaged",
+        "tone": "watch"
+      },
+      {
+        "id": "savedesk",
+        "title": "Save desk",
+        "detail": "118% of capacity. 640 high-value at-risk accounts with tailored offers staged.",
+        "action": "Offers staged, awaiting agent capacity",
+        "metric": "640",
+        "metricLabel": "at-risk accounts",
+        "status": "Staged",
+        "tone": "watch"
+      },
+      {
+        "id": "notification",
+        "title": "48-hour notification rule",
+        "detail": "Marketing pre-notice for price-increase batches. Drafted and routed.",
+        "action": "Routed to Marketing for approval",
+        "metric": "1",
+        "metricLabel": "awaiting approval",
+        "status": "Awaiting approval",
+        "tone": "pending"
+      }
+    ]
+  }
 }

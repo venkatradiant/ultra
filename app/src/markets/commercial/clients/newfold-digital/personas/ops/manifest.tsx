@@ -21,6 +21,7 @@ import WaitTimeForecast from '@/components/newfold/ops/WaitTimeForecast';
 import AgentAllocationPanel from '@/components/newfold/ops/AgentAllocationPanel';
 import SiteDownCorrelation from '@/components/newfold/ops/SiteDownCorrelation';
 import SaveDeskPanel from '@/components/newfold/ops/SaveDeskPanel';
+import DailyOpsReport from '@/components/newfold/ops/DailyOpsReport';
 
 const flows = (getPersonaFlowConfigs('newfold_digital') as unknown as Record<string, PersonaManifest['flows']>).newfold_ops;
 
@@ -125,6 +126,10 @@ const manifest: PersonaManifest = {
     if (k === 'newfold_ops_act_agents' || k === 'newfold_ops_act_explainer') out.push(<AgentAllocationPanel key="alloc" />);
     if (k === 'newfold_ops_signal_2_outage' || k === 'newfold_ops_affected' || k === 'newfold_ops_fix_eta' || k === 'newfold_ops_act_macro') out.push(<SiteDownCorrelation key="outage" />);
     if (k === 'newfold_ops_signal_3_savedesk' || k === 'newfold_ops_savedesk_status' || k === 'newfold_ops_highest_value' || k === 'newfold_ops_act_offers' || k === 'newfold_ops_add_agents') out.push(<SaveDeskPanel key="savedesk" />);
+    // The daily report was the one turn that ended in prose alone. Its closing
+    // claim — service level back to target by 2 PM — is the only thing in the
+    // summary a reader cannot verify from the text, so it gets the chart.
+    if (k === 'newfold_ops_daily_report') out.push(<DailyOpsReport key="daily-report" />);
     return out.length ? out : undefined;
   },
 };
