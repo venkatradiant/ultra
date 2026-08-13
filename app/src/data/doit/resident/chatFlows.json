@@ -1,0 +1,18 @@
+{
+  "resident_greeting": {
+    "ai_message": "Opening the Maryland Medical Assistance experience survey. Six questions, about three minutes. Nothing you share is tied to your name.",
+    "suggested_chips": ["Reopen the survey"],
+    "capability": "Converged Conversation"
+  },
+  "resident_reopen": {
+    "user_query": "Reopen the survey",
+    "ai_message": "Reopening the survey. Your answers so far are still there.",
+    "suggested_chips": ["Reopen the survey"],
+    "capability": "Converged Conversation"
+  },
+  "__default__": {
+    "ai_message": "The survey is open in front of you — questions go there rather than here. If it has closed, you can reopen it below.",
+    "suggested_chips": ["Reopen the survey"],
+    "capability": "Converged Conversation"
+  }
+}

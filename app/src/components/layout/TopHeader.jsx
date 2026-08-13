@@ -44,6 +44,14 @@ export default function TopHeader({ onMenuClick }) {
       agentObservability: 'Agent Observability',
       agentInventory: 'Agent Inventory',
     },
+    // DoIT Resident — a member of the public answering a survey, not asking VOCE
+    // anything, so their single nav slot is relabelled. Only the Resident gets an
+    // entry: doit_author and doit_admin correctly inherit "Ask VOCE" from the
+    // client. Note the resolution below is `??`, not a spread, so an entry
+    // REPLACES client.navLabels rather than merging with them — safe here only
+    // because this persona has the one `ask` slot. Keep in sync with the persona
+    // manifest's navLabels; this map duplicates them.
+    doit_resident: { ask: 'Survey' },
   };
   const labels = personaNavLabels[persona?.id] ?? client?.navLabels ?? { journey: 'Member Journey', risk: 'Risk Signals' };
   const pageTitles = {

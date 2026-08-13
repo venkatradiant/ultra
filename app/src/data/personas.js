@@ -488,9 +488,20 @@ const personas = {
       'Converged Conversation',
       'Friction Observability',
       'Predictive Intelligence',
-      'Anomaly Detection',
       'Automated Action',
+      'Anomaly Detection',
     ],
+  },
+  // Not a named person: an anonymous member of the public. The greeting is
+  // "there" precisely because VOCE does not know who is answering, and the
+  // survey's own copy says so.
+  doit_resident: {
+    id: 'doit_resident',
+    name: 'Maryland Resident',
+    initials: 'MR',
+    role: 'Resident — anonymous',
+    greeting: 'there',
+    capabilities: ['Converged Conversation', 'Friction Observability', 'Proactive Intelligence'],
   },
 };
 

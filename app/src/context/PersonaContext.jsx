@@ -55,7 +55,7 @@ export const CLIENT_PERSONAS = {
   // per phase — manifests.test.ts asserts this list and doitClient.personas
   // agree in BOTH directions, so allow-listing one before it is built fails the
   // suite rather than rendering blank.
-  doit: ['doit_author', 'doit_admin'],
+  doit: ['doit_author', 'doit_admin', 'doit_resident'],
 };
 
 // Default (primary) persona per client

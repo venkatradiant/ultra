@@ -1,0 +1,50 @@
+{
+  "intro": {
+    "title": "Maryland Medical Assistance Application Survey",
+    "body": "This takes about three minutes. Your answers help the Department improve the Medical Assistance application process. You can read and type your answers, or turn on audio to hear each question and answer by voice. It is up to you.",
+    "meta": "About 3 minutes · 6 questions",
+    "privacy": "Your responses are anonymous. We collect no personal information unless you choose to share it.",
+    "standards": "This survey meets Maryland State accessibility standards."
+  },
+
+  "_triggerNote": "Ordered longest-first and de-duplicated. The source list had 'magi' before 'magi income' and 'document' before 'documents' — substrings that can never fire separately — and a bare 'income' that swallowed any question containing the word. 'renewal' is dropped entirely: it hijacks permit-renewal phrasing, and 'redetermination' already covers the intent.",
+
+  "entries": [
+    {
+      "id": "magi",
+      "triggers": ["modified adjusted gross income", "what is magi", "magi income", "magi"],
+      "card": {
+        "term": "MAGI — Modified Adjusted Gross Income",
+        "definition": "MAGI is your household's taxable income plus a few specific additions, like tax-exempt interest. For most applicants, it is the number on your tax return before deductions.",
+        "example": "If your tax return shows $32,000 in taxable income and you have $400 in tax-exempt interest, your MAGI is $32,400."
+      },
+      "source": "Maryland Medical Assistance eligibility guidance"
+    },
+    {
+      "id": "categorical",
+      "triggers": ["categorical eligibility", "eligibility group", "categorical", "category"],
+      "response": "Categorical eligibility means qualifying for Medical Assistance because you belong to a specific group — for example being pregnant, having a disability, or being over 65 — rather than on income alone. If you are not sure which category applies to you, that is fine. The application asks a few questions to work it out.",
+      "source": "Maryland Medical Assistance eligibility guidance"
+    },
+    {
+      "id": "redetermination",
+      "triggers": ["redetermination", "redeterm", "recheck"],
+      "response": "A redetermination is when the State checks whether you still qualify for Medical Assistance, usually once a year. If you are contacted for one, you confirm your income and household details are still accurate. It does not mean anything is wrong with your current coverage.",
+      "source": "Maryland Medical Assistance renewal policy"
+    },
+    {
+      "id": "identity",
+      "triggers": ["identity verification", "verification", "identity", "verify"],
+      "response": "Verifying your identity means confirming you are who you say you are — usually with a driver's licence, a state ID, or by answering a few security questions. We do not need anything beyond what the application already asks for.",
+      "source": "Maryland Medical Assistance application requirements"
+    },
+    {
+      "id": "documents",
+      "triggers": ["upload documents", "documents", "document", "upload"],
+      "response": "For document uploads we usually need proof of income, like a pay stub, and proof of identity, like a state ID. A photo taken with your phone is fine — it does not need to be a scan.",
+      "source": "Maryland Medical Assistance application requirements"
+    }
+  ],
+
+  "fallback": "I do not have a specific answer for that yet in this demo. In the full product I would look it up and explain it in plain language right here."
+}
