@@ -135,6 +135,17 @@ const ARAMCO_DISCLOSURES = [
   'Tracking and telemetry integrations are vendor-agnostic. TrackLynk reads whatever tags, beacons, readers and cameras a site already runs; no specific tracking vendor is named or required.',
 ];
 
+// SLED / VOCE data posture. DoIT carries a real department's name, its real
+// palette and a faithful rendering of its arch mark, and every number under
+// them is invented — which is precisely the combination that needs saying out
+// loud. Same shape as the Aramco and AT&T panels above.
+const DOIT_DISCLOSURES = [
+  'The interface carries Maryland DoIT\'s identity; the data does not. Maryland DoIT is an illustrative target example, not a customer, and no figure on any screen describes real Maryland program data, systems or resident feedback.',
+  'Every value is authored for this prototype: response counts, satisfaction scores, open-text themes, regional splits, approval queues and the surveys themselves. The Maryland Medical Assistance survey shown to the Resident is a demonstration instrument, not a live one.',
+  'Qualtrics, Microsoft Forms and Google Forms appear as integration targets to show that one survey definition can reach several platforms. No connection to any of them exists in this build, and Google Forms is deliberately shown unconnected.',
+  'The subject matter is residents\' experience of a health-coverage application. Say the previous points out loud when presenting — a Maryland-branded screen reporting 72% satisfaction will otherwise be read as a finding about Maryland rather than a demonstration of VOCE.',
+];
+
 // Telecom / AI Billing Workbench data posture. The chrome is AT&T-branded but
 // the data is not AT&T's, and that gap is exactly what this panel exists to
 // close — spec §2 states the demo models a representative consumer telecom.
@@ -187,6 +198,7 @@ export default function DataSources() {
   const isAramco = persona.id?.startsWith('aramco_');
   const isAtt = persona.id?.startsWith('att_');
   const isEsfcu = persona.id?.startsWith('esfcu_');
+  const isDoit = persona.id?.startsWith('doit_');
   const esfcuDisclosures = persona.id === 'esfcu_cro'
     ? [...ESFCU_CRO_DISCLOSURES, ...ESFCU_DISCLOSURES]
     : ESFCU_DISCLOSURES;
@@ -264,6 +276,23 @@ export default function DataSources() {
           </p>
           <ul className="space-y-2">
             {ATT_DISCLOSURES.map((line, i) => (
+              <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {isDoit && (
+        <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+          <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-amber-800 mb-3">
+            <AlertTriangle className="w-3.5 h-3.5" />
+            Data posture — read before demoing
+          </p>
+          <ul className="space-y-2">
+            {DOIT_DISCLOSURES.map((line, i) => (
               <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
                 {line}
