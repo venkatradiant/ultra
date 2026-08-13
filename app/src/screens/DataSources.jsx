@@ -24,6 +24,7 @@ import esfcuCroDataSources from '../data/esfcu/cro/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
 import aramcoDataSources from '../data/aramco/_shared/dataSources.json';
 import attDataSources from '../data/att/_shared/dataSources.json';
+import doitDataSources from '../data/doit/_shared/dataSources.json';
 import AramcoBackdropPanel from '../components/aramco/AramcoBackdropPanel';
 import { useBranding } from '../context/BrandingContext';
 
@@ -68,6 +69,14 @@ const personaDataSources = {
   // systems; the operator acts on them and the admin tunes the agents over them.
   att_billing_operator: attDataSources,
   att_platform_admin: attDataSources,
+  // SLED — Maryland DoIT (VOCE). All three personas read the same six systems:
+  // the author authors into them, the administrator queries across them, and the
+  // resident's answers land in the first one. Keyed per persona because this map
+  // is, even though the set does not vary — the fallback is the generic `ops`
+  // list, whose tenant row names a credit union.
+  doit_author: doitDataSources,
+  doit_admin: doitDataSources,
+  doit_resident: doitDataSources,
 };
 
 const penfedPersonaDataSources = {

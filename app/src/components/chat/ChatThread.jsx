@@ -14,7 +14,14 @@ export default function ChatThread({ messages, isTyping, chips, onChipClick, ren
     // once it's actually active (a reply/typing beyond the greeting).
     const isInitialView = messages.length <= 1 && !isTyping;
     if (isInitialView) return;
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // `block: 'nearest'` scopes the scroll to the thread's own container.
+    // Without it, scrollIntoView walks EVERY scrollable ancestor — including the
+    // AppShell's `h-[100dvh] overflow-hidden` wrapper, which cannot be scrolled
+    // by the user but can be scrolled programmatically. Once a conversation grew
+    // past a certain height that dragged the whole shell up, taking the header
+    // and sidebar off-screen with it. 'nearest' still scrolls this container to
+    // the newest message, because the sentinel genuinely is out of view here.
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, [messages, isTyping]);
 
   return (
