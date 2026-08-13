@@ -49,6 +49,13 @@ export const CLIENT_PERSONAS = {
   // Billing Operator clearing a cycle (the default and the demo that has to
   // land) and the Platform Admin who sets the guardrails that make it safe.
   att: ['att_billing_operator', 'att_platform_admin'],
+  // SLED market — Maryland DoIT (VOCE). Three roles: the Survey Author who
+  // designs and publishes, the Administrator who queries the portfolio and
+  // clears approvals, and the anonymous Resident who answers. Personas land one
+  // per phase — manifests.test.ts asserts this list and doitClient.personas
+  // agree in BOTH directions, so allow-listing one before it is built fails the
+  // suite rather than rendering blank.
+  doit: ['doit_author'],
 };
 
 // Default (primary) persona per client
@@ -60,6 +67,7 @@ const CLIENT_DEFAULT_PERSONA = {
   newfold_digital: 'newfold_director',
   aramco: 'aramco_hse_gm',
   att: 'att_billing_operator',
+  doit: 'doit_author',
 };
 
 const GENERIC_PERSONAS = ['ops', 'cx', 'retention', 'risk'];

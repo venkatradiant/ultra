@@ -1,0 +1,64 @@
+[
+  {
+    "id": "SIG-DOIT-AUTH-001",
+    "type": "survey_closed",
+    "primary": true,
+    "title": "Maryland Resident Experience Survey closed — 212 responses ready",
+    "description": "The survey closed overnight with 212 responses. A data-quality sweep has already run against the set and flagged five classes of fix — incompletes, duplicates, speeders, junk open-text and stray ZIP formatting — for your review before any insight is drawn.",
+    "impact": "high",
+    "severity": "info",
+    "metric_text": "212 responses · 88% completion",
+    "sources": ["VOCE Survey Platform", "Maryland Resident Contact Registry"],
+    "timestamp": "2026-08-13T06:00:00",
+    "trend": "steady",
+    "real": false,
+    "data_note": "Illustrative. No figure here describes real Maryland program data — response counts, satisfaction scores and open-text themes are fabricated for demonstration.",
+    "metrics": {
+      "responses_total": 212,
+      "completion_rate_pct": 88,
+      "satisfaction_pct": 72,
+      "satisfaction_delta_pts": -6
+    },
+    "confidence": {
+      "score": 94,
+      "rationale": "Response counts reconcile between the survey platform's own submission log and the contact registry's delivery receipts. Held below 100 because the data-quality sweep is a recommendation, not an applied change — the valid-response denominator moves depending on which fixes you accept.",
+      "signals_used": ["VOCE Survey Platform", "Maryland Resident Contact Registry", "Service Center Visit Logs"],
+      "threshold": 80,
+      "model_version": "voce-quality-sweep-v1.0",
+      "validated_at": "2026-08-13T05:52:00"
+    },
+    "action": "Review the proposed data-quality fixes, then pull satisfaction and open-text themes from the cleaned set.",
+    "source_text": "VOCE submission log + contact registry delivery receipts."
+  },
+  {
+    "id": "SIG-DOIT-AUTH-002",
+    "type": "draft_incomplete",
+    "primary": false,
+    "title": "Permit Renewal Feedback draft ships tomorrow, still unfinished",
+    "description": "The Permit Renewal Feedback survey is scheduled to go out tomorrow and is 6 of 9 questions complete. Two blockers remain: Q7 has no answer options, and no distribution list has been selected. Q5 is also flagged for a plain-language rewrite.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "6 of 9 questions · 2 blockers",
+    "sources": ["VOCE Survey Platform"],
+    "timestamp": "2026-08-13T05:40:00",
+    "trend": "worsening",
+    "real": false,
+    "data_note": "Illustrative. The survey, its questions and its distribution lists are fabricated for demonstration and do not describe a real Maryland instrument.",
+    "metrics": {
+      "questions_complete": 6,
+      "questions_total": 9,
+      "blockers": 2,
+      "hours_to_send": 26
+    },
+    "confidence": {
+      "score": 91,
+      "rationale": "Both blockers are read directly from the draft's own validation state rather than inferred. Held below 100 because the send schedule is author-set and can move, so 'ships tomorrow' is a stated intent rather than a committed job.",
+      "signals_used": ["VOCE Survey Platform"],
+      "threshold": 80,
+      "model_version": "voce-draft-readiness-v1.0",
+      "validated_at": "2026-08-13T05:44:00"
+    },
+    "action": "Set answer options for Q7 and choose a distribution list, then publish.",
+    "source_text": "VOCE draft validation state."
+  }
+]

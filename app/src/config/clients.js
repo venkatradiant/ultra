@@ -139,6 +139,34 @@ export const CLIENTS = {
       agentObservability: 'Agent Observability',
     },
   },
+  // ─── SLED market — Maryland Department of Information Technology ──
+  // DoIT carries the client identity and the palette; VOCE is the product and
+  // sits bottom-left where Radiant's mark normally goes — the same shape as
+  // Aramco/TrackLynk. Illustrative demo: no figure describes real Maryland
+  // program data, and the Data Sources screen carries that statement. The
+  // palette and the arch mark come from the department's own site. Keep in sync
+  // with markets/sled/clients/doit/client.manifest.ts — BrandingContext reads
+  // THIS map, ChooseClientScreen reads THAT one, and nothing asserts they agree.
+  doit: {
+    id: 'doit',
+    loginSlug: 'doit',
+    name: 'Maryland Department of Information Technology',
+    shortName: 'Maryland DoIT',
+    // Split at three lines, not two: the login hero column is a fixed 384px and
+    // both "Maryland Department of" (421px) and "Information Technology" (410px)
+    // overflow it, so a two-line split re-wraps into a ragged four.
+    nameLines: ['Maryland Department', 'of Information', 'Technology'],
+    tagline: 'Voice of the Resident',
+    logo: '/logos/maryland-doit-mark.svg',
+    favicon: '/logos/maryland-doit-mark.svg',
+    primaryColor: '#1a4480',
+    footerMark: {
+      logo: '/logos/voce-logo.svg',
+      alt: 'VOCE — Voice of the Resident',
+      label: 'Powered by',
+    },
+    navLabels: { ask: 'Ask VOCE' },
+  },
   // ─── Healthcare market (proves the platform is multi-market) ────
   riverside_health: {
     id: 'riverside_health',

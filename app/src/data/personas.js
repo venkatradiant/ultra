@@ -453,6 +453,28 @@ const personas = {
       'Anomaly Detection',
     ],
   },
+
+  // ─── SLED — Maryland DoIT, VOCE (Voice of the Resident) ─────────
+  // Names are representative and illustrative. Must stay identical to the
+  // PersonaModule identity in each persona's index.ts and to the manifest's own
+  // identity — manifests.test asserts all three agree. PersonaContext resolves
+  // through THIS map before the manifest loads, so a missing record here
+  // silently drops the tenant to the generic `ops` record.
+  doit_author: {
+    id: 'doit_author',
+    name: 'Sarah Chen',
+    initials: 'SC',
+    role: 'Survey Author',
+    greeting: 'Sarah',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Friction Observability',
+      'Predictive Intelligence',
+      'Anomaly Detection',
+      'Automated Action',
+    ],
+  },
 };
 
 export default personas;

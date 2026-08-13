@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Maryland Department of Information Technology">
+  <title>Maryland Department of Information Technology</title>
+  <!--
+    The DoIT arch device: the Maryland flag's quartered arms held in the arch
+    silhouette the department uses on doit.maryland.gov. Quarters 1 and 4 carry
+    the Calvert bends (gold on black), quarters 2 and 3 the Crossland cross on
+    the state red. Hand-authored as SVG rather than lifted from the site's
+    raster so it stays crisp in the sidebar, the client tile and the favicon.
+
+    Colours sampled from the official mark:
+      Calvert gold   #fdc22e
+      Crossland red  #c8122c
+      sable          #040707
+  -->
+  <defs>
+    <clipPath id="doit-arch">
+      <path d="M6 96V46a44 44 0 0 1 88 0v50z" />
+    </clipPath>
+    <clipPath id="doit-q1"><rect x="0" y="0" width="50" height="50" /></clipPath>
+    <clipPath id="doit-q4"><rect x="50" y="50" width="50" height="50" /></clipPath>
+  </defs>
+
+  <g clip-path="url(#doit-arch)">
+    <!-- Quarters 2 and 3 — Crossland red ground -->
+    <rect x="50" y="0" width="50" height="50" fill="#c8122c" />
+    <rect x="0" y="50" width="50" height="50" fill="#c8122c" />
+
+    <!-- Quarters 1 and 4 — Calvert gold ground with sable bends -->
+    <rect x="0" y="0" width="50" height="50" fill="#fdc22e" />
+    <rect x="50" y="50" width="50" height="50" fill="#fdc22e" />
+    <g fill="#040707">
+      <g clip-path="url(#doit-q1)">
+        <path d="M-40 50h9l50-50h-9z" />
+        <path d="M-16 50h9l50-50h-9z" />
+        <path d="M8 50h9l50-50h-9z" />
+        <path d="M32 50h9l50-50h-9z" />
+      </g>
+      <g clip-path="url(#doit-q4)">
+        <path d="M10 100h9l50-50h-9z" />
+        <path d="M34 100h9l50-50h-9z" />
+        <path d="M58 100h9l50-50h-9z" />
+        <path d="M82 100h9l50-50h-9z" />
+      </g>
+    </g>
+
+    <!-- The cross bottony, one per Crossland quarter -->
+    <g fill="#ffffff">
+      <g transform="translate(75 25)">
+        <path d="M-3.4-15h6.8v11.6H15v6.8H3.4V15h-6.8V3.4H-15v-6.8h11.6z" />
+        <circle cx="0" cy="-16.4" r="4.1" />
+        <circle cx="0" cy="16.4" r="4.1" />
+        <circle cx="-16.4" cy="0" r="4.1" />
+        <circle cx="16.4" cy="0" r="4.1" />
+      </g>
+      <g transform="translate(25 75)">
+        <path d="M-3.4-15h6.8v11.6H15v6.8H3.4V15h-6.8V3.4H-15v-6.8h11.6z" />
+        <circle cx="0" cy="-16.4" r="4.1" />
+        <circle cx="0" cy="16.4" r="4.1" />
+        <circle cx="-16.4" cy="0" r="4.1" />
+        <circle cx="16.4" cy="0" r="4.1" />
+      </g>
+    </g>
+  </g>
+</svg>

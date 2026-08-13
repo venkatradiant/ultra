@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 32" role="img" aria-label="VOCE — Voice of the Resident">
+  <title>VOCE — Voice of the Resident</title>
+  <!--
+    VOCE is the product mark, not the tenant's. It sits bottom-left in the slot
+    Radiant's mark normally occupies, the same shape as Aramco/TrackLynk.
+    Horizontal lockup: the voice figure (rising bars, read as both a waveform and
+    a bar chart) beside the wordmark. Sized for the footerMark slot, which
+    renders at h-8 w-auto — so the tagline is set at a weight that survives 32px.
+  -->
+  <g fill="none" stroke="#1a4480" stroke-linecap="round" stroke-width="3.2">
+    <path d="M4 19.5v-7" />
+    <path d="M11 23.5v-15" />
+    <path d="M25 23.5v-15" />
+    <path d="M32 19.5v-7" />
+  </g>
+  <path d="M18 4.5v23" fill="none" stroke="#f0a500" stroke-linecap="round" stroke-width="3.2" />
+
+  <text x="45" y="17.5" fill="#1a4480" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="16" font-weight="700" letter-spacing="1.6">VOCE</text>
+  <text x="45.5" y="27" fill="#5b6b80" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="5.6" font-weight="600" letter-spacing="1.15">VOICE OF THE RESIDENT</text>
+</svg>

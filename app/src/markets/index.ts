@@ -12,6 +12,7 @@ import { healthcareMarket } from './healthcare/market.manifest';
 import { commercialMarket } from './commercial/market.manifest';
 import { oilGasMarket } from './oil-gas/market.manifest';
 import { telecomMarket } from './telecom/market.manifest';
+import { sledMarket } from './sled/market.manifest';
 
 export const marketRegistry: MarketRegistry = [
   financialServicesMarket,
@@ -19,4 +20,5 @@ export const marketRegistry: MarketRegistry = [
   commercialMarket,
   oilGasMarket,
   telecomMarket,
+  sledMarket,
 ];

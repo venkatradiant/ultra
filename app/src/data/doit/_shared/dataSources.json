@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ds-doit-01",
+    "name": "VOCE Survey Platform",
+    "status": "connected",
+    "description": "The native survey runtime — one definition delivered conversationally, as a web form, or as PDF. Source of record for responses collected in VOCE.",
+    "icon": "message-circle",
+    "lastSync": "2026-08-13T05:52:00",
+    "recordCount": 41800,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-doit-02",
+    "name": "Qualtrics",
+    "status": "connected",
+    "description": "Third-party survey platform used by several agencies. Responses are read across for portfolio-wide questions; the instrument stays where it was authored.",
+    "icon": "star",
+    "lastSync": "2026-08-13T05:40:00",
+    "recordCount": 525,
+    "vendorAgnostic": false
+  },
+  {
+    "id": "ds-doit-03",
+    "name": "Microsoft Forms",
+    "status": "connected",
+    "description": "Agency-authored forms in the State's Microsoft tenant. Read-only: VOCE indexes responses without taking ownership of the form.",
+    "icon": "file-text",
+    "lastSync": "2026-08-13T05:38:00",
+    "recordCount": 287,
+    "vendorAgnostic": false
+  },
+  {
+    "id": "ds-doit-04",
+    "name": "Google Forms",
+    "status": "partial",
+    "description": "Not yet connected. Historical exports are indexed; live response sync is pending an agency data-sharing agreement.",
+    "icon": "file-text",
+    "lastSync": "2026-06-30T18:00:00",
+    "recordCount": 241,
+    "vendorAgnostic": false
+  },
+  {
+    "id": "ds-doit-05",
+    "name": "Maryland Resident Contact Registry",
+    "status": "connected",
+    "description": "Consent-scoped contact lists used for distribution. Holds delivery receipts, not survey answers — responses are never joined back to a named resident.",
+    "icon": "users",
+    "lastSync": "2026-08-13T05:50:00",
+    "recordCount": 14540,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-doit-06",
+    "name": "Service Center Visit Logs",
+    "status": "connected",
+    "description": "Visit and wait-time telemetry by location, used to give open-text themes an operational denominator rather than a sentiment score alone.",
+    "icon": "route",
+    "lastSync": "2026-08-13T04:15:00",
+    "recordCount": 96200,
+    "vendorAgnostic": true
+  }
+]

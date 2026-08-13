@@ -1,0 +1,30 @@
+{
+  "author_greeting": {
+    "ai_message": "Good morning, Sarah. Two things need you today:\n[1] Your Maryland Resident Experience Survey closed overnight. 212 responses are in and ready to review.\n[2] Your Permit Renewal Feedback draft is scheduled to go out tomorrow and is still unfinished.\n\nWant to start with the results that just came in?",
+    "data_sources_used": ["VOCE Survey Platform", "Maryland Resident Contact Registry"],
+    "suggested_chips": ["Review Maryland results", "Finish the draft survey", "Ask me anything"],
+    "confidence": 94,
+    "capability": "Proactive Intelligence"
+  },
+  "author_cleaning": {
+    "user_query": "Review Maryland results",
+    "ai_message": "Before I pull any insights, I ran a data-quality sweep across the 212 responses. A clean dataset gives you trustworthy results, so here is what I would fix. Each item is checked by default — uncheck anything you want me to leave alone.\n\nWhen you are happy with the selections, hit Apply and I will clean the dataset.",
+    "data_sources_used": ["VOCE Survey Platform"],
+    "suggested_chips": ["Finish the draft survey", "Ask me anything"],
+    "confidence": 94,
+    "capability": "Anomaly Detection"
+  },
+  "author_draft_status": {
+    "user_query": "Finish the draft survey",
+    "ai_message": "Your Permit Renewal Feedback survey is 6 of 9 questions complete. Two things are blocking it:\n[1] Q7 has no answer options set.\n[2] No distribution list has been chosen.\n\nI can suggest options for Q7 whenever you are ready.",
+    "data_sources_used": ["VOCE Survey Platform"],
+    "suggested_chips": ["Review Maryland results", "Ask me anything"],
+    "confidence": 92,
+    "capability": "Friction Observability"
+  },
+  "__default__": {
+    "ai_message": "Sure — what do you need? You can also get back to your two tasks any time.",
+    "suggested_chips": ["Review Maryland results", "Finish the draft survey"],
+    "capability": "Converged Conversation"
+  }
+}

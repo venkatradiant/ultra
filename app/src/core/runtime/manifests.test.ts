@@ -27,9 +27,9 @@ const entries = markets.flatMap((market) =>
 );
 
 describe('market registry integrity', () => {
-  it('registers at least the five known markets', () => {
+  it('registers at least the six known markets', () => {
     expect(markets.map((m) => m.id).sort()).toEqual(
-      ['commercial', 'financial-services', 'healthcare', 'oil_gas', 'telecom'].sort(),
+      ['commercial', 'financial-services', 'healthcare', 'oil_gas', 'sled', 'telecom'].sort(),
     );
   });
 
