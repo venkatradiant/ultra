@@ -34,6 +34,7 @@ another client. Signing out returns to the same page.
 | Aramco — TrackLynk.AI | `<host>/login/aramco` | `aramco` | `aramco@9705` |
 | AT&T — AI Billing Workbench | `<host>/login/att` | `att` | `att@9705` |
 | Riverside Health System | `<host>/login/riverside` | `riverside` | `riverside@9705` |
+| Maryland DoIT — VOCE | `<host>/login/doit` | `doit` | `doit@9705` |
 | Financial Services (generic) | `<host>/login/fs` | `fs` | `fs@9705` |
 
 Usernames are matched case-insensitively and surrounding spaces are ignored. Passwords are

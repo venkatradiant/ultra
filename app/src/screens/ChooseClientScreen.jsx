@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Landmark, HeartPulse, Building2, Globe, Factory, RadioTower, ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Landmark, HeartPulse, Building2, Globe, Factory, RadioTower, Vote, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { useClient } from '../context/ClientContext';
 import { getMarkets } from '@core/runtime/registry';
 import UltraMark from '../components/brand/UltraMark';
@@ -26,6 +26,11 @@ const MARKET_META = {
   // recognition win. It stays apart from Financial Services' blue→indigo by
   // running light→dark rather than mid→purple.
   telecom: { icon: RadioTower, from: '#3EB1EA', to: '#00388F' },
+  // Crossland red → Charter Blue, the two colours Maryland DoIT's own site
+  // runs on. Deliberately NOT the navy→gold the tenant's charts use: that
+  // lands on top of Oil & Gas's graphite→amber. Red as the *from* keeps it
+  // clear of Commercial, which only reaches red at the far end.
+  sled: { icon: Vote, from: '#c8122c', to: '#1a4480' },
 };
 const marketMeta = (id) => MARKET_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
 
