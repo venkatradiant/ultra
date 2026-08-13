@@ -475,6 +475,23 @@ const personas = {
       'Automated Action',
     ],
   },
+  // MJ collides with the generic `ops` persona (Maya J.). Legal — nothing
+  // asserts initials uniqueness — and intentional. Please don't "fix" it.
+  doit_admin: {
+    id: 'doit_admin',
+    name: 'Marcus Johnson',
+    initials: 'MJ',
+    role: 'Survey Administrator',
+    greeting: 'Marcus',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Friction Observability',
+      'Predictive Intelligence',
+      'Anomaly Detection',
+      'Automated Action',
+    ],
+  },
 };
 
 export default personas;

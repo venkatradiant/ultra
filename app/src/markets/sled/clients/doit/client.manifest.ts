@@ -18,6 +18,7 @@
  */
 import type { ClientManifest } from '@core/types';
 import { authorPersona } from './personas/author';
+import { adminPersona } from './personas/admin';
 
 export const doitClient: ClientManifest = {
   id: 'doit',
@@ -44,7 +45,7 @@ export const doitClient: ClientManifest = {
   // Personas land one per phase — the registry-integrity test asserts this list
   // and CLIENT_PERSONAS agree in both directions, so allow-listing a persona
   // before it is built fails the suite.
-  personas: [authorPersona],
+  personas: [authorPersona, adminPersona],
   defaultPersonaId: 'doit_author',
   theme: {
     light: {

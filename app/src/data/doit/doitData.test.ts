@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import authorFlows from './author/chatFlows.json';
+import adminFlowsJson from './admin/chatFlows.json';
 import dataSources from './_shared/dataSources.json';
 import {
   CLEANING_FIXES,
@@ -146,6 +147,114 @@ describe('doit_author chat flows', () => {
 
   it('starts the greeting on a flow that exists', () => {
     expect(flows.author_greeting).toBeDefined();
+  });
+});
+
+const adminFlows = adminFlowsJson as unknown as Record<string, Flow>;
+
+/**
+ * The Administrator's map. The renames it encodes are the whole reason the
+ * approval queue is representable: the prototype used a bare "Approve" on both
+ * surveys and a bare "Send back to author" on both, each of which is one label
+ * with two destinations.
+ */
+const ADMIN_CHIP_MAP: Record<string, string> = {
+  'Ask across surveys': 'admin_picker',
+  'Ask another question': 'admin_picker',
+  'Review approvals (2)': 'admin_queue',
+  'Show me the data-quality flag': 'admin_flag',
+  'Back to my briefing': 'admin_greeting',
+  "That's all for now": 'admin_done',
+  'What are the top complaints about wait times?': 'admin_results',
+  'How has satisfaction changed over time?': 'admin_trend',
+  "I'll type my own question": 'admin_custom',
+  'Break down by region': 'admin_regional',
+  'Break down by region instead': 'admin_regional',
+  'Break down by survey': 'admin_by_survey',
+  'Show verbatims from the Western region': 'admin_verbatims',
+  'Keep and flag in results': 'admin_flag_kept',
+  'Exclude these responses': 'admin_flag_excluded',
+  'Draft brief for leadership': 'admin_brief',
+  'Send the brief': 'admin_send_confirm',
+  'Yes, send it to leadership': 'admin_brief_sent',
+  'Go back to the brief': 'admin_brief',
+  'Save to reports': 'admin_saved',
+  'Review each': 'admin_survey_1',
+  'Approve both': 'admin_approve_both_confirm',
+  'Yes, approve both surveys': 'admin_both_approved',
+  'Approve Permit Renewal Feedback': 'admin_approve_1_confirm',
+  'Yes, approve Permit Renewal': 'admin_survey_2',
+  'Send Permit Renewal back to Sarah': 'admin_sent_back_1',
+  'Continue to Survey 2': 'admin_survey_2',
+  'Approve Service Center Exit Survey': 'admin_approve_2_confirm',
+  'Yes, approve Service Center': 'admin_both_approved',
+  'Send Service Center back to James': 'admin_sent_back_2',
+  'Back to the queue': 'admin_queue',
+};
+
+const ADMIN_MODAL_CHIPS: Array<[string, string]> = [
+  ['admin_send_confirm', 'Yes, send it to leadership'],
+  ['admin_send_confirm', 'Go back to the brief'],
+  ['admin_approve_1_confirm', 'Yes, approve Permit Renewal'],
+  ['admin_approve_1_confirm', 'Back to the queue'],
+  ['admin_approve_2_confirm', 'Yes, approve Service Center'],
+  ['admin_approve_2_confirm', 'Back to the queue'],
+  ['admin_approve_both_confirm', 'Yes, approve both surveys'],
+  ['admin_approve_both_confirm', 'Back to the queue'],
+];
+
+describe('doit_admin chat flows', () => {
+  it('routes every suggested chip somewhere', () => {
+    const unmapped: string[] = [];
+    for (const [flowKey, flow] of Object.entries(adminFlows)) {
+      for (const chip of flow.suggested_chips ?? []) {
+        if (!ADMIN_CHIP_MAP[chip]) unmapped.push(`${flowKey} → "${chip}"`);
+      }
+    }
+    expect(unmapped).toEqual([]);
+  });
+
+  it('points every chip at a flow that exists', () => {
+    const dangling = Object.entries(ADMIN_CHIP_MAP)
+      .filter(([, target]) => !adminFlows[target])
+      .map(([chip, target]) => `"${chip}" → ${target}`);
+    expect(dangling).toEqual([]);
+  });
+
+  it('offers every chip its modals click', () => {
+    for (const [flowKey, label] of ADMIN_MODAL_CHIPS) {
+      expect(adminFlows[flowKey]?.suggested_chips, `${flowKey} must offer "${label}"`).toContain(label);
+    }
+  });
+
+  it('keeps a __default__ so free text never dead-ends', () => {
+    expect(adminFlows.__default__).toBeDefined();
+    expect(adminFlows.__default__.suggested_chips?.length).toBeGreaterThan(0);
+  });
+
+  it('carries no bare Approve, Send or Publish label', () => {
+    // Each of these was a two-destination label in the prototype, and "Send" is
+    // additionally a four-character token the substring rung matches against any
+    // user_query containing it.
+    const banned = ['Approve', 'Send', 'Publish', 'Send back to author', 'Start over'];
+    const labels = Object.keys(ADMIN_CHIP_MAP);
+    for (const bad of banned) expect(labels).not.toContain(bad);
+  });
+
+  it('avoids the two chip labels the engine hardcodes outside the resolver', () => {
+    const reserved = ['Next signal', 'Yes, walk me through them'];
+    const chips = Object.values(adminFlows).flatMap((f) => f.suggested_chips ?? []);
+    for (const label of reserved) expect(chips).not.toContain(label);
+  });
+
+  it('maps every signal to a chip that resolves', () => {
+    const signalChips = [
+      'Review approvals (2)',
+      'What are the top complaints about wait times?',
+      'Break down by region',
+      'Show me the data-quality flag',
+    ];
+    for (const chip of signalChips) expect(ADMIN_CHIP_MAP[chip]).toBeDefined();
   });
 });
 
