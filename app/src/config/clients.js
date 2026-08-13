@@ -140,13 +140,15 @@ export const CLIENTS = {
     },
   },
   // ─── SLED market — Maryland Department of Information Technology ──
-  // DoIT carries the client identity and the palette; VOCE is the product and
-  // sits bottom-left where Radiant's mark normally goes — the same shape as
-  // Aramco/TrackLynk. Illustrative demo: no figure describes real Maryland
-  // program data, and the Data Sources screen carries that statement. The
-  // palette and the arch mark come from the department's own site. Keep in sync
-  // with markets/sled/clients/doit/client.manifest.ts — BrandingContext reads
-  // THIS map, ChooseClientScreen reads THAT one, and nothing asserts they agree.
+  // DoIT carries the client identity and the palette. Deliberately NO
+  // `footerMark`: VOCE is the product, but Radiant keeps the bottom-left credit
+  // here as it does for every client except Aramco. VOCE is still named — it is
+  // the tagline and the `Ask VOCE` nav label — it just does not displace the
+  // build credit. Illustrative demo: no figure describes real Maryland program
+  // data, and the Data Sources screen carries that statement. The palette and
+  // the arch mark come from the department's own site. Keep in sync with
+  // markets/sled/clients/doit/client.manifest.ts — BrandingContext reads THIS
+  // map, ChooseClientScreen reads THAT one, and nothing asserts they agree.
   doit: {
     id: 'doit',
     loginSlug: 'doit',
@@ -160,11 +162,6 @@ export const CLIENTS = {
     logo: '/logos/maryland-doit-mark.svg',
     favicon: '/logos/maryland-doit-mark.svg',
     primaryColor: '#1a4480',
-    footerMark: {
-      logo: '/logos/voce-logo.svg',
-      alt: 'VOCE — Voice of the Resident',
-      label: 'Powered by',
-    },
     navLabels: { ask: 'Ask VOCE' },
   },
   // ─── Healthcare market (proves the platform is multi-market) ────

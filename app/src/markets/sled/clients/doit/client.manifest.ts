@@ -5,9 +5,10 @@
  * this tenant describes real Maryland program data, and the Data Sources screen
  * carries that statement — the same posture Aramco and AT&T take.
  *
- * Branding is DoIT-primary: the department carries the mark and the palette, and
- * VOCE — the product being shown — sits bottom-left in the slot Radiant's mark
- * normally occupies. Same shape as Aramco/TrackLynk.
+ * Branding is DoIT-primary: the department carries the mark and the palette.
+ * Deliberately no `footerMark` — VOCE is the product, but Radiant keeps the
+ * bottom-left credit here as it does everywhere except Aramco. VOCE is still
+ * named throughout: it is the tagline and the `Ask VOCE` nav label.
  *
  * Palette and mark are taken from the department's own site (doit.maryland.gov):
  * #1a4480 is its primary button fill, and the arch device's gold (#fdc22e) and
@@ -33,11 +34,6 @@ export const doitClient: ClientManifest = {
     logo: '/logos/maryland-doit-mark.svg',
     favicon: '/logos/maryland-doit-mark.svg',
     primaryColor: '#1a4480',
-    footerMark: {
-      logo: '/logos/voce-logo.svg',
-      alt: 'VOCE — Voice of the Resident',
-      label: 'Powered by',
-    },
     // Only `ask` is relabelled. journey/risk/governance are deliberately omitted:
     // every DoIT persona sets an explicit features.navSlots, so the Sidebar's
     // fallback list is never reached and no stale "Member Journey" can leak in.
