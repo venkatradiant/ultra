@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Bot } from 'lucide-react';
 import { usePersona } from '../../context/PersonaContext';
 import SourceBadge from './SourceBadge';
+import VizErrorBoundary from './VizErrorBoundary';
 import CapabilityBadge from './CapabilityBadge';
 import ConfidenceBadge from '../nfcu/confidence/ConfidenceBadge';
 import EscalationNotice from '../nfcu/confidence/EscalationNotice';
@@ -134,7 +135,7 @@ export default function ChatMessage({ message, inlineComponents, capability, onC
         {inlineComponents && inlineComponents.length > 0 && (
           <div className="mt-3 space-y-3">
             {inlineComponents.map((comp, idx) => (
-              <div key={idx}>{comp}</div>
+              <VizErrorBoundary key={idx}>{comp}</VizErrorBoundary>
             ))}
           </div>
         )}

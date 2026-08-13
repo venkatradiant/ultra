@@ -51,7 +51,7 @@ export default function SaveDeskPanel() {
       <div className="px-4 py-3 border-t border-border-subtle">
         <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide mb-2">Save-Rate Projection — Tailored vs Generic Offer</p>
         <div className="space-y-2">
-          {s.saveRateProjection.map((p) => (
+          {metrics.saveRateProjection.map((p) => (
             <div key={p.approach} className="flex items-center gap-2">
               <span className="text-[11px] text-text w-28 flex-shrink-0">{p.approach}</span>
               <div className="flex-1 bg-surface-2 rounded-full h-3 overflow-hidden">
