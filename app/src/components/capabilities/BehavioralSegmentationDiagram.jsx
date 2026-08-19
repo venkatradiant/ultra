@@ -39,7 +39,7 @@ export default function BehavioralSegmentationDiagram() {
     sourcesLabel: 'BILLING DATA SOURCES',
     primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
     secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'CGCM Sync Log', 'Resolution History'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'This capability shows where the sources disagree and reconciles them rather than picking a favourite. Current minus corrected equals the exact charge that should not have applied — per account, with its own confidence — so a bulk correction is a reversal of a named failure, not a model\'s opinion about the right amount.',
     adpSubtitle: 'Unified billing view across charges, rate cards, tax versions, entitlements and payment-method history',
@@ -51,7 +51,7 @@ export default function BehavioralSegmentationDiagram() {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'This capability shows where sources disagree and reconciles them rather than picking a favourite — the headcount gap, the permit-versus-location gap, the verification queues where crews wait — instead of reporting one system\'s number as if it were the truth.',
     adpSubtitle: 'Unified HSE data across permits, gate, location, CCTV, timesheets and the action tracker',
@@ -63,7 +63,7 @@ export default function BehavioralSegmentationDiagram() {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'This capability maps where customers and agents get stuck across brands and systems — the renewal, migration, and cancellation journeys where friction lives — instead of showing one queue metric at a time.',
     adpSubtitle: 'Unified care data across Genesys Cloud, Billing, Domains, Hosting, Marketing, and IT',
@@ -81,7 +81,7 @@ export default function BehavioralSegmentationDiagram() {
     sourcesLabel: 'USSFCU DATA SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],
     secondarySources: ['Snowflake', 'Tableau', 'Audit / GRC'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
   } : isNFCU ? {
     bodyText: 'The AI identifies which agents are showing quality gaps, compliance risk, or early burnout signals — without manual report-building or dashboard-switching.',
@@ -93,7 +93,7 @@ export default function BehavioralSegmentationDiagram() {
     sourcesLabel: 'NFCU DATA SOURCES',
     primarySources: ['Dynamics 365', 'Quality Mgmt', 'Marketing Cloud', 'Workday'],
     secondarySources: ['Genesys Bridge', 'Snowflake', 'Azure AI', 'ServiceNow'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
   } : {
     bodyText: 'The AI identifies which members are at risk, behaving differently, or showing early signals of friction or churn, without manual tagging or report-building.',
@@ -105,7 +105,7 @@ export default function BehavioralSegmentationDiagram() {
     sourcesLabel: `${clientShort} DATA SOURCES`,
     primarySources: ['Data Cloud', 'Financial Services Cloud', 'Marketing Cloud', 'Service Cloud'],
     secondarySources: ['Genesys Cloud', 'Snowflake', 'Blend', 'ICE/LOS'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Across multiple engagements',
   };
 
@@ -267,7 +267,7 @@ export default function BehavioralSegmentationDiagram() {
             className="flex flex-col justify-center"
             style={{ width: 'min(24%, 220px)', flexShrink: 0, background: '#F4F5F7', border: '1px solid #E0E0E0', borderRadius: '6px', padding: 'min(0.8vh, 8px) min(1.5%, 14px)' }}
           >
-            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>DEPLOYED AT</p>
+            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>Developed By</p>
             <p style={{ margin: '0 0 min(0.2vh, 2px) 0' }}>
               <span style={{ fontSize: fs.subtitle, color: 'var(--color-brand)', fontWeight: 800 }}>{clientConfig.deployedAt}</span>
             </p>

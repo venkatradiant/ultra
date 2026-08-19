@@ -40,7 +40,7 @@ export default function ProactiveIntelligenceDiagram() {
     sourcesLabel: 'BILLING DATA SOURCES',
     primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
     secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'Confidence-Scoring Agent', 'Rebilling API'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Your billing system reasons within its own charges. This capability reads across billing, the rate card, the tax tables, account payment-method history and the usage-rating engine — surfacing 207 anomalies already grouped into six resolvable patterns, ranked by dollar impact and confidence, before you ask.',
     gapText: 'The cycle opens with a few hundred anomalies buried in 12.4 million accounts, and no grouping. Four reports that do not reconcile with each other, and a 36-hour window to make sense of them.',
@@ -49,7 +49,7 @@ export default function ProactiveIntelligenceDiagram() {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Your permit system reasons within its own data. This capability reads across permits, gate, location, CCTV, timesheets and the action tracker — surfacing the riskiest jobs, permit gaps and headcount conflicts, grouped by risk bucket, before you ask.',
     gapText: 'The morning question — where do things stand, and what is the riskiest thing happening right now? — takes hours to assemble by hand from phone calls, radio checks, and walking the unit.',
@@ -58,7 +58,7 @@ export default function ProactiveIntelligenceDiagram() {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Your contact center platform reasons within its own data. This capability reads across Genesys Cloud, Billing, Domains, Hosting, Marketing, and IT — and every brand — surfacing the care signals that matter before you ask.',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
@@ -67,7 +67,7 @@ export default function ProactiveIntelligenceDiagram() {
     sourcesLabel: 'USSFCU DATA SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],
     secondarySources: ['Snowflake', 'Tableau', 'Audit / GRC'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Your core, ledger, GL, and reporting systems each hold part of the financial picture. This capability reads across all of them and surfaces the governance signals slowing your audit before you ask.',
     gapText: 'Jack Henry reports within core. Thought Machine reasons within the ledger. Tableau visualizes only what it is fed. No layer connects them to surface the reconciliation, parity, and lineage breaks.',
@@ -76,7 +76,7 @@ export default function ProactiveIntelligenceDiagram() {
     sourcesLabel: 'NFCU DATA SOURCES',
     primarySources: ['Dynamics 365', 'Quality Mgmt', 'Marketing Cloud', 'Workday'],
     secondarySources: ['Genesys Bridge', 'Snowflake', 'Azure AI', 'ServiceNow'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Your platforms generate signals independently. This capability reads across Dynamics 365, Genesys, HR, and QA data and tells you what matters — before your 9 AM sync.',
     gapText: 'Dynamics 365 generates its own signals. Genesys, HR, and QA data sit in separate systems. No layer connects them before your 9 AM leadership sync.',
@@ -85,7 +85,7 @@ export default function ProactiveIntelligenceDiagram() {
     sourcesLabel: `${clientShort} DATA SOURCES`,
     primarySources: ['Data Cloud', 'Financial Services Cloud', 'Marketing Cloud', 'Service Cloud'],
     secondarySources: ['Genesys Cloud', 'Snowflake', 'Blend', 'ICE/LOS'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Your platforms generate signals independently. This capability reads across all of them and tells you what matters before you ask.',
     gapText: 'Integration moves data between systems. No layer reads across them to surface insight.',
@@ -268,7 +268,7 @@ export default function ProactiveIntelligenceDiagram() {
             className="flex flex-col justify-center"
             style={{ width: 'min(24%, 220px)', flexShrink: 0, background: '#F4F5F7', border: '1px solid #E0E0E0', borderRadius: '6px', padding: 'min(0.8vh, 8px) min(1.5%, 14px)' }}
           >
-            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>DEPLOYED AT</p>
+            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>Developed By</p>
             <p style={{ margin: '0 0 min(0.2vh, 2px) 0' }}>
               <span style={{ fontSize: fs.subtitle, color: 'var(--color-brand)', fontWeight: 800 }}>{clientConfig.deployedAt}</span>
             </p>

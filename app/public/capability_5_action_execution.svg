@@ -143,8 +143,8 @@
 
   <!-- Proof point -->
   <rect x="628" y="548" width="284" height="40" rx="4" fill="#F4F5F7" stroke="#E0E0E0" stroke-width="1"/>
-  <text x="648" y="564" font-size="9" fill="#CC0000" font-weight="700" letter-spacing="1">DEPLOYED AT</text>
-  <text x="648" y="580" font-size="12" fill="#003087" font-weight="800">Verizon</text>
+  <text x="648" y="564" font-size="9" fill="#CC0000" font-weight="700" letter-spacing="1">Developed By</text>
+  <text x="648" y="580" font-size="12" fill="#003087" font-weight="800">Radiant Solutions Lab</text>
   <text x="720" y="580" font-size="9" fill="#666666" font-weight="400">Across multiple engagements</text>
 
 </svg>

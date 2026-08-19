@@ -49,7 +49,7 @@ export default function ActionExecutionDiagram() {
     targetsLabel: 'BILLING EXECUTION TARGETS',
     primaryTargets: ['Rebilling API', 'Resolution History', 'SME Review Queue', 'Governance Log'],
     secondaryTargets: ['Model Registry', 'Retraining Feedback Loop', 'Platform Configuration', 'Operator Notifications'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Executes the reviewed decision — 87 accounts, $850.14, one action — through the rebilling API, and writes each correction to Resolution History with its rebill ID, before and after amounts, confidence tier, operator ID and timestamp. Escalate, defer and mark-false-positive write the same trail; a decision not to act is still a decision.',
     gapText: 'Corrections are made one account at a time, and the audit trail is reconstructed afterwards from systems that do not agree — so nobody can answer "who corrected what, and why?" a week later.',
@@ -58,7 +58,7 @@ export default function ActionExecutionDiagram() {
     targetsLabel: 'ARAMCO EXECUTION TARGETS',
     primaryTargets: ['Permit-to-Work', 'HSE Action Tracker', 'Shift Supervisors', 'Zone Wardens'],
     secondaryTargets: ['Maintenance Work Orders', 'Incident Log', 'Shift Handover Report', 'Audit Export'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Drafts the two or three actions that matter before the next shift, ranks them by risk bucket, attaches the evidence to each, and hands them to the named shift supervisors — plus permit-issuer notifications, warden messages, audit exports and the incident log.',
     gapText: 'Permits live in one system and people\'s real locations are unknown or on paper. The gap between authorized work and actual work is invisible exactly when contractor density, and therefore risk, is highest.',
@@ -67,7 +67,7 @@ export default function ActionExecutionDiagram() {
     targetsLabel: 'NEWFOLD EXECUTION TARGETS',
     primaryTargets: ['Genesys Cloud', 'Billing & Subscriptions', 'Hosting Control Panel', 'Marketing Cloud'],
     secondaryTargets: ['Domain Registrar', 'Loyalty Engine', 'IT / Incident', 'Email'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Executes operational actions across brands and systems — reroute agents between queues, enable callback and chat deflection, draft save offers, open refund and incident tickets, and restore suspended accounts on approval.',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
@@ -79,7 +79,7 @@ export default function ActionExecutionDiagram() {
     secondaryTargets: ['Tableau', 'Snowflake', 'Email'],
     gapText: 'Producing audit evidence and routing governed figures is manual — days of staff time across disconnected systems.',
     withText: 'Evidence packages, governed reconciliations, and role-based routing executed in one confirmed step.',
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
   } : isNFCU ? {
     bodyText: 'Move from insight to action inside the same conversation: reroute agents in Dynamics 365, assign coaching tasks, update schedules in Workday — all confirmed by the user before execution.',
@@ -88,7 +88,7 @@ export default function ActionExecutionDiagram() {
     secondaryTargets: ['Genesys Bridge', 'Azure AI', 'Email', 'Slack'],
     gapText: 'Insight lives in Dynamics 365. Action happens in Workday or coaching portals. Manual handoff between both.',
     withText: 'From conversation to coaching assignment, schedule update, or Dynamics 365 case in one confirmed step.',
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
   } : {
     bodyText: 'Move from insight to action inside the same conversation: create tickets, draft outreach, trigger Agentforce workflows, all confirmed by the user before execution.',
@@ -97,7 +97,7 @@ export default function ActionExecutionDiagram() {
     secondaryTargets: ['Genesys Cloud', 'UiPath', 'JIRA', 'Slack', 'Email'],
     gapText: 'Insight lives in one system, action happens in another. Manual handoff between both.',
     withText: 'From conversation to JIRA ticket, Slack message, or Agentforce workflow in one step.',
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Across multiple engagements',
   };
 
@@ -261,7 +261,7 @@ export default function ActionExecutionDiagram() {
             className="flex flex-col justify-center"
             style={{ width: 'min(24%, 220px)', flexShrink: 0, background: '#F4F5F7', border: '1px solid #E0E0E0', borderRadius: '6px', padding: 'min(0.8vh, 8px) min(1.5%, 14px)' }}
           >
-            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>DEPLOYED AT</p>
+            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>Developed By</p>
             <p style={{ margin: '0 0 min(0.2vh, 2px) 0' }}>
               <span style={{ fontSize: fs.subtitle, color: 'var(--color-brand)', fontWeight: 800 }}>{clientConfig.deployedAt}</span>
             </p>

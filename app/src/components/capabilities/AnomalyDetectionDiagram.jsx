@@ -39,7 +39,7 @@ export default function AnomalyDetectionDiagram() {
     sourcesLabel: 'BILLING SIGNAL SOURCES',
     primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
     secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'CGCM Sync Log', 'Plan-Feature Entitlements'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Detects out-of-policy charges — missing discounts, duplicate installments, stale tax rates, roaming overcharges — and groups them by shared root cause. The grouping is what matters: 207 individual investigations become six decisions, and the residue that fits no pattern is separated out rather than averaged in.',
     monitorAgents: [
@@ -55,7 +55,7 @@ export default function AnomalyDetectionDiagram() {
     sourcesLabel: 'ARAMCO SIGNAL SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Flags any job running in a hazard zone without a valid permit, the moment it happens, with the evidence behind each flag — the permit record, the location trail, and the time stamps. An expired permit looks like a closed record until live location sits next to it.',
     monitorAgents: [
@@ -71,7 +71,7 @@ export default function AnomalyDetectionDiagram() {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Flags unusual patterns across brands and systems — dunning and billing anomalies, refund spikes, outage-correlated volume, and compliance gaps like a skipped auto-renewal disclosure — before they show up in a report.',
     monitorAgents: [
@@ -95,7 +95,7 @@ export default function AnomalyDetectionDiagram() {
     sourcesLabel: 'USSFCU SIGNAL SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],
     secondarySources: ['Snowflake', 'Tableau', 'Audit / GRC'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     gapText: 'A figure can change between the Thought Machine ledger and Tableau with nothing flagging it. Aging reconciliation exceptions stay invisible until the audit runs long.',
     withText: 'Parity breaks and silent transformations caught and scored before the auditor finds them.',
@@ -111,7 +111,7 @@ export default function AnomalyDetectionDiagram() {
     sourcesLabel: 'NFCU SIGNAL SOURCES',
     primarySources: ['Dynamics 365', 'Quality Mgmt', 'Marketing Cloud', 'Workday'],
     secondarySources: ['Genesys Bridge', 'Snowflake', 'Azure AI', 'ServiceNow'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     gapText: 'BSA/AML skip rates are buried in process adherence reports. Quality dips go undetected until QA review cycles complete. Cross-system anomalies are invisible.',
     withText: 'Real-time compliance flag detection across all shifts — automatically correlated with script changes, IT incidents, and agent performance patterns.',
@@ -127,7 +127,7 @@ export default function AnomalyDetectionDiagram() {
     sourcesLabel: `${clientShort} SIGNAL SOURCES`,
     primarySources: ['Data Cloud', 'Financial Services Cloud', 'Service Cloud', 'Marketing Cloud'],
     secondarySources: ['Genesys Cloud', 'Snowflake', 'UiPath', 'ICE/LOS'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Across multiple engagements',
     gapText: 'Risk signals are buried in platform-specific dashboards. Cross-system anomalies go unseen.',
     withText: 'Real-time, cross-platform pattern detection with prioritized, auditable alerts.',
@@ -285,7 +285,7 @@ export default function AnomalyDetectionDiagram() {
             className="flex flex-col justify-center"
             style={{ width: 'min(24%, 220px)', flexShrink: 0, background: '#F4F5F7', border: '1px solid #E0E0E0', borderRadius: '6px', padding: 'min(0.8vh, 8px) min(1.5%, 14px)' }}
           >
-            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>DEPLOYED AT</p>
+            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>Developed By</p>
             <p style={{ margin: '0 0 min(0.2vh, 2px) 0' }}>
               <span style={{ fontSize: fs.subtitle, color: 'var(--color-brand)', fontWeight: 800 }}>{clientConfig.deployedAt}</span>
             </p>

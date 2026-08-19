@@ -39,7 +39,7 @@ export default function PredictiveIntelligenceDiagram() {
     sourcesLabel: 'BILLING DATA SOURCES',
     primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
     secondarySources: ['Historical Call-Driver Data', 'SLA Clock', 'Model Registry', 'Retraining Feedback Loop'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Projects what deferring costs — roughly 63 support calls and 19 hours of customer hold time on the hero pattern alone — against the SLA time remaining, and forecasts the accuracy lift the next model retrain will deliver. The point is preventing the downstream event rather than discovering it next cycle.',
     predCards: [
@@ -56,7 +56,7 @@ export default function PredictiveIntelligenceDiagram() {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Projects muster completion from the live check-in rate, models the turnaround surge that will outrun manual verification, and predicts where the next permit-versus-location mismatch is likely — so the intervention lands before the exposure does.',
     predCards: [
@@ -73,7 +73,7 @@ export default function PredictiveIntelligenceDiagram() {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Forecasts contact volume, staffing needs, churn and save likelihood, and renewal-driven spikes using history across the contact center platform and the legacy brand systems — and models what-if scenarios for care planning.',
     predCards: [
@@ -101,7 +101,7 @@ export default function PredictiveIntelligenceDiagram() {
     sourcesLabel: 'USSFCU DATA SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],
     secondarySources: ['Snowflake', 'Tableau', 'Audit / GRC'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
   } : isNFCU ? {
     bodyText: 'Surfaces what is likely to happen next: where staffing gaps will emerge, how quality scores will trend, and which agents are approaching burnout risk — before the numbers confirm it.',
@@ -118,7 +118,7 @@ export default function PredictiveIntelligenceDiagram() {
     sourcesLabel: 'NFCU DATA SOURCES',
     primarySources: ['Dynamics 365', 'Quality Mgmt', 'Marketing Cloud', 'Workday'],
     secondarySources: ['Genesys Bridge', 'Snowflake', 'Azure AI', 'ServiceNow'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
   } : {
     bodyText: 'Surfaces what is likely to happen next: which members will churn, where the next friction spike will emerge, and which products are underperforming before the numbers confirm it.',
@@ -135,7 +135,7 @@ export default function PredictiveIntelligenceDiagram() {
     sourcesLabel: `${clientShort} DATA SOURCES`,
     primarySources: ['Data Cloud', 'Financial Services Cloud', 'Marketing Cloud', 'Service Cloud'],
     secondarySources: ['Genesys Cloud', 'Snowflake', 'Blend', 'ICE/LOS'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Across multiple engagements',
   };
 
@@ -301,7 +301,7 @@ export default function PredictiveIntelligenceDiagram() {
             className="flex flex-col justify-center"
             style={{ width: 'min(24%, 220px)', flexShrink: 0, background: '#F4F5F7', border: '1px solid #E0E0E0', borderRadius: '6px', padding: 'min(0.8vh, 8px) min(1.5%, 14px)' }}
           >
-            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>DEPLOYED AT</p>
+            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>Developed By</p>
             <p style={{ margin: '0 0 min(0.2vh, 2px) 0' }}>
               <span style={{ fontSize: fs.subtitle, color: 'var(--color-brand)', fontWeight: 800 }}>{clientConfig.deployedAt}</span>
             </p>

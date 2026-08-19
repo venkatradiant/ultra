@@ -39,7 +39,7 @@ export default function TalkToDataDiagram() {
     sourcesLabel: 'BILLING DATA SOURCES',
     primarySources: ['Billing System', 'Rate Card & Plan Catalog', 'Tax-Rule Engine', 'Account & Payment History'],
     secondarySources: ['Usage-Rating Engine', 'Device-Loan Ledger', 'CGCM Sync Log', 'Agent Observability'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     connectorDesc: 'Billing, rate cards, tax tables, entitlements, rebilling',
     piiDesc: 'Customer account and payment data masking',
@@ -50,7 +50,7 @@ export default function TalkToDataDiagram() {
     sourcesLabel: 'ARAMCO DATA SOURCES',
     primarySources: ['Permit-to-Work', 'Gate Access-Control', 'Location & Tag Data', 'CCTV & Presence'],
     secondarySources: ['Contractor Timesheets', 'HSE Action Tracker', 'Maintenance Work Orders', 'HSE Reporting'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     connectorDesc: 'Permits, gate, location, CCTV, timesheets',
     piiDesc: 'Worker and contractor data masking',
@@ -61,7 +61,7 @@ export default function TalkToDataDiagram() {
     sourcesLabel: 'NEWFOLD DATA SOURCES',
     primarySources: ['Genesys Cloud', 'Billing & Subscriptions', 'Domain Registrar', 'Hosting Control Panel'],
     secondarySources: ['Customer 360', 'Marketing Cloud', 'IT Monitoring', 'Snowflake'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     connectorDesc: 'Genesys Cloud, Billing, Domains, Hosting',
     piiDesc: 'Customer & registrant data masking',
@@ -72,7 +72,7 @@ export default function TalkToDataDiagram() {
     sourcesLabel: 'USSFCU DATA SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],
     secondarySources: ['Snowflake', 'Tableau', 'Audit / GRC'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     connectorDesc: 'Core, Ledger, GL, Snowflake',
     piiDesc: 'Role-based access control',
@@ -82,7 +82,7 @@ export default function TalkToDataDiagram() {
     sourcesLabel: 'NFCU DATA SOURCES',
     primarySources: ['Dynamics 365', 'Quality Mgmt', 'Marketing Cloud', 'Workday'],
     secondarySources: ['Genesys Bridge', 'Snowflake', 'Azure AI', 'ServiceNow'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     connectorDesc: 'D365, Genesys, Snowflake',
     piiDesc: 'Agent data masking',
@@ -92,7 +92,7 @@ export default function TalkToDataDiagram() {
     sourcesLabel: `${clientShort} DATA SOURCES`,
     primarySources: ['Data Cloud', 'Financial Services Cloud', 'Marketing Cloud', 'Service Cloud'],
     secondarySources: ['Genesys Cloud', 'Snowflake', 'Blend', 'ICE/LOS'],
-    deployedAt: 'Verizon',
+    deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Across multiple engagements',
     connectorDesc: 'SF, Genesys, Snowflake',
     piiDesc: 'Member data masking',
@@ -258,7 +258,7 @@ export default function TalkToDataDiagram() {
             className="flex flex-col justify-center"
             style={{ width: 'min(24%, 220px)', flexShrink: 0, background: '#F4F5F7', border: '1px solid #E0E0E0', borderRadius: '6px', padding: 'min(0.8vh, 8px) min(1.5%, 14px)' }}
           >
-            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>DEPLOYED AT</p>
+            <p style={{ fontSize: fs.labelSm, color: '#CC0000', fontWeight: 700, letterSpacing: '1px', margin: '0 0 min(0.3vh, 3px) 0' }}>Developed By</p>
             <p style={{ margin: '0 0 min(0.2vh, 2px) 0' }}>
               <span style={{ fontSize: fs.subtitle, color: 'var(--color-brand)', fontWeight: 800 }}>{clientConfig.deployedAt}</span>
             </p>
