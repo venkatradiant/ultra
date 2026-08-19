@@ -1,19 +1,20 @@
+import { useState } from 'react';
 import DoitModal, { ModalPrimary, ModalSecondary } from '../shared/DoitModal';
 import { closeThenFireChip } from '../shared/fireChip';
 import { GovernanceRow } from '../shared/TrustBits';
-import { useAdminState, useAdminOpenOnce, setAdminState } from '../shared/adminState';
+import { approve, sendBack, useAdminState, useAdminOpenOnce, setAdminState } from '../shared/adminState';
 import { APPROVAL_QUEUE, PORTFOLIO_SURVEYS } from '../../../data/doit/_shared/constants';
 
 /**
- * The Administrator's four gates.
+ * The Administrator's approval and brief dialogs.
  *
  * Every confirm label here is unique across the persona, because the chip map is
  * one flat namespace and modal buttons dispatch through it exactly as chips do.
  * A shared "Approve" across two surveys is the single most common way this port
  * goes wrong: it is unrepresentable, and it mis-routes silently.
  *
- * Approving also writes to the store, so the queue card behind the dialog shows
- * the survey as signed rather than still pending.
+ * Approving and returning both write to the store, so the queue card behind the
+ * dialog shows the survey as signed or returned rather than still pending.
  */
 
 /** Sending the brief to leadership. */
@@ -54,11 +55,10 @@ export function SendBriefModal() {
 
 function ApproveModal({ id, chip, cancelChip, item, children }) {
   const { open, close } = useAdminOpenOnce(id);
-  const { approved } = useAdminState();
   if (!open) return null;
 
   const confirm = () => {
-    if (item && !approved.includes(item.id)) setAdminState({ approved: [...approved, item.id] });
+    if (item) approve(item.id);
     closeThenFireChip(close, chip);
   };
 
@@ -158,5 +158,89 @@ export function ApproveBothModal() {
         <GovernanceRow action="Approver of record" approvedBy="Marcus Johnson" />
       </div>
     </DoitModal>
+  );
+}
+
+/**
+ * Returning a draft to its author.
+ *
+ * "Send back to author" used to be a bare chip: the reply claimed the author
+ * would see it in their drafts, but nothing was written anywhere and no reason
+ * travelled with it. An approver rejecting work without saying why is the thing
+ * a review step exists to prevent, so the note is required rather than optional.
+ */
+function SendBackModal({ id, chip, cancelChip, item, placeholder }) {
+  const { open, close } = useAdminOpenOnce(id);
+  const [comment, setComment] = useState('');
+  if (!open) return null;
+
+  const confirm = () => {
+    sendBack(item.id, comment);
+    closeThenFireChip(close, chip);
+  };
+
+  return (
+    <DoitModal
+      eyebrow="Goes back to the author with your name on it"
+      title={`Return ${item.name} to ${item.author}?`}
+      onClose={close}
+      actions={
+        <>
+          <ModalPrimary focusOnMount onClick={confirm} disabled={!comment.trim()}>
+            {chip}
+          </ModalPrimary>
+          <ModalSecondary onClick={() => closeThenFireChip(close, cancelChip)}>{cancelChip}</ModalSecondary>
+        </>
+      }
+    >
+      <p className="text-[13px] leading-relaxed text-text-muted">
+        {item.author} sees this in their drafts along with your note. Tell them what to change — a
+        draft returned without a reason usually comes back unchanged.
+      </p>
+      <label className="mt-3 block">
+        <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.08em] text-text-subtle">
+          What needs changing
+        </span>
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          rows={3}
+          placeholder={placeholder}
+          className="w-full rounded-md border border-border bg-surface px-2 py-1.5 text-[12.5px] leading-relaxed text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand"
+        />
+      </label>
+      {!comment.trim() && (
+        <p className="mt-1 text-[11px] text-text-subtle">
+          A note is required before this can go back.
+        </p>
+      )}
+      <div className="mt-3">
+        <GovernanceRow action="Returned" approvedBy="Marcus Johnson" />
+      </div>
+    </DoitModal>
+  );
+}
+
+export function SendBackPermitModal() {
+  return (
+    <SendBackModal
+      id="admin:send-back-1"
+      chip="Yes, return it to Sarah"
+      cancelChip="Back to the queue"
+      item={APPROVAL_QUEUE[0]}
+      placeholder="e.g. Q4 only shows if Q3 is Yes, but the wording implies it always appears. Please reword it."
+    />
+  );
+}
+
+export function SendBackServiceCenterModal() {
+  return (
+    <SendBackModal
+      id="admin:send-back-2"
+      chip="Yes, return it to James"
+      cancelChip="Back to the queue"
+      item={APPROVAL_QUEUE[1]}
+      placeholder="e.g. Add a “Prefer not to say” option to the service centre question."
+    />
   );
 }

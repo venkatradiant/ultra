@@ -53,4 +53,42 @@ export interface ChatFlowConfig {
   /** flowKey of the action turn whose confirmations are wired below. */
   actionTurnKey?: string;
   actionConfirmMap?: Record<string, ActionConfirmConfig>;
+
+  // ─── Optional, opt-in hooks. Absent on every persona that does not need
+  // them, so the engine behaves exactly as before for those. Added for the
+  // Maryland DoIT tenant, whose briefing has to know which of the day's
+  // action items the user already finished. ────────────────────────────
+
+  /**
+   * Rewrite a flowKey the instant before it is rendered.
+   *
+   * The chip map and the `greetingFlowKey` are both static, so a persona whose
+   * briefing changes as the session progresses cannot express that with data
+   * alone. This is the one seam where a manifest can say "when they come back
+   * to the briefing, give them the variant that matches what is still open".
+   *
+   * Must be pure enough to call during a render-adjacent timeout: read a module
+   * store, return a flowKey. An unknown key falls back to the original.
+   */
+  resolveFlowKey?: (flowKey: string) => string;
+
+  /**
+   * Fired once the message for `flowKey` has been committed to the thread.
+   *
+   * Progress tracking belongs here rather than in a card's click handler: every
+   * modal's confirm label is ALSO offered as a chip on the same turn, so a user
+   * who clicks the chip instead of the dialog would otherwise advance the
+   * conversation without ever recording that the work was done.
+   */
+  onFlowEnter?: (flowKey: string) => void;
+
+  /**
+   * Tighten the free-text matching ladder (rungs 3 and 4 of `resolveFlowKey`).
+   *
+   * The default rungs fail open by design — a short or unfamiliar utterance
+   * lands on whatever node happens to share a word with it, which reads as the
+   * assistant repeating itself rather than admitting it did not understand.
+   * Personas that would rather fall through to `__default__` set this.
+   */
+  strictMatch?: boolean;
 }

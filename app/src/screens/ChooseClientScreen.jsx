@@ -161,10 +161,9 @@ export default function ChooseClientScreen() {
                       <img src={branding.logo} alt="" className="h-7 w-7 object-contain" />
                     </span>
                     <span className="min-w-0 flex-1">
-                      {/* Wraps to two lines rather than truncating: "Maryland
-                          Department of Information Technology" needs 318px in a
-                          285px cell, and a clipped agency name is worse than a
-                          slightly taller row. */}
+                      {/* Wraps to two lines rather than truncating: a clipped
+                          client name is worse than a slightly taller row, and
+                          the credit-union names still need the second line. */}
                       <span className="line-clamp-2 block text-[13.5px] font-semibold leading-snug text-white">
                         {branding.name}
                       </span>

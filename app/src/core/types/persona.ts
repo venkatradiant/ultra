@@ -36,6 +36,10 @@ export type NavKey =
   // ESFCU risk/fraud slot. Additive in the same way: absent from the default
   // slot set and listed only by the persona that owns the page.
   | 'fraudOperations'
+  // SLED / VOCE. Where a saved report actually lives — added because both DoIT
+  // personas offered a "save to my reports" chip with no destination behind it.
+  // Additive: absent from the default slot set and listed only by those two.
+  | 'myReports'
   | 'dataSources';
 
 export interface PersonaIdentity {
@@ -80,6 +84,24 @@ export interface PersonaFeatures {
    * bubble stays narrow either way; only the component block widens.
    */
   wideInlineComponents?: boolean;
+}
+
+/**
+ * One item in the header's notification panel.
+ *
+ * Optional per persona. The bell used to carry a hardcoded "3" for every tenant
+ * over a button that could not be opened; personas that have nothing to report
+ * simply omit this and get no badge.
+ */
+export interface PersonaNotification {
+  id: string;
+  title: string;
+  detail?: string;
+  /** Human-readable time, e.g. "8:42 AM". Fixed strings — the demo clock is. */
+  at: string;
+  /** Defaults to true; set false for an item the persona should show as read. */
+  unread?: boolean;
+  tone?: 'info' | 'success' | 'warning';
 }
 
 /** A KPI tile shown in the persona's data-overview row. */
@@ -159,6 +181,8 @@ export interface PersonaManifest {
   ui: PersonaUiConfig;
   features?: PersonaFeatures;
   navLabels?: Partial<Record<NavKey, string>>;
+  /** Items shown in the header's notification panel. Optional. */
+  notifications?: PersonaNotification[];
 
   // ─── the localized switchboard (was the giant registries) ──
   contextPanel?: ContextPanelMap;

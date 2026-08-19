@@ -135,13 +135,137 @@ export const SURVEY_1_FINDINGS = {
 
 export const SURVEY_2 = {
   name: 'Permit Renewal Feedback',
-  questionsComplete: 6,
-  questionsTotal: 9,
   q7SuggestedOptions: ['Very easy', 'Somewhat easy', 'Somewhat difficult', 'Very difficult'],
   q5Rewrites: [
     'How long did it take to renew your permit?',
     'How much time did the renewal process take?',
   ],
+} as const;
+
+// ─── Survey 2's questions — the author's editable draft ─────────────
+
+/**
+ * The draft's questions live HERE rather than inside DraftSurveyPanel, and the
+ * live copy lives in `authorState.draftQuestions`.
+ *
+ * Why it matters: the panel used to hold them in component-local `useState`, so
+ * everything the author typed was thrown away the moment the conversation moved
+ * past that turn. The resident preview and the publish receipt then had nothing
+ * to read and quoted string literals instead — which is why the preview showed
+ * one hardcoded question no matter what the author had just written.
+ *
+ * The administrator's approval queue reads the same array (see APPROVAL_QUEUE),
+ * so the two personas cannot describe the same survey differently.
+ */
+export type DraftQuestionType =
+  | 'Scale (1–5)'
+  | 'Likert (5-point agreement)'
+  | 'Yes / No'
+  | 'Multi-select'
+  | 'Multi-select (adaptive)'
+  | 'Single-select'
+  | 'Open text';
+
+export interface DraftQuestion {
+  id: string;
+  text: string;
+  type: DraftQuestionType;
+  /** `null` for open text. `[]` means the question is not yet answerable. */
+  options: string[] | null;
+  /** VOCE's note about the question, e.g. an adaptive-display rule. */
+  aiNote?: string;
+}
+
+/** Default answer options per question type. `null` = the resident types. */
+export const TYPE_DEFAULTS: Record<DraftQuestionType, string[] | null> = {
+  'Scale (1–5)': ['1 — Very dissatisfied', '2 — Dissatisfied', '3 — Neutral', '4 — Satisfied', '5 — Very satisfied'],
+  'Likert (5-point agreement)': ['Strongly agree', 'Agree', 'Neither agree nor disagree', 'Disagree', 'Strongly disagree'],
+  'Yes / No': ['Yes', 'No'],
+  'Multi-select': ['Option A', 'Option B', 'Option C'],
+  'Multi-select (adaptive)': ['Option A', 'Option B', 'Option C'],
+  'Single-select': ['Option A', 'Option B', 'Option C', 'Option D'],
+  'Open text': null,
+};
+
+export const DRAFT_QUESTION_TYPES = Object.keys(TYPE_DEFAULTS) as DraftQuestionType[];
+
+/** Q7 ships with no options. That is the one thing genuinely blocking the send. */
+export const SURVEY_2_QUESTIONS: DraftQuestion[] = [
+  { id: 'q1', text: 'Overall, how satisfied were you with the permit renewal process?', type: 'Scale (1–5)', options: TYPE_DEFAULTS['Scale (1–5)'] },
+  { id: 'q2', text: 'How did you submit your renewal this time?', type: 'Single-select', options: ['Online portal', 'By mail', 'In person at a service center', 'By phone'] },
+  { id: 'q3', text: 'Did you encounter any problems during the renewal?', type: 'Yes / No', options: ['Yes', 'No'] },
+  { id: 'q4', text: 'If yes, what type of problem did you encounter?', type: 'Multi-select (adaptive)', aiNote: 'Shown only if Q3 = Yes', options: ['Website or portal issue', 'Long processing time', 'Missing or incorrect instructions', 'Payment problem', 'Other'] },
+  { id: 'q5', text: 'About how long did the renewal process take from start to finish?', type: 'Single-select', options: ['Less than 30 minutes', '30 minutes to 2 hours', '2–8 hours', 'More than a day', 'Still in progress'] },
+  { id: 'q6', text: 'Did you need to contact the office for help at any point?', type: 'Yes / No', options: ['Yes', 'No'] },
+  { id: 'q7', text: 'How easy was the permit renewal process overall?', type: 'Single-select', options: [] },
+  { id: 'q8', text: 'What is the one thing we could do to make permit renewal easier?', type: 'Open text', options: null },
+  { id: 'q9', text: 'Would you recommend renewing online to others?', type: 'Yes / No', options: ['Yes', 'No', 'Not sure'] },
+];
+
+/** A question is answerable when it either takes free text or offers a choice. */
+export const isQuestionComplete = (q: DraftQuestion): boolean =>
+  q.options === null || q.options.length > 0;
+
+/**
+ * How the draft stands before the author touches it.
+ *
+ * DERIVED, and it replaces a hand-written `questionsComplete: 6` that no rule
+ * produced. Three surfaces describe this one draft — the signal card, the AI's
+ * opening line and the panel's own banner — and the panel has always counted
+ * answerable questions, which is eight of nine. The prose said six. A test pins
+ * the sentence to this number so they cannot drift again.
+ */
+export const SURVEY_2_COMPLETE = SURVEY_2_QUESTIONS.filter(isQuestionComplete).length;
+export const SURVEY_2_TOTAL = SURVEY_2_QUESTIONS.length;
+export const SURVEY_2_BLOCKING = SURVEY_2_TOTAL - SURVEY_2_COMPLETE;
+
+// ─── Describing the options you want, rather than typing them ───────
+
+/**
+ * The author tells VOCE what KIND of options a question needs; VOCE returns a
+ * set. Deterministic keyword matching rather than a model call: the demo has to
+ * produce the same options every run, and the suite has to be able to assert it.
+ *
+ * Order matters — the first bucket whose triggers appear in the description
+ * wins, so the more specific scales are listed before the generic ones.
+ */
+export const OPTION_RECIPES: Array<{ id: string; label: string; triggers: string[]; options: string[] }> = [
+  { id: 'ease', label: 'A 4-point ease scale', triggers: ['easy', 'ease', 'difficult', 'difficulty', 'simple'], options: ['Very easy', 'Somewhat easy', 'Somewhat difficult', 'Very difficult'] },
+  { id: 'satisfaction', label: 'A 5-point satisfaction scale', triggers: ['satisf', 'happy', 'pleased'], options: ['Very satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very dissatisfied'] },
+  { id: 'agreement', label: 'A 5-point agreement scale', triggers: ['agree', 'likert', 'disagree'], options: ['Strongly agree', 'Agree', 'Neither agree nor disagree', 'Disagree', 'Strongly disagree'] },
+  { id: 'frequency', label: 'A 5-point frequency scale', triggers: ['often', 'frequen', 'how many times', 'regular'], options: ['Always', 'Often', 'Sometimes', 'Rarely', 'Never'] },
+  { id: 'duration', label: 'A duration range', triggers: ['how long', 'time', 'duration', 'minutes', 'hours', 'wait'], options: ['Less than 15 minutes', '15 to 30 minutes', '30 to 60 minutes', 'More than an hour'] },
+  { id: 'yesno', label: 'Yes / No, with an out', triggers: ['yes or no', 'yes/no', 'yes no', 'binary'], options: ['Yes', 'No', 'Not sure'] },
+  { id: 'likelihood', label: 'A 5-point likelihood scale', triggers: ['likely', 'recommend', 'would you'], options: ['Very likely', 'Likely', 'Neither likely nor unlikely', 'Unlikely', 'Very unlikely'] },
+];
+
+/** The bucket used when nothing in the description matches. */
+export const DEFAULT_OPTION_RECIPE = OPTION_RECIPES[0];
+
+/**
+ * Turn a plain-English description into answer options.
+ *
+ * Never returns an empty set: an author who describes something VOCE has no
+ * recipe for still gets a usable scale plus the label saying which one, rather
+ * than a question that is still blocking the send.
+ */
+export function generateOptions(description: string): { recipe: (typeof OPTION_RECIPES)[number]; options: string[] } {
+  const lower = (description || '').toLowerCase();
+  const recipe = OPTION_RECIPES.find((r) => r.triggers.some((t) => lower.includes(t))) ?? DEFAULT_OPTION_RECIPE;
+  return { recipe, options: [...recipe.options] };
+}
+
+/**
+ * Who signs a survey off before it reaches a resident.
+ *
+ * The author does not publish. Publishing is a two-name act in this
+ * organisation: the author submits, the manager approves. Named here once so
+ * the confirm dialog, the receipt and the notification panel agree.
+ */
+export const APPROVER = {
+  name: 'Dana Whitfield',
+  role: 'Research Manager',
+  turnaround: 'usually within a business day',
 } as const;
 
 export const DISTRIBUTION_LISTS = [
@@ -211,25 +335,39 @@ export const REGIONAL_BREAKDOWN = [
 
 // ─── Approval queue ─────────────────────────────────────────────────
 
-export const APPROVAL_QUEUE = [
+export interface ApprovalItem {
+  id: string;
+  name: string;
+  author: string;
+  questions: number;
+  launch: string;
+  recipients: number;
+  /**
+   * The full question list the approver reviews.
+   *
+   * Deliberately the SAME shape as the author's draft, and for ap-1 literally
+   * the same array. An approver signing off on wording alone cannot see what a
+   * resident will actually be able to answer — a five-point scale and a yes/no
+   * are different surveys — so the type and the options travel with the text.
+   */
+  preview: DraftQuestion[];
+}
+
+/** Q7's options are filled in from the author's suggestion, since the survey
+ *  reaching the approval queue at all means the author unblocked it. */
+const SURVEY_2_FOR_APPROVAL: DraftQuestion[] = SURVEY_2_QUESTIONS.map((q) =>
+  q.id === 'q7' && q.options?.length === 0 ? { ...q, options: [...SURVEY_2.q7SuggestedOptions] } : q,
+);
+
+export const APPROVAL_QUEUE: ApprovalItem[] = [
   {
     id: 'ap-1',
-    name: 'Permit Renewal Feedback',
+    name: SURVEY_2.name,
     author: 'Sarah Chen',
-    questions: 9,
+    questions: SURVEY_2_FOR_APPROVAL.length,
     launch: 'Tomorrow',
     recipients: 1800,
-    preview: [
-      'Overall, how satisfied were you with the permit renewal process?',
-      'How did you submit your renewal this time?',
-      'Did you encounter any problems during the renewal?',
-      'If yes, what type of problem did you encounter?',
-      'About how long did the renewal process take from start to finish?',
-      'Did you need to contact the office for help at any point?',
-      'How easy was the permit renewal process overall?',
-      'What is the one thing we could do to make permit renewal easier?',
-      'Would you recommend renewing online to others?',
-    ],
+    preview: SURVEY_2_FOR_APPROVAL,
   },
   {
     id: 'ap-2',
@@ -239,18 +377,33 @@ export const APPROVAL_QUEUE = [
     launch: 'Thursday',
     recipients: 420,
     preview: [
-      'Which service center did you visit today?',
-      'About how long did you wait before being seen?',
-      'Was your issue resolved during this visit?',
-      'How would you rate the courtesy of the staff who helped you?',
-      'Did you have to visit more than once for this issue?',
-      'What would have made today’s visit easier?',
+      { id: 'sc1', text: 'Which service center did you visit today?', type: 'Single-select', options: ['Baltimore City', 'Annapolis', 'Frederick', 'Salisbury', 'Hagerstown'] },
+      { id: 'sc2', text: 'About how long did you wait before being seen?', type: 'Single-select', options: ['Under 10 minutes', '10 to 30 minutes', '30 to 60 minutes', 'Over an hour'] },
+      { id: 'sc3', text: 'Was your issue resolved during this visit?', type: 'Yes / No', options: ['Yes', 'No', 'Partly'] },
+      { id: 'sc4', text: 'How would you rate the courtesy of the staff who helped you?', type: 'Scale (1–5)', options: TYPE_DEFAULTS['Scale (1–5)'] },
+      { id: 'sc5', text: 'Did you have to visit more than once for this issue?', type: 'Yes / No', options: ['Yes', 'No'] },
+      { id: 'sc6', text: 'What would have made today’s visit easier?', type: 'Open text', options: null },
     ],
   },
-] as const;
+];
+
+/**
+ * The flagged responses, and the survey they came from.
+ *
+ * The denominator is LOOKED UP rather than typed. The card used to say "22 of
+ * 201" while PORTFOLIO_SURVEYS put the same survey at 178 — two numbers for one
+ * dataset, in a tenant whose whole argument is that its figures agree.
+ */
+const FLAGGED_SURVEY = PORTFOLIO_SURVEYS.find((s) => s.name === 'Permit Satisfaction Survey')!;
 
 export const DATA_QUALITY_FLAG = {
-  survey: 'Permit Satisfaction Survey',
+  survey: FLAGGED_SURVEY.name,
   responses: 22,
+  total: FLAGGED_SURVEY.responses,
   reason: 'submitted from a single IP range within 40 minutes',
 } as const;
+
+/** Share of the survey the flagged responses represent, rounded. */
+export const DATA_QUALITY_FLAG_PCT = Math.round(
+  (DATA_QUALITY_FLAG.responses / DATA_QUALITY_FLAG.total) * 100,
+);

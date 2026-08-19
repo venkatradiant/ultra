@@ -1,16 +1,28 @@
 {
   "admin_greeting": {
     "ai_message": "Good morning, Marcus. Three things across your portfolio this morning:\n[1] Two surveys are waiting on your sign-off. The earlier one ships tomorrow.\n[2] Wait times are now the top theme in 4 of your 6 resident surveys — up 9 points on Q1.\n[3] One data-quality flag I have deliberately not acted on.\n\nWhere would you like to start?",
-    "data_sources_used": ["VOCE Survey Platform", "Qualtrics", "Microsoft Forms"],
-    "suggested_chips": ["Ask across surveys", "Review approvals (2)", "Show me the data-quality flag"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Qualtrics",
+      "Microsoft Forms"
+    ],
+    "suggested_chips": [
+      "Ask across surveys",
+      "Review approvals (2)",
+      "Show me the data-quality flag"
+    ],
     "confidence": 96,
     "capability": "Proactive Intelligence"
   },
-
   "admin_picker": {
     "user_query": "Ask across surveys",
     "ai_message": "Choose which surveys to include. All 18 active ones are available — I have pre-selected the 6 resident-experience surveys, which is the usual starting point.\n\nAdjust the selection if you like, then ask me anything across them.",
-    "data_sources_used": ["VOCE Survey Platform", "Qualtrics", "Microsoft Forms", "Google Forms"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Qualtrics",
+      "Microsoft Forms",
+      "Google Forms"
+    ],
     "suggested_chips": [
       "What are the top complaints about wait times?",
       "How has satisfaction changed over time?",
@@ -22,170 +34,425 @@
   "admin_custom": {
     "user_query": "I'll type my own question",
     "ai_message": "Go ahead — type your question and I will answer it across the selected surveys, with the sources it came from. Anything I cannot support from those responses, I will say so rather than guess.",
-    "suggested_chips": ["What are the top complaints about wait times?", "How has satisfaction changed over time?"],
+    "suggested_chips": [
+      "What are the top complaints about wait times?",
+      "How has satisfaction changed over time?"
+    ],
     "capability": "Converged Conversation"
   },
   "admin_trend": {
     "user_query": "How has satisfaction changed over time?",
     "ai_message": "Across the six surveys, spanning 2024 to 2025, overall satisfaction has fallen 8 points — from 80% to 72%. The steepest single drop sits between Q4 2024 and Q1 2025, which is when the new online renewal portal launched.\n\nI can only show correlation here. The portal is the obvious candidate, but nothing in these responses proves it caused the drop.",
-    "data_sources_used": ["VOCE Survey Platform", "Qualtrics", "Microsoft Forms", "Google Forms"],
-    "suggested_chips": ["What are the top complaints about wait times?", "Draft brief for leadership"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Qualtrics",
+      "Microsoft Forms",
+      "Google Forms"
+    ],
+    "suggested_chips": [
+      "What are the top complaints about wait times?",
+      "Draft brief for leadership"
+    ],
     "confidence": 88,
     "capability": "Predictive Intelligence"
   },
   "admin_results": {
     "user_query": "What are the top complaints about wait times?",
     "ai_message": "I read across the selected surveys — four platforms, four different authors. Here is the pattern.",
-    "data_sources_used": ["VOCE Survey Platform", "Qualtrics", "Microsoft Forms", "Google Forms"],
-    "suggested_chips": ["Break down by region", "Break down by survey", "Draft brief for leadership"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Qualtrics",
+      "Microsoft Forms",
+      "Google Forms"
+    ],
+    "suggested_chips": [
+      "Break down by region",
+      "Break down by survey",
+      "Draft brief for leadership"
+    ],
     "confidence": 91,
     "capability": "Converged Conversation"
   },
   "admin_by_survey": {
     "user_query": "Break down by survey",
     "ai_message": "Wait-time complaint frequency by source.",
-    "data_sources_used": ["VOCE Survey Platform", "Qualtrics", "Microsoft Forms", "Google Forms"],
-    "suggested_chips": ["Break down by region instead", "Draft brief for leadership"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Qualtrics",
+      "Microsoft Forms",
+      "Google Forms"
+    ],
+    "suggested_chips": [
+      "Break down by region instead",
+      "Draft brief for leadership"
+    ],
     "confidence": 90,
     "capability": "Converged Conversation"
   },
   "admin_regional": {
     "user_query": "Break down by region",
     "ai_message": "Wait-time complaint volume by region.",
-    "data_sources_used": ["VOCE Survey Platform", "Service Center Visit Logs"],
-    "suggested_chips": ["Show verbatims from the Western region", "Draft brief for leadership"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Service Center Visit Logs"
+    ],
+    "suggested_chips": [
+      "Show verbatims from the Western region",
+      "Draft brief for leadership"
+    ],
     "confidence": 90,
     "capability": "Anomaly Detection"
   },
   "admin_verbatims": {
     "user_query": "Show verbatims from the Western region",
     "ai_message": "Representative Western-region comments about wait times — verbatim and anonymised.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Draft brief for leadership", "Break down by survey"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Draft brief for leadership",
+      "Break down by survey"
+    ],
     "confidence": 96,
     "capability": "Converged Conversation"
   },
-
   "admin_flag": {
     "user_query": "Show me the data-quality flag",
     "ai_message": "This is the one I want your judgment on rather than mine.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Keep and flag in results", "Exclude these responses"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Keep and flag in results",
+      "Exclude these responses"
+    ],
     "confidence": 78,
     "capability": "Anomaly Detection"
   },
   "admin_flag_kept": {
     "user_query": "Keep and flag in results",
     "ai_message": "Kept in. I have attached a note to that survey's results so anyone reading them sees the pattern and can judge it for themselves, and the decision is logged under your name.",
-    "suggested_chips": ["Ask across surveys", "Review approvals (2)"],
+    "suggested_chips": [
+      "Ask across surveys",
+      "Back to my briefing"
+    ],
     "confidence": 96,
     "capability": "Automated Action"
   },
   "admin_flag_excluded": {
     "user_query": "Exclude these responses",
     "ai_message": "Excluded. That survey's satisfaction score moves from 71% to 74%, and the exclusion is recorded with your name against it so the change is traceable.",
-    "suggested_chips": ["Ask across surveys", "Review approvals (2)"],
+    "suggested_chips": [
+      "Ask across surveys",
+      "Back to my briefing"
+    ],
     "confidence": 96,
     "capability": "Automated Action"
   },
-
   "admin_brief": {
     "user_query": "Draft brief for leadership",
     "ai_message": "Here is a cross-survey brief. The topic and the finding are editable — click either to revise before it goes.",
-    "data_sources_used": ["VOCE Survey Platform", "Qualtrics", "Microsoft Forms", "Google Forms"],
-    "suggested_chips": ["Send the brief", "Save to reports"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Qualtrics",
+      "Microsoft Forms",
+      "Google Forms"
+    ],
+    "suggested_chips": [
+      "Send the brief",
+      "Save to reports"
+    ],
     "confidence": 91,
     "capability": "Automated Action"
   },
   "admin_send_confirm": {
     "user_query": "Send the brief",
     "ai_message": "One confirmation before this reaches leadership.",
-    "suggested_chips": ["Yes, send it to leadership", "Go back to the brief"],
+    "suggested_chips": [
+      "Yes, send it to leadership",
+      "Go back to the brief"
+    ],
     "capability": "Automated Action"
   },
   "admin_saved": {
     "user_query": "Save to reports",
-    "ai_message": "Saved to your reports. It is ready whenever you want to send it.",
-    "suggested_chips": ["Send the brief", "Review approvals (2)"],
+    "ai_message": "Saved to My Reports. You can open it from the sidebar to edit or send it whenever you are ready.",
+    "suggested_chips": [
+      "Send the brief",
+      "Back to my briefing"
+    ],
     "capability": "Automated Action"
   },
   "admin_brief_sent": {
     "user_query": "Yes, send it to leadership",
     "ai_message": "Sent, with the sources line attached so anyone reading it can reproduce the figure. Logged under your name.",
-    "suggested_chips": ["Ask another question", "That's all for now"],
+    "suggested_chips": [
+      "Ask another question",
+      "Back to my briefing",
+      "That's all for now"
+    ],
     "confidence": 96,
     "capability": "Automated Action"
   },
-
   "admin_queue": {
     "user_query": "Review approvals (2)",
     "ai_message": "Two surveys are ready to launch and need your sign-off. Each one expands to its full question list — worth a look before you sign, since your name goes on it.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Review each", "Approve both"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Review each",
+      "Approve both"
+    ],
     "confidence": 96,
     "capability": "Friction Observability"
   },
   "admin_survey_1": {
     "user_query": "Review each",
     "ai_message": "First: Permit Renewal Feedback, authored by Sarah Chen. Nine questions, scheduled for tomorrow, targeting about 1,800 permit renewers.",
-    "suggested_chips": ["Approve Permit Renewal Feedback", "Send Permit Renewal back to Sarah"],
+    "suggested_chips": [
+      "Approve Permit Renewal Feedback",
+      "Send Permit Renewal back to Sarah"
+    ],
     "confidence": 96,
     "capability": "Friction Observability"
   },
   "admin_approve_1_confirm": {
     "user_query": "Approve Permit Renewal Feedback",
     "ai_message": "Confirming the first sign-off.",
-    "suggested_chips": ["Yes, approve Permit Renewal", "Back to the queue"],
+    "suggested_chips": [
+      "Yes, approve Permit Renewal",
+      "Back to the queue"
+    ],
     "capability": "Automated Action"
   },
   "admin_sent_back_1": {
-    "user_query": "Send Permit Renewal back to Sarah",
-    "ai_message": "Sent back to Sarah Chen with your name on the return. She will see it in her drafts. Moving on to the second one.",
-    "suggested_chips": ["Continue to Survey 2"],
+    "user_query": "Yes, return it to Sarah",
+    "ai_message": "Returned to Sarah Chen with your note attached. She sees it in her drafts, and the return is logged under your name. Moving on to the second one.",
+    "suggested_chips": [
+      "Continue to Survey 2"
+    ],
     "capability": "Automated Action"
   },
   "admin_survey_2": {
     "user_query": "Yes, approve Permit Renewal",
     "ai_message": "Approved and scheduled.\n\nNext: Service Center Exit Survey, authored by James Okafor. Six questions, scheduled for Thursday, targeting about 420 respondents.",
-    "suggested_chips": ["Approve Service Center Exit Survey", "Send Service Center back to James"],
+    "suggested_chips": [
+      "Approve Service Center Exit Survey",
+      "Send Service Center back to James"
+    ],
     "confidence": 96,
     "capability": "Friction Observability"
   },
   "admin_approve_2_confirm": {
     "user_query": "Approve Service Center Exit Survey",
     "ai_message": "Confirming the second sign-off.",
-    "suggested_chips": ["Yes, approve Service Center", "Back to the queue"],
+    "suggested_chips": [
+      "Yes, approve Service Center",
+      "Back to the queue"
+    ],
     "capability": "Automated Action"
   },
   "admin_sent_back_2": {
-    "user_query": "Send Service Center back to James",
-    "ai_message": "Sent back to James Okafor. Your approval queue is now clear.",
-    "suggested_chips": ["Back to my briefing", "Ask across surveys"],
+    "user_query": "Yes, return it to James",
+    "ai_message": "Returned to James Okafor with your note attached, and logged under your name. Your approval queue is now clear — both drafts are back with their authors.",
+    "suggested_chips": [
+      "Show me the data-quality flag",
+      "Ask across surveys",
+      "Back to my briefing"
+    ],
     "capability": "Automated Action"
   },
   "admin_approve_both_confirm": {
     "user_query": "Approve both",
     "ai_message": "Both at once — worth reading the questions first if you have not.",
-    "suggested_chips": ["Yes, approve both surveys", "Back to the queue"],
+    "suggested_chips": [
+      "Yes, approve both surveys",
+      "Back to the queue"
+    ],
     "capability": "Automated Action"
   },
   "admin_both_approved": {
     "user_query": "Yes, approve both surveys",
     "ai_message": "Both approved and scheduled. Your queue is clear, and each approval is logged with your name and a timestamp.\n\nYou have 18 active surveys across VOCE, Qualtrics, Microsoft Forms and Google Forms — I can pull insights across all of them whenever you want.",
-    "suggested_chips": ["Ask across surveys", "That's all for now"],
+    "suggested_chips": [
+      "Show me the data-quality flag",
+      "Ask across surveys",
+      "That's all for now"
+    ],
     "confidence": 96,
     "capability": "Automated Action"
   },
   "admin_done": {
     "user_query": "That's all for now",
     "ai_message": "Got it. Your surveys are running and I will flag anything that needs you.",
-    "suggested_chips": ["Back to my briefing"],
+    "suggested_chips": [
+      "Back to my briefing"
+    ],
     "capability": "Proactive Intelligence"
   },
-
   "__default__": {
-    "ai_message": "Sure — what do you need? I can answer questions across any of your 18 active surveys, or take you back to the approval queue.",
-    "suggested_chips": ["Ask across surveys", "Review approvals (2)", "Show me the data-quality flag"],
+    "ai_message": "I did not catch that. I can answer questions across any of your 18 active surveys, take you to the approval queue, or show you the data-quality flag I am holding — or ask it a different way and I will try again.",
+    "suggested_chips": [
+      "Ask across surveys",
+      "Review approvals (2)",
+      "Show me the data-quality flag"
+    ],
     "capability": "Converged Conversation"
+  },
+  "admin_greeting_clear": {
+    "ai_message": "Welcome back, Marcus. Nothing is waiting on you.\n\nThe approval queue is clear, the data-quality flag has your decision on it, and leadership has the brief. Your 18 surveys keep running — I will flag anything new.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Ask across surveys",
+      "That's all for now"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "admin_send_back_1_confirm": {
+    "user_query": "Send Permit Renewal back to Sarah",
+    "ai_message": "Tell Sarah what needs changing and I will send it back with your name on the return.",
+    "suggested_chips": [
+      "Yes, return it to Sarah",
+      "Back to the queue"
+    ],
+    "capability": "Automated Action"
+  },
+  "admin_send_back_2_confirm": {
+    "user_query": "Send Service Center back to James",
+    "ai_message": "Tell James what needs changing and I will send it back with your name on the return.",
+    "suggested_chips": [
+      "Yes, return it to James",
+      "Back to the queue"
+    ],
+    "capability": "Automated Action"
+  },
+  "admin_queue_clear": {
+    "user_query": "Review approvals (2)",
+    "ai_message": "Your approval queue is clear — both drafts have your decision on them. Nothing here needs you again today.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Ask across surveys",
+      "Back to my briefing"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "__default_clear__": {
+    "ai_message": "I did not catch that. Nothing is outstanding today — I can still answer questions across your 18 active surveys, or take you back to your briefing. Ask it a different way and I will try again.",
+    "suggested_chips": [
+      "Ask across surveys",
+      "Back to my briefing"
+    ],
+    "capability": "Converged Conversation"
+  },
+  "admin_survey_2_after_return": {
+    "user_query": "Continue to Survey 2",
+    "ai_message": "Permit Renewal is back with Sarah.\n\nNext: Service Center Exit Survey, authored by James Okafor. Six questions, scheduled for Thursday, targeting about 420 respondents.",
+    "suggested_chips": [
+      "Approve Service Center Exit Survey",
+      "Send Service Center back to James"
+    ],
+    "confidence": 96,
+    "capability": "Friction Observability"
+  },
+  "admin_greeting_approvals_done": {
+    "ai_message": "Welcome back, Marcus. Your approval queue is clear — both drafts have your decision on them.\n\nStill open:\n[1] Wait times are the top theme in 4 of your 6 resident surveys, up 9 points on Q1, and leadership has not heard it from you yet.\n[2] The data-quality flag is still open — I have deliberately not acted on it.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "What are the top complaints about wait times?",
+      "Show me the data-quality flag",
+      "Ask across surveys"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "admin_greeting_flag_done": {
+    "ai_message": "Welcome back, Marcus. The data-quality flag has your decision on it and is logged.\n\nStill open:\n[1] Two surveys are still waiting on your sign-off. The earlier one ships tomorrow.\n[2] Wait times are the top theme in 4 of your 6 resident surveys, up 9 points on Q1, and leadership has not heard it from you yet.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Review approvals (2)",
+      "What are the top complaints about wait times?",
+      "Ask across surveys"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "admin_greeting_brief_done": {
+    "ai_message": "Welcome back, Marcus. Leadership has the wait-time brief, sources attached.\n\nStill open:\n[1] Two surveys are still waiting on your sign-off. The earlier one ships tomorrow.\n[2] The data-quality flag is still open — I have deliberately not acted on it.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Review approvals (2)",
+      "Show me the data-quality flag",
+      "Ask across surveys"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "admin_greeting_approvals_flag_done": {
+    "ai_message": "Welcome back, Marcus. Your approval queue is clear and the data-quality flag has your decision on it.\n\nOne thing is still open:\n[1] Wait times are the top theme in 4 of your 6 resident surveys, up 9 points on Q1, and leadership has not heard it from you yet.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "What are the top complaints about wait times?",
+      "Ask across surveys"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "admin_greeting_approvals_brief_done": {
+    "ai_message": "Welcome back, Marcus. Your approval queue is clear and leadership has the wait-time brief.\n\nOne thing is still open:\n[1] The data-quality flag is still open — I have deliberately not acted on it.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Show me the data-quality flag",
+      "Ask across surveys"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "admin_greeting_flag_brief_done": {
+    "ai_message": "Welcome back, Marcus. The data-quality flag has your decision on it and leadership has the wait-time brief.\n\nOne thing is still open:\n[1] Two surveys are still waiting on your sign-off. The earlier one ships tomorrow.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Review approvals (2)",
+      "Ask across surveys"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "admin_both_approved_flag_done": {
+    "user_query": "Yes, approve both surveys",
+    "ai_message": "Both approved and scheduled. Your queue is clear, and each approval is logged with your name and a timestamp.\n\nThat is everything that needed you this morning — the data-quality flag already has your decision on it. I can still answer questions across your 18 active surveys whenever you want.",
+    "suggested_chips": [
+      "Ask across surveys",
+      "That's all for now"
+    ],
+    "confidence": 96,
+    "capability": "Automated Action"
+  },
+  "admin_sent_back_2_flag_done": {
+    "user_query": "Yes, return it to James",
+    "ai_message": "Returned to James Okafor with your note attached, and logged under your name. Your approval queue is now clear — both drafts are back with their authors.\n\nThat is everything that needed you this morning.",
+    "suggested_chips": [
+      "Ask across surveys",
+      "Back to my briefing"
+    ],
+    "capability": "Automated Action"
   }
 }

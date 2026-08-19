@@ -35,30 +35,30 @@
     "type": "draft_incomplete",
     "primary": false,
     "title": "Permit Renewal Feedback draft ships tomorrow, still unfinished",
-    "description": "The Permit Renewal Feedback survey is scheduled to go out tomorrow and is 6 of 9 questions complete. Two blockers remain: Q7 has no answer options, and no distribution list has been selected. Q5 is also flagged for a plain-language rewrite.",
+    "description": "The Permit Renewal Feedback survey is scheduled to go out tomorrow and eight of its nine questions can be answered as they stand. One thing blocks the send: Q7 has no answer options, so residents cannot answer it. Distribution and delivery are still to be confirmed, and Q5 is flagged for a plain-language rewrite — neither of those stops the survey going out.",
     "impact": "high",
     "severity": "warning",
-    "metric_text": "6 of 9 questions · 2 blockers",
+    "metric_text": "8 of 9 questions · 1 blocker",
     "sources": ["VOCE Survey Platform"],
     "timestamp": "2026-08-13T05:40:00",
     "trend": "worsening",
     "real": false,
     "data_note": "Illustrative. The survey, its questions and its distribution lists are fabricated for demonstration and do not describe a real Maryland instrument.",
     "metrics": {
-      "questions_complete": 6,
+      "questions_complete": 8,
       "questions_total": 9,
-      "blockers": 2,
+      "blockers": 1,
       "hours_to_send": 26
     },
     "confidence": {
       "score": 91,
-      "rationale": "Both blockers are read directly from the draft's own validation state rather than inferred. Held below 100 because the send schedule is author-set and can move, so 'ships tomorrow' is a stated intent rather than a committed job.",
+      "rationale": "The blocker is read directly from the draft's own validation state rather than inferred — a question with no answer options cannot be answered. Held below 100 because the send schedule is author-set and can move, so 'ships tomorrow' is a stated intent rather than a committed job.",
       "signals_used": ["VOCE Survey Platform"],
       "threshold": 80,
       "model_version": "voce-draft-readiness-v1.0",
       "validated_at": "2026-08-13T05:44:00"
     },
-    "action": "Set answer options for Q7 and choose a distribution list, then publish.",
+    "action": "Set answer options for Q7, then confirm distribution and send it for approval.",
     "source_text": "VOCE draft validation state."
   }
 ]

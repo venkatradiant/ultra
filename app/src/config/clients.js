@@ -139,7 +139,7 @@ export const CLIENTS = {
       agentObservability: 'Agent Observability',
     },
   },
-  // ─── SLED market — Maryland Department of Information Technology ──
+  // ─── SLED market — Maryland DoIT ────────────────────────────────
   // DoIT carries the client identity and the palette. Deliberately NO
   // `footerMark`: VOCE is the product, but Radiant keeps the bottom-left credit
   // here as it does for every client except Aramco. VOCE is still named — it is
@@ -152,12 +152,15 @@ export const CLIENTS = {
   doit: {
     id: 'doit',
     loginSlug: 'doit',
-    name: 'Maryland Department of Information Technology',
+    // DoIT is the department's own public shorthand, and it is what the sidebar
+    // lockup, the login hero and the client picker all carry. The full
+    // "Maryland Department of Information Technology" needed three lines in a
+    // 384px hero column and wrapped to two in a 285px picker cell; it is now
+    // expanded once, on the Data Sources screen, where naming the tenant
+    // precisely is the point.
+    name: 'Maryland DoIT',
     shortName: 'Maryland DoIT',
-    // Split at three lines, not two: the login hero column is a fixed 384px and
-    // both "Maryland Department of" (421px) and "Information Technology" (410px)
-    // overflow it, so a two-line split re-wraps into a ragged four.
-    nameLines: ['Maryland Department', 'of Information', 'Technology'],
+    nameLines: ['Maryland DoIT'],
     tagline: 'Voice of the Resident',
     logo: '/logos/maryland-doit-mark.svg',
     favicon: '/logos/maryland-doit-mark.svg',

@@ -140,7 +140,7 @@ const ARAMCO_DISCLOSURES = [
 // them is invented — which is precisely the combination that needs saying out
 // loud. Same shape as the Aramco and AT&T panels above.
 const DOIT_DISCLOSURES = [
-  'The interface carries Maryland DoIT\'s identity; the data does not. Maryland DoIT is an illustrative target example, not a customer, and no figure on any screen describes real Maryland program data, systems or resident feedback.',
+  'The interface carries the identity of Maryland DoIT — the Maryland Department of Information Technology — but the data does not. Maryland DoIT is an illustrative target example, not a customer, and no figure on any screen describes real Maryland program data, systems or resident feedback.',
   'Every value is authored for this prototype: response counts, satisfaction scores, open-text themes, regional splits, approval queues and the surveys themselves. The Maryland Medical Assistance survey shown to the Resident is a demonstration instrument, not a live one.',
   'Qualtrics, Microsoft Forms and Google Forms appear as integration targets to show that one survey definition can reach several platforms. No connection to any of them exists in this build, and Google Forms is deliberately shown unconnected.',
   'The subject matter is residents\' experience of a health-coverage application. Say the previous points out loud when presenting — a Maryland-branded screen reporting 72% satisfaction will otherwise be read as a finding about Maryland rather than a demonstration of VOCE.',

@@ -12,10 +12,20 @@ import { reviewRows } from '../../../data/doit/resident/surveyLogic';
  * resident never gave — including a duration that was not even one of the
  * options on offer.
  *
- * The Edit pills are wired. The source's had no onClick at all.
+ * The Edit pills are wired. The source's had no onClick at all — and editing
+ * one answer now returns straight here rather than re-asking every question
+ * after it (see `record` in SurveyRuntime).
+ *
+ * The confidence badge appears only if at least one answer was SPOKEN and had to
+ * be interpreted. A survey answered entirely by tapping has nothing for VOCE to
+ * be 96% sure about; the badge was a decoration claiming a judgement.
  */
-export default function ResponseSummaryCard({ answers, onEdit, onSubmit }) {
+export default function ResponseSummaryCard({ answers, entries = [], onEdit, onSubmit }) {
   const rows = reviewRows(answers);
+  const interpreted = entries.filter((e) => e.kind === 'answer' && e.interpretation);
+  const meanConfidence = interpreted.length
+    ? Math.round(interpreted.reduce((sum, e) => sum + e.interpretation.score, 0) / interpreted.length)
+    : null;
 
   return (
     <div className="rounded-xl border border-border bg-surface p-4">
@@ -54,9 +64,14 @@ export default function ResponseSummaryCard({ answers, onEdit, onSubmit }) {
         ))}
       </ul>
 
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-        <ConfidenceBadge score={96} />
-      </div>
+      {meanConfidence !== null && (
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+          <ConfidenceBadge
+            score={meanConfidence}
+            note={`Across ${interpreted.length} spoken answer${interpreted.length === 1 ? '' : 's'}`}
+          />
+        </div>
+      )}
 
       <button
         type="button"

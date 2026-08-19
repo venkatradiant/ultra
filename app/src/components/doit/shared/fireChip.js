@@ -40,9 +40,23 @@ export function fireChip(label) {
  * Close a modal, then advance. Ordering matters: the chip row is behind the
  * backdrop, and clicking it while the dialog still owns focus fights the
  * focus-restore in DoitModal's cleanup.
+ *
+ * The wait is rAF with a timeout BEHIND it, not rAF alone. A hidden document
+ * suspends animation frames, so a user who confirms a dialog and switches tab
+ * before the next paint comes back to a thread that never advanced — the state
+ * written, the conversation dead-ended behind it. The timeout is the floor that
+ * cannot be suspended; whichever wins, `fired` makes sure the chip is only
+ * clicked once.
  */
 export function closeThenFireChip(onClose, label) {
   onClose?.();
+  let fired = false;
+  const advance = () => {
+    if (fired) return;
+    fired = true;
+    fireChip(label);
+  };
   // Next frame, so the portal has unmounted and focus has settled.
-  requestAnimationFrame(() => fireChip(label));
+  requestAnimationFrame(advance);
+  setTimeout(advance, 60);
 }

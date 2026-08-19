@@ -60,3 +60,44 @@ describe('resolveNextSignal', () => {
     expect(resolveNextSignal(config, 2)).toBeNull();
   });
 });
+
+/**
+ * `strictMatch` — opt-in, and OFF everywhere it is not declared.
+ *
+ * The default ladder deliberately fails open, which is right for a scripted demo
+ * whose chips are the intended path. It is wrong for a persona that would rather
+ * say it did not understand: rung 3 matches a stored user_query that merely
+ * CONTAINS the input, and rung 4 accepts a single shared word, so three
+ * characters of noise land on a real answer. These tests pin both behaviours so
+ * the tenants relying on the loose one cannot be changed by accident.
+ */
+describe('strictMatch', () => {
+  const strict: ChatFlowConfig = { ...config, strictMatch: true };
+
+  it('falls through to __default__ on input the loose ladder would place', () => {
+    // "members" is contained by turn_2's user_query, so rung 3 claims it.
+    expect(resolveFlowKey(config, 'members').flowKey).toBe('turn_2');
+    expect(resolveFlowKey(strict, 'members').flowKey).toBe('__default__');
+  });
+
+  it('still resolves a full question the user typed out', () => {
+    expect(resolveFlowKey(strict, 'Who are these members?').flowKey).toBe('turn_2');
+    expect(resolveFlowKey(strict, 'so who are these members?').flowKey).toBe('turn_2');
+  });
+
+  it('sends gibberish to __default__ rather than the nearest keyword', () => {
+    expect(resolveFlowKey(strict, 'zxqw plork frobnitz').flowKey).toBe('__default__');
+  });
+
+  it('needs two matching keywords, not one', () => {
+    // One shared word ("mortgage") is enough for the loose ladder, not the strict one.
+    expect(resolveFlowKey(config, 'mortgage').flowKey).toBe('turn_1');
+    expect(resolveFlowKey(strict, 'mortgage').flowKey).toBe('__default__');
+    expect(resolveFlowKey(strict, 'mortgage drop-off').flowKey).toBe('turn_1');
+  });
+
+  it('leaves the chip map and exact-match rungs untouched', () => {
+    expect(resolveFlowKey(strict, 'Next signal')).toEqual({ flowKey: NEXT_SIGNAL_TOKEN, isSignal: true });
+    expect(resolveFlowKey(strict, "What's driving the mortgage drop-off?").flowKey).toBe('turn_1');
+  });
+});

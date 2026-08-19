@@ -23,6 +23,8 @@ export default function useManifestChat(flowConfig) {
     signalSequence,
     actionTurnKey,
     actionConfirmMap = {},
+    resolveFlowKey: resolveDynamicKey,
+    onFlowEnter,
   } = flowConfig;
 
   const [messages, setMessages] = useState([]);
@@ -34,7 +36,13 @@ export default function useManifestChat(flowConfig) {
   const signalIndexRef = useRef(0);
   const generationRef = useRef(0);
 
-  const addAIMessage = useCallback((flowKey) => {
+  const addAIMessage = useCallback((requestedKey) => {
+    // A persona may swap the key for a variant that reflects what the user has
+    // already done this session (DoIT's briefing does exactly this). An unknown
+    // return value is ignored rather than trusted, so a typo cannot blank the
+    // thread.
+    const rewritten = resolveDynamicKey?.(requestedKey);
+    const flowKey = rewritten && chatFlows[rewritten] ? rewritten : requestedKey;
     const flow = chatFlows[flowKey];
     if (!flow) return;
 
@@ -71,8 +79,13 @@ export default function useManifestChat(flowConfig) {
 
       const turnIdx = askTurnSequence.indexOf(flowKey);
       if (turnIdx >= 0) setCurrentTurn(turnIdx + 1);
+
+      // After the message lands, not before: a persona uses this to record that
+      // an action item is finished, and the briefing it feeds must describe the
+      // turn the user can actually see.
+      onFlowEnter?.(flowKey);
     }, delay);
-  }, [chatFlows, askTurnSequence]);
+  }, [chatFlows, askTurnSequence, resolveDynamicKey, onFlowEnter]);
 
   const advanceSignal = useCallback(() => {
     const nextKey = resolveNextSignal(flowConfig, signalIndexRef.current);

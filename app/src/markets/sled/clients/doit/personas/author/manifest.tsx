@@ -22,6 +22,9 @@
 
 import { ClipboardList, MessageSquareText, CheckCircle2, FileEdit } from 'lucide-react';
 import type { ChatFlowConfig, DataSource, PersonaManifest, Signal } from '@core/types';
+import { getAuthorState, markDone } from '@/components/doit/shared/authorState';
+import { saveReport } from '@/components/doit/shared/reportsState';
+import { methodologyLine } from '@/data/doit/_shared/constants';
 import chatFlows from '@/data/doit/author/chatFlows.json';
 import signalsJson from '@/data/doit/author/signals.json';
 import dataSourcesJson from '@/data/doit/_shared/dataSources.json';
@@ -35,8 +38,10 @@ import ReportEditorCard from '@/components/doit/author/ReportEditorCard';
 import DraftSurveyPanel from '@/components/doit/author/DraftSurveyPanel';
 import SuggestedOptionsCard from '@/components/doit/author/SuggestedOptionsCard';
 import DeliverySelector from '@/components/doit/author/DeliverySelector';
-import PublishConfirmationCard from '@/components/doit/author/PublishConfirmationCard';
+import SubmittedForApprovalCard from '@/components/doit/author/SubmittedForApprovalCard';
 import SurveyStatusCard from '@/components/doit/author/SurveyStatusCard';
+import SavedReportReceiptCard from '@/components/doit/shared/SavedReportReceiptCard';
+import { AuthorSignalsBar, AuthorStatsBar } from '@/components/doit/shared/DoitBriefingBars';
 import {
   PublishConfirmModal,
   SendConfirmModal,
@@ -59,7 +64,6 @@ const flows: ChatFlowConfig = {
     // Entry points
     'Review Maryland results': 'author_cleaning',
     'Finish the draft survey': 'author_draft_status',
-    'Ask me anything': '__default__',
     'Back to my briefing': 'author_greeting',
 
     // Cleaning
@@ -90,7 +94,7 @@ const flows: ChatFlowConfig = {
     'Q7 looks good': 'author_q7_set',
     'Suggest Q7 options': 'author_suggest',
     'Use these options': 'author_q7_set',
-    "I'll write them myself": 'author_manual',
+    'Let me describe what I want': 'author_manual',
     'Done, set distribution': 'author_distribution',
 
     // Distribution
@@ -103,10 +107,13 @@ const flows: ChatFlowConfig = {
     // Delivery and publish
     'Set up delivery': 'author_delivery',
     'Preview as a resident': 'author_preview',
-    'Looks good — publish': 'author_publish_confirm',
+    // The author SUBMITS; their manager publishes. Every label on this path had
+    // to change with it, or the buttons keep promising something the receipt
+    // then contradicts.
+    'Looks good — send for approval': 'author_publish_confirm',
     'Keep editing': 'author_delivery',
-    'Publish this survey': 'author_publish_confirm',
-    'I approve — publish now': 'author_published',
+    'Send for approval': 'author_publish_confirm',
+    'Yes, send for approval': 'author_published',
 
     // Post-publish
     'View survey status': 'author_survey_status',
@@ -124,6 +131,75 @@ const flows: ChatFlowConfig = {
     'author_published',
   ],
   signalSequence: ['author_cleaning', 'author_draft_status'],
+
+  /**
+   * Free text that matches nothing should say so.
+   *
+   * Without this the engine's substring and keyword rungs find a home for almost
+   * any input — usually the node the author is already on, which reads as VOCE
+   * repeating itself rather than admitting it did not understand.
+   */
+  strictMatch: true,
+
+  /**
+   * The briefing, and the turns that hand off to it, describe the day the author
+   * is actually having.
+   *
+   * Sarah has two jobs and can do them in either order. Every flow that names
+   * "what is left" therefore has variants, and this picks between them from the
+   * progress store. Without it, finishing both tasks and clicking "Back to
+   * briefing" replayed the 6 a.m. message asking her to do them.
+   */
+  resolveFlowKey: (flowKey) => {
+    const { results, draft } = getAuthorState().done;
+    if (flowKey === 'author_greeting') {
+      if (results && draft) return 'author_greeting_clear';
+      if (results) return 'author_greeting_results_done';
+      if (draft) return 'author_greeting_draft_done';
+      return 'author_greeting';
+    }
+    if (flowKey === '__default__') {
+      if (results && draft) return '__default_clear__';
+      if (results) return '__default_results_done__';
+      if (draft) return '__default_draft_done__';
+      return '__default__';
+    }
+    // The exit of each track: does anything else still need her?
+    if (flowKey === 'author_report_sent') return draft ? 'author_report_sent_clear' : 'author_report_sent';
+    // Saving a report went on to offer the draft even once it was submitted.
+    if (flowKey === 'author_saved' && draft) return 'author_saved_draft_done';
+    if (flowKey === 'author_published') return results ? 'author_published_clear' : 'author_published';
+    return flowKey;
+  },
+
+  /**
+   * Record progress when the turn lands, not when a dialog is confirmed.
+   *
+   * Every modal's confirm label is also offered as a chip on the same turn, so a
+   * click on the chip would otherwise finish the work without the store hearing
+   * about it — and the briefing would then ask for it again.
+   *
+   * Note the ordering trap this avoids: `resolveFlowKey` runs BEFORE the message
+   * is built and `onFlowEnter` after, so marking `results` done on
+   * `author_report_sent` cannot rewrite the very turn that is announcing it.
+   */
+  onFlowEnter: (flowKey) => {
+    if (flowKey === 'author_report_sent' || flowKey === 'author_report_sent_clear') markDone('results');
+    if (flowKey === 'author_published' || flowKey === 'author_published_clear') markDone('draft');
+    if (flowKey === 'author_saved') {
+      const { reportSubject, reportHeadline, cleaning } = getAuthorState();
+      saveReport('doit_author', {
+        key: 'maryland-findings',
+        subject: reportSubject,
+        headline: reportHeadline,
+        headlineLabel: 'Headline',
+        methodology: methodologyLine(cleaning),
+        author: 'Sarah Chen',
+        savedAt: 'Today, 9:06 AM',
+        sendLabel: 'Send to manager',
+      });
+    }
+  },
 };
 
 const manifest: PersonaManifest = {
@@ -148,10 +224,39 @@ const manifest: PersonaManifest = {
   layout: 'inline',
 
   features: {
-    navSlots: ['ask', 'dataSources'],
+    navSlots: ['ask', 'myReports', 'dataSources'],
     wideInlineComponents: true,
     topAlignedInitial: true,
   },
+
+  /**
+   * The bell in the header. Everything here is about the approval loop, because
+   * that is the one thing that happens to Sarah's work while she is not looking
+   * at it — a survey she submitted is either live or back with edits.
+   */
+  notifications: [
+    {
+      id: 'doit-auth-n1',
+      title: 'Service Center Exit Survey approved',
+      detail: 'Dana Whitfield signed it off. It goes out Thursday.',
+      at: '8:42 AM',
+      tone: 'success',
+    },
+    {
+      id: 'doit-auth-n2',
+      title: 'Maryland Resident Experience Survey closed',
+      detail: '212 responses are in and ready to review.',
+      at: '6:15 AM',
+      tone: 'info',
+    },
+    {
+      id: 'doit-auth-n3',
+      title: 'Permit Renewal Feedback ships tomorrow',
+      detail: 'The draft is still unfinished. Approval takes about a business day.',
+      at: 'Yesterday, 4:30 PM',
+      tone: 'warning',
+    },
+  ],
 
   ui: {
     greetingFlowKey: 'author_greeting',
@@ -183,9 +288,14 @@ const manifest: PersonaManifest = {
       author_suggest: 'Use these options',
       author_q7_set: 'Use last list',
       author_distribution: 'Set up delivery',
-      author_delivery: 'Publish this survey',
-      author_publish_confirm: 'I approve — publish now',
-      author_published: 'View survey status',
+      author_delivery: 'Send for approval',
+      author_publish_confirm: 'Yes, send for approval',
+      author_published: 'Review Maryland results',
+      author_published_clear: 'View survey status',
+      author_report_sent_clear: 'View survey status',
+      author_greeting_results_done: 'Finish the draft survey',
+      author_greeting_draft_done: 'Review Maryland results',
+      author_greeting_clear: 'View survey status',
     },
     flowKeyToCapabilityTrigger: {},
     stats: [
@@ -202,6 +312,11 @@ const manifest: PersonaManifest = {
     contentMaxWidth: 'max-w-4xl',
     inputPlaceholder: 'Ask about your surveys, responses, or drafts…',
   },
+
+  // The briefing's two card rows read the progress store, so they cannot show
+  // two open items above a greeting that says the day is clear.
+  signalsComponent: AuthorSignalsBar,
+  statsComponent: AuthorStatsBar,
 
   /**
    * The card switchboard. Keyed on the message's flowKey — this is the slot that
@@ -237,7 +352,11 @@ const manifest: PersonaManifest = {
       case 'author_publish_confirm':
         return [<PublishConfirmModal key="publish-confirm" />];
       case 'author_published':
-        return [<PublishConfirmationCard key="published" />];
+      case 'author_published_clear':
+        return [<SubmittedForApprovalCard key="submitted" />];
+      case 'author_saved':
+      case 'author_saved_draft_done':
+        return [<SavedReportReceiptCard key="saved" personaId="doit_author" />];
       case 'author_survey_status':
         return [<SurveyStatusCard key="status" />];
       default:

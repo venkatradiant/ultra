@@ -26,10 +26,11 @@ export const doitClient: ClientManifest = {
   id: 'doit',
   marketId: 'sled',
   branding: {
-    name: 'Maryland Department of Information Technology',
+    // DoIT, not the full department name — see the note in src/config/clients.js.
+    // The expansion is stated once, on the Data Sources screen.
+    name: 'Maryland DoIT',
     shortName: 'Maryland DoIT',
-    // Three lines rather than two — see the note in src/config/clients.js.
-    nameLines: ['Maryland Department', 'of Information', 'Technology'],
+    nameLines: ['Maryland DoIT'],
     tagline: 'Voice of the Resident',
     logo: '/logos/maryland-doit-mark.svg',
     favicon: '/logos/maryland-doit-mark.svg',

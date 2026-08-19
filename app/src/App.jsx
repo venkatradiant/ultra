@@ -17,6 +17,7 @@ import AskTheAI from './screens/AskTheAI';
 import MemberJourney from './screens/MemberJourney';
 import RiskSignals from './screens/RiskSignals';
 import DataSources from './screens/DataSources';
+import MyReports from './screens/MyReports';
 import Governance from './screens/Governance';
 
 // Lazy: this route pulls in recharts-heavy observability components for a single
@@ -254,6 +255,7 @@ function AppRoutes() {
               </Suspense>
             )}
           />
+          <Route path="/my-reports" element={<MyReports />} />
           <Route path="/data-sources" element={<DataSources />} />
           {/* Anything unrecognised inside the app goes to the briefing
               rather than to the gate — you are signed in, you just typed

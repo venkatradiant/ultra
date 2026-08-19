@@ -1,62 +1,71 @@
-import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
+import { Check, Clock3, Circle } from 'lucide-react';
 import DoitCard from '../shared/DoitCard';
 import { StatusBadge } from '../shared/TrustBits';
 import { useAuthorState } from '../shared/authorState';
-import { DISTRIBUTION_LISTS, SURVEY_2 } from '../../../data/doit/_shared/constants';
+import { APPROVER, DISTRIBUTION_LISTS, SURVEY_2 } from '../../../data/doit/_shared/constants';
 
 /**
- * Live status for the just-published survey.
+ * Where the just-submitted survey stands.
  *
- * The ring is a real radial chart rather than a rotated border: the prototype's
- * "progress ring" was a static div whose borderTopColor was rotated by an
- * arithmetic that broke on non-integer steps, and it never actually indicated
- * progress.
+ * This card used to show a delivery ring and a "Responses so far: 0" row for a
+ * survey that had only just been submitted. Both were claims about a survey
+ * that does not exist yet: the author submits, the manager approves, and only
+ * then does anything reach a resident. A timeline is the honest shape — it says
+ * which step is done, which is waiting, and which has not started.
  */
-const DELIVERED_PCT = 34;
+const STAGES = [
+  { id: 'drafted', label: 'Drafted and checked', detail: 'Accessibility and plain-language checks passed', state: 'done' },
+  { id: 'submitted', label: 'Submitted for approval', detail: 'Sarah Chen', state: 'done' },
+  { id: 'approval', label: 'Manager approval', detail: `${APPROVER.name} · ${APPROVER.turnaround}`, state: 'current' },
+  { id: 'live', label: 'Live to recipients', detail: 'Begins once approved', state: 'pending' },
+  { id: 'results', label: 'Results', detail: 'Nothing to review until responses arrive', state: 'pending' },
+];
+
+const ICONS = {
+  done: { Icon: Check, cls: 'bg-success/15 text-success' },
+  current: { Icon: Clock3, cls: 'bg-info/15 text-info' },
+  pending: { Icon: Circle, cls: 'bg-surface-2 text-text-subtle' },
+};
 
 export default function SurveyStatusCard() {
-  const { distributionList } = useAuthorState();
+  const { distributionList, draftQuestions } = useAuthorState();
   const list = DISTRIBUTION_LISTS.find((l) => l.name === distributionList) || DISTRIBUTION_LISTS[0];
-  const delivered = Math.round((list.contacts * DELIVERED_PCT) / 100);
 
   return (
     <DoitCard eyebrow="Survey status" title={SURVEY_2.name}>
-      <div className="flex flex-wrap items-center gap-4">
-        <div className="relative h-[104px] w-[104px] flex-shrink-0">
-          <ResponsiveContainer width="100%" height="100%">
-            <RadialBarChart
-              innerRadius="72%"
-              outerRadius="100%"
-              data={[{ name: 'delivered', value: DELIVERED_PCT, fill: 'var(--color-chart-1)' }]}
-              startAngle={90}
-              endAngle={-270}
-            >
-              <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
-              <RadialBar background={{ fill: 'var(--color-surface-2)' }} dataKey="value" cornerRadius={8} />
-            </RadialBarChart>
-          </ResponsiveContainer>
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-[19px] font-bold leading-none text-text">{DELIVERED_PCT}%</span>
-            <span className="text-[9.5px] uppercase tracking-[0.06em] text-text-muted">delivered</span>
-          </div>
-        </div>
-
-        <dl className="min-w-0 flex-1 space-y-1.5">
-          <Row label="Status" value={<StatusBadge label="Live" variant="live" />} />
-          <Row label="Distribution list" value={list.name} />
-          <Row label="Invitations sent" value={`${delivered.toLocaleString()} of ${list.contacts.toLocaleString()}`} />
-          <Row label="Responses so far" value="0 — too early for patterns" />
-        </dl>
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <p className="text-[11.5px] text-text-muted">
+          {draftQuestions.length} questions · {list.name} · {list.contacts.toLocaleString()} recipients
+        </p>
+        <StatusBadge label="Awaiting approval" variant="blocked" />
       </div>
-    </DoitCard>
-  );
-}
 
-function Row({ label, value }) {
-  return (
-    <div className="flex items-center justify-between gap-2">
-      <dt className="text-[11.5px] text-text-muted">{label}</dt>
-      <dd className="text-[12px] font-medium text-text">{value}</dd>
-    </div>
+      <ol className="space-y-0">
+        {STAGES.map((stage, idx) => {
+          const { Icon, cls } = ICONS[stage.state];
+          const last = idx === STAGES.length - 1;
+          return (
+            <li key={stage.id} className="flex gap-2.5">
+              <div className="flex flex-col items-center">
+                <span className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ${cls}`}>
+                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+                {!last && <span className="w-px flex-1 bg-border-subtle" aria-hidden="true" />}
+              </div>
+              <div className={`min-w-0 flex-1 ${last ? 'pb-0' : 'pb-3'}`}>
+                <p
+                  className={`text-[12.5px] font-medium ${
+                    stage.state === 'pending' ? 'text-text-subtle' : 'text-text'
+                  }`}
+                >
+                  {stage.label}
+                </p>
+                <p className="text-[11px] text-text-muted">{stage.detail}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </DoitCard>
   );
 }

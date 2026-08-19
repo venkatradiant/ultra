@@ -52,6 +52,32 @@
     "source_text": "Open-text theme extraction across six surveys and four platforms."
   },
   {
+    "id": "SIG-DOIT-ADM-004",
+    "type": "data_quality",
+    "primary": false,
+    "title": "Permit Satisfaction Survey — 22 responses from one IP range",
+    "description": "Twenty-two responses, 12% of that survey, arrived from a single IP range inside a 40-minute window. That is what group completion at a service center looks like, and it is also what bot traffic looks like. Excluding them moves the survey's satisfaction score by about three points, so I have not.",
+    "impact": "medium",
+    "severity": "warning",
+    "metric_text": "22 responses · 12% of the dataset",
+    "sources": ["VOCE Survey Platform"],
+    "timestamp": "2026-08-13T04:50:00",
+    "trend": "steady",
+    "real": false,
+    "data_note": "Illustrative. The flagged survey, its response counts and the submission pattern are fabricated for demonstration.",
+    "metrics": { "flagged": 22, "share_pct": 11, "window_minutes": 40, "score_delta_pts": 3 },
+    "confidence": {
+      "score": 78,
+      "rationale": "Deliberately below the action threshold. The submission pattern is real and reproducible; its INTERPRETATION is genuinely ambiguous, and a shared IP range is expected behaviour at a public terminal. Held for a human rather than resolved automatically.",
+      "signals_used": ["VOCE Survey Platform"],
+      "threshold": 80,
+      "model_version": "voce-quality-sweep-v1.0",
+      "validated_at": "2026-08-13T04:55:00"
+    },
+    "action": "Decide whether to keep and flag these responses, or exclude them.",
+    "source_text": "VOCE submission metadata."
+  },
+  {
     "id": "SIG-DOIT-ADM-003",
     "type": "regional_outlier",
     "primary": false,
@@ -76,31 +102,5 @@
     },
     "action": "Pull Western-region verbatims, then recommend a service-center review.",
     "source_text": "ZIP-derived region joined to service-center visit logs."
-  },
-  {
-    "id": "SIG-DOIT-ADM-004",
-    "type": "data_quality",
-    "primary": false,
-    "title": "Permit Satisfaction Survey — 22 responses from one IP range",
-    "description": "Twenty-two responses, 11% of that survey, arrived from a single IP range inside a 40-minute window. That is what group completion at a service center looks like, and it is also what bot traffic looks like. Excluding them moves the survey's satisfaction score by about three points, so I have not.",
-    "impact": "medium",
-    "severity": "warning",
-    "metric_text": "22 responses · 11% of the dataset",
-    "sources": ["VOCE Survey Platform"],
-    "timestamp": "2026-08-13T04:50:00",
-    "trend": "steady",
-    "real": false,
-    "data_note": "Illustrative. The flagged survey, its response counts and the submission pattern are fabricated for demonstration.",
-    "metrics": { "flagged": 22, "share_pct": 11, "window_minutes": 40, "score_delta_pts": 3 },
-    "confidence": {
-      "score": 78,
-      "rationale": "Deliberately below the action threshold. The submission pattern is real and reproducible; its INTERPRETATION is genuinely ambiguous, and a shared IP range is expected behaviour at a public terminal. Held for a human rather than resolved automatically.",
-      "signals_used": ["VOCE Survey Platform"],
-      "threshold": 80,
-      "model_version": "voce-quality-sweep-v1.0",
-      "validated_at": "2026-08-13T04:55:00"
-    },
-    "action": "Decide whether to keep and flag these responses, or exclude them.",
-    "source_text": "VOCE submission metadata."
   }
 ]

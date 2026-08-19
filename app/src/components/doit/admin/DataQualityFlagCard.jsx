@@ -2,13 +2,13 @@ import { Flag } from 'lucide-react';
 import DoitCard from '../shared/DoitCard';
 import { ConfidenceBadge, EscalationNote } from '../shared/TrustBits';
 import { useAdminState } from '../shared/adminState';
-import { DATA_QUALITY_FLAG } from '../../../data/doit/_shared/constants';
+import { DATA_QUALITY_FLAG, DATA_QUALITY_FLAG_PCT } from '../../../data/doit/_shared/constants';
 
 /**
  * The restraint card.
  *
  * VOCE found a pattern it could have acted on, and did not — because excluding
- * 11% of a dataset moves the headline number by three points, and that is a
+ * an eighth of a dataset moves the headline number by three points, and that is a
  * decision with a name on it. The card states what it found, what it would cost
  * either way, and that it is deliberately holding.
  *
@@ -18,7 +18,7 @@ import { DATA_QUALITY_FLAG } from '../../../data/doit/_shared/constants';
  * carry, and that gap is the honest part.
  */
 const ROWS = [
-  { label: 'Flagged responses', value: `${DATA_QUALITY_FLAG.responses} of 201 (11% of the dataset)` },
+  { label: 'Flagged responses', value: `${DATA_QUALITY_FLAG.responses} of ${DATA_QUALITY_FLAG.total} (${DATA_QUALITY_FLAG_PCT}% of the dataset)` },
   { label: 'Why it flagged', value: 'Same IP range, all inside a 40-minute window' },
   { label: 'Reading', value: 'Ambiguous — consistent with group completion at a service center, and with bot traffic' },
   { label: 'If excluded', value: 'Satisfaction for this survey moves by about 3 points' },
@@ -49,7 +49,7 @@ export default function DataQualityFlagCard() {
         </span>
         <div className="min-w-0">
           <p className="text-[13px] font-semibold text-text">{DATA_QUALITY_FLAG.survey}</p>
-          <p className="text-[11.5px] text-text-muted">Authored by Sarah Chen · 201 total responses</p>
+          <p className="text-[11.5px] text-text-muted">Authored by Sarah Chen · {DATA_QUALITY_FLAG.total} total responses</p>
         </div>
       </div>
 

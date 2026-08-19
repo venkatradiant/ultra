@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Bell, Play, ChevronDown, LogOut, Menu } from 'lucide-react';
+import { Play, ChevronDown, LogOut, Menu } from 'lucide-react';
 import { RUN_GUIDED_DEMO } from '../../demo.config';
 import DemoRunner from '../../demo/DemoRunner';
 import DemoOverlay from '../../demo/DemoOverlay';
@@ -10,6 +10,8 @@ import { useSession } from '../../context/SessionContext';
 import { useBranding } from '../../context/BrandingContext';
 import { loginPathForClientId } from '../../config/access';
 import BrandSelector from '../newfold/BrandSelector';
+import NotificationBell from './NotificationBell';
+import { useActivePersona } from '@core/runtime/useActivePersona';
 
 export default function TopHeader({ onMenuClick }) {
   const persona = usePersona();
@@ -17,6 +19,7 @@ export default function TopHeader({ onMenuClick }) {
   const { clearClient } = useClient();
   const { signOut } = useSession();
   const { client, clientId } = useBranding();
+  const { manifest: activeManifest } = useActivePersona(clientId, persona?.id);
   const location = useLocation();
   const navigate = useNavigate();
   // Persona-specific nav relabels (USSFCU CFO reframes journey/risk as the
@@ -73,6 +76,8 @@ export default function TopHeader({ onMenuClick }) {
     '/admin': labels.adminConsole || 'Platform Administration',
     // ESFCU risk/fraud route.
     '/fraud-operations': labels.fraudOperations || 'Fraud Operations',
+    // SLED / VOCE — where a saved report lives.
+    '/my-reports': labels.myReports || 'My Reports',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || labels.ask || 'Ask the AI';
@@ -155,13 +160,10 @@ export default function TopHeader({ onMenuClick }) {
             </button>
           )}
 
-          {/* Notification Bell */}
-          <button className="relative p-2 rounded-xl hover:bg-surface-2 transition-colors">
-            <Bell className="w-5 h-5 text-text-subtle" />
-            <span className="absolute -top-0.5 -right-0.5 w-4.5 h-4.5 bg-red-500 text-white text-[9px] font-bold flex items-center justify-center rounded-full min-w-[18px] min-h-[18px]">
-              3
-            </span>
-          </button>
+          {/* Notifications. Content is whatever the active persona manifest
+              declares; a persona with nothing to say shows no badge rather than
+              the hardcoded "3" this carried for every tenant. */}
+          <NotificationBell items={activeManifest?.notifications ?? []} />
 
           {/* Divider */}
           <div className="w-px h-8 bg-surface-2" />

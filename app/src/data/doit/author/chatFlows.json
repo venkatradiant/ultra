@@ -1,199 +1,402 @@
 {
   "author_greeting": {
     "ai_message": "Good morning, Sarah. Two things need you today:\n[1] Your Maryland Resident Experience Survey closed overnight. 212 responses are in and ready to review.\n[2] Your Permit Renewal Feedback draft is scheduled to go out tomorrow and is still unfinished.\n\nWant to start with the results that just came in?",
-    "data_sources_used": ["VOCE Survey Platform", "Maryland Resident Contact Registry"],
-    "suggested_chips": ["Review Maryland results", "Finish the draft survey", "Ask me anything"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Maryland Resident Contact Registry"
+    ],
+    "suggested_chips": [
+      "Review Maryland results",
+      "Finish the draft survey"
+    ],
     "confidence": 94,
     "capability": "Proactive Intelligence"
   },
-
   "author_cleaning": {
     "user_query": "Review Maryland results",
     "ai_message": "Before I pull any insights, I ran a data-quality sweep across the 212 responses. A clean dataset is what makes the rest of this trustworthy, so here is what I would fix.\n\nI have left the 14 fast responses unchecked. Excluding someone for answering quickly is a judgement call, not a rule, so that one is yours.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Apply cleaning", "Tell me more about the speeders", "Keep everything"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Apply cleaning",
+      "Tell me more about the speeders",
+      "Keep everything"
+    ],
     "confidence": 94,
     "capability": "Anomaly Detection"
   },
   "author_speeders": {
     "user_query": "Tell me more about the speeders",
     "ai_message": "Speeders are respondents who finished in under 25 seconds — below a realistic reading time for six questions. It often means someone clicked through without reading, which flatters satisfaction scores.\n\nBut a fast reader answering honestly looks identical in the data, and 14 responses is 7% of your sample. If you want them in, leave that row unchecked before applying.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Got it, apply cleaning", "Keep everything"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Got it, apply cleaning",
+      "Keep everything"
+    ],
     "confidence": 89,
     "capability": "Friction Observability"
   },
   "author_results": {
     "user_query": "Apply cleaning",
     "ai_message": "Here is what the cleaned set says.",
-    "data_sources_used": ["VOCE Survey Platform", "Service Center Visit Logs"],
-    "suggested_chips": ["Show me what residents wrote", "Drill into wait times", "Draft manager report"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Service Center Visit Logs"
+    ],
+    "suggested_chips": [
+      "Show me what residents wrote",
+      "Drill into wait times",
+      "Draft manager report"
+    ],
     "confidence": 94,
     "capability": "Converged Conversation"
   },
   "author_results_all": {
     "user_query": "Keep everything",
     "ai_message": "Understood — I will use all 212 responses, uncleaned. Bear in mind the duplicates and the eight abandoned starts are still in there, so treat the margins with a little caution.\n\nHere is what the results say:",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Show me what residents wrote", "Drill into wait times", "Draft manager report"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Show me what residents wrote",
+      "Drill into wait times",
+      "Draft manager report"
+    ],
     "confidence": 86,
     "capability": "Converged Conversation"
   },
   "author_drill": {
     "user_query": "Drill into wait times",
     "ai_message": "Here is the wait-times breakdown.",
-    "data_sources_used": ["VOCE Survey Platform", "Service Center Visit Logs"],
-    "suggested_chips": ["Show me what residents wrote", "Draft manager report"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Service Center Visit Logs"
+    ],
+    "suggested_chips": [
+      "Show me what residents wrote",
+      "Draft manager report"
+    ],
     "confidence": 92,
     "capability": "Predictive Intelligence"
   },
   "author_quotes": {
     "user_query": "Show me what residents wrote",
     "ai_message": "Representative comments about wait times — verbatim and anonymised.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Draft the report", "Show more comments"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Draft the report",
+      "Show more comments"
+    ],
     "confidence": 96,
     "capability": "Converged Conversation"
   },
   "author_more_quotes": {
     "user_query": "Show more comments",
     "ai_message": "Three more, on the portal-confusion theme. This one is new this wave — it did not appear at all in the last one.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Draft the report"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Draft the report"
+    ],
     "confidence": 96,
     "capability": "Anomaly Detection"
   },
   "author_export": {
     "user_query": "Export results",
     "ai_message": "Ready to export. The file would carry the cleaned response set, the coded open-text themes, and a data dictionary naming every derived field.\n\nIn this demo the download is simulated. In the product this generates a CSV and a tagged PDF summary, both stamped with the cleaning decisions you made.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Draft manager report instead", "Show me what residents wrote"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Draft manager report instead",
+      "Show me what residents wrote"
+    ],
     "confidence": 90,
     "capability": "Automated Action"
   },
   "author_report": {
     "user_query": "Draft manager report",
     "ai_message": "Here is a one-page summary for your manager. The subject and the headline are editable — click either to change it before sending.",
-    "data_sources_used": ["VOCE Survey Platform", "Service Center Visit Logs"],
-    "suggested_chips": ["Send to manager", "Save to my reports"],
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Service Center Visit Logs"
+    ],
+    "suggested_chips": [
+      "Send to manager",
+      "Save to my reports"
+    ],
     "confidence": 94,
     "capability": "Automated Action"
   },
   "author_send_confirm": {
     "user_query": "Send to manager",
     "ai_message": "One confirmation before this leaves the building.",
-    "suggested_chips": ["Yes, send it to my manager", "Go back"],
+    "suggested_chips": [
+      "Yes, send it to my manager",
+      "Go back"
+    ],
     "capability": "Automated Action"
   },
   "author_saved": {
     "user_query": "Save to my reports",
-    "ai_message": "Saved to your reports. It is ready whenever you want to send it.",
-    "suggested_chips": ["Send to manager", "Finish the draft survey"],
+    "ai_message": "Saved to My Reports. You can open it from the sidebar to edit or send it whenever you are ready.",
+    "suggested_chips": [
+      "Send to manager",
+      "Finish the draft survey"
+    ],
     "capability": "Automated Action"
   },
   "author_report_sent": {
     "user_query": "Yes, send it to my manager",
     "ai_message": "Sent, and logged to the audit trail under your name. That is job one done.\n\nReady to finish the Permit Renewal Feedback draft that goes out tomorrow?",
-    "suggested_chips": ["Yes, finish the draft", "Not yet"],
+    "suggested_chips": [
+      "Yes, finish the draft",
+      "Not yet"
+    ],
     "confidence": 94,
     "capability": "Automated Action"
   },
   "author_later": {
     "user_query": "Not yet",
     "ai_message": "No problem — I will remind you before the end of the day. It is due tomorrow, so finishing today keeps the send window intact.",
-    "suggested_chips": ["Finish the draft survey", "Export results"],
+    "suggested_chips": [
+      "Finish the draft survey",
+      "Export results"
+    ],
     "capability": "Proactive Intelligence"
   },
-
   "author_draft_status": {
     "user_query": "Finish the draft survey",
-    "ai_message": "Here is your Permit Renewal Feedback draft. Six of nine questions are done. Q7 has no answer options, which is the one thing genuinely blocking the send — residents cannot answer it.\n\nI have also flagged Q5 as reading harder than it needs to, with two shorter versions. That one is a suggestion, not a blocker.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Q7 looks good", "Suggest Q7 options"],
+    "ai_message": "Here is your Permit Renewal Feedback draft. Eight of the nine questions can be answered as they stand. Q7 cannot — it has no answer options, and that is the one thing genuinely blocking the send.\n\nEverything in the panel is yours to change: edit any question's wording, add or remove questions, reorder them, or change a question's type. I have also flagged Q5 as reading harder than it needs to, with two shorter versions. That one is a suggestion, not a blocker.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Q7 looks good",
+      "Suggest Q7 options"
+    ],
     "confidence": 91,
     "capability": "Friction Observability"
   },
   "author_suggest": {
     "user_query": "Suggest Q7 options",
     "ai_message": "Q7 asks how easy the renewal was. Based on your own prior permit surveys, here are four options on a consistent scale.",
-    "data_sources_used": ["VOCE Survey Platform"],
-    "suggested_chips": ["Use these options", "I'll write them myself"],
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Use these options",
+      "Let me describe what I want"
+    ],
     "confidence": 91,
     "capability": "Predictive Intelligence"
   },
   "author_manual": {
-    "user_query": "I'll write them myself",
-    "ai_message": "Go ahead — type your options into the Q7 panel above and I will add them to the survey. Any number works, though four to five is where response quality holds up best.",
-    "suggested_chips": ["Done, set distribution"],
+    "user_query": "Let me describe what I want",
+    "ai_message": "Describe the kind of options you want in the Q7 panel above — \"a four-point ease scale\", \"how often, five points\" — and I will write them. You review the set before it goes in, and four to five options is where response quality holds up best.",
+    "suggested_chips": [
+      "Done, set distribution"
+    ],
     "capability": "Converged Conversation"
   },
   "author_q7_set": {
     "user_query": "Q7 looks good",
     "ai_message": "Q7 is set and the draft is unblocked. Last thing is distribution. This survey went to permit renewers last cycle — about 1,800 contacts. Use the same list?",
-    "suggested_chips": ["Use last list", "Choose a different list"],
+    "suggested_chips": [
+      "Use last list",
+      "Choose a different list"
+    ],
     "confidence": 93,
     "capability": "Converged Conversation"
   },
   "author_choose_list": {
     "user_query": "Choose a different list",
     "ai_message": "You have three saved distribution lists:\n[1] Permit Renewers 2025 — 1,800 contacts\n[2] All Residents — 12,400 contacts\n[3] Service Center Visitors Q1 — 340 contacts\n\nWhich one?",
-    "suggested_chips": ["Permit Renewers 2025", "All Residents", "Service Center Visitors Q1"],
+    "suggested_chips": [
+      "Permit Renewers 2025",
+      "All Residents",
+      "Service Center Visitors Q1"
+    ],
     "capability": "Converged Conversation"
   },
   "author_distribution": {
     "user_query": "Use last list",
     "ai_message": "Distribution set. Last step: choose how the survey actually reaches them.",
-    "suggested_chips": ["Set up delivery"],
+    "suggested_chips": [
+      "Set up delivery"
+    ],
     "capability": "Automated Action"
   },
   "author_delivery": {
     "user_query": "Set up delivery",
     "ai_message": "Choose how residents receive this survey. Select as many formats as you like — every one of them is generated from the same single definition, so they cannot drift apart.",
-    "suggested_chips": ["Preview as a resident", "Publish this survey"],
+    "suggested_chips": [
+      "Preview as a resident",
+      "Send for approval"
+    ],
     "confidence": 93,
     "capability": "Automated Action"
   },
   "author_preview": {
     "user_query": "Preview as a resident",
-    "ai_message": "This is what a resident sees.",
-    "suggested_chips": ["Looks good — publish", "Keep editing"],
+    "ai_message": "This is the whole survey as a resident sees it, in both formats.",
+    "suggested_chips": [
+      "Looks good — send for approval",
+      "Keep editing"
+    ],
     "capability": "Friction Observability"
   },
   "author_publish_confirm": {
-    "user_query": "Publish this survey",
-    "ai_message": "Publishing is the one step here I will not take on my own.",
-    "suggested_chips": ["I approve — publish now", "Keep editing"],
+    "user_query": "Send for approval",
+    "ai_message": "This one goes to your manager rather than straight out. Publishing a resident-facing survey is not a step I take on my own, and it is not one you take alone either.",
+    "suggested_chips": [
+      "Yes, send for approval",
+      "Keep editing"
+    ],
     "capability": "Automated Action"
   },
   "author_published": {
-    "user_query": "I approve — publish now",
-    "ai_message": "You are all set. The survey is live and on its way.",
-    "suggested_chips": ["View survey status", "Start a new survey", "Go to my surveys"],
+    "user_query": "Yes, send for approval",
+    "ai_message": "Sent to Dana Whitfield for approval. I will notify you the moment it goes live — or straight away if it comes back with edits.\n\nThe Maryland Resident Experience results are still waiting on you. Want to take those next?",
+    "suggested_chips": [
+      "Review Maryland results",
+      "View survey status",
+      "Back to my briefing"
+    ],
     "confidence": 95,
     "capability": "Automated Action"
   },
   "author_survey_status": {
     "user_query": "View survey status",
-    "ai_message": "Here is where it stands right now.",
-    "suggested_chips": ["Back to my briefing"],
+    "ai_message": "Here is where it stands. It has not gone out yet — your manager signs off first.",
+    "suggested_chips": [
+      "Back to my briefing"
+    ],
     "capability": "Proactive Intelligence"
   },
   "author_new_survey": {
     "user_query": "Start a new survey",
     "ai_message": "In the product you would name the survey here and I would draft questions from scratch, then run the same accessibility and plain-language checks you just saw on Q5 and Q7.\n\nThis demo focuses on the two jobs already in flight.",
-    "suggested_chips": ["Back to my briefing"],
+    "suggested_chips": [
+      "Back to my briefing"
+    ],
     "capability": "Converged Conversation"
   },
   "author_my_surveys": {
     "user_query": "Go to my surveys",
     "ai_message": "You have 18 active surveys across six agencies. Marcus sees the same portfolio from the administrator side, where he can ask questions across all of them at once.\n\nThis demo focuses on the conversational flow.",
-    "suggested_chips": ["Back to my briefing"],
+    "suggested_chips": [
+      "Back to my briefing"
+    ],
     "capability": "Converged Conversation"
   },
-
   "__default__": {
-    "ai_message": "Sure — what do you need? You can get back to either of your two tasks any time.",
-    "suggested_chips": ["Review Maryland results", "Finish the draft survey", "Export results"],
+    "ai_message": "I did not catch that. I can review the Maryland results with you, finish the Permit Renewal draft, or export what you already have — or ask it a different way and I will try again.",
+    "suggested_chips": [
+      "Review Maryland results",
+      "Finish the draft survey",
+      "Export results"
+    ],
     "capability": "Converged Conversation"
+  },
+  "author_greeting_results_done": {
+    "ai_message": "Welcome back, Sarah. The Maryland Resident Experience results are handled — cleaned, reviewed and the report is with your manager.\n\nOne thing is still open: your Permit Renewal Feedback draft, scheduled to go out tomorrow.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "Finish the draft survey",
+      "Export results"
+    ],
+    "confidence": 94,
+    "capability": "Proactive Intelligence"
+  },
+  "author_greeting_draft_done": {
+    "ai_message": "Welcome back, Sarah. The Permit Renewal Feedback draft is finished and with your manager for approval — nothing more to do there until she responds.\n\nOne thing is still open: the Maryland Resident Experience Survey closed overnight and 212 responses are waiting to be reviewed.",
+    "data_sources_used": [
+      "VOCE Survey Platform",
+      "Maryland Resident Contact Registry"
+    ],
+    "suggested_chips": [
+      "Review Maryland results",
+      "View survey status"
+    ],
+    "confidence": 94,
+    "capability": "Proactive Intelligence"
+  },
+  "author_greeting_clear": {
+    "ai_message": "Welcome back, Sarah. Nothing needs you right now.\n\nThe Maryland results are reviewed and reported, and the Permit Renewal Feedback draft is with your manager for approval. I will let you know the moment she responds.",
+    "data_sources_used": [
+      "VOCE Survey Platform"
+    ],
+    "suggested_chips": [
+      "View survey status",
+      "Go to my surveys",
+      "Start a new survey"
+    ],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+  "author_report_sent_clear": {
+    "user_query": "Yes, send it to my manager",
+    "ai_message": "Sent, and logged to the audit trail under your name.\n\nThat was the last thing on your list — the Permit Renewal draft is already with your manager for approval. Nothing else needs you today.",
+    "suggested_chips": [
+      "View survey status",
+      "Back to my briefing"
+    ],
+    "confidence": 94,
+    "capability": "Automated Action"
+  },
+  "author_published_clear": {
+    "user_query": "Yes, send for approval",
+    "ai_message": "Sent to Dana Whitfield for approval. I will notify you the moment it goes live — or straight away if it comes back with edits.\n\nThat was the last thing on your list. Nothing else needs you today.",
+    "suggested_chips": [
+      "View survey status",
+      "Back to my briefing"
+    ],
+    "confidence": 95,
+    "capability": "Automated Action"
+  },
+  "__default_results_done__": {
+    "ai_message": "I did not catch that. The Maryland results are done, so what is left today is the Permit Renewal draft — or ask it a different way and I will try again.",
+    "suggested_chips": [
+      "Finish the draft survey",
+      "Export results",
+      "Back to my briefing"
+    ],
+    "capability": "Converged Conversation"
+  },
+  "__default_draft_done__": {
+    "ai_message": "I did not catch that. The Permit Renewal draft is with your manager, so what is left today is the Maryland results — or ask it a different way and I will try again.",
+    "suggested_chips": [
+      "Review Maryland results",
+      "View survey status",
+      "Back to my briefing"
+    ],
+    "capability": "Converged Conversation"
+  },
+  "__default_clear__": {
+    "ai_message": "I did not catch that. Nothing is outstanding today — I can show you where the Permit Renewal survey stands, or take you back to your briefing. Ask it a different way and I will try again.",
+    "suggested_chips": [
+      "View survey status",
+      "Back to my briefing",
+      "Start a new survey"
+    ],
+    "capability": "Converged Conversation"
+  },
+  "author_saved_draft_done": {
+    "user_query": "Save to my reports",
+    "ai_message": "Saved to My Reports. You can open it from the sidebar to edit or send it whenever you are ready.\n\nThe Permit Renewal draft is already with your manager, so this is the last thing on your list.",
+    "suggested_chips": [
+      "Send to manager",
+      "Back to my briefing"
+    ],
+    "capability": "Automated Action"
   }
 }

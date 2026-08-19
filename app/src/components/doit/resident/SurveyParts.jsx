@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Check, Info, Volume2, Mic } from 'lucide-react';
 import { ReferenceBadge, VerifiedBadge } from '../shared/TrustBits';
 import { NONE_OPTION, toggleMultiSelect } from '../../../data/doit/resident/surveyLogic';
@@ -145,45 +145,57 @@ export function OpenInput({ value, onChange, onSubmit, placeholder, label }) {
 /**
  * The per-answer receipt.
  *
- * States what was recorded, how confident VOCE is that it understood, and offers
- * a way to change it — which is the difference between a system that transcribes
- * you and one that interprets you without telling you.
+ * Confidence appears ONLY when there was something to be confident about.
+ *
+ * This used to print "◉ AI Confidence: 93%" under every answer, including a
+ * radio button the resident had tapped a moment earlier. Nothing had been
+ * interpreted there — they picked the option themselves — so the number was
+ * asserting doubt about a fact, and inviting them to doubt their own click. It
+ * belongs to exactly one case: the resident SPOKE, and VOCE had to work out
+ * which of the options they meant. Then the transcript is shown alongside the
+ * score, so what is being expressed uncertainty about is visible.
+ *
+ * `onEdit` is wired through from the runtime rather than being a toast that
+ * apologises for not existing.
  */
-export function InterpretationRow({ answer, aiNote, onChange }) {
-  const [toast, setToast] = useState(false);
-
-  useEffect(() => {
-    if (!toast) return undefined;
-    const t = setTimeout(() => setToast(false), 2500);
-    return () => clearTimeout(t);
-  }, [toast]);
-
+export function InterpretationRow({ answer, aiNote, interpretation, onEdit }) {
   return (
     <div className="ml-1 border-l-2 border-border-subtle pl-3">
-      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-text-muted">
-        <span className="font-medium text-success">✓ Recorded:</span>
-        <span className="text-text">{answer}</span>
-      </p>
-      <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-text-muted">
-        <span>◉ AI Confidence: 93%</span>
-        <button
-          type="button"
-          onClick={() => {
-            setToast(true);
-            onChange?.();
-          }}
-          className="rounded px-1 font-semibold text-brand underline decoration-dotted underline-offset-2 hover:text-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-        >
-          Change
-        </button>
-      </p>
-      {aiNote && <p className="mt-0.5 text-[12px] italic leading-relaxed text-text-muted">{aiNote}</p>}
-      {toast && (
-        <p role="status" className="mt-1 rounded-md bg-surface-2 px-2 py-1 text-[11.5px] text-text-muted">
-          In the full product, you can edit this answer.
+      {interpretation ? (
+        <>
+          <p className="text-[12px] italic leading-relaxed text-text-muted">
+            You said “{interpretation.heard}”
+          </p>
+          <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-text-muted">
+            <span className="font-medium text-success">✓ Recorded as:</span>
+            <span className="text-text">{answer}</span>
+          </p>
+          <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-text-muted">
+            <span>◉ AI Confidence: {interpretation.score}%</span>
+            {onEdit && <ChangeButton onClick={onEdit} />}
+          </p>
+        </>
+      ) : (
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-text-muted">
+          <span className="font-medium text-success">✓ Recorded:</span>
+          <span className="text-text">{answer}</span>
+          {onEdit && <ChangeButton onClick={onEdit} />}
         </p>
       )}
+      {aiNote && <p className="mt-0.5 text-[12px] italic leading-relaxed text-text-muted">{aiNote}</p>}
     </div>
+  );
+}
+
+function ChangeButton({ onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="rounded px-1 text-[12px] font-semibold text-brand underline decoration-dotted underline-offset-2 hover:text-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+    >
+      Change
+    </button>
   );
 }
 

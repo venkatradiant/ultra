@@ -90,7 +90,7 @@ export default function DoitModal({ eyebrow, title, children, actions, onClose, 
  * jsx-a11y/no-autofocus, and it stays under our control if focus handling ever
  * needs to become conditional.
  */
-export function ModalPrimary({ children, onClick, focusOnMount }) {
+export function ModalPrimary({ children, onClick, focusOnMount, disabled }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -102,7 +102,8 @@ export function ModalPrimary({ children, onClick, focusOnMount }) {
       ref={ref}
       type="button"
       onClick={onClick}
-      className="min-h-[44px] flex-1 rounded-lg bg-brand px-4 text-[13px] font-semibold text-white transition-colors hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+      disabled={disabled}
+      className="min-h-[44px] flex-1 rounded-lg bg-brand px-4 text-[13px] font-semibold text-white transition-colors enabled:hover:bg-brand-hover disabled:opacity-45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
     >
       {children}
     </button>

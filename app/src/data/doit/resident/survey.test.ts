@@ -192,3 +192,30 @@ describe('mid-survey clarifications', () => {
     expect(clarifications.fallback).not.toContain('Source:');
   });
 });
+
+/**
+ * The intro card's accessibility sentence.
+ *
+ * Read-aloud and voice input are hidden where the browser cannot honour them —
+ * `SpeechRecognition` is Chromium and Safari only. The copy has to match, or the
+ * card names two switches that are not on the screen.
+ */
+describe('the intro card', () => {
+  const { intro } = clarifications;
+
+  it('offers a sentence for every combination of capability', () => {
+    for (const key of ['both', 'readAloud', 'voice', 'none'] as const) {
+      expect(intro.accessibility[key], `${key} is missing`).toBeTruthy();
+    }
+  });
+
+  it('promises nothing in the no-capability case', () => {
+    expect(intro.accessibility.none).not.toMatch(/audio|voice|aloud/i);
+    expect(intro.body).not.toMatch(/audio|voice|aloud/i);
+  });
+
+  it('names only the control it actually has', () => {
+    expect(intro.accessibility.readAloud).not.toMatch(/by voice|out loud/i);
+    expect(intro.accessibility.voice).not.toMatch(/hear each question/i);
+  });
+});

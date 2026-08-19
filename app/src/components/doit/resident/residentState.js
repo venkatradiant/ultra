@@ -21,6 +21,16 @@ const initial = () => ({
   stepId: 'q1',
   answers: {},
   entries: [],
+  /**
+   * Set to 'review' while the resident is changing one answer from the review
+   * table, and cleared the moment they do.
+   *
+   * Without it, `record` had no way to tell "answering q2 for the first time"
+   * from "correcting q2 at the end", so it walked forward from q2 and re-asked
+   * every question after it — all of which already had answers. This is the flag
+   * that sends them straight back to the summary instead.
+   */
+  returnTo: null,
 });
 
 let state = initial();
