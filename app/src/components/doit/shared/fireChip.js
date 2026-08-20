@@ -1,62 +1,6 @@
 /**
- * Advance the conversation from inside an inline component.
- *
- * Why this is needed: the chat engine's `handleChipClick` lives inside
- * PersonaWorkspace and is handed only to the chip row, the stat tiles and the
- * input. Components mounted through `manifest.inlineComponents` never receive
- * it, and there is no manifest slot that would pass it down — the only bridge
- * that exists (IntradayContext's ask handler) is gated on `briefing`, which
- * this tenant does not declare.
- *
- * VOCE's approval modals have to advance the thread when you confirm, so they
- * click the turn's own suggested chip. This is the same mechanism the guided
- * demo runner uses (`src/demo/DemoRunner.js` waits for a chip and clicks it),
- * so it is an established in-app pattern rather than a new one — and it needs
- * no shared-code edit.
- *
- * The contract that keeps it safe: every label passed here MUST also appear in
- * that turn's `suggested_chips`. `src/data/doit/doitData.test.ts` asserts it,
- * so a renamed chip fails the suite rather than dead-ending a modal at runtime.
+ * Moved to `components/common/fireChip.js` when AMISA's assignment overlay
+ * needed the same bridge. Re-exported from the old path so the VOCE modals that
+ * import it here keep working; new code should import from common.
  */
-
-/**
- * Click the visible suggested chip whose label matches exactly.
- * @returns {boolean} whether a chip was found and clicked.
- */
-export function fireChip(label) {
-  if (typeof document === 'undefined' || !label) return false;
-  const target = String(label).trim();
-  const buttons = document.querySelectorAll('button');
-  for (const button of buttons) {
-    if (button.textContent?.trim() === target) {
-      button.click();
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * Close a modal, then advance. Ordering matters: the chip row is behind the
- * backdrop, and clicking it while the dialog still owns focus fights the
- * focus-restore in DoitModal's cleanup.
- *
- * The wait is rAF with a timeout BEHIND it, not rAF alone. A hidden document
- * suspends animation frames, so a user who confirms a dialog and switches tab
- * before the next paint comes back to a thread that never advanced — the state
- * written, the conversation dead-ended behind it. The timeout is the floor that
- * cannot be suspended; whichever wins, `fired` makes sure the chip is only
- * clicked once.
- */
-export function closeThenFireChip(onClose, label) {
-  onClose?.();
-  let fired = false;
-  const advance = () => {
-    if (fired) return;
-    fired = true;
-    fireChip(label);
-  };
-  // Next frame, so the portal has unmounted and focus has settled.
-  requestAnimationFrame(advance);
-  setTimeout(advance, 60);
-}
+export { fireChip, closeThenFireChip } from '../../common/fireChip';

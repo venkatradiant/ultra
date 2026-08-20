@@ -1,0 +1,192 @@
+{
+  "director_greeting": {
+    "ai_message": "Good morning, Dereck. The Human Resources survey closed overnight.\n312 responses from 29 schools. 88% completion.\n\nThree things need you today:\n[1] 6 participating schools never opened the Business Office section. The window closes tonight.\n[2] 312 responses are swept and waiting for your review before anything is published.\n[3] One school has asked to send a survey of its own to the membership.\n\nNothing here was built in advance. It was assembled this morning from what actually came in.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Membership Records"],
+    "suggested_chips": ["Show me who is missing", "Review data quality", "Approvals (1 pending)"],
+    "confidence": 94,
+    "capability": "Proactive Intelligence"
+  },
+
+  "director_greeting_quality_done": {
+    "ai_message": "Welcome back, Dereck. The sweep is settled — 298 valid records, applied by you, audit trail recorded.\n\nStill open:\n[1] 6 participating schools have not opened the Business Office section.\n[2] One school is waiting on your answer about a survey it wants to send.\n\nOr ask me the salary question whenever you are ready.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Show me who is missing", "Approvals (1 pending)", "What is the average teacher salary for a master's degree with 3 years of experience?"],
+    "confidence": 94,
+    "capability": "Proactive Intelligence"
+  },
+
+  "director_greeting_clear": {
+    "ai_message": "Welcome back, Dereck. Everything that needed you today is done.\n\nThe sweep is applied, the survey request is approved and scheduled, and the association summary is published to participating schools.\n\nSeptember 30 in. October 1 out.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["What is the average teacher salary for a master's degree with 3 years of experience?", "Show me who is missing"],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+
+  "director_boundary": {
+    "user_query": "What can the association actually see?",
+    "ai_message": "Less than you might expect, and that is deliberate.\n\nI can show you aggregates: how many schools submitted, how complete a section is, and a benchmark built from at least 5 contributing schools.\n\nI cannot show you one school's own figures, a named school's detail, individual staff records, or any student-level data — test scores, assessment results, AP, IB, SAT, ACT or MAP among them. None of that is aggregated at the association, and no screen here drills into a single school.\n\nI also cannot cut a result by country. AMISA has member countries with exactly one school in them, and a country cut identifies that school.\n\nThis is not a setting I am refusing to change. It is what the platform is allowed to answer.",
+    "data_sources_used": ["Suppression and Entitlement Rules"],
+    "suggested_chips": ["What is the average teacher salary for a master's degree with 3 years of experience?", "Show me who is missing", "Back to my briefing"],
+    "confidence": 99,
+    "capability": "Friction Observability"
+  },
+
+  "director_participation": {
+    "user_query": "Show me who is missing",
+    "ai_message": "6 schools have not opened the Business Office section. Named, with a contact for each.\n\nYou do not have to build a spreadsheet. You send 6 emails.\n\nOne thing to be clear about: these 6 schools will not see the Business Office benchmark on October 1. Not as a punishment — it is the rule your RFP wrote. Office data is visible only to schools that entered it, and the platform enforces that. Nobody has to remember to.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Membership Records"],
+    "suggested_chips": ["Review data quality", "Approvals (1 pending)", "Back to my briefing"],
+    "confidence": 97,
+    "capability": "Friction Observability"
+  },
+
+  "director_completion": {
+    "user_query": "How many schools have finished the Human Resources section?",
+    "ai_message": "29 of the 31 participating schools have submitted Human Resources. 88% of the questions in those submissions are complete.\n\nBy office, across everyone taking part this year:\nHuman Resources — 29 of 31 submitted.\nBusiness Office — 25 of 31 submitted.\n\nWhat you are not seeing here is any school's actual figures. This is submission status, not submitted data.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Show me who is missing", "Review data quality", "Back to my briefing"],
+    "confidence": 96,
+    "capability": "Friction Observability"
+  },
+
+  "director_approvals": {
+    "user_query": "Approvals (1 pending)",
+    "ai_message": "One request, from Cordillera International School.\n\nTheir head of school wants to ask the membership 4 questions. You can see who it would go to, when it opens and when it closes.\n\nApprove it, send it back with a comment, or decline it. A question that used to be an email to 70 people becomes a survey with a window, reminders and a completion rate — and whether it goes out at all is your call.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Membership Records"],
+    "suggested_chips": ["Approve and schedule", "Send it back with a comment", "Review data quality"],
+    "confidence": 93,
+    "capability": "Converged Conversation"
+  },
+
+  "director_approved": {
+    "user_query": "Approve and schedule",
+    "ai_message": "Approved and scheduled.\n\nIt opens Monday and closes in three weeks. Reminders go at day 7 and day 14. Cordillera will see the completion rate as it fills.\n\nApproved by Dereck Rhoads. Audit trail recorded.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Review data quality", "Show me who is missing", "Back to my briefing"],
+    "confidence": 95,
+    "capability": "Automated Action"
+  },
+
+  "director_sent_back": {
+    "user_query": "Send it back with a comment",
+    "ai_message": "Sent back to Cordillera with your note. Nothing goes to the membership.\n\nThey can revise and resubmit, and it will come back to this queue.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Review data quality", "Show me who is missing", "Back to my briefing"],
+    "confidence": 94,
+    "capability": "Automated Action"
+  },
+
+  "director_quality": {
+    "user_query": "Review data quality",
+    "ai_message": "312 responses swept. I found six things and fixed none of them.\n\nEvery row below is a proposal, not an action. Each one says why it was flagged, and each one is yours to keep or apply.\n\nOne of them I will not decide. Answering quickly is a judgement call, not a rule, so it comes to you unchecked.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Data Dictionary"],
+    "suggested_chips": ["Apply cleaning", "Why was the salary field flagged?", "Keep everything"],
+    "confidence": 92,
+    "capability": "Anomaly Detection"
+  },
+
+  "director_narrative_detail": {
+    "user_query": "Why was the salary field flagged?",
+    "ai_message": "One school entered \"varies by contract\" where a number belongs.\n\nThat is the exact case you raised with us: text in a numeric field. It cannot be averaged, and guessing at what it meant would be worse than dropping it — so the record comes out of the salary benchmark and goes back to the school with a note.\n\nThe two figures far outside the range are a different problem. They read like a local-currency amount typed into a field defined as USD. I have not corrected them, because I do not know which currency was meant.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Data Dictionary"],
+    "suggested_chips": ["Apply cleaning", "Keep everything"],
+    "confidence": 91,
+    "capability": "Anomaly Detection"
+  },
+
+  "director_quality_applied": {
+    "user_query": "Apply cleaning",
+    "ai_message": "298 valid responses, from 312.\n\nApplied by Dereck Rhoads. Audit trail recorded.\n\nEvery number after this point traces back to that decision. I did the sweep. You made the call.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["What is the average teacher salary for a master's degree with 3 years of experience?", "Approvals (1 pending)", "Back to my briefing"],
+    "confidence": 96,
+    "capability": "Automated Action"
+  },
+
+  "director_quality_kept": {
+    "user_query": "Keep everything",
+    "ai_message": "Nothing excluded. All 312 records stay in the analysis set.\n\nApplied by Dereck Rhoads. Audit trail recorded.\n\nEvery figure from here on will say 312, including the published summary — so the schools see the same basis you chose.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["What is the average teacher salary for a master's degree with 3 years of experience?", "Back to my briefing"],
+    "confidence": 90,
+    "capability": "Automated Action"
+  },
+
+  "director_benchmark": {
+    "user_query": "What is the average teacher salary for a master's degree with 3 years of experience?",
+    "ai_message": "$34,800.\n\nFrom 24 schools. Base salary only, excluding housing and benefits, full-time equivalent.\n\nThe schools that did not submit are excluded from this answer — and from the access to it.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Data Dictionary"],
+    "suggested_chips": ["Compare to peers", "Show a school with too few peers", "Draft the school summary"],
+    "confidence": 94,
+    "capability": "Converged Conversation"
+  },
+
+  "director_peers": {
+    "user_query": "Compare to peers",
+    "ai_message": "Here is Cordillera International School against schools like it.\n\nIt does not group by country. It groups by enrollment and tuition — which is how you described it to us.\n\n18 schools in this peer group, against a floor of 5. Below that floor nothing renders at all.\n\nThe school in Chile is inside this number. Nobody looking at this screen can find it.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Membership Records"],
+    "suggested_chips": ["Show a school with too few peers", "Draft the school summary", "Back to my briefing"],
+    "confidence": 94,
+    "capability": "Predictive Intelligence"
+  },
+
+  "director_suppressed": {
+    "user_query": "Show a school with too few peers",
+    "ai_message": "This is what the floor actually does.\n\nThis school is one of the smallest in the membership, and only 2 contributing schools are close enough on enrollment and tuition to compare with. The minimum is 5.\n\nSo there is no number here. Not a rounded one, not an approximate one, not one with a warning next to it. The comparison does not render, and the school is told why.\n\nThat is the behaviour that makes a head of school willing to submit in the first place.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Compare to peers", "Draft the school summary", "Back to my briefing"],
+    "confidence": 97,
+    "capability": "Anomaly Detection"
+  },
+
+  "director_summary": {
+    "user_query": "Draft the school summary",
+    "ai_message": "Here is the association summary, ready for the schools that took part.\n\nAMISA branded. Plain language. Every figure sourced.\n\nWhen it reaches a school, that school sees its own number against a group it belongs to, and nothing else. The six schools that never opened the Business Office section receive the Human Resources sections only.",
+    "data_sources_used": ["AMISA Survey Platform", "AMISA Data Dictionary"],
+    "suggested_chips": ["Publish to participating schools", "Save to my reports", "Back to my briefing"],
+    "confidence": 93,
+    "capability": "Converged Conversation"
+  },
+
+  "director_publish_confirm": {
+    "user_query": "Publish to participating schools",
+    "ai_message": "This publishes to the 31 schools taking part this year. Each one receives only the sections it is entitled to.\n\nNothing goes to the 39 schools that are not participating.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Yes, publish it", "Go back"],
+    "confidence": 95,
+    "capability": "Automated Action"
+  },
+
+  "director_published": {
+    "user_query": "Yes, publish it",
+    "ai_message": "Published.\n\n31 schools notified. Each sees the sections it submitted, and its own figure against a peer group that meets the floor.\n\nSeptember 30 in. October 1 out. The cycle now runs without an inbox.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Save to my reports", "Back to my briefing"],
+    "confidence": 96,
+    "capability": "Automated Action"
+  },
+
+  "director_saved": {
+    "user_query": "Save to my reports",
+    "ai_message": "Saved. It is in My Reports whenever you want to edit or resend it.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Back to my briefing"],
+    "confidence": 95,
+    "capability": "Automated Action"
+  },
+
+  "__default__": {
+    "ai_message": "I did not follow that one.\n\nI can show you where participation stands, walk you through the data-quality sweep, answer a benchmarking question from the schools that submitted, or draft the summary for October 1.",
+    "suggested_chips": ["Show me who is missing", "Review data quality", "What is the average teacher salary for a master's degree with 3 years of experience?"],
+    "confidence": 55,
+    "capability": "Converged Conversation"
+  },
+
+  "__default_quality_done__": {
+    "ai_message": "I did not follow that one.\n\nThe sweep is already applied. I can show you participation, answer a benchmarking question, or draft the summary for October 1.",
+    "suggested_chips": ["What is the average teacher salary for a master's degree with 3 years of experience?", "Show me who is missing", "Draft the school summary"],
+    "confidence": 55,
+    "capability": "Converged Conversation"
+  }
+}

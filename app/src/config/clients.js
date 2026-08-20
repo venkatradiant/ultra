@@ -167,6 +167,30 @@ export const CLIENTS = {
     primaryColor: '#1a4480',
     navLabels: { ask: 'Ask VOCE' },
   },
+  // ─── SLED market — AMISA ────────────────────────────────────────
+  // The association, not a school. Public backdrop (mission, motto, staff of 7,
+  // ~25 countries) is real and sourced to amisa.us and the RFP Q&A document;
+  // every operational figure is illustrative and every member school on the
+  // roster is fictional. The Data Sources screen carries the full statement.
+  //
+  // primaryColor is the TRUE logo red. The theme's `brand` token is a darkened
+  // #B22A26 instead — see the note in the client manifest — because #DB3D38 is
+  // 4.43:1 on white and `brand` fills every primary button. This field is used
+  // for the login hero accent and the picker tile edge, where a brand-accurate
+  // red is right and no text sits on it. Keep in sync with
+  // markets/sled/clients/amisa/client.manifest.ts.
+  amisa: {
+    id: 'amisa',
+    loginSlug: 'amisa',
+    name: 'AMISA',
+    shortName: 'AMISA',
+    nameLines: ['AMISA'],
+    tagline: 'Better Together',
+    logo: '/logos/amisa-mark.png',
+    favicon: '/logos/amisa-mark.png',
+    primaryColor: '#DB3D38',
+    navLabels: { ask: 'Ask AMISA' },
+  },
   // ─── Healthcare market (proves the platform is multi-market) ────
   riverside_health: {
     id: 'riverside_health',

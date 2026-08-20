@@ -1,0 +1,61 @@
+{
+  "hr_greeting": {
+    "ai_message": "Good morning, Ana Lucía.\n\nOne assignment. Human Resources — Salary and Benefits, 14 questions, due September 30.\n\nNo inbox. No attachment. No forwarded link. And nothing from any other office or any other school — you see what you own, when you need it.\n\nIt is open in front of you. Stop halfway if you need to; nothing is lost.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Open my assignment", "See my school's data", "What counts as base salary?", "Ask the other schools a question"],
+    "confidence": 96,
+    "capability": "Proactive Intelligence"
+  },
+
+  "hr_reopen": {
+    "user_query": "Open my assignment",
+    "ai_message": "Here it is, exactly where you left it.\n\nWork through it and submit when you are ready — I will show you your own figures the moment AMISA has them.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["See my school's data", "What counts as base salary?", "Ask the other schools a question"],
+    "confidence": 96,
+    "capability": "Converged Conversation"
+  },
+
+  "hr_definition": {
+    "user_query": "What counts as base salary?",
+    "ai_message": "Base salary only. It excludes housing, benefits, allowances and bonuses, and it is expressed as a full-time equivalent annual amount in USD.\n\nThat definition sits beside the question itself, so you are not guessing — and neither is the school in Guatemala, or the one in Brazil.\n\nComparability is won at the point of entry, not in the analysis.",
+    "data_sources_used": ["AMISA Data Dictionary"],
+    "suggested_chips": ["Open my assignment", "Ask the other schools a question"],
+    "confidence": 97,
+    "capability": "Converged Conversation"
+  },
+
+  "hr_submitted": {
+    "user_query": "See my school's data",
+    "ai_message": "Submitted, timestamped and logged.\n\nHere is your own salary structure, charted. For a school with no warehouse and no analyst, this is the first time it has been visible in one place.\n\nNotice what is not here: no benchmark, no peer group, no other school. The window is still open. Nothing compares until the association closes the wave.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Ask the other schools a question", "Open my assignment"],
+    "confidence": 95,
+    "capability": "Converged Conversation"
+  },
+
+  "hr_request": {
+    "user_query": "Ask the other schools a question",
+    "ai_message": "Your head of school wants to ask the membership about kindergarten wait lists and planned tuition increases.\n\nFour questions. You do not email 70 people — it goes to AMISA first, which is the control the association keeps.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Send to AMISA for approval", "Back to my assignment"],
+    "confidence": 93,
+    "capability": "Automated Action"
+  },
+
+  "hr_request_sent": {
+    "user_query": "Send to AMISA for approval",
+    "ai_message": "Sent to the Executive Director.\n\nNothing reaches the other schools until he approves it. If he does, it goes out with a window, reminders and a completion rate — instead of living in an inbox where half the membership never sees it.",
+    "data_sources_used": ["AMISA Survey Platform"],
+    "suggested_chips": ["Open my assignment", "See my school's data"],
+    "confidence": 94,
+    "capability": "Automated Action"
+  },
+
+  "__default__": {
+    "ai_message": "I did not follow that one.\n\nI can open your Human Resources assignment, explain what a question is asking for, show you your own school's figures, or send a question to the association.",
+    "suggested_chips": ["Open my assignment", "What counts as base salary?", "Ask the other schools a question"],
+    "confidence": 55,
+    "capability": "Converged Conversation"
+  }
+}

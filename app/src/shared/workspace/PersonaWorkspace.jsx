@@ -22,6 +22,13 @@ import ActionCard from '../../components/cards/ActionCard';
 import CapabilityCalloutModal from '../../components/modals/CapabilityCalloutModal';
 import { useIntraday } from '../../context/IntradayContext';
 
+/**
+ * The salutation for the initial view.
+ *
+ * Falls back to the wall clock, which is right for a persona whose brief does
+ * not name a time. A persona whose scripted greeting DOES name one sets
+ * `ui.greetingLabel`, so the header cannot contradict the message under it.
+ */
 function getTimeGreeting() {
   const hour = new Date().getHours();
   if (hour < 12) return 'Good morning';
@@ -272,7 +279,7 @@ export default function PersonaWorkspace({ manifest }) {
               {isInitialView && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, height: 0, marginBottom: 0, overflow: 'hidden' }} transition={{ duration: 0.4 }} className="pt-4 pb-4">
                   <h2 className="text-xl font-bold text-text tracking-tight">
-                    {getTimeGreeting()}, <span className="text-brand">{identity.greeting}</span>
+                    {ui.greetingLabel || getTimeGreeting()}, <span className="text-brand">{identity.greeting}</span>
                   </h2>
                   <p className="text-[13px] text-text-muted mt-1 leading-relaxed">
                     Your AI intelligence brief is ready. Here's what needs your attention today.

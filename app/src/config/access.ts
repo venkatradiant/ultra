@@ -66,6 +66,7 @@ export const CLIENT_CREDENTIALS: Record<string, ClientCredential> = {
   att: { slug: 'att', password: 'att@9705' },
   riverside_health: { slug: 'riverside', password: 'riverside@9705' },
   doit: { slug: 'doit', password: 'doit@9705' },
+  amisa: { slug: 'amisa', password: 'amisa@9705' },
 };
 
 /** Validate the platform credential. Pure — the gate's only real logic. */

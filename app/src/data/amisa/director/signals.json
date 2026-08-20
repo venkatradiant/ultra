@@ -1,0 +1,62 @@
+[
+  {
+    "id": "SIG-AMISA-DIR-001",
+    "type": "participation",
+    "title": "6 schools have not opened the Business Office section",
+    "description": "The window closes tonight. These schools will not receive the Business Office benchmark on October 1 — office data is visible only to schools that entered it.",
+    "impact": "high",
+    "severity": "warning",
+    "affected_count": 6,
+    "sources": [
+      "AMISA Survey Platform",
+      "AMISA Membership Records"
+    ],
+    "timestamp": "September 30, 6:00 AM",
+    "trend": "unchanged for 9 days",
+    "primary": true,
+    "confidence": {
+      "score": 97,
+      "rationale": "Submission status is a fact about the platform's own records, not an inference."
+    },
+    "metric_text": "6 of 31 schools · closes tonight"
+  },
+  {
+    "id": "SIG-AMISA-DIR-002",
+    "type": "data_quality",
+    "title": "312 responses swept, 6 findings waiting on your review",
+    "description": "Incomplete records, duplicates, a narrative entry in a numeric field, two figures far outside the range, six enrolment values with stray characters, and 14 records completed unusually fast. Nothing has been changed.",
+    "impact": "high",
+    "severity": "warning",
+    "affected_count": 312,
+    "sources": [
+      "AMISA Survey Platform",
+      "AMISA Data Dictionary"
+    ],
+    "timestamp": "September 30, 5:40 AM",
+    "trend": "swept overnight at close",
+    "confidence": {
+      "score": 92,
+      "rationale": "Each finding is a rule match against the published definition for that field. The fast-completion flag is offered as a judgement call rather than a rule."
+    },
+    "metric_text": "312 swept · 6 findings open"
+  },
+  {
+    "id": "SIG-AMISA-DIR-003",
+    "type": "approval",
+    "title": "Cordillera International School has asked to send a survey",
+    "description": "Four questions on kindergarten wait lists and planned tuition increases. It goes nowhere until you approve it.",
+    "impact": "medium",
+    "severity": "info",
+    "affected_count": 4,
+    "sources": [
+      "AMISA Survey Platform"
+    ],
+    "timestamp": "Yesterday, 3:20 PM",
+    "trend": "first request this cycle",
+    "confidence": {
+      "score": 93,
+      "rationale": "Submitted through the platform with its distribution list and window attached."
+    },
+    "metric_text": "4 questions · 31 schools"
+  }
+]

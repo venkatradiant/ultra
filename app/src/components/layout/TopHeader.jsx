@@ -55,6 +55,12 @@ export default function TopHeader({ onMenuClick }) {
     // because this persona has the one `ask` slot. Keep in sync with the persona
     // manifest's navLabels; this map duplicates them.
     doit_resident: { ask: 'Survey' },
+    // AMISA HR Director — a coordinator at a member school filling in her own
+    // office's section, not asking the association anything. Same one-slot shape
+    // and same `??` caveat as the Resident above. amisa_director correctly
+    // inherits "Ask AMISA" from the client. Keep in sync with the persona
+    // manifest's navLabels; this map duplicates them.
+    amisa_hr: { ask: 'My Assignment' },
   };
   const labels = personaNavLabels[persona?.id] ?? client?.navLabels ?? { journey: 'Member Journey', risk: 'Risk Signals' };
   const pageTitles = {

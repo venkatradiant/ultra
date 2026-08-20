@@ -56,6 +56,11 @@ export const CLIENT_PERSONAS = {
   // agree in BOTH directions, so allow-listing one before it is built fails the
   // suite rather than rendering blank.
   doit: ['doit_author', 'doit_admin', 'doit_resident'],
+  // SLED market — AMISA. Two roles on opposite sides of one boundary: the
+  // Executive Director who runs the association's survey programme, and an HR
+  // Director at a member school who submits to it. The pair is the point — an
+  // entitlement rule cannot be demonstrated from only one side of it.
+  amisa: ['amisa_director', 'amisa_hr'],
 };
 
 // Default (primary) persona per client
@@ -68,6 +73,7 @@ const CLIENT_DEFAULT_PERSONA = {
   aramco: 'aramco_hse_gm',
   att: 'att_billing_operator',
   doit: 'doit_author',
+  amisa: 'amisa_director',
 };
 
 const GENERIC_PERSONAS = ['ops', 'cx', 'retention', 'risk'];

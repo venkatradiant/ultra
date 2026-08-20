@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ds-amisa-01",
+    "name": "AMISA Survey Platform",
+    "status": "connected",
+    "description": "The survey runtime and the source of record for everything a school submits. Questions, validation rules and definitions are stored as data rather than built into screens, so AMISA's own team can change the instrument in the June-to-September window without a vendor release.",
+    "icon": "message-circle",
+    "lastSync": "2026-09-30T05:40:00",
+    "recordCount": 312,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-amisa-02",
+    "name": "AMISA Membership Records",
+    "status": "connected",
+    "description": "Who is a member, who enrolled in the data system this year, and the office coordinators AMISA contacts. Enrollment and tuition bands used for peer grouping are read from here.",
+    "icon": "users",
+    "lastSync": "2026-09-30T04:15:00",
+    "recordCount": 70,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-amisa-03",
+    "name": "AMISA Data Dictionary",
+    "status": "connected",
+    "description": "The published definition behind every benchmark field — what counts as base salary, what enrollment is measured on, what tuition excludes. Travels with the question at the point of entry, which is where comparability is won.",
+    "icon": "file-text",
+    "lastSync": "2026-09-30T04:15:00",
+    "recordCount": 148,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-amisa-04",
+    "name": "Suppression and Entitlement Rules",
+    "status": "connected",
+    "description": "Minimum peer-group sizes per survey and per office, the permitted grouping axes, and which school may see which office's benchmark. Enforced on every query, including the ones the AI makes.",
+    "icon": "shield-check",
+    "lastSync": "2026-09-30T04:15:00",
+    "recordCount": 24,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-amisa-05",
+    "name": "School Spreadsheet Uploads",
+    "status": "connected",
+    "description": "The file path for schools that already keep salary data in a spreadsheet. Columns are mapped once and the same validation runs on every row, so no coordinator retypes what they already have.",
+    "icon": "database",
+    "lastSync": "2026-09-29T18:22:00",
+    "recordCount": 96,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-amisa-06",
+    "name": "School Information Systems",
+    "status": "disconnected",
+    "description": "PowerSchool, Rediker, iSAMS and the spreadsheets smaller schools keep. Shown deliberately unconnected: schools own their data, and a direct read from a school's SIS is a decision for that school, not for the association.",
+    "icon": "monitor",
+    "lastSync": "2026-09-01T00:00:00",
+    "recordCount": null,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-amisa-07",
+    "name": "Assessment Providers",
+    "status": "disconnected",
+    "description": "College Board, ACT, IBO, NWEA and Curriculum Associates reports, which arrive at each school rather than at AMISA. Modelled as a future aggregate-only path: student-level detail never leaves the school that owns it, and no assessment values are shown anywhere in this prototype.",
+    "icon": "star",
+    "lastSync": "2026-09-01T00:00:00",
+    "recordCount": null,
+    "vendorAgnostic": true
+  },
+  {
+    "id": "ds-amisa-08",
+    "name": "Audit Log",
+    "status": "connected",
+    "description": "Every consequential action — a sweep applied, a request approved, a summary published — with who did it and when. What makes 'applied by Dereck Rhoads' a record rather than a caption.",
+    "icon": "shield",
+    "lastSync": "2026-09-30T06:00:00",
+    "recordCount": 1840,
+    "vendorAgnostic": true
+  }
+]

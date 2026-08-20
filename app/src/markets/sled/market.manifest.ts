@@ -1,7 +1,13 @@
 /**
  * SLED market — State, Local & Education.
  *
- * The civic identity a second SLED tenant would inherit. Charter Blue leads
+ * The civic identity a second SLED tenant inherits WHERE IT DOES NOT OVERRIDE.
+ * AMISA, the second tenant, overrides nearly all of it: an association of
+ * private international schools has no reason to wear Maryland's Charter Blue.
+ * What it does inherit is the market's shape — the picker tile, the wayfinding
+ * gradient, and the default client, which stays DoIT.
+ *
+ * Charter Blue leads
  * because it is the primary the Maryland DoIT site itself uses (#1a4480, its
  * button fill), and it is what `bg-brand text-white` controls fill with — 9.62:1
  * on white, so the contrast is load-bearing rather than decorative.
@@ -12,11 +18,12 @@
  */
 import type { MarketManifest } from '@core/types';
 import { doitClient } from './clients/doit/client.manifest';
+import { amisaClient } from './clients/amisa/client.manifest';
 
 export const sledMarket: MarketManifest = {
   id: 'sled',
   name: 'State, Local & Education',
-  clients: [doitClient],
+  clients: [doitClient, amisaClient],
   defaultClientId: 'doit',
   theme: {
     light: {

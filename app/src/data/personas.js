@@ -503,6 +503,37 @@ const personas = {
     greeting: 'there',
     capabilities: ['Converged Conversation', 'Friction Observability', 'Proactive Intelligence'],
   },
+
+  // ─── SLED — AMISA (American International Schools in the Americas) ───
+  // Dr. Dereck Rhoads is AMISA's real, named Executive Director and the person
+  // this demo is built for. Ana Lucía Restrepo is REPRESENTATIVE — a plausible
+  // HR coordinator at a fictional member school, not a real individual — and
+  // the Data Sources screen states the difference. Same three-place identity
+  // rule as the DoIT records above: PersonaModule, PersonaManifest and this
+  // must agree, and manifests.test asserts it.
+  amisa_director: {
+    id: 'amisa_director',
+    name: 'Dr. Dereck Rhoads',
+    initials: 'DR',
+    role: 'Executive Director',
+    greeting: 'Dereck',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Friction Observability',
+      'Predictive Intelligence',
+      'Anomaly Detection',
+      'Automated Action',
+    ],
+  },
+  amisa_hr: {
+    id: 'amisa_hr',
+    name: 'Ana Lucía Restrepo',
+    initials: 'AR',
+    role: 'HR Director — member school',
+    greeting: 'Ana Lucía',
+    capabilities: ['Converged Conversation', 'Friction Observability', 'Proactive Intelligence'],
+  },
 };
 
 export default personas;

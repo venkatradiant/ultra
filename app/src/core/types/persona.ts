@@ -144,6 +144,18 @@ export interface PersonaUiConfig {
    */
   inputPlaceholder?: string;
   /**
+   * Fixed salutation for the initial view, e.g. "Good morning".
+   *
+   * Optional, and omitting it keeps the previous behaviour exactly: the
+   * workspace reads the wall clock. Set it when the persona's scripted brief
+   * names a time of day, because the two are otherwise free to contradict each
+   * other on screen — an AMISA demo presented at 3pm showed "Good evening,
+   * Dereck" directly above a scripted message opening "Good morning, Dereck".
+   * A demo whose clock is fixed should say so rather than depend on when it is
+   * presented.
+   */
+  greetingLabel?: string;
+  /**
    * Tailwind max-width class for the conversation column. Defaults to
    * `max-w-3xl` (768px), which is the right measure for a text-first persona.
    * Personas whose answers render wide artefacts need more room, or the

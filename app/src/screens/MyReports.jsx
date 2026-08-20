@@ -22,6 +22,12 @@ const PANELS = {
     emptyHint:
       'Draft a findings report from your survey results and choose “Save to my reports”. It will wait here until you send it.',
   },
+  amisa_director: {
+    title: 'My Reports',
+    subtitle: 'Association summaries you have saved, ready to edit or publish to participating schools.',
+    emptyHint:
+      'Draft the association summary from a benchmark answer and choose "Save to my reports". It will wait here until you publish it.',
+  },
   doit_admin: {
     title: 'My Reports',
     subtitle: 'Leadership briefs you have saved, ready to edit or send.',

@@ -25,6 +25,7 @@ import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json
 import aramcoDataSources from '../data/aramco/_shared/dataSources.json';
 import attDataSources from '../data/att/_shared/dataSources.json';
 import doitDataSources from '../data/doit/_shared/dataSources.json';
+import amisaDataSources from '../data/amisa/_shared/dataSources.json';
 import AramcoBackdropPanel from '../components/aramco/AramcoBackdropPanel';
 import { useBranding } from '../context/BrandingContext';
 
@@ -77,6 +78,13 @@ const personaDataSources = {
   doit_author: doitDataSources,
   doit_admin: doitDataSources,
   doit_resident: doitDataSources,
+  // SLED — AMISA. Both personas read the same eight systems, but from opposite
+  // sides: the Executive Director runs the programme over them and the school
+  // coordinator submits into one of them. Keyed per persona because this map
+  // is, even though the set does not vary — the fallback is the generic `ops`
+  // list, whose tenant row names a credit union.
+  amisa_director: amisaDataSources,
+  amisa_hr: amisaDataSources,
 };
 
 const penfedPersonaDataSources = {
@@ -146,6 +154,35 @@ const DOIT_DISCLOSURES = [
   'The subject matter is residents\' experience of a health-coverage application. Say the previous points out loud when presenting — a Maryland-branded screen reporting 72% satisfaction will otherwise be read as a finding about Maryland rather than a demonstration of VOCE.',
 ];
 
+// SLED / AMISA data posture. AMISA is a live pursuit, not a customer, and this
+// tenant carries a real association's identity, its real motto and a faithful
+// crop of its own mark over numbers that are entirely invented — the exact
+// combination that needs saying out loud. Same shape as the Aramco, AT&T and
+// DoIT panels.
+const AMISA_REAL_FACTS = [
+  ['Organisation', 'American International Schools in the Americas — a 501(c)(3) nonprofit membership association, headquartered in Doral, Florida'],
+  ['Mission', 'To enhance the quality of education in American and international member schools'],
+  ['Vision', 'To be the most trusted network for the schools we serve in the Americas'],
+  ['Motto', 'Better Together'],
+  ['Members', 'PK–12 American international schools across about 25 countries, accredited by a recognised US or international agency and required to hold child protection policies'],
+  ['Staff', 'Seven'],
+  ['Former name', 'Association of American Schools in South America, renamed in 2021 as membership grew beyond South America'],
+  ['Leadership', 'Dr. Dereck Rhoads, Executive Director — a real, named individual'],
+];
+
+const AMISA_DISCLOSURES = [
+  'AMISA is an active pursuit, not a current customer. The interface carries the association\'s identity and its real public facts; no figure describing its operations, its schools or its surveys is real.',
+  'A FOUNDING YEAR IS DELIBERATELY ABSENT from every screen. amisa.us dates the formal founding to 1977, Dr. Rhoads described 2026 as the association\'s 50th anniversary year, and the association traces its origin to 1961. Those do not reconcile, and AMISA has not yet said which it uses publicly.',
+  'The member-school count of 70 is the figure Dr. Rhoads gave in the RFP question-and-answer document and repeated on the August 6, 2026 call. The website says 65 and the public membership listing shows more than 80 entries with schools appearing in several sections. 70 is held as a single constant and is still to be confirmed.',
+  'EVERY MEMBER SCHOOL SHOWN IS FICTIONAL. AMISA\'s real membership list is public, but attaching invented salaries, participation status and data-quality flags to real, named schools would manufacture a record about identifiable organisations. The roster\'s shape is faithful — most schools under 1,000 students, the largest about 2,500, spread across 25 countries, exactly one in Chile — and the schools themselves are not anyone.',
+  'Every operational figure is illustrative: the 312 responses, 29 submitting schools, 88% completion, the six data-quality findings, the 298 valid records, the $34,800 average salary, the 24 contributing schools, the 18-school peer group and the six schools missing the Business Office section. They are internally consistent with each other and they are not AMISA\'s numbers.',
+  'NO ASSESSMENT RESULTS APPEAR ANYWHERE, and none should be invented. AP, IB, SAT, ACT and MAP data is held by each school and has never been aggregated at the association, so there is no real baseline to model against.',
+  'The minimum peer-group size of 5 is an ILLUSTRATIVE DEFAULT, not a policy. AMISA confirmed that real suppression thresholds are set per survey and per office during governance design, because Human Resources, Finance and Academic data carry different identification risk.',
+  'Dr. Dereck Rhoads is real and named. Ana Lucía Restrepo, the school-side persona, is representative — a plausible coordinator at a fictional school, not a real individual — as are every school contact and every AMISA staff name shown against an operational figure.',
+  'Data protection is described as FERPA-ALIGNED PRACTICES, never as a certification. AMISA holds no FERPA certification and neither does this prototype claim one.',
+  'Brand assets are AMISA\'s own: the globe mark is cropped from the official lockup at amisa.us, and #DB3D38 and #0A0B09 are sampled from that file. Vector artwork, an approved secondary palette, the brand typeface and any AMISA report template are still outstanding and were not substituted with invented equivalents.',
+];
+
 // Telecom / AI Billing Workbench data posture. The chrome is AT&T-branded but
 // the data is not AT&T's, and that gap is exactly what this panel exists to
 // close — spec §2 states the demo models a representative consumer telecom.
@@ -199,6 +236,7 @@ export default function DataSources() {
   const isAtt = persona.id?.startsWith('att_');
   const isEsfcu = persona.id?.startsWith('esfcu_');
   const isDoit = persona.id?.startsWith('doit_');
+  const isAmisa = persona.id?.startsWith('amisa_');
   const esfcuDisclosures = persona.id === 'esfcu_cro'
     ? [...ESFCU_CRO_DISCLOSURES, ...ESFCU_DISCLOSURES]
     : ESFCU_DISCLOSURES;
@@ -295,6 +333,43 @@ export default function DataSources() {
             {DOIT_DISCLOSURES.map((line, i) => (
               <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {isAmisa && (
+        <div className="mb-6 rounded-2xl border border-border-subtle bg-surface p-5">
+          <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-brand">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            Real public backdrop — verified and safe to show
+          </p>
+          <dl className="grid grid-cols-1 gap-x-6 gap-y-2 lg:grid-cols-2">
+            {AMISA_REAL_FACTS.map(([label, value]) => (
+              <div key={label} className="flex flex-col gap-0.5 border-b border-border-subtle pb-2 last:border-0">
+                <dt className="text-[10px] font-semibold uppercase tracking-wide text-text-subtle">{label}</dt>
+                <dd className="text-[12.5px] leading-relaxed text-text-muted">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-3 text-[11px] text-text-subtle">
+            Sources: amisa.us · the AMISA RFP (SW-111399) and its question-and-answer document · Dr. Rhoads, August 6, 2026 call
+          </p>
+        </div>
+      )}
+
+      {isAmisa && (
+        <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+          <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-amber-800">
+            <AlertTriangle className="h-3.5 w-3.5" />
+            Data posture — read before demoing
+          </p>
+          <ul className="space-y-2">
+            {AMISA_DISCLOSURES.map((line, i) => (
+              <li key={i} className="flex items-start gap-2 text-[12.5px] leading-relaxed text-amber-900">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600" />
                 {line}
               </li>
             ))}

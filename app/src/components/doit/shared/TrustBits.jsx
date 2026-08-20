@@ -1,5 +1,4 @@
 import { ShieldCheck, Info, CheckCircle2, AlertTriangle, FileLock2 } from 'lucide-react';
-import { tierFor, colorFor, bgFor, borderFor, labelFor } from '../../../utils/confidence';
 
 /**
  * The trust affordances VOCE carries on every consequential card: a confidence
@@ -12,19 +11,12 @@ import { tierFor, colorFor, bgFor, borderFor, labelFor } from '../../../utils/co
  * confHigh/confMed/confLow tokens rather than hardcoded greens.
  */
 
-export function ConfidenceBadge({ score, note }) {
-  const tier = tierFor(score);
-  return (
-    <span
-      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold"
-      style={{ color: colorFor(tier), background: bgFor(tier), borderColor: borderFor(tier) }}
-      title={note || `${labelFor(tier)} confidence`}
-    >
-      <span aria-hidden="true">◉</span>
-      AI Confidence: {score}%
-    </span>
-  );
-}
+/**
+ * Moved to `components/common/ConfidenceBadge.jsx` when AMISA needed the same
+ * pill. Re-exported here so the DoIT cards importing it from TrustBits keep
+ * working; new code should import from common.
+ */
+export { default as ConfidenceBadge } from '../../common/ConfidenceBadge';
 
 /** Green ✓ Verified — a clarification that matched a governed source. */
 export function VerifiedBadge() {
