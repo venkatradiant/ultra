@@ -419,6 +419,69 @@ const personas = {
     ],
   },
 
+  // Oil & Gas — ADNOC (TrackLynk.AI). Same four altitudes as the Aramco
+  // tenant, over ADNOC's own Ruwais fixtures.
+  adnoc_hse_gm: {
+    id: 'adnoc_hse_gm',
+    name: 'Abidul',
+    initials: 'AB',
+    role: 'General Manager, Health, Safety and Environment',
+    greeting: 'Abidul',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Converged Conversation',
+      'Friction Observability',
+      'Automated Action',
+      'Predictive Intelligence',
+    ],
+  },
+  adnoc_complex_manager: {
+    id: 'adnoc_complex_manager',
+    name: 'Hussain',
+    initials: 'HU',
+    role: 'Complex Manager, Ruwais Industrial Complex',
+    greeting: 'Hussain',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Predictive Intelligence',
+      'Friction Observability',
+      'Automated Action',
+      'Anomaly Detection',
+    ],
+  },
+  adnoc_shift_supervisor: {
+    id: 'adnoc_shift_supervisor',
+    name: 'Fassy',
+    initials: 'FA',
+    role: 'Shift Supervisor, RFCC-2 and DCU-3',
+    greeting: 'Fassy',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Converged Conversation',
+      'Friction Observability',
+      'Automated Action',
+      'Predictive Intelligence',
+    ],
+  },
+  adnoc_permit_issuer: {
+    id: 'adnoc_permit_issuer',
+    name: 'Rashid',
+    initials: 'RA',
+    role: 'Permit Issuing Authority, Turnaround',
+    greeting: 'Rashid',
+    capabilities: [
+      'Proactive Intelligence',
+      'Anomaly Detection',
+      'Predictive Intelligence',
+      'Friction Observability',
+      'Automated Action',
+      'Converged Conversation',
+    ],
+  },
+
   // ─── Telecommunications — AT&T, AI Billing Workbench ───────────
   // Names are representative and illustrative (spec §3). Must stay identical
   // to the PersonaModule identity in each persona's index.ts — manifests.test

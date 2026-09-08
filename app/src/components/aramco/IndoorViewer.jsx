@@ -18,7 +18,7 @@
 import { lazy, Suspense, useMemo, useState } from 'react';
 import { Box, Map as MapIcon, Loader2 } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getIndoorGeo, getPermits } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 import MapCanvas from './MapCanvas';
@@ -39,12 +39,13 @@ function el(html, className) {
 }
 
 export default function IndoorViewer({
-  getter = getIndoorGeo,
-  permitGetter = getPermits,
+  getter = undefined,
+  permitGetter = undefined,
   height = '380px',
 }) {
-  const indoor = useAsyncData(getter);
-  const permits = useAsyncData(permitGetter);
+  const { getIndoorGeo: tenant_getIndoorGeo, getPermits: tenant_getPermits } = useHse();
+  const indoor = useAsyncData(getter ?? tenant_getIndoorGeo);
+  const permits = useAsyncData(permitGetter ?? tenant_getPermits);
   const [mode, setMode] = useState('2d');
 
   const markers = useMemo(() => {

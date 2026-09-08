@@ -116,6 +116,38 @@ export const CLIENTS = {
       muster: 'Muster Status',
     },
   },
+  // ADNOC — the second Oil & Gas tenant, forked from the Aramco reference demo
+  // onto its own site (Ruwais), its own figures and its own palette. Same
+  // product story: ADNOC names the client, TrackLynk is the product, Radiant
+  // Ultra is the platform. ADNOC is an illustrative target example, not a
+  // customer. Keep in sync with
+  // markets/oil-gas/clients/adnoc/client.manifest.ts — BrandingContext reads
+  // THIS map, not the manifest.
+  adnoc: {
+    id: 'adnoc',
+    loginSlug: 'adnoc',
+    name: 'ADNOC',
+    shortName: 'ADNOC',
+    nameLines: ['ADNOC'],
+    tagline: 'HSE Intelligence',
+    // The compact blue mark from adnoc.ae — carries its own white field, so it
+    // reads on the light sidebar surface. The white lockup is kept for dark
+    // fields (see data/adnoc/_shared/adnocBrand.js).
+    logo: '/logos/adnoc-mark.png',
+    favicon: '/logos/adnoc-mark.png',
+    primaryColor: '#0047BA',
+    footerMark: {
+      logo: '/logos/tracklynk-logo.png',
+      alt: 'TrackLynk',
+      label: 'Powered by',
+    },
+    navLabels: {
+      ask: 'Ask TrackLynk',
+      liveSite: 'Live Site Picture',
+      permits: 'Permit and Job Detail',
+      muster: 'Muster Status',
+    },
+  },
   // ─── Telecommunications market — AT&T (AI Billing Workbench) ────
   // AT&T-branded: the official globe and AT&T's blues. The data is still
   // illustrative and says so on the Data Sources screen. Keep in sync with

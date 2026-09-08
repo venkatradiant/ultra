@@ -32,6 +32,10 @@ import aramcoHseChatFlows from './aramco/hse-gm/chatFlows.json';
 import aramcoSupChatFlows from './aramco/shift-supervisor/chatFlows.json';
 import aramcoIssChatFlows from './aramco/permit-issuer/chatFlows.json';
 import aramcoCmChatFlows from './aramco/complex-manager/chatFlows.json';
+import adnocHseChatFlows from './adnoc/hse-gm/chatFlows.json';
+import adnocSupChatFlows from './adnoc/shift-supervisor/chatFlows.json';
+import adnocIssChatFlows from './adnoc/permit-issuer/chatFlows.json';
+import adnocCmChatFlows from './adnoc/complex-manager/chatFlows.json';
 import attOpChatFlows from './att/billing-operator/chatFlows.json';
 import attAdmChatFlows from './att/platform-admin/chatFlows.json';
 
@@ -1622,6 +1626,146 @@ const aramcoCmConfig = {
 };
 
 // ─── AT&T — Billing Operator (Bianca), AI Billing Workbench ──────
+// ─── ADNOC (Ruwais) — the same four altitudes as the Aramco tenant, over
+// ADNOC's own fixtures. Chip labels track the renamed units.
+const adnocHseConfig = {
+  chatFlows: adnocHseChatFlows,
+  chipToFlowKey: {
+    // Step 1 — situational briefing follow-ups
+    'Show the three flagged jobs': 'adnoc_hse_flagged_jobs',
+    'Show the DCU-3 confined-space entry': 'adnoc_hse_confined_space',
+    'Why do the headcounts disagree?': 'adnoc_hse_trust',
+    'Next signal': '__next_signal__',
+    // Suggested query prompts (spec §11) — the query-bar entry points
+    'What is the riskiest job on site right now?': 'adnoc_hse_riskiest_job',
+    'Show me every job in a hazard zone without a valid permit.': 'adnoc_hse_flagged_jobs',
+    'Show me every job running in a hazardous zone without a valid permit.': 'adnoc_hse_flagged_jobs',
+    'Walk me through the confined-space entry on DCU-3.': 'adnoc_hse_confined_space',
+    "Can I trust today's headcount, and where does it come from?": 'adnoc_hse_trust',
+    'Can I trust these numbers?': 'adnoc_hse_trust',
+    'What are the top three actions to take before the night shift?': 'adnoc_hse_actions',
+    'What should I act on before the night shift?': 'adnoc_hse_actions',
+    'During a muster, who is unaccounted for?': 'adnoc_hse_muster',
+    // Step 2 — permit violation follow-ups
+    'Open the evidence for job 1': 'adnoc_hse_evidence_job1',
+    'Notify the permit issuer': 'adnoc_hse_notify_issuer',
+    'Show these on the site map': 'adnoc_hse_site_map',
+    // Step 3 — confined-space follow-ups
+    'Remind the crew of the gas test': 'adnoc_hse_gas_test_reminder',
+    'Who is the standby person?': 'adnoc_hse_standby_person',
+    'Show the entry and exit log': 'adnoc_hse_entry_exit_log',
+    // Step 4 — trust and reconciliation follow-ups
+    'Show the 34 unmatched people': 'adnoc_hse_unmatched_28',
+    'Export the reconciliation for audit': 'adnoc_hse_export_recon',
+    'Which source is usually off?': 'adnoc_hse_source_reliability',
+    // Step 5 — action follow-ups
+    'Hand all three to supervisors': 'adnoc_hse_hand_off',
+    'Edit action 1': 'adnoc_hse_edit_action_1',
+    'Add to the shift handover report': 'adnoc_hse_handover_report',
+    // Step 6 — muster follow-ups
+    'Show the 2 with no signal': 'adnoc_hse_no_signal_2',
+    'Message the zone wardens': 'adnoc_hse_message_wardens',
+    'Start the incident log': 'adnoc_hse_incident_log',
+    // Priority signal cards
+    'Show me the contractor surge exposure': 'adnoc_hse_surge_exposure',
+    'Where is verification idle time coming from?': 'adnoc_hse_idle_time',
+    // Equipment and device health — the third domain pattern. Off the golden
+    // path on purpose: the six canonical spec turns stay the walkthrough.
+    'How is the compressor on RFCC-2?': 'adnoc_hse_asset_health',
+    'Show me the whole equipment fleet': 'adnoc_hse_asset_fleet',
+    'Which permits are inside the exclusion radius?': 'adnoc_hse_exclusion_permits',
+    // Current state, future state and the journey map (spec §8 and §9)
+    'How does this work today, without TrackLynk?': 'adnoc_hse_current_state',
+    'Where does TrackLynk change the picture?': 'adnoc_hse_future_state',
+    'Walk me through my turnaround day': 'adnoc_hse_journey',
+    'How long did the last muster actually take?': 'adnoc_hse_muster_benchmark',
+  },
+  // The three priority signal cards, risk-ranked (critical → warning → info).
+  signalSequence: ['adnoc_hse_trust', 'adnoc_hse_surge_exposure', 'adnoc_hse_idle_time'],
+  // The six-turn guided demo, in spec order.
+  askTurnSequence: [
+    'adnoc_hse_flagged_jobs',
+    'adnoc_hse_confined_space',
+    'adnoc_hse_trust',
+    'adnoc_hse_actions',
+    'adnoc_hse_muster',
+  ],
+  actionTurnKey: 'adnoc_hse_actions',
+};
+
+// ─── ADNOC (TrackLynk.AI): Shift Supervisor, Units 2 and 3 ───────
+const adnocSupConfig = {
+  chatFlows: adnocSupChatFlows,
+  chipToFlowKey: {
+    'Show me the expired hot-work permits': 'adnoc_sup_expired_permits',
+    'What is the status on the DCU-3 confined space?': 'adnoc_sup_confined_space',
+    'What has been assigned to me?': 'adnoc_sup_assigned',
+    'Draft the stop-work notice': 'adnoc_sup_stop_work',
+    'Request an extension with fresh conditions': 'adnoc_sup_extension',
+    'Who is on location right now?': 'adnoc_sup_on_location',
+    'Remind the crew of the gas test': 'adnoc_sup_gas_reminder',
+    'How is my muster point looking?': 'adnoc_sup_muster',
+    'Next signal': '__next_signal__',
+  },
+  signalSequence: ['adnoc_sup_expired_permits', 'adnoc_sup_confined_space', 'adnoc_sup_on_location'],
+  askTurnSequence: [
+    'adnoc_sup_expired_permits',
+    'adnoc_sup_stop_work',
+    'adnoc_sup_confined_space',
+    'adnoc_sup_assigned',
+    'adnoc_sup_muster',
+  ],
+  actionTurnKey: 'adnoc_sup_assigned',
+};
+
+// ─── ADNOC (TrackLynk.AI): Permit Issuing Authority ──────────────
+const adnocIssConfig = {
+  chatFlows: adnocIssChatFlows,
+  chipToFlowKey: {
+    'Show me the permits that lapsed with workers still on location': 'adnoc_iss_lapsed',
+    'Which permits expire in the next hour?': 'adnoc_iss_expiring',
+    'Show me the general permit in the confined-space zone': 'adnoc_iss_general_permit',
+    'Issue an extension with fresh conditions': 'adnoc_iss_extension',
+    'Why did the night shift not log an extension?': 'adnoc_iss_night_shift',
+    'Notify the crew and the supervisor': 'adnoc_iss_notify',
+    'Where is my issue-to-verify time going?': 'adnoc_iss_cycle_time',
+    'Next signal': '__next_signal__',
+  },
+  signalSequence: ['adnoc_iss_lapsed', 'adnoc_iss_general_permit', 'adnoc_iss_night_shift'],
+  askTurnSequence: [
+    'adnoc_iss_lapsed',
+    'adnoc_iss_extension',
+    'adnoc_iss_general_permit',
+    'adnoc_iss_notify',
+    'adnoc_iss_cycle_time',
+  ],
+  actionTurnKey: 'adnoc_iss_extension',
+};
+
+// ─── ADNOC (TrackLynk.AI): Complex Manager (site VP) ─────────────
+const adnocCmConfig = {
+  chatFlows: adnocCmChatFlows,
+  chipToFlowKey: {
+    'Show me safety exposure by unit': 'adnoc_cm_unit_rollup',
+    'What is the schedule versus safety trade-off?': 'adnoc_cm_schedule_safety',
+    'Why are the headcounts disagreeing?': 'adnoc_cm_headcount',
+    'What happens at the next surge?': 'adnoc_cm_surge',
+    "What would I tell the board's safety committee today?": 'adnoc_cm_board',
+    'Assemble the committee pack': 'adnoc_cm_committee_pack',
+    'Next signal': '__next_signal__',
+  },
+  signalSequence: ['adnoc_cm_unit_rollup', 'adnoc_cm_headcount', 'adnoc_cm_surge'],
+  askTurnSequence: [
+    'adnoc_cm_unit_rollup',
+    'adnoc_cm_schedule_safety',
+    'adnoc_cm_surge',
+    'adnoc_cm_board',
+    'adnoc_cm_committee_pack',
+  ],
+  actionTurnKey: 'adnoc_cm_committee_pack',
+};
+
+// ─── AT&T — Billing Operator (Bianca), AI Billing Workbench ──────
 const attOpConfig = {
   chatFlows: attOpChatFlows,
   chipToFlowKey: {
@@ -1765,6 +1909,10 @@ const personaFlowConfigs = {
   aramco_shift_supervisor: aramcoSupConfig,
   aramco_permit_issuer: aramcoIssConfig,
   aramco_complex_manager: aramcoCmConfig,
+  adnoc_hse_gm: adnocHseConfig,
+  adnoc_shift_supervisor: adnocSupConfig,
+  adnoc_permit_issuer: adnocIssConfig,
+  adnoc_complex_manager: adnocCmConfig,
   att_billing_operator: attOpConfig,
   att_platform_admin: attAdmConfig,
 };

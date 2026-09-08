@@ -7,7 +7,7 @@
  */
 import { usePersona } from '../context/PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
-import { getPermits } from '../data/aramco/hse-gm';
+import { hseTenant, hseTenantOf } from '../data/hseTenant';
 import HsePageHeader from '../components/aramco/HsePageHeader';
 import LazyIndoorViewer from '../components/aramco/LazyIndoorViewer';
 import PermitDetailCard from '../components/aramco/PermitDetailCard';
@@ -15,9 +15,11 @@ import EvidenceTrustPanel from '../components/aramco/EvidenceTrustPanel';
 
 export default function PermitJobDetail() {
   const persona = usePersona();
+  const tenant = hseTenantOf(persona?.id);
+  const { getPermits } = hseTenant(tenant);
   const permits = useAsyncData(getPermits);
 
-  if (!persona?.id?.startsWith('aramco_')) {
+  if (!tenant) {
     return (
       <div className="flex-1 py-8 px-6 lg:px-8 overflow-y-auto">
         <p className="text-sm text-text-muted">This view is not available for the active persona.</p>

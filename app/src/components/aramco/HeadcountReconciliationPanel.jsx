@@ -10,7 +10,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, FileCheck2, AlertTriangle } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getReconciliation } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
@@ -20,8 +20,9 @@ const PRIORITY_STYLE = {
   low: 'border-border-subtle bg-surface-2 text-text-muted',
 };
 
-export default function HeadcountReconciliationPanel({ getter = getReconciliation }) {
-  const rec = useAsyncData(getter);
+export default function HeadcountReconciliationPanel({ getter = undefined }) {
+  const { getReconciliation: tenant_getReconciliation } = useHse();
+  const rec = useAsyncData(getter ?? tenant_getReconciliation);
   if (!rec) return null;
 
   return (

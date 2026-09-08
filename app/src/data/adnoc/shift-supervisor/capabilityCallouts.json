@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Your shift starts already triaged. The AI watches every permit and every worker position on your units overnight and opens with the two things that need you now, rather than the 167 permits that do not — so the first twenty minutes of the shift go to the hazard, not to the handover pack.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Anomaly Detection",
+    "description": "A lapsed permit looks like a closed record in the permit system. Put live location next to it and it becomes seven people still standing in a hazard zone. The AI flags that combination the moment it occurs and hands you the evidence — permit record, location trail, timestamps — already assembled.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Converged Conversation",
+    "description": "Ask about a job and get the permit conditions, who is inside, the gas-test clock, the standby confirmation and the crew's shift history in one answer. No radio call to the unit, no walk to the platform, no second system to open.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Friction Observability",
+    "description": "The AI shows where your shift loses time to verification queues rather than to the work itself — which low-risk permits are stuck behind a high-risk check, and which conditions are being signed once instead of verified continuously.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "Stop-work notices, extension requests and crew reminders drafted from the conversation with the evidence attached and the right people copied. Follow-ups arm themselves: no gas reading inside the interval and the permit moves to breached without you having to remember.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Predictive Intelligence",
+    "description": "During a muster the AI projects when your point will clear from its live check-in rate, and separates your outstanding names from the site-wide ones — so you know whether the delay is yours to solve or somebody else's.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

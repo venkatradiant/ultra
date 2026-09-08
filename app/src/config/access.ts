@@ -63,6 +63,7 @@ export const CLIENT_CREDENTIALS: Record<string, ClientCredential> = {
   nfcu: { slug: 'nfcu', password: 'nfcu@9705' },
   newfold_digital: { slug: 'newfold', password: 'newfold@9705' },
   aramco: { slug: 'aramco', password: 'aramco@9705' },
+  adnoc: { slug: 'adnoc', password: 'adnoc@9705' },
   att: { slug: 'att', password: 'att@9705' },
   riverside_health: { slug: 'riverside', password: 'riverside@9705' },
   doit: { slug: 'doit', password: 'doit@9705' },

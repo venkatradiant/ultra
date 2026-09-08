@@ -26,7 +26,7 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { Layers, Users, AlertTriangle, MapPin, Radio, Box, Map as MapIcon, Loader2 } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getSiteGeo, getWorkerPositions } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import { entityFromTag } from '../../lib/rtlsIdentity';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
@@ -86,11 +86,12 @@ export default function SiteMapPanel({
   height = '440px',
   title = 'Live Site Picture',
   compact = false,
-  siteGetter = getSiteGeo,
-  workerGetter = getWorkerPositions,
+  siteGetter = undefined,
+  workerGetter = undefined,
 }) {
-  const site = useAsyncData(siteGetter);
-  const workers = useAsyncData(workerGetter);
+  const { getSiteGeo: tenant_getSiteGeo, getWorkerPositions: tenant_getWorkerPositions } = useHse();
+  const site = useAsyncData(siteGetter ?? tenant_getSiteGeo);
+  const workers = useAsyncData(workerGetter ?? tenant_getWorkerPositions);
   const [showWorkers, setShowWorkers] = useState(variant !== 'flagged');
   const [showFlagged, setShowFlagged] = useState(true);
   const [showLabels, setShowLabels] = useState(true);

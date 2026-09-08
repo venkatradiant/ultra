@@ -1,0 +1,51 @@
+{
+  "title": "Current State — High-Risk Work During a Turnaround",
+  "subtitle": "How high-risk work is authorized and run today, before TrackLynk.AI. The verification gap, where authorized work and actual work drift apart, is marked in red.",
+  "illustrative": true,
+  "cycleTimeNote": "Cycle times are labeled and illustrative.",
+  "steps": [
+    { "id": "A", "label": "Contractor badges in at gate", "detail": "Headcount goes to the gate system", "state": "normal", "system": "Gate access-control" },
+    { "id": "B", "label": "Permit issued in PTW system", "detail": "Paper copy handed to the crew", "state": "normal", "system": "Permit-to-work system" },
+    { "id": "C", "label": "Crew walks to the unit", "detail": "Permit conditions travel on paper, not in a system", "state": "normal", "system": "—" },
+    { "id": "D", "label": "Is the job running where and how the permit says?", "detail": "The question nobody can answer from a desk", "state": "gap", "system": "No system holds the answer", "isDecision": true },
+    { "id": "E", "label": "Manual spot check", "detail": "Verify by radio, phone and foot — hours per check", "state": "gap", "system": "Radio, phone, walking the unit" },
+    { "id": "F", "label": "Work proceeds", "detail": "Often unverified", "state": "normal", "system": "—" },
+    { "id": "G", "label": "Weekly HSE stats compiled in Excel", "detail": "Assembled by hand from several systems", "state": "normal", "system": "Spreadsheets" },
+    { "id": "H", "label": "Mismatch found after the fact", "detail": "Numbers disagree — an audit finding, a near-miss, or worse", "state": "gap", "system": "HSE reporting" }
+  ],
+  "gapSummary": "That is the verification gap: authorized work and actual work drift apart precisely where nothing is recording either one.",
+  "interventions": [
+    {
+      "id": "INT-1",
+      "currentStep": "Manual spot check by radio, phone and foot",
+      "stepId": "E",
+      "intervention": "Fuse permit status with live worker and asset location into one queryable view",
+      "capability": "Converged Conversation",
+      "impact": "Hours of manual verification replaced by a live view"
+    },
+    {
+      "id": "INT-2",
+      "currentStep": "Verify whether the job matches the permit",
+      "stepId": "D",
+      "intervention": "Automatically flag any job in a hazard zone without a valid permit",
+      "capability": "Anomaly Detection",
+      "impact": "Mismatches caught in the moment, not after the fact"
+    },
+    {
+      "id": "INT-3",
+      "currentStep": "Reconcile disagreeing headcounts",
+      "stepId": "H",
+      "intervention": "Resolve gate, permit and timesheet sources to one trusted number with an evidence trail",
+      "capability": "Friction Observability",
+      "impact": "One defensible figure for muster and audit"
+    },
+    {
+      "id": "INT-4",
+      "currentStep": "Decide what to fix before the next shift",
+      "stepId": "G",
+      "intervention": "Recommend the two or three highest-value actions and hand them off",
+      "capability": "Automated Action",
+      "impact": "Faster, consistent decisions handed to shift supervisors"
+    }
+  ]
+}

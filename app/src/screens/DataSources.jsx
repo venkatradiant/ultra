@@ -23,10 +23,12 @@ import esfcuCeoDataSources from '../data/esfcu/ceo/dataSources.json';
 import esfcuCroDataSources from '../data/esfcu/cro/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
 import aramcoDataSources from '../data/aramco/_shared/dataSources.json';
+import adnocDataSources from '../data/adnoc/_shared/dataSources.json';
 import attDataSources from '../data/att/_shared/dataSources.json';
 import doitDataSources from '../data/doit/_shared/dataSources.json';
 import amisaDataSources from '../data/amisa/_shared/dataSources.json';
-import AramcoBackdropPanel from '../components/aramco/AramcoBackdropPanel';
+import ClientBackdropPanel from '../components/aramco/AramcoBackdropPanel';
+import * as adnocBrand from '../data/adnoc/_shared/adnocBrand';
 import { useBranding } from '../context/BrandingContext';
 
 const personaDataSources = {
@@ -66,6 +68,10 @@ const personaDataSources = {
   aramco_complex_manager: aramcoDataSources,
   aramco_shift_supervisor: aramcoDataSources,
   aramco_permit_issuer: aramcoDataSources,
+  adnoc_hse_gm: adnocDataSources,
+  adnoc_complex_manager: adnocDataSources,
+  adnoc_shift_supervisor: adnocDataSources,
+  adnoc_permit_issuer: adnocDataSources,
   // Telecom — AT&T (AI Billing Workbench). Both personas read the same ten
   // systems; the operator acts on them and the admin tunes the agents over them.
   att_billing_operator: attDataSources,
@@ -141,6 +147,18 @@ const ARAMCO_DISCLOSURES = [
   'This prototype does not use confidential Aramco data. No proprietary, internal, or restricted information is present in any view.',
   'All operational figures — permit counts, headcounts, near-misses, muster times — are mock and illustrative. Company-level facts shown elsewhere are public and sourced to the Aramco FY2025 Annual Report.',
   'Tracking and telemetry integrations are vendor-agnostic. TrackLynk reads whatever tags, beacons, readers and cameras a site already runs; no specific tracking vendor is named or required.',
+];
+
+// ADNOC data posture. Same shape and same rules as the Aramco panel above: a
+// real company's identity over invented operations, so the boundary between
+// the two has to be stated where the numbers are listed.
+const ADNOC_DISCLOSURES = [
+  'ADNOC is used here as an illustrative target example — an archetypal integrated energy operator with a large downstream complex. It is not a current customer.',
+  'This prototype does not use confidential ADNOC data. No proprietary, internal, or restricted information is present in any view.',
+  'All operational figures — permit counts, headcounts, near-misses, muster times, and the recordable case rate — are mock and illustrative. Only the company facts on this screen are real, and they are sourced to ADNOC\'s published Key Facts at adnoc.ae.',
+  'The Ruwais Industrial Complex is named because it is ADNOC\'s flagship downstream site, but the site layout, unit names, zone boundaries and every worker position in this build are invented. Nothing here reflects an actual facility plan.',
+  'Tracking and telemetry integrations are vendor-agnostic. TrackLynk reads whatever tags, beacons, readers and cameras a site already runs; no specific tracking vendor is named or required.',
+  'Brand assets are ADNOC\'s own, taken from adnoc.ae so the demo is recognisable, and the palette is sampled from the official lockup. Confirm against the ADNOC brand kit before any external use.',
 ];
 
 // SLED / VOCE data posture. DoIT carries a real department's name, its real
@@ -233,6 +251,9 @@ export default function DataSources() {
   const sourcesMap = clientId === 'penfed' ? penfedPersonaDataSources : personaDataSources;
   const dataSources = sourcesMap[persona.id] || sourcesMap.ops;
   const isAramco = persona.id?.startsWith('aramco_');
+  const isAdnoc = persona.id?.startsWith('adnoc_');
+  // Both Oil & Gas tenants show the same two panels; only the brand differs.
+  const isHse = isAramco || isAdnoc;
   const isAtt = persona.id?.startsWith('att_');
   const isEsfcu = persona.id?.startsWith('esfcu_');
   const isDoit = persona.id?.startsWith('doit_');
@@ -249,16 +270,21 @@ export default function DataSources() {
       </div>
 
       {/* Spec §2 — the real, public, sourced frame the whole demo sits on. */}
-      {isAramco && <AramcoBackdropPanel />}
+      {isHse && (
+        <ClientBackdropPanel
+          brand={isAdnoc ? adnocBrand : undefined}
+          clientName={isAdnoc ? 'ADNOC' : 'Aramco'}
+        />
+      )}
 
-      {isAramco && (
+      {isHse && (
         <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
           <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-amber-800 mb-3">
             <AlertTriangle className="w-3.5 h-3.5" />
             Data posture — read before demoing
           </p>
           <ul className="space-y-2">
-            {ARAMCO_DISCLOSURES.map((line, i) => (
+            {(isAdnoc ? ADNOC_DISCLOSURES : ARAMCO_DISCLOSURES).map((line, i) => (
               <li key={i} className="flex items-start gap-2 text-[12.5px] text-amber-900 leading-relaxed">
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
                 {line}

@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Check, Send, ChevronDown, Clock, User, Paperclip } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getActions } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import RiskBucketBadge from './RiskBucketBadge';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 
@@ -20,8 +20,9 @@ const PRIORITY_ACCENT = {
   medium: 'border-l-violet-600',
 };
 
-export default function PrioritizedActionCards({ getter = getActions }) {
-  const data = useAsyncData(getter);
+export default function PrioritizedActionCards({ getter = undefined }) {
+  const { getActions: tenant_getActions } = useHse();
+  const data = useAsyncData(getter ?? tenant_getActions);
   const [handedOff, setHandedOff] = useState(() => new Set());
   const [openId, setOpenId] = useState(null);
 

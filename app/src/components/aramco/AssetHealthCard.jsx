@@ -17,7 +17,7 @@
 import { motion } from 'framer-motion';
 import { Activity, Wrench, AlertTriangle, ShieldAlert } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getAssets } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 
 const BAND = {
@@ -172,8 +172,9 @@ function AssetPanel({ asset, index }) {
  * @param {string} [props.assetId] Defaults to the featured asset.
  * @param {boolean} [props.fleet] Render every asset instead of one.
  */
-export default function AssetHealthCard({ getter = getAssets, assetId, fleet = false }) {
-  const data = useAsyncData(getter);
+export default function AssetHealthCard({ getter = undefined, assetId, fleet = false }) {
+  const { getAssets: tenant_getAssets } = useHse();
+  const data = useAsyncData(getter ?? tenant_getAssets);
   if (!data) return null;
 
   const assets = fleet

@@ -7,16 +7,18 @@
  */
 import { usePersona } from '../context/PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
-import { getSiteData } from '../data/aramco/hse-gm';
+import { hseTenant, hseTenantOf } from '../data/hseTenant';
 import HsePageHeader from '../components/aramco/HsePageHeader';
 import LazySiteMap from '../components/aramco/LazySiteMap';
 import FlaggedJobsTable from '../components/aramco/FlaggedJobsTable';
 
 export default function LiveSitePicture() {
   const persona = usePersona();
+  const tenant = hseTenantOf(persona?.id);
+  const { getSiteData } = hseTenant(tenant);
   const site = useAsyncData(getSiteData);
 
-  if (!persona?.id?.startsWith('aramco_')) {
+  if (!tenant) {
     return (
       <div className="flex-1 py-8 px-6 lg:px-8 overflow-y-auto">
         <p className="text-sm text-text-muted">This view is not available for the active persona.</p>

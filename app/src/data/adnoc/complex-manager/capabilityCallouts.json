@@ -1,0 +1,38 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "The same intelligence your HSE GM, permit issuers and shift supervisors work from, rolled up to the complex — and filtered to the three things that are actually yours. Not a summary of their screens: a different altitude on the same live data.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Converged Conversation",
+    "description": "One question spans every zone, every permit and every worker position at once. Safety exposure by unit is not a report somebody compiles for you on Thursday — it is a sentence you can ask for and get with its sources attached.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Predictive Intelligence",
+    "description": "The trade-off you actually own, modelled: schedule pressure landing on the same units that carry the exposure, and what the contractor surge does to verification coverage. Exposure scales with the gap between permits issued and permits verified, not with headcount.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Friction Observability",
+    "description": "Three systems measuring three different populations, reconciled to one figure with the exceptions held and visible rather than absorbed. That visibility is what makes the number defensible in front of the regulator and the board's safety committee.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Automated Action",
+    "description": "The committee pack assembled from live data with every figure's source, freshness and evidence trail on the page, timestamped and immutable. When the committee asks in three months where a number came from, the answer is a document rather than a recollection.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Anomaly Detection",
+    "description": "Three jobs outside their permit conditions this morning, all caught in the moment rather than in an audit finding or a near-miss investigation. At complex altitude the value is not the individual flag — it is that the flag rate is now a measurable, trending number.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

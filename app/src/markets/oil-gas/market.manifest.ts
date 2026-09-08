@@ -10,11 +10,12 @@
  */
 import type { MarketManifest } from '@core/types';
 import { aramcoClient } from './clients/aramco/client.manifest';
+import { adnocClient } from './clients/adnoc/client.manifest';
 
 export const oilGasMarket: MarketManifest = {
   id: 'oil_gas',
   name: 'Oil & Gas',
-  clients: [aramcoClient],
+  clients: [aramcoClient, adnocClient],
   defaultClientId: 'aramco',
   theme: {
     light: {

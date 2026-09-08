@@ -9,13 +9,14 @@
 import { motion } from 'framer-motion';
 import { ShieldCheck, Database } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getReconciliation } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import IllustrativeDataChip from './IllustrativeDataChip';
 import HeadcountReconciliationPanel from './HeadcountReconciliationPanel';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
-export default function EvidenceTrustPanel({ getter = getReconciliation, scope = 'all', showReconciliation = false }) {
-  const rec = useAsyncData(getter);
+export default function EvidenceTrustPanel({ getter = undefined, scope = 'all', showReconciliation = false }) {
+  const { getReconciliation: tenant_getReconciliation } = useHse();
+  const rec = useAsyncData(getter ?? tenant_getReconciliation);
   if (!rec) return null;
 
   const figures =

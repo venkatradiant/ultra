@@ -7,15 +7,17 @@
  */
 import { usePersona } from '../context/PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
-import { getMuster } from '../data/aramco/hse-gm';
+import { hseTenant, hseTenantOf } from '../data/hseTenant';
 import HsePageHeader from '../components/aramco/HsePageHeader';
 import MusterBoard from '../components/aramco/MusterBoard';
 
 export default function MusterStatus() {
   const persona = usePersona();
+  const tenant = hseTenantOf(persona?.id);
+  const { getMuster } = hseTenant(tenant);
   const muster = useAsyncData(getMuster);
 
-  if (!persona?.id?.startsWith('aramco_')) {
+  if (!tenant) {
     return (
       <div className="flex-1 py-8 px-6 lg:px-8 overflow-y-auto">
         <p className="text-sm text-text-muted">This view is not available for the active persona.</p>

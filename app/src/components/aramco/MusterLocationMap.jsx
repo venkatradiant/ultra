@@ -9,11 +9,12 @@
  * data lookup and a `LazySiteMap` behind which MapLibre stays deferred.
  */
 import useAsyncData from '../../hooks/useAsyncData';
-import { getMuster } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import LazySiteMap from './LazySiteMap';
 
-export default function MusterLocationMap({ getter = getMuster, height = '360px' }) {
-  const muster = useAsyncData(getter);
+export default function MusterLocationMap({ getter = undefined, height = '360px' }) {
+  const { getMuster: tenant_getMuster } = useHse();
+  const muster = useAsyncData(getter ?? tenant_getMuster);
   if (!muster) return null;
 
   const groups = (muster.unaccountedGroups || []).filter((g) => g.lastKnownPoint);

@@ -11,22 +11,32 @@
  */
 import { motion } from 'framer-motion';
 import { BadgeCheck, ExternalLink } from 'lucide-react';
-import {
-  ARAMCO_PUBLIC_FACTS,
-  PUBLIC_FACTS_SOURCE,
-  PUBLIC_FACTS_URL,
-  DEMO_SITE_FRAME,
-  ARAMCO_GRADIENT,
-  LOGO_WHITE,
-} from '../../data/aramco/_shared/aramcoBrand';
+import * as aramcoBrand from '../../data/aramco/_shared/aramcoBrand';
 import IllustrativeDataChip from './IllustrativeDataChip';
 
-export default function AramcoBackdropPanel() {
+/**
+ * `brand` is the tenant's brand module — it must export PUBLIC_FACTS_SOURCE,
+ * PUBLIC_FACTS_URL, DEMO_SITE_FRAME, a gradient, a white lockup and a facts
+ * array. Defaults to Aramco so the reference demo's call site is unchanged;
+ * ADNOC passes its own. Nothing here is Aramco-specific any more except that
+ * default.
+ */
+export default function ClientBackdropPanel({ brand = aramcoBrand, clientName = 'Aramco' }) {
+  const {
+    PUBLIC_FACTS_SOURCE,
+    PUBLIC_FACTS_URL,
+    DEMO_SITE_FRAME,
+  } = brand;
+  const facts = brand.ADNOC_PUBLIC_FACTS ?? brand.ARAMCO_PUBLIC_FACTS ?? [];
+  const gradient = brand.ADNOC_GRADIENT ?? brand.ARAMCO_GRADIENT;
+  const logoWhite = brand.LOGO_WHITE;
+  // Label the link with the host it actually points at, rather than a literal.
+  const factsHost = String(PUBLIC_FACTS_URL || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '');
   return (
     <div className="rounded-2xl border border-border-subtle bg-surface overflow-hidden mb-6">
       {/* Client identity band — the one place Aramco gets its own field. */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3" style={{ background: ARAMCO_GRADIENT }}>
-        <img src={LOGO_WHITE} alt="Aramco" className="h-5 w-auto object-contain" />
+      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3" style={{ background: gradient }}>
+        <img src={logoWhite} alt={clientName} className="h-5 w-auto object-contain" />
         <span className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-white/90">
           Illustrative target example — not a current customer
         </span>
@@ -50,12 +60,12 @@ export default function AramcoBackdropPanel() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-[10.5px] font-semibold text-text-muted hover:bg-surface-2 hover:text-text transition-colors flex-shrink-0"
           >
-            aramco.com <ExternalLink className="w-3 h-3" />
+            {factsHost} <ExternalLink className="w-3 h-3" />
           </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2.5">
-          {ARAMCO_PUBLIC_FACTS.map((fact, i) => (
+          {facts.map((fact, i) => (
             <motion.div
               key={fact.id}
               initial={{ opacity: 0, y: 8 }}

@@ -5,21 +5,40 @@
       "name": "FinancialServices App",
       "cwd": "app",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5600", "--strictPort"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5600",
+        "--strictPort",
+        "--host",
+        "0.0.0.0"
+      ],
       "port": 5600
     },
     {
       "name": "FinancialServices Fresh",
       "cwd": "app",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5600", "--strictPort"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5600",
+        "--strictPort"
+      ],
       "port": 5600
     },
     {
       "name": "Ultra App",
       "cwd": "app",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "autoPort": true
     }
   ]

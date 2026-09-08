@@ -1,0 +1,148 @@
+{
+  "asOf": "2026-08-05T06:53:00Z",
+  "freshness": "live",
+  "illustrative": true,
+  "state": "drill",
+  "stateLabel": "Muster drill in progress",
+  "elapsedSeconds": 90,
+  "accounted": 3122,
+  "total": 3180,
+  "unaccounted": 34,
+  "projection": {
+    "fullAccountingMinutes": 3,
+    "basis": "Current check-in rate across all muster points",
+    "confidence": 90
+  },
+  "measuredCompletion": {
+    "label": "3:12",
+    "seconds": 167,
+    "target": "Under 5:00, all accounted",
+    "basis": "Time from alarm to all personnel accounted, measured by TrackLynk across all five muster points.",
+    "priorDrill": "Not measured — the site had no instrumented figure before this drill.",
+    "note": "This closes an open follow-up from the intake: the last drill's completion time was recorded only as \"felt too long\". A measured, defensible number is the point — a muster that cannot be timed cannot be improved."
+  },
+  "zones": [
+    {
+      "id": "M1",
+      "name": "Muster Point A — North",
+      "accounted": 801,
+      "expected": 815,
+      "coversZones": [
+        "CDU-4 — Crude Distillation",
+        "Tank Farm West"
+      ],
+      "capacity": 800
+    },
+    {
+      "id": "M2",
+      "name": "Muster Point B — Central",
+      "accounted": 892,
+      "expected": 903,
+      "coversZones": [
+        "RFCC-2 — Residue Cracker",
+        "Utilities and Flare"
+      ],
+      "capacity": 800
+    },
+    {
+      "id": "M3",
+      "name": "Muster Point C — East",
+      "accounted": 817,
+      "expected": 831,
+      "coversZones": [
+        "DCU-3 — Delayed Coker",
+        "SRU-5 — Sulphur Recovery"
+      ],
+      "capacity": 800
+    },
+    {
+      "id": "M4",
+      "name": "Muster Point D — South",
+      "accounted": 335,
+      "expected": 343,
+      "coversZones": [
+        "Tank Farm East",
+        "Ruwais Marine Terminal"
+      ],
+      "capacity": 400
+    },
+    {
+      "id": "M5",
+      "name": "Muster Point E — Admin and Gate",
+      "accounted": 277,
+      "expected": 289,
+      "coversZones": [
+        "Central Admin and Control",
+        "West Gate",
+        "Parking Muster Point"
+      ],
+      "capacity": 400
+    }
+  ],
+  "unaccountedGroups": [
+    {
+      "id": "un-west",
+      "count": 19,
+      "label": "Near the west gate",
+      "lastKnown": "West Gate perimeter",
+      "priority": "low",
+      "detail": "Location signal stale over 10 minutes. Most likely tags left in vehicles.",
+      "exceptionGroupId": "exc-stale",
+      "lastKnownPoint": [
+        50.020343,
+        26.503739
+      ]
+    },
+    {
+      "id": "un-parking",
+      "count": 7,
+      "label": "At the parking muster point, not yet checked in",
+      "lastKnown": "Parking Muster Point",
+      "priority": "medium",
+      "detail": "Present at the muster point but not yet registered by a warden.",
+      "exceptionGroupId": "exc-nofix",
+      "lastKnownPoint": [
+        50.027704,
+        26.503618
+      ]
+    },
+    {
+      "id": "un-nosignal",
+      "count": 2,
+      "label": "No signal in the last 10 minutes",
+      "lastKnown": "SRU-5 sulphur recovery boundary, last fix 06:41",
+      "priority": "high",
+      "detail": "Need eyes on them first. Nearest camera shows no presence in that area since 06:44.",
+      "exceptionGroupId": "exc-nosignal",
+      "lastKnownPoint": [
+        50.029578,
+        26.510661
+      ]
+    }
+  ],
+  "wardens": [
+    {
+      "zone": "West Gate",
+      "owns": [
+        "un-west",
+        "un-nosignal"
+      ]
+    },
+    {
+      "zone": "Parking Muster Point",
+      "owns": [
+        "un-parking"
+      ]
+    }
+  ],
+  "control": {
+    "mustered": 3122,
+    "mustering": 19,
+    "notStarted": 9,
+    "gateMovementsIn": 0,
+    "gateMovementsOut": 0,
+    "lockdownNote": "the site is locked down, so the population being counted is closed.",
+    "durationLabel": "01:30",
+    "status": "running"
+  }
+}

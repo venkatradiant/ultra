@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, AlertTriangle, FileText, MapPin, Clock } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getSiteData } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import RiskBucketBadge from './RiskBucketBadge';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
@@ -66,8 +66,9 @@ function EvidenceBlock({ evidence }) {
   );
 }
 
-export default function FlaggedJobsTable({ getter = getSiteData }) {
-  const site = useAsyncData(getter);
+export default function FlaggedJobsTable({ getter = undefined }) {
+  const { getSiteData: tenant_getSiteData } = useHse();
+  const site = useAsyncData(getter ?? tenant_getSiteData);
   const [openId, setOpenId] = useState(null);
 
   if (!site) return null;

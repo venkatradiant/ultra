@@ -9,7 +9,7 @@
 import { motion } from 'framer-motion';
 import { AlertTriangle } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getSiteData } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
 
@@ -30,8 +30,9 @@ function exposureScore(zone, flaggedCount) {
   return zone.highRiskPermits * 3 + Math.round(zone.people / 40) + flaggedCount * 25;
 }
 
-export default function UnitRollupTable({ getter = getSiteData }) {
-  const site = useAsyncData(getter);
+export default function UnitRollupTable({ getter = undefined }) {
+  const { getSiteData: tenant_getSiteData } = useHse();
+  const site = useAsyncData(getter ?? tenant_getSiteData);
   if (!site) return null;
 
   const flaggedByZone = site.flaggedJobs.reduce((acc, j) => {

@@ -8,7 +8,7 @@
  */
 import { CheckCircle2, AlertCircle, Timer, Users, ShieldCheck, Radio } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getPermits } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import RiskBucketBadge from './RiskBucketBadge';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
@@ -19,8 +19,9 @@ const CONDITION_STATE = {
   breached: { icon: AlertCircle, wrap: 'border-rose-200 bg-rose-50/60', tone: 'text-rose-700', label: 'Breached' },
 };
 
-export default function PermitDetailCard({ getter = getPermits, compact = false }) {
-  const permits = useAsyncData(getter);
+export default function PermitDetailCard({ getter = undefined, compact = false }) {
+  const { getPermits: tenant_getPermits } = useHse();
+  const permits = useAsyncData(getter ?? tenant_getPermits);
   if (!permits) return null;
 
   const cs = permits.confinedSpace;

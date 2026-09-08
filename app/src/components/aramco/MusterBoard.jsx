@@ -13,7 +13,7 @@
 import { motion } from 'framer-motion';
 import { Siren, MapPin, TrendingUp, Users, CheckCircle2, Timer } from 'lucide-react';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getMuster } from '../../data/aramco/hse-gm';
+import { useHse } from '../../data/hseTenant';
 import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import MusterControlCenter from './MusterControlCenter';
 import MaximizablePanel, { MaximizeButton } from '../common/MaximizablePanel';
@@ -40,8 +40,9 @@ const LOAD_BANDS = [
 
 const bandFor = (loadPct) => LOAD_BANDS.find((b) => loadPct <= b.max);
 
-export default function MusterBoard({ getter = getMuster }) {
-  const muster = useAsyncData(getter);
+export default function MusterBoard({ getter = undefined }) {
+  const { getMuster: tenant_getMuster } = useHse();
+  const muster = useAsyncData(getter ?? tenant_getMuster);
   if (!muster) return null;
 
   const pct = Math.round((muster.accounted / muster.total) * 100);
