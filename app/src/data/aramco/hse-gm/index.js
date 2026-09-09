@@ -25,6 +25,7 @@ import signals from './signals.json';
 import currentState from './currentState.json';
 import journey from './journey.json';
 import cameras from './cameras.json';
+import criticalAlert from './criticalAlert.json';
 import dataSources from '../_shared/dataSources.json';
 
 /** The site plan: zones, per-zone headcount and permit load, flagged jobs. */
@@ -144,4 +145,24 @@ export async function getJourney() {
  */
 export async function getCameras() {
   return cameras;
+}
+
+/**
+ * The live critical-safety alert: a man-down on an entrant inside CS-1182.
+ *
+ * Deliberately the *same* confined-space entry the greeting already raises and
+ * `permits.json` already models, rather than a second incident invented beside
+ * it. The fixture therefore stores references — permit id, occupant id, tag
+ * serial, fixture ids in the indoor plan — and almost no copied facts. The
+ * worker's name and employee number are derived from the tag serial at read
+ * time the same way the map's entity cards derive theirs, and the entrant's
+ * position comes from the indoor geometry, so the alert cannot drift from the
+ * permit and the plan it is describing.
+ *
+ * A real deployment replaces this with a man-down event off the tag gateway;
+ * the shape the alert band consumes is an incident, a permit reference, an
+ * occupant reference and a list of actions.
+ */
+export async function getCriticalAlert() {
+  return criticalAlert;
 }

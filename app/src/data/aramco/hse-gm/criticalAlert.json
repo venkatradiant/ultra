@@ -1,0 +1,201 @@
+{
+  "asOf": "2026-08-05T06:53:41Z",
+  "freshness": "live",
+  "illustrative": true,
+  "alert": {
+    "id": "ALERT-ARAMCO-HSE-001",
+    "kind": "worker_fall",
+    "title": "Worker Fall Detected — Unit 3 Confined Space",
+    "severity": "critical",
+    "detectedAt": "06:53:41",
+    "detectedLabel": "06:53:41 AST",
+    "armAfterSeconds": 8,
+    "summary": "A man-down event on an entrant inside Coker drum C-301. This is confined-space entry CS-1182 — the same permit that has been on your morning list — going from a gas-test reminder to a person on the floor of the vessel.",
+
+    "permit": {
+      "id": "CS-1182",
+      "title": "Confined-space entry — Unit 3 Coker",
+      "state": "breached",
+      "stateLabel": "Breached — rescue conditions now apply",
+      "wasState": "valid",
+      "detail": "The permit was valid and compliant on two of three conditions until the fall. Occupancy is still within the permitted maximum, but a non-responsive entrant inside the vessel puts the entry outside its conditions until a rescue is complete.",
+      "validTo": "14:00",
+      "workOrder": "WO-772140"
+    },
+
+    "worker": {
+      "occupantId": "E-1",
+      "tagSerial": 41822,
+      "role": "contractor",
+      "company": "Contractor company A",
+      "enteredAt": "06:06",
+      "minutesInside": 47
+    },
+
+    "location": {
+      "occupantId": "E-1",
+      "openingId": "O-MANWAY",
+      "vesselName": "Coker drum C-301",
+      "openingName": "North manway",
+      "levelLabel": "Drum deck, grade + 18 m",
+      "zoneId": "Z3",
+      "zoneName": "Unit 3 — Coker"
+    },
+
+    "vitals": {
+      "state": "critical",
+      "headline": "No motion for 41 seconds",
+      "since": "06:53:00",
+      "readings": [
+        {
+          "id": "motion",
+          "label": "Motion",
+          "value": "None detected",
+          "state": "critical",
+          "detail": "Man-down triggered after 30 seconds stationary following an impact event."
+        },
+        {
+          "id": "orientation",
+          "label": "Tag orientation",
+          "value": "Horizontal",
+          "state": "critical",
+          "detail": "The tag has been flat since the impact. Upright is the expected orientation for a working entrant."
+        },
+        {
+          "id": "impact",
+          "label": "Impact",
+          "value": "3.1 g",
+          "state": "critical",
+          "detail": "Single deceleration event at 06:53:00, consistent with a fall from the internal platform to the drum floor."
+        },
+        {
+          "id": "heart_rate",
+          "label": "Heart rate",
+          "value": "112 bpm",
+          "state": "attention",
+          "detail": "Elevated and still transmitting. The tag is in contact and has not lost its wearer."
+        }
+      ],
+      "caveat": "These are readings from the worker's tag, not a medical device. The tag reports motion, orientation, impact and pulse; it cannot assess injury. Treat this as a detection that needs a person to go and look."
+    },
+
+    "responder": {
+      "fixtureId": "F-STANDBY",
+      "role": "Standby attendant",
+      "state": "on-post",
+      "detail": "The standby attendant named on CS-1182 is still on post at the north manway, confirmed by tag geofence and the entry camera. They are the nearest responder and the rescue tripod and winch is already rigged over the manway.",
+      "rescueFixtureId": "F-WINCH",
+      "rescueLabel": "Rescue tripod and winch, rigged over the manway",
+      "secondEntrant": {
+        "occupantId": "E-2",
+        "tagSerial": 41823,
+        "detail": "The second entrant is still inside the vessel and still moving."
+      }
+    },
+
+    "sources": [
+      {
+        "id": "src-tag",
+        "label": "Worker tag telemetry",
+        "detail": "Man-down, orientation, impact and pulse from tag 41822.",
+        "freshness": "live"
+      },
+      {
+        "id": "src-permit",
+        "label": "Permit-to-work system",
+        "detail": "CS-1182 conditions, entrant roster and entry times.",
+        "freshness": "under 1 minute ago"
+      },
+      {
+        "id": "src-gas",
+        "label": "Continuous gas monitor",
+        "detail": "Atmosphere inside C-301 still within limits at the last reading — the fall is not a gas event.",
+        "freshness": "1 minute ago"
+      },
+      {
+        "id": "src-cctv",
+        "label": "CCTV and presence",
+        "detail": "Unit 3 entry camera confirms the standby attendant at the manway; CAM-U3-CK-04 covers the drum exterior.",
+        "freshness": "live"
+      }
+    ],
+
+    "actions": [
+      {
+        "id": "act-camera",
+        "label": "View Live Camera",
+        "kind": "navigate",
+        "needsConfirm": false,
+        "to": "/live-site?tab=cameras&camera=CAM-U3-CK-04",
+        "description": "Open CAM-U3-CK-04 on the Unit 3 Coker drums."
+      },
+      {
+        "id": "act-notify",
+        "label": "Notify Shift Supervisor",
+        "kind": "send",
+        "needsConfirm": true,
+        "confirmLabel": "Send",
+        "advancesTo": "acknowledged",
+        "target": "Sally \"Shift Super\" — Shift Supervisor, Units 2 and 3",
+        "description": "Man-down on CS-1182, Coker drum C-301. One entrant non-responsive, one still inside and moving. Standby attendant on post at the north manway. Rescue equipment rigged.",
+        "confirmedNote": "Sent to the Units 2 and 3 shift supervisor, with the permit, the entrant roster and the last gas reading attached."
+      },
+      {
+        "id": "act-dispatch",
+        "label": "Dispatch Emergency Response",
+        "kind": "dispatch",
+        "needsConfirm": true,
+        "confirmLabel": "Dispatch",
+        "advancesTo": "dispatched",
+        "target": "Site emergency response — confined-space rescue team",
+        "description": "Rescue callout to Unit 3, north manway of Coker drum C-301. Tripod and winch already rigged; standby attendant holding the entry point.",
+        "confirmedNote": "Rescue team dispatched to the north manway. The standby attendant has been told to hold the entry point and not to enter."
+      },
+      {
+        "id": "act-muster",
+        "label": "Initiate Unit 3 Muster",
+        "kind": "muster",
+        "needsConfirm": true,
+        "confirmLabel": "Initiate",
+        "target": "Unit 3 — Coker, to Muster Point C — East",
+        "description": "Clear Unit 3 so the rescue team has the unit to itself, and account for everyone who was working in it.",
+        "confirmedNote": "Unit 3 muster running. Everyone working in the unit is being accounted for at Muster Point C — East."
+      }
+    ],
+
+    "statusFlow": [
+      { "id": "new", "label": "New", "detail": "Detected and waiting on you." },
+      { "id": "acknowledged", "label": "Acknowledged", "detail": "You have it, and the shift supervisor has been told." },
+      { "id": "dispatched", "label": "Response Dispatched", "detail": "The rescue team is on its way." },
+      { "id": "resolved", "label": "Resolved", "detail": "Entrant recovered and the entry closed." }
+    ],
+
+    "responderAck": {
+      "afterSeconds": 12,
+      "label": "Rescue team acknowledged",
+      "detail": "Confined-space rescue team acknowledged the callout and is moving to the north manway."
+    },
+
+    "resolve": {
+      "label": "Mark Resolved",
+      "confirmLabel": "Mark resolved",
+      "description": "Close the alert once the entrant is out of the vessel and the entry has been made safe.",
+      "confirmedNote": "Alert closed. CS-1182 is suspended pending an incident review, and the entry stays shut until it is reissued."
+    },
+
+    "unit3Muster": {
+      "musterPointId": "M3",
+      "musterPointName": "Muster Point C — East",
+      "scopeZoneId": "Z3",
+      "note": "Scoped to Unit 3 only. The site-wide muster on the Muster Status page is a separate, unaffected count.",
+      "steps": [
+        { "atSeconds": 0, "outstanding": 385 },
+        { "atSeconds": 4, "outstanding": 212 },
+        { "atSeconds": 9, "outstanding": 84 },
+        { "atSeconds": 14, "outstanding": 23 },
+        { "atSeconds": 19, "outstanding": 6 },
+        { "atSeconds": 25, "outstanding": 0 }
+      ]
+    }
+  }
+}
