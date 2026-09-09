@@ -22,6 +22,7 @@ import ActionCard from '../../components/cards/ActionCard';
 import CapabilityCalloutModal from '../../components/modals/CapabilityCalloutModal';
 import { useIntraday } from '../../context/IntradayContext';
 import { useCriticalAlert } from '../../context/CriticalAlertContext';
+import { useConversationSession } from '../../context/ConversationSessionContext';
 
 /**
  * The salutation for the initial view.
@@ -50,6 +51,12 @@ export default function PersonaWorkspace({ manifest }) {
   // the persona declares a `briefing`.
   const intraday = useIntraday();
 
+  // Personas that opt in keep their thread across navigation, so following a
+  // link out of `/ask` — the HSE GM's man-down alert sends her to the camera
+  // wall — and coming back lands on the turn she left rather than the greeting.
+  // Keyed by persona, so switching persona never inherits someone else's thread.
+  const persistKey = features?.persistConversation ? manifest.id : null;
+
   const {
     messages,
     isTyping,
@@ -59,7 +66,9 @@ export default function PersonaWorkspace({ manifest }) {
     handleChipClick,
     handleActionConfirm,
     initializeFlow,
-  } = useManifestChat(flows);
+    restored,
+    clearPersisted,
+  } = useManifestChat(flows, persistKey);
 
   // Tells the HSE GM's live safety alert which turn she is on, so it can arrive
   // mid-conversation rather than on a clock. Inert for every other persona:
@@ -69,7 +78,24 @@ export default function PersonaWorkspace({ manifest }) {
     reportFlowToCriticalAlert(currentFlowKey);
   }, [currentFlowKey, reportFlowToCriticalAlert]);
 
-  const [confirmedActions, setConfirmedActions] = useState(new Set());
+  // The action cards' confirmed state is the workspace's own, not the chat
+  // engine's, so it gets its own slot in the same store — otherwise a restored
+  // thread would come back with every "confirm" it had already collected reset.
+  const session = useConversationSession();
+  const actionsKey = persistKey ? `${persistKey}:confirmedActions` : null;
+  const [confirmedActions, setConfirmedActions] = useState(
+    () => new Set(session.load(actionsKey) ?? []),
+  );
+  const confirmedRef = useRef(confirmedActions);
+  useEffect(() => { confirmedRef.current = confirmedActions; });
+  useEffect(() => {
+    if (!actionsKey) return undefined;
+    return () => {
+      if (!confirmedRef.current.size) return;
+      session.save(actionsKey, [...confirmedRef.current]);
+    };
+  }, [actionsKey, session]);
+
   const [capabilityModal, setCapabilityModal] = useState(null);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const initializedPersona = useRef(null);
@@ -85,9 +111,20 @@ export default function PersonaWorkspace({ manifest }) {
   }, [features?.overlayOpenEvent, OverlayComponent]);
 
   // (Re)seed the conversation whenever the active persona changes.
+  //
+  // Two arrivals reach this, and they want opposite things. A *remount* — she
+  // navigated to the camera wall and came back — must keep the thread the store
+  // just handed over; re-greeting there is the bug the restore exists to fix. A
+  // *persona switch* on a live mount must not: coming back to a persona should
+  // replay her from the top, which is the same call `CriticalAlertContext` makes
+  // when it puts the alert back in its box. So a switch drops the stash first.
   useEffect(() => {
     if (initializedPersona.current === manifest.id) return;
+    const isPersonaSwitch = initializedPersona.current !== null;
     initializedPersona.current = manifest.id;
+    if (restored && !isPersonaSwitch) return;
+    clearPersisted();
+    session.clear(actionsKey);
     setConfirmedActions(new Set());
     initializeFlow(ui.greetingFlowKey);
   }, [manifest.id]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -96,10 +133,14 @@ export default function PersonaWorkspace({ manifest }) {
   // conversation. `initializeFlow` is a full reset — it cancels in-flight typing,
   // clears the thread and re-seeds the greeting — which flips the view back to
   // the initial state. Lets a demo re-anchor on the briefing without a reload.
+  // Drops the stash too: this is a deliberate reset, so the thread it replaces
+  // must not come back on the next navigation.
   const handleBackToBriefing = useCallback(() => {
+    clearPersisted();
+    session.clear(actionsKey);
     setConfirmedActions(new Set());
     initializeFlow(ui.greetingFlowKey);
-  }, [initializeFlow, ui.greetingFlowKey]);
+  }, [clearPersisted, session, actionsKey, initializeFlow, ui.greetingFlowKey]);
 
   // ─── Intraday briefing wiring (NFCU supervisor/director) ──────────
   // Set the default tier + honor ?intraday=1 on entry.

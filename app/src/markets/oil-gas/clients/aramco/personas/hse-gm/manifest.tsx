@@ -99,6 +99,11 @@ const manifest: PersonaManifest = {
     // Eight KPI tiles plus three signal cards make a tall briefing; centering it
     // would push the greeting off the top on shorter viewports.
     topAlignedInitial: true,
+    // Her conversation has to survive leaving `/ask`. The man-down alert's first
+    // action opens the Unit 3 camera on the Live Site Picture, and before this
+    // flag, following that link dropped her back at the greeting — the alert
+    // punished her for using it. She now comes back to the turn she left.
+    persistConversation: true,
   },
 
   ui: {

@@ -20,7 +20,7 @@
  *    when it scrolls out of view.
  */
 import { useCallback, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { Map as MapIcon, Video } from 'lucide-react';
 import { usePersona } from '../context/PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
@@ -47,6 +47,24 @@ export default function LiveSitePicture() {
   const [params] = useSearchParams();
   const [tab, setTab] = useState(() => (params.get('tab') === 'cameras' ? 'cameras' : 'map'));
   const deepLinkCamera = params.get('camera');
+
+  // Every arrival honours the link, not just the first. Reading the tab only in
+  // the `useState` initializer meant a second "View Live Camera" from the alert —
+  // she is already on this route, so nothing remounts — left her wherever she had
+  // last put the tabs, and the button did nothing at all. `location.key` changes
+  // on every navigation, including one to the same URL, which is what makes a
+  // repeat click land.
+  //
+  // Done as a render-phase adjustment, the same discipline `CriticalAlertContext`
+  // applies to its own persona and path resets: React re-runs this component
+  // before committing, so the tab strip never paints the old tab for a frame.
+  const { key: navKey } = useLocation();
+  const [lastNavKey, setLastNavKey] = useState(navKey);
+  if (navKey !== lastNavKey) {
+    setLastNavKey(navKey);
+    const requested = params.get('tab');
+    if (requested === 'cameras' || requested === 'map') setTab(requested);
+  }
 
   // The camera estate is authored for the HSE GM's site. The other Aramco
   // personas reach this route too, and they get the page exactly as it was.
@@ -117,7 +135,7 @@ export default function LiveSitePicture() {
 
       {active === 'cameras' ? (
         <div role="tabpanel" id="live-site-panel-cameras" aria-labelledby="live-site-tab-cameras">
-          <CameraWall initialCameraId={deepLinkCamera} />
+          <CameraWall initialCameraId={deepLinkCamera} deepLinkNonce={navKey} />
         </div>
       ) : (
         <div

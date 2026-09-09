@@ -128,10 +128,17 @@ export function CriticalAlertProvider({ children }) {
     if (!flowKey || flowKey !== alert.armOnFlowKey) return;
     armTimer.current = setTimeout(() => {
       setArmed(true);
-      // Arriving open. An alert that needs a click before it says anything is a
-      // notification pretending to be an alert. She can collapse it, and the
-      // band then stays however she left it.
-      setExpanded(true);
+      // Arriving collapsed, as one line under the header.
+      //
+      // It used to arrive open, on the argument that an alert needing a click
+      // before it says anything is a notification pretending to be an alert.
+      // The band says plenty on its own — what happened, where, which permit,
+      // and what state it is in — and arriving open cost more than it bought:
+      // the panel covered the answer the alert had just interrupted, and
+      // "View Details" stopped being a step anyone took, which is the first
+      // move of the golden path. Collapsed, the muster stays fully on screen
+      // and View Details is the one blue action waiting for her.
+      setExpanded(false);
       setTimeline([{ id: 'detected', label: 'Detected', at: alert.detectedLabel, detail: alert.summary }]);
     }, (alert.armAfterSeconds ?? 7) * 1000);
   }, [owns, alert, armed]);

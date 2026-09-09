@@ -9,7 +9,7 @@
     "severity": "critical",
     "detectedAt": "06:53:41",
     "detectedLabel": "06:53:41 AST",
-    "armOnFlowKey": "aramco_hse_actions",
+    "armOnFlowKey": "aramco_hse_muster",
     "armAfterSeconds": 7,
     "summary": "A man-down event on an entrant inside Coker drum C-301. This is confined-space entry CS-1182 — the same permit that has been on your morning list — going from a gas-test reminder to a person on the floor of the vessel.",
 
@@ -124,11 +124,13 @@
     "actions": [
       {
         "id": "act-camera",
-        "label": "View Live Camera",
+        "label": "Live Camera View",
         "kind": "navigate",
+        "primary": true,
+        "openLabel": "Open Live Camera View",
         "needsConfirm": false,
         "to": "/live-site?tab=cameras&camera=CAM-U3-CK-04",
-        "description": "Open CAM-U3-CK-04 on the Unit 3 Coker drums."
+        "description": "Open CAM-U3-CK-04 on the Unit 3 Coker drums, beside the entrant's own tag telemetry and the continuous gas monitor."
       },
       {
         "id": "act-notify",

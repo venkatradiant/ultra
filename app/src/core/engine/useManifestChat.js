@@ -10,13 +10,22 @@
  * Phase 5 once every persona is manifest-driven.
  */
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { resolveFlowKey, resolveNextSignal, NEXT_SIGNAL_TOKEN } from './chatFlowEngine';
+import { useConversationSession } from '../../context/ConversationSessionContext';
 
 let msgIdCounter = 0;
 const nextId = () => `msg-${++msgIdCounter}`;
 
-export default function useManifestChat(flowConfig) {
+/**
+ * @param flowConfig  the persona manifest's ChatFlowConfig
+ * @param persistKey  when set, the thread is stashed above the router on unmount
+ *                    and restored on the next mount, so navigating away and back
+ *                    lands on the turn the user left rather than the greeting.
+ *                    Null for every persona that has not opted in, and the whole
+ *                    mechanism is then inert.
+ */
+export default function useManifestChat(flowConfig, persistKey = null) {
   const {
     chatFlows,
     askTurnSequence,
@@ -27,13 +36,22 @@ export default function useManifestChat(flowConfig) {
     onFlowEnter,
   } = flowConfig;
 
-  const [messages, setMessages] = useState([]);
-  const [currentFlowKey, setCurrentFlowKey] = useState(null);
+  const session = useConversationSession();
+  // Read once, at mount, via a lazy initializer. A snapshot that arrived later
+  // would fight whatever the user has done since, so the stash is consulted
+  // exactly here and never again.
+  const [restored] = useState(() => session.load(persistKey));
+
+  const [messages, setMessages] = useState(() => restored?.messages ?? []);
+  const [currentFlowKey, setCurrentFlowKey] = useState(() => restored?.currentFlowKey ?? null);
+  // Never restored as `true`: the timeout that would have landed that message
+  // died with the previous mount, so a restored "typing" indicator would spin
+  // for ever. A thread is always handed back settled.
   const [isTyping, setIsTyping] = useState(false);
-  const [currentChips, setCurrentChips] = useState([]);
-  const [currentTurn, setCurrentTurn] = useState(0);
-  const [contextPanelData, setContextPanelData] = useState(null);
-  const signalIndexRef = useRef(0);
+  const [currentChips, setCurrentChips] = useState(() => restored?.currentChips ?? []);
+  const [currentTurn, setCurrentTurn] = useState(() => restored?.currentTurn ?? 0);
+  const [contextPanelData, setContextPanelData] = useState(() => restored?.contextPanelData ?? null);
+  const signalIndexRef = useRef(restored?.signalIndex ?? 0);
   const generationRef = useRef(0);
 
   const addAIMessage = useCallback((requestedKey) => {
@@ -167,6 +185,35 @@ export default function useManifestChat(flowConfig) {
     addAIMessage(flowKey);
   }, [addAIMessage]);
 
+  // The stash write. Mirroring into a ref and saving from an unmount cleanup is
+  // what lets this run once per navigation instead of on every keystroke of the
+  // conversation — and the cleanup still sees the latest values, which a
+  // dependency-listed effect closing over state would not.
+  const latest = useRef(null);
+  // Mirrored from an effect with no dependency list — it runs after every commit,
+  // so the ref always holds what was last rendered, and nothing touches a ref
+  // during render.
+  useEffect(() => {
+    latest.current = {
+      messages, currentFlowKey, currentChips, currentTurn, contextPanelData,
+      signalIndex: signalIndexRef.current,
+    };
+  });
+  useEffect(() => {
+    if (!persistKey) return undefined;
+    return () => {
+      // An untouched thread is not worth stashing: restoring "nothing" would
+      // suppress the greeting and leave the workspace blank.
+      if (!latest.current?.messages?.length) return;
+      session.save(persistKey, latest.current);
+    };
+  }, [persistKey, session]);
+
+  /** Drop the stash — for an explicit reset, where re-greeting is the point. */
+  const clearPersisted = useCallback(() => {
+    session.clear(persistKey);
+  }, [session, persistKey]);
+
   return {
     messages,
     isTyping,
@@ -178,5 +225,9 @@ export default function useManifestChat(flowConfig) {
     handleActionConfirm,
     addAIMessage,
     initializeFlow,
+    // Tells the workspace not to re-greet over a thread that was just handed
+    // back to it.
+    restored: Boolean(restored),
+    clearPersisted,
   };
 }

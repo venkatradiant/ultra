@@ -11,13 +11,22 @@
  *
  * That is the point: the alert and the permit card and the plan cannot disagree
  * with each other, because they are reading the same rows.
+ *
+ * **One blue action, and it is the camera.** The fixture marks exactly one action
+ * `primary`, and only that one gets the filled brand button and the tinted card.
+ * Opening the live camera is the golden path — it is where operational data and
+ * device data land in the same frame, which is the thing the platform is being
+ * judged on. Notifying, dispatching and mustering are real and stay one click
+ * away, but they are outlined and quiet: they are consequences of the look, not
+ * substitutes for it. If a second action ever renders blue, the eye has two
+ * next steps and the demo has none.
  */
 import { useMemo } from 'react';
 import {
-  Activity, AlertTriangle, Camera, Check, ChevronRight, FileWarning, Gauge,
-  HardHat, LifeBuoy, MapPin, Radio, Send, ShieldAlert, Siren, Users,
+  Activity, AlertTriangle, Camera, Check, ChevronRight, CornerUpLeft, FileWarning,
+  Gauge, HardHat, LifeBuoy, MapPin, Radio, Send, ShieldAlert, Siren, Users,
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAsyncData from '../../hooks/useAsyncData';
 import { getIndoorGeo, getSiteData } from '../../data/aramco/hse-gm';
 import { entityFromTag } from '../../lib/rtlsIdentity';
@@ -68,6 +77,11 @@ function Fact({ icon: Icon, label, children, tone = 'default' }) {
 
 export default function CriticalAlertPanel() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  // The band carries the same return, but the band is a strip at the top of the
+  // page and the navigating actions are down here. An exit belongs where the eye
+  // already is, not only where the layout happens to have room for it.
+  const away = pathname !== '/ask';
   const { alert, status, statusMeta, timeline, confirmed, confirmAction, resolve } = useCriticalAlert();
   const indoor = useAsyncData(getIndoorGeo);
   const site = useAsyncData(getSiteData);
@@ -205,12 +219,16 @@ export default function CriticalAlertPanel() {
                 <div
                   key={action.id}
                   className={`rounded-xl border p-3 flex flex-col ${
-                    done ? 'border-emerald-600/30 bg-emerald-500/[0.06]' : 'border-border bg-surface'
+                    done
+                      ? 'border-emerald-600/30 bg-emerald-500/[0.06]'
+                      : action.primary
+                        ? 'border-brand/40 bg-brand/[0.05]'
+                        : 'border-border bg-surface'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      done ? 'bg-emerald-500/15' : 'bg-brand/10'
+                      done ? 'bg-emerald-500/15' : action.primary ? 'bg-brand/15' : 'bg-brand/10'
                     }`}>
                       {done ? <Check className="w-3.5 h-3.5 text-emerald-700" /> : <Icon className="w-3.5 h-3.5 text-brand" />}
                     </span>
@@ -231,23 +249,37 @@ export default function CriticalAlertPanel() {
                       }}
                       disabled={isResolved && action.kind !== 'navigate'}
                       className={`mt-2.5 self-start px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-default ${
-                        action.kind === 'navigate'
-                          ? 'border border-border bg-surface-2 text-text-muted hover:text-text'
-                          : 'text-white bg-brand hover:bg-brand/90'
+                        action.primary
+                          ? 'text-white bg-brand hover:bg-brand/90 shadow-sm'
+                          : 'border border-border bg-surface-2 text-text-muted hover:text-text'
                       }`}
                     >
-                      {action.needsConfirm ? `${action.confirmLabel} — confirm` : 'Open'}
+                      {action.needsConfirm
+                        ? `${action.confirmLabel} — confirm`
+                        : action.openLabel ?? 'Open'}
                     </button>
                   )}
                 </div>
               );
             })}
           </div>
-          {!isResolved && (
-            <p className="text-[10.5px] text-text-subtle mt-2">
-              Nothing is sent, dispatched or mustered until you confirm it. Viewing the camera changes nothing.
-            </p>
-          )}
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+            {!isResolved ? (
+              <p className="text-[10.5px] text-text-subtle">
+                Nothing is sent, dispatched or mustered until you confirm it. Viewing the camera changes nothing.
+              </p>
+            ) : <span />}
+            {away && (
+              <button
+                type="button"
+                onClick={() => navigate('/ask')}
+                className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold text-brand hover:underline cursor-pointer flex-shrink-0"
+              >
+                <CornerUpLeft className="w-3 h-3" />
+                Back to the conversation
+              </button>
+            )}
+          </div>
         </div>
 
         {confirmed.has('act-muster') && zone && (

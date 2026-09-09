@@ -6,6 +6,8 @@ app/.vercel/
 
 # OS / editor
 .DS_Store
+# Word owner/lock files, written while a .docx is open
+~$*
 
 # Local machine-specific config
 *.local

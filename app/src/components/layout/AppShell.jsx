@@ -9,6 +9,7 @@ import useNfcuBaselineLoader from '../../hooks/useNfcuBaselineLoader';
 import StickyIntelligenceWidget from '../intelligence/StickyIntelligenceWidget';
 import CriticalAlertBand from '../aramco/CriticalAlertBand';
 import { CriticalAlertProvider } from '../../context/CriticalAlertContext';
+import { ConversationSessionProvider } from '../../context/ConversationSessionContext';
 import PlatformAdminAssistantBar from '../nfcu/platform-admin/PlatformAdminAssistantBar';
 import { ASSISTANT_ROUTES } from '../../data/nfcu/platform-admin/assistantContext';
 
@@ -88,7 +89,12 @@ export default function AppShell() {
   return (
     <IntradayProvider>
       <CriticalAlertProvider>
-        <ShellInner />
+        {/* Above the routes, so a persona's thread outlives the `/ask` route
+            element it is rendered by. Inert for every persona that has not set
+            `features.persistConversation`. */}
+        <ConversationSessionProvider>
+          <ShellInner />
+        </ConversationSessionProvider>
       </CriticalAlertProvider>
     </IntradayProvider>
   );

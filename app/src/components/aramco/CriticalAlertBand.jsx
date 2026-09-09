@@ -14,10 +14,12 @@
  *    provider above the router; this is only the view.
  *
  * Collapsed it is one line: what happened, where, and where it has got to.
- * Expanded it is the full panel. It arrives open — the provider sets that at the
- * moment the alert arms — and after that it obeys whatever Gina last chose.
+ * Expanded it is the full panel. It arrives collapsed, so the answer it
+ * interrupted stays whole behind it, and opening it is the first deliberate step
+ * of the incident rather than something that happened to her.
  */
-import { AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
+import { AlertTriangle, ChevronDown, ChevronUp, CornerUpLeft } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCriticalAlert } from '../../context/CriticalAlertContext';
 import CriticalAlertPanel from './CriticalAlertPanel';
 
@@ -31,6 +33,18 @@ const STATUS_TONE = {
 
 export default function CriticalAlertBand() {
   const { active, alert, status, statusMeta, expanded, setExpanded } = useCriticalAlert();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  // The way back. Every action in the panel is outward — the camera wall, the
+  // permit, the muster — and the band is the only chrome that follows her to all
+  // of them, so it is the only honest place to put the return. Without it the
+  // alert is a one-way door: expand, open the camera, and the only controls left
+  // are the ones that opened the camera again.
+  const away = pathname !== '/ask';
+  // On the conversation, with the alert still collapsed, opening it is the
+  // golden path's next step and gets the one blue button.
+  const primaryIsDetails = !away && !expanded;
 
   if (!active) return null;
 
@@ -71,11 +85,36 @@ export default function CriticalAlertBand() {
           {statusMeta.label}
         </span>
 
+        {/* Collapses on the way, so she lands on the conversation and not on a
+            panel covering it. The alert itself stays live in the band — a
+            man-down does not stop being a man-down because she looked away. */}
+        {away && (
+          <button
+            type="button"
+            onClick={() => { setExpanded(false); navigate('/ask'); }}
+            className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-semibold text-white bg-brand hover:bg-brand/90 shadow-sm transition-colors cursor-pointer flex-shrink-0"
+          >
+            <CornerUpLeft className="w-3.5 h-3.5" />
+            Back to conversation
+          </button>
+        )}
+
+        {/* Exactly one blue action per stage, and this is where it starts. On the
+            conversation, with the alert still shut, opening it is the only thing
+            to do next — so View details is the filled one. The moment the panel
+            is open the primary moves inside it, to the camera, and this drops
+            back to a quiet outline. Off `/ask` the primary is the way back, so
+            it is quiet there too. Two blue buttons on screen at once would mean
+            two next actions, which is the same as none. */}
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
           aria-expanded={expanded}
-          className="inline-flex items-center gap-1 rounded-lg border border-border bg-surface px-2.5 py-1.5 text-[11px] font-semibold text-text-muted hover:text-text transition-colors cursor-pointer flex-shrink-0"
+          className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-[11px] font-semibold transition-colors cursor-pointer flex-shrink-0 ${
+            primaryIsDetails
+              ? 'text-white bg-brand hover:bg-brand/90 shadow-sm'
+              : 'border border-border bg-surface text-text-muted hover:text-text'
+          }`}
         >
           {expanded ? 'Hide details' : 'View details'}
           {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -84,8 +123,17 @@ export default function CriticalAlertBand() {
 
       {/* Rendered, not animated in and out. The panel carries a live roll-call
           and a running timeline; collapsing it should hide it instantly rather
-          than play a height transition over a moving progress bar. */}
-      {expanded && <CriticalAlertPanel />}
+          than play a height transition over a moving progress bar.
+
+          Height-capped with its own scroll: at full height the panel is taller
+          than the viewport, so an alert arriving on `/ask` pushed the answer it
+          interrupted entirely off screen. It still arrives open and still lands
+          with force — it just no longer buries the conversation behind it. */}
+      {expanded && (
+        <div className="max-h-[min(60vh,560px)] overflow-y-auto scrollbar-sleek">
+          <CriticalAlertPanel />
+        </div>
+      )}
     </section>
   );
 }

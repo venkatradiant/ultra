@@ -84,6 +84,16 @@ export interface PersonaFeatures {
    * bubble stays narrow either way; only the component block widens.
    */
   wideInlineComponents?: boolean;
+  /**
+   * Keep this persona's conversation alive across navigation, instead of
+   * re-greeting from turn zero every time `/ask` is remounted.
+   *
+   * Only worth setting for a persona whose own answers send the user to another
+   * route — the Aramco HSE GM's man-down alert opens the camera wall, and losing
+   * her thread for following the alert's own link is the bug this fixes. Off by
+   * default, so every other persona keeps the fresh-greeting behaviour.
+   */
+  persistConversation?: boolean;
 }
 
 /**

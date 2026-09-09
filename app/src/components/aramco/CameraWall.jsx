@@ -24,6 +24,7 @@ import CameraViewer from './CameraViewer';
 
 export default function CameraWall({
   camerasGetter = getCameras, siteGetter = getSiteData, initialCameraId = null,
+  deepLinkNonce = null,
 }) {
   const feed = useAsyncData(camerasGetter);
   const site = useAsyncData(siteGetter);
@@ -36,6 +37,22 @@ export default function CameraWall({
   // and the requested camera is not; "spent" is what stops it reopening the
   // moment she closes it.
   const [deepLinkSpent, setDeepLinkSpent] = useState(false);
+
+  // A fresh navigation un-spends it. `deepLinkSpent` is what stops the feed
+  // reopening the instant she closes it — but it also made a *repeat* trip here
+  // do nothing, so clicking the alert's "View Live Camera" a second time was a
+  // dead button. The nonce changes per navigation, not per render, so the two
+  // behaviours no longer have to be the same flag.
+  // A render-phase adjustment rather than an effect, so the requested feed is
+  // already showing on the commit that follows the navigation — an effect would
+  // paint the bare wall for a frame first, which reads as the click having
+  // missed.
+  const [lastNonce, setLastNonce] = useState(deepLinkNonce);
+  if (deepLinkNonce !== lastNonce) {
+    setLastNonce(deepLinkNonce);
+    setDeepLinkSpent(false);
+    setOpenCamera(null);
+  }
 
   const zonesById = useMemo(() => {
     const out = {};
