@@ -24,6 +24,7 @@ import kpis from './kpis.json';
 import signals from './signals.json';
 import currentState from './currentState.json';
 import journey from './journey.json';
+import cameras from './cameras.json';
 import dataSources from '../_shared/dataSources.json';
 
 /** The site plan: zones, per-zone headcount and permit load, flagged jobs. */
@@ -127,4 +128,20 @@ export async function getCurrentState() {
 /** The GM's turnaround-day journey and its traceability to signals (spec §9). */
 export async function getJourney() {
   return journey;
+}
+
+/**
+ * The fixed-camera estate: six feeds, each tied to the zone or gate it watches.
+ *
+ * Cameras carry a `zoneId` into the same site fixture the map reads, so the
+ * headcount beside a feed and the headcount inside that zone polygon are the
+ * same number rather than two authored guesses. Cameras that watch a gate
+ * rather than a zone carry `gateId` and no `zoneId` — a vehicle lane has an
+ * access count, not a population.
+ *
+ * Swapping these for a real VMS (Milestone, Genetec) is a change to this
+ * accessor: the shape the wall consumes is id, label, zone and a playable URL.
+ */
+export async function getCameras() {
+  return cameras;
 }
