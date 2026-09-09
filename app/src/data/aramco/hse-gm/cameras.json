@@ -1,0 +1,85 @@
+{
+  "asOf": "25 Aug 2026, 06:52 AST",
+  "freshness": "streaming now",
+  "illustrative": true,
+  "cameras": [
+    {
+      "id": "CAM-MG-01",
+      "name": "Main Gate — vehicle lane",
+      "view": "Barrier and weighbridge approach, north side",
+      "zoneId": null,
+      "gateId": "G1",
+      "location": "Main Gate",
+      "unit": "Perimeter and access control",
+      "hazard": "low",
+      "src": "/videos/cam-mg-01.mp4",
+      "poster": "/videos/posters/cam-mg-01.jpg",
+      "status": "online"
+    },
+    {
+      "id": "CAM-WG-01",
+      "name": "West Gate — turnstiles",
+      "view": "Personnel turnstiles and badge readers, inbound",
+      "zoneId": "Z10",
+      "gateId": "G2",
+      "location": "West Gate",
+      "unit": "Perimeter and access control",
+      "hazard": "low",
+      "src": "/videos/cam-wg-01.mp4",
+      "poster": "/videos/posters/cam-wg-01.jpg",
+      "status": "online"
+    },
+    {
+      "id": "CAM-U2-HC-05",
+      "name": "Unit 2 — Hydrocracker, east pipe rack",
+      "view": "Reactor structure and pipe rack, elevated south view",
+      "zoneId": "Z2",
+      "gateId": null,
+      "location": "Unit 2 — Hydrocracker",
+      "unit": "Unit 2 — Hydrocracker",
+      "hazard": "high",
+      "src": "/videos/cam-u2-hc-05.mp4",
+      "poster": "/videos/posters/cam-u2-hc-05.jpg",
+      "status": "online"
+    },
+    {
+      "id": "CAM-U3-CK-04",
+      "name": "Unit 3 — Coker drums",
+      "view": "Coke drum pair and cutting deck, west elevation",
+      "zoneId": "Z3",
+      "gateId": null,
+      "location": "Unit 3 — Coker",
+      "unit": "Unit 3 — Coker",
+      "hazard": "high",
+      "src": "/videos/cam-u3-ck-04.mp4",
+      "poster": "/videos/posters/cam-u3-ck-04.jpg",
+      "status": "online"
+    },
+    {
+      "id": "CAM-U4-SRB-03",
+      "name": "Unit 4 — Sulphur Recovery boundary",
+      "view": "Boundary walkway and lay-down area, east fence line",
+      "zoneId": "Z4",
+      "gateId": null,
+      "location": "Unit 4 — Sulphur Recovery",
+      "unit": "Unit 4 — Sulphur Recovery",
+      "hazard": "high",
+      "src": "/videos/cam-u4-srb-03.mp4",
+      "poster": "/videos/posters/cam-u4-srb-03.jpg",
+      "status": "online"
+    },
+    {
+      "id": "CAM-PMP-02",
+      "name": "Parking Muster Point — assembly area",
+      "view": "Muster grid and marshal position, south car park",
+      "zoneId": "Z11",
+      "gateId": null,
+      "location": "Parking Muster Point",
+      "unit": "Muster and assembly",
+      "hazard": "low",
+      "src": "/videos/cam-pmp-02.mp4",
+      "poster": "/videos/posters/cam-pmp-02.jpg",
+      "status": "online"
+    }
+  ]
+}
