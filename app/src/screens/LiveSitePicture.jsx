@@ -20,6 +20,7 @@
  *    when it scrolls out of view.
  */
 import { useCallback, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Map as MapIcon, Video } from 'lucide-react';
 import { usePersona } from '../context/PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
@@ -37,8 +38,15 @@ const TABS = [
 export default function LiveSitePicture() {
   const persona = usePersona();
   const site = useAsyncData(getSiteData);
-  const [tab, setTab] = useState('map');
   const tabRefs = useRef({});
+
+  // `?tab=cameras&camera=CAM-U3-CK-04` is how the critical safety alert's
+  // "View Live Camera" lands here: the deep link picks the tab and names the
+  // feed to open, so one click from the band goes straight to the picture
+  // rather than to a wall she then has to search.
+  const [params] = useSearchParams();
+  const [tab, setTab] = useState(() => (params.get('tab') === 'cameras' ? 'cameras' : 'map'));
+  const deepLinkCamera = params.get('camera');
 
   // The camera estate is authored for the HSE GM's site. The other Aramco
   // personas reach this route too, and they get the page exactly as it was.
@@ -109,7 +117,7 @@ export default function LiveSitePicture() {
 
       {active === 'cameras' ? (
         <div role="tabpanel" id="live-site-panel-cameras" aria-labelledby="live-site-tab-cameras">
-          <CameraWall />
+          <CameraWall initialCameraId={deepLinkCamera} />
         </div>
       ) : (
         <div

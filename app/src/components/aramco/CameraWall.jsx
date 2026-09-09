@@ -22,12 +22,20 @@ import IllustrativeDataChip, { ProvenanceLine } from './IllustrativeDataChip';
 import CameraTile from './CameraTile';
 import CameraViewer from './CameraViewer';
 
-export default function CameraWall({ camerasGetter = getCameras, siteGetter = getSiteData }) {
+export default function CameraWall({
+  camerasGetter = getCameras, siteGetter = getSiteData, initialCameraId = null,
+}) {
   const feed = useAsyncData(camerasGetter);
   const site = useAsyncData(siteGetter);
 
   const [previewId, setPreviewId] = useState(null);
   const [openCamera, setOpenCamera] = useState(null);
+  // A deep link (`?camera=CAM-U3-CK-04`, how the critical safety alert arrives
+  // here) opens that feed as soon as the fixture lands. Derived during render
+  // rather than fired from an effect, so there is no frame where the wall is up
+  // and the requested camera is not; "spent" is what stops it reopening the
+  // moment she closes it.
+  const [deepLinkSpent, setDeepLinkSpent] = useState(false);
 
   const zonesById = useMemo(() => {
     const out = {};
@@ -46,16 +54,27 @@ export default function CameraWall({ camerasGetter = getCameras, siteGetter = ge
   // Closing the viewer must also drop the preview grant: the pointer is very
   // often no longer over the tile it was opened from, and that tile would
   // otherwise keep decoding behind a closed dialog.
-  const closeViewer = useCallback(() => { setOpenCamera(null); setPreviewId(null); }, []);
+  const closeViewer = useCallback(() => {
+    setDeepLinkSpent(true); setOpenCamera(null); setPreviewId(null);
+  }, []);
 
   // Opening a feed stops the wall's preview, so the dialog is the only video
   // on the page — and therefore the only one that can ever be unmuted.
-  const openViewer = useCallback((camera) => { setPreviewId(null); setOpenCamera(camera); }, []);
+  const openViewer = useCallback((camera) => {
+    setDeepLinkSpent(true); setPreviewId(null); setOpenCamera(camera);
+  }, []);
 
   if (!feed) return null;
 
   const cameras = feed.cameras ?? [];
   const online = cameras.filter((c) => c.status === 'online').length;
+
+  // What the viewer shows: whatever she opened, or — until she has opened or
+  // closed anything — whatever the deep link asked for.
+  const shownCamera = openCamera
+    ?? (!deepLinkSpent && initialCameraId
+      ? cameras.find((c) => c.id === initialCameraId) ?? null
+      : null);
 
   if (!cameras.length) {
     return (
@@ -87,7 +106,7 @@ export default function CameraWall({ camerasGetter = getCameras, siteGetter = ge
               camera={camera}
               zone={camera.zoneId ? zonesById[camera.zoneId] : null}
               breaches={camera.zoneId ? (breachesByZone[camera.zoneId] ?? 0) : 0}
-              previewing={previewId === camera.id && !openCamera}
+              previewing={previewId === camera.id && !shownCamera}
               onPreview={setPreviewId}
               onOpen={openViewer}
             />
@@ -107,9 +126,9 @@ export default function CameraWall({ camerasGetter = getCameras, siteGetter = ge
       </div>
 
       <CameraViewer
-        camera={openCamera}
-        zone={openCamera?.zoneId ? zonesById[openCamera.zoneId] : null}
-        breaches={openCamera?.zoneId ? (breachesByZone[openCamera.zoneId] ?? 0) : 0}
+        camera={shownCamera}
+        zone={shownCamera?.zoneId ? zonesById[shownCamera.zoneId] : null}
+        breaches={shownCamera?.zoneId ? (breachesByZone[shownCamera.zoneId] ?? 0) : 0}
         onClose={closeViewer}
       />
     </>

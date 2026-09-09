@@ -11,10 +11,14 @@ import { useBranding } from '../../context/BrandingContext';
 import { loginPathForClientId } from '../../config/access';
 import BrandSelector from '../newfold/BrandSelector';
 import NotificationBell from './NotificationBell';
+import { useCriticalAlert } from '../../context/CriticalAlertContext';
 import { useActivePersona } from '@core/runtime/useActivePersona';
 
 export default function TopHeader({ onMenuClick }) {
   const persona = usePersona();
+  // The HSE GM's live safety alert gets a second home in the bell, so it is
+  // reachable after she collapses the band. Empty for every other persona.
+  const { notifications: criticalAlertNotifications } = useCriticalAlert();
   const personaList = usePersonaList();
   const { clearClient } = useClient();
   const { signOut } = useSession();
@@ -169,7 +173,7 @@ export default function TopHeader({ onMenuClick }) {
           {/* Notifications. Content is whatever the active persona manifest
               declares; a persona with nothing to say shows no badge rather than
               the hardcoded "3" this carried for every tenant. */}
-          <NotificationBell items={activeManifest?.notifications ?? []} />
+          <NotificationBell items={[...criticalAlertNotifications, ...(activeManifest?.notifications ?? [])]} />
 
           {/* Divider */}
           <div className="w-px h-8 bg-surface-2" />

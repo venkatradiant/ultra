@@ -7,6 +7,8 @@ import { IntradayProvider, useIntraday } from '../../context/IntradayContext';
 import { usePersona } from '../../context/PersonaContext';
 import useNfcuBaselineLoader from '../../hooks/useNfcuBaselineLoader';
 import StickyIntelligenceWidget from '../intelligence/StickyIntelligenceWidget';
+import CriticalAlertBand from '../aramco/CriticalAlertBand';
+import { CriticalAlertProvider } from '../../context/CriticalAlertContext';
 import PlatformAdminAssistantBar from '../nfcu/platform-admin/PlatformAdminAssistantBar';
 import { ASSISTANT_ROUTES } from '../../data/nfcu/platform-admin/assistantContext';
 
@@ -53,6 +55,10 @@ function ShellInner() {
       <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
       <div className="flex-1 flex flex-col min-w-0 relative">
         <TopHeader onMenuClick={() => setNavOpen(true)} />
+        {/* A band, not an overlay: it pushes the page down rather than covering
+            it, and it renders on every route because its own actions send the
+            HSE GM to other pages. Inert for every other persona. */}
+        <CriticalAlertBand />
         <main
           className={`flex-1 overflow-y-auto transition-[margin] duration-200 ease-out ${mainMargin}`}
         >
@@ -81,7 +87,9 @@ function ShellInner() {
 export default function AppShell() {
   return (
     <IntradayProvider>
-      <ShellInner />
+      <CriticalAlertProvider>
+        <ShellInner />
+      </CriticalAlertProvider>
     </IntradayProvider>
   );
 }
