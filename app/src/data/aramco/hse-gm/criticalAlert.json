@@ -9,7 +9,8 @@
     "severity": "critical",
     "detectedAt": "06:53:41",
     "detectedLabel": "06:53:41 AST",
-    "armAfterSeconds": 8,
+    "armOnFlowKey": "aramco_hse_actions",
+    "armAfterSeconds": 7,
     "summary": "A man-down event on an entrant inside Coker drum C-301. This is confined-space entry CS-1182 — the same permit that has been on your morning list — going from a gas-test reminder to a person on the floor of the vessel.",
 
     "permit": {

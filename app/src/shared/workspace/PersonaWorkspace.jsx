@@ -21,6 +21,7 @@ import DataOverviewBar from '../../components/cards/DataOverviewBar';
 import ActionCard from '../../components/cards/ActionCard';
 import CapabilityCalloutModal from '../../components/modals/CapabilityCalloutModal';
 import { useIntraday } from '../../context/IntradayContext';
+import { useCriticalAlert } from '../../context/CriticalAlertContext';
 
 /**
  * The salutation for the initial view.
@@ -59,6 +60,14 @@ export default function PersonaWorkspace({ manifest }) {
     handleActionConfirm,
     initializeFlow,
   } = useManifestChat(flows);
+
+  // Tells the HSE GM's live safety alert which turn she is on, so it can arrive
+  // mid-conversation rather than on a clock. Inert for every other persona:
+  // outside Aramco's HSE GM this reporter is a no-op.
+  const { reportFlow: reportFlowToCriticalAlert } = useCriticalAlert();
+  useEffect(() => {
+    reportFlowToCriticalAlert(currentFlowKey);
+  }, [currentFlowKey, reportFlowToCriticalAlert]);
 
   const [confirmedActions, setConfirmedActions] = useState(new Set());
   const [capabilityModal, setCapabilityModal] = useState(null);

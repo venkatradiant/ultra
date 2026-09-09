@@ -11,12 +11,17 @@
  * every other persona, so the other three Aramco personas and every other
  * tenant mount a context that never arms and renders nothing.
  *
- * **What is on a timer and what is not.** Only two things move on their own:
- * the alert arriving, a few seconds after the briefing lands so the greeting
- * reads first and the alert genuinely *arrives* while she is reading; and the
- * rescue team acknowledging a callout she has already made. Every status
- * transition is something Gina did. A demo that advances itself is a demo that
- * gets away from whoever is presenting it.
+ * **When it arrives.** Not on load, and not on a clock from mount. The alert is
+ * cued off the conversation: it arms when Gina reaches "What should I act on
+ * before the night shift?" and lands a few seconds later, while she is reading
+ * the answer. That is the whole point of the beat — she asks what to deal with
+ * before handing over, and the site answers with something that will not wait.
+ * Landing it a little after the turn rather than on it keeps it from reading as
+ * a scripted response to the question.
+ *
+ * **What else moves on its own:** only the rescue team acknowledging a callout
+ * she has already made. Every status transition is something Gina did. A demo
+ * that advances itself is a demo that gets away from whoever is presenting it.
  */
 import {
   createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
@@ -44,6 +49,7 @@ const DORMANT = {
   setExpanded: () => {},
   confirmAction: () => {},
   resolve: () => {},
+  reportFlow: () => {},
   notifications: [],
 };
 
@@ -73,6 +79,10 @@ export function CriticalAlertProvider({ children }) {
   const [timeline, setTimeline] = useState([]);
   const [musterStartedAt, setMusterStartedAt] = useState(null);
   const [responderAcked, setResponderAcked] = useState(false);
+  // The fuse between "she reached that turn" and "the alert lands". Held as a
+  // ref because the render-phase persona reset below has to be able to cancel
+  // it, and that runs before the callback that sets it is even defined.
+  const armTimer = useRef(null);
 
   // Switching persona puts the alert back in its box, so coming back to Gina
   // replays the arrival rather than resuming a half-worked incident — which is
@@ -106,21 +116,35 @@ export function CriticalAlertProvider({ children }) {
     if (expanded) setExpanded(false);
   }
 
-  // Arrival. Deliberately not on mount: the greeting is the first thing she
-  // reads, and the alert lands on top of it a moment later.
-  useEffect(() => {
-    if (!owns || !alert || armed) return undefined;
-    const delay = (alert.armAfterSeconds ?? 8) * 1000;
-    const t = setTimeout(() => {
+  // Arrival, cued off the conversation rather than off a clock from mount.
+  //
+  // The workspace reports the chat turn Gina is on; when it is the one the
+  // fixture names, a short fuse is lit and the alert lands while she is still
+  // reading that answer. Scheduling rather than setting state here is what keeps
+  // this callable straight from the workspace's effect: nothing happens
+  // synchronously, so reporting a turn can never cascade a render.
+  const reportFlow = useCallback((flowKey) => {
+    if (!owns || !alert || armed || armTimer.current) return;
+    if (!flowKey || flowKey !== alert.armOnFlowKey) return;
+    armTimer.current = setTimeout(() => {
       setArmed(true);
       // Arriving open. An alert that needs a click before it says anything is a
       // notification pretending to be an alert. She can collapse it, and the
       // band then stays however she left it.
       setExpanded(true);
       setTimeline([{ id: 'detected', label: 'Detected', at: alert.detectedLabel, detail: alert.summary }]);
-    }, delay);
-    return () => clearTimeout(t);
+    }, (alert.armAfterSeconds ?? 7) * 1000);
   }, [owns, alert, armed]);
+
+  // A lit fuse must not survive a persona switch or an unmount — otherwise it
+  // burns down in the background and the alert is already on screen when Gina
+  // comes back, instead of waiting for her to reach the turn again. Done in an
+  // effect rather than in the render-phase reset above, because a ref is not
+  // ours to touch while rendering.
+  useEffect(() => () => {
+    clearTimeout(armTimer.current);
+    armTimer.current = null;
+  }, [persona?.id]);
 
   // The rescue team answering a callout Gina has made. The only event in the
   // alert that is neither her doing nor its arrival.
@@ -176,7 +200,9 @@ export function CriticalAlertProvider({ children }) {
   }, [alert]);
 
   const value = useMemo(() => {
-    if (!owns || !alert || !armed) return DORMANT;
+    // `reportFlow` has to be reachable *before* the alert exists on screen —
+    // it is the thing that brings it into existence.
+    if (!owns || !alert || !armed) return { ...DORMANT, reportFlow };
     const statusMeta = alert.statusFlow.find((s) => s.id === status) ?? alert.statusFlow[0];
     return {
       active: true,
@@ -191,6 +217,7 @@ export function CriticalAlertProvider({ children }) {
       setExpanded,
       confirmAction,
       resolve,
+      reportFlow,
       // Feeds the header bell, so the alert has a second home that is not the
       // band — and still no pop-up anywhere.
       notifications: [{
@@ -203,7 +230,7 @@ export function CriticalAlertProvider({ children }) {
       }],
     };
   }, [owns, alert, armed, status, timeline, confirmed, expanded, musterStartedAt,
-    responderAcked, confirmAction, resolve]);
+    responderAcked, confirmAction, resolve, reportFlow]);
 
   return (
     <CriticalAlertContext.Provider value={value}>{children}</CriticalAlertContext.Provider>
