@@ -256,13 +256,23 @@ export function CriticalAlertProvider({ children }) {
       reportFlow,
       // Feeds the header bell, so the alert has a second home that is not the
       // band — and still no pop-up anywhere.
+      //
+      // The row is clickable: it re-opens the incident drawer wherever she is.
+      // The bell is the way back in after she has closed the column, so an inert
+      // row here left the second home a dead end.
+      //
+      // It stays unread until the incident is *resolved*, not until she has
+      // looked at it. The badge is the site telling her a man is still down;
+      // opening the drawer to read it does not change that, and neither does
+      // acknowledging it. Only closing the incident does.
       notifications: [{
         id: alert.id,
         title: alert.title,
         detail: `${statusMeta.label} — ${alert.location.vesselName}, ${alert.location.zoneName}.`,
         at: alert.detectedLabel,
-        unread: status === 'new',
+        unread: status !== 'resolved',
         tone: 'warning',
+        onSelect: () => setOpen(true),
       }],
     };
   }, [owns, alert, armed, status, timeline, confirmed, open, cameraPlaying, musterStartedAt,

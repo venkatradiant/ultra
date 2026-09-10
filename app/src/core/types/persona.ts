@@ -112,6 +112,13 @@ export interface PersonaNotification {
   /** Defaults to true; set false for an item the persona should show as read. */
   unread?: boolean;
   tone?: 'info' | 'success' | 'warning';
+  /**
+   * Optional. Supplying it makes the row clickable — hover tint, focus ring,
+   * chevron — and clicking runs it and closes the panel. Omit it and the row
+   * stays the inert entry it has always been. Selecting does not mark the item
+   * read; `unread` remains the owner's to decide.
+   */
+  onSelect?: () => void;
 }
 
 /** A KPI tile shown in the persona's data-overview row. */

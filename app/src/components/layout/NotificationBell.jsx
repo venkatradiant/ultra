@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bell, BellOff } from 'lucide-react';
+import { Bell, BellOff, ChevronRight } from 'lucide-react';
 
 /**
  * The notification bell in the app chrome.
@@ -14,7 +14,17 @@ import { Bell, BellOff } from 'lucide-react';
  * Maryland DoIT today.
  *
  * Shape of one item:
- *   { id, title, detail?, at, unread?, tone?: 'info' | 'success' | 'warning' }
+ *   { id, title, detail?, at, unread?, tone?: 'info' | 'success' | 'warning', onSelect? }
+ *
+ * `onSelect` is opt-in and is what makes a row *do* something. An item that
+ * supplies one renders as a button — hover tint, focus ring, chevron — and
+ * clicking it runs the handler and closes the panel. An item without one keeps
+ * the inert row it has always had, which is every tenant except Aramco's HSE
+ * GM, whose man-down notification opens the incident drawer.
+ *
+ * Selecting does **not** mark the item read. Whether a notification is still
+ * unread is the owner's call, not the bell's — the man-down keeps its badge
+ * until the incident is resolved, however many times Gina opens it.
  */
 const TONES = {
   info: 'bg-info',
@@ -96,13 +106,14 @@ export default function NotificationBell({ items = [] }) {
             <ul className="max-h-[320px] overflow-y-auto scrollbar-sleek">
               {items.map((n) => {
                 const isUnread = n.unread !== false && !dismissed.has(n.id);
-                return (
-                  <li
-                    key={n.id}
-                    className={`flex gap-2.5 border-b border-border-subtle px-3 py-2.5 last:border-0 ${
-                      isUnread ? 'bg-brand/[0.03]' : ''
-                    }`}
-                  >
+                // Padding lives on the row body rather than the <li>, so the
+                // clickable version's hover tint covers the whole item instead
+                // of leaving an untinted gutter around it.
+                const rowClass = `flex w-full gap-2.5 px-3 py-2.5 text-left ${
+                  isUnread ? 'bg-brand/[0.03]' : ''
+                }`;
+                const body = (
+                  <>
                     <span
                       aria-hidden="true"
                       className={`mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full ${
@@ -116,6 +127,33 @@ export default function NotificationBell({ items = [] }) {
                       )}
                       <p className="mt-0.5 text-[10.5px] text-text-subtle">{n.at}</p>
                     </div>
+                    {n.onSelect && (
+                      <ChevronRight
+                        aria-hidden="true"
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 self-center text-text-subtle transition-colors group-hover:text-brand"
+                      />
+                    )}
+                  </>
+                );
+
+                return (
+                  <li key={n.id} className="border-b border-border-subtle last:border-0">
+                    {n.onSelect ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          n.onSelect();
+                          // The thing it opened is what she wants to look at
+                          // now; leaving the panel hanging over it is noise.
+                          setOpen(false);
+                        }}
+                        className={`${rowClass} group cursor-pointer transition-colors hover:bg-surface-2 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand`}
+                      >
+                        {body}
+                      </button>
+                    ) : (
+                      <div className={rowClass}>{body}</div>
+                    )}
                   </li>
                 );
               })}
