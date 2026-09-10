@@ -5,15 +5,6 @@ import { AreaChart, Area, ResponsiveContainer, YAxis } from 'recharts';
 import LayerHealthGauge from './LayerHealthGauge';
 import { STATE_STYLES, statusForScore } from './stateStyles';
 
-/**
- * Band 1 — the fleet at a glance: total, the health split, the trend, and one
- * gauge per platform layer.
- *
- * Every number here is DERIVED from the component list by getSystemOverview(),
- * never authored separately, so it cannot contradict the table below it.
- *
- * Props: { overview } — the getSystemOverview() payload.
- */
 const ORDER = ['healthy', 'degraded', 'failed', 'recovering'];
 
 function HealthBar({ state, count, total }) {
@@ -37,9 +28,7 @@ function HealthBar({ state, count, total }) {
   );
 }
 
-export default function SystemHealthOverview({ overview }) {
-  // Memoised: recharts re-renders on any new array identity, and this sits
-  // beside a grid that polls every 5s.
+export default function SystemHealthOverview({ overview, onLayerClick }) {
   const trend = useMemo(
     () => (overview?.trend ?? []).map((value, i) => ({ i, value })),
     [overview?.trend],
@@ -89,8 +78,7 @@ export default function SystemHealthOverview({ overview }) {
           ))}
         </div>
 
-        {/* Trend — fixed height wrapper; ResponsiveContainer measures 0 inside a
-            flex column with no resolved height and never recovers. */}
+        {/* Trend */}
         <div className="min-w-0">
           <div className="text-[9.5px] text-text-subtle uppercase tracking-wide mb-1">Healthy % · last hour</div>
           <div className="h-[72px]">
@@ -131,7 +119,14 @@ export default function SystemHealthOverview({ overview }) {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {overview.layers.map((layer) => (
-            <div key={layer.id} className="rounded-lg bg-surface-2 px-3 py-2.5 flex items-center gap-3">
+            <button
+              key={layer.id}
+              type="button"
+              onClick={() => onLayerClick?.(layer.id)}
+              className="rounded-lg bg-surface-2 px-3 py-2.5 flex items-center gap-3 w-full text-left
+                         hover:bg-surface-2/80 hover:ring-1 hover:ring-brand/20 transition-all cursor-pointer"
+              title={`Scroll to ${layer.label} layer`}
+            >
               <LayerHealthGauge score={layer.health} status={statusForScore(layer.health)} size={56} />
               <div className="min-w-0">
                 <div className="text-[11px] font-semibold text-text truncate">{layer.label}</div>
@@ -139,7 +134,7 @@ export default function SystemHealthOverview({ overview }) {
                   {layer.healthy}/{layer.total} healthy
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>

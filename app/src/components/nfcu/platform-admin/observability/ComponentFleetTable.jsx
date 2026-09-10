@@ -8,24 +8,8 @@ import {
 } from '@/data/nfcu/platform-admin/observabilityData';
 import { styleForState, STATE_PRIORITY, relativeTime } from './stateStyles';
 
-/**
- * Band 2 — the fleet. Every component, grouped by layer, non-healthy first.
- *
- * The row IS the picker. The reference used a searchable dropdown because it
- * had 153 components to sift; with ~34 grouped rows, a click on a visible row
- * beats typing a name — and it demos better, since the presenter can point at
- * the amber row and click it.
- *
- * A11y: the row's first cell holds a real <button> stretched over the whole row
- * via `after:inset-0`. That gives real focus, real Enter/Space and real screen
- * reader semantics, instead of an onClick on a <tr> plus hand-rolled key
- * handlers.
- *
- * Props: { components, selectedId, onSelect }
- */
 const LAYER_ORDER = ['application_layer', 'data_layer', 'infrastructure_layer', 'network_layer'];
 
-/** The one metric worth showing per category in the fleet row. */
 const KEY_METRIC = {
   ai_agents: 'containment_rate_percent',
   api_services_member: 'response_time_ms',
@@ -61,8 +45,6 @@ function Row({ component, selected, onSelect }) {
       }`}
     >
       <td className="py-2 px-3">
-        {/* Stretched button: the whole row is the hit target, but it is a real
-            button for focus/keyboard/AT. */}
         <button
           type="button"
           onClick={() => onSelect(component.component)}
@@ -71,7 +53,7 @@ function Row({ component, selected, onSelect }) {
                      focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-brand/40
                      focus-visible:after:rounded-md"
         >
-          <span className={`text-[11.5px] font-medium ${selected ? 'text-brand' : 'text-text'}`}>
+          <span className={`text-[11.5px] font-medium ${selected ? 'text-brand' : style.text}`}>
             {component.label ?? component.component}
           </span>
           <span className="block text-[9.5px] font-mono text-text-subtle">{component.component}</span>
@@ -102,7 +84,6 @@ function Row({ component, selected, onSelect }) {
 }
 
 export default function ComponentFleetTable({ components, selectedId, onSelect }) {
-  // Group by layer, incidents first within each group, then alphabetical.
   const groups = useMemo(() => {
     const out = [];
     for (const layer of LAYER_ORDER) {
@@ -165,7 +146,7 @@ function LayerGroup({ layer, members, selectedId, onSelect }) {
   const unhealthy = members.filter((m) => m.state !== 'healthy').length;
   return (
     <>
-      <tr className="bg-surface-2">
+      <tr id={"fleet-layer-" + layer} className="bg-surface-2">
         <td colSpan={5} className="py-1.5 px-3">
           <span className="text-[9.5px] font-bold text-text-muted uppercase tracking-wider">
             {LAYER_LABELS[layer]}
