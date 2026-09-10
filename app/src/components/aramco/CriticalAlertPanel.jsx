@@ -1,5 +1,5 @@
 /**
- * CriticalAlertPanel — everything known about the man-down, in one card.
+ * CriticalAlertPanel — everything known about the man-down, as one column.
  *
  * The panel authors almost none of what it shows. The worker's name and
  * employee number are derived from the tag serial through the same
@@ -12,33 +12,37 @@
  * That is the point: the alert and the permit card and the plan cannot disagree
  * with each other, because they are reading the same rows.
  *
- * **One blue action, and it is the camera.** The fixture marks exactly one action
- * `primary`, and only that one gets the filled brand button and the tinted card.
- * Opening the live camera is the golden path — it is where operational data and
- * device data land in the same frame, which is the thing the platform is being
- * judged on. Notifying, dispatching and mustering are real and stay one click
- * away, but they are outlined and quiet: they are consequences of the look, not
- * substitutes for it. If a second action ever renders blue, the eye has two
- * next steps and the demo has none.
+ * **Ordered by what she has to do, not by what we know.** This used to be a
+ * wide grid that opened with six fact cards and put the actions below the fold
+ * of its own nested scrollbar — so the one button the whole beat exists for was
+ * invisible until she went looking for it. The column now opens with the
+ * picture, says in one paragraph what happened, and gives her the four actions
+ * before any of the supporting detail. Evidence, sources and the timeline sit
+ * underneath, where they belong: they are what she reads *after* deciding, or
+ * what she shows someone who asks how the system knew.
+ *
+ * **One blue action, and it is the camera.** The fixture marks exactly one
+ * action `primary`, and only that one gets the filled brand button. Watching is
+ * the golden path — it is where operational data and device data land in the
+ * same frame, which is the thing the platform is being judged on. Notifying,
+ * dispatching and mustering are real and stay one click away, but they are
+ * outlined and quiet: they are consequences of the look, not substitutes for
+ * it. If a second action ever renders blue, the eye has two next steps and the
+ * demo has none.
  */
 import { useMemo } from 'react';
 import {
-  Activity, AlertTriangle, Camera, Check, ChevronRight, CornerUpLeft, FileWarning,
-  Gauge, HardHat, LifeBuoy, MapPin, Radio, Send, ShieldAlert, Siren, Users,
+  Activity, AlertTriangle, Camera, Check, ChevronRight, FileWarning,
+  HardHat, LifeBuoy, MapPin, Radio, Send, ShieldAlert, Siren, Users,
 } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useAsyncData from '../../hooks/useAsyncData';
-import { getIndoorGeo, getSiteData } from '../../data/aramco/hse-gm';
+import { getCameras, getIndoorGeo, getSiteData } from '../../data/aramco/hse-gm';
 import { entityFromTag } from '../../lib/rtlsIdentity';
 import { useCriticalAlert } from '../../context/CriticalAlertContext';
 import { ProvenanceLine } from './IllustrativeDataChip';
+import CriticalAlertCamera from './CriticalAlertCamera';
 import Unit3MusterRollCall from './Unit3MusterRollCall';
-
-const STATE_TONE = {
-  critical: 'text-rose-700 bg-rose-700/10 border-rose-700/25',
-  attention: 'text-amber-700 bg-amber-500/12 border-amber-600/25',
-  compliant: 'text-emerald-700 bg-emerald-500/10 border-emerald-600/25',
-};
 
 const ACTION_ICON = {
   'act-camera': Camera,
@@ -63,6 +67,13 @@ function metresBetween(a, b) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
+/** A section heading, so the column reads as parts rather than one long scroll. */
+function Heading({ children }) {
+  return (
+    <p className="text-[10px] font-bold text-text-subtle uppercase tracking-wider mb-2">{children}</p>
+  );
+}
+
 function Fact({ icon: Icon, label, children, tone = 'default' }) {
   return (
     <div className="rounded-xl border border-border-subtle bg-surface-2/60 p-3">
@@ -77,14 +88,13 @@ function Fact({ icon: Icon, label, children, tone = 'default' }) {
 
 export default function CriticalAlertPanel() {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  // The band carries the same return, but the band is a strip at the top of the
-  // page and the navigating actions are down here. An exit belongs where the eye
-  // already is, not only where the layout happens to have room for it.
-  const away = pathname !== '/ask';
-  const { alert, status, statusMeta, timeline, confirmed, confirmAction, resolve } = useCriticalAlert();
+  const {
+    alert, status, statusMeta, timeline, confirmed, cameraPlaying,
+    playCamera, confirmAction, resolve,
+  } = useCriticalAlert();
   const indoor = useAsyncData(getIndoorGeo);
   const site = useAsyncData(getSiteData);
+  const cameraFeed = useAsyncData(getCameras);
 
   // The join: occupant dot, manway, standby post and winch, straight out of the
   // interior plan the confined-space viewer already draws.
@@ -105,15 +115,105 @@ export default function CriticalAlertPanel() {
   const worker = entityFromTag(alert.worker.tagSerial, alert.worker.role, alert.location.zoneName);
   const zone = site?.zones?.find((z) => z.id === alert.unit3Muster.scopeZoneId);
 
+  // The camera the alert names, out of the same fixture the wall reads. Looked
+  // up rather than duplicated into the alert, so the feed cannot drift from the
+  // one that plays on the Live Site Picture.
+  const cameraAction = alert.actions.find((a) => a.kind === 'camera');
+  const camera = cameraFeed?.cameras?.find((c) => c.id === cameraAction?.cameraId) ?? null;
+
   const isResolved = status === 'resolved';
   const dispatched = confirmed.has('act-dispatch');
 
   return (
-    <div className="border-t border-rose-700/15 bg-surface">
-      <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-[1600px]">
-        <p className="text-[12.5px] text-text-muted leading-relaxed max-w-4xl mb-4">{alert.summary}</p>
+    <div className="px-4 py-4 space-y-5">
+      {/* The picture first. Everything under it is the system explaining what it
+          saw; this is the thing a general manager actually wants to look at. */}
+      {cameraAction && (
+        <div>
+          <Heading>Live camera</Heading>
+          <CriticalAlertCamera
+            camera={camera}
+            autoPlay={cameraPlaying}
+            wallLabel={cameraAction.wallLabel}
+            onOpenWall={cameraAction.wallTo ? () => navigate(cameraAction.wallTo) : undefined}
+          />
+        </div>
+      )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+      <p className="text-[12.5px] text-text-muted leading-relaxed">{alert.summary}</p>
+
+      {/* Actions, above every piece of supporting detail. */}
+      <div>
+        <Heading>Actions</Heading>
+        <div className="space-y-2">
+          {alert.actions.map((action) => {
+            const Icon = ACTION_ICON[action.id] ?? AlertTriangle;
+            const done = confirmed.has(action.id);
+            return (
+              <div
+                key={action.id}
+                className={`rounded-xl border p-3 ${
+                  done
+                    ? 'border-emerald-600/30 bg-emerald-500/[0.06]'
+                    : action.primary
+                      ? 'border-brand/40 bg-brand/[0.05]'
+                      : 'border-border bg-surface'
+                }`}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    done ? 'bg-emerald-500/15' : action.primary ? 'bg-brand/15' : 'bg-brand/10'
+                  }`}>
+                    {done ? <Check className="w-3.5 h-3.5 text-emerald-700" /> : <Icon className="w-3.5 h-3.5 text-brand" />}
+                  </span>
+                  <h4 className="text-[12px] font-bold text-text">{action.label}</h4>
+                </div>
+                {action.target && (
+                  <p className="text-[10px] text-text-subtle mb-1">{action.target}</p>
+                )}
+                <p className="text-[11px] text-text-muted leading-snug">
+                  {done ? (action.confirmedNote ?? action.description) : action.description}
+                </p>
+                {!done && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (action.kind === 'camera') { playCamera(action.id); return; }
+                      confirmAction(action.id);
+                    }}
+                    disabled={isResolved && action.kind !== 'camera'}
+                    className={`mt-2.5 px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-default ${
+                      action.primary
+                        ? 'text-white bg-brand hover:bg-brand/90 shadow-sm'
+                        : 'border border-border bg-surface-2 text-text-muted hover:text-text'
+                    }`}
+                  >
+                    {action.needsConfirm
+                      ? `${action.confirmLabel} — confirm`
+                      : action.openLabel ?? 'Open'}
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {!isResolved && (
+          <p className="mt-2 text-[10.5px] text-text-subtle leading-snug">
+            Nothing is sent, dispatched or mustered until you confirm it. Watching the camera changes nothing.
+          </p>
+        )}
+      </div>
+
+      {/* The live roll-call only exists once she has called the muster, and it
+          belongs with the actions rather than at the bottom — it is the one
+          thing on this column that is still moving. */}
+      {confirmed.has('act-muster') && zone && (
+        <Unit3MusterRollCall expected={zone.people} />
+      )}
+
+      <div>
+        <Heading>What the system saw</Heading>
+        <div className="space-y-2">
           <Fact icon={HardHat} label="Worker" tone="critical">
             <p className="text-[13px] font-bold text-text">{worker.name}</p>
             <p className="text-[11px] text-text-muted mt-0.5">
@@ -187,143 +287,59 @@ export default function CriticalAlertPanel() {
 
         {/* The honest limit of the claim. A tag is not a medical device, and an
             alert that implies otherwise is the wrong kind of confident. */}
-        <p className="mt-3 flex items-start gap-1.5 text-[11px] text-text-muted leading-snug max-w-4xl">
+        <p className="mt-3 flex items-start gap-1.5 text-[11px] text-text-muted leading-snug">
           <ShieldAlert className="w-3.5 h-3.5 mt-px flex-shrink-0 text-text-subtle" />
           {alert.vitals.caveat}
         </p>
-
-        <div className="mt-4">
-          <p className="text-[10px] font-bold text-text-subtle uppercase tracking-wider mb-2">Contributing sources</p>
-          <div className="flex flex-wrap gap-2">
-            {alert.sources.map((s) => (
-              <span
-                key={s.id}
-                title={s.detail}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-surface-2 px-2.5 py-1.5 text-[10.5px] text-text-muted"
-              >
-                <Radio className="w-3 h-3 text-text-subtle" />
-                <span className="font-semibold text-text">{s.label}</span>
-                <span className="text-text-subtle">· {s.freshness}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <p className="text-[10px] font-bold text-text-subtle uppercase tracking-wider mb-2">Actions</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2.5">
-            {alert.actions.map((action) => {
-              const Icon = ACTION_ICON[action.id] ?? AlertTriangle;
-              const done = confirmed.has(action.id);
-              return (
-                <div
-                  key={action.id}
-                  className={`rounded-xl border p-3 flex flex-col ${
-                    done
-                      ? 'border-emerald-600/30 bg-emerald-500/[0.06]'
-                      : action.primary
-                        ? 'border-brand/40 bg-brand/[0.05]'
-                        : 'border-border bg-surface'
-                  }`}
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      done ? 'bg-emerald-500/15' : action.primary ? 'bg-brand/15' : 'bg-brand/10'
-                    }`}>
-                      {done ? <Check className="w-3.5 h-3.5 text-emerald-700" /> : <Icon className="w-3.5 h-3.5 text-brand" />}
-                    </span>
-                    <h4 className="text-[12px] font-bold text-text">{action.label}</h4>
-                  </div>
-                  {action.target && (
-                    <p className="text-[10px] text-text-subtle mb-1">{action.target}</p>
-                  )}
-                  <p className="text-[11px] text-text-muted leading-snug flex-1">
-                    {done ? (action.confirmedNote ?? action.description) : action.description}
-                  </p>
-                  {!done && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (action.kind === 'navigate') { navigate(action.to); return; }
-                        confirmAction(action.id);
-                      }}
-                      disabled={isResolved && action.kind !== 'navigate'}
-                      className={`mt-2.5 self-start px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-default ${
-                        action.primary
-                          ? 'text-white bg-brand hover:bg-brand/90 shadow-sm'
-                          : 'border border-border bg-surface-2 text-text-muted hover:text-text'
-                      }`}
-                    >
-                      {action.needsConfirm
-                        ? `${action.confirmLabel} — confirm`
-                        : action.openLabel ?? 'Open'}
-                    </button>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-            {!isResolved ? (
-              <p className="text-[10.5px] text-text-subtle">
-                Nothing is sent, dispatched or mustered until you confirm it. Viewing the camera changes nothing.
-              </p>
-            ) : <span />}
-            {away && (
-              <button
-                type="button"
-                onClick={() => navigate('/ask')}
-                className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold text-brand hover:underline cursor-pointer flex-shrink-0"
-              >
-                <CornerUpLeft className="w-3 h-3" />
-                Back to the conversation
-              </button>
-            )}
-          </div>
-        </div>
-
-        {confirmed.has('act-muster') && zone && (
-          <div className="mt-4">
-            <Unit3MusterRollCall expected={zone.people} />
-          </div>
-        )}
-
-        <div className="mt-4 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-4 items-start">
-          <div>
-            <p className="text-[10px] font-bold text-text-subtle uppercase tracking-wider mb-2">
-              Status — {statusMeta.label}
-            </p>
-            <ol className="space-y-1.5">
-              {timeline.map((e) => (
-                <li key={e.id} className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 flex-shrink-0" />
-                  <span className="text-[11px] text-text-muted leading-snug">
-                    <span className="font-semibold text-text">{e.label}</span>
-                    <span className="text-text-subtle"> · {e.at}</span>
-                    {e.detail && <> — {e.detail}</>}
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {dispatched && !isResolved && (
-            <button
-              type="button"
-              onClick={resolve}
-              className="px-3.5 py-2 rounded-lg border border-emerald-600/30 bg-emerald-500/[0.08] text-[11px] font-semibold text-emerald-700 hover:bg-emerald-500/15 transition-colors cursor-pointer"
-            >
-              {alert.resolve.confirmLabel}
-            </button>
-          )}
-        </div>
-
-        <ProvenanceLine
-          className="mt-3"
-          source="Worker tag telemetry, permit-to-work system, continuous gas monitor and CCTV (vendor-agnostic)"
-          freshness="live"
-        />
       </div>
+
+      <div>
+        <Heading>Contributing sources</Heading>
+        <div className="flex flex-wrap gap-1.5">
+          {alert.sources.map((s) => (
+            <span
+              key={s.id}
+              title={s.detail}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-surface-2 px-2 py-1.5 text-[10.5px] text-text-muted"
+            >
+              <Radio className="w-3 h-3 text-text-subtle" />
+              <span className="font-semibold text-text">{s.label}</span>
+              <span className="text-text-subtle">· {s.freshness}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <Heading>Status — {statusMeta.label}</Heading>
+        <ol className="space-y-1.5">
+          {timeline.map((e) => (
+            <li key={e.id} className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 flex-shrink-0" />
+              <span className="text-[11px] text-text-muted leading-snug">
+                <span className="font-semibold text-text">{e.label}</span>
+                <span className="text-text-subtle"> · {e.at}</span>
+                {e.detail && <> — {e.detail}</>}
+              </span>
+            </li>
+          ))}
+        </ol>
+
+        {dispatched && !isResolved && (
+          <button
+            type="button"
+            onClick={resolve}
+            className="mt-3 w-full px-3.5 py-2 rounded-lg border border-emerald-600/30 bg-emerald-500/[0.08] text-[11px] font-semibold text-emerald-700 hover:bg-emerald-500/15 transition-colors cursor-pointer"
+          >
+            {alert.resolve.confirmLabel}
+          </button>
+        )}
+      </div>
+
+      <ProvenanceLine
+        source="Worker tag telemetry, permit-to-work system, continuous gas monitor and CCTV (vendor-agnostic)"
+        freshness="live"
+      />
     </div>
   );
 }

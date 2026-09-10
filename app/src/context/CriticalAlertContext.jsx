@@ -19,6 +19,13 @@
  * Landing it a little after the turn rather than on it keeps it from reading as
  * a scripted response to the question.
  *
+ * **Where it lives.** A one-line strip under the header, plus a right-hand
+ * incident drawer. The drawer is a *column*, not a band that grows downward:
+ * the page reserves margin for it rather than being pushed down by it, so the
+ * conversation keeps its full height and its scroll position while the incident
+ * is open beside it. That is why the drawer can arrive already open — it covers
+ * nothing.
+ *
  * **What else moves on its own:** only the rescue team acknowledging a callout
  * she has already made. Every status transition is something Gina did. A demo
  * that advances itself is a demo that gets away from whoever is presenting it.
@@ -26,7 +33,6 @@
 import {
   createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
 } from 'react';
-import { useLocation } from 'react-router-dom';
 import { usePersona } from './PersonaContext';
 import useAsyncData from '../hooks/useAsyncData';
 import { getCriticalAlert } from '../data/aramco/hse-gm';
@@ -43,10 +49,12 @@ const DORMANT = {
   status: null,
   timeline: [],
   confirmed: new Set(),
-  expanded: false,
+  open: false,
+  cameraPlaying: false,
   musterStartedAt: null,
   responderAcked: false,
-  setExpanded: () => {},
+  setOpen: () => {},
+  playCamera: () => {},
   confirmAction: () => {},
   resolve: () => {},
   reportFlow: () => {},
@@ -75,7 +83,14 @@ export function CriticalAlertProvider({ children }) {
   const [armed, setArmed] = useState(false);
   const [status, setStatus] = useState('new');
   const [confirmed, setConfirmed] = useState(() => new Set());
-  const [expanded, setExpanded] = useState(false);
+  // Is the incident drawer showing? Distinct from `armed`: the strip under the
+  // header stays up until the incident is resolved, but the drawer beside the
+  // page is hers to close and re-open as often as she likes.
+  const [open, setOpen] = useState(false);
+  // The feed plays inside the drawer rather than on another page. Held here
+  // rather than in the drawer so closing and re-opening does not stop it — she
+  // is meant to be able to look away and come back to a camera still running.
+  const [cameraPlaying, setCameraPlaying] = useState(false);
   const [timeline, setTimeline] = useState([]);
   const [musterStartedAt, setMusterStartedAt] = useState(null);
   const [responderAcked, setResponderAcked] = useState(false);
@@ -98,23 +113,20 @@ export function CriticalAlertProvider({ children }) {
     setArmed(false);
     setStatus('new');
     setConfirmed(new Set());
-    setExpanded(false);
+    setOpen(false);
+    setCameraPlaying(false);
     setTimeline([]);
     setMusterStartedAt(null);
     setResponderAcked(false);
   }
 
-  // Collapse — never expand — when she navigates. The band arrives open on the
-  // briefing because that is where she is reading, but its own actions send her
-  // to pages she has gone to *look at*, and an expanded incident panel would
-  // push the camera she just asked for below the fold. The one-line summary
-  // still follows her everywhere, and re-opening is one click.
-  const location = useLocation();
-  const [lastPath, setLastPath] = useState(location.pathname);
-  if (location.pathname !== lastPath) {
-    setLastPath(location.pathname);
-    if (expanded) setExpanded(false);
-  }
+  // Nothing happens to the drawer when she navigates, and that is the change
+  // this rewrite exists for. The old panel had to slam shut on every route
+  // change, because it was a band in the layout: left open it pushed whatever
+  // she had navigated to *look at* below the fold. A column that the page
+  // reserves margin for costs the destination nothing, so the incident simply
+  // follows her — to the permit, to the muster page, to the full camera wall —
+  // and she never has to find her way back into it.
 
   // Arrival, cued off the conversation rather than off a clock from mount.
   //
@@ -128,19 +140,19 @@ export function CriticalAlertProvider({ children }) {
     if (!flowKey || flowKey !== alert.armOnFlowKey) return;
     armTimer.current = setTimeout(() => {
       setArmed(true);
-      // Arriving collapsed, as one line under the header.
+      // Arriving open. An alert that needs a click before it says anything is a
+      // notification pretending to be an alert.
       //
-      // It used to arrive open, on the argument that an alert needing a click
-      // before it says anything is a notification pretending to be an alert.
-      // The band says plenty on its own — what happened, where, which permit,
-      // and what state it is in — and arriving open cost more than it bought:
-      // the panel covered the answer the alert had just interrupted, and
-      // "View Details" stopped being a step anyone took, which is the first
-      // move of the golden path. Collapsed, the muster stays fully on screen
-      // and View Details is the one blue action waiting for her.
-      setExpanded(false);
+      // This was tried before as a band and had to be walked back: opening a
+      // full-width panel *in the layout* covered the answer the alert had just
+      // interrupted, so it was made to arrive collapsed instead. The drawer
+      // removes the trade. It is a column the page makes room for, so arriving
+      // open costs the conversation width rather than height — Gina reads the
+      // night-shift answer and the man-down side by side, which is the whole
+      // point of landing it on that turn.
+      setOpen(true);
       setTimeline([{ id: 'detected', label: 'Detected', at: alert.detectedLabel, detail: alert.summary }]);
-    }, (alert.armAfterSeconds ?? 7) * 1000);
+    }, (alert.armAfterSeconds ?? 2) * 1000);
   }, [owns, alert, armed]);
 
   // A lit fuse must not survive a persona switch or an unmount — otherwise it
@@ -169,6 +181,21 @@ export function CriticalAlertProvider({ children }) {
     }, (alert.responderAck.afterSeconds ?? 12) * 1000);
     return () => clearTimeout(ackTimer.current);
   }, [status, responderAcked, alert]);
+
+  /**
+   * Start the feed inside the drawer.
+   *
+   * Watching a camera is not a decision that changes anything on site, so it
+   * takes no confirm and leaves no entry in the timeline — the timeline is the
+   * record of what Gina *did to the incident*, and looking is not one of those
+   * things. It is still marked confirmed, so the action card can show it as the
+   * step she has taken and stop offering itself.
+   */
+  const playCamera = useCallback((actionId) => {
+    setCameraPlaying(true);
+    setOpen(true);
+    if (actionId) setConfirmed((prev) => withAdded(prev, actionId));
+  }, []);
 
   const confirmAction = useCallback((actionId) => {
     if (!alert) return;
@@ -218,10 +245,12 @@ export function CriticalAlertProvider({ children }) {
       statusMeta,
       timeline,
       confirmed,
-      expanded,
+      open,
+      cameraPlaying,
       musterStartedAt,
       responderAcked,
-      setExpanded,
+      setOpen,
+      playCamera,
       confirmAction,
       resolve,
       reportFlow,
@@ -236,8 +265,8 @@ export function CriticalAlertProvider({ children }) {
         tone: 'warning',
       }],
     };
-  }, [owns, alert, armed, status, timeline, confirmed, expanded, musterStartedAt,
-    responderAcked, confirmAction, resolve, reportFlow]);
+  }, [owns, alert, armed, status, timeline, confirmed, open, cameraPlaying, musterStartedAt,
+    responderAcked, playCamera, confirmAction, resolve, reportFlow]);
 
   return (
     <CriticalAlertContext.Provider value={value}>{children}</CriticalAlertContext.Provider>

@@ -8,7 +8,8 @@ import { usePersona } from '../../context/PersonaContext';
 import useNfcuBaselineLoader from '../../hooks/useNfcuBaselineLoader';
 import StickyIntelligenceWidget from '../intelligence/StickyIntelligenceWidget';
 import CriticalAlertBand from '../aramco/CriticalAlertBand';
-import { CriticalAlertProvider } from '../../context/CriticalAlertContext';
+import CriticalAlertDrawer from '../aramco/CriticalAlertDrawer';
+import { CriticalAlertProvider, useCriticalAlert } from '../../context/CriticalAlertContext';
 import { ConversationSessionProvider } from '../../context/ConversationSessionContext';
 import PlatformAdminAssistantBar from '../nfcu/platform-admin/PlatformAdminAssistantBar';
 import { ASSISTANT_ROUTES } from '../../data/nfcu/platform-admin/assistantContext';
@@ -45,6 +46,23 @@ function ShellInner() {
     ? 'lg:mr-11'
     : '';
 
+  // The HSE GM's incident drawer is a column, not an overlay: when it is open
+  // the app gives up width for it rather than being pushed down or covered by
+  // it. That is what lets the alert arrive open, stay open across navigation,
+  // and never cost the conversation its scroll position.
+  //
+  // Reserved on the whole right-hand column rather than on `<main>` alone,
+  // because the drawer is full height — it spans the header and the alert strip
+  // too. Margin on `<main>` only, and the drawer covers the persona switcher,
+  // the notification bell, and the strip's own "Back to conversation" button:
+  // the one control that exists to undo a trip the incident sent her on.
+  //
+  // Only on `lg` and up — below that the drawer takes the screen as a sheet, so
+  // there is nothing to reserve. Inert for every persona but the HSE GM, whose
+  // alert is the only one that ever reports `active`.
+  const { active: alertActive, open: alertOpen } = useCriticalAlert();
+  const alertDrawerOpen = alertActive && alertOpen;
+
   // Daniel's floating assistant bar: only for the AI Governance Admin, only on
   // his four non-Ask pages. When it's up, reserve bottom space so the fixed bar
   // never covers dashboard content — same principle as the widget margin above.
@@ -54,11 +72,16 @@ function ShellInner() {
   return (
     <div className="h-[100dvh] bg-bg flex overflow-hidden">
       <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
-      <div className="flex-1 flex flex-col min-w-0 relative">
+      <div
+        className={`flex-1 flex flex-col min-w-0 relative transition-[margin] duration-200 ease-out ${
+          alertDrawerOpen ? 'lg:mr-[440px]' : ''
+        }`}
+      >
         <TopHeader onMenuClick={() => setNavOpen(true)} />
-        {/* A band, not an overlay: it pushes the page down rather than covering
-            it, and it renders on every route because its own actions send the
-            HSE GM to other pages. Inert for every other persona. */}
+        {/* One line, never more: the incident detail lives in the drawer
+            below, so this strip only ever costs the page its own height. It
+            renders on every route because the incident outlives navigation.
+            Inert for every other persona. */}
         <CriticalAlertBand />
         <main
           className={`flex-1 overflow-y-auto transition-[margin] duration-200 ease-out ${mainMargin}`}
@@ -77,6 +100,9 @@ function ShellInner() {
           </AnimatePresence>
         </main>
         <StickyIntelligenceWidget />
+        {/* Fixed to the viewport, so it spans the full height beside the page
+            rather than living inside the scrolling column. */}
+        <CriticalAlertDrawer />
         {assistantVisible && (
           <PlatformAdminAssistantBar key={location.pathname} route={location.pathname} />
         )}

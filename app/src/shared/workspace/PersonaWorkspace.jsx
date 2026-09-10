@@ -392,6 +392,12 @@ export default function PersonaWorkspace({ manifest }) {
               getCapability={getCapabilityForMessage}
               onCapabilityClick={setCapabilityModal}
               wideInlineComponents={features?.wideInlineComponents}
+              // A thread handed back by the session store has to land on the
+              // turn she left, not animate towards it while inline cards are
+              // still growing the column underneath. False for every persona
+              // that has not opted into `persistConversation`, so no other
+              // tenant's scrolling changes at all.
+              restored={restored}
             />
           </div>
         </div>
