@@ -129,16 +129,20 @@ export default function TopHeader({ onMenuClick }) {
   // the login screen. Both are needed — clearing only the client would return
   // to the picker while still signed in.
   //
-  // The destination is *this client's* door, not the platform's, and that holds
-  // even if you arrived through the Ultra picker. Someone signing out of an NFCU
-  // demo should be looking at NFCU's sign-in page; the platform door is a URL
-  // you have to know.
+  // You leave by the door of the client you are IN, not the one you came in by.
+  // Signing out of Aramco shows Aramco's sign-in page whether you reached it
+  // through that client's own link or picked it inside Ultra — the tenant on
+  // screen is the tenant you are leaving. The platform door is where the app
+  // *starts*, not where a client's session ends; see `LOCKED_REDIRECT_PATH`.
+  //
+  // Handing the door to `signOut` rather than navigating here is deliberate:
+  // clearing the session re-renders the route guard first, and whatever that
+  // guard decides wins. See `exitPath` in SessionContext.
   const handleSignOut = () => {
     setDropdownOpen(false);
-    const destination = loginPathForClientId(clientId);
     clearClient();
-    signOut();
-    navigate(destination, { replace: true });
+    // Falls back to the platform door for a client with no gate of its own.
+    signOut(loginPathForClientId(clientId));
   };
 
   return (

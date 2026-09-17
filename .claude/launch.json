@@ -2,25 +2,84 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "Ultra 5610",
+      "cwd": "app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5610",
+        "--strictPort"
+      ],
+      "port": 5610
+    },
+    {
       "name": "FinancialServices App",
       "cwd": "app",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5600", "--strictPort"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5600",
+        "--strictPort"
+      ],
       "port": 5600
     },
     {
       "name": "FinancialServices Fresh",
       "cwd": "app",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5600", "--strictPort"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5600",
+        "--strictPort"
+      ],
       "port": 5600
     },
     {
       "name": "Ultra App",
       "cwd": "app",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "autoPort": true
+    },
+    {
+      "name": "TrackLynk",
+      "cwd": "tracklynk",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5700",
+        "--strictPort"
+      ],
+      "port": 5700
+    },
+    {
+      "name": "USSFCU Standalone",
+      "cwd": "USSFCU",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5800",
+        "--strictPort"
+      ],
+      "port": 5800
     }
   ]
 }

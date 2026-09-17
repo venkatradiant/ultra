@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { CLIENTS, STORAGE_KEY } from '../config/clients';
-import { useSession, rememberLastClient } from './SessionContext';
+import { useSession } from './SessionContext';
 
 /**
  * Which client the app is currently showing.
@@ -30,8 +30,14 @@ function readStoredClient() {
 }
 
 export function ClientProvider({ children }) {
-  const { scopedClientId } = useSession();
-  const [picked, setPicked] = useState(readStoredClient);
+  const { scopedClientId, isUnlocked } = useSession();
+  // Only a live session may resume a stored client. A locked visitor must reach
+  // the picker, and before this gate a leftover `selected_client` carried them
+  // straight past it into whichever tenant was open last — signing in at the
+  // Ultra door dropped them into that client instead of the market picker,
+  // because clearing the key does not clear this state. SessionProvider sits
+  // above, so its scope is already resolved on this first render.
+  const [picked, setPicked] = useState(() => (isUnlocked ? readStoredClient() : null));
 
   // A client-scoped session *is* its client. Nothing the picker or storage says
   // can override it, and it needs no separate state — deriving it here means
@@ -44,9 +50,6 @@ export function ClientProvider({ children }) {
     try {
       localStorage.setItem(STORAGE_KEY, id);
     } catch { /* private mode — the session still works, it just won't persist */ }
-    // So signing out of a client entered through the picker still lands on that
-    // client's door rather than the platform's.
-    rememberLastClient(id);
     setPicked(id);
   }
 

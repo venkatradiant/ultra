@@ -1,13 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
-import { SessionProvider, useSession, readLastClient } from './context/SessionContext';
+import { SessionProvider, useSession } from './context/SessionContext';
 import { ClientProvider, useClient } from './context/ClientContext';
 import { PersonaProvider } from './context/PersonaContext';
 import { BrandingProvider } from './context/BrandingContext';
 import { BrandProvider } from './context/BrandContext';
 import { ThemeProvider } from '@core/providers/ThemeProvider';
-import { clientIdForSlug, loginPathForClientId, ULTRA_SLUG } from './config/access';
-import { CLIENTS } from './config/clients';
+import { clientIdForSlug, ULTRA_SLUG } from './config/access';
 import AppShell from './components/layout/AppShell';
 import LoginScreen from './screens/LoginScreen';
 import ClientLoginScreen from './screens/ClientLoginScreen';
@@ -55,22 +54,19 @@ function DemoNavigateBridge() {
 }
 
 /**
- * Where an unauthenticated visitor gets sent.
+ * Where an unauthenticated visitor gets sent: the platform door.
  *
- * The last tenant this browser was in, if there was one; the platform door
- * otherwise. That is what makes a client's bookmark of `/live-site` come back
- * to *their* sign-in page rather than to the Ultra picker, which they should
- * never see — and what makes signing out land on the same page.
+ * This used to resume the last tenant the browser had been in, so a client's
+ * bookmark of `/live-site` came back to *their* branded sign-in page. It no
+ * longer does — opening the app lands on Ultra whoever was here last. The
+ * per-client doors are still real addresses, reached by handing out
+ * `/login/<slug>` rather than by being remembered.
  *
- * It reads `ultra_last_client`, not `selected_client`. The latter is cleared by
- * sign-out, which is correct and also exactly the moment we most need to know
- * whose door to show.
+ * Signing out is the one thing that lands elsewhere: it leaves by the door of
+ * the client being left, picker-chosen or not, and names that door itself —
+ * `exitPath` carries it. Starting the app is what always begins at Ultra.
  */
-function lockedRedirectPath() {
-  const last = readLastClient();
-  if (last && CLIENTS[last]) return loginPathForClientId(last);
-  return `/login/${ULTRA_SLUG}`;
-}
+const LOCKED_REDIRECT_PATH = `/login/${ULTRA_SLUG}`;
 
 /**
  * `/login/ultra` — the platform gate, and the market picker behind it.
@@ -127,10 +123,10 @@ function ClientGateRoute() {
  * keeps every route absolute and declared in one list.
  */
 function ProtectedShell() {
-  const { isUnlocked } = useSession();
+  const { isUnlocked, exitPath } = useSession();
   const { hasClient } = useClient();
 
-  if (!isUnlocked) return <Navigate to={lockedRedirectPath()} replace />;
+  if (!isUnlocked) return <Navigate to={exitPath || LOCKED_REDIRECT_PATH} replace />;
   // Signed in at the platform door but no client picked yet — the picker is a
   // route now, so this is a redirect rather than a branch.
   if (!hasClient) return <Navigate to={`/login/${ULTRA_SLUG}`} replace />;

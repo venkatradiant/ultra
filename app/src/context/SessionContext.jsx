@@ -30,17 +30,6 @@ import { STORAGE_KEY as CLIENT_KEY } from '../config/clients';
 const SESSION_KEY = 'ultra_session';
 export const ULTRA_SCOPE = 'ultra';
 
-/**
- * The last tenant this browser was in, kept deliberately across sign-out.
- *
- * `selected_client` cannot answer "whose door should I show" — signing out
- * clears it, which is correct (you are not in that client any more) and useless
- * (the very next thing we need is which client's sign-in page to render). This
- * key is that memory and nothing else: it grants no access, it only decides
- * which of nine doors a locked visitor is looking at.
- */
-const LAST_CLIENT_KEY = 'ultra_last_client';
-
 const SessionContext = createContext(null);
 
 /** Drop the selected client so an unlock always lands on the picker. */
@@ -48,21 +37,6 @@ function clearStoredClient() {
   try {
     localStorage.removeItem(CLIENT_KEY);
   } catch { /* private mode — nothing to clear */ }
-}
-
-/** Remember the tenant for the next locked visit. Survives sign-out. */
-export function rememberLastClient(clientId) {
-  try {
-    if (clientId) localStorage.setItem(LAST_CLIENT_KEY, clientId);
-  } catch { /* private mode — the redirect falls back to the platform door */ }
-}
-
-export function readLastClient() {
-  try {
-    return localStorage.getItem(LAST_CLIENT_KEY);
-  } catch {
-    return null;
-  }
 }
 
 function writeScope(scope) {
@@ -112,12 +86,28 @@ function readInitialScope() {
 
 export function SessionProvider({ children }) {
   const [scope, setScope] = useState(readInitialScope);
+  // The door the next locked render should show, when a sign-out knows which
+  // one that is. Null — a fresh tab, or a sign-out from the picker — means the
+  // platform door.
+  //
+  // This exists because a sign-out cannot simply navigate itself. React Router
+  // runs navigation in a transition, so the urgent `setScope(null)` commits
+  // first, at the OLD location: `ProtectedShell` re-renders unlocked, redirects
+  // to its own destination, and that redirect supersedes the pending one. The
+  // guard therefore has to be *told* where to go rather than raced. It used to
+  // reach the right page by accident, back when the guard's fallback was the
+  // last tenant this browser had been in.
+  //
+  // Deliberately state, not storage: it lives exactly as long as the tab's
+  // current page, so reopening the app is unaffected by it.
+  const [exitPath, setExitPath] = useState(null);
 
   /** Platform door. Returns false on a bad credential so the form can show an error. */
   function signInAsUltra(username, password) {
     if (!verifyLogin(username, password)) return false;
     writeScope(ULTRA_SCOPE);
     clearStoredClient();
+    setExitPath(null);
     setScope(ULTRA_SCOPE);
     return true;
   }
@@ -133,17 +123,24 @@ export function SessionProvider({ children }) {
     try {
       localStorage.setItem(CLIENT_KEY, clientId);
     } catch { /* private mode — the scope still carries the client */ }
-    rememberLastClient(clientId);
+    setExitPath(null);
     setScope(clientId);
     return true;
   }
 
-  /** Full sign out — the scope and the selected client both go. */
-  function signOut() {
+  /**
+   * Full sign out — the scope and the selected client both go.
+   *
+   * `destination` is the door to land on — the `/login/<slug>` of the client
+   * being left, however that client was entered. The guard reads it; see
+   * `exitPath` above for why the caller cannot just navigate.
+   */
+  function signOut(destination) {
     try {
       sessionStorage.removeItem(SESSION_KEY);
     } catch { /* nothing to clear */ }
     clearStoredClient();
+    setExitPath(destination || null);
     setScope(null);
   }
 
@@ -155,6 +152,8 @@ export function SessionProvider({ children }) {
         isPlatformScope: scope === ULTRA_SCOPE,
         /** The client this session is locked to, or null under platform scope. */
         scopedClientId: scope && scope !== ULTRA_SCOPE ? scope : null,
+        /** Where a locked render should send you, or null for the platform door. */
+        exitPath,
         signInAsUltra,
         signInAsClient,
         signOut,
