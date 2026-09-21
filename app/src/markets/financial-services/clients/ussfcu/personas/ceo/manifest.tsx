@@ -132,7 +132,10 @@ const manifest: PersonaManifest = {
     if (k === 'ussfcu_ceo_trace_net_income') out.push(<NetIncomeTrace key="ceo-netinc-trace" />);
     if (k === 'ussfcu_ceo_turn_membership') out.push(<BusinessHealthPanel key={`ceo-health-${k}`} />);
     if (k === 'ussfcu_ceo_turn_board_briefing' || k === 'ussfcu_ceo_turn_full_briefing' || k === 'ussfcu_ceo_export_document' || k === 'ussfcu_ceo_add_recommendation') {
-      out.push(<BoardBriefingPreview key={`ceo-briefing-${k}`} onViewFullBriefing={noop} />);
+      // No handler on purpose: without one the button dispatches
+      // `features.overlayOpenEvent`, which PersonaWorkspace listens for. A no-op
+      // here made the in-chat "View Full Briefing" dead.
+      out.push(<BoardBriefingPreview key={`ceo-briefing-${k}`} />);
     }
 
     return out.length ? out : undefined;

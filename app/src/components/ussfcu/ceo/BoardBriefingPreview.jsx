@@ -2,9 +2,12 @@ import { motion } from 'framer-motion';
 import { FileText, ShieldCheck, Presentation } from 'lucide-react';
 
 // Board briefing preview — section thumbnails + traceability note. The
-// "View Full Briefing" affordance launches Presentation Mode in the delivered
-// dashboard; that surface is the next build phase, so the control is shown as a
-// labeled placeholder here.
+// "View Full Briefing" affordance launches Presentation Mode.
+//
+// `onViewFullBriefing` is optional on purpose: with no handler the button
+// dispatches `ussfcu-ceo:open-presentation`, which PersonaWorkspace already
+// listens for (the manifest's `features.overlayOpenEvent`). Passing a no-op
+// makes the button dead.
 
 const SECTIONS = [
   { title: 'The State of USSFCU', sub: 'Cover' },
@@ -15,7 +18,7 @@ const SECTIONS = [
   { title: 'Lineage Appendix', sub: 'Every figure traced to source' },
 ];
 
-export default function BoardBriefingPreview({ onViewFullBriefing }) {
+export default function BoardBriefingPreview({ onViewFullBriefing = null }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
