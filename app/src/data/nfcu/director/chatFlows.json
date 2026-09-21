@@ -107,7 +107,7 @@
   "nfcu_dir_brief_staffing_outlook": {
     "ai_message": "Variant WFM forecasts cross-team agent availability dropping below the 92% target for 5 of the next 8 weeks. The drivers are approved PTO, scheduled training cohorts, and 3 mortgage agents on extended leave. Forecast variance is ±3 pp historically, so this is solid. Operational impact is still 3+ weeks out, so there's time to plan. The overtime budget bar is below.",
     "suggested_chips": [
-      "Show staffing by week",
+      "Which teams are at risk for the rest of this week?",
       "What is my overtime exposure?",
       "Plan hiring backfill"
     ],
@@ -780,5 +780,14 @@
       "validated_at": "2026-04-23T09:00:42Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the operations data I can see.\n\nI can walk you through the service level issue, show the migration risk, size your budget exposure, or build your weekly leadership report.",
+    "suggested_chips": [
+      "Walk me through the service level issue",
+      "Show me the migration risk",
+      "What is my budget exposure?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

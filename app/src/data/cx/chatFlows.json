@@ -84,7 +84,10 @@
   },
   "cx_turn_3_intervention": {
     "ai_message": "Based on the friction analysis across all three signals, here are three targeted interventions I can execute right now — each one addresses a specific signal:",
-    "suggested_chips": [],
+    "suggested_chips": [
+      "Summarize service recovery gaps",
+      "What's the CSAT trend?"
+    ],
     "data_sources_used": ["Salesforce AgentForce", "Genesys Cloud", "Service Cloud"],
     "capability": "Automated Action",
     "ui_components_to_render": [
@@ -224,5 +227,14 @@
     "capability": "Automated Action",
     "ui_components_to_render": [],
     "related_dataset_keys": ["service_recovery", "cx_journey_friction"]
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the member-experience data I can see.\n\nI can show where members are hitting friction, which journeys underperform this week, channel switching patterns, or what's driving the IVR escalation spike.",
+    "suggested_chips": [
+      "Where are members hitting friction?",
+      "Which journeys underperform this week?",
+      "Show me channel switching patterns"
+    ],
+    "capability": "Converged Conversation"
   }
 }

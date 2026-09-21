@@ -229,5 +229,14 @@
     "ui_components_to_render": [],
     "related_dataset_keys": ["businessHealth", "trustStrip"],
     "capability": "Automated Action"
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the data I can see.\n\nI can tell you where the business stands this morning, walk you through the liquidity signal, show how far to trust these numbers, or show membership and growth.",
+    "suggested_chips": [
+      "Where does the business stand this morning?",
+      "Walk me through the liquidity signal",
+      "Can I trust these numbers?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

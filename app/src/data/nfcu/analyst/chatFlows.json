@@ -329,5 +329,14 @@
       "validated_at": "2026-04-23T08:59:08Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the workforce data I can see.\n\nI can walk you through the tax season risk, show the training cohort data, project your overtime trajectory, or forecast next week's volume.",
+    "suggested_chips": [
+      "Walk me through the tax season risk",
+      "Show me the training cohort data",
+      "What is my overtime trajectory?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

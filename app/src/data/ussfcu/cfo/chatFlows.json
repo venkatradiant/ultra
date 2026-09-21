@@ -243,8 +243,7 @@
     "suggested_chips": [
       "Route it and notify Lending",
       "Draft the data-governance remediation plan",
-      "Show me what is still open",
-      "Next signal"
+      "Show me what is still open"
     ],
     "data_sources_used": ["Audit / GRC System", "General Ledger", "Thought Machine Ledger", "Lending Origination", "Tableau", "Radiant Lineage Map"],
     "ui_components_to_render": [
@@ -374,5 +373,14 @@
     "ui_components_to_render": [],
     "related_dataset_keys": ["reconciliation"],
     "capability": "Predictive Intelligence"
+  },
+  "__default__": {
+    "ai_message": "I can't answer that from the governed finance data I can see.\n\nI can show where the loan-loss number breaks, trace the data flow from the core to Tableau, list the board figures with no lineage, or reconcile the portfolio balance.",
+    "suggested_chips": [
+      "Why doesn't my loan-loss number match Lending?",
+      "Show me the data flow from the core to Tableau",
+      "Which board figures have no lineage?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

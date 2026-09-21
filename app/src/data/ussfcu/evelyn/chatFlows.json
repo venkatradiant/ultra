@@ -213,5 +213,14 @@
     "ui_components_to_render": [],
     "related_dataset_keys": ["rankedRisk"],
     "capability": "Automated Action"
+  },
+  "__default__": {
+    "ai_message": "I can't answer that from the compliance data I can see.\n\nI can count members by any set of characteristics, apply the regulatory tests to that population, show what is on the disclosure clock, or build a member's disclosure checklist and calendar.",
+    "suggested_chips": [
+      "How many members match a set of characteristics?",
+      "Apply the compliance tests to this population",
+      "What is on the disclosure clock this week?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

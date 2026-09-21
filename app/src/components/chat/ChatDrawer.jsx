@@ -6,19 +6,26 @@ import ChatInput from './ChatInput';
 import SuggestedChips from './SuggestedChips';
 import useChatFlow from '../../hooks/useChatFlow';
 
-export default function ChatDrawer({ isOpen, onClose, preloadedChips = [], initialQuery }) {
+// `personaId` selects whose script answers. Screens pass it for personas that
+// have their own flows; left out, the drawer keeps the generic `ops` script.
+export default function ChatDrawer({ isOpen, onClose, preloadedChips = [], initialQuery, personaId }) {
   const {
     messages,
     isTyping,
     currentChips,
     handleChipClick,
-  } = useChatFlow();
+  } = useChatFlow(personaId);
 
   const lastQuery = useRef(null);
 
-  // Auto-trigger the initial query when drawer opens with one
+  // Auto-trigger the initial query when drawer opens with one. Closing clears
+  // the guard so asking the same question again after closing still answers.
   useEffect(() => {
-    if (isOpen && initialQuery && initialQuery !== lastQuery.current) {
+    if (!isOpen) {
+      lastQuery.current = null;
+      return;
+    }
+    if (initialQuery && initialQuery !== lastQuery.current) {
       lastQuery.current = initialQuery;
       handleChipClick(initialQuery);
     }

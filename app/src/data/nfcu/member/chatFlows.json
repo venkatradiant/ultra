@@ -366,5 +366,14 @@
       "validated_at": "2026-07-01T08:00:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
+  },
+  "__default__": {
+    "ai_message": "Sorry, I didn't catch that one.\n\nI can check your balance, explain why your payment was declined, fix your direct deposit, or tell you whether a late fee applies.",
+    "suggested_chips": [
+      "What's my balance?",
+      "Why was my payment declined?",
+      "Fix my direct deposit"
+    ],
+    "capability": "Converged Conversation"
   }
 }

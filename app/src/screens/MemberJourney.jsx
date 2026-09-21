@@ -22,11 +22,30 @@ const journeyChips = [
   "Which members are most at risk of leaving?",
 ];
 
-const nfcuWorkforceChips = [
-  "What's our biggest workforce risk this week?",
-  "Show me the queue coverage gap",
-  "Which agents are showing burnout signals?",
-];
+// NFCU — each persona asks in its own script's words, so every chip here must be
+// a label in that persona's chipToFlowKey (the drawer answers from its flows).
+const nfcuWorkforceChips = {
+  nfcu_supervisor: [
+    "Show me staffing for Friday",
+    "Who is available for overtime?",
+    "Show me adherence by team this shift",
+  ],
+  nfcu_director: [
+    "Which teams are at risk for the rest of this week?",
+    "Show me the overtime budget exposure",
+    "Show me the attrition detail",
+  ],
+  nfcu_analyst: [
+    "Walk me through the tax season risk",
+    "Which shifts are understaffed this week?",
+    "What is my agent attrition trend?",
+  ],
+  nfcu_workforce: [
+    "Which agents are at risk?",
+    "How much is this costing us?",
+    "What should we tell agents?",
+  ],
+};
 
 const cfoLineageChips = [
   "Show me the data flow from the core to Tableau",
@@ -62,7 +81,7 @@ export default function MemberJourney() {
   const isNadia = persona?.id === 'ussfcu_nadia';
   const baseJourneyMap = clientId === 'penfed' ? penfedJourneyMap : journeyMap;
   const mapData = isNFCU ? nfcuWorkforceMap : baseJourneyMap;
-  const chips = isNFCU ? nfcuWorkforceChips : journeyChips;
+  const chips = isNFCU ? (nfcuWorkforceChips[persona.id] ?? nfcuWorkforceChips.nfcu_supervisor) : journeyChips;
 
   // Newfold Digital — the Workforce Intelligence page: force-to-load by queue and
   // brand, shift coverage, the seasonal Q4 overlay, staffing scenarios, BPO
@@ -119,6 +138,7 @@ export default function MemberJourney() {
           onClose={() => { setDrawerOpen(false); setInitialQuery(null); }}
           preloadedChips={cfoLineageChips}
           initialQuery={initialQuery}
+          personaId={persona.id}
         />
       </div>
     );
@@ -153,6 +173,7 @@ export default function MemberJourney() {
           onClose={() => { setDrawerOpen(false); setInitialQuery(null); }}
           preloadedChips={complianceChips}
           initialQuery={initialQuery}
+          personaId={persona.id}
         />
       </div>
     );
@@ -248,6 +269,7 @@ export default function MemberJourney() {
         onClose={() => { setDrawerOpen(false); setInitialQuery(null); }}
         preloadedChips={chips}
         initialQuery={initialQuery}
+        personaId={isNFCU ? persona.id : undefined}
       />
     </div>
   );

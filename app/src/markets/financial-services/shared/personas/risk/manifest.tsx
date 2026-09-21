@@ -43,7 +43,7 @@ export default function createRiskManifest(clientId: string): PersonaManifest {
       'Summarize BSA/AML posture',
     ],
     goldenPathChip: {
-      risk_greeting: 'What anomalies were detected?',
+      risk_greeting: 'What anomalies were detected overnight?',
       risk_turn_1_anomalies: 'Show me the regulatory exposure',
       risk_turn_2_regulatory: 'What needs escalation?',
     },

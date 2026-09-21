@@ -84,7 +84,10 @@
   },
   "ret_turn_3_retention_action": {
     "ai_message": "Based on the predictive analysis, here are three retention actions I can execute right now:",
-    "suggested_chips": [],
+    "suggested_chips": [
+      "Show me campaign performance",
+      "Generate a retention brief for leadership"
+    ],
     "data_sources_used": ["Salesforce AgentForce", "Salesforce Einstein"],
     "capability": "Automated Action",
     "ui_components_to_render": [
@@ -202,5 +205,14 @@
     "capability": "Converged Conversation",
     "ui_components_to_render": [],
     "related_dataset_keys": ["churn_model", "segments"]
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the retention data I can see.\n\nI can show the churn signals, which members are most at risk of leaving, what's driving disengagement, or model the impact of outreach.",
+    "suggested_chips": [
+      "Show me the churn signals",
+      "Which members are most at risk of leaving?",
+      "What's driving disengagement this month?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

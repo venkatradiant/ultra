@@ -121,7 +121,7 @@
       "Approve the script revert",
       "Show me the 8 accounts needing callbacks",
       "Generate a compliance incident report",
-      "Next signal"
+      "Show me the repeat-contact signal"
     ],
     "data_sources_used": ["Dynamics 365 Script Management", "CRM", "Dynamics 365 Quality Management"],
     "capability": "Automated Action",
@@ -391,5 +391,14 @@
       "validated_at": "2026-04-23T09:01:18Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the quality data I can see.\n\nI can walk you through the compliance issue, show the repeat contact data, flag the agents at risk, or show quality scores by team.",
+    "suggested_chips": [
+      "Walk me through the compliance issue",
+      "Show me the repeat contact data",
+      "Which agents are at risk?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

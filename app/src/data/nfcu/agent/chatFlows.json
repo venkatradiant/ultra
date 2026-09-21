@@ -403,5 +403,14 @@
       "validated_at": "2026-07-01T08:00:00Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
+  },
+  "__default__": {
+    "ai_message": "I can't answer that from this member's record.\n\nI can explain why the payment was declined, correlate the decline across her accounts, give you plain-language wording, or walk you to the compliant resolution.",
+    "suggested_chips": [
+      "Why was this member's payment declined?",
+      "Correlate the decline across her accounts",
+      "How do I explain this in plain language?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

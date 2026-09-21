@@ -610,5 +610,14 @@
     "ui_components_to_render": [],
     "related_dataset_keys": [],
     "confidence": { "score": 97, "rationale": "Connection status read directly from the data source registry.", "signals_used": ["Model Registry"], "threshold": 70, "model_version": "sovereign-router-v2.0", "validated_at": "2026-04-23T09:00:00Z", "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null } }
+  },
+  "__default__": {
+    "ai_message": "That's outside the governance telemetry I can see.\n\nI can review the auto loan spike, check whether any PII reached the frontier model, draw the routing logic, or run the LLM cost report for this session.",
+    "suggested_chips": [
+      "Review the auto loan spike",
+      "Did any PII reach the frontier model?",
+      "Run the LLM cost report for this session"
+    ],
+    "capability": "Converged Conversation"
   }
 }

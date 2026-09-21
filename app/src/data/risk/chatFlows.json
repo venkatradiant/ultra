@@ -84,7 +84,10 @@
   },
   "risk_turn_3_escalation": {
     "ai_message": "Based on the anomaly scan and regulatory analysis, here are three actions I can execute right now:",
-    "suggested_chips": [],
+    "suggested_chips": [
+      "Generate an audit trail for compliance",
+      "Generate a board-level risk summary"
+    ],
     "data_sources_used": ["Compliance DB", "Transaction Monitor"],
     "capability": "Automated Action",
     "ui_components_to_render": [
@@ -202,5 +205,14 @@
     "capability": "Automated Action",
     "ui_components_to_render": [],
     "related_dataset_keys": ["regulatory_readiness", "transaction_anomalies", "escalation_log"]
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the risk data I can see.\n\nI can show the anomalies detected overnight, our regulatory exposure, the accounts needing escalation, or generate an audit trail for compliance.",
+    "suggested_chips": [
+      "What anomalies were detected overnight?",
+      "Show me our regulatory exposure",
+      "Flag accounts needing escalation"
+    ],
+    "capability": "Converged Conversation"
   }
 }

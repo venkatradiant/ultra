@@ -163,5 +163,14 @@
     "ui_components_to_render": [],
     "related_dataset_keys": ["fileExceptions"],
     "capability": "Converged Conversation"
+  },
+  "__default__": {
+    "ai_message": "I can't answer that from the files I can see.\n\nI can show today's file exceptions, open a member file and build its timeline, run the compliance tests on a file, or build its disclosure checklist and calendar.",
+    "suggested_chips": [
+      "Show me today's file exceptions",
+      "Open a member file and build its timeline",
+      "Run the compliance tests on this file"
+    ],
+    "capability": "Converged Conversation"
   }
 }

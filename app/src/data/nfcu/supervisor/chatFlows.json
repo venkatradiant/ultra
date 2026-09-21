@@ -226,7 +226,7 @@
   "nfcu_sup_signal_2_staffing": {
     "ai_message": "The gap is structural — Friday evenings are uniquely exposed because West Coast members call after work, and this shift has the thinnest supervisor coverage. I've already ranked the three highest-quality certified agents eligible for OT: Torres, Williams, and Chen. Based on their history, there's a 78% probability at least one accepts. If none do, I have a flex-slot secondary plan ready. Want me to send the OT offers now?",
     "suggested_chips": [
-      "What are my options?",
+      "What should we do?",
       "Who is available for overtime?",
       "Show me the sentiment signal",
       "Which agents have mortgage certification?"
@@ -841,5 +841,14 @@
       "validated_at": "2026-04-23T08:59:38Z",
       "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
     }
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the contact-center data I can see.\n\nI can walk you through today's signals, explain what caused the auto loan spike, show staffing for Friday, or trace the root cause.",
+    "suggested_chips": [
+      "Yes, walk me through them",
+      "What caused the auto loan spike?",
+      "Show me staffing for Friday"
+    ],
+    "capability": "Converged Conversation"
   }
 }

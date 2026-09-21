@@ -245,7 +245,10 @@
   "turn_4_actions": {
     "user_query": "Help me act on this",
     "ai_response": "Based on everything we've covered, here are three actions I can execute right now. I'll confirm each one before I proceed:\n\n[1] Create a JIRA ticket \u2014 'Mortgage Step 4 UiPath Exception' \u2014 assigned to Data Engineering.\n[2] Schedule a 45-minute friction review with your team with agenda drafted from today's signals.\n[3] Generate a one-page member friction brief formatted for your leadership team.",
-    "suggested_chips": [],
+    "suggested_chips": [
+      "Generate a member friction brief",
+      "Scan for anomalies across systems"
+    ],
     "data_sources_used": [
       "Salesforce AgentForce",
       "UiPath"
@@ -543,5 +546,14 @@
     "data_sources_used": ["Salesforce AgentForce"],
     "ui_components_to_render": [],
     "related_dataset_keys": ["segments"]
+  },
+  "__default__": {
+    "ai_message": "I don't have an answer to that in the data I can see.\n\nI can walk you through today's signals, explain the mortgage drop-off, show which members are most at risk of leaving, or scan for anomalies across systems.",
+    "suggested_chips": [
+      "Yes, walk me through them",
+      "What's driving the mortgage drop-off?",
+      "Which members are most at risk of leaving?"
+    ],
+    "capability": "Converged Conversation"
   }
 }

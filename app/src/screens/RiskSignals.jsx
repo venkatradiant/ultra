@@ -20,15 +20,41 @@ import nadiaChecklist from '../data/ussfcu/nadia/fileChecklist.json';
 import nadiaCalendar from '../data/ussfcu/nadia/fileCalendar.json';
 import { usePersona } from '../context/PersonaContext';
 
-const nfcuQualityChips = [
-  "Show me quality scores by team this week",
-  "Which agents need coaching?",
-  "Show me sentiment trends by queue",
-  "Walk me through the compliance issue",
-  "Show me the repeat contact data",
-  "Generate a quality scorecard",
-  "Compare FCR this month vs. last month",
-];
+// NFCU — each persona asks in its own script's words, so every chip here must be
+// a label in that persona's chipToFlowKey (the drawer answers from its flows).
+const nfcuQualityChips = {
+  nfcu_supervisor: [
+    "Show me quality scores by team this week",
+    "Show me the sentiment signal",
+    "What's driving the sentiment dip?",
+    "Show the repeat-contact pattern",
+    "Show me sentiment by team",
+    "Compare to last month's report",
+  ],
+  nfcu_director: [
+    "Show me quality scores by team this week",
+    "Show the member sentiment trend",
+    "Show the mortgage repeat-contact pattern",
+    "Show me the FCR improvement driver",
+    "Show the cross-team cascade risk",
+  ],
+  nfcu_analyst: [
+    "Compare actual vs. forecast accuracy this month",
+    "Show me schedule adherence by team",
+    "Show me the training cohort data",
+    "Which agents are furthest behind?",
+    "Generate the weekly workforce report",
+  ],
+  nfcu_workforce: [
+    "Show me quality scores by team this week",
+    "Which agents need coaching?",
+    "Show me sentiment trends by queue",
+    "Walk me through the compliance issue",
+    "Show me the repeat contact data",
+    "Generate a quality scorecard",
+    "Compare FCR this month vs. last month",
+  ],
+};
 
 const cfoGovernanceChips = [
   "Show me where the numbers break",
@@ -50,7 +76,11 @@ export default function RiskSignals() {
   const isEsfcuCro = persona.id === 'esfcu_cro';
   const isEvelyn = persona.id === 'ussfcu_evelyn';
   const isNadia = persona.id === 'ussfcu_nadia';
-  const screenChips = isCfo ? cfoGovernanceChips : isNFCU ? nfcuQualityChips : riskExtras.riskScreenChips;
+  const screenChips = isCfo
+    ? cfoGovernanceChips
+    : isNFCU
+    ? nfcuQualityChips[persona.id] ?? nfcuQualityChips.nfcu_workforce
+    : riskExtras.riskScreenChips;
   const inputPlaceholder = isCfo ? 'Ask about reconciliation breaks, parity, or lineage…' : isNFCU ? 'Ask about quality signals...' : 'Ask about risk signals...';
   const leftColLabel = isCfo ? 'Active Governance Signals' : isNFCU ? 'Active Quality Signals' : 'Active Risk Signals';
   const rightColLabel = isCfo ? 'Governance Posture' : isNFCU ? 'Compliance & Experience Summary' : 'Forward-Looking Summary';
@@ -127,6 +157,7 @@ export default function RiskSignals() {
           onClose={() => { setDrawerOpen(false); setInitialQuery(null); }}
           preloadedChips={disclosureChips}
           initialQuery={initialQuery}
+          personaId={persona.id}
         />
       </div>
     );
@@ -201,6 +232,7 @@ export default function RiskSignals() {
         onClose={() => { setDrawerOpen(false); setInitialQuery(null); }}
         preloadedChips={screenChips}
         initialQuery={initialQuery}
+        personaId={isCfo || isNFCU ? persona.id : undefined}
       />
     </div>
   );

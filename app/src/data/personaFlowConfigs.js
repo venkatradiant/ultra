@@ -286,7 +286,9 @@ const nfcuSupConfig = {
     'Show me queue performance by channel': 'nfcu_sup_turn_1_queue_health',
     // Recommendations
     'What should we do?': 'nfcu_sup_turn_2_recommendations',
-    'What are my options?': 'nfcu_sup_turn_2_recommendations',
+    // The intraday storyline's label (golden path at intraday_t3_correlate);
+    // the Friday turns offer 'What should we do?' for the recommendations.
+    'What are my options?': 'intraday_t4_options',
     // Action confirmations
     'Activate the cross-trained agents': 'nfcu_sup_act_agents_confirm',
     'Enable callback now': 'nfcu_sup_act_callback_confirm',
@@ -494,6 +496,9 @@ const nfcuWfConfig = {
     'Walk me through the compliance issue': 'nfcu_wf_turn_1_compliance_detail',
     'Show me the repeat contact data': 'nfcu_wf_turn_3_repeat_contacts',
     'Which agents are at risk?': 'nfcu_wf_signal_3_burnout',
+    // Golden path out of remediation: names the signal, because 'Next signal'
+    // counts signals visited and the path reaches here by chips, not signals.
+    'Show me the repeat-contact signal': 'nfcu_wf_signal_2_repeat_contact',
     'Next signal': '__next_signal__',
     // Compliance detail
     'Which accounts need remediation?': 'nfcu_wf_turn_2_remediation',
@@ -671,7 +676,7 @@ const nfcuDirConfig = {
     'How do we prevent the marketing notification gap?': 'nfcu_shared_marketing_gap_explain',
     'Model the impact on general banking': 'nfcu_shared_general_banking_impact',
     'Monitor and report back in 20 min': 'nfcu_shared_monitor_20min',
-    'Plan hiring backfill': 'nfcu_dir_brief_staffing_outlook',
+    'Plan hiring backfill': 'nfcu_dir_attrition_detail',
     'Queue a journey audit': 'nfcu_shared_journey_audit',
     'Reroute the 12 idle agents now': 'nfcu_shared_action_confirmed',
     'Schedule a CX review': 'nfcu_dir_brief_sentiment_trend',
@@ -736,7 +741,7 @@ const nfcuDirConfig = {
     'What did we learn?': 'nfcu_shared_what_we_learned',
     'What if we enable callback?': 'nfcu_shared_what_if_callback',
     'What is PinDrop fallback doing to handle time?': 'nfcu_shared_pindrop_fallback',
-    'What is my overtime exposure?': 'nfcu_dir_brief_staffing_outlook',
+    'What is my overtime exposure?': 'nfcu_dir_budget_exposure',
     'What is the geographic constraint?': 'nfcu_shared_geographic_constraint',
     'What is the member experience impact?': 'nfcu_shared_member_impact',
     'What should I tell leadership right now?': 'intraday_dir_t6_brief',

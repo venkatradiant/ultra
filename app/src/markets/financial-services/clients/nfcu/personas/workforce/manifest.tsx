@@ -43,7 +43,7 @@ const manifest: PersonaManifest = {
     goldenPathChip: {
       nfcu_wf_greeting: 'Walk me through the compliance issue',
       nfcu_wf_turn_1_compliance_detail: 'Recommend a fix',
-      nfcu_wf_turn_2_remediation: 'Next signal',
+      nfcu_wf_turn_2_remediation: 'Show me the repeat-contact signal',
       nfcu_wf_signal_2_repeat_contact: 'Show me the repeat contact data',
       nfcu_wf_turn_3_repeat_contacts: 'What should we tell agents?',
     },
