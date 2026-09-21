@@ -16,29 +16,32 @@ import { ussfcuClient } from '@/markets/financial-services/clients/ussfcu/client
 type Flow = { suggested_chips?: string[] };
 const NEXT_SIGNAL = '__next_signal__';
 
-/** Where each highlighted-chip walk must finish, keyed by persona then start flow. */
+/**
+ * Where each highlighted-chip walk must finish, keyed by persona then start flow.
+ * NFCU ends are where the Oral Demo Talk Track v3 ends (see nfcu/talkTrack.test.ts).
+ */
 const GOLDEN_PATHS: Record<string, Record<string, string>> = {
   nfcu_supervisor: {
-    nfcu_sup_greeting: 'nfcu_sup_act_agents_confirm',
+    nfcu_sup_greeting: 'nfcu_sup_act_overtime_confirm',
     intraday_t1_greeting: 'intraday_t7_historical',
   },
   nfcu_director: {
     nfcu_dir_greeting: 'nfcu_dir_act_weekly_report',
     intraday_dir_t1_greeting: 'intraday_dir_t7_historical',
   },
-  nfcu_analyst: { nfcu_ana_greeting: 'nfcu_ana_turn_3_cohort' },
-  nfcu_workforce: { nfcu_wf_greeting: 'nfcu_wf_agent_coaching' },
-  nfcu_member: { nfcu_member_greeting: 'nfcu_member_step7_anything_else' },
-  nfcu_agent: { nfcu_agent_greeting: 'nfcu_agent_save_close' },
-  nfcu_platform_admin: { nfcu_pa_greeting: 'nfcu_pa_ungoverned' },
-  ussfcu_evelyn: { ussfcu_evelyn_greeting: 'ussfcu_evelyn_route_committee' },
-  ussfcu_nadia: { ussfcu_nadia_greeting: 'ussfcu_nadia_exception_report' },
-  ussfcu_cfo: { ussfcu_cfo_greeting: 'ussfcu_cfo_export_leadership' },
+  nfcu_analyst: { nfcu_ana_greeting: 'nfcu_ana_weekly_report' },
+  nfcu_workforce: { nfcu_wf_greeting: 'nfcu_wf_act_compliance_report' },
+  nfcu_member: { nfcu_member_greeting: 'nfcu_member_step6_fix' },
+  nfcu_agent: { nfcu_agent_greeting: 'nfcu_agent_step6_execute' },
+  nfcu_platform_admin: { nfcu_pa_greeting: 'nfcu_pa_agent_inventory' },
+  ussfcu_evelyn: { ussfcu_evelyn_greeting: 'ussfcu_evelyn_turn_evidence' },
+  ussfcu_nadia: { ussfcu_nadia_greeting: 'ussfcu_nadia_turn_complaint' },
+  ussfcu_cfo: { ussfcu_cfo_greeting: 'ussfcu_cfo_turn_remediation_plan' },
   ussfcu_ceo: { ussfcu_ceo_greeting: 'ussfcu_ceo_turn_full_briefing' },
   ops: { greeting: 'turn_4_actions' },
   cx: { cx_greeting: 'cx_turn_3_intervention' },
   retention: { ret_greeting: 'ret_turn_3_retention_action' },
-  risk: { risk_greeting: 'risk_turn_3_escalation' },
+  risk: { risk_greeting: 'risk_board_summary' },
 };
 
 async function load(clientId: string, module: PersonaModule): Promise<PersonaManifest> {
@@ -84,7 +87,7 @@ describe.each(registrations)('$clientId / $id', ({ clientId, module }) => {
     expect(stuck).toEqual([]);
   });
 
-  it('walks each golden path to its end without looping or leaning on "Next signal"', async () => {
+  it('walks each golden path to its end without looping or replaying a signal', async () => {
     const manifest = await get();
     const { flows, ui } = manifest;
     const ends = GOLDEN_PATHS[manifest.id];
@@ -92,19 +95,31 @@ describe.each(registrations)('$clientId / $id', ({ clientId, module }) => {
     for (const [start, end] of Object.entries(ends)) {
       const visited: string[] = [];
       let key: string | undefined = start;
+      // Mirrors useManifestChat: "Yes, walk me through them" opens the first
+      // signal, "Next signal" the one after the last signal visited.
+      let signalIndex = 0;
       while (key && visited.length < 40) {
         const rendered: string = flows.resolveFlowKey ? flows.resolveFlowKey(key) : key;
         expect(visited, `loops back to "${rendered}": ${visited.join(' → ')}`).not.toContain(rendered);
         visited.push(rendered);
+        const sig = flows.signalSequence.indexOf(rendered);
+        if (sig >= 0) signalIndex = sig + 1;
         if (rendered === end) break;
         const chip: string | undefined = ui.goldenPathChip[rendered];
         if (!chip) break;
         const offered = (flows.chatFlows as Record<string, Flow>)[rendered]?.suggested_chips ?? [];
         expect(offered, `"${rendered}" highlights "${chip}" but does not offer it`).toContain(chip);
-        // "Next signal" counts signals visited, and a chip-driven path visits none,
-        // so as a golden chip it replays the first signal instead of advancing.
-        expect(flows.chipToFlowKey[chip], `"${rendered}" highlights "Next signal"`).not.toBe(NEXT_SIGNAL);
-        key = flows.chipToFlowKey[chip];
+        if (chip === 'Yes, walk me through them') {
+          key = flows.signalSequence[0];
+        } else if (chip === 'Next signal' || flows.chipToFlowKey[chip] === NEXT_SIGNAL) {
+          // Only a path that is walking the signals may highlight "Next signal":
+          // on a chip-driven path the index still points at a signal already
+          // covered, so it would replay it instead of advancing.
+          key = flows.signalSequence[signalIndex];
+          expect(key && !visited.includes(key), `"${rendered}" highlights "Next signal" but no new signal is next`).toBe(true);
+        } else {
+          key = flows.chipToFlowKey[chip];
+        }
       }
       expect(visited.at(-1), `stalled: ${visited.join(' → ')}`).toBe(end);
     }

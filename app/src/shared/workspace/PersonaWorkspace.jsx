@@ -271,8 +271,15 @@ export default function PersonaWorkspace({ manifest }) {
   // artefact scrolls sideways inside a column with spare room either side.
   const contentMaxWidth = ui.contentMaxWidth || 'max-w-3xl';
   const chipsToShow = messages.length === 0 ? ui.initialChips : currentChips;
-  const recommendedChip = currentFlowKey
-    ? ui.goldenPathChip[currentFlowKey] || null
+  // The recommendation follows the turn on screen — the last AI message rather
+  // than `currentFlowKey`. An action card's Confirm posts an
+  // `action_confirm_<id>` reply without moving `currentFlowKey`, so keying off
+  // it would highlight a chip that is no longer offered; `goldenPathChip` can
+  // key `action_confirm_<id>` to keep the golden path lit on that route.
+  const lastAiFlowKey = [...messages].reverse().find((m) => m.role === 'ai' && m.flowKey)?.flowKey;
+  const onScreenFlowKey = lastAiFlowKey || currentFlowKey;
+  const recommendedChip = onScreenFlowKey
+    ? ui.goldenPathChip[onScreenFlowKey] || null
     : ui.goldenPathChip[ui.greetingFlowKey];
   const isInitialView = messages.length <= 1 && !isTyping;
   // Personas without a dedicated briefing panel / top-aligned flag get a centered

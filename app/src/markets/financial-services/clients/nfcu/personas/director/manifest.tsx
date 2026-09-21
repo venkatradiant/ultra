@@ -61,11 +61,12 @@ const manifest: PersonaManifest = {
       'Show root cause correlation',
       'Generate my weekly leadership report',
     ],
+    // The Oral Demo Talk Track v3 click sequence (Persona 5), the source of truth.
     goldenPathChip: {
       nfcu_dir_greeting: 'Walk me through the service level issue',
       nfcu_dir_signal_1_service: 'What are my options to stabilize both teams?',
       nfcu_dir_turn_2_scenarios: 'Execute Scenario C',
-      nfcu_dir_act_scenario_c: 'Draft an escalation to the SI partner',
+      nfcu_dir_act_scenario_c: 'Generate my weekly leadership report',
       nfcu_dir_act_si_escalation: 'Generate my weekly leadership report',
       intraday_dir_t1_greeting: 'Walk me through the SIP impact',
       intraday_dir_t2_walkthrough: 'What about the rate promotion impact?',

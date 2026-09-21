@@ -169,7 +169,7 @@
   },
 
   "nfcu_dir_signal_1_service": {
-    "ai_message": "Two of your four teams are in critical state simultaneously. **Priya's team (auto loans)** dropped to 54% service level after a marketing promotion drove a 340% volume spike. She has already activated 8 cross-trained agents from general banking. However, that agent reallocation created a secondary problem: **general banking is now at 72% service level and declining**. Meanwhile, **mortgage servicing is at 64%** due to 3 experienced agents on extended leave. Your two healthy teams (member onboarding and digital banking) are holding at **86%** and **91%** respectively.",
+    "ai_message": "Two of your five teams are in critical state simultaneously. **Priya's team (auto loans)** dropped to 54% service level after a marketing promotion drove a 340% volume spike. She has already activated 8 cross-trained agents from general banking. However, that agent reallocation created a secondary problem: **general banking is now at 72% service level and declining**. Meanwhile, **mortgage servicing is at 64%** due to 3 experienced agents on extended leave. Your two healthy teams (member onboarding and digital banking) are holding at **86%** and **91%** respectively.",
     "suggested_chips": [
       "What are my options to stabilize both teams?",
       "Show me the cascade impact",
@@ -280,7 +280,7 @@
   },
 
   "nfcu_dir_turn_2_scenarios": {
-    "ai_message": "I modeled three scenarios.\n\n**Scenario A — Reverse the cascade.** Pull 4 agents back from auto loans to general banking; enable callback for auto loans. Auto loans projects to 71% (below target) but general banking recovers to 81%. Net aggregate: 74%. Cost: $0.\n\n**Scenario B — Activate overtime.** 6 OT agents across both teams for the afternoon shift. Both teams above 78%. Cost: $4,200 today, pushes Q2 OT to 74% of budget.\n\n**Scenario C — Skills-based overflow to digital banking.** Route low-complexity auto loan calls to digital banking (currently at 91%). Auto loans projects to 79%, general banking holds at 72%, digital banking drops to 84% but stays healthy. Net aggregate: **79%**. Lowest cost, highest aggregate recovery.\n\nScenario C is the recommendation.",
+    "ai_message": "I modeled three scenarios.\n\n**Scenario A — Reverse the cascade.** Pull 4 agents back from auto loans to general banking; enable callback for auto loans. Auto loans projects to 71% (below target) but general banking recovers to 81%. Net aggregate: 74%. Cost: $0.\n\n**Scenario B — Activate overtime.** 6 OT agents across both teams for the afternoon shift. Both teams above 78%. Cost: $4,200 today, pushes Q2 OT to 74% of budget.\n\n**Scenario C — Skills-based overflow to digital banking.** Route low-complexity auto loan calls to digital banking (currently at 91%). Auto loans projects to 79%, general banking holds at 72%, digital banking drops to 84% but stays healthy. Net aggregate: **79%**. Highest aggregate recovery at zero incremental cost.\n\nScenario C is the recommendation.",
     "suggested_chips": [
       "Execute Scenario C",
       "Show me the digital banking team's capacity",

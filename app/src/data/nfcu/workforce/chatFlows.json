@@ -87,7 +87,7 @@
   },
 
   "nfcu_wf_turn_1_compliance_detail": {
-    "ai_message": "Here's the full BSA/AML compliance picture:\n\n**Script change date:** April 17, 2026\n**Verification skip rate before:** 4% (baseline)\n**Verification skip rate now:** 23% (5.75x spike)\n**Steps completed per call (avg):** 6 of 9 required\n**Shift concentration:** Evening shift — 67% of violations\n**Accounts at risk:** 142 new accounts opened since April 17\n\n**Breakdown:**\n• 134 accounts: sufficient identity data in CRM — auto-resolvable\n• 8 accounts: need member callback for retroactive verification\n\n**Regulatory exposure:** NCUA requires immediate remediation when verification gaps are identified. A compliance incident report should be filed within 24 hours. This qualifies as a Tier 2 internal compliance event under NFCU policy.",
+    "ai_message": "Here's the full BSA/AML compliance picture:\n\n**Script change date:** April 17, 2026\n**Verification skip rate before:** 4% (baseline)\n**Verification skip rate now:** 23% (5.75x spike)\n**Steps completed per call (avg):** 6 of 9 required\n**Shift concentration:** Evening shift — 67% of violations, where supervisor coverage is thinnest\n**Accounts at risk:** 142 new accounts opened since April 17\n\n**Breakdown:**\n• 134 accounts: sufficient identity data in CRM — auto-resolvable\n• 8 accounts: need member callback for retroactive verification\n\n**Regulatory exposure:** NCUA requires immediate remediation when verification gaps are identified. A compliance incident report should be filed within 24 hours. This qualifies as a Tier 2 internal compliance event under NFCU policy.",
     "suggested_chips": [
       "Which accounts need remediation?",
       "Recommend a fix",
@@ -159,29 +159,13 @@
               "model_version": "qa-classifier-v4.0",
               "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
             }
-          },
-          {
-            "id": "ACT-NFCU-WF-003",
-            "title": "File Compliance Incident Report",
-            "description": "Generate Tier 2 internal compliance incident report with Dynamics 365 evidence attached. Routes to Compliance Risk team.",
-            "system": "Dynamics 365 + Compliance Engine",
-            "impact": "Satisfies NCUA self-reporting requirement. Creates audit trail.",
-            "status": "ready",
-            "confidence": {
-              "score": 94,
-              "rationale": "Tier-2 classification is policy-driven (Tier 2 thresholds met). Report content is direct evidence aggregation.",
-              "threshold": 70,
-              "model_version": "qa-classifier-v4.0",
-              "escalation": { "triggered": false, "reason": null, "route_to": null, "review_queue": null }
-            }
           }
         ]
       }
     ],
     "post_confirm_response": {
       "ACT-NFCU-WF-001": "Done. BSA/AML identity verification reverted to step 3 in Dynamics 365 script management. Propagated to all 34 active agent desktops — confirmed. Evening shift supervisors notified via Teams. Agents now reach verification at step 3 and cannot advance past it without completion. Skip risk eliminated for all new accounts from this point forward. The 142 accounts opened since April 17 still need retroactive remediation — I can generate that list now.",
-      "ACT-NFCU-WF-002": "Remediation complete. 134 accounts auto-resolved using existing CRM identity data — no member contact required. 8 accounts flagged for callback: outreach scripts prepared in Dynamics 365, assigned to 2 senior agents for completion by EOD today. All 142 accounts now have a remediation record in the compliance log. Estimated callback completion by 5 PM. You'll receive a status update when all 8 callbacks are closed.",
-      "ACT-NFCU-WF-003": "Compliance incident report generated and filed. Incident ID: NFCU-COMP-2026-0041. Classification: Tier 2 — BSA/AML Process Adherence Gap. Scope: 142 accounts, April 17–23, 2026. Root cause: script version update relocated verification step without Contact Center notification. Remediation status: script reverted, 134 auto-resolved, 8 callbacks in progress. Report routed to Director of Member Experience and Compliance Risk team. Self-reporting to NCUA not required at Tier 2 — documented for audit trail. You'll receive EOD confirmation."
+      "ACT-NFCU-WF-002": "Remediation complete. 134 accounts auto-resolved using existing CRM identity data — no member contact required. 8 accounts flagged for callback: outreach scripts prepared in Dynamics 365, assigned to 2 senior agents for completion by EOD today. All 142 accounts now have a remediation record in the compliance log. Estimated callback completion by 5 PM. You'll receive a status update when all 8 callbacks are closed."
     },
     "related_dataset_keys": ["agent_performance"],
     "confidence": {

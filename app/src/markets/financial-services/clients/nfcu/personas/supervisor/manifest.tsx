@@ -63,11 +63,17 @@ const manifest: PersonaManifest = {
       'Show root cause correlation',
       'What is my service level right now?',
     ],
+    // The Oral Demo Talk Track v3 click sequence (Persona 1). The talk track is
+    // the source of truth: each value is the chip it says to click on that turn.
     goldenPathChip: {
       nfcu_sup_greeting: 'Yes, walk me through them',
-      nfcu_sup_signal_1_queue_spike: 'How does this compare to last rate promo?',
+      nfcu_sup_signal_1_queue_spike: 'What should we do?',
       nfcu_sup_rate_promo_comparison: 'What should we do?',
       nfcu_sup_turn_2_recommendations: 'Activate the cross-trained agents',
+      nfcu_sup_act_agents_confirm: 'Show me the second signal',
+      'action_confirm_ACT-NFCU-SUP-001': 'Show me the second signal',
+      nfcu_sup_signal_2_staffing: 'Who is available for overtime?',
+      nfcu_sup_overtime_agents: 'Send overtime offers to top 3',
       intraday_t1_greeting: 'Walk me through the SIP impact',
       intraday_t2_walkthrough: 'What about the rate promotion impact?',
       intraday_t3_correlate: 'What are my options?',

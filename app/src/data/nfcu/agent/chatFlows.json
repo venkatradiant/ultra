@@ -23,6 +23,7 @@
   "nfcu_agent_step2_breakdown": {
     "ai_message": "Here it is, correlated across four systems in real time. The $412.00 auto loan payment drew on June 27 when her available balance was $208.14, so it declined for insufficient funds. But a $3,140.00 early salary credit from her employer is sitting unapplied because her checking account has an early-credit flag with no matching direct deposit routing.\n\nCore banking, the payments log, the employer deposit file, and the deposit-handling SOP all point to the same fix: add the routing, apply the credit, retry the payment inside the grace window.",
     "suggested_chips": [
+      "Verify her identity first",
       "How do I explain this simply?",
       "Is there a late fee risk?",
       "Walk me through the fix"
@@ -63,11 +64,11 @@
   },
 
   "nfcu_agent_step4_verify": {
-    "ai_message": "Correct call, this account change requires BSA/AML identity verification before I proceed. I have surfaced the verification prompt now, at the right step in the flow, rather than letting it be skipped.\n\nPlease confirm the two identity elements on your screen with Elena. Once you check them off, I will record that verification was completed by you, the agent, and unlock the account change.",
+    "ai_message": "Correct call, this account change requires BSA/AML identity verification before I proceed. I have surfaced the verification prompt now, at the right step in the flow, rather than letting it be skipped.\n\nConfirm the two identity elements on your screen with Elena. Verification is logged as completed by you, David, and the account change is unlocked.",
     "suggested_chips": [
+      "Do the routing fix and retry",
       "Identity confirmed",
-      "Why is this required here?",
-      "Continue to the fix"
+      "Why is this required here?"
     ],
     "data_sources_used": ["CRM Member Records", "Compliance Engine", "Dynamics 365 Process Adherence"],
     "capability": "Anomaly Detection",
@@ -105,7 +106,7 @@
   },
 
   "nfcu_agent_step6_execute": {
-    "ai_message": "Executing, with a full audit trail.\n\n(1) Added direct deposit routing to Elena's checking account.\n(2) Scheduled the $3,140.00 early salary credit to apply within one business day.\n(3) Queued the $412.00 auto loan payment to retry automatically once funds post, before the grace window closes.\n\nFor compliance, I have logged this as: identity verified by agent David Torres, account change executed by agent with AI assistance, payment retry automated by Agent-Assist. Elena will receive confirmations. You can tell her she is all set.",
+    "ai_message": "Executing, with a full audit trail.\n\n(1) Added direct deposit routing to Elena's checking account.\n(2) Scheduled the $3,140.00 early salary credit to apply within one business day.\n(3) Queued the $412.00 auto loan payment to retry automatically once funds post, before the grace window closes.\n\nFor compliance, I have logged this as: identity verified by agent David Torres, account change executed by agent with AI assistance, payment retry automated by Agent-Assist. Elena will receive confirmations. You can tell her she is all set. First-call resolution, and handle time is under your average.",
     "suggested_chips": [
       "Confirm to the member",
       "Add a note to her CRM record",

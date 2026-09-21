@@ -42,10 +42,12 @@ const manifest: PersonaManifest = {
       "Forecast next week's volume by 15-minute interval",
       'Show me schedule adherence by team',
     ],
+    // The Oral Demo Talk Track v3 click sequence (Persona 3), the source of truth.
     goldenPathChip: {
       nfcu_ana_greeting: 'Walk me through the tax season risk',
-      nfcu_ana_turn_1_tax_season: 'Run a what-if with 15 overtime shifts',
-      nfcu_ana_turn_2_what_if: 'What about the new hire cohort?',
+      nfcu_ana_turn_1_tax_season: 'What are my options to close the gap?',
+      nfcu_ana_turn_2_what_if: 'Go with the hybrid option',
+      nfcu_ana_act_hybrid_confirm: 'Generate the weekly workforce report',
     },
     flowKeyToCapabilityTrigger: {
       nfcu_ana_greeting: 'home_load',

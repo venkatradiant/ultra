@@ -66,6 +66,7 @@ const manifest: PersonaManifest = {
       'Did we lose these members to another lender?',
       'Generate the exam evidence package',
     ],
+    // Oral Demo Talk Track v3: the highlight ends where the talk track does.
     goldenPathChip: {
       ussfcu_evelyn_greeting: 'Run the deep query',
       ussfcu_evelyn_turn_deepquery: 'Apply the compliance tests',
@@ -73,7 +74,6 @@ const manifest: PersonaManifest = {
       ussfcu_evelyn_turn_checklist: 'Which files are highest risk before the exam?',
       ussfcu_evelyn_turn_ranked_risk: 'Did we lose the 33 to another lender, and why?',
       ussfcu_evelyn_turn_attrition: 'Generate the exam evidence package',
-      ussfcu_evelyn_turn_evidence: 'Route to the risk committee',
       ussfcu_evelyn_signal_1_fairlending: 'Run the deep query',
       ussfcu_evelyn_signal_2_trid: "Build a member's disclosure checklist and calendar",
       ussfcu_evelyn_signal_3_complaints: 'Log the 7 complaints',

@@ -28,13 +28,6 @@
       "cost_usd": 11200,
       "budget_impact_pct": 85,
       "agents_added": 18
-    },
-    {
-      "scenario": "15 OT + Callback",
-      "service_level_pct": 81,
-      "cost_usd": 18400,
-      "budget_impact_pct": 96,
-      "agents_added": 15
     }
   ],
   "cohort_ramp": [

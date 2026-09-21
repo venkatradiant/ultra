@@ -23,7 +23,7 @@
   "nfcu_member_step2_balance": {
     "ai_message": "Your available checking balance is $1,847.20, with 2 pending transactions. This answer came directly from your core banking record. No AI model was involved and no account detail left Navy Federal's systems. This is a straightforward, secure lookup.",
     "suggested_chips": [
-      "Now tell me about the declined payment",
+      "Why was my auto loan payment declined?",
       "Show my pending transactions",
       "What's my auto loan balance?"
     ],
@@ -63,12 +63,11 @@
   },
 
   "nfcu_member_step4_salary": {
-    "ai_message": "I checked your account against Navy Federal's deposit-handling procedures. Your employer is sending an early salary credit, a provision that releases pay ahead of the standard date. To apply automatically, it needs a matching direct deposit instruction on your checking account.\n\nYours has an early-credit flag but no direct deposit routing number on file, an exception condition. Because the two do not match, the funds are held rather than posted. This is not an error on your side; the routing was simply never completed.",
+    "ai_message": "I checked your account against Navy Federal's deposit-handling procedures. Your employer is sending an early salary credit, a provision that releases pay ahead of the standard date. To apply automatically, it needs a matching direct deposit instruction on your checking account.\n\nYours has an early-credit flag but no direct deposit routing number on file, an exception condition. Because the two do not match, the funds are held rather than posted. This is not an error on your side; the routing was simply never completed.\n\nWill you be charged a late fee? Not if we act in the next 3 days. Your auto loan has a 5-day grace period, so the $25 fee has not been triggered. I can add the routing and retry the payment now.",
     "suggested_chips": [
+      "Do the fix and retry the payment",
       "Will I be charged a late fee?",
-      "Fix the direct deposit now",
-      "What happens to the held funds?",
-      "Retry my auto loan payment"
+      "What happens to the held funds?"
     ],
     "data_sources_used": ["SOP/MOP Repository", "Payments Engine", "Core Banking"],
     "capability": "Anomaly Detection",

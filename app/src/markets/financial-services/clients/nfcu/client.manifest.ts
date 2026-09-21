@@ -27,6 +27,7 @@ export const nfcuClient: ClientManifest = {
     primaryColor: '#003087',
     navLabels: { journey: 'Workforce Intelligence', risk: 'Quality Signals', governance: 'Model Governance' },
   },
-  personas: [supervisorPersona, directorPersona, analystPersona, workforcePersona, memberPersona, agentPersona, platformAdminPersona],
+  // Oral Demo Talk Track v3 order, so the persona switcher reads like the demo.
+  personas: [supervisorPersona, platformAdminPersona, analystPersona, workforcePersona, directorPersona, memberPersona, agentPersona],
   defaultPersonaId: 'nfcu_supervisor',
 };

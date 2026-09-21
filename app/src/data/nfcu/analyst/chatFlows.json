@@ -1,6 +1,6 @@
 {
   "nfcu_ana_greeting": {
-    "ai_message": "Good morning, Derek. Your workforce forecast needs attention. Tax season volume surge is 6 days out and your current staffing plan has a 17-point coverage gap. I also see your new hire cohort is underperforming on AHT. Want me to walk you through the risks?",
+    "ai_message": "Good morning, Derek. Your workforce forecast needs attention. Tax season volume surge is 6 days out and your current staffing plan has a 22-agent gap. I also see your new hire cohort is underperforming on AHT. Want me to walk you through the risks?",
     "suggested_chips": [
       "Walk me through the tax season risk",
       "Show me the training cohort data",
@@ -116,7 +116,7 @@
   },
 
   "nfcu_ana_turn_2_what_if": {
-    "ai_message": "Scenario modeled — 15 overtime shifts distributed across April 12–17:\n\n**Projected service level:** 62% → **76%** (still 4 points below target)\n**Overtime cost:** ~$18,400 → puts Q2 budget at **96%**\n\nAdding callback option for waits over 3 minutes closes the remaining gap → **81% service level**.\n\n**Alternative — Hybrid Option (recommended):**\n8 overtime shifts + 10 cross-trained agents from digital channels.\n• Service level projection: **79%** (within 1 point of target)\n• Cost: **$11,200** (puts Q2 budget at **85%**)\n• Frees $7,200 buffer for unplanned PTO\n\nThe hybrid option gives you 79% service level at 73% of the cost of 15 OT shifts.",
+    "ai_message": "Three scenarios, side by side, April 12–17:\n\n**Current plan:** 62% service level — well below the 80% target.\n\n**15 overtime shifts:** 76% service level, still 4 points short. Cost ~$18,400, which puts Q2 overtime at **96%** of budget — nearly maxed.\n\n**Hybrid (recommended):** 8 overtime shifts + 10 cross-trained agents from digital channels.\n• Service level: **79%**, within 1 point of target\n• Cost: **$11,200** — Q2 overtime at **85%**\n• Saves **$7,200** for unplanned events\n\nThe hybrid gets you the best service level per dollar.",
     "suggested_chips": [
       "Go with the hybrid option",
       "Show me cross-trainable agents",
@@ -239,7 +239,7 @@
   },
 
   "nfcu_ana_weekly_report": {
-    "ai_message": "**Weekly Workforce Report — Week of April 21, 2026**\n\n**Force-to-Load Ratio:** 0.94 (target: 1.0)\n**Schedule Adherence:** 87.3% (target: 90%)\n**Forecast Accuracy (30 days):** 82% (target: 85%)\n**Overtime Hours MTD:** 342 hrs / 78% of Q2 budget\n**Agent Attrition (trailing 90 days):** 18%\n**Average Speed of Answer:** 3:24\n\n**Top Risks This Week:**\n1. Tax season gap — 22 agents short at peak (April 12–17)\n2. March cohort AHT at 14:30 (target 9:00) — not ready for peak deployment\n3. Q2 OT budget on track to overage at current pace\n\n**Actions Taken:** Hybrid staffing plan activated. Report formatted for leadership review.",
+    "ai_message": "**Weekly Workforce Report — Week of April 6, 2026**\n\n**Force-to-Load Ratio:** 0.94 (target: 1.0)\n**Schedule Adherence:** 87.3% (target: 90%)\n**Forecast Accuracy (30 days):** 82% (target: 85%)\n**Overtime:** 85% of Q2 budget committed, including the hybrid tax-season plan\n**Agent Attrition (trailing 90 days):** 18%\n**Average Speed of Answer:** 3:24\n\n**Top Risks This Week:**\n1. Tax season, April 12–17 — 22-agent gap now covered by the hybrid plan; projected 79% service level, monitored daily\n2. March cohort AHT at 14:30 (target 9:00) — not ready for peak deployment\n3. Q2 overtime has $7,200 of headroom left for unplanned events\n\n**Actions Taken:** Hybrid staffing plan activated in WFM. Report formatted for leadership review.",
     "suggested_chips": [
       "Walk me through the tax season risk",
       "Show me schedule adherence by team"

@@ -60,12 +60,12 @@ const manifest: PersonaManifest = {
       'Log this interaction as a complaint',
       'Generate the daily exception report',
     ],
+    // Oral Demo Talk Track v3: the highlight ends where the talk track does.
     goldenPathChip: {
       ussfcu_nadia_greeting: 'Open file 20-4471',
       ussfcu_nadia_turn_openfile: 'Compare to procedure',
       ussfcu_nadia_turn_procedure: 'Build the disclosure checklist and calendar',
       ussfcu_nadia_turn_checklist: 'Log the fee complaint',
-      ussfcu_nadia_turn_complaint: 'Generate the daily exception report',
       ussfcu_nadia_signal_1_lateloan: 'Open file 20-4471',
       ussfcu_nadia_signal_2_esign: 'Show me the ESIGN gap',
       ussfcu_nadia_signal_3_dissatisfaction: 'Log the fee complaint',

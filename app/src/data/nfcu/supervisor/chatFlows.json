@@ -224,10 +224,10 @@
   },
 
   "nfcu_sup_signal_2_staffing": {
-    "ai_message": "The gap is structural — Friday evenings are uniquely exposed because West Coast members call after work, and this shift has the thinnest supervisor coverage. I've already ranked the three highest-quality certified agents eligible for OT: Torres, Williams, and Chen. Based on their history, there's a 78% probability at least one accepts. If none do, I have a flex-slot secondary plan ready. Want me to send the OT offers now?",
+    "ai_message": "Second signal: the Friday evening shift. 3 agents submitted PTO, and this shift was already the most exposed — West Coast members call after work and supervisor coverage is thinnest. I've already ranked replacements by quality score, handle time, and overtime history: Torres, Williams, and Chen lead the list. Based on their history, there's a 78% probability at least 2 of the 3 accept. If they don't, I have a flex-slot secondary plan ready. Want to see who is available?",
     "suggested_chips": [
-      "What should we do?",
       "Who is available for overtime?",
+      "What should we do?",
       "Show me the sentiment signal",
       "Which agents have mortgage certification?"
     ],

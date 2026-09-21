@@ -535,7 +535,6 @@ const nfcuWfConfig = {
   actionConfirmMap: {
     'ACT-NFCU-WF-001': { responseKey: 'ACT-NFCU-WF-001', nextChips: ['Show me the 8 accounts needing callbacks', 'Generate a compliance incident report'] },
     'ACT-NFCU-WF-002': { responseKey: 'ACT-NFCU-WF-002', nextChips: ['Generate a compliance incident report', 'Next signal'] },
-    'ACT-NFCU-WF-003': { responseKey: 'ACT-NFCU-WF-003', nextChips: ['Next signal', 'Show me interaction quality scores'] },
   },
 };
 
@@ -779,6 +778,7 @@ const nfcuMemberConfig = {
     "What's my balance?": 'nfcu_member_step2_balance',
     'Will I be charged a late fee?': 'nfcu_member_step5_latefee',
     // Balance follow-ups
+    'Why was my auto loan payment declined?': 'nfcu_member_step3_decline', // talk track v3
     'Now tell me about the declined payment': 'nfcu_member_step3_decline',
     'Show my pending transactions': 'nfcu_member_transactions',
     "What's my auto loan balance?": 'nfcu_member_autoloan_balance',
@@ -884,17 +884,21 @@ const nfcuAgentConfig = {
 const nfcuPaConfig = {
   chatFlows: nfcuPaChatFlows,
   chipToFlowKey: {
-    // Turn 1 — Assurance Briefing
-    'Review the auto loan spike': 'nfcu_pa_field_sovereignty',
+    // Turn 1 — Assurance Briefing. Talk track v3 reviews the spike first ("did
+    // anything leave?") and only then opens the ledger.
+    'Review the auto loan spike': 'nfcu_pa_spike_review',
+    'Show me where every field went': 'nfcu_pa_field_sovereignty',
     'Show me contact center spend': 'nfcu_pa_spend_on_track',
     'What did the graph catch?': 'nfcu_pa_kag_provenance',
     // Turn 2 — Field Sovereignty
+    'Why did the rate stay local?': 'nfcu_pa_kag_provenance', // talk track v3
     'Why did the auto loan rate stay local?': 'nfcu_pa_kag_provenance',
     'Show me the routing logic': 'nfcu_pa_routing_logic',
     'What did the frontier model do?': 'nfcu_pa_frontier_task',
     // Turn 3 — Sensitivity Provenance (KAG)
     'Show all fields flagged sensitive': 'nfcu_pa_field_sovereignty',
     // Turn 4 — Routing Logic (three gates)
+    'What happens at the budget cap?': 'nfcu_pa_budget_guardrail', // talk track v3
     'Show me the budget guardrail': 'nfcu_pa_budget_guardrail',
     'Run the cost report': 'nfcu_pa_cost_usage',
     'Show me the field ledger again': 'nfcu_pa_field_sovereignty',
@@ -907,9 +911,11 @@ const nfcuPaConfig = {
     'Break it down by persona': 'nfcu_pa_by_persona',
     'Show frontier usage this month': 'nfcu_pa_observability',
     // Turn 7 — Semantic Cache Reuse
+    'Where did we reuse an answer?': 'nfcu_pa_cache_reuse', // talk track v3
     'Show cache hit rate this month': 'nfcu_pa_cache_hit_rate',
     'Which answers are cached?': 'nfcu_pa_cache_hit_rate',
     // Turn 8 — Enterprise Agent Observability
+    'Show agent activity across the enterprise': 'nfcu_pa_observability', // talk track v3
     'Expand a flagged action': 'nfcu_pa_expand_action',
     'Show the spend trend': 'nfcu_pa_spend_trend',
     // Spec v2 Step 8 words it without the "me"; keep both so either lands.
@@ -919,6 +925,7 @@ const nfcuPaConfig = {
     'Generate a governance summary': 'nfcu_pa_gov_summary',
     'Generate an enterprise governance summary': 'nfcu_pa_gov_summary',
     // Turn 9 — Enterprise Agent Inventory
+    'Show me every agent and what it is built on': 'nfcu_pa_agent_inventory', // talk track v3
     'Group these by foundry': 'nfcu_pa_by_foundry',
     'Show anything not yet under governance': 'nfcu_pa_ungoverned',
     'Onboard an agent to governance': 'nfcu_pa_onboard_agent',
@@ -1136,6 +1143,7 @@ const ussfcuCeoConfig = {
     // Suggested query bar + greeting drill chips
     'Where does the business stand this morning?': 'ussfcu_ceo_where_stands',
     'Walk me through the liquidity signal': 'ussfcu_ceo_turn_liquidity',
+    'What happens if this continues?': 'ussfcu_ceo_turn_projection', // talk track v3
     'What happens to liquidity if this continues?': 'ussfcu_ceo_turn_projection',
     'Can I trust these numbers?': 'ussfcu_ceo_turn_trust',
     'Can I trust these numbers this morning?': 'ussfcu_ceo_turn_trust',

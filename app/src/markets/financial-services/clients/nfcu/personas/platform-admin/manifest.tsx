@@ -83,29 +83,31 @@ const manifest: PersonaManifest = {
     initialChips: [
       'Review the auto loan spike',
       'Did any PII reach the frontier model?',
-      'Show me the routing logic as a diagram',
-      'What happens when someone hits their budget cap?',
-      'Run the LLM cost report for this session',
-      'Show me where we reused an answer instead of calling a model',
-      'Show me agent activity and frontier usage across the enterprise',
-      'Show me every AI agent and foundry in the enterprise',
+      'Show me the routing logic',
+      'What happens at the budget cap?',
+      'Run the cost report',
+      'Where did we reuse an answer?',
+      'Show agent activity across the enterprise',
+      'Show me every agent and what it is built on',
     ],
-    // The golden path walks spec v2's nine turns in order:
-    // 1 brief · 2 sovereignty · 3 KAG · 4 routing · 5 budget · 6 cost
-    // · 7 cache · 8 enterprise observability · 9 agent inventory.
+    // The Oral Demo Talk Track v3 click sequence (Persona 2), the source of
+    // truth: 1 brief · 2 spike review → field ledger · 3 KAG · 4 routing
+    // · 5 budget cap · 6 cost · 7 cache · 8 enterprise observability
+    // · 9 agent inventory, where the talk track ends.
     goldenPathChip: {
       nfcu_pa_greeting: 'Review the auto loan spike',
-      nfcu_pa_field_sovereignty: 'Why did the auto loan rate stay local?',
+      nfcu_pa_spike_review: 'Show me where every field went',
+      nfcu_pa_field_sovereignty: 'Why did the rate stay local?',
       nfcu_pa_kag_provenance: 'Show me the routing logic',
-      nfcu_pa_routing_logic: 'Show me the budget guardrail',
+      nfcu_pa_routing_logic: 'What happens at the budget cap?',
       nfcu_pa_budget_guardrail: 'Run the cost report',
-      nfcu_pa_cost_usage: 'Show me where we reused an answer instead of calling a model',
-      nfcu_pa_cache_reuse: 'Show me agent activity and frontier usage across the enterprise',
-      nfcu_pa_observability: 'Show the enterprise agent inventory',
-      nfcu_pa_agent_inventory: 'Show anything not yet under governance',
+      nfcu_pa_cost_usage: 'Where did we reuse an answer?',
+      nfcu_pa_cache_reuse: 'Show agent activity across the enterprise',
+      nfcu_pa_observability: 'Show me every agent and what it is built on',
     },
     flowKeyToCapabilityTrigger: {
       nfcu_pa_greeting: 'step_briefing',
+      nfcu_pa_spike_review: 'step_field_sovereignty',
       nfcu_pa_field_sovereignty: 'step_field_sovereignty',
       nfcu_pa_pii_check: 'step_field_sovereignty',
       nfcu_pa_kag_provenance: 'step_kag',

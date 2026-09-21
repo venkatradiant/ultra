@@ -3,7 +3,7 @@
     "ai_message": "Good morning, Tim. Here is where USSFCU stands this morning, validated at 6:00 AM. One thing needs your attention before board prep: loan demand is outpacing deposit growth, and liquidity is tightening faster than plan. Two more signals are steady — membership is up, and the trust layer already caught and contained one late data feed overnight. Want me to walk you through the liquidity picture?",
     "suggested_chips": [
       "Walk me through the liquidity signal",
-      "Can I trust these numbers this morning?",
+      "Can I trust these numbers?",
       "Open the full briefing"
     ],
     "data_sources_used": ["Symitar", "MeridianLink", "General Ledger", "Radiant Trust Layer"],
@@ -16,7 +16,7 @@
     "ai_message": "Primary issue — Liquidity Watch. Net loans are up 11.4% year to date while shares are up 4.1%. That gap has pushed loan-to-share to 84%, the highest in five years. Correlated across Symitar, MeridianLink, and the GL, the trajectory draws liquidity below your internal target by late Q4. This is the one board-level call this morning: a deposit-gathering campaign and a funding review before the September board meeting.",
     "suggested_chips": [
       "Walk me through the liquidity signal",
-      "What happens to liquidity if this continues?",
+      "What happens if this continues?",
       "Open the full briefing"
     ],
     "data_sources_used": ["Symitar", "MeridianLink", "General Ledger"],
@@ -41,7 +41,7 @@
   "ussfcu_ceo_signal_3_trust": {
     "ai_message": "This is the governance story in one card. The Verafin fraud feed loaded 41 minutes late overnight. The trust layer caught it, flagged the single dependent figure for reconciliation, and kept it out of your headline numbers. Nothing reached the board unvalidated. This is exactly what used to fail silently — a number would look off at month-end and no one knew why. Now it is caught before you cite it.",
     "suggested_chips": [
-      "Can I trust these numbers this morning?",
+      "Can I trust these numbers?",
       "Trace net income back to source",
       "Next signal"
     ],
@@ -69,8 +69,8 @@
     "user_query": "Walk me through the liquidity signal",
     "ai_response": "Net loans are up 11.4% year to date. Shares are up 4.1%. That gap has pushed loan-to-share to 84%, the highest in five years. I correlated three systems to get there: loan balances from Symitar, share balances from the GL, and the 90-day pipeline of $312M from MeridianLink. This is one governed number, not three that disagree. Confidence is 94%.",
     "suggested_chips": [
-      "What happens to liquidity if this continues?",
-      "Can I trust these numbers this morning?",
+      "What happens if this continues?",
+      "Can I trust these numbers?",
       "Draft the board briefing",
       "Next signal"
     ],
@@ -82,9 +82,9 @@
 
   "ussfcu_ceo_turn_projection": {
     "user_query": "What happens to liquidity if this continues?",
-    "ai_response": "On the current trajectory, liquidity tightens below your internal target by late Q4. I modeled two moves. A targeted deposit campaign to the DMV core and Senate-alumni segments closes most of the gap by year end. Pairing it with a funding-line review holds you above target through Q1. Both are sized for the September board meeting, so you decide with the numbers in hand, not after.",
+    "ai_response": "On the current path, loan-to-share crosses the board's 85% ceiling in September, and liquidity tightens below your internal target by year end. I modeled two moves. A targeted deposit campaign to the DMV core and Senate-alumni segments closes most of the gap by year end. Pairing it with a funding-line review holds you above target through Q1. Both are sized for the September board meeting, so you decide with the numbers in hand, not after.",
     "suggested_chips": [
-      "Can I trust these numbers this morning?",
+      "Can I trust these numbers?",
       "Draft the board briefing",
       "Show me membership and growth",
       "Next signal"
@@ -113,7 +113,7 @@
     "user_query": "Trace net income back to source",
     "ai_response": "Here is where your reporting loses time today, and where it no longer has to. Net income of $9.4M starts as transactions in the Symitar core, posts through the Thought Machine ledger during cutover, aggregates into the General Ledger, lands in Greenplum, and renders in Tableau. Until now, that path was undocumented — when an examiner asked you to prove a figure, the answer took days of manual assembly. The trust layer now carries the full chain: core, ledger, GL, warehouse, brief. You can hand this trace to the board or the NCUA on demand.",
     "suggested_chips": [
-      "Can I trust these numbers this morning?",
+      "Can I trust these numbers?",
       "Draft the board briefing",
       "Open the full briefing"
     ],

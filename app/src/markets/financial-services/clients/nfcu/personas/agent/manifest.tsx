@@ -48,14 +48,15 @@ const manifest: PersonaManifest = {
       "What's the compliant resolution?",
       'Prompt the identity verification step',
     ],
+    // The Oral Demo Talk Track v3 click sequence (Persona 7), the source of
+    // truth: breakdown → verify → routing fix. The explain and identity-confirmed
+    // turns stay reachable off-path and still lead back onto it.
     goldenPathChip: {
       nfcu_agent_greeting: 'Give me the full breakdown',
-      nfcu_agent_step2_breakdown: 'How do I explain this simply?',
+      nfcu_agent_step2_breakdown: 'Verify her identity first',
       nfcu_agent_step3_explain: 'Verify her identity first',
-      nfcu_agent_step4_verify: 'Identity confirmed',
+      nfcu_agent_step4_verify: 'Do the routing fix and retry',
       nfcu_agent_step5_identity: 'Do the routing fix and retry',
-      nfcu_agent_step6_execute: 'Wrap up the call',
-      nfcu_agent_step7_wrapup: 'Save and close',
     },
     flowKeyToCapabilityTrigger: {
       nfcu_agent_greeting: 'home_load',

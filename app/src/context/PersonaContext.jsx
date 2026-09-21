@@ -13,7 +13,7 @@ const SESSION_KEY = 'active_persona';
 // Exported so manifests.test.ts can assert it agrees with each client manifest —
 // the two registries used to drift silently.
 export const CLIENT_PERSONAS = {
-  nfcu: ['nfcu_supervisor', 'nfcu_analyst', 'nfcu_workforce', 'nfcu_director', 'nfcu_member', 'nfcu_agent', 'nfcu_platform_admin'],
+  nfcu: ['nfcu_supervisor', 'nfcu_platform_admin', 'nfcu_analyst', 'nfcu_workforce', 'nfcu_director', 'nfcu_member', 'nfcu_agent'],
   // PenFed: four generic personas + PenFed-only capmarkets (Sowmya Ha).
   // capmarkets is intentionally absent from every other client's allowlist so it
   // cannot be selected via dropdown or URL outside PenFed.
@@ -23,7 +23,7 @@ export const CLIENT_PERSONAS = {
   // Reyes), the CEO (Timothy Anderson), and the four generic personas. The
   // ussfcu_* personas are intentionally absent from every other client's
   // allowlist so they cannot be selected outside USSFCU.
-  ussfcu: ['ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_cfo', 'ussfcu_ceo', 'ops', 'cx', 'retention', 'risk'],
+  ussfcu: ['risk', 'ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_ceo', 'ussfcu_cfo', 'ops', 'cx', 'retention'],
   // ESFCU: two executive personas — Girado Smith (CEO, funding and liquidity)
   // and Renata Alvarez (CRO, fraud and BSA). Deliberately no generic personas:
   // this tenant is two briefings that share a shell, not a persona sampler.
@@ -66,7 +66,7 @@ export const CLIENT_PERSONAS = {
 // Default (primary) persona per client
 const CLIENT_DEFAULT_PERSONA = {
   nfcu: 'nfcu_supervisor',
-  ussfcu: 'ussfcu_evelyn',
+  ussfcu: 'risk',
   esfcu: 'esfcu_ceo',
   riverside_health: 'care_ops',
   newfold_digital: 'newfold_director',

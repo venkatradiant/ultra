@@ -59,6 +59,7 @@ const manifest: PersonaManifest = {
       'Generate the audit evidence package',
       'Draft the data-governance remediation plan',
     ],
+    // Oral Demo Talk Track v3: the highlight ends where the talk track does.
     goldenPathChip: {
       ussfcu_cfo_greeting: 'Show me where the numbers break',
       ussfcu_cfo_turn_show_break: 'Show me the data flow that produced this',
@@ -66,7 +67,6 @@ const manifest: PersonaManifest = {
       ussfcu_cfo_turn_full_lineage: 'Show me the CFO and Lending parity gap',
       ussfcu_cfo_turn_parity_gap: 'Generate the audit evidence package',
       ussfcu_cfo_turn_evidence_package: 'Draft the data-governance remediation plan',
-      ussfcu_cfo_turn_remediation_plan: 'Export for the leadership event',
     },
     flowKeyToCapabilityTrigger: {
       ussfcu_cfo_greeting: 'home_load',

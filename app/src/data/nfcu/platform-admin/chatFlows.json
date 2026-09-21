@@ -21,10 +21,40 @@
     }
   },
 
+  "nfcu_pa_spike_review": {
+    "ai_message": "Priya's auto loan spike response is up for routine review. The first question risk always asks: during that spike, with member data moving through every step of her session, did anything leave our environment? I have the field-level trail for every task she ran, so we can answer that from the routing log rather than from policy.",
+    "suggested_chips": [
+      "Show me where every field went",
+      "What did the frontier model do?",
+      "Show me the routing logic"
+    ],
+    "data_sources_used": [
+      "Routing log (Postgres)",
+      "KAG (Neo4j)"
+    ],
+    "capability": "Field Sovereignty",
+    "confidence": {
+      "score": 97,
+      "rationale": "Scoping the review to Priya's session is a direct read of the routing log; the field-level answer follows on the next step.",
+      "signals_used": [
+        "Routing log (Postgres)",
+        "KAG (Neo4j)"
+      ],
+      "threshold": 70,
+      "model_version": "sovereign-router-v2.0",
+      "validated_at": "2026-04-23T08:47:00Z",
+      "escalation": {
+        "triggered": false,
+        "reason": null,
+        "route_to": null,
+        "review_queue": null
+      }
+    }
+  },
   "nfcu_pa_field_sovereignty": {
     "ai_message": "Here is the field-level routing. Every member financial, the SSN, account number, balance, and name, was resolved by the in-environment SLM. Two public fields were also handled locally. One reasoning task used the frontier model, on non-PII inputs only. Zero PII reached the frontier model.",
     "suggested_chips": [
-      "Why did the auto loan rate stay local?",
+      "Why did the rate stay local?",
       "Show me the routing logic",
       "What did the frontier model do?"
     ],
@@ -44,7 +74,7 @@
   },
 
   "nfcu_pa_kag_provenance": {
-    "ai_message": "The knowledge graph flagged it member-specific under rule DG-04, a member-specific financial term, not public marketing data. The graph links the field to its source system and the governing policy, so it was kept in-environment. This is classification by meaning, not keyword matching.",
+    "ai_message": "Two reasons it stayed home. One, it is a member's own rate: the knowledge graph flagged it member-specific under rule DG-04, so it is PII, not public marketing data. Two, answering it never needed a frontier model, so it never left the environment. And what you are looking at is the real knowledge graph, Neo4j embedded in the platform, not a picture of it: the field linked to its source system and the policy that governs it. Classification by meaning, not keyword matching.",
     "suggested_chips": [
       "Show all fields flagged sensitive",
       "Show me the routing logic",
@@ -66,9 +96,9 @@
   },
 
   "nfcu_pa_routing_logic": {
-    "ai_message": "Three gates. First, is it safe to send: any field carrying PII stays in the SLM, always. Second, is it worth sending: a task uses the frontier model only when it needs reasoning or generation the SLM cannot do reliably. Third, is it within budget: if a user or agent has hit its cost ceiling, non-critical tasks stay on the SLM even if they would otherwise qualify. A task has to pass all three. Everything else stays local.",
+    "ai_message": "Three gates. First, is it safe to send: any field carrying PII stays in the SLM, always. Second, is it worth sending: a task uses the frontier model only when it needs reasoning or generation the SLM cannot do reliably. Third, is it within budget: if a user or agent has hit its cost ceiling, non-critical tasks stay on the SLM even if they would otherwise qualify. A task has to pass all three. Everything else stays local. And the diagram itself is live: Mermaid, the format your engineers already write, rendered here and exportable.",
     "suggested_chips": [
-      "Show me the budget guardrail",
+      "What happens at the budget cap?",
       "Run the cost report",
       "Which tasks used the frontier model?"
     ],
@@ -90,7 +120,7 @@
   "nfcu_pa_cost_usage": {
     "ai_message": "Across Priya's session the frontier model was used on 3 of 24 tasks, all complex reasoning or generation, all on non-PII inputs. The rest ran on the in-environment SLM. Total cost was $0.63. Running everything on the frontier model would have cost $2.18, so routing saved 71%.",
     "suggested_chips": [
-      "Show me where we reused an answer instead of calling a model",
+      "Where did we reuse an answer?",
       "Show me the highest-cost tasks",
       "Break it down by persona",
       "Show frontier usage this month"
@@ -113,7 +143,7 @@
   "nfcu_pa_observability": {
     "ai_message": "Across the enterprise, the contact center, core banking, and the other AI initiatives on the platform, every agent is governed by the same layer. Frontier usage held at 11% of tasks, all justified and PII-safe. Whatever tool or agent a team builds on, it routes through one governance model. You can expand any agent action to see what it did, the context it used, and the policy that governed it.",
     "suggested_chips": [
-      "Show the enterprise agent inventory",
+      "Show me every agent and what it is built on",
       "Expand a flagged action",
       "Compare governance across initiatives",
       "Generate an enterprise governance summary"
@@ -375,7 +405,7 @@
   "nfcu_pa_cache_reuse": {
     "ai_message": "Priya and Marcus both asked for the same auto loan spike summary within the hour. The first call ran once. The second was served from the semantic cache, so it never reached a model. Same answer, zero new tokens, near-zero cost, and a faster response. This month, cache reuse avoided 214 model calls.",
     "suggested_chips": [
-      "Show me agent activity and frontier usage across the enterprise",
+      "Show agent activity across the enterprise",
       "Show cache hit rate this month",
       "Which answers are cached?",
       "Run the cost report"

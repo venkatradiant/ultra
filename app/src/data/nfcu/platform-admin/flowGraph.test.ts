@@ -25,7 +25,7 @@ const flows = cfg.chatFlows;
 const chipToFlowKey = cfg.chipToFlowKey;
 
 /** Spec v2's nine turns, in order. Turn 1 is seeded, not sequenced. */
-const GOLDEN_PATH = [
+const NINE_TURNS = [
   'nfcu_pa_greeting',
   'nfcu_pa_field_sovereignty',
   'nfcu_pa_kag_provenance',
@@ -52,14 +52,22 @@ describe("Daniel's flow graph", () => {
     }
   });
 
+  /**
+   * The clicked path. Talk track v3 reaches the field ledger in two clicks —
+   * "Review the auto loan spike" asks whether anything left, then "Show me where
+   * every field went" opens the ledger — so the walk has one more stop than the
+   * nine sequenced turns.
+   */
+  const GOLDEN_PATH = [NINE_TURNS[0], 'nfcu_pa_spike_review', ...NINE_TURNS.slice(1)];
+
   it('carries all nine of spec v2 turns', () => {
-    for (const key of GOLDEN_PATH) {
+    for (const key of NINE_TURNS) {
       expect(flows[key], `spec v2 turn "${key}" is missing`).toBeDefined();
     }
   });
 
   it('sequences turns 2–9 for the Ask surface', () => {
-    expect(cfg.askTurnSequence).toEqual(GOLDEN_PATH.slice(1));
+    expect(cfg.askTurnSequence).toEqual(NINE_TURNS.slice(1));
   });
 
   /**
@@ -73,14 +81,15 @@ describe("Daniel's flow graph", () => {
    * the next turn.
    */
   const GOLDEN_CHIPS: Array<[string, string, string]> = [
-    ['nfcu_pa_greeting', 'Review the auto loan spike', 'nfcu_pa_field_sovereignty'],
-    ['nfcu_pa_field_sovereignty', 'Why did the auto loan rate stay local?', 'nfcu_pa_kag_provenance'],
+    ['nfcu_pa_greeting', 'Review the auto loan spike', 'nfcu_pa_spike_review'],
+    ['nfcu_pa_spike_review', 'Show me where every field went', 'nfcu_pa_field_sovereignty'],
+    ['nfcu_pa_field_sovereignty', 'Why did the rate stay local?', 'nfcu_pa_kag_provenance'],
     ['nfcu_pa_kag_provenance', 'Show me the routing logic', 'nfcu_pa_routing_logic'],
-    ['nfcu_pa_routing_logic', 'Show me the budget guardrail', 'nfcu_pa_budget_guardrail'],
+    ['nfcu_pa_routing_logic', 'What happens at the budget cap?', 'nfcu_pa_budget_guardrail'],
     ['nfcu_pa_budget_guardrail', 'Run the cost report', 'nfcu_pa_cost_usage'],
-    ['nfcu_pa_cost_usage', 'Show me where we reused an answer instead of calling a model', 'nfcu_pa_cache_reuse'],
-    ['nfcu_pa_cache_reuse', 'Show me agent activity and frontier usage across the enterprise', 'nfcu_pa_observability'],
-    ['nfcu_pa_observability', 'Show the enterprise agent inventory', 'nfcu_pa_agent_inventory'],
+    ['nfcu_pa_cost_usage', 'Where did we reuse an answer?', 'nfcu_pa_cache_reuse'],
+    ['nfcu_pa_cache_reuse', 'Show agent activity across the enterprise', 'nfcu_pa_observability'],
+    ['nfcu_pa_observability', 'Show me every agent and what it is built on', 'nfcu_pa_agent_inventory'],
   ];
 
   /**
@@ -88,16 +97,18 @@ describe("Daniel's flow graph", () => {
    * dropping one to make room for a golden-path route is a silent spec
    * regression — which is exactly what happened three times before this test
    * existed. Golden-path chips are additive; spec chips must all survive.
+   * Where talk track v3 words a follow-up differently, its wording replaces
+   * spec v2's here; the spec v2 wording still resolves as an alias.
    */
   const SPEC_FOLLOWUPS: Record<string, string[]> = {
     nfcu_pa_greeting: ['Review the auto loan spike', 'Show me contact center spend', 'What did the graph catch?'],
-    nfcu_pa_field_sovereignty: ['Why did the auto loan rate stay local?', 'Show me the routing logic', 'What did the frontier model do?'],
+    nfcu_pa_field_sovereignty: ['Why did the rate stay local?', 'Show me the routing logic', 'What did the frontier model do?'],
     nfcu_pa_kag_provenance: ['Show all fields flagged sensitive', 'Show me the routing logic', 'What did the frontier model do?'],
-    nfcu_pa_routing_logic: ['Run the cost report', 'Show me the budget guardrail', 'Which tasks used the frontier model?'],
+    nfcu_pa_routing_logic: ['Run the cost report', 'What happens at the budget cap?', 'Which tasks used the frontier model?'],
     nfcu_pa_budget_guardrail: ['Show me who is near their budget', 'Show the routing logic', 'Run the cost report'],
     nfcu_pa_cost_usage: ['Show me the highest-cost tasks', 'Break it down by persona', 'Show frontier usage this month'],
     nfcu_pa_cache_reuse: ['Show cache hit rate this month', 'Run the cost report', 'Which answers are cached?'],
-    nfcu_pa_observability: ['Expand a flagged action', 'Compare governance across initiatives', 'Show the enterprise agent inventory'],
+    nfcu_pa_observability: ['Expand a flagged action', 'Compare governance across initiatives', 'Show me every agent and what it is built on'],
     nfcu_pa_agent_inventory: ['Group these by foundry', 'Show anything not yet under governance', 'Onboard an agent to governance'],
   };
 

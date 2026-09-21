@@ -66,17 +66,19 @@ const manifest: PersonaManifest = {
       'Where does the business stand this morning?',
       'Walk me through the liquidity signal',
       'Can I trust these numbers?',
-      'What happens to liquidity if this continues?',
+      'What happens if this continues?',
       'Show me membership and growth',
       'Trace net income back to source',
       'Draft the board briefing',
       'Open the full briefing',
     ],
+    // The Oral Demo Talk Track v3 click sequence (Tim Anderson, Act 1), the
+    // source of truth: liquidity → projection → trust → board briefing → open.
     goldenPathChip: {
       ussfcu_ceo_greeting: 'Walk me through the liquidity signal',
-      ussfcu_ceo_turn_liquidity: 'What happens to liquidity if this continues?',
-      ussfcu_ceo_turn_projection: 'Can I trust these numbers this morning?',
-      ussfcu_ceo_turn_trust: 'Trace net income back to source',
+      ussfcu_ceo_turn_liquidity: 'What happens if this continues?',
+      ussfcu_ceo_turn_projection: 'Can I trust these numbers?',
+      ussfcu_ceo_turn_trust: 'Draft the board briefing',
       ussfcu_ceo_trace_net_income: 'Draft the board briefing',
       ussfcu_ceo_turn_membership: 'Draft the board briefing',
       ussfcu_ceo_turn_board_briefing: 'Open the full briefing',
@@ -107,7 +109,7 @@ const manifest: PersonaManifest = {
     signalToChip: {
       'SIG-USSFCU-CEO-001': 'Walk me through the liquidity signal',
       'SIG-USSFCU-CEO-002': 'Show me membership and growth',
-      'SIG-USSFCU-CEO-003': 'Can I trust these numbers this morning?',
+      'SIG-USSFCU-CEO-003': 'Can I trust these numbers?',
     },
     capabilityCallouts: capabilityCallouts as PersonaManifest['ui']['capabilityCallouts'],
   },

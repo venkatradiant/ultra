@@ -48,13 +48,15 @@ const manifest: PersonaManifest = {
       'Fix my direct deposit',
       'Is my paycheck deposited yet?',
     ],
+    // The Oral Demo Talk Track v3 click sequence (Persona 6), the source of
+    // truth. The late-fee answer is folded into the salary turn, so the path
+    // goes salary → fix; the late-fee turn stays reachable off-path.
     goldenPathChip: {
       nfcu_member_greeting: "What's my balance?",
-      nfcu_member_step2_balance: 'Now tell me about the declined payment',
+      nfcu_member_step2_balance: 'Why was my auto loan payment declined?',
       nfcu_member_step3_decline: "Why isn't my salary being applied?",
-      nfcu_member_step4_salary: 'Will I be charged a late fee?',
+      nfcu_member_step4_salary: 'Do the fix and retry the payment',
       nfcu_member_step5_latefee: 'Do the fix and retry the payment',
-      nfcu_member_step6_fix: 'Anything else I should know?',
     },
     flowKeyToCapabilityTrigger: {
       nfcu_member_greeting: 'home_load',

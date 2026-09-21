@@ -47,7 +47,7 @@
 
   "ussfcu_evelyn_turn_deepquery": {
     "user_query": "How many members were approved for a mortgage, in Colorado, under 30, who originated, and did most of their communication electronically?",
-    "ai_response": "94 members match. Of those, 61 originated and 33 went elsewhere. 78% did the majority of their communication electronically. I pulled approvals from MeridianLink, member profiles and geography from the core, and interaction channel from the contact center, and reconciled them into one population. This is the question that used to take your team days.",
+    "ai_response": "94 members match. Of those, 61 originated and 33 went elsewhere. 78% did the majority of their communication electronically. I pulled originations from HUNA and MeridianLink, member profiles and geography from the core, and channel history from member communications and the contact center: five systems, reconciled into one population. This is the question that used to take your team days.",
     "suggested_chips": ["Apply the compliance tests", "Did we lose the 33 to another lender?", "Check ESIGN consent"],
     "data_sources_used": ["HUNA", "MeridianLink", "Symitar Core", "Member Communications"],
     "ui_components_to_render": [],
@@ -87,7 +87,7 @@
 
   "ussfcu_evelyn_turn_attrition": {
     "user_query": "Did we lose the 33 to another lender, and why?",
-    "ai_response": "Of the 33 who did not originate, 21 withdrew and 12 were denied. Cross-referencing contact-center transcripts, 15 of the 21 withdrawals mention interest rate or closing cost in the last interaction before they left, and 6 mention a competitor by name. Average days-to-decision for the withdrawn group was 12 days longer than for those who originated. The friction is speed and price transparency, and it shows up as attrition, not just dissatisfaction.",
+    "ai_response": "Of the 33 who did not originate, 21 withdrew and 12 were denied. Cross-referencing contact-center transcripts, 15 of the 21 withdrawals mention interest rate or closing cost in the last interaction before they left, and 6 mention a competitor by name. Average days-to-decision for the withdrawn group was 12 days longer than for those who originated: 53 days against 41. The friction is speed and price transparency, and it shows up as attrition, not just dissatisfaction.",
     "suggested_chips": ["Generate the exam evidence package", "Show me the competitor mentions", "Flag the speed issue to Lending"],
     "data_sources_used": ["MeridianLink", "Member Communications", "CRM"],
     "ui_components_to_render": [],
@@ -97,7 +97,7 @@
 
   "ussfcu_evelyn_turn_evidence": {
     "user_query": "Generate the exam evidence package",
-    "ai_response": "Assembled. The package documents the population and the query, each regulatory test with its result and citation, the disclosure checklist and calendar with the past-due items and their remediation, the fair-lending disparity analysis, and the 7 complaints now logged with their CFPB categorization. Every figure traces to its source system. This is what an examiner asks for, and it took one conversation instead of a week of manual work. Shall I route it to the risk committee?",
+    "ai_response": "Assembled, 100 percent complete. The package documents the population and the query, each regulatory test with its result and citation, the disclosure checklist and calendar with the past-due items and their remediation, the fair-lending disparity analysis, and the 7 complaints now logged with their CFPB categorization. Every figure traces to its source system. This is what an examiner asks for, and it took one conversation instead of a week of manual work. Shall I route it to the risk committee?",
     "suggested_chips": ["Route to the risk committee", "Export for the examiner", "Hand the files to Nadia"],
     "data_sources_used": ["Compliance / GRC System", "Radiant Intelligence Layer", "Regulatory Rules Engine"],
     "ui_components_to_render": [],
