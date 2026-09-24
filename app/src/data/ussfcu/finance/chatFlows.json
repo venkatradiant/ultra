@@ -1,0 +1,150 @@
+{
+  "ussfcu_finance_greeting": {
+    "ai_message": "Good morning. I scanned the portfolio overnight and three things need your attention. Indirect auto delinquency has moved past your aligned parameter, the first-mortgage portfolio is nearing its board limit, and rate and liquidity pressure is building. Want to start with what's moving?",
+    "suggested_chips": [
+      "Show delinquency trends by loan segment",
+      "Which portfolios are near their board limits?",
+      "Model a ±25, 50 and 100 bp rate shock"
+    ],
+    "data_sources_used": [
+      "Jack Henry Symitar (Core Banking)",
+      "General Ledger & Board Reporting",
+      "ALM Model (Interest-Rate Risk)"
+    ],
+    "ui_components_to_render": [],
+    "related_dataset_keys": [
+      "signals"
+    ],
+    "capability": "Proactive Intelligence"
+  },
+  "ussfcu_finance_turn_delinquency": {
+    "user_query": "Show delinquency trends by loan segment, and flag any pool trending up or outside our aligned parameters.",
+    "ai_response": "Most segments are flat or improving. One is not. Indirect auto 60-day delinquency is 1.8%, up from 1.1% two quarters ago and now above your 1.5% aligned parameter. First mortgage and HELOC are steady at 0.4% and 0.6%. The rise is concentrated in loans originated in the last 18 months. Indirect auto is the pool to watch; everything else sits inside tolerance.",
+    "suggested_chips": [
+      "Which portfolios are near their board limits?",
+      "Model a ±25, 50 and 100 bp rate shock",
+      "Show deposit activity by SEG group"
+    ],
+    "data_sources_used": [
+      "Jack Henry Symitar (Core Banking)",
+      "MeridianLink",
+      "Board Policy & ALCO Playbook Library"
+    ],
+    "ui_components_to_render": [
+      {
+        "type": "delinquency_by_segment"
+      }
+    ],
+    "capability": "Proactive Intelligence"
+  },
+  "ussfcu_finance_turn_limits": {
+    "user_query": "Which portfolios are approaching our board risk-tolerance limits, such as mortgages capped at 600% of net worth?",
+    "ai_response": "One portfolio is close. First mortgage is at $655M, which is 571% of net worth against your 600% board cap, so about $33M of headroom before the limit. No other portfolio is within fifteen points of its limit. At the current pace of first-mortgage growth, you reach the cap in roughly two quarters.",
+    "suggested_chips": [
+      "Model a ±25, 50 and 100 bp rate shock",
+      "Show delinquency trends by loan segment",
+      "Do we have enough dry powder?"
+    ],
+    "data_sources_used": [
+      "Jack Henry Symitar (Core Banking)",
+      "General Ledger & Board Reporting",
+      "Board Policy & ALCO Playbook Library"
+    ],
+    "ui_components_to_render": [
+      {
+        "type": "concentration_limits"
+      }
+    ],
+    "capability": "Converged Conversation"
+  },
+  "ussfcu_finance_turn_rate_shock": {
+    "user_query": "Model a rate shock of plus or minus 25, 50, and 100 basis points. What happens to our portfolio?",
+    "ai_response": "Modeled across the balance sheet: a plus 100 basis-point shock lifts loan income but compresses net interest margin as deposits reprice faster, and marks the investment portfolio down about $18M. A minus 100 move does the reverse. At plus or minus 25 and 50 the effects are proportional and stay inside policy limits. Plus 100 is where net worth dips toward the 7.0% early-warning line.",
+    "suggested_chips": [
+      "Do we have enough dry powder?",
+      "What is the playbook action for each rate move?",
+      "Which portfolios are near their board limits?"
+    ],
+    "data_sources_used": [
+      "ALM Model (Interest-Rate Risk)",
+      "Investment Portfolio Accounting",
+      "General Ledger & Board Reporting"
+    ],
+    "ui_components_to_render": [
+      {
+        "type": "rate_shock_matrix"
+      }
+    ],
+    "capability": "Predictive Intelligence"
+  },
+  "ussfcu_finance_turn_dry_powder": {
+    "user_query": "For that scenario, do we have enough dry powder? What happens to our capital ratios and liquidity?",
+    "ai_response": "Under the plus 100 basis-point scenario your net worth ratio moves from 7.50% to about 7.1%, still well capitalized, and on-hand liquidity covers projected outflows for the quarter with roughly $40M to spare. The pressure point is loan-to-share: it climbs from 84% to 88%, which is where your funding review is triggered. You have dry powder, but the scenario narrows it.",
+    "suggested_chips": [
+      "What is the playbook action for each rate move?",
+      "Model a ±25, 50 and 100 bp rate shock",
+      "Show deposit activity by SEG group"
+    ],
+    "data_sources_used": [
+      "ALM Model (Interest-Rate Risk)",
+      "General Ledger & Board Reporting",
+      "Jack Henry Symitar (Core Banking)"
+    ],
+    "ui_components_to_render": [
+      {
+        "type": "capital_liquidity_stress"
+      }
+    ],
+    "capability": "Anomaly Detection"
+  },
+  "ussfcu_finance_turn_playbook": {
+    "user_query": "For each rate move, what is the pre-set playbook action, for example at a quarter point versus a half point?",
+    "ai_response": "Your board playbook maps an action to each increment. At plus 25: hold deposit rates and monitor. At plus 50: selectively raise certificate rates on the 12- and 18-month terms to defend balances. At plus 100: launch the deposit-gathering campaign and slow indirect-auto funding to protect the margin and the mortgage concentration. Each action is pulled as written in the approved playbook, so this is a decision, not a rebuild.",
+    "suggested_chips": [
+      "Show deposit activity by SEG group",
+      "Model a ±25, 50 and 100 bp rate shock",
+      "Do we have enough dry powder?"
+    ],
+    "data_sources_used": [
+      "Board Policy & ALCO Playbook Library",
+      "ALM Model (Interest-Rate Risk)"
+    ],
+    "ui_components_to_render": [
+      {
+        "type": "rate_playbook_ladder"
+      }
+    ],
+    "capability": "Automated Action"
+  },
+  "ussfcu_finance_turn_seg_deposits": {
+    "user_query": "Show deposit activity by SEG group, and trigger an alert if more than a set percentage leaves.",
+    "ai_response": "Deposit activity by core SEG this month: total balances are up 0.6%, but two payroll groups are trending down. One is off 4.2% versus last month, which crosses your 3% outflow trigger, so it is flagged. The movement is mostly certificate closures chasing a competitor promotional rate rather than full attrition. Net, funding is stable, with one group to address before it compounds.",
+    "suggested_chips": [
+      "Show delinquency trends by loan segment",
+      "Model a ±25, 50 and 100 bp rate shock",
+      "What is the playbook action for each rate move?"
+    ],
+    "data_sources_used": [
+      "Jack Henry Symitar (Core Banking)",
+      "Greenplum on Tanzu",
+      "Board Policy & ALCO Playbook Library"
+    ],
+    "ui_components_to_render": [
+      {
+        "type": "seg_deposit_monitor"
+      }
+    ],
+    "capability": "Automated Action"
+  },
+  "__default__": {
+    "ai_message": "That one is outside what I have prepared for this briefing. I can answer the six approved finance questions from the connected data: delinquency by loan segment, the portfolios nearest their board limits, a rate shock of plus or minus 25, 50 and 100 basis points, capital and liquidity under that shock, the playbook action for each rate move, and deposit activity by SEG group. Every figure except the public profile is illustrative sample data.",
+    "suggested_chips": [
+      "Show delinquency trends by loan segment",
+      "Which portfolios are near their board limits?",
+      "Model a ±25, 50 and 100 bp rate shock"
+    ],
+    "data_sources_used": [],
+    "ui_components_to_render": [],
+    "capability": "Converged Conversation"
+  }
+}

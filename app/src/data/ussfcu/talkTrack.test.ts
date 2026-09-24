@@ -58,6 +58,17 @@ const TALK_TRACK: Record<string, TalkTrackStep[]> = {
     ['Generate the audit evidence package', 'ussfcu_cfo_turn_evidence_package'],
     ['Draft the data-governance remediation plan', 'ussfcu_cfo_turn_remediation_plan'],
   ],
+  // Finance Team — not in Talk Track v3. Its script is the Finance Persona
+  // narrative prepared for Lauren: the six approved finance questions, in order,
+  // clicked by their short chip labels.
+  ussfcu_finance: [
+    ['Show delinquency trends by loan segment', 'ussfcu_finance_turn_delinquency'],
+    ['Which portfolios are near their board limits?', 'ussfcu_finance_turn_limits'],
+    ['Model a ±25, 50 and 100 bp rate shock', 'ussfcu_finance_turn_rate_shock'],
+    ['Do we have enough dry powder?', 'ussfcu_finance_turn_dry_powder'],
+    ['What is the playbook action for each rate move?', 'ussfcu_finance_turn_playbook'],
+    ['Show deposit activity by SEG group', 'ussfcu_finance_turn_seg_deposits'],
+  ],
   // Part 2 — Maya J.
   ops: [
     ['Yes, walk me through them', 'signal_1_mortgage'],

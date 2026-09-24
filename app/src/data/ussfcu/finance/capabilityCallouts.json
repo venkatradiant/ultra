@@ -1,0 +1,44 @@
+[
+  {
+    "trigger": "home_load",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Scans the portfolio overnight and surfaces what needs attention before anyone asks — a segment drifting past its parameter, a portfolio nearing a board limit, and rate and liquidity pressure building.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_1",
+    "capabilityName": "Proactive Intelligence",
+    "description": "Tracks delinquency by loan segment against each aligned parameter and flags the pool that is trending up, down to the origination vintage driving it.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_2",
+    "capabilityName": "Converged Conversation",
+    "description": "Answers a board-limit question in plain language by joining portfolio balances from the core with net worth from the ledger and the limits in board policy.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_3",
+    "capabilityName": "Predictive Intelligence",
+    "description": "Models parallel rate shocks across the balance sheet — loan income, margin, the investment portfolio and net worth — and shows where each increment lands against policy.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_4",
+    "capabilityName": "Anomaly Detection",
+    "description": "Tests the cushion under the chosen scenario and isolates the pressure point: the ratio that reaches its trigger first while capital and liquidity hold.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_5",
+    "capabilityName": "Automated Action",
+    "description": "Pulls the pre-set action for each rate increment exactly as written in the board-approved playbook, so the answer is a decision, not a rebuild.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  },
+  {
+    "trigger": "ask_turn_6",
+    "capabilityName": "Automated Action",
+    "description": "Monitors deposit activity by SEG group and raises an alert the moment a group's outflow crosses the set percentage, with what is driving it.",
+    "eyebrow": "RADIANT AI CAPABILITY"
+  }
+]

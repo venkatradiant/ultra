@@ -20,10 +20,11 @@ export const CLIENT_PERSONAS = {
   penfed: ['ops', 'cx', 'retention', 'risk', 'capmarkets'],
   // USSFCU: Risk & Compliance personas first — Evelyn Marsh (VP Compliance, the
   // default) and Nadia Hassan (Compliance Analyst) — alongside the CFO (Sylvia
-  // Reyes), the CEO (Timothy Anderson), and the four generic personas. The
-  // ussfcu_* personas are intentionally absent from every other client's
-  // allowlist so they cannot be selected outside USSFCU.
-  ussfcu: ['risk', 'ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_ceo', 'ussfcu_cfo', 'ops', 'cx', 'retention'],
+  // Reyes), the CEO (Timothy Anderson), the Finance Team (the untitled finance
+  // persona from the narrative prepared for Lauren), and the four generic
+  // personas. The ussfcu_* personas are intentionally absent from every other
+  // client's allowlist so they cannot be selected outside USSFCU.
+  ussfcu: ['risk', 'ussfcu_evelyn', 'ussfcu_nadia', 'ussfcu_ceo', 'ussfcu_cfo', 'ussfcu_finance', 'ops', 'cx', 'retention'],
   // ESFCU: two executive personas — Girado Smith (CEO, funding and liquidity)
   // and Renata Alvarez (CRO, fraud and BSA). Deliberately no generic personas:
   // this tenant is two briefings that share a shell, not a persona sampler.

@@ -19,6 +19,7 @@ import ussfcuCfoDataSources from '../data/ussfcu/cfo/dataSources.json';
 import ussfcuCeoDataSources from '../data/ussfcu/ceo/dataSources.json';
 import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
 import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
+import ussfcuFinanceDataSources from '../data/ussfcu/finance/dataSources.json';
 import esfcuCeoDataSources from '../data/esfcu/ceo/dataSources.json';
 import esfcuCroDataSources from '../data/esfcu/cro/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
@@ -48,6 +49,8 @@ const personaDataSources = {
   // USSFCU-only Risk & Compliance personas (gated to clientId === 'ussfcu').
   ussfcu_evelyn: ussfcuEvelynDataSources,
   ussfcu_nadia: ussfcuNadiaDataSources,
+  // USSFCU-only Finance Team persona (gated to clientId === 'ussfcu').
+  ussfcu_finance: ussfcuFinanceDataSources,
   // ESFCU-only CEO persona (gated to clientId === 'esfcu' in PersonaContext).
   // Seven vendor-neutral sources; the Howard University division ledger is the
   // one that is only partially connected, which is the whole point of it.

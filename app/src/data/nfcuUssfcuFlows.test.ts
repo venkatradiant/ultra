@@ -38,6 +38,7 @@ const GOLDEN_PATHS: Record<string, Record<string, string>> = {
   ussfcu_nadia: { ussfcu_nadia_greeting: 'ussfcu_nadia_turn_complaint' },
   ussfcu_cfo: { ussfcu_cfo_greeting: 'ussfcu_cfo_turn_remediation_plan' },
   ussfcu_ceo: { ussfcu_ceo_greeting: 'ussfcu_ceo_turn_full_briefing' },
+  ussfcu_finance: { ussfcu_finance_greeting: 'ussfcu_finance_turn_seg_deposits' },
   ops: { greeting: 'turn_4_actions' },
   cx: { cx_greeting: 'cx_turn_3_intervention' },
   retention: { ret_greeting: 'ret_turn_3_retention_action' },

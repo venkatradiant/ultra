@@ -242,6 +242,23 @@ const personas = {
     ],
   },
 
+  // USSFCU-only: the Finance Team — deliberately untitled, so the room stays on
+  // the six approved finance questions rather than on who is asking them.
+  ussfcu_finance: {
+    id: 'ussfcu_finance',
+    name: 'Finance Team',
+    initials: 'FT',
+    role: 'USS FCU Finance',
+    greeting: 'Finance Team',
+    capabilities: [
+      'Proactive Intelligence',
+      'Converged Conversation',
+      'Predictive Intelligence',
+      'Anomaly Detection',
+      'Automated Action',
+    ],
+  },
+
   // ─── USSFCU-only Persona ──────────────────────────────────────
   // Visible only when clientId === 'ussfcu' (gated in PersonaContext CLIENT_PERSONAS).
   // Pure executive altitude: state-of-the-business roll-up with a first-class

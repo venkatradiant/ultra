@@ -1,0 +1,92 @@
+[
+  {
+    "id": "SIG-USSFCU-FIN-001",
+    "type": "delinquency_drift",
+    "primary": true,
+    "title": "Delinquency drifting in one segment",
+    "severity_label": "ACT NOW",
+    "description": "Indirect auto 60-day delinquency has reached 1.8%, up from 1.1% two quarters ago and now past the 1.5% aligned parameter. It is the only pool trending outside tolerance.",
+    "impact": "critical",
+    "severity": "critical",
+    "metric_text": "Indirect auto 1.8% vs 1.5%",
+    "sources": [
+      "Jack Henry Symitar (Core Banking)",
+      "MeridianLink",
+      "Board Policy & ALCO Playbook Library"
+    ],
+    "timestamp": "2026-07-24T06:00:00",
+    "trend": "worsening",
+    "metrics": {
+      "segment": "Indirect auto",
+      "dq_60_day_pct": 1.8,
+      "dq_two_quarters_ago_pct": 1.1,
+      "aligned_parameter_pct": 1.5
+    },
+    "confidence": {
+      "score": 93,
+      "rationale": "60-day delinquency by segment from the core, joined to origination vintage in MeridianLink and each segment's aligned parameter in the board policy library, isolates indirect auto as the only pool rising and the only one above its parameter.",
+      "threshold": 80,
+      "model_version": "portfolio-drift-v1.0",
+      "validated_at": "2026-07-24T05:59:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-FIN-002",
+    "type": "concentration_limit",
+    "title": "A portfolio nearing a board limit",
+    "severity_label": "WATCH",
+    "description": "The first-mortgage portfolio is at 571% of net worth ($655M against the 600% board cap), the closest any portfolio has come to a risk-tolerance limit this year.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "571% of net worth · cap 600%",
+    "sources": [
+      "Jack Henry Symitar (Core Banking)",
+      "General Ledger & Board Reporting",
+      "Board Policy & ALCO Playbook Library"
+    ],
+    "timestamp": "2026-07-24T06:02:00",
+    "trend": "watch",
+    "metrics": {
+      "portfolio": "First mortgage",
+      "balance_m": 655,
+      "pct_of_net_worth": 571,
+      "board_cap_pct": 600
+    },
+    "confidence": {
+      "score": 95,
+      "rationale": "First-mortgage balances from the core against net worth from the general ledger, measured on the board's 600% risk-tolerance limit.",
+      "threshold": 80,
+      "model_version": "concentration-v1.0",
+      "validated_at": "2026-07-24T06:01:00"
+    }
+  },
+  {
+    "id": "SIG-USSFCU-FIN-003",
+    "type": "rate_liquidity_pressure",
+    "title": "Rate and liquidity pressure building",
+    "severity_label": "WATCH",
+    "description": "Loan-to-share is 84%, a five-year high. On the current path, a plus 100 basis-point move is where liquidity and net worth start to tighten in Q4.",
+    "impact": "high",
+    "severity": "warning",
+    "metric_text": "Loan-to-share 84% · 5-yr high",
+    "sources": [
+      "ALM Model (Interest-Rate Risk)",
+      "General Ledger & Board Reporting",
+      "Jack Henry Symitar (Core Banking)"
+    ],
+    "timestamp": "2026-07-24T06:04:00",
+    "trend": "watch",
+    "metrics": {
+      "loan_to_share_pct": 84,
+      "pressure_point_bps": 100,
+      "tightens_in": "Q4"
+    },
+    "confidence": {
+      "score": 88,
+      "rationale": "Loan-to-share from the core and general ledger, run through the ALM model's rate paths, shows liquidity and net worth tightening first under a plus 100 basis-point move.",
+      "threshold": 80,
+      "model_version": "alm-paths-v1.0",
+      "validated_at": "2026-07-24T06:03:00"
+    }
+  }
+]
