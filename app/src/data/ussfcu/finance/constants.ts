@@ -27,7 +27,7 @@ export const SCAN_AT = '2026-09-24T06:00:00';
 
 /** §3: the persona. No executive title; the header greets her as "Fiona." */
 export const PERSONA = {
-  name: 'Fiona F',
+  name: 'Fiona F.',
   greeting: 'Fiona',
   role: 'Finance Team',
   initials: 'FI',

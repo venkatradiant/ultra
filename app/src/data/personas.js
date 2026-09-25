@@ -246,7 +246,7 @@ const personas = {
   // stays on the questions rather than on who is asking them.
   ussfcu_finance: {
     id: 'ussfcu_finance',
-    name: 'Fiona F',
+    name: 'Fiona F.',
     initials: 'FI',
     role: 'Finance Team',
     greeting: 'Fiona',
