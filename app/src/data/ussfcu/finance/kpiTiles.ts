@@ -28,8 +28,8 @@ const SHORT: Record<(typeof KPIS)[number]['id'], { label: string; value?: string
   hil_dq: { label: 'Home Improvement Loan 60-day delinquency', target: 'At or below 1.5%' },
   loan_growth: { label: 'Loan growth, YTD' },
   share_growth: { label: 'Share (deposit) growth, YTD' },
-  shutdown_liquidity: { label: 'Liquidity headroom, 30-day shutdown', value: '~$35M surplus', target: 'Positive quarter coverage' },
-  seg_deposits: { label: 'SEG deposits, month over month', value: '+0.6%; one group −4.2%', target: 'No group past −3%' },
+  shutdown_liquidity: { label: 'Liquidity surplus, 30-day shutdown', value: '~$35M', target: 'Positive quarter coverage' },
+  seg_deposits: { label: 'SEG deposits, month over month', value: '+0.6%', target: 'One group −4.2% · trigger −3%' },
 };
 
 /**

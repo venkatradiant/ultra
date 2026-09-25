@@ -31,6 +31,8 @@ export default function PredictiveIntelligenceDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  // USSFCU Finance (Fiona): spec §1 tag wording and her own systems.
+  const isFinance = persona.id === 'ussfcu_finance';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
   const isAtt = persona.id.startsWith('att_');
@@ -86,6 +88,23 @@ export default function PredictiveIntelligenceDiagram() {
     agenticCardDesc: 'Extends Genesys Cloud signals with Billing, Marketing Cloud, and 3-year Snowflake history',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'What-if care planning — staffing, deflection, and save-offer scenarios modeled before the surge lands.',
+  } : isFinance ? {
+    bodyText: 'Models what-if scenarios on the portfolio, including a government-shutdown employment shock, and projects the impact on delinquency, loss, net worth, and liquidity.',
+    predCards: [
+      { name: 'Shutdown Employment Shock', desc: 'Calibrated to our own members, not industry averages' },
+      { name: 'Delinquency and Loss', desc: 'Projects 60-day delinquency by segment and loan loss over two quarters' },
+      { name: 'Capital and Liquidity', desc: 'Projects net worth, liquidity to spare, and loan-to-share under the scenario' },
+    ],
+    signalSubtitle: 'UST Finex scenarios extended by the Agentic Data Platform with Symitar member and portfolio history',
+    existingCard: { title: 'UST Finex (USSFCU existing)', desc: 'Asset-liability and scenario modeling' },
+    agenticCardDesc: 'Extends the ALM model with Symitar member behavior and portfolio history',
+    gapText: 'Rebuilding a scenario in UST Finex and hand-carrying it into a board deck takes hours, and a generic ALM shock misses how our own members behave.',
+    withText: 'The shutdown scenario modeled in seconds, calibrated to our members, ready for the board.',
+    sourcesLabel: 'USSFCU DATA SOURCES',
+    primarySources: ['Jack Henry Symitar', 'UST Finex', 'General Ledger', 'Cornerstone'],
+    secondarySources: ['Greenplum on Tanzu', 'Tableau', 'Board playbooks'],
+    deployedAt: 'Radiant Solutions Lab',
+    deployedDesc: 'Multi-agent orchestration across network ops',
   } : isCfo ? {
     bodyText: 'Surfaces what is likely to happen next: when the audit will close, how many staff hours remediation saves, and whether your next NCUA 5300 filing is governed — before the numbers confirm it.',
     predCards: [

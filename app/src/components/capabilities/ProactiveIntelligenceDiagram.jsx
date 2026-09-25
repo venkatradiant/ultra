@@ -32,6 +32,8 @@ export default function ProactiveIntelligenceDiagram() {
 
   // Client-specific config
   const isCfo = persona.id === 'ussfcu_cfo';
+  // USSFCU Finance (Fiona): spec §1 tag wording and her own systems.
+  const isFinance = persona.id === 'ussfcu_finance';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
   const isAtt = persona.id.startsWith('att_');
@@ -63,6 +65,15 @@ export default function ProactiveIntelligenceDiagram() {
     bodyText: 'Your contact center platform reasons within its own data. This capability reads across Genesys Cloud, Billing, Domains, Hosting, Marketing, and IT — and every brand — surfacing the care signals that matter before you ask.',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'Cross-brand, cross-system intelligence — queue spikes, renewal-driven billing surges, outage-correlated volume, and churn risk correlated and ranked before the day starts.',
+  } : isFinance ? {
+    sourcesLabel: 'USSFCU DATA SOURCES',
+    primarySources: ['Jack Henry Symitar', 'UST Finex', 'General Ledger', 'Cornerstone'],
+    secondarySources: ['Greenplum on Tanzu', 'Tableau', 'Board playbooks'],
+    deployedAt: 'Radiant Solutions Lab',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    bodyText: 'Surfaces the portfolio signals overnight, before any question: a delinquency pool outside tolerance, a portfolio nearing a board limit, and building rate and liquidity pressure.',
+    gapText: 'Balances, delinquency, and deposits are exported from Symitar and assembled in Excel, so drift is caught late, in the monthly review.',
+    withText: 'Three portfolio signals correlated across sources and waiting before the ALCO prep.',
   } : isCfo ? {
     sourcesLabel: 'USSFCU DATA SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],

@@ -41,6 +41,8 @@ export default function ActionExecutionDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  // USSFCU Finance (Fiona): spec §1 tag wording and her own systems.
+  const isFinance = persona.id === 'ussfcu_finance';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
   const isAtt = persona.id.startsWith('att_');
@@ -72,6 +74,15 @@ export default function ActionExecutionDiagram() {
     bodyText: 'Executes operational actions across brands and systems — reroute agents between queues, enable callback and chat deflection, draft save offers, open refund and incident tickets, and restore suspended accounts on approval.',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'Reroute agents, enable deflection, draft save offers, and restore accounts — executed from the conversation, with an audit trail.',
+  } : isFinance ? {
+    bodyText: 'Pulls the pre-set board playbook action for each rate move and fires the SEG attrition alert, with the evidence attached — every action confirmed by the user before it leaves the conversation.',
+    targetsLabel: 'USSFCU EXECUTION TARGETS',
+    primaryTargets: ['Board playbooks', 'Jack Henry Symitar', 'UST Finex', 'ALCO'],
+    secondaryTargets: ['Tableau', 'Board deck', 'Email'],
+    gapText: 'The playbook that says what to do lives in a policy document, not next to the analysis, so the decision waits on someone finding and reading it.',
+    withText: 'The pre-agreed action sits next to the number, and the SEG alert fires with its detail attached.',
+    deployedAt: 'Radiant Solutions Lab',
+    deployedDesc: 'Multi-agent orchestration across network ops',
   } : isCfo ? {
     bodyText: 'Move from insight to action inside the same conversation: generate the lineage-backed evidence package, reconcile divergent figures to one governed number, and route the right data to the right role — all confirmed by the user before execution.',
     targetsLabel: 'USSFCU EXECUTION TARGETS',

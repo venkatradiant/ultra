@@ -33,7 +33,7 @@ export default function PortfolioLimitChart({ eyebrow = 'Converged Conversation'
     >
       <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
         <RiskRead
-          label="First mortgage, % of net worth"
+          label="First mortgage vs net worth"
           value={`${Math.round(fm.pctOfNetWorth)}%`}
           limit={`Board cap ${fm.cap}% · ${fmtM(fm.balance)} balance`}
           status={`About ${fmtM(Math.floor(fm.headroom))} headroom`}
@@ -69,7 +69,7 @@ export default function PortfolioLimitChart({ eyebrow = 'Converged Conversation'
             </span>
           ))}
         </div>
-        <div className="space-y-4">
+        <div className="space-y-5">
           {sorted.map((p) => {
             const u = use(p);
             const near = u >= 100 - nearLimitPoints;
@@ -110,7 +110,7 @@ export default function PortfolioLimitChart({ eyebrow = 'Converged Conversation'
                       title={`Projected in ${quartersToCap} quarters: ${fmtM(projectedBalance)}`}
                       aria-hidden="true"
                     >
-                      <span className="absolute -top-4 left-1 whitespace-nowrap text-[9px] font-semibold text-text">+{quartersToCap} qtrs</span>
+                      <span className="absolute top-full mt-0.5 -translate-x-1/2 whitespace-nowrap rounded bg-surface px-1 text-[9px] font-semibold text-text">+{quartersToCap} qtrs</span>
                     </div>
                   ) : null}
                 </div>

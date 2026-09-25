@@ -31,6 +31,8 @@ export default function BehavioralSegmentationDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  // USSFCU Finance (Fiona): spec §1 tag wording and her own systems.
+  const isFinance = persona.id === 'ussfcu_finance';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
   const isAtt = persona.id.startsWith('att_');
@@ -71,6 +73,18 @@ export default function BehavioralSegmentationDiagram() {
     enrichmentDesc: 'Adds cross-brand journey context',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'Friction in renewal, migration, and cancellation journeys mapped across brands and systems, with the drivers ranked.',
+  } : isFinance ? {
+    bodyText: 'Reconciles capital and liquidity across the core, the ledger, and the ALM model so the team can trust the cushion before citing it.',
+    adpSubtitle: 'Unified capital and liquidity position across Symitar, the General Ledger, Cornerstone, and UST Finex',
+    ontologyDesc: "'Net worth' means one thing",
+    enrichmentDesc: 'Adds source-to-figure lineage',
+    gapText: 'Figures arrive on different refresh schedules from systems that count things differently, so as much time goes to proving a number as producing it.',
+    withText: 'The capital position tied to all three sources, so the cushion is provable rather than chased.',
+    sourcesLabel: 'USSFCU DATA SOURCES',
+    primarySources: ['Jack Henry Symitar', 'UST Finex', 'General Ledger', 'Cornerstone'],
+    secondarySources: ['Greenplum on Tanzu', 'Tableau', 'Board playbooks'],
+    deployedAt: 'Radiant Solutions Lab',
+    deployedDesc: 'Multi-agent orchestration across network ops',
   } : isCfo ? {
     bodyText: 'The AI maps where the audit gets stuck — which figures require manual reconciliation, which reports lack lineage, and where information is not reaching the right people.',
     adpSubtitle: 'Unified financial lineage across the Jack Henry core, the Thought Machine ledger, the GL, Snowflake, and Tableau',

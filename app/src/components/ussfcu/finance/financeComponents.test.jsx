@@ -127,7 +127,7 @@ describe('Fiona briefing', () => {
     expect(prev.disabled).toBe(true);
     expect(tiles()).toHaveLength(4);
     expect(text()).toContain('Net worth ratio');
-    expect(screen.getAllByText('Public backdrop')).toHaveLength(1);
+    expect(screen.getAllByText('Public')).toHaveLength(1);
     expect(text()).toContain('Below the 600% board cap');
     expect(text()).toContain('Symitar + Cornerstone + UST Finex');
     tiles().forEach((t) => fireEvent.click(t));
@@ -138,7 +138,7 @@ describe('Fiona briefing', () => {
     expect(await screen.findByText('2/2')).toBeTruthy();
     expect(await screen.findByText('SEG deposits, month over month')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Next KPIs' }).disabled).toBe(true);
-    expect(screen.queryByText('Public backdrop')).toBeNull();
+    expect(screen.queryByText('Public')).toBeNull();
     tiles().forEach((t) => fireEvent.click(t));
     expect(onStatClick).toHaveBeenCalledTimes(8);
     expect(onStatClick.mock.calls[7][0]).toBe(FINANCE_CHIPS.segDeposits);

@@ -57,7 +57,7 @@ function SignalTile({ signal, onClick, index }) {
             <div className={`w-6 h-6 flex-shrink-0 rounded-md flex items-center justify-center ${config.iconBg}`}>
               <Icon className={`w-3 h-3 ${config.iconColor}`} />
             </div>
-            <span className="truncate text-[9.5px] font-semibold uppercase tracking-wide text-text-subtle">{signal.bucket}</span>
+            <span className="truncate text-[9.5px] font-semibold uppercase tracking-wide text-text-subtle" title={signal.bucket}>{signal.bucket}</span>
           </div>
           <span className={`flex-shrink-0 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${config.badge}`}>
             {config.label}

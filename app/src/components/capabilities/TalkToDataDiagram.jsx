@@ -31,6 +31,8 @@ export default function TalkToDataDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  // USSFCU Finance (Fiona): spec §1 tag wording and her own systems.
+  const isFinance = persona.id === 'ussfcu_finance';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
   const isAtt = persona.id.startsWith('att_');
@@ -68,6 +70,16 @@ export default function TalkToDataDiagram() {
     bodyText: 'Ask one question in plain language and get a sourced answer drawn at once from Genesys Cloud, Billing, Marketing Cloud, Domains, and Hosting — across every brand, without knowing which system holds which fact.',
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'Natural-language querying across all connected care and business data — one answer, many systems, every brand.',
+  } : isFinance ? {
+    sourcesLabel: 'USSFCU DATA SOURCES',
+    primarySources: ['Jack Henry Symitar', 'UST Finex', 'General Ledger', 'Cornerstone'],
+    secondarySources: ['Greenplum on Tanzu', 'Tableau', 'Board playbooks'],
+    deployedAt: 'Radiant Solutions Lab',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    connectorDesc: 'Symitar, GL, UST Finex',
+    piiDesc: 'Role-based access control',
+    gapText: 'No one screen shows a portfolio against its board limit: balances from Symitar, the capital position from the GL and Cornerstone, lined up by hand in a spreadsheet.',
+    withText: 'Answers a plain-language portfolio question across Symitar, the GL, and UST Finex at once, returning one reconciled figure against the board limit.',
   } : isCfo ? {
     sourcesLabel: 'USSFCU DATA SOURCES',
     primarySources: ['Jack Henry Core', 'Thought Machine', 'General Ledger', 'Lending Origination'],

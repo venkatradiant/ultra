@@ -114,7 +114,7 @@ export default function DelinquencyTrend({ eyebrow = 'Anomaly Detection' }) {
                 fill="var(--color-surface)"
                 stroke="var(--color-critical)"
                 strokeWidth={2}
-                label={{ value: `${fmtPct(hil.series[crossAt])} · crossed`, position: 'top', fill: 'var(--color-critical)', fontSize: 10, fontWeight: 600 }}
+                label={{ value: `${fmtPct(hil.series[crossAt])} · past ${fmtPct(parameter)}`, position: 'left', offset: 10, fill: 'var(--color-critical)', fontSize: 10, fontWeight: 600 }}
               />
             ) : null}
           </ComposedChart>

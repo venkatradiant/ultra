@@ -49,23 +49,23 @@ function StatCard({ stat, onClick }) {
         ) : null}
         <div className="min-w-0 flex-1 flex flex-col gap-[3px]">
           <span className="flex items-center gap-1.5 min-w-0">
-            <span className="text-[14px] font-bold text-text leading-none truncate tabular-nums">{stat.value}</span>
+            <span className="text-[14px] font-bold text-text leading-none whitespace-nowrap tabular-nums">{stat.value}</span>
             <span className="flex flex-shrink-0 items-center text-text-subtle" aria-label={`Trend: ${trend.label}`}>
               <TrendIcon className="w-3 h-3" />
             </span>
           </span>
-          <span className="text-[10px] text-text-subtle font-medium leading-tight truncate">{stat.label}</span>
-          <span className={`text-[9.5px] font-semibold leading-tight truncate ${stat.positive ? 'text-emerald-600' : 'text-amber-600'}`}>
+          <span className="text-[10px] text-text-subtle font-medium leading-tight line-clamp-2">{stat.label}</span>
+          <span className={`text-[9.5px] font-semibold leading-tight line-clamp-2 ${stat.positive ? 'text-emerald-600' : 'text-amber-600'}`}>
             {stat.target}
           </span>
-          <span className="flex items-center gap-1 min-w-0 text-[9px] leading-tight text-text-subtle">
-            <span className="truncate">{stat.source}</span>
+          <span className="flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[9px] leading-tight text-text-subtle">
+            <span>{stat.source}</span>
             <span
-              className={`flex-shrink-0 rounded-full border px-1 py-[0.5px] text-[7.5px] font-bold uppercase tracking-wide ${
+              className={`rounded-full border px-1 py-[0.5px] text-[7.5px] font-bold uppercase tracking-wide ${
                 stat.publicProfile ? 'border-brand/20 bg-brand-subtle text-brand' : 'border-border bg-surface-2 text-text-subtle'
               }`}
             >
-              {stat.publicProfile ? 'Public backdrop' : 'Illustrative'}
+              {stat.publicProfile ? 'Public' : 'Illustrative'}
             </span>
           </span>
         </div>

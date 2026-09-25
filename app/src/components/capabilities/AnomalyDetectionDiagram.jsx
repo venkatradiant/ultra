@@ -31,6 +31,8 @@ export default function AnomalyDetectionDiagram() {
   };
 
   const isCfo = persona.id === 'ussfcu_cfo';
+  // USSFCU Finance (Fiona): spec §1 tag wording and her own systems.
+  const isFinance = persona.id === 'ussfcu_finance';
   const isNewfold = persona.id.startsWith('newfold_');
   const isAramco = persona.id.startsWith('aramco_');
   const isAtt = persona.id.startsWith('att_');
@@ -83,6 +85,22 @@ export default function AnomalyDetectionDiagram() {
     ],
     gapText: 'The contact center platform reports within its own data. When a renewal batch, a marketing price-increase notice, a hosting outage, and a churn signal collide across brands, no native tool connects those signals.',
     withText: 'Billing anomalies, refund spikes, outage-correlated volume, and disclosure gaps flagged before they escalate.',
+  } : isFinance ? {
+    bodyText: 'Flags the pool trending outside the aligned delinquency parameter and the payroll group crossing the deposit-outflow trigger.',
+    monitorAgents: [
+      { name: 'Delinquency Monitor', desc: 'Watches each segment against its aligned parameter' },
+      { name: 'Limit Monitor', desc: 'Tracks every portfolio against its board cap' },
+      { name: 'Deposit Monitor', desc: 'Watches SEG outflow against the 3% trigger' },
+      { name: 'Pattern Correlator', desc: 'Links drift to vintage and channel' },
+      { name: 'Liquidity Monitor', desc: 'Tracks loan-to-share against the funding-review trigger' },
+    ],
+    sourcesLabel: 'USSFCU SIGNAL SOURCES',
+    primarySources: ['Jack Henry Symitar', 'UST Finex', 'General Ledger', 'Cornerstone'],
+    secondarySources: ['Greenplum on Tanzu', 'Tableau', 'Board playbooks'],
+    deployedAt: 'Radiant Solutions Lab',
+    deployedDesc: 'Multi-agent orchestration across network ops',
+    gapText: 'When a delinquency pool drifts or a payroll group starts pulling deposits, the team usually catches it late, in the monthly review.',
+    withText: 'The drifting pool and the payroll group past its trigger are flagged the morning it starts.',
   } : isCfo ? {
     bodyText: 'Detects where the same metric diverges across systems, where a transformation silently changes a figure between the ledger and Tableau, and which reconciliation exceptions are aging — surfaced as prioritized, actionable signals.',
     monitorAgents: [

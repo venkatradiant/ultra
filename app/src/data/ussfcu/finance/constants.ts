@@ -110,7 +110,7 @@ export const DQ_SEGMENTS = [
   { id: 'hil', label: 'Home Improvement Loan (unsecured)', series: [0.9, 0.9, 1.0, 1.0, 1.0, 1.1, 1.4, 1.8], flagged: true },
   { id: 'first_mortgage', label: 'First mortgage', series: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4], flagged: false },
   { id: 'heloc', label: 'HELOC', series: [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6], flagged: false },
-  { id: 'other_unsecured', label: 'Other unsecured consumer credit', series: [1.3, 1.3, 1.25, 1.25, 1.2, 1.2, 1.15, 1.15], flagged: false },
+  { id: 'other_unsecured', label: 'Other unsecured consumer credit', series: [1.3, 1.3, 1.3, 1.25, 1.25, 1.2, 1.2, 1.2], flagged: false },
 ] as const;
 
 /** spec: where the HIL rise sits. */
@@ -162,7 +162,7 @@ export const SHUTDOWN = {
   lossOverTwoQuartersM: 4.2,
   projectedDq: [
     { id: 'hil', label: 'Home Improvement Loan (unsecured)', beforePct: 1.8, afterPct: 3.2 },
-    { id: 'other_unsecured', label: 'Other unsecured consumer credit', beforePct: 1.15, afterPct: 1.7 },
+    { id: 'other_unsecured', label: 'Other unsecured consumer credit', beforePct: 1.2, afterPct: 1.7 },
     { id: 'heloc', label: 'HELOC', beforePct: 0.6, afterPct: 0.7 },
     { id: 'first_mortgage', label: 'First mortgage', beforePct: 0.4, afterPct: 0.45 },
   ],
@@ -367,7 +367,7 @@ export const fmtInt = (n: number) => n.toLocaleString('en-US');
  */
 export const FILLED_VALUES = [
   'Delinquency: HIL for Q3 2024–Q3 2025 (0.9, 0.9, 1.0, 1.0, 1.0%) — the spec gives Q4 2025 (1.1%) and Q2 2026 (1.8%); Q1 2026 1.4%.',
-  'Delinquency: "Other unsecured consumer credit" aggregate, 1.3% easing to 1.15% — implied by "rises across unsecured consumer credit".',
+  'Delinquency: "Other unsecured consumer credit" aggregate, 1.3% easing to 1.2% — implied by "rises across unsecured consumer credit".',
   'Limits: HELOC $118M against a 150% cap; HIL $48M against a 75% cap — both under 85% of their cap.',
   'Limits: first-mortgage growth $17M a quarter (two quarters uses the $33M headroom).',
   'Shutdown: 27% of members affected (about 14,200 of 52,500); projected 60-day delinquency HIL 3.2%, other unsecured 1.7%, HELOC 0.7%, first mortgage 0.45%.',
