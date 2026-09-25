@@ -66,8 +66,8 @@ const PROBES: Array<[query: string, expectedFlowKey: string]> = [
 ];
 
 describe(`${manifest.id} identity`, () => {
-  it('is Fiona, Finance Team, the same in the module, the manifest and the legacy record', () => {
-    const expected = { name: 'Fiona', initials: 'FI', role: 'Finance Team', greeting: 'Fiona' };
+  it('is Fiona F, Finance Team, the same in the module, the manifest and the legacy record', () => {
+    const expected = { name: 'Fiona F', initials: 'FI', role: 'Finance Team', greeting: 'Fiona' };
     expect(financePersona.identity).toEqual(expected);
     expect(manifest.identity).toEqual(expected);
     const legacy = (personas as Record<string, typeof expected & { capabilities: string[] }>).ussfcu_finance;

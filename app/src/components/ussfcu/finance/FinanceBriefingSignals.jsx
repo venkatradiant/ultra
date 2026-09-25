@@ -1,17 +1,17 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { AlertTriangle, TrendingDown, Zap, ChevronRight, Info } from 'lucide-react';
 import { ILLUSTRATIVE_NOTICE } from '../../../data/ussfcu/finance/constants';
+import { tierFor, colorFor } from '../../../utils/confidence';
 
 /**
  * Fiona's opening briefing: the three priority signal cards the overnight
  * scan surfaced (spec §6), with the illustrative-data statement the spec
  * requires "on screen at the start".
  *
- * Visually this is the shared Priority Signals row (top accent line, icon
- * tile, pill badge, title, chevron), mirrored rather than changed for every
- * tenant because each card carries the spec's full Signal record: severity,
- * bucket, description, data source and action. Description and action show a
- * slightly shorter wording on the card, with the spec's own text on hover.
+ * The card matches the shared Priority Signals card (InsightMiniCard): icon,
+ * bucket, severity badge, title, then the sources and one key figure with a
+ * confidence score. The spec's full description is on hover over the title;
+ * the description and action stay in the data for the answers and pages.
  * Each card opens the turn that answers it (via signalToChip).
  */
 const severityConfig = {
@@ -65,22 +65,26 @@ function SignalTile({ signal, onClick, index }) {
         </div>
 
         {/* Title */}
-        <p className="text-[12px] font-semibold text-text leading-snug line-clamp-2 mb-1 group-hover:text-brand transition-colors">
+        <p className="text-[12px] font-semibold text-text leading-snug line-clamp-2 mb-1 group-hover:text-brand transition-colors" title={signal.description}>
           {signal.title}
         </p>
 
-        {/* A slightly tightened description; the spec's full wording is on hover. */}
-        <p className="text-[10.5px] text-text-muted leading-snug mb-1.5" title={signal.description}>{signal.summary ?? signal.description}</p>
-
-        {/* Data source */}
-        <p className="text-[9.5px] text-text-subtle leading-snug mb-1.5">
-          <span className="font-semibold">Source:</span> {signal.source}
+        {/* Sources */}
+        <p className="text-[9.5px] text-text-subtle leading-snug truncate mb-1" title={signal.source}>
+          <span className="font-semibold">Sources:</span> {(signal.sources ?? [signal.source]).join(' · ')}
         </p>
 
-        {/* Action */}
-        <div className="mt-auto flex items-center justify-between gap-2 border-t border-border-subtle pt-1.5">
-          <p className="text-[10px] font-semibold text-brand leading-snug" title={signal.action}>{signal.actionShort ?? signal.action}</p>
-          <ChevronRight className="w-3 h-3 flex-shrink-0 text-text-subtle group-hover:text-brand group-hover:translate-x-0.5 transition-all" />
+        {/* Key figure and confidence, as on every other persona's card */}
+        <div className="mt-auto flex items-center justify-between gap-2">
+          <p className="text-[10px] text-text-subtle font-medium truncate">{signal.metric_text}</p>
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            {signal.confidence && (
+              <span className="text-[10px] font-semibold tabular-nums" style={{ color: colorFor(tierFor(signal.confidence.score)) }}>
+                {signal.confidence.score}%
+              </span>
+            )}
+            <ChevronRight className="w-3 h-3 text-text-subtle group-hover:text-brand group-hover:translate-x-0.5 transition-all" />
+          </div>
         </div>
       </div>
     </motion.button>
@@ -120,7 +124,7 @@ export default function FinanceBriefingSignals({ signals, visible, onSignalClick
             <div className="w-5 h-5 rounded-md bg-brand/8 flex items-center justify-center">
               <Zap className="w-3 h-3 text-brand" />
             </div>
-            <span className="text-[11px] font-bold text-text-muted uppercase tracking-wider">Priority signals · overnight portfolio scan</span>
+            <span className="text-[11px] font-bold text-text-muted uppercase tracking-wider">Priority Signals</span>
             <div className="flex-1 h-px bg-surface-2 ml-1" />
           </div>
 

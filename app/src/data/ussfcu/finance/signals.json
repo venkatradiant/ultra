@@ -14,7 +14,11 @@
     ],
     "timestamp": "2026-09-24T06:00:00",
     "summary": "Home Improvement Loan (unsecured) 60-day delinquency is 1.8% (illustrative), up from 1.1% two quarters ago and past the 1.5% aligned parameter. The only pool outside tolerance.",
-    "actionShort": "Open the delinquency trend and isolate the pool."
+    "actionShort": "Open the delinquency trend and isolate the pool.",
+    "metric_text": "1.8% vs 1.5% parameter · up from 1.1%",
+    "confidence": {
+      "score": 94
+    }
   },
   {
     "id": "SIG-USSFCU-FIN-002",
@@ -32,7 +36,11 @@
     ],
     "timestamp": "2026-09-24T06:00:00",
     "summary": "First mortgage is at 571% of net worth (illustrative), $655M against the 600% board cap, with about $33M of headroom.",
-    "actionShort": "Check every portfolio against its board limit."
+    "actionShort": "Check every portfolio against its board limit.",
+    "metric_text": "571% of net worth · about $33M headroom",
+    "confidence": {
+      "score": 92
+    }
   },
   {
     "id": "SIG-USSFCU-FIN-003",
@@ -50,6 +58,10 @@
     ],
     "timestamp": "2026-09-24T06:00:00",
     "summary": "Loan-to-share is 84% (illustrative), a five-year high, with deposits concentrated in a few Senate-community payroll groups. A shutdown would test both.",
-    "actionShort": "Model the shutdown and test the cushion."
+    "actionShort": "Model the shutdown and test the cushion.",
+    "metric_text": "84% loan-to-share · five-year high",
+    "confidence": {
+      "score": 88
+    }
   }
 ]

@@ -115,7 +115,7 @@ const manifest: PersonaManifest = {
   clientId: 'ussfcu',
   marketId: 'financial-services',
 
-  identity: { name: PERSONA.name, initials: PERSONA.initials, role: PERSONA.role, greeting: PERSONA.name },
+  identity: { name: PERSONA.name, initials: PERSONA.initials, role: PERSONA.role, greeting: PERSONA.greeting },
   // Spec §1: all six tags are demonstrated across the flow, in step order.
   capabilities: [
     'Proactive Intelligence',

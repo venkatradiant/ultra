@@ -111,6 +111,13 @@ describe('Fiona briefing', () => {
     const cards = screen.getAllByRole('button');
     expect(cards.map((c) => within(c).getByText(/^(Critical|Warning)$/).textContent)).toEqual(['Critical', 'Warning', 'Warning']);
     for (const bucket of ['Delinquencies', 'Risk-tolerance threshold', 'Trigger events and liquidity']) expect(text()).toContain(bucket);
+    // The shared card's content: sources, one key figure and confidence; no description or action line.
+    for (const sig of manifest.signals) {
+      expect(text()).toContain(sig.metric_text);
+      expect(text()).toContain(`${sig.confidence.score}%`);
+      expect(text()).not.toContain(sig.actionShort);
+    }
+    expect(text()).toContain('Sources:');
     cards.forEach((c) => fireEvent.click(c));
     expect(onSignalClick.mock.calls.map((c) => c[0])).toEqual([FINANCE_CHIPS.delinquency, FINANCE_CHIPS.limits, FINANCE_CHIPS.shutdown]);
   });

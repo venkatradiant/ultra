@@ -346,6 +346,10 @@ describe('the briefing’s shorter wording says nothing the spec does not', () =
     expect(s.summary.length).toBeLessThan(s.description.length);
     expect(s.actionShort.length).toBeLessThan(s.action.length);
   });
+  it.each(signals.map((s) => [s.title, s] as const))('"%s" card key figure quotes only its own spec figures', (_t, s) => {
+    for (const f of figures(s.metric_text)) expect(s.description, f).toContain(f);
+    expect(s.confidence.score).toBeGreaterThan(0);
+  });
   it('KPI tiles quote only their own spec figures', () => {
     for (const t of financeKpiTiles()) {
       const full = `${t.fullValue} ${t.fullTarget}`.replace('Plus ', '+').replace('off ', '−');
