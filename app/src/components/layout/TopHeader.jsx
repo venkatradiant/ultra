@@ -88,6 +88,9 @@ export default function TopHeader({ onMenuClick }) {
     '/fraud-operations': labels.fraudOperations || 'Fraud Operations',
     // SLED / VOCE — where a saved report lives.
     '/my-reports': labels.myReports || 'My Reports',
+    // USSFCU Finance (Fiona) pages.
+    '/portfolio-risk': labels.portfolioRisk || 'Portfolio and Limits',
+    '/scenarios': labels.scenarios || 'Scenarios and ALM',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || labels.ask || 'Ask the AI';

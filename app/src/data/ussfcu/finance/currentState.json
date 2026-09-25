@@ -1,0 +1,115 @@
+{
+  "title": "Current State: Portfolio and Scenario Analysis",
+  "subtitle": "How Fiona answers a portfolio-and-scenario question today, before the solution. Pain points in red, cycle times on each step.",
+  "illustrative": true,
+  "cycleTimeNote": "Cycle times are illustrative.",
+  "steps": [
+    {
+      "id": "A",
+      "label": "Leadership or ALCO asks a portfolio or what-if question",
+      "detail": "Next: same day",
+      "state": "normal",
+      "system": "Leadership / ALCO"
+    },
+    {
+      "id": "B",
+      "label": "Export balances and delinquency from Symitar to Excel",
+      "detail": "Next: hours",
+      "state": "gap",
+      "system": "Symitar, Excel"
+    },
+    {
+      "id": "C",
+      "label": "Pull capital position from GL and Cornerstone",
+      "detail": "Next: hours",
+      "state": "normal",
+      "system": "GL, Cornerstone"
+    },
+    {
+      "id": "D",
+      "label": "Rebuild the scenario in UST Finex",
+      "detail": "Next: manual",
+      "state": "normal",
+      "system": "UST Finex"
+    },
+    {
+      "id": "E",
+      "label": "Reconcile figures across systems by hand",
+      "detail": "Then: do the numbers agree and tie to the limit?",
+      "state": "gap",
+      "system": "Excel"
+    },
+    {
+      "id": "F",
+      "label": "Do the numbers agree and tie to the limit?",
+      "detail": "No: chase the difference. Yes: find the playbook action.",
+      "state": "normal",
+      "system": "—",
+      "isDecision": true
+    },
+    {
+      "id": "G",
+      "label": "Chase the difference across systems",
+      "detail": "1 to 2 days, then back to reconciling by hand",
+      "state": "gap",
+      "system": "Symitar, GL, UST Finex"
+    },
+    {
+      "id": "H",
+      "label": "Find the board playbook action in a policy document",
+      "detail": "Next: days total",
+      "state": "gap",
+      "system": "Policy documents"
+    },
+    {
+      "id": "I",
+      "label": "Assemble the ALCO or board deck and present",
+      "detail": "Days after the question was asked",
+      "state": "normal",
+      "system": "Board deck"
+    }
+  ],
+  "gapSummary": "Four of the steps are hand work between systems, and they are where the days go: assembling, reconciling, chasing differences, and finding the play.",
+  "interventions": [
+    {
+      "id": "INT-1",
+      "currentStep": "Export and assemble from Symitar and Excel",
+      "stepId": "B",
+      "intervention": "Surfaces the portfolio signals overnight, correlated across sources",
+      "capability": "Proactive Intelligence",
+      "impact": "Days of assembly to a morning briefing"
+    },
+    {
+      "id": "INT-2",
+      "currentStep": "Reconcile figures across systems by hand",
+      "stepId": "E",
+      "intervention": "Returns one reconciled figure against the board limit",
+      "capability": "Converged Conversation",
+      "impact": "Hours of reconciliation to one query"
+    },
+    {
+      "id": "INT-3",
+      "currentStep": "Rebuild the scenario in UST Finex",
+      "stepId": "D",
+      "intervention": "Models the shutdown scenario and projects loss, capital, and liquidity",
+      "capability": "Predictive Intelligence",
+      "impact": "Scenario in seconds, ready for the board"
+    },
+    {
+      "id": "INT-4",
+      "currentStep": "Chase differences to trust the number",
+      "stepId": "G",
+      "intervention": "Reconciles capital and liquidity so the cushion is provable",
+      "capability": "Friction Observability",
+      "impact": "Trust established in the answer, not chased"
+    },
+    {
+      "id": "INT-5",
+      "currentStep": "Find the playbook in a policy document",
+      "stepId": "H",
+      "intervention": "Pulls the pre-set action for each increment next to the analysis",
+      "capability": "Automated Action",
+      "impact": "Decision at hand, not delayed"
+    }
+  ]
+}

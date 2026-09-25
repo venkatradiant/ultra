@@ -1,7 +1,7 @@
 /**
- * USSFCU — the Oral Demo Talk Track v3, clicked through.
+ * USSFCU — the Oral Demo Talk Track v4, clicked through.
  *
- * The talk track (USSFCU_Oral_Demo_Talk_Track_v3.docx) is the source of truth
+ * The talk track (USSFCU_Oral_Demo_Talk_Track_v4.docx) is the source of truth
  * for the USSFCU demo. Each persona's CLICK lines are encoded below with the
  * turn each must land on, replayed the way the live chat resolves them (see
  * talkTrackReplay). Tim's Presentation Mode clicks ("Next", "Download PDF") are
@@ -58,15 +58,13 @@ const TALK_TRACK: Record<string, TalkTrackStep[]> = {
     ['Generate the audit evidence package', 'ussfcu_cfo_turn_evidence_package'],
     ['Draft the data-governance remediation plan', 'ussfcu_cfo_turn_remediation_plan'],
   ],
-  // Finance Team — not in Talk Track v3. Its script is the Finance Persona
-  // narrative prepared for Lauren: the six approved finance questions, in order,
-  // clicked by their short chip labels.
+  // Part 1 — Fiona, Finance Team (added in Talk Track v4)
   ussfcu_finance: [
-    ['Show delinquency trends by loan segment', 'ussfcu_finance_turn_delinquency'],
+    ['Show delinquency trends by segment', 'ussfcu_finance_turn_delinquency'],
     ['Which portfolios are near their board limits?', 'ussfcu_finance_turn_limits'],
-    ['Model a ±25, 50 and 100 bp rate shock', 'ussfcu_finance_turn_rate_shock'],
-    ['Do we have enough dry powder?', 'ussfcu_finance_turn_dry_powder'],
-    ['What is the playbook action for each rate move?', 'ussfcu_finance_turn_playbook'],
+    ['Model a government shutdown on the portfolio', 'ussfcu_finance_turn_shutdown'],
+    ['Do we have enough capital and liquidity?', 'ussfcu_finance_turn_cushion'],
+    ['What is our shutdown playbook?', 'ussfcu_finance_turn_playbook'],
     ['Show deposit activity by SEG group', 'ussfcu_finance_turn_seg_deposits'],
   ],
   // Part 2 — Maya J.
@@ -99,7 +97,7 @@ async function load(client: ClientManifest, id: string): Promise<PersonaManifest
   return (await client.personas.find((p) => p.id === id)!.load()).default;
 }
 
-describe('USSFCU talk track v3', () => {
+describe('USSFCU talk track v4', () => {
   it('lists the personas in the order the talk track presents them, opening on James', () => {
     expect(ussfcuClient.personas.map((p) => p.id)).toEqual(DEMO_ORDER);
     expect(ussfcuClient.defaultPersonaId).toBe('risk');

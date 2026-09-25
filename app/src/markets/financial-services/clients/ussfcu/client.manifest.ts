@@ -3,7 +3,7 @@
  *
  * Exposes the USSFCU-only Risk & Compliance personas (Evelyn Marsh, VP Compliance,
  * and Nadia Hassan, Compliance Analyst), the executive personas (CFO, CEO), the
- * untitled Finance Team persona, plus the shared generic personas on the base flows, with the talk
+ * untitled Finance Team persona (Fiona), plus the shared generic personas on the base flows, with the talk
  * track's golden path and one wording patch applied in ./talkTrack.ts.
  */
 import type { ClientManifest, PersonaModule } from '@core/types';
@@ -59,8 +59,8 @@ export const ussfcuClient: ClientManifest = {
     primaryColor: '#003087',
     navLabels: { journey: 'Member Journey', risk: 'Risk Signals' },
   },
-  // Oral Demo Talk Track v3 order: Part 1 (James, Evelyn, Nadia, Tim, Sylvia),
-  // then Part 2 (Maya, Priya K., Derek T.). The talk track opens with James, so
+  // Oral Demo Talk Track v4 order: Part 1 (James, Evelyn, Nadia, Tim, Sylvia,
+  // Fiona), then Part 2 (Maya, Priya K., Derek T.). The talk track opens with James, so
   // he is the default. The shared personas follow the talk track via
   // withTalkTrack, on this registration only.
   personas: [
@@ -69,9 +69,8 @@ export const ussfcuClient: ClientManifest = {
     nadiaPersona,
     ceoPersona,
     cfoPersona,
-    // Finance Team: the narrative prepared for Lauren (six approved finance
-    // questions). Not part of Talk Track v3, so it follows Part 1 and leaves
-    // the talk track's order and its opening persona unchanged.
+    // Fiona, the Finance Team: Talk Track v4 presents her after Sylvia and
+    // before Part 2, which is where she sits in the switcher.
     financePersona,
     withTalkTrack(makeOpsPersona(CLIENT_ID), USSFCU_TALK_TRACK.ops),
     withTalkTrack(makeCxPersona(CLIENT_ID), USSFCU_TALK_TRACK.cx),

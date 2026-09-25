@@ -1,15 +1,15 @@
 {
   "ussfcu_finance_greeting": {
-    "ai_message": "Good morning. I scanned the portfolio overnight and three things need your attention. Indirect auto delinquency has moved past your aligned parameter, the first-mortgage portfolio is nearing its board limit, and rate and liquidity pressure is building. Want to start with what's moving?",
+    "ai_message": "Good morning, Fiona. Before the ALCO prep, three portfolio signals need a look. The most urgent: Home Improvement Loan (unsecured) 60-day delinquency has reached 1.8%, up from 1.1% two quarters ago and now past your 1.5% aligned parameter. It is the only pool trending outside tolerance. A portfolio is also nearing a board limit, and liquidity and shutdown exposure is building. Want to start with the delinquency trend?",
     "suggested_chips": [
-      "Show delinquency trends by loan segment",
+      "Show delinquency trends by segment",
       "Which portfolios are near their board limits?",
-      "Model a ±25, 50 and 100 bp rate shock"
+      "What is building on rates and liquidity?"
     ],
     "data_sources_used": [
-      "Jack Henry Symitar (Core Banking)",
-      "General Ledger & Board Reporting",
-      "ALM Model (Interest-Rate Risk)"
+      "Symitar",
+      "GL",
+      "UST Finex"
     ],
     "ui_components_to_render": [],
     "related_dataset_keys": [
@@ -19,132 +19,216 @@
   },
   "ussfcu_finance_turn_delinquency": {
     "user_query": "Show delinquency trends by loan segment, and flag any pool trending up or outside our aligned parameters.",
-    "ai_response": "Most segments are flat or improving. One is not. Indirect auto 60-day delinquency is 1.8%, up from 1.1% two quarters ago and now above your 1.5% aligned parameter. First mortgage and HELOC are steady at 0.4% and 0.6%. The rise is concentrated in loans originated in the last 18 months. Indirect auto is the pool to watch; everything else sits inside tolerance.",
+    "ai_response": "Most segments are flat or improving. One is not. Home Improvement Loan (unsecured) 60-day delinquency is 1.8%, up from 1.1% two quarters ago and now above your 1.5% aligned parameter. First mortgage and HELOC are steady at 0.4% and 0.6%. The rise is concentrated in loans originated in the last 18 months, through the contractor channel. The Home Improvement Loan book is the pool to watch; everything else sits inside tolerance.",
     "suggested_chips": [
       "Which portfolios are near their board limits?",
-      "Model a ±25, 50 and 100 bp rate shock",
-      "Show deposit activity by SEG group"
+      "What is driving the Home Improvement Loan rise?",
+      "Model a downside on this pool"
     ],
     "data_sources_used": [
-      "Jack Henry Symitar (Core Banking)",
-      "MeridianLink",
-      "Board Policy & ALCO Playbook Library"
+      "Jack Henry Symitar (loan servicing and delinquency)"
     ],
     "ui_components_to_render": [
       {
-        "type": "delinquency_by_segment"
+        "type": "delinquency_trend"
       }
     ],
-    "capability": "Proactive Intelligence"
+    "capability": "Anomaly Detection"
   },
   "ussfcu_finance_turn_limits": {
     "user_query": "Which portfolios are approaching our board risk-tolerance limits, such as mortgages capped at 600% of net worth?",
     "ai_response": "One portfolio is close. First mortgage is at $655M, which is 571% of net worth against your 600% board cap, so about $33M of headroom before the limit. No other portfolio is within fifteen points of its limit. At the current pace of first-mortgage growth, you reach the cap in roughly two quarters.",
     "suggested_chips": [
-      "Model a ±25, 50 and 100 bp rate shock",
-      "Show delinquency trends by loan segment",
-      "Do we have enough dry powder?"
+      "Model a government shutdown on the portfolio",
+      "How much can we run off to stay under the cap?",
+      "Show capital and liquidity headroom"
     ],
     "data_sources_used": [
-      "Jack Henry Symitar (Core Banking)",
-      "General Ledger & Board Reporting",
-      "Board Policy & ALCO Playbook Library"
+      "Symitar",
+      "Cornerstone",
+      "UST Finex (portfolio balance, capital position, risk limits)"
     ],
     "ui_components_to_render": [
       {
-        "type": "concentration_limits"
+        "type": "portfolio_limit_chart"
       }
     ],
     "capability": "Converged Conversation"
   },
-  "ussfcu_finance_turn_rate_shock": {
-    "user_query": "Model a rate shock of plus or minus 25, 50, and 100 basis points. What happens to our portfolio?",
-    "ai_response": "Modeled across the balance sheet: a plus 100 basis-point shock lifts loan income but compresses net interest margin as deposits reprice faster, and marks the investment portfolio down about $18M. A minus 100 move does the reverse. At plus or minus 25 and 50 the effects are proportional and stay inside policy limits. Plus 100 is where net worth dips toward the 7.0% early-warning line.",
+  "ussfcu_finance_turn_shutdown": {
+    "user_query": "Model a government shutdown as an employment shock. What happens to our members and our loan portfolio?",
+    "ai_response": "Modeled on our own members' behavior, not industry averages, which matters because our field of membership is concentrated in the Senate community. In a 30-day shutdown, an estimated 18% of affected members draw down deposits and about 6% delay a loan payment. Projected 60-day delinquency rises across unsecured consumer credit, led by the Home Improvement Loan book, and modeled loan losses increase about $4.2M over two quarters. Because this is calibrated to our members, the impact lands sharper and faster than a generic ALM shock would show. This is the scenario an ALM model alone would miss.",
     "suggested_chips": [
-      "Do we have enough dry powder?",
-      "What is the playbook action for each rate move?",
-      "Which portfolios are near their board limits?"
+      "Do we have enough capital and liquidity?",
+      "What is our shutdown playbook?",
+      "Show deposit activity by SEG group"
     ],
     "data_sources_used": [
-      "ALM Model (Interest-Rate Risk)",
-      "Investment Portfolio Accounting",
-      "General Ledger & Board Reporting"
+      "UST Finex (asset-liability model)",
+      "Symitar (member and portfolio history)"
     ],
     "ui_components_to_render": [
       {
-        "type": "rate_shock_matrix"
+        "type": "scenario_impact_table"
       }
     ],
     "capability": "Predictive Intelligence"
   },
-  "ussfcu_finance_turn_dry_powder": {
-    "user_query": "For that scenario, do we have enough dry powder? What happens to our capital ratios and liquidity?",
-    "ai_response": "Under the plus 100 basis-point scenario your net worth ratio moves from 7.50% to about 7.1%, still well capitalized, and on-hand liquidity covers projected outflows for the quarter with roughly $40M to spare. The pressure point is loan-to-share: it climbs from 84% to 88%, which is where your funding review is triggered. You have dry powder, but the scenario narrows it.",
+  "ussfcu_finance_turn_cushion": {
+    "user_query": "For that shutdown scenario, do we have enough dry powder? What happens to our capital ratios and liquidity?",
+    "ai_response": "Under the 30-day shutdown scenario your net worth ratio moves from 7.50% to about 7.2%, still well capitalized, and on-hand liquidity covers projected outflows for the quarter with roughly $35M to spare. The pressure point is deposit outflow concentrated in a few Senate-community payroll groups, which pushes loan-to-share from 84% toward the funding-review trigger. You have dry powder, but the scenario narrows it. I reconciled the capital position across the core, the ledger, and the ALM model, so the cushion is provable.",
     "suggested_chips": [
-      "What is the playbook action for each rate move?",
-      "Model a ±25, 50 and 100 bp rate shock",
-      "Show deposit activity by SEG group"
+      "What is our shutdown playbook?",
+      "Show deposit activity by SEG group",
+      "Export this for the board"
     ],
     "data_sources_used": [
-      "ALM Model (Interest-Rate Risk)",
-      "General Ledger & Board Reporting",
-      "Jack Henry Symitar (Core Banking)"
+      "Symitar",
+      "Cornerstone",
+      "UST Finex (capital position, liquidity, ALM)"
     ],
     "ui_components_to_render": [
       {
-        "type": "capital_liquidity_stress"
+        "type": "capital_liquidity_gauges"
       }
     ],
-    "capability": "Anomaly Detection"
+    "capability": "Friction Observability"
   },
   "ussfcu_finance_turn_playbook": {
-    "user_query": "For each rate move, what is the pre-set playbook action, for example at a quarter point versus a half point?",
-    "ai_response": "Your board playbook maps an action to each increment. At plus 25: hold deposit rates and monitor. At plus 50: selectively raise certificate rates on the 12- and 18-month terms to defend balances. At plus 100: launch the deposit-gathering campaign and slow indirect-auto funding to protect the margin and the mortgage concentration. Each action is pulled as written in the approved playbook, so this is a decision, not a rebuild.",
+    "user_query": "For a shutdown of this kind, what is our pre-established playbook?",
+    "ai_response": "Your board playbook maps actions to a shutdown trigger by severity. At an anticipated or short shutdown: proactive outreach and hardship-deferral offers to the affected payroll groups, and a pause on Home Improvement Loan marketing to the most exposed segments. At an extended shutdown: activate the emergency-liquidity line, tighten unsecured underwriting, and stand up the member relief program the board pre-approved. Each action is pulled as written in the approved playbook, so this is a decision, not a rebuild.",
     "suggested_chips": [
       "Show deposit activity by SEG group",
-      "Model a ±25, 50 and 100 bp rate shock",
-      "Do we have enough dry powder?"
+      "Draft the ALCO summary",
+      "Export the briefing for the board"
     ],
     "data_sources_used": [
-      "Board Policy & ALCO Playbook Library",
-      "ALM Model (Interest-Rate Risk)"
+      "UST Finex",
+      "Board playbook (policy)"
     ],
     "ui_components_to_render": [
       {
-        "type": "rate_playbook_ladder"
+        "type": "playbook_action_table"
       }
     ],
     "capability": "Automated Action"
   },
   "ussfcu_finance_turn_seg_deposits": {
     "user_query": "Show deposit activity by SEG group, and trigger an alert if more than a set percentage leaves.",
-    "ai_response": "Deposit activity by core SEG this month: total balances are up 0.6%, but two payroll groups are trending down. One is off 4.2% versus last month, which crosses your 3% outflow trigger, so it is flagged. The movement is mostly certificate closures chasing a competitor promotional rate rather than full attrition. Net, funding is stable, with one group to address before it compounds.",
+    "ai_response": "Deposit activity by core SEG this month: total balances are up 0.6%, but two payroll groups are trending down. One is off 4.2% versus last month, which crosses your 3% outflow trigger, so it is flagged. The movement is mostly certificate closures chasing a competitor promotional rate rather than full attrition. Net, funding is stable, with one group to address before it compounds. I have raised the alert and attached the detail.",
     "suggested_chips": [
-      "Show delinquency trends by loan segment",
-      "Model a ±25, 50 and 100 bp rate shock",
-      "What is the playbook action for each rate move?"
+      "Draft the retention action for this SEG",
+      "Export the briefing for the board",
+      "Back to the morning signals"
     ],
     "data_sources_used": [
-      "Jack Henry Symitar (Core Banking)",
-      "Greenplum on Tanzu",
-      "Board Policy & ALCO Playbook Library"
+      "Jack Henry Symitar (deposit transactions by SEG)"
     ],
     "ui_components_to_render": [
       {
-        "type": "seg_deposit_monitor"
+        "type": "seg_deposit_panel"
       }
     ],
     "capability": "Automated Action"
   },
-  "__default__": {
-    "ai_message": "That one is outside what I have prepared for this briefing. I can answer the six approved finance questions from the connected data: delinquency by loan segment, the portfolios nearest their board limits, a rate shock of plus or minus 25, 50 and 100 basis points, capital and liquidity under that shock, the playbook action for each rate move, and deposit activity by SEG group. Every figure except the public profile is illustrative sample data.",
+  "ussfcu_finance_followup_hil_driver": {
+    "ai_response": "The rise is concentrated in Home Improvement Loan (unsecured) loans originated in the last 18 months, through the contractor channel. It is a book we underwrite and market through contractors, which is why it is the pool to watch: 60-day delinquency is 1.8%, up from 1.1% two quarters ago, against your 1.5% aligned parameter.",
     "suggested_chips": [
-      "Show delinquency trends by loan segment",
+      "Model a downside on this pool",
       "Which portfolios are near their board limits?",
-      "Model a ±25, 50 and 100 bp rate shock"
+      "Back to the morning signals"
     ],
-    "data_sources_used": [],
+    "data_sources_used": [
+      "Jack Henry Symitar (loan servicing and delinquency)"
+    ],
+    "ui_components_to_render": [],
+    "capability": "Anomaly Detection"
+  },
+  "ussfcu_finance_followup_run_off": {
+    "ai_response": "First mortgage is at $655M, 571% of net worth, so about $33M of headroom remains under the 600% board cap. To stay under the cap, net first-mortgage growth has to stay inside that $33M, whether by slowing origination, letting balances run off, or selling loans. At the current pace of growth, the headroom is used in roughly two quarters.",
+    "suggested_chips": [
+      "Model a government shutdown on the portfolio",
+      "Show capital and liquidity headroom",
+      "Back to the morning signals"
+    ],
+    "data_sources_used": [
+      "Symitar",
+      "Cornerstone",
+      "UST Finex (portfolio balance, capital position, risk limits)"
+    ],
     "ui_components_to_render": [],
     "capability": "Converged Conversation"
+  },
+  "ussfcu_finance_followup_export": {
+    "ai_response": "The board briefing is ready to export, every figure with its source: Home Improvement Loan (unsecured) delinquency at 1.8% against the 1.5% parameter; first mortgage at 571% of net worth against the 600% cap, about $33M of headroom; the 30-day shutdown, with modeled loan losses up about $4.2M over two quarters; net worth moving from 7.50% to about 7.2% with roughly $35M of liquidity to spare; the shutdown playbook actions; and the payroll group past the 3% outflow trigger. All figures are illustrative sample data. Nothing leaves until you confirm.",
+    "suggested_chips": [
+      "Draft the ALCO summary",
+      "Show deposit activity by SEG group",
+      "Back to the morning signals"
+    ],
+    "data_sources_used": [
+      "Symitar",
+      "GL",
+      "UST Finex",
+      "Cornerstone",
+      "Board playbook (policy)"
+    ],
+    "ui_components_to_render": [],
+    "capability": "Automated Action"
+  },
+  "ussfcu_finance_followup_alco_summary": {
+    "ai_response": "ALCO summary, drafted for your review. Delinquency: Home Improvement Loan (unsecured) 60-day delinquency is 1.8%, past the 1.5% aligned parameter, the only pool outside tolerance. Concentration: first mortgage is at 571% of net worth against the 600% board cap, about $33M of headroom, reached in roughly two quarters at the current pace. Shutdown scenario: a 30-day shutdown raises modeled loan losses about $4.2M over two quarters; net worth moves from 7.50% to about 7.2%, still well capitalized, with roughly $35M of liquidity to spare. Recommended action: the playbook's short-shutdown actions, proactive outreach and hardship-deferral offers to the affected payroll groups, and a pause on Home Improvement Loan marketing to the most exposed segments.",
+    "suggested_chips": [
+      "Export the briefing for the board",
+      "Show deposit activity by SEG group",
+      "Back to the morning signals"
+    ],
+    "data_sources_used": [
+      "Symitar",
+      "GL",
+      "UST Finex",
+      "Cornerstone",
+      "Board playbook (policy)"
+    ],
+    "ui_components_to_render": [],
+    "capability": "Automated Action"
+  },
+  "ussfcu_finance_followup_retention": {
+    "ai_response": "Draft retention action for the flagged payroll group: it is off 4.2% this month, past your 3% outflow trigger, and the movement is mostly certificate closures chasing a competitor promotional rate. Draft: proactive outreach to members in that group whose certificates are closing, with the alert detail attached. A rate response would need a competitor benchmark source that is not connected yet, so pricing stays with Finance and Treasury. Nothing is sent until you approve it.",
+    "suggested_chips": [
+      "Export the briefing for the board",
+      "Draft the ALCO summary",
+      "Back to the morning signals"
+    ],
+    "data_sources_used": [
+      "Jack Henry Symitar (deposit transactions by SEG)"
+    ],
+    "ui_components_to_render": [],
+    "capability": "Automated Action"
+  },
+  "ussfcu_finance_followup_signals": {
+    "ai_response": "Here are this morning's three portfolio signals again. Home Improvement Loan (unsecured) 60-day delinquency is 1.8%, past your 1.5% aligned parameter. First mortgage is at 571% of net worth against the 600% board cap, with about $33M of headroom. And loan-to-share is 84%, a five-year high, with a large share of deposits in a handful of Senate-community payroll groups.",
+    "suggested_chips": [
+      "Show delinquency trends by segment",
+      "Which portfolios are near their board limits?",
+      "What is building on rates and liquidity?"
+    ],
+    "data_sources_used": [
+      "Symitar",
+      "GL",
+      "UST Finex"
+    ],
+    "ui_components_to_render": [],
+    "capability": "Proactive Intelligence"
+  },
+  "__default__": {
+    "ai_message": "That one is outside what I have prepared for this briefing. I can take you through the morning signals and six questions from the connected data: delinquency by segment, the portfolios nearest their board limits, a government shutdown modeled as an employment shock, capital and liquidity under that shutdown, the shutdown playbook, and deposit activity by SEG group. Every figure except the public backdrop is illustrative sample data.",
+    "suggested_chips": [
+      "Show delinquency trends by segment",
+      "Which portfolios are near their board limits?",
+      "Model a government shutdown on the portfolio"
+    ],
+    "data_sources_used": [],
+    "ui_components_to_render": []
   }
 }

@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Activity, Boxes, Database, FileCheck, FileText, Gauge, History, Layers, LayoutDashboard, MapPin, MessageSquare, Route, ShieldAlert, Siren, SlidersHorizontal, Users, X } from 'lucide-react';
+import { Activity, Boxes, Database, FileCheck, FileText, Gauge, History, Layers, LayoutDashboard, MapPin, MessageSquare, PieChart, Route, ShieldAlert, Siren, SlidersHorizontal, TrendingDown, Users, X } from 'lucide-react';
 import { useBranding } from '../../context/BrandingContext';
 import { usePersona } from '../../context/PersonaContext';
 import { useActivePersona } from '@core/runtime/useActivePersona';
@@ -40,6 +40,9 @@ export default function Sidebar({ open = false, onClose }) {
     // ESFCU risk/fraud. Siren rather than ShieldAlert: `risk` already owns
     // ShieldAlert, and the CRO shows both slots at once.
     fraudOperations: { to: '/fraud-operations', icon: Siren, label: labels.fraudOperations ?? 'Fraud Operations' },
+    // USSFCU Finance (Fiona) pages.
+    portfolioRisk: { to: '/portfolio-risk', icon: PieChart, label: labels.portfolioRisk ?? 'Portfolio and Limits' },
+    scenarios: { to: '/scenarios', icon: TrendingDown, label: labels.scenarios ?? 'Scenarios and ALM' },
     myReports: { to: '/my-reports', icon: FileText, label: labels.myReports ?? 'My Reports' },
     dataSources: { to: '/data-sources', icon: Database, label: 'Data Sources' },
   };

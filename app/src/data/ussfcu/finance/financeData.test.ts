@@ -1,306 +1,393 @@
 /**
- * USSFCU Finance Team — tests of the story, not of the code.
+ * USSFCU Finance persona (Fiona) — the build matches the spec, word for word
+ * and figure for figure.
  *
- * The narrative ("Finance Persona: Demo Narrative for Validation", prepared
- * for Lauren) is a CFO's walk: one segment drifting, one portfolio near its
- * board cap, a rate shock, the cushion under it, the playbook, the funding
- * side. A CEO or CFO in the room will check whether 571% of net worth really
- * is $655M, whether $33M is the headroom to 600%, whether +0.6% is what the
- * SEG table adds up to. So every figure the chat prose, a signal card or a
- * visual quotes is recomputed here from constants.ts, and the six questions
- * and answers are pinned to the narrative's exact wording — the presenter
- * reads from that document, and a paraphrase on screen would contradict it.
+ * specV2.fixture.json is extracted mechanically from
+ * USSFCU_Finance_Persona_Demo_Spec_v2.md (§1 tags, §6 signals, §7 KPIs, §10
+ * seven turns, §11 prompts), so these assertions compare the build with the
+ * spec's own text rather than with a retyped copy. The consistency checks
+ * then pin every figure the prose quotes to the constant the visuals draw.
  */
 import { describe, it, expect } from 'vitest';
-
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+import spec from './specV2.fixture.json';
 import chatFlows from './chatFlows.json';
 import signals from './signals.json';
+import capabilityCallouts from './capabilityCallouts.json';
 import dataSources from './dataSources.json';
+import currentState from './currentState.json';
+import journey from './journey.json';
+import * as layer from './index';
+import { financeKpiTiles } from './kpiTiles';
+import manifestModule from '@/markets/financial-services/clients/ussfcu/personas/finance/manifest';
+import type { PersonaManifest } from '@core/types';
 import {
   DEMO_TODAY,
-  PUBLIC_FACTS,
+  FINANCE_QUESTIONS,
+  FINANCE_CHIPS,
+  SUGGESTED_PROMPTS,
+  KPIS,
+  PUBLIC_BACKDROP,
   NET_WORTH_M,
-  NET_LOANS_M,
-  MEMBER_SHARES_M,
-  LOAN_MIX,
   DQ_QUARTERS,
   DQ_SEGMENTS,
-  INDIRECT_AUTO_VINTAGE,
-  blendedIndirectAutoDq,
-  CONCENTRATION_LIMITS,
+  HIL_PARAMETER_PCT,
+  PORTFOLIO_LIMITS,
   MORTGAGE_GROWTH_PER_QUARTER_M,
+  QUARTERS_TO_CAP,
+  NEAR_LIMIT_POINTS,
   pctOfNetWorth,
   capUsePct,
-  capDollarsM,
   headroomM,
+  SHUTDOWN,
+  CUSHION,
+  CAPITAL_RECONCILIATION,
   NW_EARLY_WARNING_PCT,
-  RATE_SHOCKS,
   FUNDING_REVIEW_TRIGGER_LTS_PCT,
-  LIQUIDITY,
-  liquiditySpareM,
-  STRESS,
-  PLUS100_SHARES_M,
   PLAYBOOK,
-  SEG_OUTFLOW_TRIGGER_PCT,
   SEG_GROUPS,
+  SEG_OUTFLOW_TRIGGER_PCT,
   SEG_A_OUTFLOW_MIX,
   segChangePct,
   segTotals,
+  LOAN_GROWTH_YTD_PCT,
+  SHARE_GROWTH_YTD_PCT,
 } from './constants';
 
-type Flow = { user_query?: string; ai_message?: string; ai_response?: string; data_sources_used?: string[] };
+type Flow = { user_query?: string; ai_message?: string; ai_response?: string; suggested_chips?: string[]; data_sources_used?: string[]; capability?: string };
 const flows = chatFlows as Record<string, Flow>;
+const manifest = manifestModule as unknown as PersonaManifest;
 const P = 'ussfcu_finance_';
-
-/** The narrative's six questions and answers, exactly as written. */
-const SPEC_QA: Array<[flowKey: string, question: string, answer: string]> = [
-  [
-    `${P}turn_delinquency`,
-    'Show delinquency trends by loan segment, and flag any pool trending up or outside our aligned parameters.',
-    'Most segments are flat or improving. One is not. Indirect auto 60-day delinquency is 1.8%, up from 1.1% two quarters ago and now above your 1.5% aligned parameter. First mortgage and HELOC are steady at 0.4% and 0.6%. The rise is concentrated in loans originated in the last 18 months. Indirect auto is the pool to watch; everything else sits inside tolerance.',
-  ],
-  [
-    `${P}turn_limits`,
-    'Which portfolios are approaching our board risk-tolerance limits, such as mortgages capped at 600% of net worth?',
-    'One portfolio is close. First mortgage is at $655M, which is 571% of net worth against your 600% board cap, so about $33M of headroom before the limit. No other portfolio is within fifteen points of its limit. At the current pace of first-mortgage growth, you reach the cap in roughly two quarters.',
-  ],
-  [
-    `${P}turn_rate_shock`,
-    'Model a rate shock of plus or minus 25, 50, and 100 basis points. What happens to our portfolio?',
-    'Modeled across the balance sheet: a plus 100 basis-point shock lifts loan income but compresses net interest margin as deposits reprice faster, and marks the investment portfolio down about $18M. A minus 100 move does the reverse. At plus or minus 25 and 50 the effects are proportional and stay inside policy limits. Plus 100 is where net worth dips toward the 7.0% early-warning line.',
-  ],
-  [
-    `${P}turn_dry_powder`,
-    'For that scenario, do we have enough dry powder? What happens to our capital ratios and liquidity?',
-    'Under the plus 100 basis-point scenario your net worth ratio moves from 7.50% to about 7.1%, still well capitalized, and on-hand liquidity covers projected outflows for the quarter with roughly $40M to spare. The pressure point is loan-to-share: it climbs from 84% to 88%, which is where your funding review is triggered. You have dry powder, but the scenario narrows it.',
-  ],
-  [
-    `${P}turn_playbook`,
-    'For each rate move, what is the pre-set playbook action, for example at a quarter point versus a half point?',
-    'Your board playbook maps an action to each increment. At plus 25: hold deposit rates and monitor. At plus 50: selectively raise certificate rates on the 12- and 18-month terms to defend balances. At plus 100: launch the deposit-gathering campaign and slow indirect-auto funding to protect the margin and the mortgage concentration. Each action is pulled as written in the approved playbook, so this is a decision, not a rebuild.',
-  ],
-  [
-    `${P}turn_seg_deposits`,
-    'Show deposit activity by SEG group, and trigger an alert if more than a set percentage leaves.',
-    'Deposit activity by core SEG this month: total balances are up 0.6%, but two payroll groups are trending down. One is off 4.2% versus last month, which crosses your 3% outflow trigger, so it is flagged. The movement is mostly certificate closures chasing a competitor promotional rate rather than full attrition. Net, funding is stable, with one group to address before it compounds.',
-  ],
+const STEP_KEYS = [
+  `${P}greeting`,
+  `${P}turn_delinquency`,
+  `${P}turn_limits`,
+  `${P}turn_shutdown`,
+  `${P}turn_cushion`,
+  `${P}turn_playbook`,
+  `${P}turn_seg_deposits`,
 ];
+const text = (f: Flow) => f.ai_message ?? f.ai_response ?? '';
+const LAST = DQ_QUARTERS.length - 1;
 
-/** The narrative's three opening signals, exactly as written. */
-const SPEC_SIGNALS: Array<[title: string, badge: string, description: string]> = [
-  [
-    'Delinquency drifting in one segment',
-    'ACT NOW',
-    'Indirect auto 60-day delinquency has reached 1.8%, up from 1.1% two quarters ago and now past the 1.5% aligned parameter. It is the only pool trending outside tolerance.',
-  ],
-  [
-    'A portfolio nearing a board limit',
-    'WATCH',
-    'The first-mortgage portfolio is at 571% of net worth ($655M against the 600% board cap), the closest any portfolio has come to a risk-tolerance limit this year.',
-  ],
-  [
-    'Rate and liquidity pressure building',
-    'WATCH',
-    'Loan-to-share is 84%, a five-year high. On the current path, a plus 100 basis-point move is where liquidity and net worth start to tighten in Q4.',
-  ],
-];
+/**
+ * The spec's follow-up label, with the talk track's CLICK wording where the
+ * two differ. The spec offers "Show deposit activity by SEG" at Steps 4–6; the
+ * talk track clicks "Show deposit activity by SEG group", and the talk track
+ * is the source of truth for the demo.
+ */
+const TALK_TRACK_WORDING: Record<string, string> = {
+  'Show deposit activity by SEG': FINANCE_CHIPS.segDeposits,
+};
 
-const round = (n: number, d = 0) => Math.round(n * 10 ** d) / 10 ** d;
-const answer = (key: string) => flows[key].ai_response ?? '';
-
-describe('USSFCU Finance — the narrative, word for word', () => {
-  it.each(SPEC_QA)('%s asks and answers exactly as the narrative does', (key, question, text) => {
-    expect(flows[key].user_query).toBe(question);
-    expect(flows[key].ai_response).toBe(text);
+describe('§10 — the seven scripted turns', () => {
+  it('has exactly seven steps in the spec and seven flows here, in order', () => {
+    expect(spec.steps.map((s) => s.step)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    for (const key of STEP_KEYS) expect(flows[key], key).toBeDefined();
   });
 
-  it('opens on the three signals, in order, with their severity badges and wording', () => {
-    expect(signals.map((s) => [s.title, s.severity_label, s.description])).toEqual(SPEC_SIGNALS);
+  it.each(spec.steps.map((s, i) => [s.step, s.title, i] as const))('Step %i (%s): AI text is verbatim', (_n, _t, i) => {
+    expect(text(flows[STEP_KEYS[i]])).toBe(spec.steps[i].ai);
+  });
+
+  it.each(spec.steps.slice(1).map((s, i) => [s.step, s.title, i + 1] as const))('Step %i (%s): the user question is verbatim', (_n, _t, i) => {
+    expect(flows[STEP_KEYS[i]].user_query).toBe(spec.steps[i].user);
+  });
+
+  it('Step 1 is the login briefing, with no user question', () => {
+    expect(spec.steps[0].user).toBe('(Login, no prompt)');
+    expect(flows[STEP_KEYS[0]].user_query).toBeUndefined();
+  });
+
+  it.each(spec.steps.map((s, i) => [s.step, s.capability, i] as const))('Step %i carries the %s tag', (_n, capability, i) => {
+    expect(flows[STEP_KEYS[i]].capability).toBe(capability);
+  });
+
+  it.each(spec.steps.map((s, i) => [s.step, s.sources, i] as const))('Step %i names the spec’s data sources: %s', (_n, sources, i) => {
+    expect(flows[STEP_KEYS[i]].data_sources_used!.join(', ')).toBe(sources);
+  });
+
+  it.each(spec.steps.map((s, i) => [s.step, i] as const))('Step %i offers the spec’s follow-up options, in order', (_n, i) => {
+    const expected = spec.steps[i].followUps.map((c) => TALK_TRACK_WORDING[c] ?? c);
+    expect(flows[STEP_KEYS[i]].suggested_chips).toEqual(expected);
+  });
+
+  it('keeps the spec’s full questions in constants.ts, identical to the flows', () => {
+    const keys = ['delinquency', 'limits', 'shutdown', 'cushion', 'playbook', 'segDeposits'] as const;
+    keys.forEach((k, i) => expect(FINANCE_QUESTIONS[k]).toBe(spec.steps[i + 1].user));
+  });
+});
+
+describe('§1 — capability tags', () => {
+  it('demonstrates all six tags, and the persona lists all six', () => {
+    const used = new Set(spec.steps.map((s) => s.capability));
+    expect(used.size).toBe(6);
+    expect(new Set(manifest.capabilities)).toEqual(new Set(spec.tags.map((t) => t.tag)));
+  });
+
+  it('every callout carries the spec’s §1 description for its tag, verbatim', () => {
+    const byTag = Object.fromEntries(spec.tags.map((t) => [t.tag, t.text]));
+    for (const c of capabilityCallouts) expect(c.description, c.trigger).toBe(byTag[c.capabilityName]);
+  });
+
+  it('tags every scripted answer, so every response carries a clickable tag', () => {
+    for (const [key, flow] of Object.entries(flows)) {
+      if (key.startsWith('__')) continue;
+      expect(flow.capability, key).toBeTruthy();
+      expect(manifest.ui.flowKeyToCapabilityTrigger[key], key).toBeDefined();
+    }
+  });
+});
+
+describe('§6 — priority signal cards', () => {
+  it.each(spec.signals.map((s, i) => [s.Signal, i] as const))('"%s" matches the spec field for field', (_title, i) => {
+    const want = spec.signals[i];
+    const got = signals[i] as Record<string, unknown>;
+    expect(got.title).toBe(want.Signal);
+    expect(got.severity).toBe(want.Severity);
+    expect(got.bucket).toBe(want.Bucket);
+    expect(got.description).toBe(want.Description);
+    expect(got.source).toBe(want['Data Source']);
+    expect(got.action).toBe(want.Action);
+  });
+
+  it('is exactly three cards: one critical, two warning, all from the spec date', () => {
     expect(signals.map((s) => s.severity)).toEqual(['critical', 'warning', 'warning']);
-    expect(signals.filter((s) => (s as { primary?: boolean }).primary).map((s) => s.id)).toEqual(['SIG-USSFCU-FIN-001']);
-  });
-
-  it('keeps every signal metric line short enough not to truncate', () => {
-    for (const s of signals) expect(s.metric_text.length, s.id).toBeLessThanOrEqual(32);
+    for (const s of signals) expect(s.timestamp.startsWith(DEMO_TODAY)).toBe(true);
   });
 });
 
-describe('USSFCU Finance — the balance sheet reconciles', () => {
-  it('derives net worth from the public profile, and matches the CEO persona', () => {
-    expect(NET_WORTH_M).toBeCloseTo(114.75, 2);
-    expect(PUBLIC_FACTS).toEqual({ totalAssetsM: 1530, netWorthRatioPct: 7.5, loanToSharePct: 84 });
+describe('§7 — dashboard KPIs', () => {
+  it('has the spec’s eight KPIs in its order', () => {
+    expect(KPIS.map((k) => k.name)).toEqual(spec.kpis.map((k) => k.kpi));
   });
 
-  it('adds the loan mix up to net loans, and loans over shares to the 84% loan-to-share', () => {
-    expect(LOAN_MIX.reduce((n, l) => n + l.balanceM, 0)).toBe(NET_LOANS_M);
-    expect(round((NET_LOANS_M / MEMBER_SHARES_M) * 100)).toBe(PUBLIC_FACTS.loanToSharePct);
-  });
-});
-
-describe('Q1 · delinquency by loan segment', () => {
-  const ia = DQ_SEGMENTS.find((s) => s.id === 'indirect_auto')!;
-  const last = DQ_QUARTERS.length - 1;
-
-  it('puts indirect auto at 1.8%, up from 1.1% two quarters ago, past its 1.5% parameter', () => {
-    expect(ia.series[last]).toBe(1.8);
-    expect(ia.series[last - 2]).toBe(1.1);
-    expect(ia.parameterPct).toBe(1.5);
-    expect(ia.series[last]).toBeGreaterThan(ia.parameterPct);
+  it.each(spec.kpis.map((k, i) => [k.kpi, i] as const))('%s: value, trend, target, source and calculation are verbatim', (_name, i) => {
+    const want = spec.kpis[i];
+    const got = KPIS[i];
+    const marker = got.illustrative ? ' (illustrative)' : ' (public backdrop)';
+    expect(`${got.value}${marker}`).toBe(want.value);
+    expect(got.trend).toBe(want.trend);
+    expect(got.target).toBe(want.target);
+    expect(got.source).toBe(want.source);
+    expect(got.calc).toBe(want.calc);
   });
 
-  it('keeps first mortgage steady at 0.4% and HELOC at 0.6%', () => {
-    expect(DQ_SEGMENTS.find((s) => s.id === 'first_mortgage')!.series.slice(-3)).toEqual([0.4, 0.4, 0.4]);
-    expect(DQ_SEGMENTS.find((s) => s.id === 'heloc')!.series.slice(-3)).toEqual([0.6, 0.6, 0.6]);
-  });
-
-  it('has every other segment flat or improving and inside its parameter', () => {
-    for (const s of DQ_SEGMENTS.filter((x) => x.id !== 'indirect_auto')) {
-      for (let i = 1; i < s.series.length; i++) expect(s.series[i], s.id).toBeLessThanOrEqual(s.series[i - 1]);
-      expect(s.series[last], s.id).toBeLessThan(s.parameterPct);
-    }
-  });
-
-  it('blends the vintage split back to the pool’s 1.8%, with the rise in the last 18 months', () => {
-    const { recent, seasoned } = INDIRECT_AUTO_VINTAGE;
-    expect(recent.shareOfBalance + seasoned.shareOfBalance).toBeCloseTo(1, 10);
-    expect(round(blendedIndirectAutoDq(), 1)).toBe(1.8);
-    expect(recent.dqPct).toBeGreaterThan(seasoned.dqPct);
-    expect(recent.label).toMatch(/last 18 months/);
-    expect(answer(`${P}turn_delinquency`)).toContain('last 18 months');
+  it('renders all eight as briefing tiles, each opening a turn', () => {
+    expect(manifest.ui.stats.map((s) => (s as { fullName?: string }).fullName)).toEqual(spec.kpis.map((k) => k.kpi));
+    for (const s of manifest.ui.stats) expect(manifest.flows.chipToFlowKey[s.chipText!], s.id).toBeDefined();
   });
 });
 
-describe('Q2 · board risk-tolerance limits', () => {
-  const fm = CONCENTRATION_LIMITS.find((c) => c.id === 'first_mortgage')!;
+describe('§11 — suggested query prompts', () => {
+  it('are the spec’s five prompts, verbatim, as the persona’s suggested prompts, each routed', () => {
+    expect([...SUGGESTED_PROMPTS]).toEqual(spec.prompts);
+    expect(manifest.ui.initialChips).toEqual(spec.prompts);
+    for (const p of spec.prompts) expect(manifest.flows.chipToFlowKey[p], p).toBeDefined();
+  });
+});
 
-  it('puts first mortgage at $655M = 571% of net worth against a 600% cap', () => {
+describe('the figures reconcile — prose, tiles and visuals', () => {
+  it('net worth is 7.50% of $1.53B', () => {
+    expect(NET_WORTH_M).toBeCloseTo(114.75, 5);
+    expect(PUBLIC_BACKDROP.netWorthRatioPct).toBe(7.5);
+  });
+
+  it('Step 2: HIL 1.8% now, 1.1% two quarters ago, past 1.5%; first mortgage 0.4% and HELOC 0.6% steady', () => {
+    const [hil, fm, heloc] = ['hil', 'first_mortgage', 'heloc'].map((id) => DQ_SEGMENTS.find((s) => s.id === id)!);
+    expect(DQ_QUARTERS).toHaveLength(8);
+    expect(hil.series[LAST]).toBe(1.8);
+    expect(hil.series[LAST - 2]).toBe(1.1);
+    expect(HIL_PARAMETER_PCT).toBe(1.5);
+    expect(new Set(fm.series)).toEqual(new Set([0.4]));
+    expect(new Set(heloc.series)).toEqual(new Set([0.6]));
+    // "the only pool trending outside tolerance"
+    expect(DQ_SEGMENTS.filter((s) => s.series[LAST] > HIL_PARAMETER_PCT).map((s) => s.id)).toEqual(['hil']);
+    // "Most segments are flat or improving. One is not."
+    expect(DQ_SEGMENTS.filter((s) => s.series[LAST] > s.series[0]).map((s) => s.id)).toEqual(['hil']);
+    for (const s of DQ_SEGMENTS) expect(s.series).toHaveLength(8);
+  });
+
+  it('Step 3: first mortgage $655M is 571% of net worth, about $33M under the 600% cap, cap in ~2 quarters, no other within 15 points', () => {
+    const fm = PORTFOLIO_LIMITS.find((p) => p.id === 'first_mortgage')!;
     expect(fm.balanceM).toBe(655);
-    expect(round(pctOfNetWorth(fm.balanceM))).toBe(571);
     expect(fm.capPctOfNw).toBe(600);
+    expect(Math.round(pctOfNetWorth(fm.balanceM))).toBe(571);
+    expect(Math.floor(headroomM(fm.balanceM, fm.capPctOfNw))).toBe(33);
+    expect(MORTGAGE_GROWTH_PER_QUARTER_M * QUARTERS_TO_CAP).toBeGreaterThanOrEqual(headroomM(fm.balanceM, fm.capPctOfNw));
+    expect(MORTGAGE_GROWTH_PER_QUARTER_M * (QUARTERS_TO_CAP - 1)).toBeLessThan(headroomM(fm.balanceM, fm.capPctOfNw));
+    expect(capUsePct(fm.balanceM, fm.capPctOfNw)).toBeGreaterThanOrEqual(100 - NEAR_LIMIT_POINTS);
+    for (const p of PORTFOLIO_LIMITS.filter((x) => x.id !== 'first_mortgage'))
+      expect(capUsePct(p.balanceM, p.capPctOfNw), p.id).toBeLessThan(100 - NEAR_LIMIT_POINTS);
   });
 
-  it('leaves about $33M of headroom, reached in roughly two quarters at the current pace', () => {
-    const headroom = headroomM(fm.balanceM, fm.capPctOfNw);
-    expect(capDollarsM(600)).toBeCloseTo(688.5, 2);
-    expect(Math.floor(headroom)).toBe(33);
-    expect(round(headroom / MORTGAGE_GROWTH_PER_QUARTER_M)).toBe(2);
+  it('Step 4: a 30-day shutdown, 18% draw down, 6% delay, +$4.2M over two quarters, led by HIL', () => {
+    expect(SHUTDOWN.days).toBe(30);
+    expect(SHUTDOWN.depositDrawdownPct).toBe(18);
+    expect(SHUTDOWN.paymentDelayPct).toBe(6);
+    expect(SHUTDOWN.lossOverTwoQuartersM).toBe(4.2);
+    const rise = SHUTDOWN.projectedDq.map((s) => s.afterPct - s.beforePct);
+    expect(SHUTDOWN.projectedDq[0].id).toBe('hil');
+    expect(Math.max(...rise)).toBe(rise[0]);
+    // Today's column is Step 2's latest quarter.
+    for (const s of SHUTDOWN.projectedDq) expect(s.beforePct).toBe(DQ_SEGMENTS.find((d) => d.id === s.id)!.series[LAST]);
   });
 
-  it('has no other portfolio within fifteen points of its limit', () => {
-    expect(capUsePct(fm.balanceM, fm.capPctOfNw)).toBeGreaterThan(85);
-    for (const c of CONCENTRATION_LIMITS.filter((x) => x.id !== 'first_mortgage')) {
-      expect(100 - capUsePct(c.balanceM, c.capPctOfNw), c.id).toBeGreaterThan(15);
+  it('Step 5: net worth 7.50% → about 7.2%, still above 7.0%; $35M to spare; loan-to-share 84% toward, not past, the trigger', () => {
+    expect(CUSHION.before.nwRatioPct).toBe(7.5);
+    expect(CUSHION.after.nwRatioPct).toBe(7.2);
+    expect(CUSHION.after.nwRatioPct).toBeGreaterThan(NW_EARLY_WARNING_PCT);
+    expect(CUSHION.after.liquiditySurplusM).toBe(35);
+    expect(CUSHION.before.ltsPct).toBe(84);
+    expect(CUSHION.after.ltsPct).toBeGreaterThan(CUSHION.before.ltsPct);
+    expect(CUSHION.after.ltsPct).toBeLessThan(FUNDING_REVIEW_TRIGGER_LTS_PCT);
+    // Reconciled across the core, the ledger and the ALM model: one number.
+    expect(CAPITAL_RECONCILIATION).toHaveLength(3);
+    expect(new Set(CAPITAL_RECONCILIATION.map((r) => r.netWorthM))).toEqual(new Set([NET_WORTH_M]));
+  });
+
+  it('Step 6: the playbook table carries every action the answer reads, and highlights the short band for 30 days', () => {
+    const answer = text(flows[`${P}turn_playbook`]).toLowerCase();
+    for (const band of PLAYBOOK.bands) for (const a of band.actions) {
+      const core = a.toLowerCase().replace(/^pause /, 'a pause on ');
+      expect(answer, a).toContain(core);
     }
+    expect(PLAYBOOK.bands.filter((b) => b.recommended).map((b) => b.id)).toEqual(['short']);
   });
 
-  it('reads each portfolio balance off the loan mix', () => {
-    const mix = Object.fromEntries(LOAN_MIX.map((l) => [l.id, l.balanceM]));
-    expect(CONCENTRATION_LIMITS.find((c) => c.id === 'consumer_unsecured')!.balanceM).toBe(mix.credit_card + mix.personal);
-    for (const id of ['first_mortgage', 'indirect_auto', 'heloc', 'member_business'])
-      expect(CONCENTRATION_LIMITS.find((c) => c.id === id)!.balanceM).toBe(mix[id]);
-  });
-});
-
-describe('Q3 · rate shock', () => {
-  const at = (bps: number) => RATE_SHOCKS.find((s) => s.bps === bps)!;
-
-  it('covers plus and minus 25, 50 and 100 basis points', () => {
-    expect(RATE_SHOCKS.map((s) => s.bps).sort((a, b) => a - b)).toEqual([-100, -50, -25, 25, 50, 100]);
-  });
-
-  it('marks the investment portfolio down about $18M at +100 and lifts loan income while margin compresses', () => {
-    expect(at(100).investmentMarkM).toBe(-18);
-    expect(at(100).loanIncomeM).toBeGreaterThan(0);
-    expect(at(100).nimBps).toBeLessThan(0);
-  });
-
-  it('is proportional across increments, and minus mirrors plus', () => {
-    for (const key of ['loanIncomeM', 'nimBps', 'investmentMarkM'] as const) {
-      const perBp = at(100)[key] / 100;
-      for (const s of RATE_SHOCKS) expect(s[key], `${key} @ ${s.bps}`).toBeCloseTo(perBp * s.bps, 6);
-    }
-    for (const bps of [25, 50, 100]) {
-      expect(at(-bps).nwRatioPct - PUBLIC_FACTS.netWorthRatioPct).toBeCloseTo(PUBLIC_FACTS.netWorthRatioPct - at(bps).nwRatioPct, 6);
-    }
-  });
-
-  it('dips net worth toward the 7.0% line only at +100, and agrees with the stress test', () => {
-    expect(NW_EARLY_WARNING_PCT).toBe(7.0);
-    expect(at(100).nwRatioPct).toBe(STRESS.plus100.nwRatioPct);
-    expect(at(100).nwRatioPct).toBeGreaterThanOrEqual(NW_EARLY_WARNING_PCT);
-    for (const bps of [-100, -50, -25, 25, 50]) expect(at(bps).nwRatioPct).toBeGreaterThanOrEqual(7.3);
-  });
-});
-
-describe('Q4 · dry powder under +100 bp', () => {
-  it('moves net worth 7.50% → about 7.1%, still well capitalized', () => {
-    expect(STRESS.base.nwRatioPct).toBe(7.5);
-    expect(STRESS.plus100.nwRatioPct).toBe(7.1);
-    expect(STRESS.plus100.nwRatioPct).toBeGreaterThanOrEqual(NW_EARLY_WARNING_PCT);
-  });
-
-  it('covers the quarter’s projected outflows with roughly $40M to spare, narrower than the base case', () => {
-    expect(liquiditySpareM(LIQUIDITY.plus100)).toBe(40);
-    expect(liquiditySpareM(LIQUIDITY.base)).toBeGreaterThan(40);
-    // The +100 on-hand figure carries the investment mark from Q3.
-    expect(LIQUIDITY.base.onHandM - LIQUIDITY.plus100.onHandM).toBe(18);
-  });
-
-  it('climbs loan-to-share 84% → 88%, which is the funding-review trigger', () => {
-    expect(STRESS.base.ltsPct).toBe(84);
-    expect(STRESS.plus100.ltsPct).toBe(88);
-    expect(FUNDING_REVIEW_TRIGGER_LTS_PCT).toBe(88);
-    expect(PLUS100_SHARES_M).toBeLessThan(MEMBER_SHARES_M);
-    expect(round((NET_LOANS_M / PLUS100_SHARES_M) * 100)).toBe(88);
-  });
-});
-
-describe('Q5 · the board playbook', () => {
-  it('maps one action to each of +25, +50 and +100, as the answer quotes them', () => {
-    expect(PLAYBOOK.tiers.map((t) => t.bps)).toEqual([25, 50, 100]);
-    const text = answer(`${P}turn_playbook`).toLowerCase();
-    for (const t of PLAYBOOK.tiers) expect(text).toContain(t.action.toLowerCase().replace(/\.$/, ''));
-  });
-});
-
-describe('Q6 · deposit activity by SEG group', () => {
-  it('totals up 0.6% month over month', () => {
-    expect(round(segTotals().changePct, 1)).toBe(0.6);
-  });
-
-  it('has exactly two payroll groups trending down, one off 4.2% across the 3% trigger', () => {
+  it('Step 7: total +0.6%, two payroll groups down, one −4.2% past the 3% trigger, mostly certificate closures', () => {
+    expect(segTotals().changePct.toFixed(1)).toBe('0.6');
     const down = SEG_GROUPS.filter((g) => segChangePct(g) < 0);
-    expect(down.map((g) => g.kind)).toEqual(['payroll', 'payroll']);
-    for (const g of down) expect(g.priorMonthPct, g.id).toBeLessThan(0);
+    expect(down).toHaveLength(2);
     const flagged = SEG_GROUPS.filter((g) => segChangePct(g) <= -SEG_OUTFLOW_TRIGGER_PCT);
-    expect(flagged.map((g) => g.id)).toEqual(['payroll_a']);
-    expect(round(segChangePct(flagged[0]), 1)).toBe(-4.2);
+    expect(flagged).toHaveLength(1);
+    expect(segChangePct(flagged[0]).toFixed(1)).toBe('-4.2');
     expect(SEG_OUTFLOW_TRIGGER_PCT).toBe(3);
-  });
-
-  it('explains the flagged outflow as mostly certificate closures', () => {
-    const a = SEG_GROUPS.find((g) => g.id === 'payroll_a')!;
-    const outflow = a.lastM - a.thisM;
-    expect(SEG_A_OUTFLOW_MIX.certificateClosuresM + SEG_A_OUTFLOW_MIX.otherM).toBeCloseTo(outflow, 6);
+    const outflow = flagged[0].lastM - flagged[0].thisM;
+    expect(SEG_A_OUTFLOW_MIX.certificateClosuresM + SEG_A_OUTFLOW_MIX.otherM).toBeCloseTo(outflow, 5);
     expect(SEG_A_OUTFLOW_MIX.certificateClosuresM / outflow).toBeGreaterThan(0.5);
   });
-});
 
-describe('USSFCU Finance — provenance', () => {
-  const names = new Set(dataSources.map((d) => d.name));
-
-  it('cites only connected sources that the Data Sources screen lists', () => {
-    for (const [key, f] of Object.entries(flows))
-      for (const s of f.data_sources_used ?? []) expect(names.has(s), `${key} cites "${s}"`).toBe(true);
-    for (const sig of signals) for (const s of sig.sources) expect(names.has(s), `${sig.id} cites "${s}"`).toBe(true);
+  it('KPI tiles agree with the figures the turns use', () => {
+    const v = Object.fromEntries(KPIS.map((k) => [k.id, k.value]));
+    expect(v.net_worth).toBe(`${CUSHION.before.nwRatioPct.toFixed(2)}%`);
+    expect(v.loan_to_share).toBe(`${CUSHION.before.ltsPct}%`);
+    expect(v.first_mortgage_nw).toBe(`${Math.round(pctOfNetWorth(655))}%`);
+    expect(v.hil_dq).toBe(`${DQ_SEGMENTS[0].series[LAST]}%`);
+    expect(v.loan_growth).toBe(`${LOAN_GROWTH_YTD_PCT}%`);
+    expect(v.share_growth).toBe(`${SHARE_GROWTH_YTD_PCT}%`);
+    expect(v.shutdown_liquidity).toBe(`About $${CUSHION.after.liquiditySurplusM}M surplus`);
+    expect(v.seg_deposits).toBe(`Plus ${segTotals().changePct.toFixed(1)}% overall; one group off ${Math.abs(segChangePct(SEG_GROUPS[0])).toFixed(1)}%`);
   });
 
-  it('dates everything on or before the demo’s today', () => {
-    const end = `${DEMO_TODAY}T23:59:59`;
-    for (const s of signals) {
-      expect(s.timestamp <= end, s.id).toBe(true);
-      expect(s.confidence.validated_at <= s.timestamp, s.id).toBe(true);
+  it('the follow-up answers quote only figures the scripted turns already state', () => {
+    const scripted = STEP_KEYS.map((k) => text(flows[k])).join(' ') + spec.signals.map((s) => s.Description).join(' ');
+    const figure = /\$?\d[\d,.]*%?M?/g;
+    for (const [key, flow] of Object.entries(flows)) {
+      if (!key.includes('_followup_')) continue;
+      for (const f of text(flow).match(figure) ?? []) expect(scripted, `${key} quotes "${f}"`).toContain(f.replace(/[.,]$/, ''));
     }
-    for (const d of dataSources) expect(d.lastSync <= end, d.id).toBe(true);
+  });
+});
+
+describe('§8 and §9 — the current state and the journey', () => {
+  it('has every §8 process step, in order, with the four pain points in red', () => {
+    expect(currentState.steps.map((st) => [st.id, st.label])).toEqual(spec.currentStateSteps);
+    expect(currentState.steps.filter((st) => st.state === 'gap').map((st) => st.id)).toEqual(['B', 'E', 'G', 'H']);
+  });
+
+  it('has the five §8 interventions verbatim', () => {
+    expect(currentState.interventions.map(({ currentStep, intervention, capability, impact }) => ({ currentStep, intervention, capability, impact }))).toEqual(spec.interventions);
+  });
+
+  it('has the four §9 phases verbatim, and the traceability table', () => {
+    journey.phases.forEach((ph, i) => {
+      const want = spec.phases[i] as Record<string, string | number>;
+      expect(ph.name).toBe(want.name);
+      expect(ph.touchpoints.join(', ')).toBe(want.Touchpoints);
+      expect(ph.action).toBe(want.Actions);
+      expect(`"${ph.thought}"`).toBe(want.Thoughts);
+      expect(String(ph.emotion)).toBe(want.Emotion);
+      expect(ph.painPoints.join('; ')).toBe(want['Pain points']);
+      expect(ph.opportunity).toBe(want.Opportunities);
+    });
+    expect(journey.baselineSatisfaction).toBe(4);
+    expect(journey.traceability.map(({ phase, painPoint, signal, demoStep }) => ({ phase, painPoint, signal, demoStep }))).toEqual(spec.traceability);
+  });
+});
+
+describe('§12 — the data layer returns the spec’s interfaces', () => {
+  it('Signal: title, severity, bucket, description, source, action', () => {
+    for (const s of layer.getSignals()) for (const k of ['title', 'severity', 'bucket', 'description', 'source', 'action']) expect(s, k).toHaveProperty(k);
+  });
+  it('Kpi, PortfolioLimit, ShockScenario, CapitalLiquidity, PlaybookAction, SegDeposit', () => {
+    for (const k of layer.getKpis()) for (const f of ['name', 'value', 'illustrative', 'trend', 'target', 'source', 'calc']) expect(k, f).toHaveProperty(f);
+    for (const p of layer.getPortfolioLimits()) for (const f of ['portfolio', 'balance', 'pctOfNetWorth', 'cap', 'headroom']) expect(p, f).toHaveProperty(f);
+    const sh = layer.getShockScenario();
+    for (const f of ['scenario', 'membersAffectedPct', 'depositDrawdownPct', 'delinquencyBySegment', 'lossOverTwoQuarters', 'netWorthAfter']) expect(sh, f).toHaveProperty(f);
+    const cl = layer.getCapitalLiquidity();
+    for (const f of ['netWorthBefore', 'netWorthAfter', 'liquiditySurplus', 'loanToShareBefore', 'loanToShareAfter', 'trigger']) expect(cl, f).toHaveProperty(f);
+    for (const a of layer.getPlaybookActions()) for (const f of ['band', 'action', 'recommendedFlag']) expect(a, f).toHaveProperty(f);
+    for (const d of layer.getSegDeposits()) for (const f of ['seg', 'amount', 'count', 'momChange', 'triggered']) expect(d, f).toHaveProperty(f);
+  });
+  it('agrees with the spoken figures', () => {
+    expect(layer.getShockScenario().netWorthAfter).toBe(7.2);
+    expect(layer.getCapitalLiquidity().liquiditySurplus).toBe(35);
+    expect(layer.getPlaybookActions()).toHaveLength(5);
+    expect(layer.getSegDeposits().filter((d) => d.triggered)).toHaveLength(1);
+  });
+});
+
+describe('the briefing’s shorter wording says nothing the spec does not', () => {
+  const figures = (t: string) => (t.match(/\$?\d[\d,.]*%?M?/g) ?? []).map((f) => f.replace(/[.,]$/, ''));
+  it.each(signals.map((s) => [s.title, s] as const))('"%s" card summary quotes only its own spec figures', (_t, s) => {
+    for (const f of figures(s.summary)) expect(s.description, f).toContain(f);
+    expect(s.summary.length).toBeLessThan(s.description.length);
+    expect(s.actionShort.length).toBeLessThan(s.action.length);
+  });
+  it('KPI tiles quote only their own spec figures', () => {
+    for (const t of financeKpiTiles()) {
+      const full = `${t.fullValue} ${t.fullTarget}`.replace('Plus ', '+').replace('off ', '−');
+      for (const f of figures(`${t.value} ${t.target}`)) expect(full, `${t.id}: ${f}`).toContain(f.replace('~', ''));
+    }
+  });
+});
+
+describe('only the new spec — the earlier narrative is gone', () => {
+  const ROOTS = [
+    'src/data/ussfcu/finance',
+    'src/components/ussfcu/finance',
+    'src/markets/financial-services/clients/ussfcu/personas/finance',
+  ];
+  const files = (dir: string): string[] =>
+    readdirSync(dir).flatMap((n) => {
+      const p = join(dir, n);
+      return statSync(p).isDirectory() ? files(p) : [p];
+    });
+  const own = ROOTS.flatMap((r) => files(r)).filter((f) => !f.endsWith('.test.ts') && !f.endsWith('.test.jsx') && !f.endsWith('.fixture.json'));
+
+  it.each([
+    'indirect auto',
+    'indirect_auto',
+    'rate shock',
+    'basis point',
+    'MeridianLink',
+    'Investment Portfolio Accounting',
+    'plus 100',
+  ])('no Fiona file mentions "%s"', (phrase) => {
+    for (const f of own) expect(readFileSync(f, 'utf8').toLowerCase().includes(phrase.toLowerCase()), `${f} mentions "${phrase}"`).toBe(false);
+  });
+
+  it('lists only the spec’s systems as data sources', () => {
+    expect(dataSources.map((d) => d.name)).toEqual([
+      'Jack Henry Symitar',
+      'UST Finex',
+      'General Ledger',
+      'Cornerstone',
+      'Greenplum on Tanzu',
+      'Tableau',
+      'Board risk-tolerance limits and playbooks',
+    ]);
   });
 });

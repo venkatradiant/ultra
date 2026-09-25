@@ -242,19 +242,20 @@ const personas = {
     ],
   },
 
-  // USSFCU-only: the Finance Team — deliberately untitled, so the room stays on
-  // the six approved finance questions rather than on who is asking them.
+  // USSFCU-only: Fiona, the Finance Team — deliberately untitled, so the room
+  // stays on the questions rather than on who is asking them.
   ussfcu_finance: {
     id: 'ussfcu_finance',
-    name: 'Finance Team',
-    initials: 'FT',
-    role: 'USS FCU Finance',
-    greeting: 'Finance Team',
+    name: 'Fiona',
+    initials: 'FI',
+    role: 'Finance Team',
+    greeting: 'Fiona',
     capabilities: [
       'Proactive Intelligence',
+      'Anomaly Detection',
       'Converged Conversation',
       'Predictive Intelligence',
-      'Anomaly Detection',
+      'Friction Observability',
       'Automated Action',
     ],
   },

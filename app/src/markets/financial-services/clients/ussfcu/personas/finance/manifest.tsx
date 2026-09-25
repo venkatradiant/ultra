@@ -1,26 +1,25 @@
 /**
- * Persona: USS FCU Finance Team — USSFCU-only.
+ * Persona: Fiona, USS FCU Finance Team — USSFCU-only.
  *
- * Spec: "Finance Persona: Demo Narrative for Validation" (Radiant Digital,
- * prepared for Lauren, 2026-09-23). The generalised finance-team persona the
- * CEO and CFO will see: no executive title, so the room stays on the questions
- * and the answers rather than on who sees what. Business value first.
+ * Spec: "Persona and Demo Specification: Finance Team Analyst at USS FCU"
+ * (Radiant Digital, Lam Huynh, rev. 2026-09-24, Lauren feedback applied) and
+ * the Fiona section of the USSFCU Oral Demo Talk Track v4. Those two are the
+ * only source; nothing from the earlier finance narrative remains. No
+ * executive title, so the room stays on the questions and the answers rather
+ * than on who sees what; the header greets her as "Fiona."
  *
- * The story is three overnight signals and six approved finance questions in
- * one line — see what is moving, check it against our limits, model a shock,
- * test our cushion, decide, then watch the funding side. The questions and
- * the answers are the narrative's own words (the chips carry short labels for
- * them), pinned by
- * data/ussfcu/finance/financeData.test.ts; the golden path is those six
- * questions in order and stops after the sixth (data/ussfcu/talkTrack.test.ts).
+ * The story is seven scripted turns: the morning briefing, then delinquency
+ * drift, the board limits, a government shutdown modeled as an employment
+ * shock, the capital and liquidity cushion, the shutdown playbook, and the
+ * funding side by SEG. The AI text is the spec's own words and the golden
+ * path is the talk track's CLICK lines, pinned by
+ * data/ussfcu/finance/financeData.test.ts and data/ussfcu/talkTrack.test.ts.
  *
- * Every figure except USS FCU's public profile (assets, net worth ratio,
- * loan-to-share) is illustrative sample data from data/ussfcu/finance/constants.ts,
- * and each card says so.
+ * Every figure except the public backdrop is illustrative sample data from
+ * data/ussfcu/finance/constants.ts, and the briefing says so at the start.
  */
 
-import { Landmark, Scale, Percent, Car, Home, Users } from 'lucide-react';
-import type { ChatFlowConfig, PersonaManifest, StatTile } from '@core/types';
+import type { ChatFlowConfig, PersonaManifest } from '@core/types';
 
 import chatFlows from '@/data/ussfcu/finance/chatFlows.json';
 import signals from '@/data/ussfcu/finance/signals.json';
@@ -29,88 +28,101 @@ import capabilityCallouts from '@/data/ussfcu/finance/capabilityCallouts.json';
 import {
   FINANCE_QUESTIONS,
   FINANCE_CHIPS,
-  PUBLIC_FACTS,
-  DQ_SEGMENTS,
-  CONCENTRATION_LIMITS,
-  SEG_OUTFLOW_TRIGGER_PCT,
-  pctOfNetWorth,
-  segTotals,
-  fmtPct,
-  fmtSignedPct,
+  FOLLOW_UP_CHIPS,
+  SUGGESTED_PROMPTS,
+  PERSONA,
 } from '@/data/ussfcu/finance/constants';
+import { financeKpiTiles } from '@/data/ussfcu/finance/kpiTiles';
 
 import FinanceBriefingSignals from '@/components/ussfcu/finance/FinanceBriefingSignals';
 import FinanceKpiRow from '@/components/ussfcu/finance/FinanceKpiRow';
-import DelinquencyBySegmentPanel from '@/components/ussfcu/finance/DelinquencyBySegmentPanel';
-import ConcentrationLimitsPanel from '@/components/ussfcu/finance/ConcentrationLimitsPanel';
-import RateShockMatrix from '@/components/ussfcu/finance/RateShockMatrix';
-import CapitalLiquidityStress from '@/components/ussfcu/finance/CapitalLiquidityStress';
-import RatePlaybookLadder from '@/components/ussfcu/finance/RatePlaybookLadder';
-import SegDepositMonitor from '@/components/ussfcu/finance/SegDepositMonitor';
+import DelinquencyTrend from '@/components/ussfcu/finance/DelinquencyTrend';
+import PortfolioLimitChart from '@/components/ussfcu/finance/PortfolioLimitChart';
+import ScenarioImpactTable from '@/components/ussfcu/finance/ScenarioImpactTable';
+import CapitalLiquidityGauges from '@/components/ussfcu/finance/CapitalLiquidityGauges';
+import PlaybookActionTable from '@/components/ussfcu/finance/PlaybookActionTable';
+import SegDepositPanel from '@/components/ussfcu/finance/SegDepositPanel';
 
 const ask = FINANCE_CHIPS;
 const full = FINANCE_QUESTIONS;
+const more = FOLLOW_UP_CHIPS;
+const [promptDq, promptLimits, promptShutdown, promptCushion, promptRateMove] = SUGGESTED_PROMPTS;
 
 const K = {
   greeting: 'ussfcu_finance_greeting',
   delinquency: 'ussfcu_finance_turn_delinquency',
   limits: 'ussfcu_finance_turn_limits',
-  rateShock: 'ussfcu_finance_turn_rate_shock',
-  dryPowder: 'ussfcu_finance_turn_dry_powder',
+  shutdown: 'ussfcu_finance_turn_shutdown',
+  cushion: 'ussfcu_finance_turn_cushion',
   playbook: 'ussfcu_finance_turn_playbook',
   segDeposits: 'ussfcu_finance_turn_seg_deposits',
+  hilDriver: 'ussfcu_finance_followup_hil_driver',
+  runOff: 'ussfcu_finance_followup_run_off',
+  exportBriefing: 'ussfcu_finance_followup_export',
+  alcoSummary: 'ussfcu_finance_followup_alco_summary',
+  retention: 'ussfcu_finance_followup_retention',
+  signals: 'ussfcu_finance_followup_signals',
 } as const;
 
 const flows: ChatFlowConfig = {
   chatFlows: chatFlows as unknown as ChatFlowConfig['chatFlows'],
   chipToFlowKey: {
+    // The talk track's CLICK lines.
     [ask.delinquency]: K.delinquency,
     [ask.limits]: K.limits,
-    [ask.rateShock]: K.rateShock,
-    [ask.dryPowder]: K.dryPowder,
+    [ask.shutdown]: K.shutdown,
+    [ask.cushion]: K.cushion,
     [ask.playbook]: K.playbook,
     [ask.segDeposits]: K.segDeposits,
-    // The narrative's full wording, for a presenter who types or pastes it.
+    // The spec's full questions, for a presenter who types or pastes them.
     [full.delinquency]: K.delinquency,
     [full.limits]: K.limits,
-    [full.rateShock]: K.rateShock,
-    [full.dryPowder]: K.dryPowder,
+    [full.shutdown]: K.shutdown,
+    [full.cushion]: K.cushion,
     [full.playbook]: K.playbook,
     [full.segDeposits]: K.segDeposits,
+    // §11 suggested prompts. The rate-move prompt keeps its spec wording and
+    // opens the shutdown playbook, the only playbook in this story.
+    [promptDq]: K.delinquency,
+    [promptLimits]: K.limits,
+    [promptShutdown]: K.shutdown,
+    [promptCushion]: K.cushion,
+    [promptRateMove]: K.playbook,
+    // §10 follow-ups that mean the same as a scripted turn open that turn.
+    [more.ratesAndLiquidity]: K.shutdown,
+    [more.downsideOnPool]: K.shutdown,
+    [more.capitalHeadroom]: K.cushion,
+    // §10 follow-ups with no scripted answer get a short one from spec figures.
+    [more.hilDriver]: K.hilDriver,
+    [more.runOff]: K.runOff,
+    [more.exportThis]: K.exportBriefing,
+    [more.exportBriefing]: K.exportBriefing,
+    [more.alcoSummary]: K.alcoSummary,
+    [more.retentionAction]: K.retention,
+    [more.backToSignals]: K.signals,
   },
-  askTurnSequence: [K.delinquency, K.limits, K.rateShock, K.dryPowder, K.playbook, K.segDeposits],
-  // The briefing's three signal cards open their questions directly; there is
-  // no separate "walk me through them" signal tour in this narrative.
+  askTurnSequence: [K.delinquency, K.limits, K.shutdown, K.cushion, K.playbook, K.segDeposits],
+  // The briefing's three signal cards open their turns directly; there is no
+  // "walk me through them" signal tour in this script.
   signalSequence: [],
-  // Only the six approved questions answer. Anything else typed falls to
-  // __default__, which names them, rather than to a turn that shares a word.
+  // Only what is scripted answers. Anything else typed falls to __default__,
+  // which names the steps, rather than to a turn that shares a word.
   strictMatch: true,
 };
-
-const indirectAuto = DQ_SEGMENTS.find((s) => s.id === 'indirect_auto')!;
-const firstMortgage = CONCENTRATION_LIMITS.find((c) => c.id === 'first_mortgage')!;
-
-const stats: Array<StatTile & { publicProfile?: boolean }> = [
-  { id: 'assets', label: 'Total assets', value: `$${(PUBLIC_FACTS.totalAssetsM / 1000).toFixed(2)}B`, trend: 'USS FCU public profile', positive: true, icon: Landmark, iconColor: 'text-brand', iconBg: 'bg-brand/10', chipText: ask.dryPowder, publicProfile: true },
-  { id: 'net_worth', label: 'Net worth ratio', value: fmtPct(PUBLIC_FACTS.netWorthRatioPct, 2), trend: 'Well capitalized', positive: true, icon: Scale, iconColor: 'text-brand', iconBg: 'bg-brand/10', chipText: ask.dryPowder, publicProfile: true },
-  { id: 'loan_to_share', label: 'Loan-to-share', value: `${PUBLIC_FACTS.loanToSharePct}%`, trend: 'Five-year high', positive: false, icon: Percent, iconColor: 'text-warning', iconBg: 'bg-warning-subtle', chipText: ask.dryPowder, publicProfile: true },
-  { id: 'indirect_auto_dq', label: 'Indirect auto 60-day delinquency', value: fmtPct(indirectAuto.series[indirectAuto.series.length - 1]), trend: `Above its ${fmtPct(indirectAuto.parameterPct)} parameter`, positive: false, icon: Car, iconColor: 'text-critical', iconBg: 'bg-critical-subtle', chipText: ask.delinquency },
-  { id: 'mortgage_concentration', label: 'First mortgage, % of net worth', value: `${Math.round(pctOfNetWorth(firstMortgage.balanceM))}%`, trend: `${firstMortgage.capPctOfNw}% board cap`, positive: false, icon: Home, iconColor: 'text-warning', iconBg: 'bg-warning-subtle', chipText: ask.limits },
-  { id: 'seg_deposits', label: 'Core SEG deposits, month over month', value: fmtSignedPct(segTotals().changePct), trend: `1 group past the ${SEG_OUTFLOW_TRIGGER_PCT}% trigger`, positive: false, icon: Users, iconColor: 'text-warning', iconBg: 'bg-warning-subtle', chipText: ask.segDeposits },
-];
 
 const manifest: PersonaManifest = {
   id: 'ussfcu_finance',
   clientId: 'ussfcu',
   marketId: 'financial-services',
 
-  identity: { name: 'Finance Team', initials: 'FT', role: 'USS FCU Finance', greeting: 'Finance Team' },
-  // The five the narrative's six questions demonstrate, in the order they appear.
+  identity: { name: PERSONA.name, initials: PERSONA.initials, role: PERSONA.role, greeting: PERSONA.name },
+  // Spec §1: all six tags are demonstrated across the flow, in step order.
   capabilities: [
     'Proactive Intelligence',
+    'Anomaly Detection',
     'Converged Conversation',
     'Predictive Intelligence',
-    'Anomaly Detection',
+    'Friction Observability',
     'Automated Action',
   ],
 
@@ -122,48 +134,56 @@ const manifest: PersonaManifest = {
   signalsComponent: FinanceBriefingSignals as unknown as PersonaManifest['signalsComponent'],
   statsComponent: FinanceKpiRow as unknown as PersonaManifest['statsComponent'],
   features: {
-    // Three signal cards and a KPI grid make a tall briefing; top-aligned so the
-    // greeting is never pushed off the top.
+    // Three signal cards and eight KPI tiles make a tall briefing; top-aligned
+    // so the greeting is never pushed off the top.
     topAlignedInitial: true,
-    // The segment table, the shock grid and the SEG table want more measure
-    // than a chat bubble allows.
+    // The trend chart, limit bars, gauges and SEG table want more measure than
+    // a chat bubble allows.
     wideInlineComponents: true,
-    // Everything this persona does happens in the conversation. Explicit so the
-    // financial-services default slots (Member Journey, Risk Signals) — pages
-    // built for other personas — do not appear.
-    navSlots: ['ask', 'dataSources'],
+    // Spec §12: the briefing home, Portfolio and Limits, Scenarios and ALM,
+    // and Data sources.
+    navSlots: ['ask', 'portfolioRisk', 'scenarios', 'dataSources'],
   },
 
   ui: {
     greetingFlowKey: K.greeting,
-    // "A member of the USS FCU finance team starting the day."
+    // Header: "Good morning, Fiona" — matches the opening line under it.
     greetingLabel: 'Good morning',
-    inputPlaceholder: 'Ask about delinquency, board limits, rate shocks, liquidity or SEG deposits…',
-    initialChips: [ask.delinquency, ask.limits, ask.rateShock, ask.dryPowder, ask.playbook, ask.segDeposits],
-    // The narrative's six questions, in its order; the highlight ends after the sixth.
+    inputPlaceholder: 'Ask about delinquency, board limits, a shutdown scenario, capital and liquidity, or SEG deposits…',
+    // §11 suggested query prompts (typeahead and the pre-greeting row).
+    initialChips: [...SUGGESTED_PROMPTS],
+    // Talk Track v4, Fiona's CLICK lines in order; the highlight ends at Step 7.
     goldenPathChip: {
       [K.greeting]: ask.delinquency,
       [K.delinquency]: ask.limits,
-      [K.limits]: ask.rateShock,
-      [K.rateShock]: ask.dryPowder,
-      [K.dryPowder]: ask.playbook,
+      [K.limits]: ask.shutdown,
+      [K.shutdown]: ask.cushion,
+      [K.cushion]: ask.playbook,
       [K.playbook]: ask.segDeposits,
     },
+    // One tag per response. Steps map to their own callout; follow-ups share
+    // the callout of the step that carries the same capability.
     flowKeyToCapabilityTrigger: {
       [K.greeting]: 'home_load',
       [K.delinquency]: 'ask_turn_1',
       [K.limits]: 'ask_turn_2',
-      [K.rateShock]: 'ask_turn_3',
-      [K.dryPowder]: 'ask_turn_4',
+      [K.shutdown]: 'ask_turn_3',
+      [K.cushion]: 'ask_turn_4',
       [K.playbook]: 'ask_turn_5',
       [K.segDeposits]: 'ask_turn_6',
+      [K.hilDriver]: 'ask_turn_1',
+      [K.runOff]: 'ask_turn_2',
+      [K.exportBriefing]: 'ask_turn_5',
+      [K.alcoSummary]: 'ask_turn_5',
+      [K.retention]: 'ask_turn_6',
+      [K.signals]: 'home_load',
     },
-    stats,
-    // Each opening signal opens the question that answers it.
+    stats: financeKpiTiles(),
+    // Each opening signal opens the turn that answers it (its §6 "Action").
     signalToChip: {
       'SIG-USSFCU-FIN-001': ask.delinquency,
       'SIG-USSFCU-FIN-002': ask.limits,
-      'SIG-USSFCU-FIN-003': ask.rateShock,
+      'SIG-USSFCU-FIN-003': ask.shutdown,
     },
     capabilityCallouts: capabilityCallouts as PersonaManifest['ui']['capabilityCallouts'],
   },
@@ -171,17 +191,17 @@ const manifest: PersonaManifest = {
   inlineComponents: (msg) => {
     switch (msg.flowKey) {
       case K.delinquency:
-        return [<DelinquencyBySegmentPanel key={`fin-dq-${msg.id}`} />];
+        return [<DelinquencyTrend key={`fin-dq-${msg.id}`} />];
       case K.limits:
-        return [<ConcentrationLimitsPanel key={`fin-limits-${msg.id}`} />];
-      case K.rateShock:
-        return [<RateShockMatrix key={`fin-shock-${msg.id}`} />];
-      case K.dryPowder:
-        return [<CapitalLiquidityStress key={`fin-stress-${msg.id}`} />];
+        return [<PortfolioLimitChart key={`fin-limits-${msg.id}`} />];
+      case K.shutdown:
+        return [<ScenarioImpactTable key={`fin-shutdown-${msg.id}`} />];
+      case K.cushion:
+        return [<CapitalLiquidityGauges key={`fin-cushion-${msg.id}`} />];
       case K.playbook:
-        return [<RatePlaybookLadder key={`fin-playbook-${msg.id}`} />];
+        return [<PlaybookActionTable key={`fin-playbook-${msg.id}`} />];
       case K.segDeposits:
-        return [<SegDepositMonitor key={`fin-seg-${msg.id}`} />];
+        return [<SegDepositPanel key={`fin-seg-${msg.id}`} />];
       default:
         return undefined;
     }

@@ -1,0 +1,125 @@
+{
+  "scenario": "Fiona works a portfolio and rate question from the morning signal to a recommended action for leadership.",
+  "timeframe": "Today this is days; the demo compresses it to one session.",
+  "baselineSatisfaction": 4,
+  "baselineNote": "Out of 10.",
+  "illustrative": true,
+  "phases": [
+    {
+      "id": "P1",
+      "index": 1,
+      "name": "Monitor",
+      "emotion": 3,
+      "emotionLabel": "Is anything drifting?",
+      "touchpoints": [
+        "Symitar exports",
+        "Tableau",
+        "Excel"
+      ],
+      "action": "Scan balances, delinquency, and deposits for anything moving",
+      "thought": "Is anything drifting that I will have to explain later?",
+      "painPoints": [
+        "No single view; drift is caught late, in the monthly review"
+      ],
+      "opportunity": "Overnight signals surface the pool and the limit before she asks",
+      "momentOfTruth": true,
+      "momentLabel": "The morning the drift is caught early rather than late",
+      "demoStep": "Step 2",
+      "flowKey": "ussfcu_finance_turn_delinquency"
+    },
+    {
+      "id": "P2",
+      "index": 2,
+      "name": "Assess against limits",
+      "emotion": 3,
+      "emotionLabel": "How much headroom is left?",
+      "touchpoints": [
+        "GL",
+        "Cornerstone",
+        "board policy documents"
+      ],
+      "action": "Line up portfolio balances against board risk-tolerance limits",
+      "thought": "How much headroom is left before we hit a board cap?",
+      "painPoints": [
+        "Limits live in policy documents, not next to the numbers"
+      ],
+      "opportunity": "One reconciled figure against the limit with headroom shown",
+      "momentOfTruth": false,
+      "demoStep": "Step 3",
+      "flowKey": "ussfcu_finance_turn_limits"
+    },
+    {
+      "id": "P3",
+      "index": 3,
+      "name": "Model scenarios",
+      "emotion": 2,
+      "emotionLabel": "Slow, hard to trust",
+      "touchpoints": [
+        "UST Finex",
+        "Excel"
+      ],
+      "action": "Rebuild the shutdown or what-if scenario and read the impact",
+      "thought": "What does a 30-day shutdown do to delinquency, net worth, and liquidity?",
+      "painPoints": [
+        "Slow to rebuild; hard to trust the cushion"
+      ],
+      "opportunity": "Instant scenario with a provable capital and liquidity read",
+      "momentOfTruth": true,
+      "momentLabel": "The moment the cushion is proven rather than chased",
+      "demoStep": "Steps 4 and 5",
+      "flowKey": "ussfcu_finance_turn_shutdown"
+    },
+    {
+      "id": "P4",
+      "index": 4,
+      "name": "Prepare and decide",
+      "emotion": 3,
+      "emotionLabel": "Can I stand behind the number?",
+      "touchpoints": [
+        "Board deck",
+        "ALCO",
+        "policy playbook"
+      ],
+      "action": "Assemble the deck, find the playbook action, recommend",
+      "thought": "What is the pre-agreed play, and can I stand behind the number?",
+      "painPoints": [
+        "Playbook is separate from the analysis; assembly eats the day"
+      ],
+      "opportunity": "The action sits next to the analysis; recommend the same morning",
+      "momentOfTruth": true,
+      "momentLabel": "The moment the recommended action appears next to the number",
+      "demoStep": "Steps 6 and 7",
+      "flowKey": "ussfcu_finance_turn_playbook"
+    }
+  ],
+  "traceability": [
+    {
+      "phase": "Monitor",
+      "painPoint": "Drift caught late",
+      "signal": "Delinquency drifting in one segment",
+      "signalId": "SIG-USSFCU-FIN-001",
+      "demoStep": "Step 2"
+    },
+    {
+      "phase": "Assess against limits",
+      "painPoint": "Limits separate from numbers",
+      "signal": "A portfolio nearing a board risk-tolerance limit",
+      "signalId": "SIG-USSFCU-FIN-002",
+      "demoStep": "Step 3"
+    },
+    {
+      "phase": "Model scenarios",
+      "painPoint": "Slow, hard to trust",
+      "signal": "Rate and liquidity pressure building",
+      "signalId": "SIG-USSFCU-FIN-003",
+      "demoStep": "Steps 4 and 5"
+    },
+    {
+      "phase": "Prepare and decide",
+      "painPoint": "Playbook separate from analysis",
+      "signal": "Rate and liquidity pressure building",
+      "signalId": "SIG-USSFCU-FIN-003",
+      "demoStep": "Steps 6 and 7"
+    }
+  ]
+}

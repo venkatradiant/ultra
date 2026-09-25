@@ -43,6 +43,11 @@ const PlatformAdminConsole = lazy(() => import('./screens/PlatformAdminConsole')
 // alert queue and case-triage panels that only the CRO persona renders.
 const FraudOperations = lazy(() => import('./screens/FraudOperations'));
 
+// USSFCU Finance (Fiona) routes. Lazy for the same reason: the portfolio and
+// scenario pages pull in finance charts only that persona renders.
+const FinancePortfolioRisk = lazy(() => import('./components/ussfcu/finance/pages/FinancePortfolioRisk'));
+const FinanceScenarios = lazy(() => import('./components/ussfcu/finance/pages/FinanceScenarios'));
+
 // Expose navigate() for the demo runner
 function DemoNavigateBridge() {
   const navigate = useNavigate();
@@ -248,6 +253,22 @@ function AppRoutes() {
             element={(
               <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
                 <FraudOperations />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/portfolio-risk"
+            element={(
+              <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                <FinancePortfolioRisk />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/scenarios"
+            element={(
+              <Suspense fallback={<div className="flex-1 bg-gray-50/50" />}>
+                <FinanceScenarios />
               </Suspense>
             )}
           />

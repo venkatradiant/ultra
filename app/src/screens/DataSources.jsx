@@ -20,6 +20,7 @@ import ussfcuCeoDataSources from '../data/ussfcu/ceo/dataSources.json';
 import ussfcuEvelynDataSources from '../data/ussfcu/evelyn/dataSources.json';
 import ussfcuNadiaDataSources from '../data/ussfcu/nadia/dataSources.json';
 import ussfcuFinanceDataSources from '../data/ussfcu/finance/dataSources.json';
+import FinanceDataPosturePanel from '../components/ussfcu/finance/FinanceDataPosturePanel';
 import esfcuCeoDataSources from '../data/esfcu/ceo/dataSources.json';
 import esfcuCroDataSources from '../data/esfcu/cro/dataSources.json';
 import newfoldDataSources from '../data/newfold-digital/_shared/dataSources.json';
@@ -253,6 +254,9 @@ export default function DataSources() {
 
       {/* Spec §2 — the real, public, sourced frame the whole demo sits on. */}
       {isAramco && <AramcoBackdropPanel />}
+
+      {/* USSFCU Finance (Fiona) — backdrop, illustrative statement, gap. */}
+      {persona.id === 'ussfcu_finance' && <FinanceDataPosturePanel />}
 
       {isAramco && (
         <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">

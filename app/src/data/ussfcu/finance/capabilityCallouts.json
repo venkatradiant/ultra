@@ -2,43 +2,43 @@
   {
     "trigger": "home_load",
     "capabilityName": "Proactive Intelligence",
-    "description": "Scans the portfolio overnight and surfaces what needs attention before anyone asks — a segment drifting past its parameter, a portfolio nearing a board limit, and rate and liquidity pressure building.",
+    "description": "Surfaces the portfolio signals overnight, before any question: a delinquency pool outside tolerance, a portfolio nearing a board limit, and building rate and liquidity pressure.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
     "trigger": "ask_turn_1",
-    "capabilityName": "Proactive Intelligence",
-    "description": "Tracks delinquency by loan segment against each aligned parameter and flags the pool that is trending up, down to the origination vintage driving it.",
+    "capabilityName": "Anomaly Detection",
+    "description": "Flags the pool trending outside the aligned delinquency parameter and the payroll group crossing the deposit-outflow trigger.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
     "trigger": "ask_turn_2",
     "capabilityName": "Converged Conversation",
-    "description": "Answers a board-limit question in plain language by joining portfolio balances from the core with net worth from the ledger and the limits in board policy.",
+    "description": "Answers a plain-language portfolio question across Symitar, the GL, and UST Finex at once, returning one reconciled figure against the board limit.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
     "trigger": "ask_turn_3",
     "capabilityName": "Predictive Intelligence",
-    "description": "Models parallel rate shocks across the balance sheet — loan income, margin, the investment portfolio and net worth — and shows where each increment lands against policy.",
+    "description": "Models what-if scenarios on the portfolio, including a government-shutdown employment shock, and projects the impact on delinquency, loss, net worth, and liquidity.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
     "trigger": "ask_turn_4",
-    "capabilityName": "Anomaly Detection",
-    "description": "Tests the cushion under the chosen scenario and isolates the pressure point: the ratio that reaches its trigger first while capital and liquidity hold.",
+    "capabilityName": "Friction Observability",
+    "description": "Reconciles capital and liquidity across the core, the ledger, and the ALM model so the team can trust the cushion before citing it.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
     "trigger": "ask_turn_5",
     "capabilityName": "Automated Action",
-    "description": "Pulls the pre-set action for each rate increment exactly as written in the board-approved playbook, so the answer is a decision, not a rebuild.",
+    "description": "Pulls the pre-set board playbook action for each rate move and fires the SEG attrition alert, with the evidence attached.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
     "trigger": "ask_turn_6",
     "capabilityName": "Automated Action",
-    "description": "Monitors deposit activity by SEG group and raises an alert the moment a group's outflow crosses the set percentage, with what is driving it.",
+    "description": "Pulls the pre-set board playbook action for each rate move and fires the SEG attrition alert, with the evidence attached.",
     "eyebrow": "RADIANT AI CAPABILITY"
   }
 ]

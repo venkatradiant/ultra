@@ -1,65 +1,65 @@
 [
   {
     "id": "ds-fin-01",
-    "name": "Jack Henry Symitar (Core Banking)",
+    "name": "Jack Henry Symitar",
     "status": "connected",
-    "description": "System of record for loans, member shares, 60-day delinquency by segment, and the SEG code on every account. The intelligence layer reads it overnight; it does not replace it.",
+    "description": "Core banking: balances, loan servicing and delinquency, deposits and deposit transactions by SEG, and member and portfolio history. A migration to Thought Machine is underway.",
     "icon": "database",
-    "lastSync": "2026-07-24T05:50:00",
-    "recordCount": 2600000
+    "lastSync": "2026-09-24T05:55:00",
+    "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-02",
-    "name": "MeridianLink",
+    "name": "UST Finex",
     "status": "connected",
-    "description": "Loan origination, including the indirect dealer channel, with the origination date that separates recent vintages from seasoned ones.",
-    "icon": "route",
-    "lastSync": "2026-07-24T05:51:00",
-    "recordCount": 412000
+    "description": "Asset-liability and scenario modeling: the capital position, liquidity, and the what-if scenarios, including the government-shutdown employment shock.",
+    "icon": "cpu",
+    "lastSync": "2026-09-24T05:55:00",
+    "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-03",
-    "name": "General Ledger & Board Reporting",
+    "name": "General Ledger",
     "status": "connected",
-    "description": "Net worth, the balance sheet, and the monthly board financials the ratios are measured against.",
+    "description": "The ledger the capital position and the ratios are measured against.",
     "icon": "file-text",
-    "lastSync": "2026-07-24T05:52:00",
-    "recordCount": 740000
+    "lastSync": "2026-09-24T05:55:00",
+    "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-04",
-    "name": "ALM Model (Interest-Rate Risk)",
+    "name": "Cornerstone",
     "status": "connected",
-    "description": "Interest-rate risk model. Reprices the balance sheet under parallel shocks of plus or minus 25, 50 and 100 basis points and projects quarter liquidity.",
-    "icon": "cpu",
-    "lastSync": "2026-07-24T05:53:00",
-    "recordCount": null
+    "description": "Capital position, read with the General Ledger.",
+    "icon": "trending-up",
+    "lastSync": "2026-09-24T05:55:00",
+    "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-05",
-    "name": "Investment Portfolio Accounting",
+    "name": "Greenplum on Tanzu",
     "status": "connected",
-    "description": "Securities holdings and their market value, used to mark the investment portfolio under each rate shock.",
-    "icon": "trending-up",
-    "lastSync": "2026-07-24T05:54:00",
-    "recordCount": 1240
+    "description": "Analytical warehouse.",
+    "icon": "database",
+    "lastSync": "2026-09-24T05:55:00",
+    "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-06",
-    "name": "Board Policy & ALCO Playbook Library",
+    "name": "Tableau",
     "status": "connected",
-    "description": "Board risk-tolerance limits, aligned delinquency parameters, the funding-review trigger, and the approved ALCO rate response playbook.",
-    "icon": "shield-check",
-    "lastSync": "2026-07-24T05:55:00",
-    "recordCount": 214
+    "description": "Reporting.",
+    "icon": "trending-up",
+    "lastSync": "2026-09-24T05:55:00",
+    "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-07",
-    "name": "Greenplum on Tanzu",
+    "name": "Board risk-tolerance limits and playbooks",
     "status": "connected",
-    "description": "Data warehouse that joins the core, origination and ledger history so trends by segment, vintage and SEG group can be read in one place.",
-    "icon": "database",
-    "lastSync": "2026-07-24T05:56:00",
-    "recordCount": 12400000
+    "description": "Policy documents: the board risk-tolerance limits, the aligned parameters, and the board playbooks.",
+    "icon": "shield-check",
+    "lastSync": "2026-09-24T05:55:00",
+    "freshness": "Overnight scan"
   }
 ]

@@ -40,6 +40,10 @@ export type NavKey =
   // personas offered a "save to my reports" chip with no destination behind it.
   // Additive: absent from the default slot set and listed only by those two.
   | 'myReports'
+  // USSFCU Finance (Fiona). The spec's two navigation pages. Additive: absent
+  // from the default slot set and listed only by the Finance persona.
+  | 'portfolioRisk'
+  | 'scenarios'
   | 'dataSources';
 
 export interface PersonaIdentity {
