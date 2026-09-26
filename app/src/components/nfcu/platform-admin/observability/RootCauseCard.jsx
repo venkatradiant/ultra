@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Stethoscope, Check, X, Scale, CircleSlash, CheckCircle2 } from 'lucide-react';
+import { Stethoscope, Scale, CircleSlash, CheckCircle2 } from 'lucide-react';
 
 /**
  * The root-cause card. The reference Grafana had no equivalent — it buried RCA
@@ -19,8 +18,6 @@ import { Stethoscope, Check, X, Scale, CircleSlash, CheckCircle2 } from 'lucide-
  * Props: { rca, componentLabel }
  */
 export default function RootCauseCard({ rca, componentLabel }) {
-  const [decision, setDecision] = useState(null);
-
   if (!rca) {
     return (
       <div className="rounded-xl bg-surface border border-border-subtle p-5">
@@ -98,38 +95,11 @@ export default function RootCauseCard({ rca, componentLabel }) {
               <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-px" />
               <span>{rca.outcome}</span>
             </div>
-          ) : decision === 'approved' ? (
-            <div className="flex items-start gap-1.5 text-[10.5px] text-emerald-700">
-              <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-px" />
-              <span>Approved by D. Okonkwo · queued for the 02:00 change window</span>
-            </div>
-          ) : decision === 'declined' ? (
-            <div className="flex items-start gap-1.5 text-[10.5px] text-text-muted">
-              <X className="w-3.5 h-3.5 flex-shrink-0 mt-px" />
-              <span>Declined · the agent will keep observing and will not retry</span>
-            </div>
           ) : (
-            <>
-              <p className="text-[10px] text-text-subtle mb-2">
-                Awaiting approval — the agent has not executed anything.
-              </p>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setDecision('approved')}
-                  className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold text-white bg-brand hover:bg-brand-hover rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer"
-                >
-                  <Check className="w-3 h-3" /> Approve
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setDecision('declined')}
-                  className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold text-text-muted border border-border hover:border-border hover:text-text rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer"
-                >
-                  <X className="w-3 h-3" /> Decline
-                </button>
-              </div>
-            </>
+            <div className="flex items-start gap-1.5 text-[10.5px] text-amber-700">
+              <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-px" />
+              <span>Automated remediation in progress · monitoring recovery</span>
+            </div>
           )}
         </div>
       </div>
