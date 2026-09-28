@@ -20,7 +20,7 @@ export default function PlaybookActionTable({ eyebrow = 'Automated Action' }) {
       eyebrow={eyebrow}
       title={PLAYBOOK.title}
       aside={<StatusPill tone="brand">Pulled as written</StatusPill>}
-      footnote="Sources: UST Finex, Board playbook (policy)."
+      footnote="Sources: Models, board playbook (policy)."
     >
       {/* Severity scale: the modeled shutdown sits at the end of the first band. */}
       <div className="mb-3 rounded-lg border border-border-subtle bg-surface p-3">

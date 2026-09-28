@@ -77,8 +77,8 @@ export default function ActionExecutionDiagram() {
   } : isFinance ? {
     bodyText: 'Pulls the pre-set board playbook action for each rate move and fires the SEG attrition alert, with the evidence attached — every action confirmed by the user before it leaves the conversation.',
     targetsLabel: 'USSFCU EXECUTION TARGETS',
-    primaryTargets: ['Board playbooks', 'Jack Henry Symitar', 'UST Finex', 'ALCO'],
-    secondaryTargets: ['Tableau', 'Board deck', 'Email'],
+    primaryTargets: ['Board playbooks', 'Core banking system', 'Models', 'ALCO'],
+    secondaryTargets: ['Reporting tools', 'Board deck', 'Email'],
     gapText: 'The playbook that says what to do lives in a policy document, not next to the analysis, so the decision waits on someone finding and reading it.',
     withText: 'The pre-agreed action sits next to the number, and the SEG alert fires with its detail attached.',
     deployedAt: 'Radiant Solutions Lab',

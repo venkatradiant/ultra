@@ -90,7 +90,7 @@ export default function TopHeader({ onMenuClick }) {
     '/my-reports': labels.myReports || 'My Reports',
     // USSFCU Finance (Fiona) pages.
     '/portfolio-risk': labels.portfolioRisk || 'Portfolio and Limits',
-    '/scenarios': labels.scenarios || 'Scenarios and ALM',
+    '/scenarios': labels.scenarios || 'Scenarios and Modeling',
     '/data-sources': 'Data Sources',
   };
   const title = pageTitles[location.pathname] || labels.ask || 'Ask the AI';

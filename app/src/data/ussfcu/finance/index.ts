@@ -1,7 +1,7 @@
 /**
  * Fiona's data layer (spec §12): every mock source behind a getter that
  * returns the spec's interface. Today each getter reads constants.ts; a live
- * feed (Symitar, UST Finex, Greenplum) replaces the getter body, not the
+ * feed (the core banking system, the models, the data warehouse) replaces the getter body, not the
  * components.
  */
 import signalsJson from './signals.json';

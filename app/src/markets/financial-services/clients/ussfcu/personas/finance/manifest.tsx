@@ -140,7 +140,7 @@ const manifest: PersonaManifest = {
     // The trend chart, limit bars, gauges and SEG table want more measure than
     // a chat bubble allows.
     wideInlineComponents: true,
-    // Spec §12: the briefing home, Portfolio and Limits, Scenarios and ALM,
+    // Spec §12: the briefing home, Portfolio and Limits, Scenarios and Modeling,
     // and Data sources.
     navSlots: ['ask', 'portfolioRisk', 'scenarios', 'dataSources'],
   },

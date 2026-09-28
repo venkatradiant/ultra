@@ -29,7 +29,7 @@ export default function PortfolioLimitChart({ eyebrow = 'Converged Conversation'
       eyebrow={eyebrow}
       title="Portfolios against board risk-tolerance limits"
       aside={<StatusPill tone="warning">1 portfolio near its limit</StatusPill>}
-      footnote={`Limits are percent of net worth (${fmtM(NET_WORTH_M, 2)}). Sources: Symitar, Cornerstone, UST Finex (portfolio balance, capital position, risk limits).`}
+      footnote={`Limits are percent of net worth (${fmtM(NET_WORTH_M, 2)}). Sources: Core banking system, models (portfolio balance, capital position, risk limits).`}
     >
       <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
         <RiskRead
@@ -39,7 +39,7 @@ export default function PortfolioLimitChart({ eyebrow = 'Converged Conversation'
           status={`About ${fmtM(Math.floor(fm.headroom))} headroom`}
           tone="warning"
           trend={history}
-          source="Symitar + Cornerstone + UST Finex"
+          source="Core banking system + models"
         />
         <RiskRead
           label="Cap reached at current pace"
@@ -48,7 +48,7 @@ export default function PortfolioLimitChart({ eyebrow = 'Converged Conversation'
           status="Projection"
           tone="warning"
           trend={[...history, ((projectedBalance - growthPerQuarter) / NET_WORTH_M) * 100, (projectedBalance / NET_WORTH_M) * 100]}
-          source="UST Finex"
+          source="Models"
         />
         <RiskRead
           label="Next closest portfolio"
@@ -56,7 +56,7 @@ export default function PortfolioLimitChart({ eyebrow = 'Converged Conversation'
           limit={`${nextClosest.portfolio} · none other within ${nearLimitPoints} points`}
           status="Inside limits"
           tone="success"
-          source="Symitar + Cornerstone"
+          source="Core banking system + general ledger"
         />
       </div>
 

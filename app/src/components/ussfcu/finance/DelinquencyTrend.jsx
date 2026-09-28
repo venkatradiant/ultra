@@ -41,7 +41,7 @@ export default function DelinquencyTrend({ eyebrow = 'Anomaly Detection' }) {
       eyebrow={eyebrow}
       title="60-day delinquency by loan segment · eight quarters"
       aside={<StatusPill tone="critical">1 pool outside tolerance</StatusPill>}
-      footnote={`Quarter-end 60-day delinquency, ${quarters[0]} – ${quarters[LAST]}. Source: Jack Henry Symitar (loan servicing and delinquency).`}
+      footnote={`Quarter-end 60-day delinquency, ${quarters[0]} – ${quarters[LAST]}. Source: Core banking system (loan servicing and delinquency).`}
     >
       <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
         <RiskRead
@@ -51,7 +51,7 @@ export default function DelinquencyTrend({ eyebrow = 'Anomaly Detection' }) {
           status={`Breach +${(hil.series[LAST] - parameter).toFixed(1)} pts`}
           tone="critical"
           trend={hil.series}
-          source="Symitar"
+          source="Core banking system"
         />
         {segments
           .filter((s) => s.id === 'first_mortgage' || s.id === 'heloc')
@@ -64,7 +64,7 @@ export default function DelinquencyTrend({ eyebrow = 'Anomaly Detection' }) {
               status="Inside tolerance"
               tone="success"
               trend={s.series}
-              source="Symitar"
+              source="Core banking system"
             />
           ))}
       </div>

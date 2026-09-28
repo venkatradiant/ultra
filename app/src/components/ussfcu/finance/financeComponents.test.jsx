@@ -69,7 +69,7 @@ describe('Fiona inline cards', () => {
     expect(text()).toContain('Funding-review trigger 88%');
     expect(text()).toContain('Capital position reconciled across three sources');
     expect(screen.getAllByText('Matched')).toHaveLength(3);
-    for (const sys of ['Jack Henry Symitar', 'General Ledger and Cornerstone', 'UST Finex']) expect(text()).toContain(sys);
+    for (const sys of ['Core banking system', 'General ledger', 'Models (asset-liability)']) expect(text()).toContain(sys);
   });
 
   it('Step 6 lists all five playbook actions and recommends the short band', () => {
@@ -136,7 +136,7 @@ describe('Fiona briefing', () => {
     expect(text()).toContain('Net worth ratio');
     expect(screen.getAllByText('Public')).toHaveLength(1);
     expect(text()).toContain('Below the 600% board cap');
-    expect(text()).toContain('Symitar + Cornerstone + UST Finex');
+    expect(text()).toContain('Core banking system + models');
     tiles().forEach((t) => fireEvent.click(t));
     expect(onStatClick.mock.calls[3][0]).toBe(FINANCE_CHIPS.delinquency);
 
@@ -164,10 +164,10 @@ describe('Fiona pages', () => {
     expect(text()).toContain('1/2');
   });
 
-  it('Scenarios and ALM renders the shutdown impact, the gauges and the playbook', async () => {
+  it('Scenarios and Modeling renders the shutdown impact, the gauges and the playbook', async () => {
     const { default: Page } = await import('./pages/FinanceScenarios');
     render(<MemoryRouter><Page /></MemoryRouter>);
-    expect(text()).toContain('Scenarios and ALM');
+    expect(text()).toContain('Scenarios and Modeling');
     expect(text()).toContain('30-day government shutdown');
     expect(text()).toContain('Capital position reconciled across three sources');
     expect(text()).toContain('Board playbook · shutdown trigger');

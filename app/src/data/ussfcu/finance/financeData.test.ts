@@ -2,8 +2,8 @@
  * USSFCU Finance persona (Fiona) — the build matches the spec, word for word
  * and figure for figure.
  *
- * specV2.fixture.json is extracted mechanically from
- * USSFCU_Finance_Persona_Demo_Spec_v2.md (§1 tags, §6 signals, §7 KPIs, §10
+ * specV3.fixture.json is extracted mechanically from
+ * USSFCU_Finance_Persona_Demo_Spec_v3.docx (§1 tags, §6 signals, §7 KPIs, §10
  * seven turns, §11 prompts), so these assertions compare the build with the
  * spec's own text rather than with a retyped copy. The consistency checks
  * then pin every figure the prose quotes to the constant the visuals draw.
@@ -11,7 +11,7 @@
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import spec from './specV2.fixture.json';
+import spec from './specV3.fixture.json';
 import chatFlows from './chatFlows.json';
 import signals from './signals.json';
 import capabilityCallouts from './capabilityCallouts.json';
@@ -383,14 +383,25 @@ describe('only the new spec — the earlier narrative is gone', () => {
     for (const f of own) expect(readFileSync(f, 'utf8').toLowerCase().includes(phrase.toLowerCase()), `${f} mentions "${phrase}"`).toBe(false);
   });
 
+  // Client direction, Sep 25 (Name Generalization Directive): no vendor system
+  // or model names anywhere on screen — generic categories only.
+  it.each(['Symitar', 'Jack Henry', 'Finex', 'FinX', 'Cornerstone', 'Greenplum', 'Tanzu', 'Tableau', 'Thought Machine', 'Snowflake', 'MeridianLink'])(
+    'no Fiona file names the vendor "%s"',
+    (name) => {
+      for (const f of own) expect(readFileSync(f, 'utf8').includes(name), `${f} names "${name}"`).toBe(false);
+    },
+  );
+  it('no Fiona file uses "ALM" or "GL" as a label', () => {
+    for (const f of own) expect(/\b(ALM|GL)\b/.test(readFileSync(f, 'utf8')), f).toBe(false);
+  });
+
   it('lists only the spec’s systems as data sources', () => {
     expect(dataSources.map((d) => d.name)).toEqual([
-      'Jack Henry Symitar',
-      'UST Finex',
-      'General Ledger',
-      'Cornerstone',
-      'Greenplum on Tanzu',
-      'Tableau',
+      'Core banking system',
+      'Third-party models',
+      'General ledger',
+      'Data warehouse',
+      'Reporting tools',
       'Board risk-tolerance limits and playbooks',
     ]);
   });

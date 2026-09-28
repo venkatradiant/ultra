@@ -73,7 +73,7 @@ export default function CapitalLiquidityGauges({ eyebrow = 'Friction Observabili
       eyebrow={eyebrow}
       title="Capital and liquidity cushion · before and after the 30-day shutdown"
       aside={<StatusPill tone="success">Still well capitalized</StatusPill>}
-      footnote="Dashed tick: before the shutdown. Needle: after. Sources: Symitar, Cornerstone, UST Finex (capital position, liquidity, ALM)."
+      footnote="Dashed tick: before the shutdown. Needle: after. Sources: Core banking system, models (capital position, liquidity)."
     >
       <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
         <Gauge
@@ -87,7 +87,7 @@ export default function CapitalLiquidityGauges({ eyebrow = 'Friction Observabili
           format={(v) => fmtPct(v, v === c.netWorthBefore ? 2 : 1)}
           status={`${(c.netWorthAfter - c.earlyWarning).toFixed(1)} pts above the line`}
           tone="success"
-          source="Cornerstone + GL"
+          source="General ledger"
         />
         <Gauge
           title="Liquidity to spare, quarter"
@@ -100,7 +100,7 @@ export default function CapitalLiquidityGauges({ eyebrow = 'Friction Observabili
           format={(v) => fmtM(v)}
           status="Positive coverage"
           tone="success"
-          source="UST Finex"
+          source="Models"
         />
         <Gauge
           title="Loan-to-share"
@@ -113,7 +113,7 @@ export default function CapitalLiquidityGauges({ eyebrow = 'Friction Observabili
           format={(v) => `${v}%`}
           status={`${c.trigger - c.loanToShareAfter} pt below the trigger`}
           tone="warning"
-          source="Symitar + GL"
+          source="Core banking system + general ledger"
           lineTone="var(--color-warning)"
         />
       </div>

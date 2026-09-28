@@ -39,7 +39,7 @@ export default function SegDepositPanel({ eyebrow = 'Automated Action' }) {
       eyebrow={eyebrow}
       title="Deposit activity by core SEG · this month vs. last"
       aside={<StatusPill tone="success">Total {fmtSignedPct(totals.changePct)}</StatusPill>}
-      footnote="Source: Jack Henry Symitar (deposit transactions by SEG). SEG groups are anonymised."
+      footnote="Source: Core banking system (deposit transactions by SEG). SEG groups are anonymised."
     >
       <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
         <RiskRead
@@ -49,7 +49,7 @@ export default function SegDepositPanel({ eyebrow = 'Automated Action' }) {
           status="Funding stable"
           tone="success"
           trend={[totals.lastM, totals.thisM]}
-          source="Symitar"
+          source="Core banking system"
         />
         <RiskRead
           label="Payroll groups trending down"
@@ -57,7 +57,7 @@ export default function SegDepositPanel({ eyebrow = 'Automated Action' }) {
           limit={`${segs.length} core SEGs tracked`}
           status="Watch"
           tone="warning"
-          source="Symitar"
+          source="Core banking system"
         />
         <RiskRead
           label={flagged.seg}
@@ -66,7 +66,7 @@ export default function SegDepositPanel({ eyebrow = 'Automated Action' }) {
           status="Past the trigger"
           tone="critical"
           trend={[flaggedRaw.lastM, flaggedRaw.thisM]}
-          source="Symitar"
+          source="Core banking system"
         />
       </div>
 

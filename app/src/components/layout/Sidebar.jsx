@@ -42,7 +42,7 @@ export default function Sidebar({ open = false, onClose }) {
     fraudOperations: { to: '/fraud-operations', icon: Siren, label: labels.fraudOperations ?? 'Fraud Operations' },
     // USSFCU Finance (Fiona) pages.
     portfolioRisk: { to: '/portfolio-risk', icon: PieChart, label: labels.portfolioRisk ?? 'Portfolio and Limits' },
-    scenarios: { to: '/scenarios', icon: TrendingDown, label: labels.scenarios ?? 'Scenarios and ALM' },
+    scenarios: { to: '/scenarios', icon: TrendingDown, label: labels.scenarios ?? 'Scenarios and Modeling' },
     myReports: { to: '/my-reports', icon: FileText, label: labels.myReports ?? 'My Reports' },
     dataSources: { to: '/data-sources', icon: Database, label: 'Data Sources' },
   };

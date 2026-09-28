@@ -1,43 +1,34 @@
 [
   {
     "id": "ds-fin-01",
-    "name": "Jack Henry Symitar",
+    "name": "Core banking system",
     "status": "connected",
-    "description": "Core banking: balances, loan servicing and delinquency, deposits and deposit transactions by SEG, and member and portfolio history. A migration to Thought Machine is underway.",
+    "description": "Balances, loan servicing and delinquency, deposits and deposit transactions by SEG, and member and portfolio history. A core migration is underway.",
     "icon": "database",
     "lastSync": "2026-09-24T05:55:00",
     "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-02",
-    "name": "UST Finex",
+    "name": "Third-party models",
     "status": "connected",
-    "description": "Asset-liability and scenario modeling: the capital position, liquidity, and the what-if scenarios, including the government-shutdown employment shock.",
+    "description": "Asset-liability and scenario modeling: liquidity and the what-if scenarios, including the government-shutdown employment shock.",
     "icon": "cpu",
     "lastSync": "2026-09-24T05:55:00",
     "freshness": "Overnight scan"
   },
   {
     "id": "ds-fin-03",
-    "name": "General Ledger",
+    "name": "General ledger",
     "status": "connected",
-    "description": "The ledger the capital position and the ratios are measured against.",
+    "description": "The capital position, and the ledger the ratios are measured against.",
     "icon": "file-text",
     "lastSync": "2026-09-24T05:55:00",
     "freshness": "Overnight scan"
   },
   {
-    "id": "ds-fin-04",
-    "name": "Cornerstone",
-    "status": "connected",
-    "description": "Capital position, read with the General Ledger.",
-    "icon": "trending-up",
-    "lastSync": "2026-09-24T05:55:00",
-    "freshness": "Overnight scan"
-  },
-  {
     "id": "ds-fin-05",
-    "name": "Greenplum on Tanzu",
+    "name": "Data warehouse",
     "status": "connected",
     "description": "Analytical warehouse.",
     "icon": "database",
@@ -46,7 +37,7 @@
   },
   {
     "id": "ds-fin-06",
-    "name": "Tableau",
+    "name": "Reporting tools",
     "status": "connected",
     "description": "Reporting.",
     "icon": "trending-up",

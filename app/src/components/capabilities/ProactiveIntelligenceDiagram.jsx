@@ -67,12 +67,12 @@ export default function ProactiveIntelligenceDiagram() {
     withText: 'Cross-brand, cross-system intelligence — queue spikes, renewal-driven billing surges, outage-correlated volume, and churn risk correlated and ranked before the day starts.',
   } : isFinance ? {
     sourcesLabel: 'USSFCU DATA SOURCES',
-    primarySources: ['Jack Henry Symitar', 'UST Finex', 'General Ledger', 'Cornerstone'],
-    secondarySources: ['Greenplum on Tanzu', 'Tableau', 'Board playbooks'],
+    primarySources: ['Core banking system', 'Third-party models', 'General ledger', 'Board playbooks'],
+    secondarySources: ['Data warehouse', 'Reporting tools', 'Excel'],
     deployedAt: 'Radiant Solutions Lab',
     deployedDesc: 'Multi-agent orchestration across network ops',
     bodyText: 'Surfaces the portfolio signals overnight, before any question: a delinquency pool outside tolerance, a portfolio nearing a board limit, and building rate and liquidity pressure.',
-    gapText: 'Balances, delinquency, and deposits are exported from Symitar and assembled in Excel, so drift is caught late, in the monthly review.',
+    gapText: 'Balances, delinquency, and deposits are exported from the core banking system and assembled in Excel, so drift is caught late, in the monthly review.',
     withText: 'Three portfolio signals correlated across sources and waiting before the ALCO prep.',
   } : isCfo ? {
     sourcesLabel: 'USSFCU DATA SOURCES',

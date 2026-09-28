@@ -14,7 +14,7 @@
   {
     "trigger": "ask_turn_2",
     "capabilityName": "Converged Conversation",
-    "description": "Answers a plain-language portfolio question across Symitar, the GL, and UST Finex at once, returning one reconciled figure against the board limit.",
+    "description": "Answers a plain-language portfolio question across the core banking system, the general ledger, and the models at once, returning one reconciled figure against the board limit.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {
@@ -26,7 +26,7 @@
   {
     "trigger": "ask_turn_4",
     "capabilityName": "Friction Observability",
-    "description": "Reconciles capital and liquidity across the core, the ledger, and the ALM model so the team can trust the cushion before citing it.",
+    "description": "Reconciles capital and liquidity across the core banking system, the general ledger, and the models so the team can trust the cushion before citing it.",
     "eyebrow": "RADIANT AI CAPABILITY"
   },
   {

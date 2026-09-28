@@ -12,8 +12,8 @@
       "emotion": 3,
       "emotionLabel": "Is anything drifting?",
       "touchpoints": [
-        "Symitar exports",
-        "Tableau",
+        "Core banking system exports",
+        "reporting tools",
         "Excel"
       ],
       "action": "Scan balances, delinquency, and deposits for anything moving",
@@ -34,8 +34,7 @@
       "emotion": 3,
       "emotionLabel": "How much headroom is left?",
       "touchpoints": [
-        "GL",
-        "Cornerstone",
+        "General ledger",
         "board policy documents"
       ],
       "action": "Line up portfolio balances against board risk-tolerance limits",
@@ -55,7 +54,7 @@
       "emotion": 2,
       "emotionLabel": "Slow, hard to trust",
       "touchpoints": [
-        "UST Finex",
+        "Modeling tools",
         "Excel"
       ],
       "action": "Rebuild the shutdown or what-if scenario and read the impact",

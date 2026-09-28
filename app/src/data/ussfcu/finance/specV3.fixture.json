@@ -6,7 +6,7 @@
       "user": "(Login, no prompt)",
       "ai": "Good morning, Fiona. Before the ALCO prep, three portfolio signals need a look. The most urgent: Home Improvement Loan (unsecured) 60-day delinquency has reached 1.8%, up from 1.1% two quarters ago and now past your 1.5% aligned parameter. It is the only pool trending outside tolerance. A portfolio is also nearing a board limit, and liquidity and shutdown exposure is building. Want to start with the delinquency trend?",
       "viz": "Three priority signal cards: Delinquency drift (critical), Portfolio nearing a board limit (warning), Rate and liquidity pressure (warning). KPI row beneath.",
-      "sources": "Symitar, GL, UST Finex",
+      "sources": "Core banking system, general ledger, models",
       "capability": "Proactive Intelligence",
       "followUps": [
         "Show delinquency trends by segment",
@@ -20,7 +20,7 @@
       "user": "Show delinquency trends by loan segment, and flag any pool trending up or outside our aligned parameters.",
       "ai": "Most segments are flat or improving. One is not. Home Improvement Loan (unsecured) 60-day delinquency is 1.8%, up from 1.1% two quarters ago and now above your 1.5% aligned parameter. First mortgage and HELOC are steady at 0.4% and 0.6%. The rise is concentrated in loans originated in the last 18 months, through the contractor channel. The Home Improvement Loan book is the pool to watch; everything else sits inside tolerance.",
       "viz": "Delinquency-by-segment trend lines over eight quarters, the Home Improvement Loan book flagged red and crossing the 1.5% parameter line.",
-      "sources": "Jack Henry Symitar (loan servicing and delinquency)",
+      "sources": "Core banking system (loan servicing and delinquency)",
       "capability": "Anomaly Detection",
       "followUps": [
         "Which portfolios are near their board limits?",
@@ -34,7 +34,7 @@
       "user": "Which portfolios are approaching our board risk-tolerance limits, such as mortgages capped at 600% of net worth?",
       "ai": "One portfolio is close. First mortgage is at $655M, which is 571% of net worth against your 600% board cap, so about $33M of headroom before the limit. No other portfolio is within fifteen points of its limit. At the current pace of first-mortgage growth, you reach the cap in roughly two quarters.",
       "viz": "Portfolio-versus-limit horizontal bars with headroom shaded, first mortgage nearest the 600% line, a two-quarter projection marker.",
-      "sources": "Symitar, Cornerstone, UST Finex (portfolio balance, capital position, risk limits)",
+      "sources": "Core banking system, models (portfolio balance, capital position, risk limits)",
       "capability": "Converged Conversation",
       "followUps": [
         "Model a government shutdown on the portfolio",
@@ -46,9 +46,9 @@
       "step": 4,
       "title": "Government-shutdown employment shock",
       "user": "Model a government shutdown as an employment shock. What happens to our members and our loan portfolio?",
-      "ai": "Modeled on our own members' behavior, not industry averages, which matters because our field of membership is concentrated in the Senate community. In a 30-day shutdown, an estimated 18% of affected members draw down deposits and about 6% delay a loan payment. Projected 60-day delinquency rises across unsecured consumer credit, led by the Home Improvement Loan book, and modeled loan losses increase about $4.2M over two quarters. Because this is calibrated to our members, the impact lands sharper and faster than a generic ALM shock would show. This is the scenario an ALM model alone would miss.",
+      "ai": "Modeled on our own members' behavior, not industry averages, which matters because our field of membership is concentrated in the Senate community. In a 30-day shutdown, an estimated 18% of affected members draw down deposits and about 6% delay a loan payment. Projected 60-day delinquency rises across unsecured consumer credit, led by the Home Improvement Loan book, and modeled loan losses increase about $4.2M over two quarters. Because this is calibrated to our members, the impact lands sharper and faster than a generic model would show. This is the scenario a generic model alone would miss.",
       "viz": "Shutdown-scenario impact panel: members affected, deposit drawdown and payment-delay rates, projected delinquency by segment (Home Improvement Loan leading), and modeled loss over two quarters.",
-      "sources": "UST Finex (asset-liability model), Symitar (member and portfolio history)",
+      "sources": "Models (asset-liability), core banking system (member and portfolio history)",
       "capability": "Predictive Intelligence",
       "followUps": [
         "Do we have enough capital and liquidity?",
@@ -60,9 +60,9 @@
       "step": 5,
       "title": "Capital and liquidity cushion",
       "user": "For that shutdown scenario, do we have enough dry powder? What happens to our capital ratios and liquidity?",
-      "ai": "Under the 30-day shutdown scenario your net worth ratio moves from 7.50% to about 7.2%, still well capitalized, and on-hand liquidity covers projected outflows for the quarter with roughly $35M to spare. The pressure point is deposit outflow concentrated in a few Senate-community payroll groups, which pushes loan-to-share from 84% toward the funding-review trigger. You have dry powder, but the scenario narrows it. I reconciled the capital position across the core, the ledger, and the ALM model, so the cushion is provable.",
+      "ai": "Under the 30-day shutdown scenario your net worth ratio moves from 7.50% to about 7.2%, still well capitalized, and on-hand liquidity covers projected outflows for the quarter with roughly $35M to spare. The pressure point is deposit outflow concentrated in a few Senate-community payroll groups, which pushes loan-to-share from 84% toward the funding-review trigger. You have dry powder, but the scenario narrows it. I reconciled the capital position across the core banking system, the general ledger, and the models, so the cushion is provable.",
       "viz": "Capital-ratio and liquidity gauges before and after, loan-to-share crossing the funding-review trigger, and a small reconciliation panel tying the capital figure to its three sources.",
-      "sources": "Symitar, Cornerstone, UST Finex (capital position, liquidity, ALM)",
+      "sources": "Core banking system, models (capital position, liquidity)",
       "capability": "Friction Observability",
       "followUps": [
         "What is our shutdown playbook?",
@@ -76,7 +76,7 @@
       "user": "For a shutdown of this kind, what is our pre-established playbook?",
       "ai": "Your board playbook maps actions to a shutdown trigger by severity. At an anticipated or short shutdown: proactive outreach and hardship-deferral offers to the affected payroll groups, and a pause on Home Improvement Loan marketing to the most exposed segments. At an extended shutdown: activate the emergency-liquidity line, tighten unsecured underwriting, and stand up the member relief program the board pre-approved. Each action is pulled as written in the approved playbook, so this is a decision, not a rebuild.",
       "viz": "Trigger-to-action table drawn from the board playbook, each row tied to a shutdown severity band, with the recommended action highlighted for the modeled scenario.",
-      "sources": "UST Finex, Board playbook (policy)",
+      "sources": "Models, board playbook (policy)",
       "capability": "Automated Action",
       "followUps": [
         "Show deposit activity by SEG",
@@ -90,7 +90,7 @@
       "user": "Show deposit activity by SEG group, and trigger an alert if more than a set percentage leaves.",
       "ai": "Deposit activity by core SEG this month: total balances are up 0.6%, but two payroll groups are trending down. One is off 4.2% versus last month, which crosses your 3% outflow trigger, so it is flagged. The movement is mostly certificate closures chasing a competitor promotional rate rather than full attrition. Net, funding is stable, with one group to address before it compounds. I have raised the alert and attached the detail.",
       "viz": "Deposit activity by SEG as bars with amount and count, the flagged group in red crossing the 3% outflow trigger, and an alert card with the attached detail.",
-      "sources": "Jack Henry Symitar (deposit transactions by SEG)",
+      "sources": "Core banking system (deposit transactions by SEG)",
       "capability": "Automated Action",
       "followUps": [
         "Draft the retention action for this SEG",
@@ -105,7 +105,7 @@
       "Severity": "critical",
       "Bucket": "Delinquencies",
       "Description": "Home Improvement Loan (unsecured) 60-day delinquency has reached 1.8% (illustrative), up from 1.1% two quarters ago and now past the 1.5% aligned parameter. It is the only pool trending outside tolerance, and it is a portfolio USS FCU underwrites and markets through contractors, so it is worth watching closely.",
-      "Data Source": "Jack Henry Symitar (loan servicing and delinquency)",
+      "Data Source": "Core banking system (loan servicing and delinquency)",
       "Action": "Open the delinquency trend by segment and isolate the pool driving it."
     },
     {
@@ -113,7 +113,7 @@
       "Severity": "warning",
       "Bucket": "Risk-tolerance threshold",
       "Description": "The first-mortgage portfolio is at 571% of net worth (illustrative), $655M against the 600% board cap, the closest any portfolio has come to a limit this year, with about $33M of headroom.",
-      "Data Source": "Symitar, Cornerstone, UST Finex (portfolio balance and capital position)",
+      "Data Source": "Core banking system, models (portfolio balance and capital position)",
       "Action": "Check every portfolio against its board limit and see the remaining headroom."
     },
     {
@@ -121,7 +121,7 @@
       "Severity": "warning",
       "Bucket": "Trigger events and liquidity",
       "Description": "Loan-to-share is 84% (illustrative), a five-year high, and a large share of deposits sits in a handful of Senate-community payroll groups. A government shutdown is the scenario that would test both at once.",
-      "Data Source": "UST Finex (asset-liability model), Symitar, GL",
+      "Data Source": "Models (asset-liability), core banking system, general ledger",
       "Action": "Model the shutdown scenario and test the capital and liquidity cushion."
     }
   ],
@@ -131,7 +131,7 @@
       "value": "7.50% (public backdrop)",
       "trend": "stable",
       "target": "Above 7.0% early-warning line",
-      "source": "Call Report + GL",
+      "source": "Call Report + general ledger",
       "calc": "Net worth divided by total assets"
     },
     {
@@ -139,7 +139,7 @@
       "value": "84% (illustrative)",
       "trend": "up",
       "target": "Below the funding-review trigger",
-      "source": "Symitar + GL",
+      "source": "Core banking system + general ledger",
       "calc": "Total loans divided by total shares"
     },
     {
@@ -147,7 +147,7 @@
       "value": "571% (illustrative)",
       "trend": "up",
       "target": "Below the 600% board cap",
-      "source": "Symitar + Cornerstone + UST Finex",
+      "source": "Core banking system + models",
       "calc": "First-mortgage balance divided by net worth"
     },
     {
@@ -155,7 +155,7 @@
       "value": "1.8% (illustrative)",
       "trend": "up",
       "target": "At or below the 1.5% parameter",
-      "source": "Symitar",
+      "source": "Core banking system",
       "calc": "60-day delinquent balance divided by segment balance"
     },
     {
@@ -163,7 +163,7 @@
       "value": "11.4% (illustrative)",
       "trend": "up",
       "target": "Within risk-tolerance parameters",
-      "source": "Symitar",
+      "source": "Core banking system",
       "calc": "Year-to-date change in net loans"
     },
     {
@@ -171,7 +171,7 @@
       "value": "4.1% (illustrative)",
       "trend": "stable",
       "target": "Keeping pace with loan growth",
-      "source": "Symitar + GL",
+      "source": "Core banking system + general ledger",
       "calc": "Year-to-date change in total shares"
     },
     {
@@ -179,7 +179,7 @@
       "value": "About $35M surplus (illustrative)",
       "trend": "down",
       "target": "Positive coverage of quarter outflows",
-      "source": "UST Finex",
+      "source": "Models",
       "calc": "On-hand liquidity less projected scenario outflows"
     },
     {
@@ -187,7 +187,7 @@
       "value": "Plus 0.6% overall; one group off 4.2% (illustrative)",
       "trend": "mixed",
       "target": "No group past the 3% outflow trigger",
-      "source": "Symitar",
+      "source": "Core banking system",
       "calc": "Deposit amount and count change by core SEG"
     }
   ],
@@ -198,11 +198,11 @@
     },
     {
       "tag": "Converged Conversation",
-      "text": "Answers a plain-language portfolio question across Symitar, the GL, and UST Finex at once, returning one reconciled figure against the board limit."
+      "text": "Answers a plain-language portfolio question across the core banking system, the general ledger, and the models at once, returning one reconciled figure against the board limit."
     },
     {
       "tag": "Friction Observability",
-      "text": "Reconciles capital and liquidity across the core, the ledger, and the ALM model so the team can trust the cushion before citing it."
+      "text": "Reconciles capital and liquidity across the core banking system, the general ledger, and the models so the team can trust the cushion before citing it."
     },
     {
       "tag": "Predictive Intelligence",
@@ -226,7 +226,7 @@
   ],
   "interventions": [
     {
-      "currentStep": "Export and assemble from Symitar and Excel",
+      "currentStep": "Export and assemble from the core banking system and Excel",
       "intervention": "Surfaces the portfolio signals overnight, correlated across sources",
       "capability": "Proactive Intelligence",
       "impact": "Days of assembly to a morning briefing"
@@ -238,7 +238,7 @@
       "impact": "Hours of reconciliation to one query"
     },
     {
-      "currentStep": "Rebuild the scenario in UST Finex",
+      "currentStep": "Rebuild the scenario in the modeling tools",
       "intervention": "Models the shutdown scenario and projects loss, capital, and liquidity",
       "capability": "Predictive Intelligence",
       "impact": "Scenario in seconds, ready for the board"
@@ -286,7 +286,7 @@
     {
       "index": 1,
       "name": "Monitor",
-      "Touchpoints": "Symitar exports, Tableau, Excel",
+      "Touchpoints": "Core banking system exports, reporting tools, Excel",
       "Actions": "Scan balances, delinquency, and deposits for anything moving",
       "Thoughts": "\"Is anything drifting that I will have to explain later?\"",
       "Emotion": "3",
@@ -296,7 +296,7 @@
     {
       "index": 2,
       "name": "Assess against limits",
-      "Touchpoints": "GL, Cornerstone, board policy documents",
+      "Touchpoints": "General ledger, board policy documents",
       "Actions": "Line up portfolio balances against board risk-tolerance limits",
       "Thoughts": "\"How much headroom is left before we hit a board cap?\"",
       "Emotion": "3",
@@ -306,7 +306,7 @@
     {
       "index": 3,
       "name": "Model scenarios",
-      "Touchpoints": "UST Finex, Excel",
+      "Touchpoints": "Modeling tools, Excel",
       "Actions": "Rebuild the shutdown or what-if scenario and read the impact",
       "Thoughts": "\"What does a 30-day shutdown do to delinquency, net worth, and liquidity?\"",
       "Emotion": "2",
@@ -331,15 +331,15 @@
     ],
     [
       "B",
-      "Export balances and delinquency from Symitar to Excel"
+      "Export balances and delinquency from the core banking system to Excel"
     ],
     [
       "C",
-      "Pull capital position from GL and Cornerstone"
+      "Pull capital position from the general ledger"
     ],
     [
       "D",
-      "Rebuild the scenario in UST Finex"
+      "Rebuild the scenario in the modeling tools"
     ],
     [
       "E",

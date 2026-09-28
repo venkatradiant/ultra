@@ -13,24 +13,24 @@
     },
     {
       "id": "B",
-      "label": "Export balances and delinquency from Symitar to Excel",
+      "label": "Export balances and delinquency from the core banking system to Excel",
       "detail": "Next: hours",
       "state": "gap",
-      "system": "Symitar, Excel"
+      "system": "Core banking system, Excel"
     },
     {
       "id": "C",
-      "label": "Pull capital position from GL and Cornerstone",
+      "label": "Pull capital position from the general ledger",
       "detail": "Next: hours",
       "state": "normal",
-      "system": "GL, Cornerstone"
+      "system": "General ledger"
     },
     {
       "id": "D",
-      "label": "Rebuild the scenario in UST Finex",
+      "label": "Rebuild the scenario in the modeling tools",
       "detail": "Next: manual",
       "state": "normal",
-      "system": "UST Finex"
+      "system": "Modeling tools"
     },
     {
       "id": "E",
@@ -52,7 +52,7 @@
       "label": "Chase the difference across systems",
       "detail": "1 to 2 days, then back to reconciling by hand",
       "state": "gap",
-      "system": "Symitar, GL, UST Finex"
+      "system": "Core banking system, general ledger, models"
     },
     {
       "id": "H",
@@ -73,7 +73,7 @@
   "interventions": [
     {
       "id": "INT-1",
-      "currentStep": "Export and assemble from Symitar and Excel",
+      "currentStep": "Export and assemble from the core banking system and Excel",
       "stepId": "B",
       "intervention": "Surfaces the portfolio signals overnight, correlated across sources",
       "capability": "Proactive Intelligence",
@@ -89,7 +89,7 @@
     },
     {
       "id": "INT-3",
-      "currentStep": "Rebuild the scenario in UST Finex",
+      "currentStep": "Rebuild the scenario in the modeling tools",
       "stepId": "D",
       "intervention": "Models the shutdown scenario and projects loss, capital, and liquidity",
       "capability": "Predictive Intelligence",

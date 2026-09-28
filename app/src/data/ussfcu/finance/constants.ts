@@ -87,7 +87,7 @@ export const PUBLIC_BACKDROP = {
   totalAssetsM: 1530, // spec: "Approximately $1.53B"
   members: 52500, // spec: "Approximately 52,500"
   netWorthRatioPct: 7.5, // spec: "7.50%, well capitalized"
-  corePlatform: 'Jack Henry Symitar, with a migration underway to Thought Machine',
+  corePlatform: 'Core banking system, with a core migration underway',
 } as const;
 
 /** Net worth in $M — 7.50% of $1.53B = $114.75M (derived from the backdrop). */
@@ -191,14 +191,14 @@ export const CUSHION = {
 } as const;
 
 /**
- * spec: "I reconciled the capital position across the core, the ledger, and
- * the ALM model." Each source carries the same net worth — derived from the
+ * spec: "I reconciled the capital position across the core banking system, the
+ * general ledger, and the models." Each source carries the same net worth — derived from the
  * public backdrop — which is what makes the cushion provable.
  */
 export const CAPITAL_RECONCILIATION = [
-  { id: 'core', layer: 'Core', system: 'Jack Henry Symitar', netWorthM: NET_WORTH_M, nwRatioPct: PUBLIC_BACKDROP.netWorthRatioPct },
-  { id: 'ledger', layer: 'Ledger', system: 'General Ledger and Cornerstone', netWorthM: NET_WORTH_M, nwRatioPct: PUBLIC_BACKDROP.netWorthRatioPct },
-  { id: 'alm', layer: 'ALM model', system: 'UST Finex', netWorthM: NET_WORTH_M, nwRatioPct: PUBLIC_BACKDROP.netWorthRatioPct },
+  { id: 'core', layer: 'Core', system: 'Core banking system', netWorthM: NET_WORTH_M, nwRatioPct: PUBLIC_BACKDROP.netWorthRatioPct },
+  { id: 'ledger', layer: 'Ledger', system: 'General ledger', netWorthM: NET_WORTH_M, nwRatioPct: PUBLIC_BACKDROP.netWorthRatioPct },
+  { id: 'models', layer: 'Models', system: 'Models (asset-liability)', netWorthM: NET_WORTH_M, nwRatioPct: PUBLIC_BACKDROP.netWorthRatioPct },
 ] as const;
 
 // ─── Step 6 · Shutdown playbook ────────────────────────────────────────────
@@ -277,7 +277,7 @@ export const KPIS = [
     illustrative: false,
     trend: 'stable',
     target: 'Above 7.0% early-warning line',
-    source: 'Call Report + GL',
+    source: 'Call Report + general ledger',
     calc: 'Net worth divided by total assets',
   },
   {
@@ -287,7 +287,7 @@ export const KPIS = [
     illustrative: true,
     trend: 'up',
     target: 'Below the funding-review trigger',
-    source: 'Symitar + GL',
+    source: 'Core banking system + general ledger',
     calc: 'Total loans divided by total shares',
   },
   {
@@ -297,7 +297,7 @@ export const KPIS = [
     illustrative: true,
     trend: 'up',
     target: 'Below the 600% board cap',
-    source: 'Symitar + Cornerstone + UST Finex',
+    source: 'Core banking system + models',
     calc: 'First-mortgage balance divided by net worth',
   },
   {
@@ -307,7 +307,7 @@ export const KPIS = [
     illustrative: true,
     trend: 'up',
     target: 'At or below the 1.5% parameter',
-    source: 'Symitar',
+    source: 'Core banking system',
     calc: '60-day delinquent balance divided by segment balance',
   },
   {
@@ -317,7 +317,7 @@ export const KPIS = [
     illustrative: true,
     trend: 'up',
     target: 'Within risk-tolerance parameters',
-    source: 'Symitar',
+    source: 'Core banking system',
     calc: 'Year-to-date change in net loans',
   },
   {
@@ -327,7 +327,7 @@ export const KPIS = [
     illustrative: true,
     trend: 'stable',
     target: 'Keeping pace with loan growth',
-    source: 'Symitar + GL',
+    source: 'Core banking system + general ledger',
     calc: 'Year-to-date change in total shares',
   },
   {
@@ -337,7 +337,7 @@ export const KPIS = [
     illustrative: true,
     trend: 'down',
     target: 'Positive coverage of quarter outflows',
-    source: 'UST Finex',
+    source: 'Models',
     calc: 'On-hand liquidity less projected scenario outflows',
   },
   {
@@ -347,7 +347,7 @@ export const KPIS = [
     illustrative: true,
     trend: 'mixed',
     target: 'No group past the 3% outflow trigger',
-    source: 'Symitar',
+    source: 'Core banking system',
     calc: 'Deposit amount and count change by core SEG',
   },
 ] as const;

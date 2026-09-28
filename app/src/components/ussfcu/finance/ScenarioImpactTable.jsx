@@ -25,7 +25,7 @@ export default function ScenarioImpactTable({ eyebrow = 'Predictive Intelligence
       eyebrow={eyebrow}
       title={`Scenario: ${s.scenario}, modeled as an employment shock`}
       aside={<StatusPill tone="brand">Calibrated to our members</StatusPill>}
-      footnote="Sources: UST Finex (asset-liability model), Symitar (member and portfolio history)."
+      footnote="Sources: Models (asset-liability), core banking system (member and portfolio history)."
     >
       <div className="mb-3 grid grid-cols-1 gap-2 lg:grid-cols-3">
         {/* Member behaviour */}
@@ -97,7 +97,7 @@ export default function ScenarioImpactTable({ eyebrow = 'Predictive Intelligence
         </table>
       </div>
       <p className="mt-3 text-[11px] leading-relaxed text-text-muted">
-        Calibrated to our own members, the impact lands sharper and faster than a generic ALM shock would show.
+        Calibrated to our own members, the impact lands sharper and faster than a generic model would show.
       </p>
     </FinanceCard>
   );
