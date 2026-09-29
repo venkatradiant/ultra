@@ -102,6 +102,40 @@ export function clientIdForSlug(slug: string): string | null {
   return found ? found[0] : null;
 }
 
+/**
+ * Direct link into one client: `/login/<slug>?access=<token>` skips that
+ * client's sign-in form and lands on its briefing.
+ *
+ * The token is that client's OWN password (`/login/ussfcu?access=ussfcu@9705`).
+ * One client's password never opens another client's door, and the admin key
+ * does not open a client door either — the same rule `verifyClientLogin` holds
+ * for the form.
+ *
+ * Returns the client id to scope the session to, or null when the path is not a
+ * client door or the token does not open it.
+ */
+export function clientIdForAccessLink(pathname: string, token: string | null): string | null {
+  if (typeof pathname !== 'string' || typeof token !== 'string' || !token) return null;
+  const match = /^\/login\/([^/]+)\/?$/.exec(pathname);
+  if (!match) return null;
+  const clientId = clientIdForSlug(decodeURIComponent(match[1]));
+  if (!clientId) return null;
+  if (token === CLIENT_CREDENTIALS[clientId].password) {
+    return clientId;
+  }
+  return null;
+}
+
+/**
+ * The shareable direct link for a client — the one `clientIdForAccessLink`
+ * accepts — on the given origin. Null if the client has no gate.
+ */
+export function directAccessUrl(clientId: string, origin: string): string | null {
+  const cred = CLIENT_CREDENTIALS[clientId];
+  if (!cred) return null;
+  return `${origin}/login/${cred.slug}/?access=${cred.password}`;
+}
+
 /** Client id → its `/login/<slug>` segment, or null if the client has no gate. */
 export function slugForClientId(clientId: string): string | null {
   return CLIENT_CREDENTIALS[clientId]?.slug ?? null;

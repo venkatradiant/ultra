@@ -5,6 +5,8 @@ import {
   clientIdForSlug,
   slugForClientId,
   loginPathForClientId,
+  clientIdForAccessLink,
+  directAccessUrl,
   CLIENT_CREDENTIALS,
   ADMIN_ACCESS_KEY,
   DEMO_USERNAME,
@@ -160,5 +162,57 @@ describe('slug helpers', () => {
     expect(loginPathForClientId('financial_services')).toBe('/login/fs');
     expect(loginPathForClientId(null)).toBe(`/login/${ULTRA_SLUG}`);
     expect(loginPathForClientId('nope')).toBe(`/login/${ULTRA_SLUG}`);
+  });
+});
+
+describe('clientIdForAccessLink', () => {
+  it("opens a client door with that client's own password", () => {
+    for (const [clientId, { slug, password }] of Object.entries(CLIENT_CREDENTIALS)) {
+      expect(clientIdForAccessLink(`/login/${slug}`, password)).toBe(clientId);
+      expect(clientIdForAccessLink(`/login/${slug}/`, password)).toBe(clientId);
+    }
+  });
+
+  it('does not open a client door with the admin key', () => {
+    for (const { slug } of Object.values(CLIENT_CREDENTIALS)) {
+      expect(clientIdForAccessLink(`/login/${slug}`, ADMIN_ACCESS_KEY)).toBeNull();
+    }
+  });
+
+  it("never opens one client with another client's password", () => {
+    const entries = Object.values(CLIENT_CREDENTIALS);
+    for (const door of entries) {
+      for (const other of entries) {
+        if (other.slug === door.slug) continue;
+        expect(clientIdForAccessLink(`/login/${door.slug}`, other.password)).toBeNull();
+      }
+    }
+  });
+
+  it('refuses a wrong token, the platform door, other paths and non-strings', () => {
+    expect(clientIdForAccessLink('/login/ussfcu', 'nope')).toBeNull();
+    expect(clientIdForAccessLink('/login/ussfcu', '')).toBeNull();
+    expect(clientIdForAccessLink('/login/ussfcu', null)).toBeNull();
+    expect(clientIdForAccessLink('/login/ussfcu', DEMO_PASSWORD)).toBeNull();
+    expect(clientIdForAccessLink(`/login/${ULTRA_SLUG}`, DEMO_PASSWORD)).toBeNull();
+    expect(clientIdForAccessLink('/login/unknown', 'unknown@9705')).toBeNull();
+    expect(clientIdForAccessLink('/ask', 'ussfcu@9705')).toBeNull();
+  });
+});
+
+describe('directAccessUrl', () => {
+  it('builds a link that opens its own client', () => {
+    for (const clientId of Object.keys(CLIENT_CREDENTIALS)) {
+      const url = new URL(directAccessUrl(clientId, 'https://ultra.radiant.digital')!);
+      expect(url.origin).toBe('https://ultra.radiant.digital');
+      expect(clientIdForAccessLink(url.pathname, url.searchParams.get('access'))).toBe(clientId);
+    }
+    expect(directAccessUrl('ussfcu', 'https://ultra.radiant.digital')).toBe(
+      'https://ultra.radiant.digital/login/ussfcu/?access=ussfcu@9705',
+    );
+  });
+
+  it('returns null for an unknown client', () => {
+    expect(directAccessUrl('nobody', 'https://x')).toBeNull();
   });
 });

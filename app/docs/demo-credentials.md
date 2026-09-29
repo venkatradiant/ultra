@@ -51,6 +51,18 @@ case-sensitive.
 This is the door to the **market and client picker** — sign in here and you can enter any client.
 Keep this one; hand out the client rows above.
 
+### Direct client links
+
+`<host>/login/<slug>/?access=<that client's password>` skips the client's sign-in form and lands
+straight on its briefing (`/ask`), signed in as that client — e.g.
+`<host>/login/ussfcu/?access=ussfcu@9705`. The password is the one in the table above.
+
+A client's password opens only its own door (`?access=att@9705` on `/login/nfcu` shows the normal
+sign-in form), and the admin key `rdvr@9705` does not open a client door.
+
+The sign-in pages still work as before. A valid link replaces whatever session the tab held, and
+the token is stripped from the address bar on arrival.
+
 ### Bypass link
 
 `<host>/?access=rdvr@9705` skips the platform sign-in entirely and lands on the picker. The token

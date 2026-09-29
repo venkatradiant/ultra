@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Landmark, HeartPulse, Building2, Globe, Factory, RadioTower, Vote, ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Landmark, HeartPulse, Building2, Globe, Factory, RadioTower, Vote, ArrowLeft, ArrowUpRight, Copy, Check } from 'lucide-react';
 import { useClient } from '../context/ClientContext';
+import { directAccessUrl } from '../config/access';
 import { getMarkets } from '@core/runtime/registry';
 import UltraMark from '../components/brand/UltraMark';
 
@@ -33,6 +34,54 @@ const MARKET_META = {
   sled: { icon: Vote, from: '#c8122c', to: '#1a4480' },
 };
 const marketMeta = (id) => MARKET_META[id] || { icon: Building2, from: '#8b5cf6', to: '#6366f1' };
+
+/** Clipboard API where it exists; the textarea fallback covers non-secure origins. */
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  }
+}
+
+/**
+ * Copies the client's direct link (`/login/<slug>/?access=<password>`) so it can
+ * be handed to the client. Only copies — launching stays the tile's job.
+ */
+function CopyLinkButton({ clientId, clientName }) {
+  const [copied, setCopied] = useState(false);
+  const url = directAccessUrl(clientId, window.location.origin);
+  if (!url) return null;
+
+  async function handleCopy() {
+    if (await copyText(url)) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      title={copied ? 'Link copied' : 'Copy direct link'}
+      aria-label={copied ? `Copied ${clientName} direct link` : `Copy ${clientName} direct link`}
+      className="flex w-11 flex-shrink-0 cursor-pointer items-center justify-center border-l border-white/10 text-white/40 transition-colors hover:bg-white/[0.06] hover:text-white"
+    >
+      {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+    </button>
+  );
+}
 
 export default function ChooseClientScreen() {
   const { selectClient } = useClient();
@@ -151,11 +200,17 @@ export default function ChooseClientScreen() {
                   rather than the branding's own line breaks — those exist to fit
                   a narrow login hero, and a wide row does not need them. */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {/* The tile is a row of two buttons — launch, and copy the
+                    client's direct link — because a button cannot sit inside
+                    another one. */}
                 {activeMarket.clients.map(({ id, branding }) => (
-                  <button
+                  <div
                     key={id}
+                    className="group relative flex items-stretch overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.08] hover:shadow-[0_16px_38px_-20px_rgba(37,99,235,0.6)]"
+                  >
+                  <button
                     onClick={() => selectClient(id)}
-                    className="group relative flex cursor-pointer items-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-3.5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.08] hover:shadow-[0_16px_38px_-20px_rgba(37,99,235,0.6)]"
+                    className="flex min-w-0 flex-1 cursor-pointer items-center gap-3 p-3.5 pr-2 text-left"
                   >
                     <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/[0.04]">
                       <img src={branding.logo} alt="" className="h-7 w-7 object-contain" />
@@ -176,6 +231,8 @@ export default function ChooseClientScreen() {
                       <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
                   </button>
+                  <CopyLinkButton clientId={id} clientName={branding.name} />
+                  </div>
                 ))}
               </div>
             </motion.div>

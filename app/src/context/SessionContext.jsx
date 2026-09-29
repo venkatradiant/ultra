@@ -1,5 +1,10 @@
 import { createContext, useContext, useState } from 'react';
-import { ADMIN_ACCESS_KEY, verifyLogin, verifyClientLogin } from '../config/access';
+import {
+  ADMIN_ACCESS_KEY,
+  verifyLogin,
+  verifyClientLogin,
+  clientIdForAccessLink,
+} from '../config/access';
 import { STORAGE_KEY as CLIENT_KEY } from '../config/clients';
 
 /**
@@ -45,6 +50,14 @@ function writeScope(scope) {
   } catch { /* the session still holds in memory */ }
 }
 
+/** Remove `access` from the address bar, keeping every other param and the hash. */
+function stripAccessParam(params) {
+  params.delete('access');
+  const query = params.toString();
+  const url = window.location.pathname + (query ? `?${query}` : '') + window.location.hash;
+  window.history.replaceState({}, '', url);
+}
+
 /**
  * Consume `?access=…` if present: grant platform scope for the tab, then strip
  * the token from the URL while preserving every other query param AND the hash.
@@ -54,6 +67,23 @@ function writeScope(scope) {
  * matters because StrictMode invokes it twice in development.
  */
 function readInitialScope() {
+  // A client's direct link — `/login/<slug>?access=…` — comes first and wins
+  // over whatever this tab held before, because a link that names a client
+  // should open that client. ClientGateRoute then sees the matching scope and
+  // forwards to /ask, so the sign-in form never shows.
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const clientId = clientIdForAccessLink(window.location.pathname, params.get('access'));
+    if (clientId) {
+      stripAccessParam(params);
+      writeScope(clientId);
+      try {
+        localStorage.setItem(CLIENT_KEY, clientId);
+      } catch { /* private mode — the scope still carries the client */ }
+      return clientId;
+    }
+  } catch { /* fall through to the stored scope */ }
+
   try {
     const stored = sessionStorage.getItem(SESSION_KEY);
     // 'true' is the pre-scope format. Reading it as platform scope means a tab
@@ -67,11 +97,7 @@ function readInitialScope() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('access') !== ADMIN_ACCESS_KEY) return null;
 
-    params.delete('access');
-    const query = params.toString();
-    const url = window.location.pathname + (query ? `?${query}` : '') + window.location.hash;
-    window.history.replaceState({}, '', url);
-
+    stripAccessParam(params);
     writeScope(ULTRA_SCOPE);
 
     // The admin key means "take me to the markets", so never resume a client
