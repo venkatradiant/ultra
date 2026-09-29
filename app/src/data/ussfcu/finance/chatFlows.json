@@ -45,9 +45,7 @@
     ],
     "data_sources_used": [
       "Core banking system",
-      "models (portfolio balance",
-      "capital position",
-      "risk limits)"
+      "models (portfolio balance, capital position, risk limits)"
     ],
     "ui_components_to_render": [
       {
@@ -85,8 +83,7 @@
     ],
     "data_sources_used": [
       "Core banking system",
-      "models (capital position",
-      "liquidity)"
+      "models (capital position, liquidity)"
     ],
     "ui_components_to_render": [
       {
@@ -154,9 +151,7 @@
     ],
     "data_sources_used": [
       "Core banking system",
-      "models (portfolio balance",
-      "capital position",
-      "risk limits)"
+      "models (portfolio balance, capital position, risk limits)"
     ],
     "ui_components_to_render": [],
     "capability": "Converged Conversation"

@@ -108,6 +108,14 @@ describe('§10 — the seven scripted turns', () => {
     expect(flows[STEP_KEYS[i]].data_sources_used!.join(', ')).toBe(sources);
   });
 
+  it('keeps each data-source pill whole (no comma split inside parentheses)', () => {
+    for (const flow of Object.values(flows)) {
+      for (const src of flow.data_sources_used ?? []) {
+        expect(src.split('(').length, src).toBe(src.split(')').length);
+      }
+    }
+  });
+
   it.each(spec.steps.map((s, i) => [s.step, i] as const))('Step %i offers the spec’s follow-up options, in order', (_n, i) => {
     const expected = spec.steps[i].followUps.map((c) => TALK_TRACK_WORDING[c] ?? c);
     expect(flows[STEP_KEYS[i]].suggested_chips).toEqual(expected);
