@@ -10,7 +10,6 @@ import { styleForState } from './stateStyles';
 import LiveMetricPanel from './LiveMetricPanel';
 import AgentEventLog from './AgentEventLog';
 import ComponentStateHistory from './ComponentStateHistory';
-import RootCauseCard from './RootCauseCard';
 
 /**
  * Band 3 — the selected component in full: live metrics, its diagnosis, its
@@ -120,15 +119,8 @@ export default function ComponentDetailPanel({ component, rootCause, stateHistor
           <ComponentStateHistory history={stateHistory} />
         </div>
 
-        {/* Diagnosis + log */}
+        {/* Activity log */}
         <div className="space-y-3">
-          {/* key: remount on selection change so an Approve on one component
-              can't appear to carry over to the next. */}
-          <RootCauseCard
-            key={componentId}
-            rca={rootCause}
-            componentLabel={component.label ?? component.component}
-          />
           <AgentEventLog events={activity?.events} />
         </div>
       </div>
