@@ -60,7 +60,7 @@ const PROBES: Array<[query: string, expectedFlowKey: string]> = [
   ['what is the weather today', '__default__'],
   ['asdfgh', '__default__'],
   ['show me member names', '__default__'],
-  ['is this real USS FCU data', '__default__'],
+  ['is this real USSFCU data', '__default__'],
   ['what is our interest rate sensitivity', '__default__'],
   ['what about indirect auto', '__default__'],
 ];

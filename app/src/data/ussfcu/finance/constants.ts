@@ -1,7 +1,7 @@
 /**
  * USSFCU Finance persona (Fiona) — the canonical numbers.
  *
- * Spec: "Persona and Demo Specification: Finance Team Analyst at USS FCU"
+ * Spec: "Persona and Demo Specification: Finance Team Analyst at USSFCU"
  * (Radiant Digital, Lam Huynh, rev. 2026-09-24, Lauren feedback applied) and
  * the Fiona section of the USSFCU Oral Demo Talk Track v4. Those two documents
  * are the only source: anything they do not mention is not in this file.
@@ -11,7 +11,7 @@
  * figure the prose quotes to the value below.
  *
  * REAL vs ILLUSTRATIVE. PUBLIC_BACKDROP is the spec's real, sourced frame
- * (§2). Everything else is illustrative sample data, "not USS FCU data".
+ * (§2). Everything else is illustrative sample data, "not USSFCU data".
  *
  * SPEC vs FILL. A value is either stated in the spec (marked `spec`) or is the
  * minimum a spec visualization cannot be drawn without (marked `fill`), chosen
@@ -83,7 +83,7 @@ export const SUGGESTED_PROMPTS = [
 
 // ─── Public backdrop (real, §2) ─────────────────────────────────────────────
 export const PUBLIC_BACKDROP = {
-  institution: 'United States Senate Federal Credit Union (USS FCU), chartered 1935, serving the U.S. Senate community',
+  institution: 'United States Senate Federal Credit Union (USSFCU), chartered 1935, serving the U.S. Senate community',
   totalAssetsM: 1530, // spec: "Approximately $1.53B"
   members: 52500, // spec: "Approximately 52,500"
   netWorthRatioPct: 7.5, // spec: "7.50%, well capitalized"
@@ -354,7 +354,7 @@ export const KPIS = [
 
 /** Spec §1 data posture, stated on screen at the start. */
 export const ILLUSTRATIVE_NOTICE =
-  'All portfolio, delinquency, scenario, capital, liquidity and deposit figures are illustrative sample data, not USS FCU data. The public backdrop is real and sourced.';
+  'All portfolio, delinquency, scenario, capital, liquidity and deposit figures are illustrative sample data, not USSFCU data. The public backdrop is real and sourced.';
 
 // ─── Display helpers ───────────────────────────────────────────────────────
 export const fmtM = (m: number, digits = 0) => `$${Math.abs(m).toFixed(digits)}M`;

@@ -36,7 +36,7 @@ export default function FinanceDataPosturePanel() {
           ))}
         </dl>
         <p className="mt-3 text-[11px] text-text-subtle">
-          Sources: USS FCU, USS FCU consolidated financial statements, Weiss Ratings, USS FCU technology briefings. Reconfirm against the latest NCUA 5300 Call Report before the presentation.
+          Sources: USSFCU, USSFCU consolidated financial statements, Weiss Ratings, USSFCU technology briefings. Reconfirm against the latest NCUA 5300 Call Report before the presentation.
         </p>
       </div>
 

@@ -1,7 +1,7 @@
 /**
- * Persona: Fiona, USS FCU Finance Team — USSFCU-only.
+ * Persona: Fiona, USSFCU Finance Team — USSFCU-only.
  *
- * Spec: "Persona and Demo Specification: Finance Team Analyst at USS FCU"
+ * Spec: "Persona and Demo Specification: Finance Team Analyst at USSFCU"
  * (Radiant Digital, Lam Huynh, rev. 2026-09-24, Lauren feedback applied) and
  * the Fiona section of the USSFCU Oral Demo Talk Track v4. Those two are the
  * only source; nothing from the earlier finance narrative remains. No

@@ -7,7 +7,7 @@ import { membersAffected, membersDrawingDown, membersDelayingPayment, fmtPct, fm
  * Step 4 · Predictive Intelligence — "Shutdown-scenario impact panel: members
  * affected, deposit drawdown and payment-delay rates, projected delinquency by
  * segment (Home Improvement Loan leading), and modeled loss over two
- * quarters." Modeled on USS FCU's own members, not industry averages. The
+ * quarters." Modeled on USSFCU's own members, not industry averages. The
  * member funnel reads left to right: affected, then what they do.
  */
 const MAX_DQ = 3.5;

@@ -104,7 +104,7 @@
       "Signal": "Delinquency drifting in one segment",
       "Severity": "critical",
       "Bucket": "Delinquencies",
-      "Description": "Home Improvement Loan (unsecured) 60-day delinquency has reached 1.8% (illustrative), up from 1.1% two quarters ago and now past the 1.5% aligned parameter. It is the only pool trending outside tolerance, and it is a portfolio USS FCU underwrites and markets through contractors, so it is worth watching closely.",
+      "Description": "Home Improvement Loan (unsecured) 60-day delinquency has reached 1.8% (illustrative), up from 1.1% two quarters ago and now past the 1.5% aligned parameter. It is the only pool trending outside tolerance, and it is a portfolio USSFCU underwrites and markets through contractors, so it is worth watching closely.",
       "Data Source": "Core banking system (loan servicing and delinquency)",
       "Action": "Open the delinquency trend by segment and isolate the pool driving it."
     },
